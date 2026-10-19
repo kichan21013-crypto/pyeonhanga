@@ -1,0 +1,107 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile, readdir, stat } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { calculateComfort, WEIGHTS } from '../comfort-score.js';
+import { filterPlaces, emptyFilters } from '../search.js';
+import { card, detailMarkup } from '../ui.js';
+import { validatePlaces } from '../scripts/validate-data.js';
+import { convertItem } from '../scripts/import-tourapi.js';
+const places = JSON.parse(await readFile(new URL('../data/places.json', import.meta.url)));
+const fact = value => ({ value, sourceUrl: 'https://example.org/verified-fixture', verifiedAt: '2026-10-19', note: 'TEST FIXTURE ONLY' });
+
+test('모든 데이터가 검증되며 초기 샘플은 가상/unknown이다', () => {
+  assert.equal(validatePlaces(places), true);
+  for (const p of places.filter(p => p.isDemo)) {
+    assert.match(p.sourceName, /DEMO SAMPLE/);
+    assert.equal(calculateComfort(p.comfort).score, null);
+  }
+});
+test('unknown과 근거 없는 값은 점수를 높이지 않는다', () => {
+  assert.equal(calculateComfort().score, null);
+  assert.equal(calculateComfort({ parking: { value: 'good' } }).coverage, 0);
+  assert.equal(calculateComfort({ parking: fact('good'), stairs: fact('good'), noise: fact('unknown') }).score, null);
+});
+test('40% 경계와 불리한 확인값을 정확히 계산한다', () => {
+  const at40 = { parking: fact('good'), stairs: fact('poor'), restroom: fact('moderate') };
+  assert.equal(calculateComfort(at40).coverage, .4);
+  assert.equal(calculateComfort(at40).score, 50);
+  const at35 = { parking: fact('good'), restroom: fact('good'), noise: fact('good') };
+  assert.equal(calculateComfort(at35).score, null);
+});
+test('정보 신뢰도와 연령 프로필을 구분한다', () => {
+  const all = Object.fromEntries(Object.keys(WEIGHTS.default).map(k => [k, fact('good')]));
+  assert.deepEqual(calculateComfort(all), { score: 100, coverage: 1, confidence: '높음', label: '정보 기반 편안함' });
+  const sixty = { parking: fact('good'), stairs: fact('good'), accessibility: fact('good'), restroom: fact('good'), noise: fact('poor') };
+  assert.equal(calculateComfort(sixty).confidence, '보통');
+  assert.notEqual(calculateComfort(sixty, '50s').score, calculateComfort(sixty, '70plus').score);
+});
+test('검색과 기본 지역/카테고리/동행 필터가 교집합으로 동작한다', () => {
+  assert.equal(filterPlaces(places, { ...emptyFilters(), query: '한정식' }).length, 1);
+  assert.equal(filterPlaces(places, { ...emptyFilters(), category: '여행' }).length, 2);
+  assert.equal(filterPlaces(places, { ...emptyFilters(), region: '서울', companion: '가족' }).length, 1);
+  assert.equal(filterPlaces(places, { ...emptyFilters(), region: '부산', category: '맛집' }).length, 0);
+});
+test('주차/계단/보행 필터와 자연어 검색에 unknown이 통과하지 않는다', () => {
+  assert.equal(filterPlaces(places, { ...emptyFilters(), parking: true }).length, 0);
+  assert.equal(filterPlaces(places, { ...emptyFilters(), query: '많이 걷지 않는 나들이' }).length, 0);
+  const fixture = structuredClone(places[0]);
+  fixture.comfort.parking = fact('good'); fixture.comfort.stairs = fact('good'); fixture.comfort.walking = fact('moderate');
+  assert.equal(filterPlaces([fixture], { ...emptyFilters(), query: '주차 편한 한정식', stairs: true, walking: 'moderate' }).length, 1);
+  assert.equal(filterPlaces([fixture], { ...emptyFilters(), walking: 'good' }).length, 0);
+});
+test('출력에서 HTML 삽입을 차단하고 unknown 안내를 제공한다', () => {
+  const p = { ...places[0], name: '<script>alert(1)</script>', image: 'javascript:alert(1)' };
+  assert.ok(!card(p).includes('<script>'));
+  assert.ok(!card(p).includes('src="javascript:'));
+  assert.match(detailMarkup(p), /정보 더 필요/);
+  assert.match(detailMarkup(p), /정보 신뢰도/);
+});
+test('실제 데이터는 출처를 요구하고 중복 URL을 거부한다', () => {
+  assert.throws(() => validatePlaces([{ ...places[0], isDemo: false }]), /출처/);
+  assert.throws(() => validatePlaces([places[0], places[0]]), /중복/);
+});
+test('TourAPI 변환은 원본 식별자를 보존하고 편안함을 생성하지 않는다', () => {
+  const p = convertItem({ contentid: '12345', title: 'TEST FIXTURE', contenttypeid: '12', mapx: '128.1', mapy: '37.2', addr1: 'TEST ADDRESS', modifiedtime: '20261019000000' }, '강릉', '나들이', '2026-10-19');
+  assert.equal(p.tourApi.contentId, '12345');
+  assert.equal(p.longitude, 128.1); assert.equal(p.isDemo, false);
+  assert.equal(validatePlaces([p]), true);
+  assert.equal(calculateComfort(p.comfort).score, null);
+  assert.deepEqual(p.companions, []);
+  assert.equal(convertItem({ contentid: 'bad' }, '서울', '맛집'), null);
+});
+test('정적 HTML 상세/SEO/사이트맵이 빌드되어 있고 데모는 색인 제외된다', async () => {
+  const sitemap = await readFile(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
+  const canonicals = new Set();
+  for (const p of places) {
+    const html = await readFile(new URL(`../dist/places/${p.slug}/index.html`, import.meta.url), 'utf8');
+    assert.ok(html.includes(p.name)); assert.match(html, /property="og:title"/);
+    const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
+    assert.ok(!canonicals.has(canonical)); canonicals.add(canonical);
+    if (p.isDemo) { assert.match(html, /noindex,follow/); assert.ok(!sitemap.includes(`/places/${p.slug}/`)); }
+  }
+  const headers = await readFile(new URL('../dist/_headers', import.meta.url), 'utf8');
+  assert.match(headers, /frame-ancestors 'none'/);
+});
+test('생성한 모든 HTML의 기본 접근성과 내부 링크가 유효하다', async () => {
+  const root = fileURLToPath(new URL('../dist/', import.meta.url));
+  async function visit(directory) {
+    for (const item of await readdir(directory, { withFileTypes: true })) {
+      const file = resolve(directory, item.name);
+      if (item.isDirectory()) { await visit(file); continue; }
+      if (!item.name.endsWith('.html')) continue;
+      const html = await readFile(file, 'utf8');
+      assert.match(html, /<html lang="ko">/); assert.equal((html.match(/<main\b/g) || []).length, 1);
+      const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
+      assert.equal(ids.length, new Set(ids).size, `${file}: 중복 ID`);
+      for (const label of html.matchAll(/<label[^>]*\bfor="([^"]+)"/g)) assert.ok(ids.includes(label[1]), `${file}: label 연결`);
+      for (const match of html.matchAll(/(?:href|src)="(\/[^"#?]*)(?:[?#][^"]*)?"/g)) {
+        const target = resolve(root, '.' + decodeURIComponent(match[1]));
+        const info = await stat(target);
+        if (info.isDirectory()) await stat(resolve(target, 'index.html'));
+      }
+    }
+  }
+  await visit(root);
+});

@@ -23,6 +23,7 @@ export function calculateComfort(comfort = {}, profile = 'default') {
   const total = Object.values(weights).reduce((a, b) => a + b, 0);
   for (const [key, weight] of Object.entries(weights)) {
     const field = comfort[key];
+    // 출처 없는 값과 메모만 있는 값은 계산하지 않습니다.
     if (field && Object.hasOwn(points, field.value) && field.sourceUrl && field.verifiedAt) {
       known += weight; earned += weight * points[field.value];
     }

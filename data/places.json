@@ -1,0 +1,458 @@
+[
+  {
+    "id": "demo-table",
+    "slug": "demo-table",
+    "name": "온담 한정식",
+    "category": "맛집",
+    "region": "경기",
+    "address": "DEMO SAMPLE · 실제 주소 없음",
+    "latitude": null,
+    "longitude": null,
+    "shortDescription": "정갈한 한 끼와 느긋한 대화를 상상한 가상 장소입니다.",
+    "image": "/assets/table.svg",
+    "imageAlt": "가상 장소를 표현한 일러스트",
+    "priceRange": "확인 전",
+    "sourceName": "DEMO SAMPLE · 개발 테스트용 가상 데이터",
+    "sourceUrl": null,
+    "lastVerifiedAt": null,
+    "isDemo": true,
+    "companions": [
+      "혼자",
+      "배우자/연인",
+      "친구",
+      "가족",
+      "새로운 사람"
+    ],
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    },
+    "userRating": null
+  },
+  {
+    "id": "demo-garden",
+    "slug": "demo-garden",
+    "name": "초록 정원 산책",
+    "category": "나들이",
+    "region": "서울",
+    "address": "DEMO SAMPLE · 실제 주소 없음",
+    "latitude": null,
+    "longitude": null,
+    "shortDescription": "초록빛 정원에서 쉬어 가는 하루를 상상한 가상 장소입니다.",
+    "image": "/assets/garden.svg",
+    "imageAlt": "가상 장소를 표현한 일러스트",
+    "priceRange": "확인 전",
+    "sourceName": "DEMO SAMPLE · 개발 테스트용 가상 데이터",
+    "sourceUrl": null,
+    "lastVerifiedAt": null,
+    "isDemo": true,
+    "companions": [
+      "혼자",
+      "배우자/연인",
+      "친구",
+      "가족",
+      "새로운 사람"
+    ],
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    },
+    "userRating": null
+  },
+  {
+    "id": "demo-coast",
+    "slug": "demo-coast",
+    "name": "강릉 바다 여행",
+    "category": "여행",
+    "region": "강릉",
+    "address": "DEMO SAMPLE · 실제 주소 없음",
+    "latitude": null,
+    "longitude": null,
+    "shortDescription": "바다를 바라보며 보내는 여유로운 하루의 가상 여행입니다.",
+    "image": "/assets/coast.svg",
+    "imageAlt": "가상 장소를 표현한 일러스트",
+    "priceRange": "확인 전",
+    "sourceName": "DEMO SAMPLE · 개발 테스트용 가상 데이터",
+    "sourceUrl": null,
+    "lastVerifiedAt": null,
+    "isDemo": true,
+    "companions": [
+      "혼자",
+      "배우자/연인",
+      "친구",
+      "가족",
+      "새로운 사람"
+    ],
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    },
+    "userRating": null
+  },
+  {
+    "id": "demo-tea",
+    "slug": "demo-tea",
+    "name": "다정한 찻집",
+    "category": "맛집",
+    "region": "경주",
+    "address": "DEMO SAMPLE · 실제 주소 없음",
+    "latitude": null,
+    "longitude": null,
+    "shortDescription": "차 한 잔과 함께하는 시간을 상상한 가상 장소입니다.",
+    "image": "/assets/table.svg",
+    "imageAlt": "가상 장소를 표현한 일러스트",
+    "priceRange": "확인 전",
+    "sourceName": "DEMO SAMPLE · 개발 테스트용 가상 데이터",
+    "sourceUrl": null,
+    "lastVerifiedAt": null,
+    "isDemo": true,
+    "companions": [
+      "혼자",
+      "배우자/연인",
+      "친구",
+      "가족",
+      "새로운 사람"
+    ],
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    },
+    "userRating": null
+  },
+  {
+    "id": "demo-busan",
+    "slug": "demo-busan",
+    "name": "부산 해안 나들이",
+    "category": "나들이",
+    "region": "부산",
+    "address": "DEMO SAMPLE · 실제 주소 없음",
+    "latitude": null,
+    "longitude": null,
+    "shortDescription": "바닷가에서 보내는 하루를 상상한 가상 장소입니다.",
+    "image": "/assets/coast.svg",
+    "imageAlt": "가상 장소를 표현한 일러스트",
+    "priceRange": "확인 전",
+    "sourceName": "DEMO SAMPLE · 개발 테스트용 가상 데이터",
+    "sourceUrl": null,
+    "lastVerifiedAt": null,
+    "isDemo": true,
+    "companions": [
+      "혼자",
+      "배우자/연인",
+      "친구",
+      "가족",
+      "새로운 사람"
+    ],
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    },
+    "userRating": null
+  },
+  {
+    "id": "demo-jeju",
+    "slug": "demo-jeju",
+    "name": "제주 초록 여행",
+    "category": "여행",
+    "region": "제주",
+    "address": "DEMO SAMPLE · 실제 주소 없음",
+    "latitude": null,
+    "longitude": null,
+    "shortDescription": "푸른 풍경 속에서 쉬어 가는 가상 여행입니다.",
+    "image": "/assets/garden.svg",
+    "imageAlt": "가상 장소를 표현한 일러스트",
+    "priceRange": "확인 전",
+    "sourceName": "DEMO SAMPLE · 개발 테스트용 가상 데이터",
+    "sourceUrl": null,
+    "lastVerifiedAt": null,
+    "isDemo": true,
+    "companions": [
+      "혼자",
+      "배우자/연인",
+      "친구",
+      "가족",
+      "새로운 사람"
+    ],
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "확인된 정보가 없습니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    },
+    "userRating": null
+  }
+]
