@@ -39,20 +39,26 @@ jobs:
       - name: Audit imported data
         run: npm run audit:tourapi
 
+      - name: Enrich balanced pilot candidates
+        env:
+          TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
+          TOUR_API_ENRICH_PER_REGION: '8'
+        run: npm run enrich:tourapi
+
       - name: Build imported data
         run: npm run build
 
       - name: Prepare import branch
         run: |
-          if [ -z "$(git status --porcelain -- data/places.json data/tourapi-quality-report.json)" ]; then
+          if [ -z "$(git status --porcelain -- data/places.json data/tourapi-quality-report.json data/tourapi-enrichment-report.json)" ]; then
             echo "TourAPI import produced no data changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -C data/tourapi-import-result
-          git add data/places.json data/tourapi-quality-report.json
-          git commit -m "Import and audit pilot TourAPI places"
+          git add data/places.json data/tourapi-quality-report.json data/tourapi-enrichment-report.json
+          git commit -m "Import audit and enrich pilot TourAPI places"
           git push --force origin data/tourapi-import-result
 
       - name: Summary
@@ -63,6 +69,8 @@ jobs:
           echo "- Pilot uses modified-date order instead of alphabetical order" >> "$GITHUB_STEP_SUMMARY"
           echo "- Korea-outside coordinates are nulled before storage" >> "$GITHUB_STEP_SUMMARY"
           echo "- Quality report separates recommendation candidates, courses, facilities, and source-only records" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Detail pilot enriches up to 8 recommendation candidates per region using detailCommon2/detailIntro2/detailInfo2/detailImage2" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Detailed facts are written only to data/tourapi-enrichment-report.json; production place records are not auto-filled" >> "$GITHUB_STEP_SUMMARY"
           echo "- Pilot batch: up to 20 items × 3 categories × 6 regions" >> "$GITHUB_STEP_SUMMARY"
           echo "- Result branch: data/tourapi-import-result" >> "$GITHUB_STEP_SUMMARY"
           echo "- No production merge/deploy is performed by this workflow." >> "$GITHUB_STEP_SUMMARY"
