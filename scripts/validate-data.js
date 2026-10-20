@@ -13,6 +13,20 @@ export function validatePlaces(places) {
     for (const field of ['name','address','shortDescription','image','priceRange','sourceName']) if (typeof p[field] !== 'string' || !p[field].trim()) throw new Error(`${p.id}: ${field}에 텍스트가 필요합니다.`);
     if (p.companions && (!Array.isArray(p.companions) || p.companions.some(v => !['solo','couple','friend','family','new_people','혼자','배우자/연인','친구','가족','새로운 사람'].includes(v)))) throw new Error(`${p.id}: 동행 태그 오류`);
     if (p.intentTags && (!Array.isArray(p.intentTags) || p.intentTags.some(v => typeof v !== 'string' || !/^[a-z][a-z0-9_]*$/.test(v)))) throw new Error(`${p.id}: 활동 태그 오류`);
+    if (p.activityType !== undefined && (typeof p.activityType !== 'string' || !/^[a-z][a-z0-9_]*$/.test(p.activityType))) throw new Error(`${p.id}: activityType 형식 오류`);
+    if (p.route) {
+      const route = p.route;
+      if (route.distanceKm !== 'unknown' && (!Number.isFinite(route.distanceKm) || route.distanceKm < 0)) throw new Error(`${p.id}: 거리 형식 오류`);
+      if (![true,false,'unknown'].includes(route.loop)) throw new Error(`${p.id}: 순환 여부 형식 오류`);
+      const states = { difficulty:['easy','moderate','hard','unknown'], flatness:['flat','mixed','hilly','unknown'], restroom:['good','moderate','poor','unknown'], parking:['good','moderate','poor','unknown'], lighting:['good','moderate','poor','unknown'], crowd:['good','moderate','poor','unknown'], scenery:['good','moderate','poor','unknown'] };
+      for (const [key,values] of Object.entries(states)) if (!values.includes(route[key])) throw new Error(`${p.id}: ${key} 코스 상태 오류`);
+      if (Object.keys(route).some(key => !['sourceUrl','verifiedAt'].includes(key) && route[key] !== 'unknown') && (!/^https:\/\//.test(route.sourceUrl || '') || !/^\d{4}-\d{2}-\d{2}$/.test(route.verifiedAt || ''))) throw new Error(`${p.id}: 코스 정보의 출처와 확인일이 필요합니다.`);
+    }
+    if (p.visitContext) {
+      const visit = p.visitContext;
+      if (!['unknown','short','half_day','full_day'].includes(visit.duration) || !Array.isArray(visit.transportModes) || visit.transportModes.some(value=>!['car','transit'].includes(value))) throw new Error(`${p.id}: 시간/이동 정보 형식 오류`);
+      if ((visit.duration !== 'unknown' || visit.transportModes.length) && (!/^https:\/\//.test(visit.sourceUrl || '') || !/^\d{4}-\d{2}-\d{2}$/.test(visit.verifiedAt || ''))) throw new Error(`${p.id}: 시간/이동 정보의 출처와 확인일이 필요합니다.`);
+    }
     for (const key of ['sourceLicense','imageLicense']) {
       if (p[key] === undefined) continue;
       if (!p[key] || typeof p[key] !== 'object' || Array.isArray(p[key])) throw new Error(`${p.id}: ${key} 형식 오류`);

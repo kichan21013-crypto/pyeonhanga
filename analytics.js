@@ -2,6 +2,15 @@ import config from './config.js';
 import { readLocal, writeLocal, anonymousId } from './storage.js';
 const EVENTS = ['page_view', 'search', 'filter_used', 'place_view', 'save_place', 'share_place', 'companion_interest', 'premium_willingness'];
 const AGE = ['50~54', '55~59', '60~64', '65~69', '70+'];
+// 운영 스키마의 8종 이벤트는 그대로 유지합니다. 새 이름은 클라이언트 논리 이벤트입니다.
+export const RHYTHM_EVENT_MAP = { rhythm_start: 'filter_used', companion_selected: 'filter_used', desire_selected: 'filter_used', activity_selected: 'filter_used', condition_selected: 'filter_used', recommendation_view: 'search', rhythm_save: 'save_place', rhythm_share: 'share_place', companion_interest: 'companion_interest', premium_willingness: 'premium_willingness' };
+export function trackRhythm(name, values = {}) {
+  const legacy = RHYTHM_EVENT_MAP[name];
+  if (!legacy) return Promise.resolve(false);
+  const filter = name === 'companion_selected' ? 'companion' : ['desire_selected','activity_selected'].includes(name) ? 'category' : undefined;
+  if (typeof document.dispatchEvent === 'function' && typeof CustomEvent === 'function') document.dispatchEvent(new CustomEvent('naerhythm:analytics', { detail: { name, legacyEvent: legacy, isDemo: Boolean(values.is_demo), placeId: values.place_id || null } }));
+  return track(legacy, { ...values, ...(filter ? { filter } : {}) });
+}
 export const analyticsEnabled = /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(config.supabaseUrl || '') && Boolean(config.supabaseAnonKey);
 let sessionId;
 function session() {

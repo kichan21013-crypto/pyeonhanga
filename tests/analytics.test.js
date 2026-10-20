@@ -74,3 +74,12 @@ test('공개 설정 검증이 비공개 키와 부분 설정을 거부한다', (
   const service = `header.${Buffer.from(JSON.stringify({ role: 'service_role' })).toString('base64url')}.signature`;
   assert.throws(() => publicConfig({ ...connected, supabaseAnonKey: service }), /anon 역할/);
 });
+test('내리듬 논리 이벤트는 운영 스키마의 기존 이름으로 호환 기록하고 DEMO를 구분한다', async () => {
+  await analyticsHarness(connected,async ({trackRhythm,RHYTHM_EVENT_MAP,requests})=>{
+    const logical=[];globalThis.document.dispatchEvent=event=>logical.push(event.detail);
+    for(const name of Object.keys(RHYTHM_EVENT_MAP)) assert.equal(await trackRhythm(name,{place_id:'demo-table',is_demo:true,companion:'혼자'}),true);
+    assert.equal(requests.length,10);assert.deepEqual(logical.map(event=>event.name),Object.keys(RHYTHM_EVENT_MAP));assert.ok(logical.every(event=>event.isDemo));
+    for(const request of requests){const row=JSON.parse(request.options.body).payload;assert.ok(['filter_used','search','save_place','share_place','companion_interest','premium_willingness'].includes(row.event_name));assert.equal(row.is_demo,true);}
+    assert.equal(await trackRhythm('unsupported'),false);
+  });
+});
