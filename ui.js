@@ -26,6 +26,7 @@ export const ICONS = {
   seating: '<path d="M5 12V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7M4 12h16v5H4zM6 17v5m12-5v5"/>',
   waiting: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   filters: '<path d="M3 6h18M3 12h18M3 18h18M8 3v6m8 0v6m-6 0v6"/>',
+  car: '<path d="m5 8 2-5h10l2 5M3 8h18v10H3zM5 18v3m14-3v3M6 12h2m8 0h2"/>',
   running: '<circle cx="16" cy="4" r="2"/><path d="m4 12 5-4 5 2 3 4h4M9 8l-2 7-4 6m8-8 3 5-2 4M6 5l4 1"/>',
   mountain: '<path d="m2 21 8-17 5 10 3-6 5 13H2Zm5-11 3 3 3-3"/>',
   bike: '<circle cx="5" cy="17" r="4"/><circle cx="19" cy="17" r="4"/><path d="m5 17 5-10 6 10H5m10-10h4l1 5M8 4h5"/>',

@@ -74,3 +74,46 @@
 @media(max-width:1000px){.desire-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.desire-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.desire-grid .choice-chip{display:grid;grid-template-columns:28px minmax(0,1fr);min-height:90px;gap:8px;padding:12px 10px;font-size:.95rem;align-items:center}.desire-grid .choice-icon{width:28px;height:28px}.desire-grid svg{width:21px;height:21px}.desire-grid [data-choice-label]{line-height:1.55}.condition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.condition-grid .choice-chip{font-size:.9rem}.condition-grid .choice-icon{width:26px;height:26px}.condition-grid svg{width:19px;height:19px}.intent-step .quick-intents{grid-template-columns:minmax(0,1fr)}.rhythm-results{padding:18px 12px}.rhythm-results .places-grid{grid-template-columns:minmax(0,1fr)}.optional-conditions,.legacy-filters{padding:12px}.legacy-filters .select-label{width:100%;min-width:0}.legacy-filters select{width:100%;min-height:48px}.button.accent{font-size:1rem}.rhythm-hero .hero-description{font-size:1rem}}
 @media(max-width:440px){.desire-grid{grid-template-columns:minmax(0,1fr)}.desire-grid .choice-chip{min-height:68px;font-size:1rem;grid-template-columns:34px minmax(0,1fr);padding:12px 14px}.desire-grid .choice-icon{width:32px;height:32px}}
+
+/* 한 단계씩 열리는 오늘의 리듬 */
+.progressive-step{min-width:0;scroll-margin-top:24px}
+.progressive-step>.step-heading{cursor:pointer;list-style:none;display:block;margin-bottom:0;min-height:52px}
+.progressive-step>.step-heading::-webkit-details-marker{display:none}
+.progressive-step>.step-heading h2{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:1.23rem;min-width:0}
+.step-progress{font-size:.84rem;white-space:nowrap;letter-spacing:0;background:#e7ecdf;border:1px solid #c0cdb8;padding:5px 10px;border-radius:30px;color:#35543e}
+.step-toggle{font-size:.8rem;font-weight:550;margin-left:auto;color:#4f654d}
+.step-toggle:after{content:'선택 펼치기 ＋'}
+.progressive-step[open]>.step-heading .step-toggle:after{content:'접기 −'}
+.progressive-step[open]>.step-heading{margin-bottom:18px}
+.step-instruction{font-size:.9rem;margin-bottom:16px;color:#4c614e}
+.step-next{margin-top:20px;width:100%;border-color:#819779;font-size:.95rem}
+.flow-summary{background:#f3f5ed;border-left:3px solid #749064;padding:12px 16px;border-radius:0 12px 12px 0;min-width:0;line-height:1.6;font-size:.88rem;overflow-wrap:anywhere}
+.flow-summary strong{font-size:.8rem;color:#4f654d}.flow-summary p:empty{display:none}
+.progressive-step:not([open]){padding-block:16px}
+.progressive-step .selection-summary{font-size:.85rem}
+#results-title:focus{outline:none}
+.rhythm-paths{display:block;margin:0;background:#f0efdf;border:1px solid #d9ddcb;border-radius:28px;overflow:hidden;isolation:auto}
+.rhythm-paths:before{content:none}.rhythm-paths>svg{width:100%;height:auto;display:block}
+.rhythm-paths figcaption{display:grid;gap:4px;padding:0 24px 22px;color:#35543e;line-height:1.6}
+.rhythm-paths figcaption span{font-size:.8rem}.rhythm-paths figcaption strong{font-size:1rem;font-weight:600}
+/* 각 의미색은 선택 상태에도 그대로 유지합니다. 도형은 자체 제작 SVG입니다. */
+.tone-food{--activity-ink:#995021;--activity-tint:#faeddd}
+.tone-run{--activity-ink:#ab442e;--activity-tint:#fbe9e2}
+.tone-walk{--activity-ink:#396740;--activity-tint:#e8f0df}
+.tone-hike{--activity-ink:#646338;--activity-tint:#efeddc}
+.tone-drive{--activity-ink:#345f8b;--activity-tint:#e6eef8}
+.tone-sea{--activity-ink:#246e78;--activity-tint:#e0f1ee}
+.tone-cafe{--activity-ink:#795039;--activity-tint:#f2e8dc}
+.tone-culture{--activity-ink:#715289;--activity-tint:#f1e9f6}
+.tone-rest{--activity-ink:#615c86;--activity-tint:#eeedf7}
+.desire-grid .choice-chip,.activity-chips .choice-chip{color:var(--ink);background:#fff;border-color:#bbc6b5;box-shadow:none}
+.desire-grid .choice-chip[aria-pressed=true],.activity-chips .choice-chip[aria-pressed=true]{color:var(--ink);background:var(--activity-tint);border:2px solid var(--activity-ink);box-shadow:0 0 0 1px var(--activity-ink)}
+.desire-grid .choice-chip .choice-icon,.activity-chips .choice-chip .choice-icon,.rhythm-activity .choice-icon{color:var(--activity-ink);background:var(--activity-tint);border:1px solid color-mix(in srgb,var(--activity-ink) 18%,transparent)}
+.desire-grid .choice-chip .selection-indicator,.activity-chips .choice-chip .selection-indicator{background:var(--activity-ink);color:white;border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:14px;line-height:1;flex-shrink:0}
+.desire-grid .choice-chip{padding-right:38px}
+.desire-grid .selection-indicator{position:absolute;right:9px;top:9px}
+.activity-chips .choice-chip{gap:8px}
+@media(hover:hover){.desire-grid .choice-chip:hover,.activity-chips .choice-chip:hover{color:var(--ink);border-color:var(--activity-ink);background:var(--activity-tint)}}
+@media(max-width:760px){.rhythm-paths{display:block;margin-top:28px;border-radius:22px}.rhythm-paths figcaption{padding:0 18px 18px}.progressive-step>.step-heading h2{font-size:1.12rem;gap:9px}.step-toggle{flex-basis:100%;text-align:right}.step-next{padding-inline:12px}.desire-grid .choice-chip{padding-right:38px}}
+@media(prefers-reduced-motion:reduce){.progressive-step,.rhythm-results{animation:none!important;transition:none!important}}
+.progressive-step>.step-heading h2>span:not(.step-progress):not(.step-toggle){min-width:0;max-width:100%;flex:1 1 180px;overflow-wrap:anywhere}

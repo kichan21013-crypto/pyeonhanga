@@ -4,9 +4,10 @@ import { track, trackRhythm, analyticsEnabled } from './analytics.js';
 import { inferIntent, requestedComforts, COMPANIONS } from './search.js';
 import { emptyRhythmFilters, recommendRhythms, DESIRES, ACTIVITIES, DURATION_OPTIONS, TRANSPORT_OPTIONS, companionSummary, toggleSelection, activeActivities } from './rhythm.js';
 import { toggleSavedPlace, shareOrCopy, SURVEY_CHOICES } from './actions.js';
+import { createProgressiveFlow } from './flow.js';
 
 const $ = selector => document.querySelector(selector);
-let places = [], filters = emptyRhythmFilters(), toastTimer;
+let places = [], filters = emptyRhythmFilters(), toastTimer, flow;
 const page = document.body.dataset.page;
 function toast(message) {
   const el = $('#toast'); if (!el) return;
@@ -50,15 +51,25 @@ function syncControls() {
   if ($('#companion-help')) $('#companion-help').hidden = !filters.companions.includes('new_people');
   if ($('#desire-summary')) $('#desire-summary').textContent = filters.desires.map(key => DESIRES[key].label).join(' · ');
   if ($('#condition-summary')) $('#condition-summary').textContent = `${DURATION_OPTIONS[filters.duration]} · ${TRANSPORT_OPTIONS[filters.transport]}`;
+  const hasSelection = Boolean(filters.desires.length || filters.query || filters.companions.length);
+  if ($('#flow-summary')) $('#flow-summary').hidden = !hasSelection;
+  if ($('#flow-desire-summary')) $('#flow-desire-summary').textContent = filters.desires.map(key => DESIRES[key].label.replace('고 싶어요','기')).join(' · ') || (filters.query ? '입력한 하루를 함께 반영해요' : '');
+  if ($('#flow-companion-summary')) $('#flow-companion-summary').textContent = companionSummary(filters.companions);
   if ($('#intent-summary')) {
     const parsed = inferIntent(filters.query);
     $('#intent-summary').textContent = filters.query ? `문장과 선택한 취향을 함께 반영해요.${parsed.distanceKm ? ' 입력한 거리는 희망 조건이며 실제 코스 거리로 추정하지 않아요.' : ''}` : '';
     $('#intent-summary').hidden = !filters.query;
   }
+  flow?.update(filters);
 }
-function reset() { filters = emptyRhythmFilters(); if ($('#search-input')) $('#search-input').value = ''; activityOptions(); syncControls(); render(); }
+function reset() {
+  filters = emptyRhythmFilters(); if ($('#search-input')) $('#search-input').value = '';
+  activityOptions(); syncControls();
+  if (page === 'home') { flow.activate(1); $('#flow-step-1 summary').focus(); }
+  else render();
+}
 function recordRhythmAction(name) {
-  const matches = render();
+  const matches = recommendRhythms(places,filters).map(result => result.place);
   trackRhythm(name,{region:filters.region, category: ['맛집','나들이','여행'].includes(filters.category) ? filters.category : '', companion: filters.companions.length === 1 ? COMPANIONS[filters.companions[0]] : '', result_count:matches.length, is_demo:matches.length ? matches.every(p=>p.isDemo) : places.every(p=>p.isDemo)});
 }
 async function sharePlace(p) {
@@ -138,15 +149,36 @@ async function init() {
   if (page === 'home') {
     const category = new URLSearchParams(location.search).get('category');
     if (['맛집','나들이','여행'].includes(category)) filters.category = category;
-    activityOptions(); syncControls(); render();
-    $('#rhythm-start').onclick = () => trackRhythm('rhythm_start',{is_demo:places.every(p=>p.isDemo)});
-    const search = () => {
-      filters.query = $('#search-input').value.trim(); $('#search-input').value = filters.query;
-      syncControls(); recordRhythmAction('recommendation_view');
-      $('#rhythm-results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',block:'start'});
+    flow = createProgressiveFlow(document);
+    activityOptions(); syncControls();
+    const scrollTo = element => element.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',block:'start'});
+    $('#rhythm-start').onclick = event => {
+      event.preventDefault(); flow.start(filters);
+      $('#rhythm-start').setAttribute('aria-expanded','true');
+      $('#flow-step-1 summary').focus({preventScroll:true}); scrollTo($('#explore'));
+      trackRhythm('rhythm_start',{is_demo:places.every(p=>p.isDemo)});
     };
-    $('#search-form').onsubmit = event => { event.preventDefault(); search(); };
-    document.querySelectorAll('[data-intent]').forEach(button => button.onclick = () => { $('#search-input').value = button.dataset.intent; search(); });
+    const readQuery = () => { filters.query = $('#search-input').value.trim(); syncControls(); };
+    const nextStep = number => {
+      if (!flow.activate(number)) return;
+      const summary = $(`#flow-step-${number} summary`); summary.focus({preventScroll:true}); scrollTo(summary);
+    };
+    $('#search-input').oninput = readQuery;
+    $('#search-input').onkeydown = event => { if (event.key === 'Enter' && !event.isComposing) { event.preventDefault(); readQuery(); nextStep(2); } };
+    $('#search-form').onsubmit = event => {
+      event.preventDefault(); readQuery();
+      // Enter in the natural-language field only advances the questions.
+      if (event.submitter?.id !== 'recommend-button') { nextStep(2); return; }
+      if (!flow.submit(filters)) return;
+      render(); recordRhythmAction('recommendation_view');
+      $('#results-title').focus({preventScroll:true}); scrollTo($('#rhythm-results'));
+    };
+    document.querySelectorAll('[data-intent]').forEach(button => button.onclick = () => { $('#search-input').value = button.dataset.intent; readQuery(); });
+    document.querySelectorAll('[data-next-step]').forEach(button => button.onclick = () => nextStep(Number(button.dataset.nextStep)));
+    $('#explore').addEventListener('click', event => {
+      const step = event.target.closest('[data-flow-step]');
+      if (step && !event.target.closest('summary, [data-next-step]')) flow.activate(Number(step.dataset.flowStep));
+    });
     document.querySelectorAll('[data-companion]').forEach(button => button.onclick = () => { filters.companions = toggleSelection(filters.companions,button.dataset.companion); syncControls(); recordRhythmAction('companion_selected'); });
     document.querySelectorAll('[data-desire]').forEach(button => button.onclick = () => {
       filters.desires = toggleSelection(filters.desires,button.dataset.desire); filters.activities = activeActivities(filters.desires,filters.activities);

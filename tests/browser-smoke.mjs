@@ -16,37 +16,52 @@ try {
   await mkdir('test-results',{recursive:true});
   const context=await browser.newContext({viewport:{width:390,height:844}}), page=await context.newPage(), errors=[],network=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});page.on('request',r=>{if(r.url().includes('supabase.co'))network.push(r.url());});
-  await page.goto(base);await page.waitForFunction(()=>document.querySelector('#result-count')?.textContent==='6');
+  await page.goto(base);await page.waitForFunction(()=>document.querySelector('#flow-step-1')?.dataset.available==='true');
   check(await page.title().then(s=>s.includes('나가치')),'brand');
+  check(await page.locator('#explore').isHidden(),'questions hidden until start');
+  check(await page.locator('#rhythm-results').isHidden(),'results initially hidden');
   check(await page.locator('[data-transport]').count()===3,'three transport options');
   check(await page.locator('[data-transport=nearby]').count()===0,'nearby removed');
   check(await page.locator('header a[href="/saved.html"]').innerText().then(s=>s.includes('저장한 곳')),'place save label');
-  for(const width of [360,390,402,800,1280]){
-    await page.setViewportSize({width,height:900});
-    for(const size of ['18px','36px']){
-      await page.evaluate(size=>document.documentElement.style.fontSize=size,size);
-      check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${width}px ${size} overflow`);
+  async function layouts(label) {
+    for(const width of [360,390,402,800,1280]){
+      await page.setViewportSize({width,height:900});
+      for(const size of ['18px','36px']){
+        await page.evaluate(size=>document.documentElement.style.fontSize=size,size);
+        check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${label} ${width}px ${size} overflow`);
+      }
     }
+    await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));await page.setViewportSize({width:390,height:844});
   }
-  await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));await page.setViewportSize({width:390,height:844});
-  await page.screenshot({path:'test-results/naerhythm-mobile.png',fullPage:true});
-  check(await page.locator('#activity-options').isHidden(),'details initially hidden');
+  await layouts('hero');check(await page.locator('.rhythm-paths').isVisible(),'hero illustration on mobile');
+  await page.screenshot({path:'test-results/nagachi-hero-mobile.png',fullPage:true});
   await page.locator('#rhythm-start').click();
-  await page.locator('[data-companion=solo]').click();await page.locator('[data-companion=friend]').click();
-  check(await page.locator('[data-companion][aria-pressed=true]').count()===2,'multi companion');
-  check(await page.locator('#companion-summary').innerText().then(s=>s.includes('혼자')&&s.includes('친구')),'companion summary');
+  check(await page.locator('#flow-step-1').isVisible(),'step 1 visible');check(await page.locator('#flow-step-2').isHidden(),'step 2 gated');check(await page.locator('#flow-step-3').isHidden(),'step 3 gated');
+  check(await page.locator('#activity-options').isHidden(),'details initially hidden');
+  const runColor=await page.locator('[data-desire=move] .choice-icon').evaluate(el=>getComputedStyle(el).color);
+  const foodColor=await page.locator('[data-desire=eat] .choice-icon').evaluate(el=>getComputedStyle(el).color);check(runColor!==foodColor,'semantic colors differ');
   await page.locator('[data-desire=move]').click();check(await page.locator('[data-activity=run]').isVisible(),'running disclosed under movement');
+  check(await page.locator('[data-desire=move] .choice-icon').evaluate(el=>getComputedStyle(el).color)===runColor,'selected semantic color retained');
+  check(await page.locator('#flow-step-2').isVisible(),'step 2 enabled');
   await page.locator('[data-desire=eat]').click();await page.locator('[data-activity=walk]').click();
-  check(await page.locator('[data-desire][aria-pressed=true]').count()===2,'multi desire');
-  check(await page.locator('.place-card').count()>0,'OR recommendations');
+  check(await page.locator('[data-desire][aria-pressed=true]').count()===2,'multi desire');check(await page.locator('#rhythm-results').isHidden(),'no results during desire selection');
+  await page.locator('[data-companion=solo]').click();await page.locator('[data-companion=friend]').click();
+  check(await page.locator('#flow-step-1').evaluate(el=>!el.open),'previous choices compact');check(await page.locator('#flow-step-3').isVisible(),'step 3 enabled');
+  check(await page.locator('[data-companion][aria-pressed=true]').count()===2,'multi companion');
+  check(await page.locator('#flow-companion-summary').innerText().then(s=>s.includes('혼자')&&s.includes('친구')),'compact summary');
   await page.locator('[data-duration=short]').click();await page.locator('[data-transport=car]').click();
-  check(await page.locator('.place-card').count()>0,'unknown time/transport remains');
-  await page.locator('#reset-filters').click();
-  await page.locator('#search-input').fill('혼자 10km 정도 뛰고 맛있는 거 먹고 싶어');await page.locator('[data-companion=solo]').click();
+  check(await page.locator('#rhythm-results').isHidden(),'results gated until final CTA');await layouts('conditions');
+  await page.locator('#recommend-button').click();check(await page.locator('#rhythm-results').isVisible(),'final CTA reveals results');
+  check(await page.locator('.place-card').count()>0,'OR recommendations');await layouts('results');
+  await page.screenshot({path:'test-results/nagachi-results-mobile.png',fullPage:true});
+  await page.locator('#reset-filters').click();check(await page.locator('#rhythm-results').isHidden(),'reset hides results');
+  await page.locator('#search-input').fill('혼자 10km 정도 뛰고 맛있는 거 먹고 싶어');await page.locator('#search-input').press('Enter');
+  check(await page.locator('#rhythm-results').isHidden(),'Enter advances without results');await page.locator('[data-companion=solo]').click();
   check(await page.locator('#search-input').inputValue().then(s=>s.includes('10km')),'draft kept');
   await page.locator('#recommend-button').click();check(await page.locator('.place-card').count()>0,'compound natural language');
   check(!(await page.locator('#places-grid').innerText()).includes('10km'),'no fabricated distance');
-  await page.locator('#reset-filters').click();await page.locator('#comfort-options summary').click();await page.locator('[data-comfort=parking]').click();
+  await page.locator('#reset-filters').click();await page.locator('#search-input').fill('조용한 곳');await page.locator('[data-companion=solo]').click();
+  await page.locator('#comfort-options summary').click();await page.locator('[data-comfort=parking]').click();await page.locator('#recommend-button').click();
   check(await page.locator('.place-card').count()===6,'unknown comfort retained');
   await page.locator('.save-icon[data-save="demo-table"]').click();check(await page.locator('#saved-count').innerText()==='1','save counter');
   await page.goto(base+'/saved.html');await page.waitForSelector('.place-card');check(await page.locator('.place-card').count()===1,'saved persistence');
@@ -65,8 +80,8 @@ try {
     rows.push(r.request().postDataJSON().payload);await r.fulfill({status:204,headers:{'access-control-allow-origin':'*'}});
   });
   await connected.addInitScript(()=>{window.logicalEvents=[];document.addEventListener('naerhythm:analytics',e=>window.logicalEvents.push(e.detail.name));Object.defineProperty(navigator,'share',{value:async data=>{window.sharedData=data;},configurable:true});});
-  const c=await connected.newPage();await c.goto(base);await c.waitForFunction(()=>document.querySelector('#result-count')?.textContent==='6');
-  await c.locator('#rhythm-start').click();await c.locator('[data-companion=solo]').click();await c.locator('[data-desire=move]').click();await c.locator('[data-activity=walk]').click();await c.locator('[data-duration=short]').click();await c.locator('#recommend-button').click();
+  const c=await connected.newPage();await c.goto(base);await c.waitForFunction(()=>document.querySelector('#flow-step-1')?.dataset.available==='true');
+  await c.locator('#rhythm-start').click();await c.locator('[data-desire=move]').click();await c.locator('[data-activity=walk]').click();await c.locator('[data-companion=solo]').click();await c.locator('[data-duration=short]').click();await c.locator('#recommend-button').click();
   await c.locator('.save-icon').first().click();await c.locator('[data-share]').first().click();check(await c.evaluate(()=>Boolean(window.sharedData.url)&&window.sharedData.title.endsWith('— 나가치')),'native share');
   await c.locator('[data-companion-interest]').first().click();await answer(c);await c.waitForSelector('#survey-done');
   const logical=await c.evaluate(()=>window.logicalEvents);
@@ -75,5 +90,11 @@ try {
   await c.locator('#survey-done').click();
   await connected.route('https://fixture.supabase.co/**',r=>r.fulfill({status:503,headers:{'access-control-allow-origin':'*'}}));
   await c.locator('[data-companion-interest]').first().click();await answer(c);await c.waitForFunction(()=>document.querySelector('.survey-status')?.textContent.includes('전송하지 못했어요'));check(await c.locator('.survey [type=submit]').isEnabled(),'survey retry');
-  await connected.close();console.log(`브라우저 smoke test ${count}개 검사 통과`);
+  await connected.close();
+  const reduced=await browser.newContext({reducedMotion:'reduce'});
+  await reduced.addInitScript(()=>{window.flowAnimations=0;const original=Element.prototype.animate;Element.prototype.animate=function(...args){window.flowAnimations++;return original.apply(this,args);};});
+  const r=await reduced.newPage();await r.goto(base);await r.waitForFunction(()=>document.querySelector('#flow-step-1')?.dataset.available==='true');
+  await r.locator('#rhythm-start').click();await r.locator('[data-desire=eat]').click();await r.locator('[data-companion=solo]').click();await r.locator('#recommend-button').click();
+  check(await r.locator('#rhythm-results').isVisible(),'reduced motion result');check(await r.evaluate(()=>window.flowAnimations===0),'reduced motion no reveal animation');await reduced.close();
+  console.log(`브라우저 smoke test ${count}개 검사 통과`);
 } finally {await browser.close();}
