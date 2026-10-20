@@ -21,10 +21,19 @@ export function convertItem(item, region, category, today = new Date().toISOStri
     shortDescription: `${region}의 ${category} 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.`,
     image, imageAlt: image.startsWith('/assets/') ? '장소 사진이 없어 표시한 대체 일러스트' : clean(item.title),
     priceRange: '확인 전', sourceName: '한국관광공사 TourAPI', sourceUrl: 'https://api.visitkorea.or.kr/',
-    lastVerifiedAt: today, isDemo: false, companions: [], userRating: null,
+    lastVerifiedAt: today, isDemo: false, companions: [], intentTags: [], userRating: null,
+    sourceLicense: { name: null, url: null, attribution: '한국관광공사 TourAPI', copyrightCode: item.cpyrhtDivCd ? String(item.cpyrhtDivCd) : null, usageNotes: null },
+    imageLicense: { name: null, url: null, attribution: null, copyrightCode: null, usageNotes: null },
     tourApi: { contentId, contentTypeId: String(item.contenttypeid || ''), operation: 'KorService2/areaBasedList2', modifiedTime: item.modifiedtime || null, importedAt: today, imageSourceUrl: item.firstimage || null },
-    comfort: Object.fromEntries(['parking','stairs','accessibility','restroom','seating','walking','noise','waiting'].map(key => [key, { value: 'unknown', note: 'TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.', sourceUrl: null, verifiedAt: null }])),
+    comfort: Object.fromEntries(['parking','stairs','accessibility','restroom','seating','walking','noise','waiting'].map(key => [key, { value: 'unknown', note: 'TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.', sourceUrl: null, verifiedAt: null, ...(key === 'restroom' ? { proximity: 'unknown' } : {}) }])),
   };
+}
+export function mergeImportedPlace(old, incoming) {
+  if (!old) return incoming;
+  const sameImage = (old.tourApi?.imageSourceUrl || old.image) === (incoming.tourApi?.imageSourceUrl || incoming.image);
+  const sameRights = old.sourceUrl === incoming.sourceUrl && (old.sourceLicense?.copyrightCode ?? null) === (incoming.sourceLicense?.copyrightCode ?? null);
+  // 사진이나 원본 저작권 코드가 바뀌면 과거의 이용 권한을 새 자료에 적용하지 않습니다.
+  return { ...incoming, comfort: old.comfort, priceRange: old.priceRange, companions: old.companions || [], intentTags: old.intentTags || [], userRating: old.userRating ?? null, sourceLicense: sameRights ? old.sourceLicense || incoming.sourceLicense : incoming.sourceLicense, imageLicense: sameImage ? old.imageLicense || incoming.imageLicense : incoming.imageLicense };
 }
 export async function importTourApi() {
   const key = process.env.TOUR_API_KEY;
@@ -62,7 +71,7 @@ export async function importTourApi() {
   for (const p of imported.values()) {
     const old = merged.get(p.id);
     // 수동으로 확인한 편안함, 가격, 동행 태그는 재수집해도 보존합니다.
-    merged.set(p.id, old ? { ...p, comfort: old.comfort, priceRange: old.priceRange, companions: old.companions || [], userRating: old.userRating ?? null } : p);
+    merged.set(p.id, mergeImportedPlace(old, p));
   }
   const result = [...merged.values()]; validatePlaces(result);
   await writeFile(target + '.tmp', JSON.stringify(result, null, 2) + '\n'); await rename(target + '.tmp', target);

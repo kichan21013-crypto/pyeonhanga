@@ -1,7 +1,7 @@
 import { card, icon, escapeHtml, placeUrl } from './ui.js';
 import { savedIds, writeLocal, anonymousId } from './storage.js';
 import { track, analyticsEnabled } from './analytics.js';
-import { emptyFilters, filterPlaces } from './search.js';
+import { emptyFilters, filterPlaces, inferIntent, requestedComforts, COMPANIONS } from './search.js';
 
 const $ = selector => document.querySelector(selector);
 let places = [], filters = emptyFilters(), toastTimer;
@@ -25,7 +25,7 @@ function render() {
   const grid = $('#places-grid'); if (!grid) return;
   const ids = savedIds();
   const matches = page === 'saved' ? places.filter(p => ids.includes(p.id)) : filterPlaces(places, filters);
-  grid.innerHTML = matches.length ? matches.map(p => card(p, ids.includes(p.id))).join('') : `<div class="empty-state">${icon(page === 'saved' ? 'heart' : 'search')}<h3>${page === 'saved' ? '마음에 드는 곳을 담아보세요' : '조건에 맞는 장소가 아직 없어요'}</h3><p>${page === 'saved' ? '장소의 하트 버튼을 누르면 여기에 모아드려요.' : '미확인 정보는 추천 조건에 포함하지 않았어요. 조건을 조금 줄여보세요.'}</p>${page === 'saved' ? '<a href="/" class="button primary">장소 둘러보기</a>' : '<button data-reset class="button secondary">조건 초기화</button>'}</div>`;
+  grid.innerHTML = matches.length ? matches.map(p => card(p, ids.includes(p.id), page === 'home' ? filters : undefined)).join('') : `<div class="empty-state">${icon(page === 'saved' ? 'heart' : 'search')}<h3>${page === 'saved' ? '마음에 드는 곳을 담아보세요' : '조건에 맞는 장소가 아직 없어요'}</h3><p>${page === 'saved' ? '장소의 하트 버튼을 누르면 여기에 모아드려요.' : '미확인 정보는 추천 조건에 포함하지 않았어요. 조건을 조금 줄여보세요.'}</p>${page === 'saved' ? '<a href="/" class="button primary">장소 둘러보기</a>' : '<button data-reset class="button secondary">조건 초기화</button>'}</div>`;
   if ($('#result-count')) $('#result-count').textContent = matches.length;
   if ($('#result-status')) $('#result-status').textContent = `${matches.length}개의 장소를 찾았습니다.`;
   updateSaved();
@@ -33,17 +33,36 @@ function render() {
 }
 function filterEvent(name) {
   const matches = render();
-  track('filter_used', { ...filters, query: undefined, filter: name, result_count: matches.length, is_demo: matches.length ? matches.every(p => p.isDemo) : places.every(p => p.isDemo) });
+  // 기존 Supabase 입력 규칙은 유지합니다. 새 조건은 filter_used 이벤트로만 집계합니다.
+  const legacyName = ['region','category','companion','walking','parking','stairs','reset'].includes(name) ? name : undefined;
+  track('filter_used', { ...filters, query: undefined, category: filters.category === 'auto' ? inferIntent(filters.query).category : filters.category, filter: legacyName, result_count: matches.length, is_demo: matches.length ? matches.every(p => p.isDemo) : places.every(p => p.isDemo) });
 }
 function syncControls() {
   ['region', 'category', 'walking'].forEach(key => { if ($(`#${key}`)) $(`#${key}`).value = filters[key]; });
   ['parking', 'stairs'].forEach(key => { if ($(`#${key}`)) $(`#${key}`).checked = filters[key]; });
-  if ($('#search-input')) $('#search-input').value = filters.query;
   document.querySelectorAll('[data-category]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.category === filters.category)));
   document.querySelectorAll('[data-companion]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.companion === filters.companion)));
+  const intent = inferIntent(filters.query), selected = requestedComforts(filters, intent);
+  document.querySelectorAll('[data-comfort]').forEach(b => {
+    b.setAttribute('aria-pressed', String(selected.includes(b.dataset.comfort)));
+    if (b.dataset.comfort === 'walking') b.querySelector('[data-choice-label]').textContent = filters.walking === 'moderate' && selected.includes('walking') ? '걷기 보통 이하' : '걷기 적게';
+  });
+  document.querySelectorAll('[data-intent]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.intent === filters.query)));
+  if ($('#more-filter')) {
+    const expanded = $('#more-filter').getAttribute('aria-expanded') === 'true';
+    const extraCount = selected.filter(key => ['noise','seating','waiting'].includes(key)).length;
+    $('#more-filter [data-more-label]').textContent = expanded ? '조건 접기' : `조건 더보기${extraCount ? ` · ${extraCount}개 선택` : ''}`;
+  }
+  if ($('#intent-summary')) {
+    const text = [];
+    if (filters.query) text.push(filters.category === 'auto' ? `활동 자동 분류: ${intent.category || '모든 활동'}` : `활동: ${filters.category || '모든 활동'}`);
+    if (!filters.companion && intent.companion) text.push(`함께: ${COMPANIONS[intent.companion]}`);
+    if (intent.comforts.length) text.push('입력한 편안함 조건도 함께 살펴봐요');
+    $('#intent-summary').textContent = text.join(' · '); $('#intent-summary').hidden = !text.length;
+  }
   if ($('#companion-help')) $('#companion-help').hidden = filters.companion !== '새로운 사람';
 }
-function reset() { filters = emptyFilters(); syncControls(); filterEvent('reset'); }
+function reset() { filters = emptyFilters(); if ($('#search-input')) $('#search-input').value = ''; syncControls(); filterEvent('reset'); }
 async function sharePlace(p) {
   const url = new URL(placeUrl(p), location.origin).href;
   try {
@@ -132,16 +151,36 @@ async function init() {
     const initial = new URLSearchParams(location.search).get('category');
     if (['맛집', '나들이', '여행'].includes(initial)) filters.category = initial;
     syncControls(); render();
-    $('#search-form').onsubmit = event => {
-      event.preventDefault(); filters.query = $('#search-input').value;
-      const matches = render(); track('search', { region: filters.region, category: filters.category, result_count: matches.length, is_demo: matches.length ? matches.every(p => p.isDemo) : places.every(p => p.isDemo) });
+    const search = () => {
+      filters.query = $('#search-input').value.trim(); $('#search-input').value = filters.query; syncControls();
+      const matches = render(); track('search', { region: filters.region, category: filters.category === 'auto' ? inferIntent(filters.query).category : filters.category, result_count: matches.length, is_demo: matches.length ? matches.every(p => p.isDemo) : places.every(p => p.isDemo) });
     };
+    $('#search-form').onsubmit = event => { event.preventDefault(); search(); };
+    document.querySelectorAll('[data-intent]').forEach(button => button.onclick = () => {
+      $('#search-input').value = button.dataset.intent === filters.query ? '' : button.dataset.intent; search();
+    });
     for (const key of ['region', 'category', 'walking', 'parking', 'stairs']) {
-      $(`#${key}`).onchange = event => { filters[key] = ['parking', 'stairs'].includes(key) ? event.target.checked : event.target.value; syncControls(); filterEvent(key); };
+      if ($(`#${key}`)) $(`#${key}`).onchange = event => {
+        filters[key] = ['parking', 'stairs'].includes(key) ? event.target.checked : event.target.value;
+        if (key === 'walking') filters.comfortOverrides.walking = Boolean(filters.walking);
+        syncControls(); filterEvent(key);
+      };
     }
     document.querySelectorAll('[data-category]').forEach(button => button.onclick = () => { filters.category = filters.category === button.dataset.category ? '' : button.dataset.category; syncControls(); filterEvent('category'); });
     document.querySelectorAll('[data-companion]').forEach(button => button.onclick = () => { filters.companion = filters.companion === button.dataset.companion ? '' : button.dataset.companion; syncControls(); filterEvent('companion'); });
-    $('#more-filter').onclick = event => { const button = event.currentTarget; const opened = button.getAttribute('aria-expanded') === 'true'; button.setAttribute('aria-expanded', String(!opened)); $('#extra-filters').hidden = opened; button.querySelector('span').textContent = opened ? '+' : '−'; };
+    document.querySelectorAll('[data-comfort]').forEach(button => button.onclick = () => {
+      const key = button.dataset.comfort, next = !requestedComforts(filters).includes(key);
+      filters.comfortOverrides[key] = next;
+      if (key === 'parking' || key === 'stairs') filters[key] = next;
+      if (key === 'walking') filters.walking = next ? 'good' : '';
+      syncControls(); filterEvent(key);
+    });
+    $('#more-filter').onclick = event => {
+      const button = event.currentTarget, opened = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!opened)); $('#extra-filters').hidden = opened;
+      button.querySelector('[data-more-sign]').textContent = opened ? '＋' : '−';
+      syncControls();
+    };
   }
   if (page === 'saved') render();
   if (page === 'detail' && current) {

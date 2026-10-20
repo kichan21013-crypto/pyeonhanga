@@ -9,3 +9,47 @@
 .share-link-input{width:100%;min-height:48px;padding:9px;border:1px solid var(--line);border-radius:8px;margin:8px 0 18px;font-size:.8rem}h1,h2,h3,.brand-story p,.card-body p{overflow-wrap:anywhere}.basic-filters>*{max-width:100%}.search-form{flex-wrap:wrap}.search-form input{flex-basis:100px}.header-inner>*{min-width:0}.activity-grid button{min-width:0}.activity-grid strong{overflow-wrap:anywhere}.dialog-heading h2{min-width:0}
 @media(max-width:480px){.header-inner{flex-wrap:wrap;padding-block:12px;gap:8px}.header-inner nav{margin-left:auto;gap:8px}.hero-art-caption strong{overflow-wrap:anywhere}.extra-filters select{width:100%}.more-filter{flex-wrap:wrap}}
 .action-row,.footer-links{flex-wrap:wrap}.action-row>*{flex:1 1 120px}.card-body .eyebrow{font-size:.85rem}.card-description{font-size:.94rem}.card-bottom{font-size:.88rem}.comfort-tags{font-size:.85rem}.small-text{font-size:.87rem}.basic-filters select,.more-filter,.chips button{font-size:.9rem}.comfort-list>div{font-size:1rem}
+
+/* 상황 중심 탐색. 기존 상세·저장·설문 스타일과 배포 구조는 유지합니다. */
+:root{--page-gutter:32px;--tap-size:54px}
+.container{width:min(1160px,calc(100% - var(--page-gutter) * 2))}
+.hero{padding-block:36px 42px;gap:40px}.hero-art>img{height:280px}.hero h1{margin-block:14px}.hero .text-link{margin-top:10px}
+.hero>*,.detail-layout>*{min-width:0}
+.discovery-flow{display:grid;gap:24px;min-width:0}.discovery-flow>*{min-width:0}
+.explore-section{padding-block:32px 48px}
+.choice-step{padding:24px;border:1px solid var(--line);border-radius:16px;background:white;min-width:0}
+.step-heading{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.step-heading h2{font-size:1.35rem;min-width:0;flex:1 1 260px;overflow-wrap:anywhere}
+.step-number{display:grid;place-items:center;flex-shrink:0;width:30px;height:30px;background:var(--soft);border-radius:50%;color:var(--green);font-size:.85rem;font-weight:750}
+.step-optional{font-size:.85rem;color:var(--muted)}.step-optional:empty{display:none}
+.choice-grid{display:grid;gap:10px;min-width:0}.companion-choices{grid-template-columns:repeat(5,minmax(0,1fr))}.comfort-choices{grid-template-columns:repeat(4,minmax(0,1fr))}
+.choice-chip,.quick-intents button{display:flex;align-items:center;justify-content:center;gap:8px;position:relative;min-width:0;min-height:var(--tap-size);padding:12px 14px;border:1.5px solid #b8c5b3;border-radius:10px;background:#fafbf6;color:var(--ink);font-size:.95rem;font-weight:600;line-height:1.45;text-align:center;overflow-wrap:anywhere}
+.choice-chip>span[data-icon],.quick-intents [data-icon]{display:flex;flex-shrink:0}.choice-chip svg,.quick-intents svg{width:21px;height:21px}
+.choice-chip>[data-choice-label]{min-width:0;word-break:keep-all;overflow-wrap:anywhere}
+.selection-indicator{position:absolute;top:4px;right:4px;display:grid;place-items:center;width:17px;height:17px;border:1px solid currentColor;border-radius:50%;font-size:12px;line-height:1;opacity:0}
+.choice-chip[aria-pressed=true],.quick-intents button[aria-pressed=true]{background:var(--green-dark);border-color:var(--green-dark);color:#fff;box-shadow:inset 0 0 0 1px var(--green-dark)}
+.choice-chip[aria-pressed=true] .selection-indicator{opacity:1}
+@media(hover:hover){.choice-chip:hover,.quick-intents button:hover{border-color:var(--green);background:#eaf0e3}.choice-chip[aria-pressed=true]:hover,.quick-intents button[aria-pressed=true]:hover{background:var(--green-dark);color:white}}
+.choice-step>.small-text{margin-top:14px}.intent-step{background:#f5f7ee;border-color:#c5d1bb}
+.intent-search{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:10px;border:2px solid var(--green);background:#fff}
+.intent-input{display:flex;align-items:center;gap:12px;min-width:0;padding-inline:8px}.intent-input>[data-icon]{display:flex;color:var(--green)}
+.intent-search input{width:100%;min-width:0;font-size:1rem;min-height:var(--tap-size)}.intent-search input::placeholder{font-size:.95rem;color:#58644f}
+.intent-search .button{min-height:var(--tap-size);font-size:1rem;padding-inline:24px;white-space:normal}
+.quick-intents{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.quick-intents button{border-radius:10px;background:#fff;font-size:.9rem;font-weight:550}
+.intent-summary{padding:12px 14px;border-left:3px solid var(--green);margin-top:14px;background:#e8eedf;color:var(--ink);font-size:.9rem;overflow-wrap:anywhere}
+.comfort-extra{margin-top:10px}.comfort-extra .comfort-choices{grid-template-columns:repeat(3,minmax(0,1fr))}
+.walking-option{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px;font-size:.9rem}
+.walking-option select{min-width:0;max-width:100%;min-height:var(--tap-size);border:1px solid #b8c5b3;border-radius:8px;background:white;padding:8px 12px;font:inherit}
+.discovery-flow .more-filter{margin-top:16px;min-height:var(--tap-size);padding:10px 18px;border:1.5px solid #a6b69c;border-radius:10px;background:white;font-size:.95rem;font-weight:650;justify-content:center;gap:10px}
+.more-filter>[data-icon]{display:flex}.more-filter span{margin:0}.comfort-help{max-width:65ch}
+.quick-filter-section{padding:0 4px}.quick-filter-section h3{font-size:1rem;font-weight:650;margin-bottom:14px}
+.quick-filter-section .basic-filters{flex-wrap:wrap;gap:10px}.quick-filter-section .select-label{min-height:var(--tap-size);border-color:#b8c5b3;background:white}
+.quick-filter-section select{min-height:calc(var(--tap-size) - 2px);font-size:.95rem;min-width:0}
+.category-shortcuts{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.category-shortcuts .choice-chip{padding:10px 22px;min-height:var(--tap-size);background:#fff}.category-shortcuts .choice-chip[aria-pressed=true]{background:var(--green-dark)}
+.recommendations-section{min-width:0}.recommendations-section .results-heading{margin-top:4px;align-items:center;gap:12px}.results-heading .text-button{border:1px solid #b8c5b3;border-radius:9px;padding:8px 12px;min-height:48px;background:white;font-size:.85rem}
+.recommendation-reason{display:flex;align-items:flex-start;gap:6px;margin-top:14px;font-size:.92rem;font-weight:600;color:var(--green-dark);overflow-wrap:anywhere}.recommendation-reason svg{width:19px;height:24px;flex-shrink:0}.recommendation-reason span{min-width:0}
+.save-icon{width:52px;height:52px;border:1.5px solid #b8c5b3}.card-bottom a{border:1px solid #b8c5b3;border-radius:8px;padding:8px 10px;min-height:48px;justify-content:center;gap:7px}
+@media(min-width:1100px){.quick-intents{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:1000px){:root{--page-gutter:24px}.companion-choices{grid-template-columns:repeat(3,minmax(0,1fr))}.comfort-choices{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){:root{--page-gutter:18px}.hero{padding-block:24px 28px;display:block}.hero-art{display:none}.hero h1{font-size:2rem}.hero-description{font-size:1rem}.hero .text-link{margin-top:8px}.explore-section{padding-block:24px 36px}.discovery-flow{gap:20px}.choice-step{padding:18px}.step-heading{gap:9px;margin-bottom:16px}.step-heading h2{font-size:1.2rem;flex-basis:calc(100% - 42px)}.step-optional:not(:empty){margin-left:39px}.companion-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.companion-choices>.choice-chip:last-child{grid-column:1/-1}.choice-chip{padding:12px 10px;font-size:.95rem}.intent-search{grid-template-columns:minmax(0,1fr);gap:8px;padding:8px}.intent-input{padding-inline:6px;gap:8px}.intent-search .button{width:100%;font-size:1rem;min-height:var(--tap-size)}.intent-search input::placeholder{font-size:.9rem}.quick-intents{grid-template-columns:repeat(2,minmax(0,1fr))}.comfort-extra .comfort-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.choice-step .more-filter{width:100%}.quick-filter-section{padding:0}.quick-filter-section .basic-filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}.quick-filter-section .select-label{min-width:0;padding-inline:9px;gap:5px}.quick-filter-section select{width:100%;max-width:100%;font-size:.9rem}.category-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.category-shortcuts .choice-chip{padding:12px 8px;gap:5px;font-size:.9rem;flex-wrap:wrap}.category-shortcuts svg{width:18px;height:18px}.recommendations-section .results-heading{flex-wrap:wrap}.results-heading .text-button{font-size:.85rem}.recommendations-section .results-heading h2{font-size:1.28rem}.recommendations-section .places-grid{grid-template-columns:minmax(0,1fr)}.walking-option{display:block}.walking-option select{display:block;width:100%;margin-top:8px}.choice-step .small-text{font-size:.9rem}.quick-intents button{font-size:.92rem}}

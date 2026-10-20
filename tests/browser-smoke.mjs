@@ -17,23 +17,39 @@ try {
   page.on('request', r => { if (r.url().includes('supabase.co')) analyticsRequests.push(r); });
   await page.goto(base); await page.waitForFunction(() => document.querySelector('#result-count')?.textContent === '6');
   check(await page.locator('.place-card').count() === 6, 'home cards');
-  for (const width of [360, 768, 1280]) {
+  for (const width of [360, 390, 402, 800, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px horizontal overflow`);
   }
-  await page.setViewportSize({ width: 360, height: 800 });
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.evaluate(() => document.documentElement.style.fontSize = '36px');
   check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), '200% text overflow');
   await page.evaluate(() => document.documentElement.style.removeProperty('font-size'));
   await page.screenshot({ path: 'test-results/home-mobile.png', fullPage: true });
+  const visibleSteps = await page.locator('.choice-step h2').allTextContents();
+  check(visibleSteps.join('|') === '누구와 함께 가세요?|오늘 무엇을 하고 싶으세요?|무엇이 편해야 하나요?', 'situation first step order');
+  check(await page.locator('[data-intent]').count() === 6, 'six quick intent chips');
+  check(await page.locator('[data-comfort]:visible').count() === 4, 'four initial comfort chips');
+  await page.locator('#search-input').fill('바다 보고 싶어');
+  await page.locator('[data-companion="친구"]').click();
+  check(await page.locator('#search-input').inputValue() === '바다 보고 싶어', 'filter selection preserves input draft');
+  await page.locator('#reset-filters').click();
+  await page.locator('[data-intent="바다"]').click(); check(await page.locator('.place-card').count() === 2, 'sea natural intent');
+  await page.locator('[data-intent="카페"]').click(); check(await page.locator('.place-card').count() === 1, 'cafe crosses inferred category');
+  check(await page.locator('#intent-summary').innerText().then(text => text.includes('나들이')), 'auto category explained');
+  await page.locator('#reset-filters').click();
   await page.locator('[data-category="맛집"]').click(); check(await page.locator('.place-card').count() === 2, 'category filter');
   await page.locator('#region').selectOption('서울'); check(await page.locator('.place-card').count() === 0, 'region intersection');
   await page.locator('#reset-filters').click();
   await page.locator('#search-input').fill('한정식'); await page.locator('#search-form button').click(); check(await page.locator('.place-card').count() === 1, 'text search');
-  await page.locator('#reset-filters').click(); await page.locator('#more-filter').click(); await page.locator('#parking').check();
+  await page.locator('#reset-filters').click(); await page.locator('#more-filter').click();
+  check(await page.locator('[data-comfort]:visible').count() === 7, 'all seven comfort chips');
+  await page.locator('[data-comfort="parking"]').click();
+  check(await page.locator('[data-comfort="parking"]').getAttribute('aria-pressed') === 'true', 'comfort selection state');
   check(await page.locator('.place-card').count() === 0, 'unknown excluded from parking');
   await page.locator('#reset-filters').click(); await page.locator('[data-companion="새로운 사람"]').click();
   check(await page.locator('#companion-help').isVisible(), 'companion explanation');
+  check(await page.locator('[data-companion="새로운 사람"]').getAttribute('aria-pressed') === 'true', 'companion selection state');
   await page.locator('[data-save="demo-table"]').click();
   check(await page.locator('#saved-count').innerText() === '1', 'save counter');
   await page.goto(base + '/saved.html'); await page.waitForSelector('.place-card');

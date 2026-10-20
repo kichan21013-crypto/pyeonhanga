@@ -34,3 +34,11 @@ PLAYWRIGHT_MODULE=/설치경로/playwright-core/index.mjs CHROMIUM_PATH=/브라�
 ```
 
 `playwright` 패키지가 이 프로젝트에서 이미 import 가능한 환경이면 `node tests/browser-smoke.mjs`만 실행해도 됩니다. 검사 대상은 360/768/1280px, 큰 글씨, 검색·필터, 저장 유지, 공유 fallback/native mock, 설문, 저장공간 차단, 분석 모의 연결/실패이며 스크린샷은 `test-results/`에 저장합니다. 이 스크립트는 현재 환경에서 통과했다고 주장하지 않습니다.
+
+## 2026-10-20 상황 중심 UX 변경 검증
+
+- `npm run build`: 성공. 기존 빌드 스크립트와 Workers 설정을 유지했습니다.
+- `npm test`: 총 **25개 통과**. 기존 16개에 자연어 예문 7개, 동행별 순서, 수동 카테고리 우선, 7가지 편안함 조건, 화장실 거리 검증, 추천 이유, 라이선스 보존, 홈 순서 검사 9개를 추가했습니다.
+- 기존 HTML 기본 접근성/내부 링크 검사를 다시 실행했습니다.
+- `npm start`와 Chromium을 다시 실행했지만 여전히 샌드박스의 포트/소켓 권한 제한(`listen EPERM`, `setsockopt: Operation not permitted`)으로 실행하지 못했습니다. 따라서 실제 브라우저에서 390px/402px/800px 화면이나 클릭 흐름을 확인했다고 주장하지 않습니다.
+- `tests/browser-smoke.mjs`에는 360/390/402/800/1280px, 글씨 200%, 상황 선택 순서, 예시 의도, 4→7개 조건, 선택 표시와 기존 저장·공유·설문 회귀 검사를 준비했습니다. 일반 개발 환경에서 실행할 수 있습니다. 기기 자체 테스트도 별도로 필요합니다.

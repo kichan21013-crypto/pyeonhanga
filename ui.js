@@ -1,4 +1,5 @@
 import { calculateComfort, comfortText, COMFORT_LABELS } from './comfort-score.js';
+import { recommendationReasons } from './search.js';
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const safeUrl = value => /^(https?:\/\/|\/(?!\/))/.test(value || '') ? escapeHtml(value) : '';
 export const placeUrl = p => `/places/${encodeURIComponent(p.slug)}/`;
@@ -13,15 +14,27 @@ export const ICONS = {
   arrow: '<path d="M4 12h16m-6-6 6 6-6 6"/>',
   people: '<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m2 11v-4a5 5 0 0 0-2-4"/>',
   check: '<path d="m5 12 4 4L19 6"/>',
+  solo: '<circle cx="12" cy="7" r="4"/><path d="M5 22v-3a7 7 0 0 1 14 0v3"/>',
+  cafe: '<path d="M4 8h13v7a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Zm13 1h2a3 3 0 1 1 0 6h-2M8 3v2m5-2v2M2 22h19"/>',
+  sea: '<path d="M2 12q3-4 6 0t6 0 6 0M2 18q3-4 6 0t6 0 6 0"/><circle cx="17" cy="5" r="3"/>',
+  parking: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 17V7h4a3 3 0 1 1 0 6H9"/>',
+  walking: '<circle cx="14" cy="4" r="2"/><path d="m8 22 3-7-1-5-4 4m5 1 5 3 1 4m-7-12 4-3 3 5 4 1"/>',
+  stairs: '<path d="M2 20h6v-6h6V8h6V2M3 4h7M3 4v7m0-7 7 7"/>',
+  restroom: '<path d="M5 22V3h14v19M10 8h4m-2-2v4m3 5v2"/>',
+  noise: '<path d="m11 5-5 5H2v4h4l5 5V5Zm5 3q4 4 0 8M3 3l18 18"/>',
+  seating: '<path d="M5 12V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7M4 12h16v5H4zM6 17v5m12-5v5"/>',
+  waiting: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  filters: '<path d="M3 6h18M3 12h18M3 18h18M8 3v6m8 0v6m-6 0v6"/>',
 };
 export function icon(name) { return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ICONS.leaf}</svg>`; }
 export function scoreMarkup(p) {
   const score = calculateComfort(p.comfort);
   return score.score === null ? '<span class="score-pending">편안함 정보 수집 중</span>' : `<span class="score">편안함 <strong>${score.score}</strong><small>정보 신뢰도 ${score.confidence}</small></span>`;
 }
-export function card(p, saved = false) {
+export function card(p, saved = false, filters) {
   const badges = Object.entries(p.comfort).filter(([, f]) => f.value === 'good' && f.sourceUrl && f.verifiedAt).slice(0, 3);
-  return `<article class="place-card"><div class="card-image"><a href="${placeUrl(p)}" tabindex="-1" aria-hidden="true"><img src="${safeUrl(p.image) || '/assets/garden.svg'}" alt="" loading="lazy" width="800" height="520"></a>${p.isDemo ? '<span class="demo-badge">DEMO SAMPLE</span>' : ''}<button class="save-icon ${saved ? 'is-saved' : ''}" data-save="${escapeHtml(p.id)}" aria-label="${escapeHtml(p.name)} 저장" aria-pressed="${saved}">${icon('heart')}</button></div><div class="card-body"><p class="eyebrow">${escapeHtml(p.region)} <span>·</span> ${escapeHtml(p.category)}</p><h3><a href="${placeUrl(p)}">${escapeHtml(p.name)}</a></h3>${scoreMarkup(p)}<p class="card-description">${escapeHtml(p.shortDescription)}</p><div class="comfort-tags">${badges.length ? badges.map(([k, f]) => `<span>${icon('check')}${comfortText(k, f.value)}</span>`).join('') : '<span>주차 · 계단 · 보행 정보 확인 전</span>'}</div><div class="card-bottom"><span>가격 ${escapeHtml(p.priceRange)}</span><a href="${placeUrl(p)}" aria-label="${escapeHtml(p.name)} 자세히 보기">자세히 보기 ${icon('arrow')}</a></div></div></article>`;
+  const reasons = recommendationReasons(p, filters);
+  return `<article class="place-card"><div class="card-image"><a href="${placeUrl(p)}" tabindex="-1" aria-hidden="true"><img src="${safeUrl(p.image) || '/assets/garden.svg'}" alt="" loading="lazy" width="800" height="520"></a>${p.isDemo ? '<span class="demo-badge">DEMO SAMPLE</span>' : ''}<button class="save-icon ${saved ? 'is-saved' : ''}" data-save="${escapeHtml(p.id)}" aria-label="${escapeHtml(p.name)} 저장" aria-pressed="${saved}">${icon('heart')}</button></div><div class="card-body"><p class="eyebrow">${escapeHtml(p.region)} <span>·</span> ${escapeHtml(p.category)}</p><h3><a href="${placeUrl(p)}">${escapeHtml(p.name)}</a></h3>${scoreMarkup(p)}${reasons.length ? `<p class="recommendation-reason">${icon('check')}<span>${reasons.map(escapeHtml).join(' · ')}</span></p>` : ''}<p class="card-description">${escapeHtml(p.shortDescription)}</p><div class="comfort-tags">${badges.length ? badges.map(([k, f]) => `<span>${icon('check')}${comfortText(k, f.value)}</span>`).join('') : '<span>주차 · 계단 · 보행 정보 확인 전</span>'}</div><div class="card-bottom"><span>가격 ${escapeHtml(p.priceRange)}</span><a href="${placeUrl(p)}" aria-label="${escapeHtml(p.name)} 자세히 보기">자세히 보기 ${icon('arrow')}</a></div></div></article>`;
 }
 export function detailMarkup(p) {
   const s = calculateComfort(p.comfort);

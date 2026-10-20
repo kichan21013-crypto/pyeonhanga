@@ -37,7 +37,7 @@ test('정보 신뢰도와 연령 프로필을 구분한다', () => {
   assert.equal(calculateComfort(sixty).confidence, '보통');
   assert.notEqual(calculateComfort(sixty, '50s').score, calculateComfort(sixty, '70plus').score);
 });
-test('검색과 기본 지역/카테고리/동행 필터가 교집합으로 동작한다', () => {
+test('검색과 지역/카테고리 조건을 유지하고 동행 태그를 호환한다', () => {
   assert.equal(filterPlaces(places, { ...emptyFilters(), query: '한정식' }).length, 1);
   assert.equal(filterPlaces(places, { ...emptyFilters(), category: '여행' }).length, 2);
   assert.equal(filterPlaces(places, { ...emptyFilters(), region: '서울', companion: '가족' }).length, 1);
