@@ -3,6 +3,12 @@ import { readLocal, writeLocal, anonymousId } from './storage.js';
 const EVENTS = ['page_view', 'search', 'filter_used', 'place_view', 'save_place', 'share_place', 'companion_interest', 'premium_willingness'];
 const AGE = ['50~54', '55~59', '60~64', '65~69', '70+'];
 // 운영 스키마의 8종 이벤트는 그대로 유지합니다. 새 이름은 클라이언트 논리 이벤트입니다.
+// TODO(실제 공개 테스트 전 필수): 선택→추천→동행 관심→지불의향을 연결하는 context analytics.
+// selected_desires, selected_activities, companions, duration, transport,
+// selected_comfort_preferences, recommended_rhythm/recommended_activity, place_id, premium_willingness.
+// 현재는 이 context를 새로 전송하지 않습니다. 기존 place_id/지불의향 저장만 유지합니다.
+// 운영 스키마/record_event 허용 목록·검증/KPI/DEMO·RLS를 별도 검토한 뒤 확장합니다.
+// 자유입력 자연어 원문은 계속 서버 전송 금지. README의 공개 테스트 전 TODO 참조.
 export const RHYTHM_EVENT_MAP = { rhythm_start: 'filter_used', companion_selected: 'filter_used', desire_selected: 'filter_used', activity_selected: 'filter_used', condition_selected: 'filter_used', recommendation_view: 'search', rhythm_save: 'save_place', rhythm_share: 'share_place', companion_interest: 'companion_interest', premium_willingness: 'premium_willingness' };
 export function trackRhythm(name, values = {}) {
   const legacy = RHYTHM_EVENT_MAP[name];

@@ -49,7 +49,7 @@ function syncControls() {
   if ($('#companion-summary')) $('#companion-summary').textContent = companionSummary(filters.companions) || '여러 상황을 함께 골라도 좋아요.';
   if ($('#companion-help')) $('#companion-help').hidden = !filters.companions.includes('new_people');
   if ($('#desire-summary')) $('#desire-summary').textContent = filters.desires.map(key => DESIRES[key].label).join(' · ');
-  if ($('#condition-summary')) $('#condition-summary').textContent = `${DURATION_OPTIONS[filters.duration]} · ${TRANSPORT_OPTIONS[filters.transport]}${filters.transport === 'nearby' ? ' · 현재 위치를 수집하지 않아 가까움은 확인 전이에요.' : ''}`;
+  if ($('#condition-summary')) $('#condition-summary').textContent = `${DURATION_OPTIONS[filters.duration]} · ${TRANSPORT_OPTIONS[filters.transport]}`;
   if ($('#intent-summary')) {
     const parsed = inferIntent(filters.query);
     $('#intent-summary').textContent = filters.query ? `문장과 선택한 취향을 함께 반영해요.${parsed.distanceKm ? ' 입력한 거리는 희망 조건이며 실제 코스 거리로 추정하지 않아요.' : ''}` : '';
@@ -63,7 +63,7 @@ function recordRhythmAction(name) {
 }
 async function sharePlace(p) {
   const url = new URL(placeUrl(p), location.origin).href;
-  const outcome = await shareOrCopy({ title: `${p.name} — 내리듬`, text: p.isDemo ? 'DEMO SAMPLE · 가상 장소' : p.shortDescription, url });
+  const outcome = await shareOrCopy({ title: `${p.name} — 나가치`, text: p.isDemo ? 'DEMO SAMPLE · 가상 장소' : p.shortDescription, url });
   if (outcome === 'cancelled') return;
   if (outcome === 'manual') { showCopyFallback(url,p); return; }
   if (outcome === 'copied') toast('리듬 링크를 복사했어요.');

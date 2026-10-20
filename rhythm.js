@@ -15,7 +15,7 @@ export const ACTIVITIES = {
   outing: ['나들이','garden','walk'], travel: ['여행','travel','drive'], culture: ['문화생활','culture','rest'], conversation: ['대화','people','rest'],
 };
 export const DURATION_OPTIONS = { short: '1~2시간', half_day: '반나절', full_day: '하루', any: '상관없음' };
-export const TRANSPORT_OPTIONS = { car: '차로', transit: '대중교통', nearby: '가까운 곳', any: '상관없음' };
+export const TRANSPORT_OPTIONS = { car: '차로', transit: '대중교통', any: '상관없음' };
 export const COMFORT_OPTIONS = { parking: '주차 편함', walking: '걷기 적게', stairs: '계단 적음', restroom: '화장실', noise: '조용함', seating: '좌석 편함', waiting: '대기 적음' };
 export function emptyRhythmFilters() {
   return { query: '', region: '', category: 'auto', companions: [], desires: [], activities: [], duration: 'any', transport: 'any', comforts: [], comfortOverrides: {}, requiredComforts: [], walking: '', parking: false, stairs: false };

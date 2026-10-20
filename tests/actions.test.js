@@ -12,7 +12,7 @@ test('기존 저장 키·장소 ID를 유지하고 저장/해제·공간 차단�
   } finally {globalThis.localStorage=previous;}
 });
 test('공유는 native→클립보드→수동 복사를 지원하고 취소는 공유로 세지 않는다', async () => {
-  const data={title:'DEMO SAMPLE · 내리듬',url:'https://example.org/places/demo-table/'};let received;
+  const data={title:'DEMO SAMPLE · 나가치',url:'https://example.org/places/demo-table/'};let received;
   assert.equal(await shareOrCopy(data,{share:async value=>{received=value}}),'shared');assert.equal(received.url,data.url);
   assert.equal(await shareOrCopy(data,{clipboard:{writeText:async value=>{received=value}}}),'copied');assert.equal(received,data.url);
   assert.equal(await shareOrCopy(data,{share:async()=>{throw new Error('unavailable')},clipboard:{writeText:async()=>{}}}),'copied');

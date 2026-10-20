@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
-import { recommendRhythms, emptyRhythmFilters, toggleSelection, activeActivities, companionSummary, unknownRoute } from '../rhythm.js';
+import { recommendRhythms, emptyRhythmFilters, toggleSelection, activeActivities, companionSummary, unknownRoute, TRANSPORT_OPTIONS } from '../rhythm.js';
 import { inferIntent } from '../search.js';
 import { card } from '../ui.js';
 import { validatePlaces } from '../scripts/validate-data.js';
@@ -37,6 +37,7 @@ test('자연어와 선택한 칩을 함께 반영하고 복합 문장에서 거�
   assert.ok(compound.intents.includes('drive'));assert.ok(compound.intents.includes('noodle'));
 });
 test('시간·이동·편안함은 확인 근거가 있을 때만 우선순위에 반영한다', () => {
+  assert.deepEqual(Object.keys(TRANSPORT_OPTIONS),['car','transit','any']);
   const known=sample('demo-known'),unknown=sample('demo-unknown');
   known.visitContext={duration:'short',transportModes:['car'],sourceUrl:'https://example.org/demo-sample',verifiedAt:'2026-10-20'};
   const f={...emptyRhythmFilters(),duration:'short',transport:'car',comforts:['parking']};
@@ -61,15 +62,19 @@ test('러닝 확장 정보는 unknown이며 실제 거리·순환 여부에는 �
   p.route.sourceUrl='https://example.org/demo-sample';p.route.verifiedAt='2026-10-20';p.route.loop=true;
   assert.equal(validatePlaces([p]),true);
 });
-test('검증 기간의 모든 HTML과 응답 헤더가 noindex,nofollow이고 내리듬 브랜드를 사용한다', async () => {
+test('검증 기간의 모든 HTML과 응답 헤더가 noindex,nofollow이고 나가치 브랜드·정확한 저장 명칭을 사용한다', async () => {
   async function inspect(url) {
     for (const entry of await readdir(url,{withFileTypes:true})) {
       const next=new URL(entry.name+(entry.isDirectory()?'/':''),url);
       if(entry.isDirectory())await inspect(next);
-      else if(entry.name.endsWith('.html')) { const html=await readFile(next,'utf8');assert.match(html,/<meta name="robots" content="noindex,nofollow">/);assert.ok(!html.includes('편한가?'));assert.match(html,/내리듬/); }
+      else if(entry.name.endsWith('.html')) { const html=await readFile(next,'utf8');assert.match(html,/<meta name="robots" content="noindex,nofollow">/);assert.ok(!html.includes('편한가?'));assert.match(html,/<title>[^<]*나가치[^<]*<\/title>/);assert.match(html,/<meta property="og:site_name" content="나가치">/);assert.match(html,/aria-label="나가치 홈"/);assert.match(html,/>나가치<\/a>/);assert.ok(!html.includes('저장한 리듬'));assert.match(html,/저장한 곳/); }
     }
   }
   await inspect(new URL('../dist/',import.meta.url));
+  const home=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
+  assert.deepEqual([...home.matchAll(/data-transport="([^"]+)"/g)].map(match=>match[1]),['car','transit','any']);
+  assert.ok(home.includes('오늘 내 리듬 찾기')&&home.includes('오늘의 리듬'));
+  const about=await readFile(new URL('../dist/about.html',import.meta.url),'utf8');assert.ok(about.includes('‘내리듬’은 내 상황과 취향에 맞춘 추천'));
   assert.match(await readFile(new URL('../dist/_headers',import.meta.url),'utf8'),/X-Robots-Tag: noindex, nofollow/);
   assert.ok(!(await readFile(new URL('../dist/sitemap.xml',import.meta.url),'utf8')).includes('<url>'));
 });
