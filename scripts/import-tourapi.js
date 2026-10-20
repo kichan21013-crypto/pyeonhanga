@@ -10,6 +10,38 @@ export const REGIONS = [
 ];
 export const CONTENT_TYPES = { '39': '맛집', '12': '나들이', '25': '여행' };
 function clean(value) { return String(value || '').replace(/<[^>]*>/g, '').trim(); }
+function apiMessage(text) {
+  if (!text) return '';
+  try {
+    const parsed = JSON.parse(text);
+    const header = parsed?.response?.header || parsed?.header || parsed;
+    return clean(header?.resultMsg || header?.errMsg || header?.cmmMsg || header?.returnAuthMsg || '');
+  } catch {}
+  for (const tag of ['resultMsg', 'returnAuthMsg', 'errMsg', 'cmmMsg']) {
+    const match = String(text).match(new RegExp(`<${tag}>(?:<!\\[CDATA\\[)?([^<\\]]+)(?:\\]\\]>)?</${tag}>`, 'i'));
+    if (match?.[1]) return clean(match[1]);
+  }
+  return '';
+}
+async function fetchTourJson(url) {
+  let response;
+  try {
+    response = await fetch(url, { signal: AbortSignal.timeout(20000) });
+  } catch (error) {
+    const reason = error?.name === 'TimeoutError' ? '시간 초과' : '네트워크 요청 실패';
+    throw new Error(`TourAPI ${reason}. 잠시 후 다시 시도하세요. 기존 파일은 변경하지 않았습니다.`);
+  }
+  const text = await response.text();
+  const message = apiMessage(text);
+  if (!response.ok) {
+    throw new Error(`TourAPI HTTP ${response.status}${message ? ` · ${message}` : ''}. 인증키 승인 상태와 호출 URL을 확인하세요. 기존 파일은 변경하지 않았습니다.`);
+  }
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`TourAPI 응답 형식 오류${message ? ` · ${message}` : ''}. 인증키가 막 승인된 경우 잠시 뒤 다시 시도하세요. 기존 파일은 변경하지 않았습니다.`);
+  }
+}
 export function convertItem(item, region, category, today = new Date().toISOString().slice(0, 10)) {
   const contentId = String(item.contentid || '');
   if (!/^\d+$/.test(contentId) || !item.title) return null;
@@ -50,14 +82,12 @@ export async function importTourApi() {
     for (const [contentTypeId, category] of Object.entries(CONTENT_TYPES)) {
       for (let page = 1; page <= maxPages; page++) {
         const url = new URL('https://apis.data.go.kr/B551011/KorService2/areaBasedList2');
-        let decodedKey = key; try { decodedKey = decodeURIComponent(key); } catch {}
+        let decodedKey = key.trim(); try { decodedKey = decodeURIComponent(decodedKey); } catch {}
         url.search = new URLSearchParams({ serviceKey: decodedKey, MobileOS: 'ETC', MobileApp: 'Nagachi', _type: 'json', numOfRows: String(rowsPerPage), pageNo: String(page), arrange: 'A', areaCode: region.areaCode, contentTypeId, ...(region.sigunguCode ? { sigunguCode: region.sigunguCode } : {}) });
-        let json;
-        try {
-          const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
-          if (!response.ok) throw new Error(); json = await response.json();
-        } catch { throw new Error('TourAPI 연결 실패. 키의 활성화 상태, 무료 호출 한도, 네트워크를 확인하세요. 기존 파일은 변경하지 않았습니다.'); }
-        if (json.response?.header?.resultCode !== '0000') throw new Error('TourAPI 응답 오류. 승인된 키와 API 버전을 확인하세요. 기존 파일은 변경하지 않았습니다.');
+        const json = await fetchTourJson(url);
+        const code = json.response?.header?.resultCode;
+        const message = clean(json.response?.header?.resultMsg || '');
+        if (code !== '0000') throw new Error(`TourAPI 응답 오류 ${code || 'UNKNOWN'}${message ? ` · ${message}` : ''}. 승인된 키와 API 버전을 확인하세요. 기존 파일은 변경하지 않았습니다.`);
         const body = json.response.body;
         const raw = body.items?.item || [];
         const items = Array.isArray(raw) ? raw : [raw];
