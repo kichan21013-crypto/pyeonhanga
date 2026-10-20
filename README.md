@@ -57,7 +57,9 @@ Git 연결 없이 배포하려면 로컬에서 SITE_URL을 설정하여 빌드�
 | image / imageAlt | 사용할 권리가 있는 사진의 URL 또는 `/assets/파일명`, 사진 설명. 일러스트는 대체 이미지임을 명시 |
 | sourceName / sourceUrl / lastVerifiedAt | 출처 이름, 공개 HTTPS URL, 실제 확인한 날짜 `YYYY-MM-DD` |
 | isDemo | 가상은 `true`, 검증된 실제 장소만 `false` |
-| companions | 명시적으로 적합성을 확인한 동행 태그만 배열로 추가. 모르면 `[]`. 동행 필터는 태그가 확인된 장소만 표시 |
+| companions | 확인한 동행 적합성: `solo`, `couple`, `friend`, `family`, `new_people`. 모르면 `[]`. 선택한 동행에 맞는 태그를 가진 장소를 먼저 추천하며 미확인 장소도 남겨 둡니다. 이전 한글 태그도 호환합니다. |
+| intentTags | 활동 태그 배열: `walk`, `drive`, `noodle`, `korean_food`, `cafe`, `sea`, `quiet`, `scenery`, `conversation`, `low_walking` 등. 근거 없이 편안함 태그를 채우지 않기 |
+| sourceLicense / imageLicense | 각각 `name`, `url`, `attribution`, `copyrightCode`, `usageNotes`. 모르면 `null`. 장소 정보와 이미지의 이용 권한은 별도로 확인 |
 | userRating | 이번에는 `null`. 알고리즘 점수를 여기에 넣지 않기 |
 
 편안함은 `comfort` 안의 `parking`, `stairs`, `accessibility`, `restroom`, `seating`, `walking`, `noise`, `waiting`입니다. 각 항목 형태:
@@ -114,3 +116,16 @@ Supabase SQL Editor에서 **`supabase/analytics_queries.sql`**의 필요한 문�
 실제 결제, Premium 운영, 회원가입, 채팅, 사람 연결/매칭, 식당·숙박·여행 예약, 여행상품 판매, SMS, 푸시, CMS, 운동·취미 카테고리, 광고·제휴입니다. 계정/키가 필요한 Cloudflare 실제 배포, Supabase 원격 연결, TourAPI 원격 수집은 운영자 설정 후 확인해야 합니다.
 
 향후 검토만 할 항목: 실제 편안함 현장 검증, 별도 이용자 평가 데이터, 동행 멤버 구성 서비스 실험. 현재 MVP에는 추가 구현하지 않습니다. 장기 Premium 원칙은 `AGENTS.md`에 기록했습니다.
+
+## 상황 중심 추천 (2026-10-20)
+
+홈은 **누구와 → 하고 싶은 일 → 편안함 조건 → 추천 결과** 순서입니다. 자연어 입력 아래 6개 예시를 누르면 바로 검색합니다. 카테고리는 아래쪽 빠른 필터에서 직접 바꿀 수 있습니다. 자동 분류는 추천 순서에 반영하므로 나들이 의도로 검색한 카페가 맛집 데이터에 있어도 찾을 수 있습니다. 직접 고른 카테고리는 우선 적용합니다.
+
+- `search.js`의 `inferIntent`가 무료 규칙으로 문장에서 활동·동행·지역·편안함을 읽습니다. 외부 AI API는 사용하지 않습니다. 애매하면 모든 활동에서 찾습니다.
+- `recommendPlaces`는 검색 일치 → 동행 태그 적합도 → 확인된 편안함 조건 → 정보 충실도를 반영한 기존 점수를 조합합니다. 가중치는 `RECOMMENDATION_WEIGHTS`에서 조절합니다. 내부 추천 정렬값은 공개 편안함 점수나 이용자 평점이 아닙니다.
+- 편안함은 기본적으로 선호 조건입니다. 확인된 충족 수가 많은 장소부터 추천하고, 부분 충족·미충족·unknown 장소도 검색 결과에 남깁니다. unknown은 충족 수에 포함하지 않습니다. 확인된 충족 수가 같을 때 검색·동행·기존 정보 기반 점수를 비교합니다. 향후 필수 조건은 `requiredComforts`로 분리할 수 있으나 이번 UI에서는 사용하지 않습니다. 입력에서 읽은 편안함도 칩에 표시되며 눌러 해제할 수 있습니다.
+- 카드의 추천 이유는 실제 확인한 편안함이나 출처가 있는 동행 태그에만 기반합니다. 데모에는 실제 이용 적합성을 주장하는 이유를 만들지 않습니다.
+- `comfort.restroom.proximity`는 `near` / `far` / `unknown`입니다. 기존 `restroom.value=good`은 이용 편의이며 가까움을 뜻하지 않습니다. 가까운 화장실을 추천하려면 `proximity=near`와 근거·확인일·설명이 필요합니다.
+- TourAPI 가져오기는 출처·원본 식별자와 받은 저작권 코드를 보존합니다. 저작권 코드만 보고 무료 재사용 권한을 추정하지 않습니다. 가져오기에서 없는 동행·의도 태그는 빈 배열, 편안함은 unknown입니다. 재수집할 때 수동 검증한 태그·라이선스와 편안함을 보존합니다. 사진이나 원본 저작권 코드가 바뀌면 과거 이용 권한을 새 자료에 적용하지 않고 다시 확인하도록 비웁니다. 이번 작업은 외부 관광 API를 실제 호출하지 않았습니다.
+
+현재 GitHub의 **Workers 정적 에셋 배포** 설정은 `wrangler.jsonc`의 `./dist`를 그대로 사용합니다. 기존 `scripts/build.js`, GitHub Actions, Supabase 설정/스키마는 변경하지 않았습니다. 위 Pages 배포 설명은 대안이며 이번 작업에서 배포 방식을 전환하지 않았습니다.

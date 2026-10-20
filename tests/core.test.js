@@ -37,19 +37,19 @@ test('정보 신뢰도와 연령 프로필을 구분한다', () => {
   assert.equal(calculateComfort(sixty).confidence, '보통');
   assert.notEqual(calculateComfort(sixty, '50s').score, calculateComfort(sixty, '70plus').score);
 });
-test('검색과 기본 지역/카테고리/동행 필터가 교집합으로 동작한다', () => {
+test('검색과 지역/카테고리 조건을 유지하고 동행 태그를 호환한다', () => {
   assert.equal(filterPlaces(places, { ...emptyFilters(), query: '한정식' }).length, 1);
   assert.equal(filterPlaces(places, { ...emptyFilters(), category: '여행' }).length, 2);
   assert.equal(filterPlaces(places, { ...emptyFilters(), region: '서울', companion: '가족' }).length, 1);
   assert.equal(filterPlaces(places, { ...emptyFilters(), region: '부산', category: '맛집' }).length, 0);
 });
-test('주차/계단/보행 필터와 자연어 검색에 unknown이 통과하지 않는다', () => {
-  assert.equal(filterPlaces(places, { ...emptyFilters(), parking: true }).length, 0);
-  assert.equal(filterPlaces(places, { ...emptyFilters(), query: '많이 걷지 않는 나들이' }).length, 0);
+test('편안함 선호와 자연어 검색이 unknown 장소를 남기되 충족으로 판단하지 않는다', () => {
+  assert.equal(filterPlaces(places, { ...emptyFilters(), parking: true }).length, places.length);
+  assert.equal(filterPlaces(places, { ...emptyFilters(), query: '많이 걷지 않는 나들이' }).length, 2);
   const fixture = structuredClone(places[0]);
   fixture.comfort.parking = fact('good'); fixture.comfort.stairs = fact('good'); fixture.comfort.walking = fact('moderate');
   assert.equal(filterPlaces([fixture], { ...emptyFilters(), query: '주차 편한 한정식', stairs: true, walking: 'moderate' }).length, 1);
-  assert.equal(filterPlaces([fixture], { ...emptyFilters(), walking: 'good' }).length, 0);
+  assert.equal(filterPlaces([fixture], { ...emptyFilters(), walking: 'good' }).length, 1);
 });
 test('출력에서 HTML 삽입을 차단하고 unknown 안내를 제공한다', () => {
   const p = { ...places[0], name: '<script>alert(1)</script>', image: 'javascript:alert(1)' };

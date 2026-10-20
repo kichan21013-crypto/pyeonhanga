@@ -17,11 +17,11 @@
     "lastVerifiedAt": null,
     "isDemo": true,
     "companions": [
-      "혼자",
-      "배우자/연인",
-      "친구",
-      "가족",
-      "새로운 사람"
+      "solo",
+      "couple",
+      "friend",
+      "family",
+      "new_people"
     ],
     "comfort": {
       "parking": {
@@ -46,7 +46,8 @@
         "value": "unknown",
         "note": "확인된 정보가 없습니다.",
         "sourceUrl": null,
-        "verifiedAt": null
+        "verifiedAt": null,
+        "proximity": "unknown"
       },
       "seating": {
         "value": "unknown",
@@ -73,7 +74,24 @@
         "verifiedAt": null
       }
     },
-    "userRating": null
+    "userRating": null,
+    "intentTags": [
+      "korean_food"
+    ],
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": "DEMO SAMPLE · 개발 체험용 가상 데이터"
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "편한가?",
+      "copyrightCode": null,
+      "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    }
   },
   {
     "id": "demo-garden",
@@ -93,11 +111,11 @@
     "lastVerifiedAt": null,
     "isDemo": true,
     "companions": [
-      "혼자",
-      "배우자/연인",
-      "친구",
-      "가족",
-      "새로운 사람"
+      "solo",
+      "couple",
+      "friend",
+      "family",
+      "new_people"
     ],
     "comfort": {
       "parking": {
@@ -122,7 +140,8 @@
         "value": "unknown",
         "note": "확인된 정보가 없습니다.",
         "sourceUrl": null,
-        "verifiedAt": null
+        "verifiedAt": null,
+        "proximity": "unknown"
       },
       "seating": {
         "value": "unknown",
@@ -149,7 +168,25 @@
         "verifiedAt": null
       }
     },
-    "userRating": null
+    "userRating": null,
+    "intentTags": [
+      "walk",
+      "scenery"
+    ],
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": "DEMO SAMPLE · 개발 체험용 가상 데이터"
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "편한가?",
+      "copyrightCode": null,
+      "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    }
   },
   {
     "id": "demo-coast",
@@ -169,11 +206,11 @@
     "lastVerifiedAt": null,
     "isDemo": true,
     "companions": [
-      "혼자",
-      "배우자/연인",
-      "친구",
-      "가족",
-      "새로운 사람"
+      "solo",
+      "couple",
+      "friend",
+      "family",
+      "new_people"
     ],
     "comfort": {
       "parking": {
@@ -198,7 +235,8 @@
         "value": "unknown",
         "note": "확인된 정보가 없습니다.",
         "sourceUrl": null,
-        "verifiedAt": null
+        "verifiedAt": null,
+        "proximity": "unknown"
       },
       "seating": {
         "value": "unknown",
@@ -225,7 +263,25 @@
         "verifiedAt": null
       }
     },
-    "userRating": null
+    "userRating": null,
+    "intentTags": [
+      "sea",
+      "scenery"
+    ],
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": "DEMO SAMPLE · 개발 체험용 가상 데이터"
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "편한가?",
+      "copyrightCode": null,
+      "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    }
   },
   {
     "id": "demo-tea",
@@ -245,11 +301,11 @@
     "lastVerifiedAt": null,
     "isDemo": true,
     "companions": [
-      "혼자",
-      "배우자/연인",
-      "친구",
-      "가족",
-      "새로운 사람"
+      "solo",
+      "couple",
+      "friend",
+      "family",
+      "new_people"
     ],
     "comfort": {
       "parking": {
@@ -274,7 +330,8 @@
         "value": "unknown",
         "note": "확인된 정보가 없습니다.",
         "sourceUrl": null,
-        "verifiedAt": null
+        "verifiedAt": null,
+        "proximity": "unknown"
       },
       "seating": {
         "value": "unknown",
@@ -301,7 +358,24 @@
         "verifiedAt": null
       }
     },
-    "userRating": null
+    "userRating": null,
+    "intentTags": [
+      "cafe"
+    ],
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": "DEMO SAMPLE · 개발 체험용 가상 데이터"
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "편한가?",
+      "copyrightCode": null,
+      "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    }
   },
   {
     "id": "demo-busan",
@@ -321,11 +395,11 @@
     "lastVerifiedAt": null,
     "isDemo": true,
     "companions": [
-      "혼자",
-      "배우자/연인",
-      "친구",
-      "가족",
-      "새로운 사람"
+      "solo",
+      "couple",
+      "friend",
+      "family",
+      "new_people"
     ],
     "comfort": {
       "parking": {
@@ -350,7 +424,8 @@
         "value": "unknown",
         "note": "확인된 정보가 없습니다.",
         "sourceUrl": null,
-        "verifiedAt": null
+        "verifiedAt": null,
+        "proximity": "unknown"
       },
       "seating": {
         "value": "unknown",
@@ -377,7 +452,25 @@
         "verifiedAt": null
       }
     },
-    "userRating": null
+    "userRating": null,
+    "intentTags": [
+      "sea",
+      "scenery"
+    ],
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": "DEMO SAMPLE · 개발 체험용 가상 데이터"
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "편한가?",
+      "copyrightCode": null,
+      "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    }
   },
   {
     "id": "demo-jeju",
@@ -397,11 +490,11 @@
     "lastVerifiedAt": null,
     "isDemo": true,
     "companions": [
-      "혼자",
-      "배우자/연인",
-      "친구",
-      "가족",
-      "새로운 사람"
+      "solo",
+      "couple",
+      "friend",
+      "family",
+      "new_people"
     ],
     "comfort": {
       "parking": {
@@ -426,7 +519,8 @@
         "value": "unknown",
         "note": "확인된 정보가 없습니다.",
         "sourceUrl": null,
-        "verifiedAt": null
+        "verifiedAt": null,
+        "proximity": "unknown"
       },
       "seating": {
         "value": "unknown",
@@ -453,6 +547,23 @@
         "verifiedAt": null
       }
     },
-    "userRating": null
+    "userRating": null,
+    "intentTags": [
+      "scenery"
+    ],
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": "DEMO SAMPLE · 개발 체험용 가상 데이터"
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "편한가?",
+      "copyrightCode": null,
+      "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    }
   }
 ]
