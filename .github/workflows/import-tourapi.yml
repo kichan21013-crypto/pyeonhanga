@@ -1,0 +1,57 @@
+name: Import TourAPI data
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Import pilot data
+        env:
+          TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
+          TOUR_API_MAX_PAGES: '1'
+          TOUR_API_ROWS_PER_PAGE: '20'
+        run: npm run import:tourapi
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Prepare import branch
+        run: |
+          if git diff --quiet -- data/places.json; then
+            echo "TourAPI import produced no data changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C data/tourapi-import-result
+          git add data/places.json
+          git commit -m "Import pilot TourAPI places"
+          git push --force origin data/tourapi-import-result
+
+      - name: Summary
+        run: |
+          echo "### TourAPI import" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Source: Korea Tourism Organization KorService2" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Pilot batch: up to 20 items × 3 categories × 6 regions" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Result branch: data/tourapi-import-result" >> "$GITHUB_STEP_SUMMARY"
+          echo "- No production merge/deploy is performed by this workflow." >> "$GITHUB_STEP_SUMMARY"
