@@ -10,6 +10,7 @@
     "test": "node tests/run.js",
     "import:tourapi": "node scripts/import-tourapi.js",
     "audit:tourapi": "node scripts/audit-tourapi-data.js",
-    "enrich:tourapi": "node scripts/enrich-tourapi-pilot.js"
+    "enrich:tourapi": "node scripts/enrich-tourapi-pilot.js",
+    "enrich:barrierfree": "node scripts/enrich-barrierfree-pilot.js"
   }
 }
