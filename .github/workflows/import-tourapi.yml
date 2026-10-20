@@ -22,6 +22,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Build baseline
+        run: npm run build
+
       - name: Test baseline
         run: npm test
 
@@ -52,7 +55,7 @@ jobs:
         run: |
           echo "### TourAPI import" >> "$GITHUB_STEP_SUMMARY"
           echo "- Source: Korea Tourism Organization KorService2" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Baseline application tests run before replacing DEMO data" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Baseline build and application tests run before replacing DEMO data" >> "$GITHUB_STEP_SUMMARY"
           echo "- Imported data is validated by the import script and then built" >> "$GITHUB_STEP_SUMMARY"
           echo "- Pilot batch: up to 20 items × 3 categories × 6 regions" >> "$GITHUB_STEP_SUMMARY"
           echo "- Result branch: data/tourapi-import-result" >> "$GITHUB_STEP_SUMMARY"
