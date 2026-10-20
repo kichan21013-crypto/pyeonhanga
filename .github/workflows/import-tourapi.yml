@@ -44,7 +44,7 @@ jobs:
 
       - name: Prepare import branch
         run: |
-          if git diff --quiet -- data/places.json data/tourapi-quality-report.json; then
+          if [ -z "$(git status --porcelain -- data/places.json data/tourapi-quality-report.json)" ]; then
             echo "TourAPI import produced no data changes."
             exit 0
           fi
