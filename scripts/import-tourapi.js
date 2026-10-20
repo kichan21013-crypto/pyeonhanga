@@ -45,12 +45,13 @@ export async function importTourApi() {
   const existing = JSON.parse(await readFile(target, 'utf8'));
   const imported = new Map();
   const maxPages = Math.min(100, Math.max(1, Number(process.env.TOUR_API_MAX_PAGES) || 2));
+  const rowsPerPage = Math.min(50, Math.max(1, Number(process.env.TOUR_API_ROWS_PER_PAGE) || 50));
   for (const region of REGIONS) {
     for (const [contentTypeId, category] of Object.entries(CONTENT_TYPES)) {
       for (let page = 1; page <= maxPages; page++) {
         const url = new URL('https://apis.data.go.kr/B551011/KorService2/areaBasedList2');
         let decodedKey = key; try { decodedKey = decodeURIComponent(key); } catch {}
-        url.search = new URLSearchParams({ serviceKey: decodedKey, MobileOS: 'ETC', MobileApp: 'Pyeonhanga', _type: 'json', numOfRows: '50', pageNo: String(page), arrange: 'A', areaCode: region.areaCode, contentTypeId, ...(region.sigunguCode ? { sigunguCode: region.sigunguCode } : {}) });
+        url.search = new URLSearchParams({ serviceKey: decodedKey, MobileOS: 'ETC', MobileApp: 'Nagachi', _type: 'json', numOfRows: String(rowsPerPage), pageNo: String(page), arrange: 'A', areaCode: region.areaCode, contentTypeId, ...(region.sigunguCode ? { sigunguCode: region.sigunguCode } : {}) });
         let json;
         try {
           const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
@@ -63,7 +64,7 @@ export async function importTourApi() {
         for (const item of items) {
           const p = convertItem(item, region.name, category); if (p) imported.set(p.id, p);
         }
-        if (page * 50 >= Number(body.totalCount || 0) || items.length === 0) break;
+        if (page * rowsPerPage >= Number(body.totalCount || 0) || items.length === 0) break;
         if (page === maxPages) console.log(`${region.name} ${category}: 설정된 ${maxPages}페이지까지 가져왔습니다. 전체 수집에는 TOUR_API_MAX_PAGES를 늘리세요.`);
       }
     }
