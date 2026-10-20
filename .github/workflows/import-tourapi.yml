@@ -33,22 +33,26 @@ jobs:
           TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
           TOUR_API_MAX_PAGES: '1'
           TOUR_API_ROWS_PER_PAGE: '20'
+          TOUR_API_ARRANGE: 'C'
         run: npm run import:tourapi
+
+      - name: Audit imported data
+        run: npm run audit:tourapi
 
       - name: Build imported data
         run: npm run build
 
       - name: Prepare import branch
         run: |
-          if git diff --quiet -- data/places.json; then
+          if [ -z "$(git status --porcelain -- data/places.json data/tourapi-quality-report.json)" ]; then
             echo "TourAPI import produced no data changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -C data/tourapi-import-result
-          git add data/places.json
-          git commit -m "Import pilot TourAPI places"
+          git add data/places.json data/tourapi-quality-report.json
+          git commit -m "Import and audit pilot TourAPI places"
           git push --force origin data/tourapi-import-result
 
       - name: Summary
@@ -56,7 +60,9 @@ jobs:
           echo "### TourAPI import" >> "$GITHUB_STEP_SUMMARY"
           echo "- Source: Korea Tourism Organization KorService2" >> "$GITHUB_STEP_SUMMARY"
           echo "- Baseline build and application tests run before replacing DEMO data" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Imported data is validated by the import script and then built" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Pilot uses modified-date order instead of alphabetical order" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Korea-outside coordinates are nulled before storage" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Quality report separates recommendation candidates, courses, facilities, and source-only records" >> "$GITHUB_STEP_SUMMARY"
           echo "- Pilot batch: up to 20 items × 3 categories × 6 regions" >> "$GITHUB_STEP_SUMMARY"
           echo "- Result branch: data/tourapi-import-result" >> "$GITHUB_STEP_SUMMARY"
           echo "- No production merge/deploy is performed by this workflow." >> "$GITHUB_STEP_SUMMARY"

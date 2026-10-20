@@ -5,3 +5,4 @@ import './recommendation.test.js';
 import './rhythm.test.js';
 import './actions.test.js';
 import './flow.test.js';
+import './tourapi-quality.test.js';
