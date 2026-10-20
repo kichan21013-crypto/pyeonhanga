@@ -9,6 +9,7 @@
     "start": "node scripts/serve.js",
     "test": "node tests/run.js",
     "import:tourapi": "node scripts/import-tourapi.js",
-    "audit:tourapi": "node scripts/audit-tourapi-data.js"
+    "audit:tourapi": "node scripts/audit-tourapi-data.js",
+    "enrich:tourapi": "node scripts/enrich-tourapi-pilot.js"
   }
 }
