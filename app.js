@@ -24,6 +24,21 @@ function updateSaved() {
   });
 }
 function metadata(p) { return { place_id: p.id, region: p.region, category: p.category, is_demo: p.isDemo }; }
+function rhythmContext(p = null) {
+  const context = {
+    desires: [...filters.desires],
+    activities: [...filters.activities],
+    companions: [...filters.companions],
+    duration: filters.duration,
+    transport: filters.transport,
+    comfort_preferences: requestedComforts(filters),
+  };
+  if (p) {
+    const result = recommendRhythms(places, filters).find(item => item.place.id === p.id);
+    if (result?.activityType) context.recommended_activity = result.activityType;
+  }
+  return context;
+}
 function render() {
   const grid = $('#places-grid'); if (!grid) return;
   const ids = savedIds();
@@ -69,8 +84,16 @@ function reset() {
   else render();
 }
 function recordRhythmAction(name) {
-  const matches = recommendRhythms(places,filters).map(result => result.place);
-  trackRhythm(name,{region:filters.region, category: ['맛집','나들이','여행'].includes(filters.category) ? filters.category : '', companion: filters.companions.length === 1 ? COMPANIONS[filters.companions[0]] : '', result_count:matches.length, is_demo:matches.length ? matches.every(p=>p.isDemo) : places.every(p=>p.isDemo)});
+  const results = recommendRhythms(places,filters);
+  const matches = results.map(result => result.place);
+  trackRhythm(name, {
+    region: filters.region,
+    category: ['맛집','나들이','여행'].includes(filters.category) ? filters.category : '',
+    companion: filters.companions.length === 1 ? COMPANIONS[filters.companions[0]] : '',
+    result_count: matches.length,
+    is_demo: matches.length ? matches.every(p=>p.isDemo) : places.every(p=>p.isDemo),
+    ...rhythmContext(),
+  });
 }
 async function sharePlace(p) {
   const url = new URL(placeUrl(p), location.origin).href;
@@ -78,7 +101,7 @@ async function sharePlace(p) {
   if (outcome === 'cancelled') return;
   if (outcome === 'manual') { showCopyFallback(url,p); return; }
   if (outcome === 'copied') toast('리듬 링크를 복사했어요.');
-  trackRhythm('rhythm_share',metadata(p));
+  trackRhythm('rhythm_share',{ ...metadata(p), ...rhythmContext(p) });
 }
 function showCopyFallback(url, p) {
   const trigger = document.activeElement;
@@ -87,12 +110,12 @@ function showCopyFallback(url, p) {
   dialog.innerHTML = `<div class="dialog-content"><div class="dialog-heading"><h2 id="share-title">링크 공유</h2><button class="close-dialog" aria-label="닫기">×</button></div><p>아래 링크를 길게 누르거나 선택해서 복사해 주세요.</p><label for="share-link">장소 링크</label><input id="share-link" class="share-link-input" readonly value="${escapeHtml(url)}"><button class="button primary full" id="copy-done">복사 완료</button></div>`;
   document.body.append(dialog); dialog.showModal(); const input = dialog.querySelector('input'); input.focus(); input.select();
   dialog.querySelector('.close-dialog').onclick = () => dialog.close();
-  dialog.querySelector('#copy-done').onclick = () => { trackRhythm('rhythm_share', metadata(p)); dialog.close(); toast('원하는 곳에 링크를 붙여넣어 주세요.'); };
+  dialog.querySelector('#copy-done').onclick = () => { trackRhythm('rhythm_share', { ...metadata(p), ...rhythmContext(p) }); dialog.close(); toast('원하는 곳에 링크를 붙여넣어 주세요.'); };
   dialog.onclose = () => { dialog.remove(); if (trigger?.isConnected) trigger.focus(); };
 }
 const choices = SURVEY_CHOICES;
 function companionDialog(p) {
-  trackRhythm('companion_interest', metadata(p));
+  trackRhythm('companion_interest', { ...metadata(p), ...rhythmContext(p) });
   const dialog = document.createElement('dialog');
   const responseId = anonymousId();
   const select = (name, label) => `<label for="survey-${name}">${label}<select id="survey-${name}" name="${name}" required><option value="">선택해 주세요</option>${choices[name].map(v => `<option>${v}</option>`).join('')}</select></label>`;
@@ -106,7 +129,7 @@ function companionDialog(p) {
     if (!form.reportValidity()) return;
     const button = form.querySelector('[type=submit]'); button.disabled = true;
     const values = Object.fromEntries(new FormData(form));
-    const success = await trackRhythm('premium_willingness', { ...metadata(p), ...values, response_id: responseId });
+    const success = await trackRhythm('premium_willingness', { ...metadata(p), ...rhythmContext(p), ...values, response_id: responseId });
     if (analyticsEnabled && !success) {
       button.disabled = false; form.querySelector('[role=status]').textContent = '응답을 전송하지 못했어요. 잠시 후 다시 눌러 주세요.'; return;
     }
@@ -123,7 +146,7 @@ document.addEventListener('click', event => {
     const p = places.find(item => item.id === save.dataset.save); if (!p) return;
     const { ok: success, removing } = toggleSavedPlace(p.id);
     if (!success) { toast('브라우저 저장 공간을 사용할 수 없어요. 저장 허용 설정을 확인해 주세요.'); return; }
-    if (!removing) trackRhythm('rhythm_save', metadata(p));
+    if (!removing) trackRhythm('rhythm_save', { ...metadata(p), ...rhythmContext(p) });
     if (page === 'saved') {
       const index = [...document.querySelectorAll('[data-save]')].indexOf(save);
       render();
@@ -156,7 +179,7 @@ async function init() {
       event.preventDefault(); flow.start(filters);
       $('#rhythm-start').setAttribute('aria-expanded','true');
       $('#flow-step-1 summary').focus({preventScroll:true}); scrollTo($('#explore'));
-      trackRhythm('rhythm_start',{is_demo:places.every(p=>p.isDemo)});
+      trackRhythm('rhythm_start',{ is_demo:places.every(p=>p.isDemo), ...rhythmContext() });
     };
     const readQuery = () => { filters.query = $('#search-input').value.trim(); syncControls(); };
     const nextStep = number => {
@@ -167,7 +190,6 @@ async function init() {
     $('#search-input').onkeydown = event => { if (event.key === 'Enter' && !event.isComposing) { event.preventDefault(); readQuery(); nextStep(2); } };
     $('#search-form').onsubmit = event => {
       event.preventDefault(); readQuery();
-      // Enter in the natural-language field only advances the questions.
       if (event.submitter?.id !== 'recommend-button') { nextStep(2); return; }
       if (!flow.submit(filters)) return;
       render(); recordRhythmAction('recommendation_view');
