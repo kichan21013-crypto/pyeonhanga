@@ -2,6 +2,7 @@ import { readFile, writeFile, rename } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validatePlaces } from './validate-data.js';
+import { isKoreaCoordinate } from './tourapi-quality.js';
 import { unknownRoute } from '../rhythm.js';
 export const REGIONS = [
   { name: '서울', areaCode: '1' }, { name: '경기', areaCode: '31' },
@@ -45,12 +46,14 @@ async function fetchTourJson(url) {
 export function convertItem(item, region, category, today = new Date().toISOString().slice(0, 10)) {
   const contentId = String(item.contentid || '');
   if (!/^\d+$/.test(contentId) || !item.title) return null;
-  const coord = (value, max) => { const n = Number(value); return value && Number.isFinite(n) && n >= -max && n <= max ? n : null; };
+  const lat = Number(item.mapy);
+  const lon = Number(item.mapx);
+  const coordinateValid = isKoreaCoordinate(lat, lon);
   const image = /^https?:\/\//.test(item.firstimage || '') ? item.firstimage.replace(/^http:/, 'https:') : '/assets/garden.svg';
   return {
     id: `tour-${contentId}`, slug: `tour-${contentId}`, name: clean(item.title), category, region,
     address: [clean(item.addr1), clean(item.addr2)].filter(Boolean).join(' ') || '주소 확인 필요',
-    latitude: coord(item.mapy, 90), longitude: coord(item.mapx, 180),
+    latitude: coordinateValid ? lat : null, longitude: coordinateValid ? lon : null,
     shortDescription: `${region}의 ${category} 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.`,
     image, imageAlt: image.startsWith('/assets/') ? '장소 사진이 없어 표시한 대체 일러스트' : clean(item.title),
     priceRange: '확인 전', sourceName: '한국관광공사 TourAPI', sourceUrl: 'https://api.visitkorea.or.kr/',
@@ -78,12 +81,14 @@ export async function importTourApi() {
   const imported = new Map();
   const maxPages = Math.min(100, Math.max(1, Number(process.env.TOUR_API_MAX_PAGES) || 2));
   const rowsPerPage = Math.min(50, Math.max(1, Number(process.env.TOUR_API_ROWS_PER_PAGE) || 50));
+  const requestedArrange = String(process.env.TOUR_API_ARRANGE || 'C').toUpperCase();
+  const arrange = ['A', 'C', 'D'].includes(requestedArrange) ? requestedArrange : 'C';
   for (const region of REGIONS) {
     for (const [contentTypeId, category] of Object.entries(CONTENT_TYPES)) {
       for (let page = 1; page <= maxPages; page++) {
         const url = new URL('https://apis.data.go.kr/B551011/KorService2/areaBasedList2');
         let decodedKey = key.trim(); try { decodedKey = decodeURIComponent(decodedKey); } catch {}
-        url.search = new URLSearchParams({ serviceKey: decodedKey, MobileOS: 'ETC', MobileApp: 'Nagachi', _type: 'json', numOfRows: String(rowsPerPage), pageNo: String(page), arrange: 'A', areaCode: region.areaCode, contentTypeId, ...(region.sigunguCode ? { sigunguCode: region.sigunguCode } : {}) });
+        url.search = new URLSearchParams({ serviceKey: decodedKey, MobileOS: 'ETC', MobileApp: 'Nagachi', _type: 'json', numOfRows: String(rowsPerPage), pageNo: String(page), arrange, areaCode: region.areaCode, contentTypeId, ...(region.sigunguCode ? { sigunguCode: region.sigunguCode } : {}) });
         const json = await fetchTourJson(url);
         const code = json.response?.header?.resultCode;
         const message = clean(json.response?.header?.resultMsg || '');
@@ -108,7 +113,7 @@ export async function importTourApi() {
   }
   const result = [...merged.values()]; validatePlaces(result);
   await writeFile(target + '.tmp', JSON.stringify(result, null, 2) + '\n'); await rename(target + '.tmp', target);
-  console.log(`${imported.size}개 가져오기 완료. DEMO SAMPLE을 제거하고 실제 장소 ${result.length}개를 보관했습니다. npm run build로 반영하세요.`);
+  console.log(`${imported.size}개 가져오기 완료. 정렬 ${arrange}. 한국 범위를 벗어난 좌표는 null 처리했습니다. 실제 장소 ${result.length}개를 보관했습니다.`);
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   importTourApi().catch(error => { console.error(error.message); process.exitCode = 1; });
