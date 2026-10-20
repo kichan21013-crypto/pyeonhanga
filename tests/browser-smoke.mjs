@@ -22,8 +22,18 @@ try {
     check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px horizontal overflow`);
   }
   await page.setViewportSize({ width: 390, height: 844 });
+  const categoryLayout = await page.locator('.category-shortcuts .choice-chip').evaluateAll(buttons => buttons.map(button => {
+    const box = button.getBoundingClientRect();
+    return { top: Math.round(box.top), height: box.height };
+  }));
+  check(new Set(categoryLayout.map(box => box.top)).size === 1, 'three compact categories share one row at 390px');
+  check(categoryLayout.every(box => box.height >= 44 && box.height <= 48), 'compact categories retain a 44px touch target');
   await page.evaluate(() => document.documentElement.style.fontSize = '36px');
   check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), '200% text overflow');
+  check(await page.locator('.category-shortcuts .choice-chip').evaluateAll(buttons => buttons.every(button => {
+    const box = button.getBoundingClientRect(), label = button.querySelector('[data-choice-label]');
+    return box.left >= 0 && box.right <= innerWidth && label.scrollWidth <= label.clientWidth;
+  })), '200% category text remains inside the viewport');
   await page.evaluate(() => document.documentElement.style.removeProperty('font-size'));
   await page.screenshot({ path: 'test-results/home-mobile.png', fullPage: true });
   const visibleSteps = await page.locator('.choice-step h2').allTextContents();
@@ -46,7 +56,8 @@ try {
   check(await page.locator('[data-comfort]:visible').count() === 7, 'all seven comfort chips');
   await page.locator('[data-comfort="parking"]').click();
   check(await page.locator('[data-comfort="parking"]').getAttribute('aria-pressed') === 'true', 'comfort selection state');
-  check(await page.locator('.place-card').count() === 0, 'unknown excluded from parking');
+  check(await page.locator('.place-card').count() === 6, 'unknown places remain under comfort preferences');
+  check(await page.locator('.place-card .recommendation-reason').count() === 0, 'unknown demo has no invented comfort reasons');
   await page.locator('#reset-filters').click(); await page.locator('[data-companion="새로운 사람"]').click();
   check(await page.locator('#companion-help').isVisible(), 'companion explanation');
   check(await page.locator('[data-companion="새로운 사람"]').getAttribute('aria-pressed') === 'true', 'companion selection state');

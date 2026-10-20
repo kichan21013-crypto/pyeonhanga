@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { inferIntent, recommendPlaces, recommendationReasons, emptyFilters, requestedComforts } from '../search.js';
+import { inferIntent, recommendPlaces, recommendationReasons, emptyFilters, requestedComforts, comfortMatches } from '../search.js';
 import { convertItem, mergeImportedPlace } from '../scripts/import-tourapi.js';
 import { validatePlaces } from '../scripts/validate-data.js';
 import { card } from '../ui.js';
@@ -47,12 +47,46 @@ test('자동 카테고리는 우선순위이고 수동 카테고리/전체 선�
 test('7가지 편안함은 확인 근거를 요구하고 화장실의 편의와 거리를 구분한다', () => {
   const unknown = fixture('demo-unknown'), good = fixture('demo-good');
   for (const key of ['parking','walking','stairs','restroom','noise','seating','waiting']) good.comfort[key] = evidence('good');
-  for (const key of ['parking','walking','stairs','noise','seating','waiting']) assert.equal(recommendPlaces([unknown, good], { ...emptyFilters(), comforts: [key] })[0].place.id, good.id);
-  assert.equal(recommendPlaces([good], { ...emptyFilters(), comforts: ['restroom'] }).length, 0);
+  for (const key of ['parking','walking','stairs','noise','seating','waiting']) {
+    const results = recommendPlaces([unknown, good], { ...emptyFilters(), comforts: [key] });
+    assert.equal(results.length, 2); assert.equal(results[0].place.id, good.id);
+    assert.equal(results[0].matchedComforts, 1); assert.equal(results[1].matchedComforts, 0);
+  }
+  assert.equal(comfortMatches(good, 'restroom'), false);
+  assert.equal(recommendPlaces([good], { ...emptyFilters(), comforts: ['restroom'] }).length, 1);
   good.comfort.restroom.proximity = 'near';
   assert.equal(recommendPlaces([good], { ...emptyFilters(), comforts: ['restroom'] }).length, 1);
+  assert.equal(comfortMatches(good, 'restroom'), true);
   delete good.comfort.restroom.sourceUrl;
-  assert.equal(recommendPlaces([good], { ...emptyFilters(), comforts: ['restroom'] }).length, 0);
+  assert.equal(comfortMatches(good, 'restroom'), false);
+  assert.equal(recommendPlaces([good], { ...emptyFilters(), comforts: ['restroom'] })[0].matchedComforts, 0);
+});
+test('완전 충족→부분 충족→미충족 순서는 검색/동행 가중치보다 항상 우선한다', () => {
+  const all = fixture('demo-all','맛집',['noodle']), part = fixture('demo-part','맛집',['noodle','korean_food']), none = fixture('demo-none','맛집',['noodle','korean_food']);
+  all.comfort.parking = evidence('good'); all.comfort.noise = evidence('good');
+  part.comfort.parking = evidence('good'); none.comfort.parking = evidence('poor'); none.comfort.noise = evidence('poor');
+  part.companions = ['friend']; none.companions = ['friend'];
+  const f = { ...emptyFilters(), query: '칼국수 한식', companion: '친구', comforts: ['parking','noise'] };
+  const results = recommendPlaces([none,part,all],f);
+  assert.deepEqual(results.map(r => r.place.id), [all.id,part.id,none.id]);
+  assert.deepEqual(results.map(r => r.matchedComforts), [2,1,0]);
+  assert.deepEqual(recommendationReasons(part,f).filter(text => text.includes('조용')), []);
+  assert.deepEqual(recommendationReasons(none,f).filter(text => text.includes('주차') || text.includes('조용')), []);
+});
+test('선호 정보가 전부 unknown이어도 결과와 정보 부족 안내를 유지하며 내부 정렬값을 노출하지 않는다', () => {
+  const f = { ...emptyFilters(), query: '조용한 곳', comforts: ['parking','walking','restroom'] };
+  const results = recommendPlaces(places,f);
+  assert.equal(results.length, places.length); assert.ok(results.every(r => r.matchedComforts === 0));
+  for (const result of results) {
+    const html = card(result.place,false,f);
+    assert.match(html,/편안함 정보 수집 중/); assert.deepEqual(result.reasons,[]);
+    assert.ok(!html.includes('matchedComforts')); assert.ok(!html.includes('relevance'));
+  }
+});
+test('필수 조건은 명시했을 때만 강제하고 기본 UI의 선호 조건과 분리한다', () => {
+  const unknown = fixture('demo-unknown'), good = fixture('demo-good'); good.comfort.parking = evidence('good');
+  assert.equal(recommendPlaces([unknown,good],{...emptyFilters(),parking:true}).length,2);
+  assert.deepEqual(recommendPlaces([unknown,good],{...emptyFilters(),requiredComforts:['parking']}).map(r=>r.place.id),[good.id]);
 });
 test('자동으로 읽은 편안함 조건을 사용자가 해제하거나 다시 선택할 수 있다', () => {
   const f = { ...emptyFilters(), query: '조용한 곳', comfortOverrides: { noise: false } };

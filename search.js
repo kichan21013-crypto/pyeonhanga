@@ -1,8 +1,9 @@
 import { calculateComfort, comfortText } from './comfort-score.js';
 
 export const COMPANIONS = { solo: '혼자', couple: '배우자/연인', friend: '친구', family: '가족', new_people: '새로운 사람' };
-export const RECOMMENDATION_WEIGHTS = { text: 10, companion: 6, comfort: 3, category: 2, score: 1 };
-export const emptyFilters = () => ({ query: '', region: '', category: 'auto', companion: '', walking: '', parking: false, stairs: false, comforts: [], comfortOverrides: {} });
+export const RECOMMENDATION_WEIGHTS = { text: 10, companion: 6, comfort: 30, category: 2, score: 1 };
+// UI에서는 선호 조건만 사용합니다. 필수 조건은 향후 분리를 위한 선택적 데이터입니다.
+export const emptyFilters = () => ({ query: '', region: '', category: 'auto', companion: '', walking: '', parking: false, stairs: false, comforts: [], requiredComforts: [], comfortOverrides: {} });
 export function companionCode(value) {
   return Object.hasOwn(COMPANIONS, value) ? value : Object.keys(COMPANIONS).find(key => COMPANIONS[key] === value) || '';
 }
@@ -89,6 +90,7 @@ export function recommendationReasons(p, f = emptyFilters()) {
 }
 export function recommendPlaces(places, f = emptyFilters()) {
   const intent = inferIntent(f.query), selected = requestedComforts(f, intent);
+  const required = [...new Set(f.requiredComforts || [])].filter(key => Object.hasOwn(COMFORT_RULES, key));
   const companion = companionCode(f.companion) || intent.companion;
   const preferredCategory = f.category === 'auto' ? intent.category : f.category;
   const specific = intent.intents.filter(tag => !['food','travel','quiet','low_walking'].includes(tag));
@@ -98,7 +100,8 @@ export function recommendPlaces(places, f = emptyFilters()) {
     if (!f.region && intent.regions.length && !intent.regions.includes(p.region)) return null;
     // 자동 분류는 우선순위이므로 카페(맛집)도 나들이에서 찾을 수 있습니다.
     if (f.category && f.category !== 'auto' && p.category !== f.category) return null;
-    if (!selected.every(key => comfortMatches(p, key, f))) return null;
+    if (!required.every(key => comfortMatches(p, key, f))) return null;
+    const matchedComforts = selected.filter(key => comfortMatches(p, key, f)).length;
     const haystack = `${p.name} ${p.category} ${p.region} ${p.address} ${p.shortDescription}`.toLowerCase();
     if (!intent.tokens.every(token => haystack.includes(token))) return null;
     const intentHits = searchableIntents.filter(tag => matchesIntent(p, tag, haystack)).length;
@@ -106,9 +109,10 @@ export function recommendPlaces(places, f = emptyFilters()) {
     const companionHit = companion && p.companions?.some(value => companionCode(value) === companion) ? 1 : 0;
     const comfort = calculateComfort(p.comfort);
     const relevance = intentHits * RECOMMENDATION_WEIGHTS.text + companionHit * RECOMMENDATION_WEIGHTS.companion
-      + selected.length * RECOMMENDATION_WEIGHTS.comfort + (preferredCategory && p.category === preferredCategory ? RECOMMENDATION_WEIGHTS.category : 0)
+      + matchedComforts * RECOMMENDATION_WEIGHTS.comfort + (preferredCategory && p.category === preferredCategory ? RECOMMENDATION_WEIGHTS.category : 0)
       + (comfort.score === null ? 0 : comfort.score / 100 * comfort.coverage * RECOMMENDATION_WEIGHTS.score);
-    return { place: p, relevance, reasons: recommendationReasons(p, f), order };
-  }).filter(Boolean).sort((a,b) => b.relevance - a.relevance || a.order - b.order);
+    return { place: p, relevance, matchedComforts, reasons: recommendationReasons(p, f), order };
+  // 확인된 충족 수를 먼저 비교해 다른 가중치가 완전·부분 충족 순서를 뒤집지 않게 합니다.
+  }).filter(Boolean).sort((a,b) => b.matchedComforts - a.matchedComforts || b.relevance - a.relevance || a.order - b.order);
 }
 export function filterPlaces(places, filters) { return recommendPlaces(places, filters).map(result => result.place); }

@@ -25,7 +25,7 @@ function render() {
   const grid = $('#places-grid'); if (!grid) return;
   const ids = savedIds();
   const matches = page === 'saved' ? places.filter(p => ids.includes(p.id)) : filterPlaces(places, filters);
-  grid.innerHTML = matches.length ? matches.map(p => card(p, ids.includes(p.id), page === 'home' ? filters : undefined)).join('') : `<div class="empty-state">${icon(page === 'saved' ? 'heart' : 'search')}<h3>${page === 'saved' ? '마음에 드는 곳을 담아보세요' : '조건에 맞는 장소가 아직 없어요'}</h3><p>${page === 'saved' ? '장소의 하트 버튼을 누르면 여기에 모아드려요.' : '미확인 정보는 추천 조건에 포함하지 않았어요. 조건을 조금 줄여보세요.'}</p>${page === 'saved' ? '<a href="/" class="button primary">장소 둘러보기</a>' : '<button data-reset class="button secondary">조건 초기화</button>'}</div>`;
+  grid.innerHTML = matches.length ? matches.map(p => card(p, ids.includes(p.id), page === 'home' ? filters : undefined)).join('') : `<div class="empty-state">${icon(page === 'saved' ? 'heart' : 'search')}<h3>${page === 'saved' ? '마음에 드는 곳을 담아보세요' : '조건에 맞는 장소가 아직 없어요'}</h3><p>${page === 'saved' ? '장소의 하트 버튼을 누르면 여기에 모아드려요.' : '입력한 내용이나 지역·활동에 맞는 장소가 아직 없어요. 다른 검색으로 찾아보세요.'}</p>${page === 'saved' ? '<a href="/" class="button primary">장소 둘러보기</a>' : '<button data-reset class="button secondary">조건 초기화</button>'}</div>`;
   if ($('#result-count')) $('#result-count').textContent = matches.length;
   if ($('#result-status')) $('#result-status').textContent = `${matches.length}개의 장소를 찾았습니다.`;
   updateSaved();
