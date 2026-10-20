@@ -128,7 +128,7 @@ test('TourAPI 원본 저작권 코드를 보존하고 확인한 태그·라이�
 });
 test('홈의 상황 선택 순서·예시 칩 수·기본/추가 조건·Workers 배포 설정을 유지한다', async () => {
   const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
-  const positions = ['id="companions-title"','id="intent-title"','id="conditions-title"','id="results-title"'].map(value => html.indexOf(value));
+  const positions = ['id="intent-title"','id="companions-title"','id="conditions-title"','id="results-title"'].map(value => html.indexOf(value));
   assert.ok(positions.every((value,i) => value >= 0 && (i === 0 || value > positions[i-1])));
   assert.equal([...html.matchAll(/data-desire="/g)].length, 6);
   assert.equal([...html.matchAll(/data-comfort="/g)].length, 7);

@@ -26,7 +26,7 @@ function page({ title, description, path, content, page = 'info', id = '', image
   return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}">${seo(path, title, description, image, noindex)}<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"><script type="module" src="/app.js"></script></head><body data-page="${page}" data-place-id="${escapeHtml(id)}"><a class="skip-link" href="#main">본문 바로가기</a>${header}<main id="main" class="container ${page === 'detail' ? 'detail-main' : 'prose'}">${content}</main>${footer}<div id="toast" class="toast" role="status" hidden></div></body></html>`;
 }
 await rm(out, { recursive: true, force: true }); await mkdir(out, { recursive: true });
-for (const file of ['styles.css', 'app.js', 'ui.js', 'analytics.js', 'storage.js', 'comfort-score.js', 'search.js', 'rhythm.js', 'actions.js', 'assets', 'data']) await cp(resolve(root, file), resolve(out, file), { recursive: true });
+for (const file of ['styles.css', 'app.js', 'ui.js', 'analytics.js', 'storage.js', 'comfort-score.js', 'search.js', 'rhythm.js', 'actions.js', 'flow.js', 'assets', 'data']) await cp(resolve(root, file), resolve(out, file), { recursive: true });
 let configInput;
 if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
   configInput = { supabaseUrl: process.env.SUPABASE_URL, supabaseAnonKey: process.env.SUPABASE_ANON_KEY };

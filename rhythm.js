@@ -10,9 +10,9 @@ export const DESIRES = {
 };
 export const ACTIVITIES = {
   food: ['식사','food','food'], korean_food: ['한식','food','food'], noodle: ['면요리','food','food'], meat: ['고기','food','food'], seafood: ['회·해산물','food','food'], cafe: ['카페','cafe','cafe'],
-  walk: ['걷기','walking','walk'], run: ['러닝','running','run'], hike: ['등산','mountain','walk'], bike: ['자전거','bike','drive'],
-  drive: ['드라이브','travel','drive'], sea: ['바다 보기','sea','sea'], scenery: ['풍경 보기','garden','walk'], quiet_rest: ['조용히 쉬기','rest','rest'],
-  outing: ['나들이','garden','walk'], travel: ['여행','travel','drive'], culture: ['문화생활','culture','rest'], conversation: ['대화','people','rest'],
+  walk: ['걷기','walking','walk'], run: ['러닝','running','run'], hike: ['등산','mountain','hike'], bike: ['자전거','bike','drive'],
+  drive: ['드라이브','car','drive'], sea: ['바다 보기','sea','sea'], scenery: ['풍경 보기','garden','walk'], quiet_rest: ['조용히 쉬기','rest','rest'],
+  outing: ['나들이','garden','walk'], travel: ['여행','travel','drive'], culture: ['문화생활','culture','culture'], conversation: ['대화','people','rest'],
 };
 export const DURATION_OPTIONS = { short: '1~2시간', half_day: '반나절', full_day: '하루', any: '상관없음' };
 export const TRANSPORT_OPTIONS = { car: '차로', transit: '대중교통', any: '상관없음' };

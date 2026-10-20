@@ -1,6 +1,6 @@
 # 나가치 검증 기록 — 2026-10-20
 
-기준: PR #2 기존 커밋 `d7a7e929d2695b218085bf5405f4aac24a712e41`, Node.js v24.19.0. 추가 npm 의존성 없음.
+현재 기준: GitHub main `82e6546c06b737ebe1259da2406346751b1362a2`, Node.js v24.19.0. 추가 npm 의존성 없음.
 
 ## 실행한 자동 검사
 
@@ -51,3 +51,13 @@ PLAYWRIGHT_MODULE=/설치경로/playwright-core/index.mjs CHROMIUM_PATH=/브라�
 - 저장 대상이 place ID임에 맞춰 “저장한 곳”으로 통일합니다. 저장 키와 ID는 바꾸지 않습니다.
 - README/analytics TODO에 실제 공개 테스트 전 구조화 컨텍스트 분석 확장을 명시합니다. 자유입력 원문은 계속 전송하지 않으며 운영 스키마 변경은 없습니다.
 - `npm run build` 성공, `npm test` 39/39 통과. 브랜드·저장 명칭·이동 옵션·noindex 회귀 검사를 포함합니다. 브라우저 실행 제한은 위 기록과 같습니다.
+
+## 한 단계씩 여는 추천 UX
+
+- `npm run build`: 성공. 기존 Workers 이름·URL·wrangler/Actions, Supabase 설정·스키마, DEMO 데이터, noindex는 유지합니다. 빌드에 새 화면 진행 모듈 flow.js만 추가합니다.
+- `npm test`: **46/46 통과**. 기존 39개를 유지하며 의도적으로 바뀐 질문 순서 기대값만 수정했습니다.
+- 새 진행 검사 7개: CTA 뒤 1단계만 표시, 욕구 선택 뒤 2단계 열림, 동행 뒤 3단계 열림, 마지막 CTA 전후 결과 숨김/표시, 다중선택·세부활동 유지, 수정·초기화 전제조건, 자연어 대체 입력, reduced-motion 즉시 표시. 실제 UI와 같은 flow.js 컨트롤러를 최소 요소 어댑터에서 검사합니다. 생성 HTML의 숨김·진행 표시·자체 Hero SVG도 확인합니다.
+- JS 구문 및 생성 HTML 11개의 중복 ID/label/ARIA/form 참조 검사 통과.
+- `npm start`와 시스템 Chromium을 재실행했으나 각각 listen EPERM 및 setsockopt: Operation not permitted로 차단됐습니다. 실제 모바일 레이아웃/클릭/콘솔 검증은 미완료입니다.
+- 브라우저 smoke test는 새 단계 순서·다중선택·Enter 결과 방지·이전 질문 접기·선택 요약·최종 결과·수정/초기화·의미색 유지·reduced-motion 검사로 갱신했습니다. Hero/조건/결과 각 상태에서 360/390/402/800/1280px와 200% 글씨 넘침을 검사하도록 준비했습니다. 기존 저장·공유·설문·분석 모의 회귀도 유지합니다. 이 환경에서 통과했다고 주장하지 않습니다.
+- 새 PR만 생성하며 운영 배포는 수행하지 않습니다.
