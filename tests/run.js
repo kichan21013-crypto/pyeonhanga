@@ -7,3 +7,4 @@ import './actions.test.js';
 import './flow.test.js';
 import './tourapi-quality.test.js';
 import './tourapi-enrichment.test.js';
+import './barrierfree-enrichment.test.js';
