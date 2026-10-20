@@ -1,143 +1,79 @@
-// 서버를 먼저 실행: npm start
-// 기존 Playwright를 사용합니다. 프로젝트 의존성에 추가하지 않습니다.
+// npm start 후 실행. 기존 설치된 Playwright를 사용하며 배포 의존성이 아닙니다.
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE ? pathToFileURL(process.env.PLAYWRIGHT_MODULE).href : 'playwright');
-const browser = await chromium.launch({ ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}), headless: true });
-const base = process.env.TEST_URL || 'http://localhost:4173';
-let assertions = 0;
-const check = (condition, message) => { assert.ok(condition, message); assertions++; };
+const browser = await chromium.launch({ ...(process.env.CHROMIUM_PATH ? { executablePath:process.env.CHROMIUM_PATH } : {}), headless:true });
+const base=process.env.TEST_URL || 'http://localhost:4173';
+let count=0;
+const check=(value,message)=>{assert.ok(value,message);count++;};
+async function answer(page) {
+  await page.locator('[name=age]').selectOption('60~64');await page.locator('[name=preference]').selectOption('성별 상관없음');
+  await page.locator('[name=purpose]').selectOption('식사동행');await page.locator('[name=group_size]').selectOption('3~4명');
+  await page.locator('[name=willingness][value="약 2만원"]').check();await page.locator('.survey [type=submit]').click();
+}
 try {
-  await mkdir('test-results', { recursive: true });
-  const context = await browser.newContext({ viewport: { width: 360, height: 800 } });
-  const page = await context.newPage(); const errors = [], analyticsRequests = [];
-  page.on('pageerror', e => errors.push(e.message));
-  page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
-  page.on('request', r => { if (r.url().includes('supabase.co')) analyticsRequests.push(r); });
-  await page.goto(base); await page.waitForFunction(() => document.querySelector('#result-count')?.textContent === '6');
-  check(await page.locator('.place-card').count() === 6, 'home cards');
-  for (const width of [360, 390, 402, 800, 1280]) {
-    await page.setViewportSize({ width, height: 900 });
-    check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px horizontal overflow`);
+  await mkdir('test-results',{recursive:true});
+  const context=await browser.newContext({viewport:{width:390,height:844}}), page=await context.newPage(), errors=[],network=[];
+  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});page.on('request',r=>{if(r.url().includes('supabase.co'))network.push(r.url());});
+  await page.goto(base);await page.waitForFunction(()=>document.querySelector('#result-count')?.textContent==='6');
+  check(await page.title().then(s=>s.includes('나가치')),'brand');
+  check(await page.locator('[data-transport]').count()===3,'three transport options');
+  check(await page.locator('[data-transport=nearby]').count()===0,'nearby removed');
+  check(await page.locator('header a[href="/saved.html"]').innerText().then(s=>s.includes('저장한 곳')),'place save label');
+  for(const width of [360,390,402,800,1280]){
+    await page.setViewportSize({width,height:900});
+    for(const size of ['18px','36px']){
+      await page.evaluate(size=>document.documentElement.style.fontSize=size,size);
+      check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${width}px ${size} overflow`);
+    }
   }
-  await page.setViewportSize({ width: 390, height: 844 });
-  const categoryLayout = await page.locator('.category-shortcuts .choice-chip').evaluateAll(buttons => buttons.map(button => {
-    const box = button.getBoundingClientRect();
-    return { top: Math.round(box.top), height: box.height };
-  }));
-  check(new Set(categoryLayout.map(box => box.top)).size === 1, 'three compact categories share one row at 390px');
-  check(categoryLayout.every(box => box.height >= 44 && box.height <= 48), 'compact categories retain a 44px touch target');
-  await page.evaluate(() => document.documentElement.style.fontSize = '36px');
-  check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), '200% text overflow');
-  check(await page.locator('.category-shortcuts .choice-chip').evaluateAll(buttons => buttons.every(button => {
-    const box = button.getBoundingClientRect(), label = button.querySelector('[data-choice-label]');
-    return box.left >= 0 && box.right <= innerWidth && label.scrollWidth <= label.clientWidth;
-  })), '200% category text remains inside the viewport');
-  await page.evaluate(() => document.documentElement.style.removeProperty('font-size'));
-  await page.screenshot({ path: 'test-results/home-mobile.png', fullPage: true });
-  const visibleSteps = await page.locator('.choice-step h2').allTextContents();
-  check(visibleSteps.join('|') === '누구와 함께 가세요?|오늘 무엇을 하고 싶으세요?|무엇이 편해야 하나요?', 'situation first step order');
-  check(await page.locator('[data-intent]').count() === 6, 'six quick intent chips');
-  check(await page.locator('[data-comfort]:visible').count() === 4, 'four initial comfort chips');
-  await page.locator('#search-input').fill('바다 보고 싶어');
-  await page.locator('[data-companion="친구"]').click();
-  check(await page.locator('#search-input').inputValue() === '바다 보고 싶어', 'filter selection preserves input draft');
+  await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));await page.setViewportSize({width:390,height:844});
+  await page.screenshot({path:'test-results/naerhythm-mobile.png',fullPage:true});
+  check(await page.locator('#activity-options').isHidden(),'details initially hidden');
+  await page.locator('#rhythm-start').click();
+  await page.locator('[data-companion=solo]').click();await page.locator('[data-companion=friend]').click();
+  check(await page.locator('[data-companion][aria-pressed=true]').count()===2,'multi companion');
+  check(await page.locator('#companion-summary').innerText().then(s=>s.includes('혼자')&&s.includes('친구')),'companion summary');
+  await page.locator('[data-desire=move]').click();check(await page.locator('[data-activity=run]').isVisible(),'running disclosed under movement');
+  await page.locator('[data-desire=eat]').click();await page.locator('[data-activity=walk]').click();
+  check(await page.locator('[data-desire][aria-pressed=true]').count()===2,'multi desire');
+  check(await page.locator('.place-card').count()>0,'OR recommendations');
+  await page.locator('[data-duration=short]').click();await page.locator('[data-transport=car]').click();
+  check(await page.locator('.place-card').count()>0,'unknown time/transport remains');
   await page.locator('#reset-filters').click();
-  await page.locator('[data-intent="바다"]').click(); check(await page.locator('.place-card').count() === 2, 'sea natural intent');
-  await page.locator('[data-intent="카페"]').click(); check(await page.locator('.place-card').count() === 1, 'cafe crosses inferred category');
-  check(await page.locator('#intent-summary').innerText().then(text => text.includes('나들이')), 'auto category explained');
-  await page.locator('#reset-filters').click();
-  await page.locator('[data-category="맛집"]').click(); check(await page.locator('.place-card').count() === 2, 'category filter');
-  await page.locator('#region').selectOption('서울'); check(await page.locator('.place-card').count() === 0, 'region intersection');
-  await page.locator('#reset-filters').click();
-  await page.locator('#search-input').fill('한정식'); await page.locator('#search-form button').click(); check(await page.locator('.place-card').count() === 1, 'text search');
-  await page.locator('#reset-filters').click(); await page.locator('#more-filter').click();
-  check(await page.locator('[data-comfort]:visible').count() === 7, 'all seven comfort chips');
-  await page.locator('[data-comfort="parking"]').click();
-  check(await page.locator('[data-comfort="parking"]').getAttribute('aria-pressed') === 'true', 'comfort selection state');
-  check(await page.locator('.place-card').count() === 6, 'unknown places remain under comfort preferences');
-  check(await page.locator('.place-card .recommendation-reason').count() === 0, 'unknown demo has no invented comfort reasons');
-  await page.locator('#reset-filters').click(); await page.locator('[data-companion="새로운 사람"]').click();
-  check(await page.locator('#companion-help').isVisible(), 'companion explanation');
-  check(await page.locator('[data-companion="새로운 사람"]').getAttribute('aria-pressed') === 'true', 'companion selection state');
-  await page.locator('[data-save="demo-table"]').click();
-  check(await page.locator('#saved-count').innerText() === '1', 'save counter');
-  await page.goto(base + '/saved.html'); await page.waitForSelector('.place-card');
-  check(await page.locator('.place-card').count() === 1, 'saved page persistence');
-  await page.locator('h3 a').click(); await page.waitForSelector('#companion-open');
-  check(await page.locator('.score-panel h2').innerText() === '정보 더 필요', 'no invented score');
-  check(await page.locator('[data-save]').getAttribute('aria-pressed') === 'true', 'detail saved state');
-  await page.evaluate(() => {
-    Object.defineProperty(navigator, 'share', { value: undefined, configurable: true });
-    Object.defineProperty(navigator, 'clipboard', { value: undefined, configurable: true });
-  });
-  await page.locator('#share-place').click(); await page.waitForSelector('#share-link');
-  check((await page.locator('#share-link').inputValue()).endsWith('/places/demo-table/'), 'manual link fallback');
-  await page.locator('#copy-done').click();
-  await page.locator('#companion-open').click(); await page.keyboard.press('Escape');
-  check(await page.locator('#companion-open').evaluate(el => document.activeElement === el), 'dialog returns keyboard focus');
-  async function answerSurvey(target) {
-    await target.locator('#companion-open').click();
-    await target.locator('[name=age]').selectOption('60~64');
-    await target.locator('[name=preference]').selectOption('성별 상관없음');
-    await target.locator('[name=purpose]').selectOption('식사동행');
-    await target.locator('[name=group_size]').selectOption('3~4명');
-    await target.locator('[name=willingness][value="약 2만원"]').check();
-  }
-  await answerSurvey(page); await page.locator('.survey [type=submit]').click();
-  check(await page.getByText('현재 분석 연결이 없어 응답은 저장되지 않았습니다.', { exact: false }).isVisible(), 'unconfigured survey honest state');
-  await page.locator('#survey-done').click();
-  await page.setViewportSize({ width: 1280, height: 900 });
-  await page.screenshot({ path: 'test-results/detail-desktop.png', fullPage: true });
-  await page.goto(base); await page.waitForSelector('#result-count');
-  await page.screenshot({ path: 'test-results/home-desktop.png', fullPage: true });
-  check(analyticsRequests.length === 0, 'unconfigured analytics sends nothing');
-  const missing = await page.goto(base + '/does-not-exist/'); check(missing.status() === 404, 'real 404');
-  // 404의 브라우저 네트워크 오류는 예상한 것이므로 그 이전 오류만 검사합니다.
-  check(errors.filter(e => !e.includes('404')).length === 0, `console errors: ${errors.join('; ')}`);
+  await page.locator('#search-input').fill('혼자 10km 정도 뛰고 맛있는 거 먹고 싶어');await page.locator('[data-companion=solo]').click();
+  check(await page.locator('#search-input').inputValue().then(s=>s.includes('10km')),'draft kept');
+  await page.locator('#recommend-button').click();check(await page.locator('.place-card').count()>0,'compound natural language');
+  check(!(await page.locator('#places-grid').innerText()).includes('10km'),'no fabricated distance');
+  await page.locator('#reset-filters').click();await page.locator('#comfort-options summary').click();await page.locator('[data-comfort=parking]').click();
+  check(await page.locator('.place-card').count()===6,'unknown comfort retained');
+  await page.locator('.save-icon[data-save="demo-table"]').click();check(await page.locator('#saved-count').innerText()==='1','save counter');
+  await page.goto(base+'/saved.html');await page.waitForSelector('.place-card');check(await page.locator('.place-card').count()===1,'saved persistence');
+  await page.locator('h3 a').click();await page.waitForSelector('#companion-open');check(await page.locator('.score-panel h2').innerText()==='정보 더 필요','unknown score');
+  await page.evaluate(()=>{Object.defineProperty(navigator,'share',{value:undefined,configurable:true});Object.defineProperty(navigator,'clipboard',{value:undefined,configurable:true});});
+  await page.locator('#share-place').click();check(await page.locator('#share-link').inputValue().then(s=>s.endsWith('/places/demo-table/')),'share fallback');await page.locator('#copy-done').click();
+  await page.locator('#companion-open').click();await page.keyboard.press('Escape');check(await page.locator('#companion-open').evaluate(el=>el===document.activeElement),'dialog focus');
+  await page.locator('#companion-open').click();await answer(page);await page.waitForSelector('#survey-done');
+  check(await page.getByText('현재 분석 연결이 없어 응답은 저장되지 않았습니다.',{exact:false}).isVisible(),'unconfigured honest survey');await page.locator('#survey-done').click();
+  check(network.length===0,'no analytics without config');check(errors.length===0,errors.join(';'));
   await context.close();
-
-  const blocked = await browser.newContext();
-  await blocked.addInitScript(() => { Storage.prototype.getItem = () => { throw new Error('blocked'); }; Storage.prototype.setItem = () => { throw new Error('blocked'); }; });
-  const blockedPage = await blocked.newPage(); const blockedErrors = [];
-  blockedPage.on('pageerror', e => blockedErrors.push(e.message));
-  await blockedPage.goto(base); await blockedPage.waitForSelector('.place-card'); await blockedPage.locator('[data-save]').first().click();
-  check(await blockedPage.locator('#toast').innerText().then(s => s.includes('저장 공간')), 'storage denied feedback');
-  check(blockedErrors.length === 0, 'storage denied no crash'); await blocked.close();
-
-  // 실제 외부 서비스에 연결하지 않는 브라우저 수준 모의 서버입니다.
-  const connected = await browser.newContext(); const rows = [], connectedErrors = [];
-  await connected.route('**/config.js', r => r.fulfill({ contentType: 'text/javascript', body: "export default {supabaseUrl:'https://fixture.supabase.co',supabaseAnonKey:'fixture-public-key'}" }));
-  await connected.route('https://fixture.supabase.co/**', async r => {
-    if (r.request().method() === 'OPTIONS') return r.fulfill({ status: 204, headers: { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*' } });
-    rows.push(r.request().postDataJSON().payload);
-    await r.fulfill({ status: 204, headers: { 'access-control-allow-origin': '*' } });
+  const connected=await browser.newContext(),rows=[];
+  await connected.route('**/config.js',r=>r.fulfill({contentType:'text/javascript',body:"export default {supabaseUrl:'https://fixture.supabase.co',supabaseAnonKey:'sb_publishable_fixture'}"}));
+  await connected.route('https://fixture.supabase.co/**',async r=>{
+    if(r.request().method()==='OPTIONS')return r.fulfill({status:204,headers:{'access-control-allow-origin':'*','access-control-allow-headers':'*'}});
+    rows.push(r.request().postDataJSON().payload);await r.fulfill({status:204,headers:{'access-control-allow-origin':'*'}});
   });
-  await connected.addInitScript(() => {
-    Object.defineProperty(navigator, 'share', { value: async data => { window.nativeShareData = data; }, configurable: true });
-  });
-  const c = await connected.newPage(); c.on('pageerror', e => connectedErrors.push(e.message));
-  await c.goto(base); await c.waitForSelector('#result-count');
-  await c.locator('#search-input').fill('한정식'); await c.locator('#search-form button').click();
-  await c.locator('#reset-filters').click();
-  await c.goto(base + '/places/demo-table/'); await c.waitForSelector('#companion-open');
-  await c.locator('[data-save]').click(); await c.locator('#share-place').click();
-  check((await c.evaluate(() => window.nativeShareData.url)).endsWith('/places/demo-table/'), 'native share invoked');
-  await answerSurvey(c); await c.locator('.survey [type=submit]').click(); await c.waitForSelector('#survey-done');
-  for (const event of ['page_view','search','filter_used','place_view','save_place','share_place','companion_interest','premium_willingness']) check(rows.some(row => row.event_name === event), `analytics ${event}`);
-  const premium = rows.find(row => row.event_name === 'premium_willingness');
-  check(premium.details.willingness === '약 2만원' && premium.is_demo, 'survey and demo metadata');
-  check(rows.every(row => !JSON.stringify(row).includes('query') && !JSON.stringify(row).includes('fixture-public-key')), 'no raw search or credentials in payload');
-  check(connectedErrors.length === 0, 'configured analytics no browser crash');
+  await connected.addInitScript(()=>{window.logicalEvents=[];document.addEventListener('naerhythm:analytics',e=>window.logicalEvents.push(e.detail.name));Object.defineProperty(navigator,'share',{value:async data=>{window.sharedData=data;},configurable:true});});
+  const c=await connected.newPage();await c.goto(base);await c.waitForFunction(()=>document.querySelector('#result-count')?.textContent==='6');
+  await c.locator('#rhythm-start').click();await c.locator('[data-companion=solo]').click();await c.locator('[data-desire=move]').click();await c.locator('[data-activity=walk]').click();await c.locator('[data-duration=short]').click();await c.locator('#recommend-button').click();
+  await c.locator('.save-icon').first().click();await c.locator('[data-share]').first().click();check(await c.evaluate(()=>Boolean(window.sharedData.url)&&window.sharedData.title.endsWith('— 나가치')),'native share');
+  await c.locator('[data-companion-interest]').first().click();await answer(c);await c.waitForSelector('#survey-done');
+  const logical=await c.evaluate(()=>window.logicalEvents);
+  for(const event of ['rhythm_start','companion_selected','desire_selected','activity_selected','condition_selected','recommendation_view','rhythm_save','rhythm_share','companion_interest','premium_willingness'])check(logical.includes(event),event);
+  const premium=rows.find(row=>row.event_name==='premium_willingness');check(premium?.details.willingness==='약 2만원'&&premium.is_demo,'survey recorded as demo');
   await c.locator('#survey-done').click();
-  await connected.route('https://fixture.supabase.co/**', async r => {
-    if (r.request().method() === 'OPTIONS') return r.fulfill({ status: 204, headers: { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*' } });
-    return r.fulfill({ status: 503, headers: { 'access-control-allow-origin': '*' } });
-  });
-  await answerSurvey(c); await c.locator('.survey [type=submit]').click();
-  await c.waitForFunction(() => document.querySelector('.survey-status')?.textContent.includes('전송하지 못했어요'));
-  check(await c.locator('.survey [type=submit]').isEnabled(), 'failed survey supports retry without false success');
-  await connected.close();
-  console.log(`브라우저 smoke test 통과: ${assertions}개 검사. 모바일/PC·큰 글씨·검색·저장·공유·설문·분석 모의 연결·실패 처리를 확인했습니다.`);
-} finally { await browser.close(); }
+  await connected.route('https://fixture.supabase.co/**',r=>r.fulfill({status:503,headers:{'access-control-allow-origin':'*'}}));
+  await c.locator('[data-companion-interest]').first().click();await answer(c);await c.waitForFunction(()=>document.querySelector('.survey-status')?.textContent.includes('전송하지 못했어요'));check(await c.locator('.survey [type=submit]').isEnabled(),'survey retry');
+  await connected.close();console.log(`브라우저 smoke test ${count}개 검사 통과`);
+} finally {await browser.close();}

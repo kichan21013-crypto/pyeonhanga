@@ -79,7 +79,7 @@ test('정적 HTML 상세/SEO/사이트맵이 빌드되어 있고 데모는 색�
     assert.ok(html.includes(p.name)); assert.match(html, /property="og:title"/);
     const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
     assert.ok(!canonicals.has(canonical)); canonicals.add(canonical);
-    if (p.isDemo) { assert.match(html, /noindex,follow/); assert.ok(!sitemap.includes(`/places/${p.slug}/`)); }
+    if (p.isDemo) { assert.match(html, /noindex,nofollow/); assert.ok(!sitemap.includes(`/places/${p.slug}/`)); }
   }
   const headers = await readFile(new URL('../dist/_headers', import.meta.url), 'utf8');
   assert.match(headers, /frame-ancestors 'none'/);

@@ -12,6 +12,12 @@ const RULES = [
   { tag: 'korean_food', category: '맛집', pattern: /한정식|한식|백반/g },
   { tag: 'food', category: '맛집', pattern: /맛있는\s*거|맛있는\s*곳|맛집|식사|식당|밥|먹고|먹을|먹으러/g },
   { tag: 'walk', category: '나들이', pattern: /산책|공원|걷고|걷기/g },
+  { tag: 'run', category: '나들이', pattern: /러닝|런닝|달리기|달리고|뛰고|뛰기/g },
+  { tag: 'hike', category: '나들이', pattern: /등산|산행/g },
+  { tag: 'bike', category: '나들이', pattern: /자전거|라이딩/g },
+  { tag: 'meat', category: '맛집', pattern: /고기|삼겹살/g },
+  { tag: 'seafood', category: '맛집', pattern: /해산물|횟집|생선회/g },
+  { tag: 'culture', category: '나들이', pattern: /문화생활|전시|박물관|미술관/g },
   { tag: 'drive', category: '나들이', pattern: /드라이브/g },
   { tag: 'cafe', category: '나들이', pattern: /카페|커피|찻집/g },
   { tag: 'scenery', category: '나들이', pattern: /바람\s*쐬(?:고|기)?|풍경|경치/g },
@@ -31,6 +37,9 @@ const COMFORT_RULES = {
 function hasMatch(pattern, value) { return new RegExp(pattern.source, pattern.flags.replace('g', '')).test(value); }
 export function inferIntent(query = '') {
   let remaining = String(query).toLowerCase().trim();
+  const distanceMatch = remaining.match(/(\d+(?:\.\d+)?)\s*(?:km|킬로미터|키로|킬로)/);
+  const distanceKm = distanceMatch ? Number(distanceMatch[1]) : null;
+  remaining = remaining.replace(/\d+(?:\.\d+)?\s*(?:km|킬로미터|키로|킬로)/g,' ');
   const comforts = [];
   if (/주차\s*(?:는|가)?\s*필요\s*없/.test(remaining)) remaining = remaining.replace(/주차\s*(?:는|가)?\s*필요\s*없\S*/g, ' ');
   for (const [key, pattern] of Object.entries(COMFORT_RULES)) {
@@ -48,9 +57,9 @@ export function inferIntent(query = '') {
   if (regions.some(region => ['강릉','부산','제주'].includes(region))) categories.add('여행');
   if (comforts.includes('walking')) intents.push('low_walking');
   if (comforts.includes('noise')) intents.push('quiet');
-  remaining = remaining.replace(/하고|보고|가고|쐬고|마시고|싶어요|싶어|싶다|싶습니다|싶은|어요|오늘|편하게|조금|좀|좋은|있는|곳/g, ' ');
+  remaining = remaining.replace(/하고|보고|가고|쐬고|마시고|싶어요|싶어|싶다|싶습니다|싶은|어요|오늘|편하게|조금|좀|좋은|있는|곳|정도|그리고/g, ' ');
   const tokens = remaining.replace(/[^가-힣a-z0-9\s-]/g, ' ').split(/\s+/).filter(token => token && !/^(과|와|랑|이랑|하고|도|에서|으로|로|을|를|에|가|이|고|한번)$/.test(token));
-  return { intents: [...new Set(intents)], category: categories.size === 1 ? [...categories][0] : '', companion, comforts, regions, tokens };
+  return { intents: [...new Set(intents)], category: categories.size === 1 ? [...categories][0] : '', companion, comforts, regions, tokens, distanceKm };
 }
 export function requestedComforts(f, intent = inferIntent(f.query)) {
   const selected = new Set([...(f.comforts || []), ...intent.comforts]);

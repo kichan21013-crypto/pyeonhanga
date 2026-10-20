@@ -1,8 +1,10 @@
-# 편한가?
+# 나가치
 
-“나에게 맞는 편안한 곳을 찾습니다.” 맛집·나들이·여행을 살펴보고 저장하거나 동행 의견을 남기는 모바일 웹 MVP입니다. 사업을 계속할 만한 반응이 있는지 **투자비 0원**으로 확인하는 것이 목적입니다. 로그인과 실제 결제는 없습니다.
+**나가치**는 나에게 맞는 하루를 찾는 서비스입니다. **내리듬**은 개인화 추천 개념이며 회사·앱 이름이 아닙니다.
 
-현재 장소 6개는 모두 **DEMO SAMPLE 가상 데이터**입니다. 실제 방문 정보나 편안함 수치를 꾸며 넣지 않았습니다. 실제 시장 검증을 시작하려면 검증한 실제 장소를 추가하고 무료 분석을 연결해야 합니다. 데모는 실제 KPI와 검색 색인에서 제외됩니다.
+“오늘, 내 리듬대로.” 막연히 뭔가 하고 싶은 날 **내 상황과 취향에 맞는 오늘 하루**를 찾는 모바일 웹 MVP입니다. 먹고, 걷고, 달리고, 쉬고, 떠나는 방법을 선택하고 저장·공유하거나 동행 의견을 남깁니다. 목적은 **투자비 0원**으로 시장 반응을 확인하는 것입니다. 로그인·실제 결제·사람 연결은 없습니다.
+
+현재 장소 6개는 모두 **DEMO SAMPLE 가상 데이터**입니다. 실제 방문 정보나 편안함 수치를 꾸며 넣지 않았습니다. 실제 시장 검증을 시작하려면 검증한 실제 장소를 추가하고 무료 분석을 연결해야 합니다. 데모는 실제 KPI에서 제외됩니다. 현재 내부 검증 단계이므로 실제 장소를 포함한 모든 페이지도 검색엔진 색인에서 제외됩니다.
 
 ## 1. 내 컴퓨터에서 실행
 
@@ -14,7 +16,9 @@
 
 `npm install`은 필요 없습니다. 사용한 외부 npm 패키지는 0개입니다. HTML 파일을 직접 더블클릭하지 마세요. 변경 후 `npm run build`하고 브라우저를 새로고침합니다. `dist`가 실제 배포 폴더입니다. `npm start`는 로컬 확인용이며 외부 운영 서버가 아닙니다.
 
-## 2. Cloudflare Pages 무료 배포
+## 2. 현재 배포 구조와 무료 Pages 대안
+
+현재 저장소는 **Cloudflare Workers 정적 에셋 배포**를 사용합니다. `wrangler.jsonc`의 프로젝트명·URL·`./dist` 설정과 GitHub Actions는 유지합니다. 이번 개편은 새 PR에서만 검토하며 운영 배포하지 않습니다. 아래 Pages 설명은 별도 대안 안내입니다. 현재 프로젝트의 배포 방식을 전환할 필요는 없습니다.
 
 1. Cloudflare 무료 계정을 만들고 **Workers & Pages → Create → Pages**에서 Git 저장소를 연결합니다. Workers 유료 플랜을 선택하지 않습니다.
 2. 이 폴더가 저장소 전체이면 Root directory를 비워 둡니다. 저장소 안의 `pyeonhanga` 폴더라면 Root directory를 `pyeonhanga`로 지정합니다.
@@ -101,7 +105,7 @@ Supabase SQL Editor에서 **`supabase/analytics_queries.sql`**의 필요한 문�
 ## 8. 구조와 검증
 
 - `index.html`, `saved.html`, `styles.css`, `app.js`: 화면과 동작
-- `ui.js`, `search.js`, `comfort-score.js`, `storage.js`, `analytics.js`: 출력·필터·점수·저장·분석 분리
+- `ui.js`, `rhythm.js`, `search.js`, `comfort-score.js`, `actions.js`, `storage.js`, `analytics.js`: 출력·필터·점수·저장·분석 분리
 - `data/places.json`, `assets/`: 장소와 직접 제작한 무료 SVG 일러스트
 - `scripts/build.js`: 정적 상세 HTML·고유 SEO 정보·사이트맵·robots·보안 헤더 생성
 - `scripts/import-tourapi.js`: 선택적 무료 데이터 가져오기
@@ -113,19 +117,64 @@ Supabase SQL Editor에서 **`supabase/analytics_queries.sql`**의 필요한 문�
 
 ## 이번에 제공하지 않는 것
 
-실제 결제, Premium 운영, 회원가입, 채팅, 사람 연결/매칭, 식당·숙박·여행 예약, 여행상품 판매, SMS, 푸시, CMS, 운동·취미 카테고리, 광고·제휴입니다. 계정/키가 필요한 Cloudflare 실제 배포, Supabase 원격 연결, TourAPI 원격 수집은 운영자 설정 후 확인해야 합니다.
+실제 결제, Premium 운영, 회원가입, 채팅, 사람 연결/매칭, 식당·숙박·여행 예약, 여행상품 판매, SMS, 푸시, CMS, 러닝 기록/GPS/운동 분석, 광고·제휴입니다. 러닝·걷기·등산은 원하는 하루를 고르는 하위 활동으로만 제공합니다. 계정/키가 필요한 Cloudflare 실제 배포, Supabase 원격 연결, TourAPI 원격 수집은 운영자 설정 후 확인해야 합니다.
 
 향후 검토만 할 항목: 실제 편안함 현장 검증, 별도 이용자 평가 데이터, 동행 멤버 구성 서비스 실험. 현재 MVP에는 추가 구현하지 않습니다. 장기 Premium 원칙은 `AGENTS.md`에 기록했습니다.
 
-## 상황 중심 추천 (2026-10-20)
+## 나가치의 내리듬 추천 흐름과 데이터 (2026-10-20)
 
-홈은 **누구와 → 하고 싶은 일 → 편안함 조건 → 추천 결과** 순서입니다. 자연어 입력 아래 6개 예시를 누르면 바로 검색합니다. 카테고리는 아래쪽 빠른 필터에서 직접 바꿀 수 있습니다. 자동 분류는 추천 순서에 반영하므로 나들이 의도로 검색한 카페가 맛집 데이터에 있어도 찾을 수 있습니다. 직접 고른 카테고리는 우선 적용합니다.
+1. **누구와**: 여러 동행을 함께 선택하고 요약을 확인합니다.
+2. **어떤 하루**: 여섯 욕구를 여러 개 선택합니다. 고른 욕구의 세부 활동만 펼쳐집니다. 자연어 입력과 칩을 함께 반영합니다.
+3. **오늘의 조건**: 시간과 이동(차로·대중교통·상관없음)을 고르고 필요한 경우 편안함 선호를 펼칩니다. 지역·기존 카테고리는 보조 필터로 남아 있습니다.
+4. **오늘의 리듬**: 확인된 활동과 장소 한 곳을 제안합니다. 저장·공유·“같이 할 사람이 있으면 좋겠어요”로 이어집니다. 저장 키와 장소 ID를 유지해 기존 저장 목록도 계속 사용합니다. 저장 대상은 plan이 아닌 장소 ID이므로 화면에는 **저장한 곳**으로 표시합니다. 여러 stop의 plan 저장을 구현할 때만 “저장한 리듬” 명칭을 검토합니다.
 
-- `search.js`의 `inferIntent`가 무료 규칙으로 문장에서 활동·동행·지역·편안함을 읽습니다. 외부 AI API는 사용하지 않습니다. 애매하면 모든 활동에서 찾습니다.
-- `recommendPlaces`는 검색 일치 → 동행 태그 적합도 → 확인된 편안함 조건 → 정보 충실도를 반영한 기존 점수를 조합합니다. 가중치는 `RECOMMENDATION_WEIGHTS`에서 조절합니다. 내부 추천 정렬값은 공개 편안함 점수나 이용자 평점이 아닙니다.
-- 편안함은 기본적으로 선호 조건입니다. 확인된 충족 수가 많은 장소부터 추천하고, 부분 충족·미충족·unknown 장소도 검색 결과에 남깁니다. unknown은 충족 수에 포함하지 않습니다. 확인된 충족 수가 같을 때 검색·동행·기존 정보 기반 점수를 비교합니다. 향후 필수 조건은 `requiredComforts`로 분리할 수 있으나 이번 UI에서는 사용하지 않습니다. 입력에서 읽은 편안함도 칩에 표시되며 눌러 해제할 수 있습니다.
-- 카드의 추천 이유는 실제 확인한 편안함이나 출처가 있는 동행 태그에만 기반합니다. 데모에는 실제 이용 적합성을 주장하는 이유를 만들지 않습니다.
-- `comfort.restroom.proximity`는 `near` / `far` / `unknown`입니다. 기존 `restroom.value=good`은 이용 편의이며 가까움을 뜻하지 않습니다. 가까운 화장실을 추천하려면 `proximity=near`와 근거·확인일·설명이 필요합니다.
-- TourAPI 가져오기는 출처·원본 식별자와 받은 저작권 코드를 보존합니다. 저작권 코드만 보고 무료 재사용 권한을 추정하지 않습니다. 가져오기에서 없는 동행·의도 태그는 빈 배열, 편안함은 unknown입니다. 재수집할 때 수동 검증한 태그·라이선스와 편안함을 보존합니다. 사진이나 원본 저작권 코드가 바뀌면 과거 이용 권한을 새 자료에 적용하지 않고 다시 확인하도록 비웁니다. 이번 작업은 외부 관광 API를 실제 호출하지 않았습니다.
+`rhythm.js`의 `DESIRES`, `ACTIVITIES`, `recommendRhythms`가 욕구·세부활동과 추천 순서를 관리합니다. `search.js`는 무료 규칙으로 자연어를 읽습니다. 외부 AI API를 호출하지 않습니다. 활동은 선택한 욕구·세부활동·자연어 중 하나라도 맞으면 남기고, 여러 선택에 맞을수록 우선합니다. 동행은 AND 필터가 아니며 일치 수를 추천에 반영합니다. 선택과 미확인 상태의 동행도 하위에 남깁니다.
 
-현재 GitHub의 **Workers 정적 에셋 배포** 설정은 `wrangler.jsonc`의 `./dist`를 그대로 사용합니다. 기존 `scripts/build.js`, GitHub Actions, Supabase 설정/스키마는 변경하지 않았습니다. 위 Pages 배포 설명은 대안이며 이번 작업에서 배포 방식을 전환하지 않았습니다.
+확인된 편안함·시간·이동 조건 충족 수 → 동행 일치 수 → 욕구·활동 일치 수 → 기존 검색/정보 기반 점수 순으로 비교합니다. unknown은 충족으로 세지 않으며 부분 충족도 남깁니다. “가까운 곳” 이동 버튼은 위치·거리 계산이 없어 제거했습니다. 가까움은 위치 수집 없이 추정하지 않습니다. 향후 지역·거리 근거를 확보하면 기존 visitContext/route 구조를 확장해 다시 제공할 수 있습니다. 내부 추천 정렬값은 별점이나 공개 편안함 점수가 아닙니다. 향후 필수 조건은 `requiredComforts`로 분리할 수 있으나 이번 UI에서는 사용하지 않습니다.
+
+추천 이유는 확인된 편안함 또는 출처·확인일이 있는 방문 정보만 사용합니다. DEMO에는 실제 방문 적합성을 주장하는 이유를 만들지 않습니다. `comfort.restroom.proximity`는 `near` / `far` / `unknown`이며 이용 편의만으로 거리를 추정하지 않습니다.
+
+추가 데이터 필드는 선택 사항이므로 이전 JSON도 호환됩니다.
+
+| 항목 | 의미와 기본값 |
+| --- | --- |
+| activityType | `run`, `walk`, `hike` 등 확인한 활동. 모르면 `unknown` |
+| route | `distanceKm`, `difficulty`, `flatness`, `restroom`, `parking`, `lighting`, `crowd`, `scenery`, `loop` 모두 기본 `unknown` |
+| route.sourceUrl / verifiedAt | 코스 수치나 상태를 넣으려면 실제 출처·확인일 필수 |
+| visitContext | `duration`: `unknown` / `short` / `half_day` / `full_day`, `transportModes`: `[]` / `car` / `transit`. 알려진 값에는 `sourceUrl`, `verifiedAt` 필수 |
+| 추천 결과의 plan | 같은 지역의 `stops`, `transfers`, `duration`, `distanceKm`로 향후 코스 확장 가능. 현재는 장소 1개만 참조하며 이동 구간은 빈 배열 |
+
+자연어에 “10km”를 입력해도 확인된 코스 거리로 채우지 않습니다. 현재 데모의 코스·시간·이동 정보는 전부 미확인입니다. TourAPI 가져오기는 이 필드를 unknown으로 초기화하고 재수집 시 수동 확인 정보를 보존합니다. 출처·라이선스·이미지 권한 보존 원칙은 같습니다. 이번 작업은 관광 API를 실제 호출하지 않았습니다.
+
+## 새 분석 이벤트와 기존 Supabase 호환
+
+`analytics.js`의 `trackRhythm`은 다음 논리 이벤트를 `naerhythm:analytics` 브라우저 이벤트로 알리고, 기존 서버 허용 이벤트로 변환해 전송합니다. DEMO는 계속 `is_demo=true`입니다.
+
+| 논리 이벤트 | 현재 서버에 저장하는 이벤트 |
+| --- | --- |
+| rhythm_start, companion_selected, desire_selected, activity_selected, condition_selected | filter_used |
+| recommendation_view | search |
+| rhythm_save / rhythm_share | save_place / share_place |
+| companion_interest / premium_willingness | 기존 동일 이름 |
+
+**현재 SQL은 새 이벤트 이름과 욕구·활동·시간·이동의 상세 선택값을 허용하지 않습니다.** 이번 작업에서는 `supabase/schema.sql`, KPI SQL, 실제 프로젝트 연결을 변경하지 않았습니다. 따라서 서버에서 시작·욕구·활동·조건 각각의 전환율을 완전히 분리할 수는 없습니다. 향후 분리 분석에는 이벤트명 제약 조건, `record_event` 허용 목록/상세값 검증, KPI SQL을 함께 확장한 별도 검토가 필요합니다. 기존 저장·공유·동행·지불의향 KPI는 유지됩니다. 자유 입력 검색문은 전송하지 않습니다.
+
+## 공개 테스트 전 필수 TODO: 동행 수익검증 context analytics
+
+**실제 사용자에게 공개 테스트하기 전에 아래 context analytics 확장이 필요합니다.** 이번 PR에서는 운영 Supabase 스키마나 연결을 변경하지 않으며 아래 컨텍스트를 새로 전송하지 않습니다.
+
+- `selected_desires`: 선택한 욕구
+- `selected_activities`: 선택한 세부 활동
+- `companions`: 다중 동행 선택
+- `duration`: 선택한 시간
+- `transport`: 선택한 이동 수단
+- `selected_comfort_preferences`: 선택한 편안함 선호
+- `recommended_rhythm` / `recommended_activity`: 어떤 추천·활동에서 동행 관심/설문이 발생했는지
+- `place_id`: 추천 장소 ID
+- `premium_willingness`: 서비스비 지불의향
+
+선택 → 추천 → 동행 관심 → 지불의향에 동일한 구조화 컨텍스트가 연결되도록 설계하고, 서버 이벤트/필드 허용 목록·값 검증·KPI 조회 SQL·DEMO 구분·RLS를 함께 검토해야 합니다. `place_id`와 지불의향은 이미 기존 이벤트로 저장 가능하지만 나머지 선택·추천 컨텍스트와 연결하는 작업은 남아 있습니다. **자유입력 자연어 원문은 계속 서버로 전송하지 않습니다.** 실제 위치·이동거리도 수집하거나 추정하지 않습니다.
+
+## 검색엔진 비공개 검증 상태
+
+모든 생성 HTML에 `noindex,nofollow`, 응답 헤더에 `X-Robots-Tag`를 붙이고 사이트맵은 비워 둡니다. `robots.txt`는 크롤러가 noindex를 읽을 수 있게 접근을 허용합니다. 이미 색인된 페이지의 제거에는 검색엔진 재방문 시간이 걸립니다. 정식 공개 시 `scripts/build.js`의 **INDEXING_ENABLED**를 `true`로 바꾸고 다시 빌드하면 실제 데이터 페이지의 색인을 허용할 수 있습니다. DEMO·저장·404는 계속 제외됩니다. noindex는 접근 제어가 아니므로 비밀 정보를 공개 파일에 넣지 않습니다.

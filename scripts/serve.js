@@ -17,4 +17,4 @@ http.createServer(async (req, res) => {
     res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
     try { res.end(await readFile(resolve(root, '404.html'))); } catch { res.end('Run npm run build first.'); }
   }
-}).listen(Number(process.env.PORT || 4173), '0.0.0.0', () => console.log(`편한가? http://localhost:${process.env.PORT || 4173}`));
+}).listen(Number(process.env.PORT || 4173), '0.0.0.0', () => console.log(`나가치 http://localhost:${process.env.PORT || 4173}`));

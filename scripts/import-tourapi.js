@@ -2,6 +2,7 @@ import { readFile, writeFile, rename } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validatePlaces } from './validate-data.js';
+import { unknownRoute } from '../rhythm.js';
 export const REGIONS = [
   { name: '서울', areaCode: '1' }, { name: '경기', areaCode: '31' },
   { name: '강릉', areaCode: '32', sigunguCode: '1' }, { name: '경주', areaCode: '35', sigunguCode: '2' },
@@ -22,6 +23,7 @@ export function convertItem(item, region, category, today = new Date().toISOStri
     image, imageAlt: image.startsWith('/assets/') ? '장소 사진이 없어 표시한 대체 일러스트' : clean(item.title),
     priceRange: '확인 전', sourceName: '한국관광공사 TourAPI', sourceUrl: 'https://api.visitkorea.or.kr/',
     lastVerifiedAt: today, isDemo: false, companions: [], intentTags: [], userRating: null,
+    activityType: 'unknown', route: unknownRoute(), visitContext: { duration: 'unknown', transportModes: [], sourceUrl: null, verifiedAt: null },
     sourceLicense: { name: null, url: null, attribution: '한국관광공사 TourAPI', copyrightCode: item.cpyrhtDivCd ? String(item.cpyrhtDivCd) : null, usageNotes: null },
     imageLicense: { name: null, url: null, attribution: null, copyrightCode: null, usageNotes: null },
     tourApi: { contentId, contentTypeId: String(item.contenttypeid || ''), operation: 'KorService2/areaBasedList2', modifiedTime: item.modifiedtime || null, importedAt: today, imageSourceUrl: item.firstimage || null },
@@ -33,7 +35,7 @@ export function mergeImportedPlace(old, incoming) {
   const sameImage = (old.tourApi?.imageSourceUrl || old.image) === (incoming.tourApi?.imageSourceUrl || incoming.image);
   const sameRights = old.sourceUrl === incoming.sourceUrl && (old.sourceLicense?.copyrightCode ?? null) === (incoming.sourceLicense?.copyrightCode ?? null);
   // 사진이나 원본 저작권 코드가 바뀌면 과거의 이용 권한을 새 자료에 적용하지 않습니다.
-  return { ...incoming, comfort: old.comfort, priceRange: old.priceRange, companions: old.companions || [], intentTags: old.intentTags || [], userRating: old.userRating ?? null, sourceLicense: sameRights ? old.sourceLicense || incoming.sourceLicense : incoming.sourceLicense, imageLicense: sameImage ? old.imageLicense || incoming.imageLicense : incoming.imageLicense };
+  return { ...incoming, comfort: old.comfort, priceRange: old.priceRange, companions: old.companions || [], intentTags: old.intentTags || [], activityType: old.activityType || incoming.activityType, route: old.route || incoming.route, visitContext: old.visitContext || incoming.visitContext, userRating: old.userRating ?? null, sourceLicense: sameRights ? old.sourceLicense || incoming.sourceLicense : incoming.sourceLicense, imageLicense: sameImage ? old.imageLicense || incoming.imageLicense : incoming.imageLicense };
 }
 export async function importTourApi() {
   const key = process.env.TOUR_API_KEY;

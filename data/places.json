@@ -91,6 +91,26 @@
       "attribution": "편한가?",
       "copyrightCode": null,
       "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    },
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
     }
   },
   {
@@ -186,6 +206,26 @@
       "attribution": "편한가?",
       "copyrightCode": null,
       "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    },
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
     }
   },
   {
@@ -281,6 +321,26 @@
       "attribution": "편한가?",
       "copyrightCode": null,
       "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    },
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
     }
   },
   {
@@ -375,6 +435,26 @@
       "attribution": "편한가?",
       "copyrightCode": null,
       "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    },
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
     }
   },
   {
@@ -470,6 +550,26 @@
       "attribution": "편한가?",
       "copyrightCode": null,
       "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    },
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
     }
   },
   {
@@ -564,6 +664,26 @@
       "attribution": "편한가?",
       "copyrightCode": null,
       "usageNotes": "프로젝트에서 제작한 대체 일러스트. 실제 장소 사진이 아닙니다."
+    },
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
     }
   }
 ]

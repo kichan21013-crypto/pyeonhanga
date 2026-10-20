@@ -2,3 +2,5 @@
 import './core.test.js';
 import './analytics.test.js';
 import './recommendation.test.js';
+import './rhythm.test.js';
+import './actions.test.js';
