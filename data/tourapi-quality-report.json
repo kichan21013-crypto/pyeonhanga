@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-10-20T08:33:07.455Z",
+  "generatedAt": "2026-10-21T05:15:37.377Z",
   "source": "data/places.json",
   "summary": {
-    "total": 254,
+    "total": 257,
     "byStatus": {
-      "candidate": 144,
-      "review": 93,
+      "candidate": 146,
+      "review": 94,
       "source_only": 7,
       "review_course": 10
     },
     "byRole": {
-      "place": 237,
+      "place": 240,
       "course": 14,
       "facility": 3
     },
     "invalidCoordinate": 3,
     "missingAddress": 4,
-    "placeholderImage": 98,
+    "placeholderImage": 99,
     "regionAddressMismatch": 0,
-    "comfortUnknown": 254
+    "comfortUnknown": 257
   },
   "topCandidates": [
     {

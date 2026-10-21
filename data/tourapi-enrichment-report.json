@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T08:33:54.738Z",
+  "generatedAt": "2026-10-21T05:16:24.923Z",
   "source": "data/places.json",
   "strategy": "region-balanced candidate sample, up to 8 per region, 나들이/맛집 균형 우선",
   "summary": {
@@ -905,10 +905,10 @@
         {
           "contentid": "2792940",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
       "images": []
