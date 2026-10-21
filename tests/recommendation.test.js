@@ -79,7 +79,7 @@ test('선호 정보가 전부 unknown이어도 결과와 정보 부족 안내를
   assert.equal(results.length, places.length); assert.ok(results.every(r => r.matchedComforts === 0));
   for (const result of results) {
     const html = card(result.place,false,f);
-    assert.match(html,/편안함 정보 수집 중/); assert.deepEqual(result.reasons,[]);
+    assert.match(html,/이용정보 확인 중|확인된 이용정보/); assert.deepEqual(result.reasons,[]);
     assert.ok(!html.includes('matchedComforts')); assert.ok(!html.includes('relevance'));
   }
 });

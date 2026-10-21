@@ -78,7 +78,7 @@ test('추천은 입력 장소 하나만 참조하며 코스·이동시간·거�
     assert.equal(result.plan.isDemo,true);
     const html=card(result.place,false,emptyRhythmFilters(),result);
     assert.match(html,/DEMO SAMPLE/);assert.match(html,/data-share=/);assert.match(html,/data-companion-interest=/);
-    assert.match(html,/같이 할 사람이 있으면 좋겠어요/);assert.ok(!html.includes('relevance'));
+    assert.match(html,/동행이 있으면 좋겠어요/);assert.match(html,/장소 자세히 보기/);assert.ok(!html.includes('relevance'));
   }
 });
 test('러닝 확장 정보는 unknown이며 실제 거리·순환 여부에는 출처와 확인일을 요구한다', () => {

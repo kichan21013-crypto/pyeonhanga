@@ -78,8 +78,8 @@ test('출력에서 HTML 삽입을 차단하고 unknown 안내를 제공한다', 
   const p = { ...fixture('fixture-xss'), name: '<script>alert(1)</script>', image: 'javascript:alert(1)' };
   assert.ok(!card(p).includes('<script>'));
   assert.ok(!card(p).includes('src="javascript:'));
-  assert.match(detailMarkup(p), /정보 더 필요/);
-  assert.match(detailMarkup(p), /정보 신뢰도/);
+  assert.match(detailMarkup(p), /편안함 정보는 확인된 것만/);
+  assert.match(detailMarkup(p), /편안함 점수는 확인 근거 40% 이상일 때 표시/);
 });
 test('실제 데이터는 출처를 요구하고 중복 URL을 거부한다', () => {
   const missingSource = { ...fixture('fixture-source'), isDemo: false, sourceName: null, sourceUrl: null };
@@ -113,7 +113,7 @@ test('정적 HTML 상세/SEO/사이트맵이 배포용 추천 풀 기준으로 �
   for (const p of builtPlaces) {
     const html = await readFile(new URL(`../dist/places/${p.slug}/index.html`, import.meta.url), 'utf8');
     assert.match(html, /property="og:title"/);
-    assert.ok(html.includes('확인된 이용 정보') || html.includes('어떤 점이 편안한가요'));
+    assert.ok(html.includes('방문 전에 필요한 정보부터') || html.includes('편안함 정보는 확인된 것만') || html.includes('확인된 편안함 정보'));
     assert.match(html, /class="nav-home" href="\/"/);
     const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
     assert.ok(!canonicals.has(canonical)); canonicals.add(canonical);
