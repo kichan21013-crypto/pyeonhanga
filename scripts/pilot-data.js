@@ -1,3 +1,6 @@
+import { auditTourApiPlaces } from './tourapi-quality.js';
+import { scoreRecommendationReadiness } from './recommendation-readiness.js';
+
 const REGIONS = ['서울','경기','강릉','경주','부산','제주'];
 const TARGET_PER_REGION = 8;
 const SOURCE_URL = 'https://api.visitkorea.or.kr/';
@@ -32,66 +35,101 @@ function derivedIntentTags(place) {
   return [...tags];
 }
 
-function scoreCandidate(item, barrier, place) {
-  const general = Number(item?.completeness?.knownOperationalFacts || 0);
-  const barrierKnown = Number(barrier?.completeness?.knownFields || 0);
-  const hasRealImage = Boolean(place?.tourApi?.imageSourceUrl);
-  return general * 3 + barrierKnown * 4 + (hasRealImage ? 2 : 0);
+function reserveCount(count) {
+  if (count >= 6) return 2;
+  if (count >= 2) return 1;
+  return 0;
 }
 
 function pickBalanced(items, count = TARGET_PER_REGION) {
-  const categories = ['나들이','맛집','여행'];
   const selected = [];
-  const byCategory = Object.fromEntries(categories.map(category => [category, items.filter(x => x.category === category)]));
-  const firstPass = Math.floor(count / 2);
-  for (const category of ['나들이','맛집']) selected.push(...byCategory[category].slice(0, firstPass));
-  for (const item of items) {
-    if (selected.length >= count) break;
-    if (!selected.some(x => x.id === item.id)) selected.push(item);
+  const selectedIds = new Set();
+  const reserveEach = reserveCount(count);
+  const pick = item => {
+    if (!item || selectedIds.has(item.id) || selected.length >= count) return;
+    selected.push(item);
+    selectedIds.add(item.id);
+  };
+
+  for (const category of ['나들이','맛집']) {
+    items.filter(item => item.category === category).slice(0, reserveEach).forEach(pick);
   }
+  for (const item of items) pick(item);
   return selected.slice(0, count);
+}
+
+function latestReferenceDate(audited, generalReport, barrierReport) {
+  if (generalReport?.generatedAt) return generalReport.generatedAt;
+  if (barrierReport?.generatedAt) return barrierReport.generatedAt;
+  return audited.map(item => item.modifiedTime).filter(Boolean).sort().at(-1) || null;
 }
 
 export function buildPilotPlaces(places, generalReport, barrierReport, targetPerRegion = TARGET_PER_REGION) {
   const placeMap = new Map(places.map(place => [place.id, place]));
+  const detailMap = new Map((generalReport?.places || []).map(item => [item.id, item]));
   const barrierMap = new Map((barrierReport?.places || []).map(item => [item.id, item]));
-  const candidates = (generalReport?.places || []).map(item => {
-    const place = placeMap.get(item.id);
+  const { audited } = auditTourApiPlaces(places);
+  const qualityCandidates = audited.filter(item => item.role === 'place' && item.status === 'candidate');
+  const referenceDate = latestReferenceDate(qualityCandidates, generalReport, barrierReport);
+
+  const candidates = qualityCandidates.map(audit => {
+    const place = placeMap.get(audit.id);
     if (!place) return null;
-    const barrier = barrierMap.get(item.id) || null;
-    return { ...item, _place: place, _barrier: barrier, _score: scoreCandidate(item, barrier, place) };
+    const detail = detailMap.get(audit.id) || null;
+    const barrier = barrierMap.get(audit.id) || null;
+    const readiness = scoreRecommendationReadiness({ place, audit, detail, barrier, referenceDate });
+    return {
+      id: place.id,
+      name: place.name,
+      region: place.region,
+      category: place.category,
+      modifiedTime: detail?.modifiedTime || place.tourApi?.modifiedTime || null,
+      _place: place,
+      _detail: detail,
+      _barrier: barrier,
+      _readiness: readiness,
+    };
   }).filter(Boolean);
+
   const selected = [];
   for (const region of REGIONS) {
-    const regionItems = candidates.filter(item => item.region === region).sort((a,b) => b._score - a._score || String(b.modifiedTime).localeCompare(String(a.modifiedTime)) || a.name.localeCompare(b.name,'ko'));
+    const regionItems = candidates.filter(item => item.region === region).sort((a,b) =>
+      b._readiness.score - a._readiness.score
+      || String(b.modifiedTime || '').localeCompare(String(a.modifiedTime || ''))
+      || a.name.localeCompare(b.name,'ko'));
     selected.push(...pickBalanced(regionItems, targetPerRegion));
   }
-  const reportDate = String(generalReport?.generatedAt || new Date().toISOString()).slice(0,10);
+
+  const reportDate = String(generalReport?.generatedAt || barrierReport?.generatedAt || '').slice(0,10);
   return selected.map(item => {
     const base = structuredClone(item._place);
-    const repeated = repeatedFacts(item);
-    const generalFacts = {
-      parkingText: clean(item.facts?.parkingText) || null,
-      operatingHoursText: clean(item.facts?.operatingHoursText) || null,
-      restDayText: clean(item.facts?.restDayText) || null,
-      infoCenterText: clean(item.facts?.infoCenterText) || null,
-      reservationText: clean(item.facts?.reservationText) || null,
-      seatText: clean(item.facts?.seatText) || null,
-      firstMenuText: clean(item.facts?.firstMenuText) || null,
-      menuText: clean(item.facts?.menuText) || null,
-      restroomText: repeated.restroomText || null,
-      feeText: repeated.feeText || null,
-    };
-    const barrierFacts = item._barrier ? Object.fromEntries(Object.entries(item._barrier.facts || {}).map(([key,value]) => [key, clean(value) || null])) : {};
-    base.verifiedFacts = {
-      verifiedAt: reportDate,
-      sourceName: '한국관광공사 TourAPI',
-      sourceUrl: SOURCE_URL,
-      general: generalFacts,
-      barrierFree: barrierFacts,
-    };
+    const detail = item._detail;
+    if (detail) {
+      const repeated = repeatedFacts(detail);
+      const generalFacts = {
+        parkingText: clean(detail.facts?.parkingText) || null,
+        operatingHoursText: clean(detail.facts?.operatingHoursText) || null,
+        restDayText: clean(detail.facts?.restDayText) || null,
+        infoCenterText: clean(detail.facts?.infoCenterText) || null,
+        reservationText: clean(detail.facts?.reservationText) || null,
+        seatText: clean(detail.facts?.seatText) || null,
+        firstMenuText: clean(detail.facts?.firstMenuText) || null,
+        menuText: clean(detail.facts?.menuText) || null,
+        restroomText: repeated.restroomText || null,
+        feeText: repeated.feeText || null,
+      };
+      const barrierFacts = item._barrier ? Object.fromEntries(Object.entries(item._barrier.facts || {}).map(([key,value]) => [key, clean(value) || null])) : {};
+      base.verifiedFacts = {
+        verifiedAt: reportDate,
+        sourceName: '한국관광공사 TourAPI',
+        sourceUrl: SOURCE_URL,
+        general: generalFacts,
+        barrierFree: barrierFacts,
+      };
+    }
     base.intentTags = derivedIntentTags(base);
-    base.pilotRankScore = item._score;
+    base.recommendationReadiness = item._readiness;
+    base.pilotRankScore = item._readiness.score;
     return base;
   });
 }
