@@ -16,16 +16,17 @@ test('시작 전 질문/결과는 숨기고 CTA로 시작하면 1단계만 열�
   h.flow.start(f);assert.equal(h.explore.hidden,false);assert.deepEqual(h.steps.map(e=>e.hidden),[false,true,true]);
   assert.equal(h.steps[0].open,true);assert.equal(h.results.hidden,true);assert.equal(h.final.disabled,true);
 });
-test('욕구 하나 이상 선택하면 2단계가 나타나며 세부활동·다중욕구를 계속 고를 수 있다',()=>{
+test('욕구를 고르면 2단계는 보이되 자동으로 펼쳐지지 않고 세부활동·다중욕구를 계속 고를 수 있다',()=>{
   const h=harness(),f=emptyRhythmFilters();h.flow.start(f);
-  f.desires=toggleSelection(f.desires,'move');h.flow.update(f);assert.equal(h.steps[1].hidden,false);assert.equal(h.steps[1].open,true);assert.equal(h.steps[2].hidden,true);
+  f.desires=toggleSelection(f.desires,'move');h.flow.update(f);assert.equal(h.steps[1].hidden,false);assert.equal(h.steps[1].open,false);assert.equal(h.steps[0].open,true);assert.equal(h.steps[2].hidden,true);
   f.desires=toggleSelection(f.desires,'eat');f.activities=['walk','noodle'];h.flow.update(f);
   assert.deepEqual(f.desires,['move','eat']);assert.deepEqual(activeActivities(f.desires,f.activities),['walk','noodle']);assert.equal(h.results.hidden,true);
-});
-test('동행 선택 후 3단계가 열리고 마지막 CTA 전에는 결과를 표시하지 않는다',()=>{
-  const h=harness(),f={...emptyRhythmFilters(),desires:['eat']};h.flow.start(f);
-  f.companions=toggleSelection(f.companions,'solo');h.flow.update(f);assert.equal(h.steps[2].hidden,false);assert.equal(h.final.disabled,false);
   h.flow.activate(2);assert.equal(h.steps[0].open,false);assert.equal(h.steps[1].open,true);
+});
+test('동행 선택 후 3단계가 보이되 마지막 CTA 전에는 결과를 표시하지 않는다',()=>{
+  const h=harness(),f={...emptyRhythmFilters(),desires:['eat']};h.flow.start(f);h.flow.activate(2);
+  f.companions=toggleSelection(f.companions,'solo');h.flow.update(f);assert.equal(h.steps[2].hidden,false);assert.equal(h.steps[2].open,false);assert.equal(h.final.disabled,false);
+  h.flow.activate(3);assert.equal(h.steps[1].open,false);assert.equal(h.steps[2].open,true);
   f.companions=toggleSelection(f.companions,'friend');h.flow.update(f);assert.deepEqual(f.companions,['solo','friend']);
   f.duration='short';f.transport='car';h.flow.update(f);assert.equal(h.results.hidden,true);
   assert.equal(h.flow.submit(f),true);assert.equal(h.results.hidden,false);
@@ -53,6 +54,7 @@ test('생성 홈에는 단계·진행 표시·숨긴 결과와 자체 Hero SVG�
   assert.match(html,/<section id="explore"[^>]* hidden>/);assert.match(html,/id="flow-step-1"[^>]* open>/);
   assert.match(html,/id="flow-step-2"[^>]* hidden>/);assert.match(html,/id="flow-step-3"[^>]* hidden>/);
   assert.match(html,/id="rhythm-results" hidden/);assert.match(html,/오늘의 리듬 보기/);assert.match(html,/나에게 중요한 조건 더하기/);
+  assert.match(html,/class="nav-home" href="\/"/);assert.match(html,/mobile-ux\.css/);
   for(const n of [1,2,3])assert.ok(html.includes(`${n} / 3`));
   assert.match(html,/id="day-paths-title">오늘 하루의 여러 갈림길/);assert.match(html,/role="img" aria-labelledby="day-paths-title day-paths-desc"/);
   const places=JSON.parse(await readFile(new URL('../data/places.json',import.meta.url)));

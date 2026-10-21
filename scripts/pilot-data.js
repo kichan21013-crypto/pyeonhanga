@@ -1,5 +1,5 @@
 const REGIONS = ['서울','경기','강릉','경주','부산','제주'];
-const TARGET_PER_REGION = 6;
+const TARGET_PER_REGION = 8;
 const SOURCE_URL = 'https://api.visitkorea.or.kr/';
 
 const clean = value => String(value || '').replace(/<br\s*\/?>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
@@ -14,6 +14,22 @@ function repeatedFacts(item = {}) {
     if (/입\s*장\s*료|이용요금|요금/.test(name) && !facts.feeText) facts.feeText = text;
   }
   return facts;
+}
+
+function derivedIntentTags(place) {
+  const tags = new Set(place.intentTags || []);
+  const text = `${place.name || ''} ${place.shortDescription || ''}`;
+  if (place.category === '맛집') tags.add('food');
+  if (place.category === '여행') tags.add('travel');
+  if (place.category === '나들이') tags.add('outing');
+  if (/카페|커피|다락/.test(text)) ['cafe','quiet_rest','conversation'].forEach(v => tags.add(v));
+  if (/칼국수|국수|면|라멘|우동/.test(text)) tags.add('noodle');
+  if (/갈비|숯불|고기|암소|돼지|한우/.test(text)) tags.add('meat');
+  if (/횟집|회|해물|수산|생선/.test(text)) tags.add('seafood');
+  if (/산|오름|계곡/.test(text)) ['hike','walk','scenery'].forEach(v => tags.add(v));
+  if (/해변|바다|포구|항|해수욕/.test(text)) ['sea','walk','scenery'].forEach(v => tags.add(v));
+  if (/공원|호수|광장|마을|서원|사\(|사$|터널|정원/.test(text)) ['walk','scenery'].forEach(v => tags.add(v));
+  return [...tags];
 }
 
 function scoreCandidate(item, barrier, place) {
@@ -74,6 +90,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       general: generalFacts,
       barrierFree: barrierFacts,
     };
+    base.intentTags = derivedIntentTags(base);
     base.pilotRankScore = item._score;
     return base;
   });
