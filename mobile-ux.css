@@ -1,3 +1,4 @@
+@import url('/assets/mvp15-visual.css');
 /* 모바일 검증판: 한 화면에 한 질문만 보여주고 보조 조건은 선택 사항으로 둡니다. */
 .nav-home{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 12px;border:1px solid #d8ded3;border-radius:999px;background:#fff;font-weight:700}
 .nav-home:before{content:'⌂';font-size:1.05em;margin-right:5px}

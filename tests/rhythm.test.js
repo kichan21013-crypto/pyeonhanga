@@ -40,6 +40,16 @@ test('욕구·세부활동은 하나라도 맞으면 남기며 여러 욕구에 
   assert.deepEqual(activeActivities(['move'],['walk','noodle']),['walk']);
   assert.deepEqual(toggleSelection(['move'],'move'),[]);
 });
+test('세부 활동 정보가 없으면 결과를 비우지 않고 같은 욕구의 후보로 완화한다', () => {
+  const walk=sample('demo-walk-fallback',['walk']),food=sample('demo-food-fallback',['food']);
+  food.category='맛집';
+  const results=recommendRhythms([food,walk],{...emptyRhythmFilters(),desires:['move'],activities:['run']});
+  assert.equal(results.length,1);
+  assert.equal(results[0].place.id,walk.id);
+  assert.equal(results[0].activityMatches,0);
+  assert.equal(results[0].desireMatches,1);
+  assert.equal(results[0].fallbackActivity,true);
+});
 test('자연어와 선택한 칩을 함께 반영하고 복합 문장에서 거리·어미를 분리한다', () => {
   const query='혼자 10km 정도 뛰고 맛있는 거 먹고 싶어';
   const intent=inferIntent(query);assert.equal(intent.distanceKm,10);assert.deepEqual(intent.tokens,[]);

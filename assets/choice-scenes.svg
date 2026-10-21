@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="120" viewBox="0 0 960 120">
+  <defs>
+    <linearGradient id="gFood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff1dc"/><stop offset="1" stop-color="#f7d3b9"/></linearGradient>
+    <linearGradient id="gMove" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0ec"/><stop offset="1" stop-color="#f0c8c2"/></linearGradient>
+    <linearGradient id="gOut" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eef7e8"/><stop offset="1" stop-color="#cce4c4"/></linearGradient>
+    <linearGradient id="gRest" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5f0fb"/><stop offset="1" stop-color="#ddd2ee"/></linearGradient>
+    <linearGradient id="gDrive" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf5fa"/><stop offset="1" stop-color="#c9e0ec"/></linearGradient>
+    <linearGradient id="gSocial" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8f4ec"/><stop offset="1" stop-color="#e5d6bc"/></linearGradient>
+  </defs>
+
+  <!-- food -->
+  <g transform="translate(0)"><rect width="160" height="120" rx="24" fill="url(#gFood)"/><ellipse cx="80" cy="92" rx="50" ry="9" fill="#9a5d3b20"/><path d="M45 58h70c-3 30-19 42-35 42S48 88 45 58Z" fill="#fffdf8" stroke="#c9794e" stroke-width="3"/><path d="M58 54c7-11 16-17 22-23m3 23c4-13 12-20 18-27" fill="none" stroke="#d56b47" stroke-width="4" stroke-linecap="round"/><path d="M60 68c10 9 30 9 40 0" fill="none" stroke="#f1b65e" stroke-width="5" stroke-linecap="round"/></g>
+
+  <!-- move -->
+  <g transform="translate(160)"><rect width="160" height="120" rx="24" fill="url(#gMove)"/><path d="M14 96c39-18 65-9 132-46" fill="none" stroke="#fffdf7" stroke-width="18" stroke-linecap="round"/><circle cx="85" cy="40" r="10" fill="#bf8064"/><path d="m78 54-17 24 18 9 17-28Z" fill="#d85f50"/><path d="m64 75-25 15m38-1 22 17m-10-46 22 4 11-13" fill="none" stroke="#4e5960" stroke-width="7" stroke-linecap="round"/></g>
+
+  <!-- outdoor -->
+  <g transform="translate(320)"><rect width="160" height="120" rx="24" fill="url(#gOut)"/><circle cx="126" cy="28" r="14" fill="#f5cf78"/><path d="M12 88 49 44l29 30 23-39 47 53Z" fill="#8db486"/><path d="M0 88c38-12 72-6 160-20v52H0Z" fill="#dcebd2"/><path d="M20 98c36-21 71-19 123-10" fill="none" stroke="#fffdf6" stroke-width="10" stroke-linecap="round"/><path d="M114 49q13-9 26 0" fill="none" stroke="#5f8766" stroke-width="3" stroke-linecap="round"/></g>
+
+  <!-- rest -->
+  <g transform="translate(480)"><rect width="160" height="120" rx="24" fill="url(#gRest)"/><rect x="33" y="70" width="94" height="8" rx="4" fill="#8f705e"/><path d="M52 77v27m56-27v27" stroke="#8f705e" stroke-width="5" stroke-linecap="round"/><path d="M58 43h35v21c0 9-7 16-17 16S58 73 58 64Z" fill="#fffdf9" stroke="#7b638f" stroke-width="3"/><path d="M93 49h9c13 0 13 17 0 17h-9" fill="none" stroke="#7b638f" stroke-width="3"/><path d="M67 36c-7-9 8-12 2-21m15 21c-6-8 7-11 3-19" fill="none" stroke="#a98cbc" stroke-width="3" stroke-linecap="round"/></g>
+
+  <!-- drive -->
+  <g transform="translate(640)"><rect width="160" height="120" rx="24" fill="url(#gDrive)"/><path d="M0 89c41-13 83-12 160-36v67H0Z" fill="#d7e8de"/><path d="M18 109c25-27 59-29 128-54" fill="none" stroke="#fffdf7" stroke-width="18" stroke-linecap="round"/><g transform="translate(67 55) rotate(-10)"><rect width="54" height="24" rx="9" fill="#4f7896"/><path d="m12 0 9-14h19L48 0Z" fill="#4f7896"/><circle cx="12" cy="24" r="7" fill="#40505a"/><circle cx="43" cy="24" r="7" fill="#40505a"/></g><path d="M20 32q12-9 24 0m7 5q9-7 18 0" fill="none" stroke="#76a5b7" stroke-width="3" stroke-linecap="round"/></g>
+
+  <!-- social -->
+  <g transform="translate(800)"><rect width="160" height="120" rx="24" fill="url(#gSocial)"/><circle cx="58" cy="42" r="12" fill="#bf8468"/><circle cx="102" cy="42" r="12" fill="#a96f58"/><path d="M38 92c2-24 10-37 20-37s19 13 21 37Z" fill="#557b65"/><path d="M81 92c2-24 11-37 21-37s18 13 20 37Z" fill="#6689a0"/><path d="M55 96h51" stroke="#9b795d" stroke-width="7" stroke-linecap="round"/><path d="M74 69h16v11c0 7-4 12-8 12s-8-5-8-12Z" fill="#fffdf8" stroke="#b47d55" stroke-width="2"/></g>
+</svg>

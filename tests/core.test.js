@@ -96,23 +96,24 @@ test('TourAPI 변환은 원본 식별자를 보존하고 편안함을 생성하�
   assert.deepEqual(p.companions, []);
   assert.equal(convertItem({ contentid: 'bad' }, '서울', '맛집'), null);
 });
-test('배포용 파일럿은 48개이고 사실형 정보를 포함하지만 편안함 점수를 만들지 않는다', async () => {
+test('배포용 추천 풀은 최대 180개로 확대되고 확인된 사실과 unknown 원칙을 함께 유지한다', async () => {
   const builtPlaces = JSON.parse(await readFile(new URL('../dist/data/places.json', import.meta.url)));
-  assert.equal(builtPlaces.length, 48);
+  assert.ok(builtPlaces.length >= 150 && builtPlaces.length <= 180, `배포 장소 수 ${builtPlaces.length}`);
   assert.equal(new Set(builtPlaces.map(p => p.region)).size, 6);
-  assert.ok(builtPlaces.every(p => p.verifiedFacts?.verifiedAt));
-  assert.ok(builtPlaces.some(p => Object.values(p.verifiedFacts?.barrierFree || {}).some(Boolean)));
+  const withFacts = builtPlaces.filter(p => p.verifiedFacts?.verifiedAt);
+  assert.ok(withFacts.length >= 60, `확인된 사실 장소 ${withFacts.length}`);
+  assert.ok(withFacts.some(p => Object.values(p.verifiedFacts?.barrierFree || {}).some(Boolean)));
   assert.ok(builtPlaces.some(p => (p.intentTags || []).includes('walk') || (p.intentTags || []).includes('cafe') || (p.intentTags || []).includes('food')));
   assert.ok(builtPlaces.every(p => calculateComfort(p.comfort).score === null));
 });
-test('정적 HTML 상세/SEO/사이트맵이 배포용 파일럿 기준으로 빌드된다', async () => {
+test('정적 HTML 상세/SEO/사이트맵이 배포용 추천 풀 기준으로 빌드된다', async () => {
   const sitemap = await readFile(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
   const builtPlaces = JSON.parse(await readFile(new URL('../dist/data/places.json', import.meta.url)));
   const canonicals = new Set();
   for (const p of builtPlaces) {
     const html = await readFile(new URL(`../dist/places/${p.slug}/index.html`, import.meta.url), 'utf8');
     assert.match(html, /property="og:title"/);
-    assert.match(html, /확인된 이용 정보/);
+    assert.ok(html.includes('확인된 이용 정보') || html.includes('어떤 점이 편안한가요'));
     assert.match(html, /class="nav-home" href="\/"/);
     const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
     assert.ok(!canonicals.has(canonical)); canonicals.add(canonical);

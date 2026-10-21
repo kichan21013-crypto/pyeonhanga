@@ -2,7 +2,7 @@ import { auditTourApiPlaces } from './tourapi-quality.js';
 import { scoreRecommendationReadiness } from './recommendation-readiness.js';
 
 const REGIONS = ['서울','경기','강릉','경주','부산','제주'];
-const TARGET_PER_REGION = 8;
+const TARGET_PER_REGION = 30;
 const SOURCE_URL = 'https://api.visitkorea.or.kr/';
 
 const clean = value => String(value || '').replace(/<br\s*\/?>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
@@ -23,20 +23,28 @@ function derivedIntentTags(place) {
   const tags = new Set(place.intentTags || []);
   const text = `${place.name || ''} ${place.shortDescription || ''}`;
   if (place.category === '맛집') tags.add('food');
-  if (place.category === '여행') tags.add('travel');
+  if (place.category === '여행') ['travel','outing'].forEach(v => tags.add(v));
   if (place.category === '나들이') tags.add('outing');
-  if (/카페|커피|다락/.test(text)) ['cafe','quiet_rest','conversation'].forEach(v => tags.add(v));
-  if (/칼국수|국수|면|라멘|우동/.test(text)) tags.add('noodle');
-  if (/갈비|숯불|고기|암소|돼지|한우/.test(text)) tags.add('meat');
-  if (/횟집|회|해물|수산|생선/.test(text)) tags.add('seafood');
-  if (/산|오름|계곡/.test(text)) ['hike','walk','scenery'].forEach(v => tags.add(v));
-  if (/해변|바다|포구|항|해수욕/.test(text)) ['sea','walk','scenery'].forEach(v => tags.add(v));
-  if (/공원|호수|광장|마을|서원|사\(|사$|터널|정원/.test(text)) ['walk','scenery'].forEach(v => tags.add(v));
+
+  if (/카페|커피|다방|베이커리|티하우스|찻집/.test(text)) ['cafe','quiet_rest','conversation'].forEach(v => tags.add(v));
+  if (/칼국수|국수|냉면|밀면|라멘|라면|우동|막국수|메밀/.test(text)) tags.add('noodle');
+  if (/한식|백반|정식|돌솥|국밥|해장국|순두부|찌개|전골|밥상/.test(text)) ['korean_food','food'].forEach(v => tags.add(v));
+  if (/갈비|숯불|고기|암소|돼지|한우|삼겹|불고기|곱창/.test(text)) ['meat','food'].forEach(v => tags.add(v));
+  if (/횟집|회|해물|수산|생선|조개|대게|문어|전복/.test(text)) ['seafood','food'].forEach(v => tags.add(v));
+
+  if (/산|오름|계곡|숲|수목원|휴양림|둘레길|등산/.test(text)) ['hike','walk','scenery'].forEach(v => tags.add(v));
+  if (/해변|바다|포구|항|해수욕|해안|섬/.test(text)) ['sea','walk','scenery','drive'].forEach(v => tags.add(v));
+  if (/공원|호수|광장|마을|정원|산책|수변|천변|강변/.test(text)) ['walk','scenery'].forEach(v => tags.add(v));
+  if (/박물관|미술관|전시|기념관|문화|역사|사적|왕릉|고분|서원|향교|사찰|사\(|사$|성당|궁|성곽|유적/.test(text)) ['culture','outing'].forEach(v => tags.add(v));
+  if (/전망대|전망|드라이브|해안도로|스카이|케이블카/.test(text)) ['drive','scenery'].forEach(v => tags.add(v));
+  if (/자전거|라이딩|바이크/.test(text)) tags.add('bike');
+  if (/러닝|달리기|마라톤/.test(text)) tags.add('run');
   return [...tags];
 }
 
 function reserveCount(count) {
-  if (count >= 6) return 2;
+  if (count >= 20) return Math.max(4, Math.round(count * 0.2));
+  if (count >= 8) return 2;
   if (count >= 2) return 1;
   return 0;
 }
@@ -65,6 +73,8 @@ function latestReferenceDate(audited, generalReport, barrierReport) {
 }
 
 export function buildPilotPlaces(places, generalReport, barrierReport, targetPerRegion = TARGET_PER_REGION) {
+  // 기존 build.js가 넘기던 8은 구버전 파일럿 크기다. MVP 1.5에서는 공개 풀을 30개/지역으로 확장한다.
+  const effectiveTarget = targetPerRegion === 8 ? TARGET_PER_REGION : targetPerRegion;
   const placeMap = new Map(places.map(place => [place.id, place]));
   const detailMap = new Map((generalReport?.places || []).map(item => [item.id, item]));
   const barrierMap = new Map((barrierReport?.places || []).map(item => [item.id, item]));
@@ -97,7 +107,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       b._readiness.score - a._readiness.score
       || String(b.modifiedTime || '').localeCompare(String(a.modifiedTime || ''))
       || a.name.localeCompare(b.name,'ko'));
-    selected.push(...pickBalanced(regionItems, targetPerRegion));
+    selected.push(...pickBalanced(regionItems, effectiveTarget));
   }
 
   const reportDate = String(generalReport?.generatedAt || barrierReport?.generatedAt || '').slice(0,10);

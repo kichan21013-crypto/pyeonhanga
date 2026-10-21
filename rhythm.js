@@ -52,9 +52,8 @@ export function recommendRhythms(places, f = emptyRhythmFilters()) {
   const parsedTags = intent.intents.filter(key => ACTIVITIES[key]);
   const wanted = [...new Set([...desiredTags,...selectedActivities,...parsedTags])];
   const candidates = recommendPlaces(places, { ...f, query: intent.tokens.join(' '), companion: '', comforts: requestedComforts(f,intent), category: f.category || '', region: f.region || (intent.regions.length === 1 ? intent.regions[0] : '') });
-  return candidates.map(candidate => {
+  const ranked = candidates.map(candidate => {
     const p = candidate.place, tags = activityTags(p), matches = wanted.filter(key => hasActivity(tags,key));
-    if (wanted.length && !matches.length) return null;
     if (intent.regions.length > 1 && !f.region && !intent.regions.includes(p.region)) return null;
     const companionMatches = selectedCompanions.filter(key => p.companions?.some(value => companionCode(value) === key)).length;
     // 알 수 없는 동행 적합성은 허위 일치로 세지 않으며, 확인된 하나 이상의 일치를 먼저 추천합니다.
@@ -67,9 +66,16 @@ export function recommendRhythms(places, f = emptyRhythmFilters()) {
     const activity = matches.find(key => !['food','outing','travel'].includes(key)) || matches[0] || [...tags].find(key => ACTIVITIES[key]) || 'outing';
     const label = ACTIVITIES[activity]?.[0] || '장소 둘러보기';
     const route = p.route?.sourceUrl && p.route?.verifiedAt ? p.route : unknownRoute();
-    return { ...candidate, id: `rhythm-${p.id}`, title: `${label} · ${p.name}`, activityType: activity, conditionMatches, companionMatches, desireMatches, activityMatches: matches.length,
+    const fallbackActivity = Boolean(wanted.length && !matches.length && desireMatches > 0);
+    const fallbackReason = !p.isDemo && fallbackActivity ? '선택한 세부 활동 정보는 부족해 비슷한 유형부터 보여드려요' : null;
+    return { ...candidate, id: `rhythm-${p.id}`, title: `${label} · ${p.name}`, activityType: activity, conditionMatches, companionMatches, desireMatches, activityMatches: matches.length, fallbackActivity,
       plan: { region: p.region, stops: [{ placeId: p.id, activityType: activity }], transfers: [], duration: verifiedVisit ? visit.duration : 'unknown', distanceKm: route.distanceKm, isDemo: Boolean(p.isDemo) },
-      reasons: [...candidate.reasons, ...(!p.isDemo && durationMatch ? [`확인된 체류 시간: ${DURATION_OPTIONS[f.duration]}`] : []), ...(!p.isDemo && transportMatch ? [`${TRANSPORT_OPTIONS[f.transport]} 방문 정보 확인`] : [])].slice(0,2),
+      reasons: [...candidate.reasons, ...(fallbackReason ? [fallbackReason] : []), ...(!p.isDemo && durationMatch ? [`확인된 체류 시간: ${DURATION_OPTIONS[f.duration]}`] : []), ...(!p.isDemo && transportMatch ? [`${TRANSPORT_OPTIONS[f.transport]} 방문 정보 확인`] : [])].slice(0,2),
     };
-  }).filter(Boolean).sort((a,b) => b.conditionMatches-a.conditionMatches || b.companionMatches-a.companionMatches || b.desireMatches-a.desireMatches || b.activityMatches-a.activityMatches || b.relevance-a.relevance || a.order-b.order);
+  }).filter(Boolean);
+
+  // 세부 활동이 희소해도 같은 욕구(예: 러닝→걷기/등산)의 후보는 남긴다.
+  const related = wanted.length ? ranked.filter(result => result.activityMatches > 0 || result.desireMatches > 0) : ranked;
+  const pool = related.length ? related : ranked;
+  return pool.sort((a,b) => b.conditionMatches-a.conditionMatches || b.companionMatches-a.companionMatches || b.activityMatches-a.activityMatches || b.desireMatches-a.desireMatches || b.relevance-a.relevance || a.order-b.order);
 }
