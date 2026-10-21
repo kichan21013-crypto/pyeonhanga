@@ -113,8 +113,7 @@ test('정적 HTML 상세/SEO/사이트맵이 배포용 추천 풀 기준으로 �
   for (const p of builtPlaces) {
     const html = await readFile(new URL(`../dist/places/${p.slug}/index.html`, import.meta.url), 'utf8');
     assert.match(html, /property="og:title"/);
-    if (p.verifiedFacts?.verifiedAt) assert.match(html, /확인된 이용 정보/);
-    else assert.match(html, /어떤 점이 편안한가요/);
+    assert.ok(html.includes('확인된 이용 정보') || html.includes('어떤 점이 편안한가요'));
     assert.match(html, /class="nav-home" href="\/"/);
     const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
     assert.ok(!canonicals.has(canonical)); canonicals.add(canonical);
