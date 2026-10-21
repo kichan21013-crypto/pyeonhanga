@@ -2,7 +2,8 @@
 export function flowAvailability(filters) {
   const intent = Boolean(filters.desires?.length || filters.query?.trim());
   const companions = Boolean(filters.companions?.length);
-  return { intent, companions, steps: [true, intent, intent && companions], ready: intent && companions };
+  // 핵심 선택은 '오늘 무엇이 당기는지' 하나뿐입니다. 동행/시간/이동은 선택 사항입니다.
+  return { intent, companions, steps: [true, intent, intent], ready: intent };
 }
 export function createProgressiveFlow(root, { reducedMotion = () => globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? true } = {}) {
   const explore = root.querySelector('#explore');
@@ -14,7 +15,7 @@ export function createProgressiveFlow(root, { reducedMotion = () => globalThis.m
     const reveal = element.hidden && show;
     element.hidden = !show;
     if (reveal && !reducedMotion() && typeof element.animate === 'function') {
-      element.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 180, easing: 'ease-out' });
+      element.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 160, easing: 'ease-out' });
     }
   }
   function paint() {
@@ -22,9 +23,10 @@ export function createProgressiveFlow(root, { reducedMotion = () => globalThis.m
     visible(explore, started);
     steps.forEach((step, i) => {
       const availableNow = available.steps[i];
-      visible(step, availableNow);
-      if (!availableNow) step.open = false;
-      else step.open = started && i === activeStep - 1;
+      const activeNow = started && availableNow && i === activeStep - 1 && !showingResults;
+      // 이전/다음 질문을 화면 아래에 쌓지 않고 현재 질문 하나만 보여줍니다.
+      visible(step, activeNow);
+      step.open = activeNow;
       step.dataset.available = String(availableNow);
     });
     root.querySelectorAll('[data-next-step]').forEach(button => visible(button, available.steps[Number(button.dataset.nextStep) - 1]));
@@ -39,9 +41,10 @@ export function createProgressiveFlow(root, { reducedMotion = () => globalThis.m
     paint();
   }
   function activate(number) {
-    const target = steps[number - 1];
-    if (!target || target.hidden || !started) return false;
+    const available = flowAvailability(selection);
+    if (!started || !available.steps[number - 1] || !steps[number - 1]) return false;
     activeStep = number;
+    showingResults = false;
     paint();
     return true;
   }
