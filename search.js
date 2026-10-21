@@ -107,7 +107,10 @@ export function recommendPlaces(places, f = emptyFilters()) {
   const preferredCategory = f.category === 'auto' ? intent.category : f.category;
   const specific = intent.intents.filter(tag => !['food','travel','quiet','low_walking'].includes(tag));
   const searchableIntents = specific.length ? specific : intent.intents.filter(tag => ['food','travel'].includes(tag));
-  return places.map((p, order) => {
+  const hasStructuredIntent = Boolean(intent.intents.length || intent.regions.length || intent.companion || intent.comforts.length);
+  const freeTextOnly = Boolean(intent.tokens.length && !hasStructuredIntent);
+
+  const candidates = places.map((p, order) => {
     if (f.region && p.region !== f.region) return null;
     if (!f.region && intent.regions.length && !intent.regions.includes(p.region)) return null;
     // 자동 분류는 우선순위이므로 카페(맛집)도 나들이에서 찾을 수 있습니다.
@@ -115,18 +118,31 @@ export function recommendPlaces(places, f = emptyFilters()) {
     if (!required.every(key => comfortMatches(p, key, f))) return null;
     const matchedComforts = selected.filter(key => comfortMatches(p, key, f)).length;
     const haystack = `${p.name} ${p.category} ${p.region} ${p.address} ${p.shortDescription}`.toLowerCase();
-    if (!intent.tokens.every(token => haystack.includes(token))) return null;
+    const tokenHits = intent.tokens.filter(token => haystack.includes(token)).length;
+    if (freeTextOnly && tokenHits !== intent.tokens.length) return null;
     const intentHits = searchableIntents.filter(tag => matchesIntent(p, tag, haystack)).length;
-    if (searchableIntents.length && !intentHits) return null;
     const companionHit = companion && p.companions?.some(value => companionCode(value) === companion) ? 1 : 0;
     const comfort = calculateComfort(p.comfort);
     const readiness = Math.max(0, Math.min(100, Number(p.recommendationReadiness?.score ?? p.pilotRankScore ?? 0)));
-    const relevance = intentHits * RECOMMENDATION_WEIGHTS.text + companionHit * RECOMMENDATION_WEIGHTS.companion
+    const relevance = (intentHits + tokenHits) * RECOMMENDATION_WEIGHTS.text + companionHit * RECOMMENDATION_WEIGHTS.companion
       + matchedComforts * RECOMMENDATION_WEIGHTS.comfort + (preferredCategory && p.category === preferredCategory ? RECOMMENDATION_WEIGHTS.category : 0)
       + (comfort.score === null ? 0 : comfort.score / 100 * comfort.coverage * RECOMMENDATION_WEIGHTS.score)
       + readiness / 100 * RECOMMENDATION_WEIGHTS.readiness;
-    return { place: p, relevance, matchedComforts, reasons: recommendationReasons(p, f), order };
+    return { place: p, relevance, matchedComforts, reasons: recommendationReasons(p, f), order, intentHits, tokenHits, fallbackIntent: false };
+  }).filter(Boolean);
+
+  let eligible = candidates;
+  if (searchableIntents.length) {
+    const exactIntent = candidates.filter(result => result.intentHits > 0);
+    if (exactIntent.length) {
+      eligible = exactIntent;
+    } else if (intent.category) {
+      const categoryFallback = candidates.filter(result => result.place.category === intent.category);
+      if (categoryFallback.length) eligible = categoryFallback.map(result => ({ ...result, fallbackIntent: true }));
+    }
+  }
+
   // 확인된 충족 수를 먼저 비교해 다른 가중치가 완전·부분 충족 순서를 뒤집지 않게 합니다.
-  }).filter(Boolean).sort((a,b) => b.matchedComforts - a.matchedComforts || b.relevance - a.relevance || a.order - b.order);
+  return eligible.sort((a,b) => b.matchedComforts - a.matchedComforts || b.relevance - a.relevance || a.order - b.order);
 }
 export function filterPlaces(places, filters) { return recommendPlaces(places, filters).map(result => result.place); }
