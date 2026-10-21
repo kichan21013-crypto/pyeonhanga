@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createProgressiveFlow } from '../flow.js';
 import { emptyRhythmFilters, toggleSelection, activeActivities, recommendRhythms } from '../rhythm.js';
-// A minimal element adapter exercises the same controller that writes hidden/open/disabled in app.js.
 function harness(reducedMotion = true) {
   const make = (hidden = true) => ({ hidden, open:false, disabled:false, dataset:{}, animations:[], animate(frames,options){this.animations.push({frames,options});} });
   const explore=make(), results=make(), steps=[make(false),make(),make()], final=make(), next=[make(),make()];
@@ -11,52 +10,48 @@ function harness(reducedMotion = true) {
   const root={querySelector:key=>({'#explore':explore,'#rhythm-results':results,'#recommend-button':final})[key],querySelectorAll:key=>key==='[data-flow-step]'?steps:next};
   return { flow:createProgressiveFlow(root,{reducedMotion:()=>reducedMotion}),explore,results,steps,final,next };
 }
-test('시작 전 질문/결과는 숨기고 CTA로 시작하면 1단계만 열린다',()=>{
+test('시작 전 질문/결과는 숨기고 CTA로 시작하면 현재 질문 하나만 보인다',()=>{
   const h=harness(),f=emptyRhythmFilters();h.flow.update(f);assert.equal(h.explore.hidden,true);
   h.flow.start(f);assert.equal(h.explore.hidden,false);assert.deepEqual(h.steps.map(e=>e.hidden),[false,true,true]);
   assert.equal(h.steps[0].open,true);assert.equal(h.results.hidden,true);assert.equal(h.final.disabled,true);
 });
-test('욕구를 고르면 2단계는 보이되 자동으로 펼쳐지지 않고 세부활동·다중욕구를 계속 고를 수 있다',()=>{
+test('욕구를 고른 뒤에도 현재 질문만 유지하고 다음 버튼으로 화면을 전환한다',()=>{
   const h=harness(),f=emptyRhythmFilters();h.flow.start(f);
-  f.desires=toggleSelection(f.desires,'move');h.flow.update(f);assert.equal(h.steps[1].hidden,false);assert.equal(h.steps[1].open,false);assert.equal(h.steps[0].open,true);assert.equal(h.steps[2].hidden,true);
+  f.desires=toggleSelection(f.desires,'move');h.flow.update(f);
+  assert.deepEqual(h.steps.map(e=>e.hidden),[false,true,true]);assert.equal(h.final.disabled,false);
   f.desires=toggleSelection(f.desires,'eat');f.activities=['walk','noodle'];h.flow.update(f);
-  assert.deepEqual(f.desires,['move','eat']);assert.deepEqual(activeActivities(f.desires,f.activities),['walk','noodle']);assert.equal(h.results.hidden,true);
-  h.flow.activate(2);assert.equal(h.steps[0].open,false);assert.equal(h.steps[1].open,true);
+  assert.deepEqual(f.desires,['move','eat']);assert.deepEqual(activeActivities(f.desires,f.activities),['walk','noodle']);
+  assert.equal(h.flow.activate(2),true);assert.deepEqual(h.steps.map(e=>e.hidden),[true,false,true]);assert.equal(h.steps[1].open,true);
 });
-test('동행 선택 후 3단계가 보이되 마지막 CTA 전에는 결과를 표시하지 않는다',()=>{
-  const h=harness(),f={...emptyRhythmFilters(),desires:['eat']};h.flow.start(f);h.flow.activate(2);
-  f.companions=toggleSelection(f.companions,'solo');h.flow.update(f);assert.equal(h.steps[2].hidden,false);assert.equal(h.steps[2].open,false);assert.equal(h.final.disabled,false);
-  h.flow.activate(3);assert.equal(h.steps[1].open,false);assert.equal(h.steps[2].open,true);
-  f.companions=toggleSelection(f.companions,'friend');h.flow.update(f);assert.deepEqual(f.companions,['solo','friend']);
-  f.duration='short';f.transport='car';h.flow.update(f);assert.equal(h.results.hidden,true);
-  assert.equal(h.flow.submit(f),true);assert.equal(h.results.hidden,false);
+test('동행은 선택 사항이며 선택하지 않아도 조건 화면과 추천 결과로 갈 수 있다',()=>{
+  const h=harness(),f={...emptyRhythmFilters(),desires:['eat']};h.flow.start(f);
+  assert.equal(h.flow.activate(2),true);assert.deepEqual(h.steps.map(e=>e.hidden),[true,false,true]);
+  assert.equal(h.flow.activate(3),true);assert.deepEqual(h.steps.map(e=>e.hidden),[true,true,false]);assert.equal(h.final.disabled,false);
+  assert.equal(h.flow.submit(f),true);assert.deepEqual(h.steps.map(e=>e.hidden),[true,true,true]);assert.equal(h.results.hidden,false);
 });
-test('선택 수정과 초기화는 결과를 다시 숨기고 단계 전제조건을 재검사한다',()=>{
-  const h=harness(),f={...emptyRhythmFilters(),desires:['move'],companions:['family']};h.flow.start(f);h.flow.submit(f);
-  f.companions=[];h.flow.update(f);assert.equal(h.results.hidden,true);assert.equal(h.steps[2].hidden,true);assert.equal(h.flow.submit(f),false);
-  f.desires=[];h.flow.update(f);assert.equal(h.steps[1].hidden,true);assert.equal(h.flow.activate(3),false);
+test('선택 수정과 초기화는 결과를 숨기고 핵심 욕구가 없으면 다음 단계 접근을 막는다',()=>{
+  const h=harness(),f={...emptyRhythmFilters(),desires:['move']};h.flow.start(f);h.flow.submit(f);
+  f.companions=[];h.flow.update(f);assert.equal(h.results.hidden,true);assert.equal(h.flow.submit(f),true);
+  f.desires=[];h.flow.update(f);assert.equal(h.steps[1].hidden,true);assert.equal(h.flow.activate(3),false);assert.equal(h.flow.submit(f),false);
   h.flow.update(emptyRhythmFilters());h.flow.activate(1);assert.equal(h.steps[0].open,true);assert.equal(h.results.hidden,true);
 });
-test('자연어도 1단계 입력으로 사용할 수 있지만 동행과 최종 CTA를 건너뛰지는 못한다',()=>{
+test('자연어만 입력해도 추천 준비가 되며 동행·조건은 건너뛸 수 있다',()=>{
   const h=harness(),f={...emptyRhythmFilters(),query:'친구랑 드라이브하고 칼국수 먹고 싶어'};
-  h.flow.start(f);assert.equal(h.steps[1].hidden,false);assert.equal(h.flow.submit(f),false);
-  f.companions=['friend'];h.flow.update(f);assert.equal(h.results.hidden,true);
-  assert.equal(h.flow.submit(f),true);assert.equal(h.results.hidden,false);
+  h.flow.start(f);assert.equal(h.final.disabled,false);assert.equal(h.flow.submit(f),true);assert.equal(h.results.hidden,false);
 });
-test('새 영역은 한 번만 짧게 나타나며 reduced-motion에서는 애니메이션하지 않는다',()=>{
+test('전환은 짧게 나타나며 reduced-motion에서는 애니메이션하지 않는다',()=>{
   const f={...emptyRhythmFilters(),desires:['outdoor']};const h=harness(false);h.flow.start(f);
-  assert.equal(h.explore.animations.length,1);assert.equal(h.steps[1].animations.length,1);h.flow.update(f);assert.equal(h.steps[1].animations.length,1);
-  const reduced=harness(true);reduced.flow.start(f);f.companions=['solo'];reduced.flow.update(f);reduced.flow.submit(f);
+  assert.equal(h.explore.animations.length,1);h.flow.activate(2);assert.equal(h.steps[1].animations.length,1);
+  const reduced=harness(true);reduced.flow.start(f);reduced.flow.activate(2);reduced.flow.submit(f);
   assert.ok([reduced.explore,reduced.results,...reduced.steps].every(e=>e.animations.length===0));assert.equal(reduced.results.hidden,false);
 });
-test('생성 홈에는 단계·진행 표시·숨긴 결과와 자체 Hero SVG가 있고 추천 정렬은 유지한다',async()=>{
+test('생성 홈에는 단계 UI·홈 이동·모바일 보정 CSS와 숨긴 결과가 있다',async()=>{
   const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
   assert.match(html,/<section id="explore"[^>]* hidden>/);assert.match(html,/id="flow-step-1"[^>]* open>/);
   assert.match(html,/id="flow-step-2"[^>]* hidden>/);assert.match(html,/id="flow-step-3"[^>]* hidden>/);
-  assert.match(html,/id="rhythm-results" hidden/);assert.match(html,/오늘의 리듬 보기/);assert.match(html,/나에게 중요한 조건 더하기/);
+  assert.match(html,/id="rhythm-results" hidden/);assert.match(html,/오늘의 리듬 보기/);
   assert.match(html,/class="nav-home" href="\/"/);assert.match(html,/mobile-ux\.css/);
-  for(const n of [1,2,3])assert.ok(html.includes(`${n} / 3`));
-  assert.match(html,/id="day-paths-title">오늘 하루의 여러 갈림길/);assert.match(html,/role="img" aria-labelledby="day-paths-title day-paths-desc"/);
+  assert.match(html,/id="day-paths-title">오늘 하루의 여러 갈림길/);
   const places=JSON.parse(await readFile(new URL('../data/places.json',import.meta.url)));
   const results=recommendRhythms(places);
   assert.ok(results.length > 0);assert.ok(results.length <= places.length);
