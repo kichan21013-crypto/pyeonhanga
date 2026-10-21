@@ -9,7 +9,7 @@ permissions:
 jobs:
   import:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
@@ -42,13 +42,13 @@ jobs:
       - name: Enrich balanced pilot candidates
         env:
           TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
-          TOUR_API_ENRICH_PER_REGION: '12'
+          TOUR_API_ENRICH_PER_REGION: '30'
         run: npm run enrich:tourapi
 
       - name: Enrich barrier-free pilot candidates
         env:
           TOUR_API_KEY2: ${{ secrets.TOUR_API_KEY2 }}
-          BARRIERFREE_PER_REGION: '12'
+          BARRIERFREE_PER_REGION: '30'
         run: npm run enrich:barrierfree
 
       - name: Build imported data
@@ -76,7 +76,7 @@ jobs:
           echo "- Area/category import scans up to 2 pages instead of 1 for broader source coverage" >> "$GITHUB_STEP_SUMMARY"
           echo "- Korea-outside coordinates are nulled before storage" >> "$GITHUB_STEP_SUMMARY"
           echo "- Quality report separates recommendation candidates, courses, facilities, and source-only records" >> "$GITHUB_STEP_SUMMARY"
-          echo "- General detail pilot enriches up to 12 recommendation candidates per region (up to 72 total)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- General detail pilot enriches up to 30 recommendation candidates per region (up to 180 total)" >> "$GITHUB_STEP_SUMMARY"
           echo "- Barrier-free pilot checks the same candidates using repository secret TOUR_API_KEY2" >> "$GITHUB_STEP_SUMMARY"
           echo "- Reports only; unverified comfort ratings are not auto-created" >> "$GITHUB_STEP_SUMMARY"
           echo "- Result branch: data/tourapi-import-result" >> "$GITHUB_STEP_SUMMARY"
