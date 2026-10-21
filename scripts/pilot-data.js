@@ -58,10 +58,21 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
     selected.push(item);
     selectedIds.add(item.id);
   };
+  const realImageItems = items.filter(item => item._hasRealImage);
 
+  // 외부 테스트에서는 장소 사진이 서비스 인상에 직접 영향을 준다.
+  // 각 카테고리의 최소 다양성을 지키되, 그 안에서도 실사진 후보를 먼저 고른다.
   for (const category of ['나들이','맛집']) {
-    items.filter(item => item.category === category).slice(0, reserveEach).forEach(pick);
+    const categoryItems = items.filter(item => item.category === category);
+    const categoryReal = categoryItems.filter(item => item._hasRealImage);
+    categoryReal.slice(0, reserveEach).forEach(pick);
+    if (categoryReal.length < reserveEach) {
+      categoryItems.filter(item => !item._hasRealImage).slice(0, reserveEach - categoryReal.length).forEach(pick);
+    }
   }
+
+  // 카테고리 최소량 이후에는 실사진 후보를 최대한 활용하고, 부족한 자리만 무사진 후보로 채운다.
+  for (const item of realImageItems) pick(item);
   for (const item of items) pick(item);
   return selected.slice(0, count);
 }
@@ -93,6 +104,11 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
     if (!place) return null;
     const detail = detailMap.get(audit.id) || null;
     const barrier = barrierMap.get(audit.id) || null;
+    const detailImage = verifiedDetailImage(detail);
+    const hasRealImage = Boolean(
+      (place.image && !String(place.image).startsWith('/assets/'))
+      || /^https?:\/\//.test(detailImage || '')
+    );
     const readiness = scoreRecommendationReadiness({ place, audit, detail, barrier, referenceDate });
     return {
       id: place.id,
@@ -104,13 +120,15 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       _detail: detail,
       _barrier: barrier,
       _readiness: readiness,
+      _hasRealImage: hasRealImage,
     };
   }).filter(Boolean);
 
   const selected = [];
   for (const region of REGIONS) {
     const regionItems = candidates.filter(item => item.region === region).sort((a,b) =>
-      b._readiness.score - a._readiness.score
+      Number(b._hasRealImage) - Number(a._hasRealImage)
+      || b._readiness.score - a._readiness.score
       || String(b.modifiedTime || '').localeCompare(String(a.modifiedTime || ''))
       || a.name.localeCompare(b.name,'ko'));
     selected.push(...pickBalanced(regionItems, effectiveTarget));
