@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T06:04:01.400Z",
+  "generatedAt": "2026-10-21T06:43:02.069Z",
   "source": "data/places.json",
   "service": "Korea Tourism Organization KorWithService2/detailWithTour2",
   "strategy": "same region-balanced pilot as TourAPI detail enrichment, up to 12 per region",
