@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { recommendRhythms, emptyRhythmFilters } from '../rhythm.js';
 
 const places = JSON.parse(await readFile(new URL('../dist/data/places.json', import.meta.url)));
+const sourcePlaces = JSON.parse(await readFile(new URL('../data/places.json', import.meta.url)));
 const regions = ['서울','경기','강릉','경주','부산','제주'];
 
 function results(region, overrides = {}) {
@@ -55,8 +56,9 @@ test('180개 공개 추천 풀은 지역당 충분한 후보와 실제 이미지
   assert.equal(places.length, 180);
   for (const region of regions) {
     const regional = places.filter(place => place.region === region);
+    const sourceRegional = sourcePlaces.filter(place => place.region === region && /^https:\/\//.test(place.image || ''));
     assert.ok(regional.length >= 25, `${region}: ${regional.length}개`);
     const realImages = regional.filter(place => /^https:\/\//.test(place.image || ''));
-    assert.ok(realImages.length >= Math.ceil(regional.length * 0.8), `${region}: 실사진 ${realImages.length}/${regional.length}`);
+    assert.ok(realImages.length >= Math.ceil(regional.length * 0.8), `${region}: 선택 실사진 ${realImages.length}/${regional.length} · 원천 실사진 ${sourceRegional.length}개`);
   }
 });
