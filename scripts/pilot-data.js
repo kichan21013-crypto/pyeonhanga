@@ -1,5 +1,5 @@
 const REGIONS = ['서울','경기','강릉','경주','부산','제주'];
-const TARGET_PER_REGION = 12;
+const TARGET_PER_REGION = 8;
 const SOURCE_URL = 'https://api.visitkorea.or.kr/';
 
 const clean = value => String(value || '').replace(/<br\s*\/?>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
@@ -53,8 +53,6 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
 }
 
 export function buildPilotPlaces(places, generalReport, barrierReport, targetPerRegion = TARGET_PER_REGION) {
-  // 상세 수집이 12개/지역까지 완료된 검증판에서는 이전 빌드의 8개 요청도 12개로 승격합니다.
-  const publishCount = Math.max(TARGET_PER_REGION, Number(targetPerRegion) || 0);
   const placeMap = new Map(places.map(place => [place.id, place]));
   const barrierMap = new Map((barrierReport?.places || []).map(item => [item.id, item]));
   const candidates = (generalReport?.places || []).map(item => {
@@ -66,7 +64,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
   const selected = [];
   for (const region of REGIONS) {
     const regionItems = candidates.filter(item => item.region === region).sort((a,b) => b._score - a._score || String(b.modifiedTime).localeCompare(String(a.modifiedTime)) || a.name.localeCompare(b.name,'ko'));
-    selected.push(...pickBalanced(regionItems, publishCount));
+    selected.push(...pickBalanced(regionItems, targetPerRegion));
   }
   const reportDate = String(generalReport?.generatedAt || new Date().toISOString()).slice(0,10);
   return selected.map(item => {
