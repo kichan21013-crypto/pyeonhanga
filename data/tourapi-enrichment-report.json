@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T06:03:34.199Z",
+  "generatedAt": "2026-10-21T06:42:36.097Z",
   "source": "data/places.json",
   "strategy": "region-balanced candidate sample, up to 12 per region, 나들이/맛집 균형 우선",
   "summary": {
