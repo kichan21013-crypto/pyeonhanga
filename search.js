@@ -1,7 +1,8 @@
 import { calculateComfort, comfortText } from './comfort-score.js';
+import { verifiedRecommendationReason } from './verified-facts.js';
 
 export const COMPANIONS = { solo: '혼자', couple: '배우자/연인', friend: '친구', family: '가족', new_people: '새로운 사람' };
-export const RECOMMENDATION_WEIGHTS = { text: 10, companion: 6, comfort: 30, category: 2, score: 1 };
+export const RECOMMENDATION_WEIGHTS = { text: 10, companion: 6, comfort: 30, category: 2, score: 1, readiness: 4 };
 // UI에서는 선호 조건만 사용합니다. 필수 조건은 향후 분리를 위한 선택적 데이터입니다.
 export const emptyFilters = () => ({ query: '', region: '', category: 'auto', companion: '', walking: '', parking: false, stairs: false, comforts: [], requiredComforts: [], comfortOverrides: {} });
 export function companionCode(value) {
@@ -95,6 +96,8 @@ export function recommendationReasons(p, f = emptyFilters()) {
     const key = ['parking','walking','noise','seating'].find(key => comfortMatches(p, key));
     if (key) reasons.push(comfortText(key, p.comfort[key].value));
   }
+  const verifiedReason = verifiedRecommendationReason(p);
+  if (verifiedReason && reasons.length < 2 && !reasons.includes(verifiedReason)) reasons.push(verifiedReason);
   return reasons.slice(0, 2);
 }
 export function recommendPlaces(places, f = emptyFilters()) {
@@ -117,9 +120,11 @@ export function recommendPlaces(places, f = emptyFilters()) {
     if (searchableIntents.length && !intentHits) return null;
     const companionHit = companion && p.companions?.some(value => companionCode(value) === companion) ? 1 : 0;
     const comfort = calculateComfort(p.comfort);
+    const readiness = Math.max(0, Math.min(100, Number(p.recommendationReadiness?.score ?? p.pilotRankScore ?? 0)));
     const relevance = intentHits * RECOMMENDATION_WEIGHTS.text + companionHit * RECOMMENDATION_WEIGHTS.companion
       + matchedComforts * RECOMMENDATION_WEIGHTS.comfort + (preferredCategory && p.category === preferredCategory ? RECOMMENDATION_WEIGHTS.category : 0)
-      + (comfort.score === null ? 0 : comfort.score / 100 * comfort.coverage * RECOMMENDATION_WEIGHTS.score);
+      + (comfort.score === null ? 0 : comfort.score / 100 * comfort.coverage * RECOMMENDATION_WEIGHTS.score)
+      + readiness / 100 * RECOMMENDATION_WEIGHTS.readiness;
     return { place: p, relevance, matchedComforts, reasons: recommendationReasons(p, f), order };
   // 확인된 충족 수를 먼저 비교해 다른 가중치가 완전·부분 충족 순서를 뒤집지 않게 합니다.
   }).filter(Boolean).sort((a,b) => b.matchedComforts - a.matchedComforts || b.relevance - a.relevance || a.order - b.order);
