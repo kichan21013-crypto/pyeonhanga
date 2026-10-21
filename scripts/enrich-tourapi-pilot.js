@@ -7,6 +7,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const sourcePath = resolve(root, process.env.TOUR_API_ENRICH_SOURCE || 'data/places.json');
 const reportPath = resolve(root, process.env.TOUR_API_ENRICH_REPORT || 'data/tourapi-enrichment-report.json');
 const DEFAULT_PER_REGION = 8;
+const MAX_PER_REGION = 30;
 const API_BASE = 'https://apis.data.go.kr/B551011/KorService2';
 
 function clean(value) {
@@ -57,18 +58,26 @@ async function fetchJson(operation, params) {
   return json;
 }
 
+export function resolvePerRegion(value, fallback = DEFAULT_PER_REGION) {
+  return Math.min(MAX_PER_REGION, Math.max(2, Number(value) || fallback));
+}
+
 export function selectPilotCandidates(places, perRegion = DEFAULT_PER_REGION) {
   const { audited } = auditTourApiPlaces(places);
   const byId = new Map(places.map(place => [place.id, place]));
+  const statusById = new Map(audited.map(item => [item.id, item.status]));
   const candidates = audited
-    .filter(item => item.role === 'place' && item.status === 'candidate')
+    .filter(item => item.role === 'place' && ['candidate', 'review'].includes(item.status))
     .map(item => byId.get(item.id))
     .filter(Boolean);
   const regions = [...new Set(places.map(place => place.region))];
   const selected = [];
+  const statusRank = place => statusById.get(place.id) === 'candidate' ? 0 : 1;
   for (const region of regions) {
     const pool = candidates.filter(place => place.region === region);
-    const sortFresh = list => [...list].sort((a, b) => String(b.tourApi?.modifiedTime || '').localeCompare(String(a.tourApi?.modifiedTime || '')) || a.name.localeCompare(b.name, 'ko'));
+    const sortFresh = list => [...list].sort((a, b) => statusRank(a) - statusRank(b)
+      || String(b.tourApi?.modifiedTime || '').localeCompare(String(a.tourApi?.modifiedTime || ''))
+      || a.name.localeCompare(b.name, 'ko'));
     const outing = sortFresh(pool.filter(place => place.category === '나들이'));
     const food = sortFresh(pool.filter(place => place.category === '맛집'));
     const quotaEach = Math.floor(perRegion / 2);
@@ -175,7 +184,7 @@ async function enrichPlace(place) {
 
 async function main() {
   const places = JSON.parse(await readFile(sourcePath, 'utf8'));
-  const perRegion = Math.min(12, Math.max(2, Number(process.env.TOUR_API_ENRICH_PER_REGION) || DEFAULT_PER_REGION));
+  const perRegion = resolvePerRegion(process.env.TOUR_API_ENRICH_PER_REGION);
   const selected = selectPilotCandidates(places, perRegion);
   const enriched = [];
   const errors = [];
