@@ -5,11 +5,16 @@ import { card, detailMarkup, escapeHtml, safeUrl, placeUrl } from '../ui.js';
 import { validatePlaces } from './validate-data.js';
 import { publicConfig } from './public-config.js';
 import { recommendRhythms } from '../rhythm.js';
+import { buildPilotPlaces } from './pilot-data.js';
 // 내부 검증 기간. 정식 공개 시 이 값 하나로 생성 페이지 색인을 전환합니다.
 const INDEXING_ENABLED = false;
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const out = resolve(root, 'dist');
-const places = JSON.parse(await readFile(resolve(root, 'data/places.json'), 'utf8'));
+const sourcePlaces = JSON.parse(await readFile(resolve(root, 'data/places.json'), 'utf8'));
+const generalReport = JSON.parse(await readFile(resolve(root, 'data/tourapi-enrichment-report.json'), 'utf8'));
+const barrierReport = JSON.parse(await readFile(resolve(root, 'data/barrierfree-enrichment-report.json'), 'utf8'));
+validatePlaces(sourcePlaces);
+const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 6);
 validatePlaces(places);
 const siteUrl = (process.env.SITE_URL || process.env.CF_PAGES_URL || 'http://localhost:4173').replace(/\/$/, '');
 if (!/^https?:\/\/[^/]+$/.test(siteUrl)) throw new Error('SITE_URL에는 https://서비스주소 형태의 주소를 입력하세요.');
@@ -27,6 +32,8 @@ function page({ title, description, path, content, page = 'info', id = '', image
 }
 await rm(out, { recursive: true, force: true }); await mkdir(out, { recursive: true });
 for (const file of ['styles.css', 'app.js', 'ui.js', 'analytics.js', 'storage.js', 'comfort-score.js', 'search.js', 'rhythm.js', 'actions.js', 'flow.js', 'assets', 'data']) await cp(resolve(root, file), resolve(out, file), { recursive: true });
+// 원천 257개는 저장소에 유지하고, 공개 검증판에는 지역별 6개씩 선별한 파일럿만 제공합니다.
+await writeFile(resolve(out, 'data', 'places.json'), JSON.stringify(places, null, 2) + '\n');
 let configInput;
 if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
   configInput = { supabaseUrl: process.env.SUPABASE_URL, supabaseAnonKey: process.env.SUPABASE_ANON_KEY };
@@ -43,7 +50,7 @@ for (const p of places) {
   const dir = resolve(out, 'places', p.slug); await mkdir(dir, { recursive: true });
   await writeFile(resolve(dir, 'index.html'), page({ title: `${p.name} · ${p.region} ${p.category} 편안함 정보 — 나가치`, description: p.isDemo ? `DEMO SAMPLE · ${p.shortDescription}` : p.shortDescription, path: placeUrl(p), content: detailMarkup(p), page: 'detail', id: p.id, image: p.image, noindex: p.isDemo }));
 }
-await writeFile(resolve(out, 'about.html'), page({ title: '편안함 점수 안내 — 나가치', description: '확인한 정보로 계산하는 편안함 점수와 정보 신뢰도를 안내합니다.', path: '/about.html', content: `<p class="eyebrow">나에게 맞는 편안함</p><h1>별점과 다른, 편안함의 기준</h1><p>나가치는 나에게 맞는 하루를 찾는 서비스입니다. ‘내리듬’은 내 상황과 취향에 맞춘 추천을 뜻해요. 누구와 보내고 싶은지, 어떤 하루가 당기는지 고르고 나에게 필요한 편안함을 더해보세요.</p><h2>확인한 정보만 사용합니다</h2><p>주차 15%, 계단 15%, 접근성 10%, 화장실 10%, 좌석 15%, 보행부담 15%, 소음 10%, 대기 10%를 기본 가중치로 사용합니다. 확인된 항목의 ‘좋음’은 100점, ‘보통’은 50점, ‘부담 있음’은 0점으로 계산해 확인된 가중치 안에서 평균을 냅니다.</p><h2>정보가 부족하면 숫자를 숨깁니다</h2><p>확인 가능한 정보가 전체 가중치의 40% 미만이면 숫자 대신 ‘정보 더 필요’로 표시합니다. 정보 신뢰도는 확인 비중 80% 이상 ‘높음’, 60% 이상 ‘보통’, 나머지는 ‘낮음’입니다. 신뢰도는 정보의 충실도이며 편안함 자체나 현장 상태를 보증하지 않습니다.</p><h2>이용자 평가와 구분합니다</h2><p>편안함 점수는 출처와 확인 날짜가 있는 정보에 기반한 계산입니다. 실제 이용자의 별점이나 리뷰가 아닙니다. 이번 버전에는 이용자 평가 기능이 없습니다.</p><h2>아직 확인하지 못한 것도 알려드립니다</h2><p>편안함 항목에는 각각 확인 날짜와 출처를 보관합니다. 바뀔 수 있는 정보는 방문 전에 다시 확인해 주세요. DEMO SAMPLE은 체험용 가상 장소이며 검색엔진과 실제 시장 KPI에서 제외합니다.</p><a class="button primary" href="/">장소 살펴보기</a>` }));
+await writeFile(resolve(out, 'about.html'), page({ title: '편안함 점수 안내 — 나가치', description: '확인한 정보로 계산하는 편안함 점수와 정보 신뢰도를 안내합니다.', path: '/about.html', content: `<p class="eyebrow">나에게 맞는 편안함</p><h1>별점과 다른, 편안함의 기준</h1><p>나가치는 나에게 맞는 하루를 찾는 서비스입니다. ‘내리듬’은 내 상황과 취향에 맞춘 추천을 뜻해요. 누구와 보내고 싶은지, 어떤 하루가 당기는지 고르고 나에게 필요한 편안함을 더해보세요.</p><h2>확인한 정보만 사용합니다</h2><p>주차 15%, 계단 15%, 접근성 10%, 화장실 10%, 좌석 15%, 보행부담 15%, 소음 10%, 대기 10%를 기본 가중치로 사용합니다. 확인된 항목의 ‘좋음’은 100점, ‘보통’은 50점, ‘부담 있음’은 0점으로 계산해 확인된 가중치 안에서 평균을 냅니다.</p><h2>정보가 부족하면 숫자를 숨깁니다</h2><p>확인 가능한 정보가 전체 가중치의 40% 미만이면 숫자 대신 ‘정보 더 필요’로 표시합니다. 정보 신뢰도는 확인 비중 80% 이상 ‘높음’, 60% 이상 ‘보통’, 나머지는 ‘낮음’입니다. 신뢰도는 정보의 충실도이며 편안함 자체나 현장 상태를 보증하지 않습니다.</p><h2>사실 정보와 평가를 구분합니다</h2><p>TourAPI에서 확인한 주차 가능 여부, 운영시간, 화장실, 출입구·경사로 같은 정보는 사실형 이용 정보로 먼저 보여줍니다. 이 사실을 임의로 ‘좋음/불편’ 점수로 바꾸지 않습니다.</p><h2>이용자 평가와 구분합니다</h2><p>편안함 점수는 출처와 확인 날짜가 있는 정보에 기반한 계산입니다. 실제 이용자의 별점이나 리뷰가 아닙니다. 이번 버전에는 이용자 평가 기능이 없습니다.</p><a class="button primary" href="/">장소 살펴보기</a>` }));
 await writeFile(resolve(out, 'privacy.html'), page({ title: '데이터 안내 — 나가치', description: '저장 기능과 익명 행동 분석 안내', path: '/privacy.html', content: `<h1>데이터를 이렇게 사용합니다</h1><h2>로그인과 개인정보 입력이 없습니다</h2><p>이름, 연락처, 주민번호, 건강정보를 받지 않습니다. 장소 저장 목록과 임의로 만든 익명 브라우저 식별값은 브라우저 저장 공간에 보관합니다. 브라우저 데이터를 지우면 초기화됩니다.</p><h2>분석을 연결한 경우</h2><p>방문, 검색 실행, 필터 사용, 상세 조회, 저장, 공유, 동행 관심, 지불의향 응답을 Supabase에 전송합니다. 검색어 원문, 전체 URL, 위치 좌표, 연락처, IP 주소를 이벤트 데이터에 넣지 않습니다. 서비스 제공사의 접속 로그 처리는 해당 제공사의 정책을 따릅니다.</p><h2>동행 설문은 선택입니다</h2><p>연령대, 희망 동행, 목적, 선호 인원, 지불의향만 수요 검증에 사용합니다. 실제 사람 연결이나 결제가 아닙니다. DEMO SAMPLE 응답은 실제 KPI에서 제외합니다.</p><h2>보관 기간</h2><p>분석 이벤트는 운영자가 90일을 기준으로 관리합니다. 브라우저에 저장한 장소와 익명 식별값은 브라우저 데이터 삭제 기능으로 지울 수 있습니다.</p><h2>연결하지 않은 경우</h2><p>분석을 연결하지 않으면 행동과 설문 응답을 서버에 저장하지 않습니다. 탐색, 저장, 공유는 계속 사용할 수 있습니다. 설문 화면에 현재 전송 여부를 표시합니다.</p><a href="/" class="button secondary">홈으로</a>` }));
 await writeFile(resolve(out, '404.html'), page({ title: '장소를 찾지 못했어요 — 나가치', description: '다른 장소를 살펴보세요.', path: '/404.html', noindex: true, content: '<h1>이 페이지를 찾지 못했어요</h1><p>주소가 바뀌었거나 없는 페이지입니다.</p><a href="/" class="button primary">장소 다시 찾기</a>' }));
 const urls = INDEXING_ENABLED ? [...(places.some(p => !p.isDemo) ? ['/'] : []), '/about.html', ...places.filter(p => !p.isDemo).map(placeUrl)] : [];
@@ -51,4 +58,4 @@ await writeFile(resolve(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-
 const robots = `User-agent: *\nAllow: /\n${INDEXING_ENABLED ? `Sitemap: ${siteUrl}/sitemap.xml\n` : '# Internal validation: all HTML has noindex,nofollow; allow crawling to read it.\n'}`;
 await writeFile(resolve(out, 'robots.txt'), robots);
 await writeFile(resolve(out, '_headers'), `/*\n${!INDEXING_ENABLED ? '  X-Robots-Tag: noindex, nofollow\n' : ''}  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https:; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Content-Type-Options: nosniff\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n`);
-console.log(`빌드 완료: dist/ · 장소 ${places.length}개 · 실행 npm start`);
+console.log(`빌드 완료: 파일럿 장소 ${places.length}개 / 원천 ${sourcePlaces.length}개 · 실행 npm start`);
