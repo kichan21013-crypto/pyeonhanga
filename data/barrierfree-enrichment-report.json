@@ -1,31 +1,31 @@
 {
-  "generatedAt": "2026-10-21T06:43:02.069Z",
+  "generatedAt": "2026-10-21T07:46:38.697Z",
   "source": "data/places.json",
   "service": "Korea Tourism Organization KorWithService2/detailWithTour2",
-  "strategy": "same region-balanced pilot as TourAPI detail enrichment, up to 12 per region",
+  "strategy": "same region-balanced pilot as TourAPI detail enrichment, up to 30 per region",
   "summary": {
-    "selected": 72,
-    "matched": 14,
-    "unmatched": 58,
+    "selected": 180,
+    "matched": 38,
+    "unmatched": 142,
     "errors": 0,
-    "matchRate": 19.4,
+    "matchRate": 21.1,
     "byRegion": {
-      "서울": 3,
-      "경기": 2,
-      "강릉": 6,
+      "서울": 10,
+      "경기": 9,
+      "강릉": 12,
       "경주": 1,
-      "부산": 1,
-      "제주": 1
+      "부산": 3,
+      "제주": 3
     },
-    "withParking": 5,
-    "withRoute": 10,
-    "withWheelchair": 1,
-    "withElevator": 3,
-    "withRestroom": 7,
-    "withPublicTransport": 4,
+    "withParking": 12,
+    "withRoute": 29,
+    "withWheelchair": 3,
+    "withElevator": 8,
+    "withRestroom": 12,
+    "withPublicTransport": 11,
     "withStroller": 1,
-    "withFamilyInfo": 4,
-    "withVisualInfo": 5,
+    "withFamilyInfo": 9,
+    "withVisualInfo": 12,
     "withHearingInfo": 0
   },
   "errors": [],
@@ -47,6 +47,30 @@
       "name": "백련사(강북)",
       "region": "서울",
       "contentId": "309307"
+    },
+    {
+      "id": "tour-809190",
+      "name": "북악산",
+      "region": "서울",
+      "contentId": "809190"
+    },
+    {
+      "id": "tour-127557",
+      "name": "삼천사(서울)",
+      "region": "서울",
+      "contentId": "127557"
+    },
+    {
+      "id": "tour-699279",
+      "name": "장충동 족발 골목",
+      "region": "서울",
+      "contentId": "699279"
+    },
+    {
+      "id": "tour-2401757",
+      "name": "자양동 양꼬치거리 (중국음식문화거리)",
+      "region": "서울",
+      "contentId": "2401757"
     },
     {
       "id": "tour-2783356",
@@ -85,6 +109,48 @@
       "contentId": "2758158"
     },
     {
+      "id": "tour-2784696",
+      "name": "동작구름카페",
+      "region": "서울",
+      "contentId": "2784696"
+    },
+    {
+      "id": "tour-2495915",
+      "name": "성북동누룽지백숙",
+      "region": "서울",
+      "contentId": "2495915"
+    },
+    {
+      "id": "tour-2495458",
+      "name": "명문막국수",
+      "region": "서울",
+      "contentId": "2495458"
+    },
+    {
+      "id": "tour-2871081",
+      "name": "생강김밥 본점",
+      "region": "서울",
+      "contentId": "2871081"
+    },
+    {
+      "id": "tour-2807321",
+      "name": "박재성의 메밀숯불닭갈비",
+      "region": "서울",
+      "contentId": "2807321"
+    },
+    {
+      "id": "tour-2755513",
+      "name": "다래함박스텍",
+      "region": "서울",
+      "contentId": "2755513"
+    },
+    {
+      "id": "tour-1756249",
+      "name": "강남목장",
+      "region": "서울",
+      "contentId": "1756249"
+    },
+    {
       "id": "tour-125518",
       "name": "서운동산",
       "region": "경기",
@@ -113,6 +179,42 @@
       "name": "석산계곡",
       "region": "경기",
       "contentId": "129645"
+    },
+    {
+      "id": "tour-131032",
+      "name": "덕우저수지",
+      "region": "경기",
+      "contentId": "131032"
+    },
+    {
+      "id": "tour-2654539",
+      "name": "들꽃가람농장",
+      "region": "경기",
+      "contentId": "2654539"
+    },
+    {
+      "id": "tour-2717416",
+      "name": "올드타임",
+      "region": "경기",
+      "contentId": "2717416"
+    },
+    {
+      "id": "tour-2766846",
+      "name": "당남지구공원",
+      "region": "경기",
+      "contentId": "2766846"
+    },
+    {
+      "id": "tour-318182",
+      "name": "서천사(평택)",
+      "region": "경기",
+      "contentId": "318182"
+    },
+    {
+      "id": "tour-128542",
+      "name": "안성 정무공 오정방 고택",
+      "region": "경기",
+      "contentId": "128542"
     },
     {
       "id": "tour-2717413",
@@ -145,6 +247,36 @@
       "contentId": "133082"
     },
     {
+      "id": "tour-2874200",
+      "name": "오케이칼국수",
+      "region": "경기",
+      "contentId": "2874200"
+    },
+    {
+      "id": "tour-2738661",
+      "name": "메밀꽃이피었습니다 일산본점",
+      "region": "경기",
+      "contentId": "2738661"
+    },
+    {
+      "id": "tour-1013270",
+      "name": "남한산성 일번지",
+      "region": "경기",
+      "contentId": "1013270"
+    },
+    {
+      "id": "tour-1013250",
+      "name": "청기와뼈다귀해장국 본점",
+      "region": "경기",
+      "contentId": "1013250"
+    },
+    {
+      "id": "tour-856918",
+      "name": "양평해장국",
+      "region": "경기",
+      "contentId": "856918"
+    },
+    {
       "id": "tour-2753136",
       "name": "노암터널",
       "region": "강릉",
@@ -163,12 +295,6 @@
       "contentId": "2773046"
     },
     {
-      "id": "tour-2894037",
-      "name": "오브더모먼트",
-      "region": "강릉",
-      "contentId": "2894037"
-    },
-    {
       "id": "tour-125748",
       "name": "남대천(강릉)",
       "region": "강릉",
@@ -179,6 +305,84 @@
       "name": "주문리마을",
       "region": "강릉",
       "contentId": "129029"
+    },
+    {
+      "id": "tour-2511677",
+      "name": "정감이마을",
+      "region": "강릉",
+      "contentId": "2511677"
+    },
+    {
+      "id": "tour-125791",
+      "name": "송담서원(강릉)",
+      "region": "강릉",
+      "contentId": "125791"
+    },
+    {
+      "id": "tour-128724",
+      "name": "오봉서원",
+      "region": "강릉",
+      "contentId": "128724"
+    },
+    {
+      "id": "tour-126895",
+      "name": "부연동마을",
+      "region": "강릉",
+      "contentId": "126895"
+    },
+    {
+      "id": "tour-125769",
+      "name": "강릉 굴산사지",
+      "region": "강릉",
+      "contentId": "125769"
+    },
+    {
+      "id": "tour-125669",
+      "name": "구룡폭포(소금강)",
+      "region": "강릉",
+      "contentId": "125669"
+    },
+    {
+      "id": "tour-2894037",
+      "name": "오브더모먼트",
+      "region": "강릉",
+      "contentId": "2894037"
+    },
+    {
+      "id": "tour-2775525",
+      "name": "메시56",
+      "region": "강릉",
+      "contentId": "2775525"
+    },
+    {
+      "id": "tour-624640",
+      "name": "유리횟집",
+      "region": "강릉",
+      "contentId": "624640"
+    },
+    {
+      "id": "tour-2775529",
+      "name": "강릉꼬막집 독도네 본점",
+      "region": "강릉",
+      "contentId": "2775529"
+    },
+    {
+      "id": "tour-2775555",
+      "name": "토담순두부",
+      "region": "강릉",
+      "contentId": "2775555"
+    },
+    {
+      "id": "tour-133817",
+      "name": "강릉감자옹심 강릉본점",
+      "region": "강릉",
+      "contentId": "133817"
+    },
+    {
+      "id": "tour-2775521",
+      "name": "장안횟집",
+      "region": "강릉",
+      "contentId": "2775521"
     },
     {
       "id": "tour-128430",
@@ -209,6 +413,60 @@
       "name": "경주 동부 사적지대",
       "region": "경주",
       "contentId": "319572"
+    },
+    {
+      "id": "tour-128682",
+      "name": "경주 장항리 서 오층석탑",
+      "region": "경주",
+      "contentId": "128682"
+    },
+    {
+      "id": "tour-126211",
+      "name": "경주 선덕여왕릉",
+      "region": "경주",
+      "contentId": "126211"
+    },
+    {
+      "id": "tour-250274",
+      "name": "경주 금척리 고분군",
+      "region": "경주",
+      "contentId": "250274"
+    },
+    {
+      "id": "tour-250267",
+      "name": "경주 동방동 와요지",
+      "region": "경주",
+      "contentId": "250267"
+    },
+    {
+      "id": "tour-250281",
+      "name": "경주 인왕동 사지",
+      "region": "경주",
+      "contentId": "250281"
+    },
+    {
+      "id": "tour-128681",
+      "name": "경주 신문왕릉",
+      "region": "경주",
+      "contentId": "128681"
+    },
+    {
+      "id": "tour-319571",
+      "name": "경주 경애왕릉",
+      "region": "경주",
+      "contentId": "319571"
+    },
+    {
+      "id": "tour-250262",
+      "name": "경주 남산 탑곡 마애불상군",
+      "region": "경주",
+      "contentId": "250262"
+    },
+    {
+      "id": "tour-1621809",
+      "name": "경주 신무왕릉",
+      "region": "경주",
+      "contentId": "1621809"
     },
     {
       "id": "tour-2876577",
@@ -247,6 +505,60 @@
       "contentId": "2838704"
     },
     {
+      "id": "tour-3101705",
+      "name": "소소밀밀 서악점",
+      "region": "경주",
+      "contentId": "3101705"
+    },
+    {
+      "id": "tour-2738038",
+      "name": "콩이랑",
+      "region": "경주",
+      "contentId": "2738038"
+    },
+    {
+      "id": "tour-2902110",
+      "name": "하누가물애",
+      "region": "경주",
+      "contentId": "2902110"
+    },
+    {
+      "id": "tour-2766532",
+      "name": "기와메밀막국수",
+      "region": "경주",
+      "contentId": "2766532"
+    },
+    {
+      "id": "tour-2838855",
+      "name": "고향밀면 본점",
+      "region": "경주",
+      "contentId": "2838855"
+    },
+    {
+      "id": "tour-2736715",
+      "name": "궁림바지락칼국수",
+      "region": "경주",
+      "contentId": "2736715"
+    },
+    {
+      "id": "tour-2838967",
+      "name": "내남식육식당",
+      "region": "경주",
+      "contentId": "2838967"
+    },
+    {
+      "id": "tour-2736719",
+      "name": "돌고래횟집",
+      "region": "경주",
+      "contentId": "2736719"
+    },
+    {
+      "id": "tour-2876431",
+      "name": "동궁 반점",
+      "region": "경주",
+      "contentId": "2876431"
+    },
+    {
       "id": "tour-298099",
       "name": "국청사(부산)",
       "region": "부산",
@@ -275,6 +587,48 @@
       "name": "송도반도 (부산 국가지질공원)",
       "region": "부산",
       "contentId": "2614725"
+    },
+    {
+      "id": "tour-2782626",
+      "name": "삼익비치수변공원",
+      "region": "부산",
+      "contentId": "2782626"
+    },
+    {
+      "id": "tour-2677748",
+      "name": "백양산 웰빙숲",
+      "region": "부산",
+      "contentId": "2677748"
+    },
+    {
+      "id": "tour-126028",
+      "name": "금정산",
+      "region": "부산",
+      "contentId": "126028"
+    },
+    {
+      "id": "tour-1607440",
+      "name": "금강사(부산)",
+      "region": "부산",
+      "contentId": "1607440"
+    },
+    {
+      "id": "tour-1607335",
+      "name": "소림사(부산)",
+      "region": "부산",
+      "contentId": "1607335"
+    },
+    {
+      "id": "tour-298111",
+      "name": "금수사(부산)",
+      "region": "부산",
+      "contentId": "298111"
+    },
+    {
+      "id": "tour-2643873",
+      "name": "금정산성마을 먹거리촌",
+      "region": "부산",
+      "contentId": "2643873"
     },
     {
       "id": "tour-2752996",
@@ -313,6 +667,60 @@
       "contentId": "2872395"
     },
     {
+      "id": "tour-2870394",
+      "name": "은하갈비",
+      "region": "부산",
+      "contentId": "2870394"
+    },
+    {
+      "id": "tour-2869618",
+      "name": "합천국밥집",
+      "region": "부산",
+      "contentId": "2869618"
+    },
+    {
+      "id": "tour-2869343",
+      "name": "홍순덕 전포양곱창",
+      "region": "부산",
+      "contentId": "2869343"
+    },
+    {
+      "id": "tour-2867626",
+      "name": "영남냉면밀면",
+      "region": "부산",
+      "contentId": "2867626"
+    },
+    {
+      "id": "tour-2867598",
+      "name": "서대시장족발",
+      "region": "부산",
+      "contentId": "2867598"
+    },
+    {
+      "id": "tour-2867167",
+      "name": "양산국밥",
+      "region": "부산",
+      "contentId": "2867167"
+    },
+    {
+      "id": "tour-2860819",
+      "name": "샤브막심 송정본점",
+      "region": "부산",
+      "contentId": "2860819"
+    },
+    {
+      "id": "tour-2760773",
+      "name": "해운대기와집대구탕",
+      "region": "부산",
+      "contentId": "2760773"
+    },
+    {
+      "id": "tour-2759629",
+      "name": "디저트시네마",
+      "region": "부산",
+      "contentId": "2759629"
+    },
+    {
       "id": "tour-1884521",
       "name": "가새기오름",
       "region": "제주",
@@ -341,6 +749,54 @@
       "name": "법화사",
       "region": "제주",
       "contentId": "309943"
+    },
+    {
+      "id": "tour-2740129",
+      "name": "위미항",
+      "region": "제주",
+      "contentId": "2740129"
+    },
+    {
+      "id": "tour-1620883",
+      "name": "하모해변",
+      "region": "제주",
+      "contentId": "1620883"
+    },
+    {
+      "id": "tour-2765245",
+      "name": "송악산 진지동굴",
+      "region": "제주",
+      "contentId": "2765245"
+    },
+    {
+      "id": "tour-2704447",
+      "name": "당케포구",
+      "region": "제주",
+      "contentId": "2704447"
+    },
+    {
+      "id": "tour-129145",
+      "name": "마라도 등대",
+      "region": "제주",
+      "contentId": "129145"
+    },
+    {
+      "id": "tour-126468",
+      "name": "방선문",
+      "region": "제주",
+      "contentId": "126468"
+    },
+    {
+      "id": "tour-1621059",
+      "name": "구시물",
+      "region": "제주",
+      "contentId": "1621059"
+    },
+    {
+      "id": "tour-1993734",
+      "name": "녹산로 유채꽃도로",
+      "region": "제주",
+      "contentId": "1993734"
     },
     {
       "id": "tour-2755445",
@@ -377,6 +833,54 @@
       "name": "미스칠",
       "region": "제주",
       "contentId": "2758924"
+    },
+    {
+      "id": "tour-2758900",
+      "name": "제주광해 애월점",
+      "region": "제주",
+      "contentId": "2758900"
+    },
+    {
+      "id": "tour-2758859",
+      "name": "협재해녀의집",
+      "region": "제주",
+      "contentId": "2758859"
+    },
+    {
+      "id": "tour-2755006",
+      "name": "만덕이네",
+      "region": "제주",
+      "contentId": "2755006"
+    },
+    {
+      "id": "tour-2753037",
+      "name": "대기정",
+      "region": "제주",
+      "contentId": "2753037"
+    },
+    {
+      "id": "tour-2758837",
+      "name": "복자씨연탄구이",
+      "region": "제주",
+      "contentId": "2758837"
+    },
+    {
+      "id": "tour-2758836",
+      "name": "경미네집",
+      "region": "제주",
+      "contentId": "2758836"
+    },
+    {
+      "id": "tour-2756100",
+      "name": "오전열한시",
+      "region": "제주",
+      "contentId": "2756100"
+    },
+    {
+      "id": "tour-2755458",
+      "name": "중문칠돈가",
+      "region": "제주",
+      "contentId": "2755458"
     }
   ],
   "places": [
@@ -522,6 +1026,335 @@
       }
     },
     {
+      "id": "tour-699249",
+      "name": "신당동 떡볶이타운",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "699249",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 턱이 없어 휠체어 접근 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "주출입구는 턱이 없어 휠체어 접근 가능함_무장애 편의시설",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": "동반가능_시각장애인 편의시설",
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-126482",
+      "name": "불암산",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "126482",
+      "facts": {
+        "parking": "장애인 전용 주차구역 주차 대수 : 9대 주변 휠체어 이용자 등이 이용할 수 있는 여유공간 있음.관광지 주출입구까지의 거리 : 약 180m",
+        "route": "불암산 자락길 있음(데크로드) 불암산무장애숲길 마련되어있음.(불암산힐링타운). 관광지 부지가 넓음. 이동경로 폭이 넓어 휠체어, 전동 스쿠터 사용자 이용 쉬움. 내부 턱 없음.",
+        "publictransport": "대중교통 이용가능 : 중계주공4단지 정류장 저상버스 운행 : 모든 버스",
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "출입통로 형태 : 상시 오픈형 출입통로가 넓어 휠체어, 전동 스쿠터 사용자 진입 쉬움.",
+        "elevator": null,
+        "restroom": "장애인 전용 화장실 있음(불암산 생태학습관)",
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": "점자블록 있음(화장실)_시각장애인 편의시설",
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 6,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": true,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-1602451",
+      "name": "대모산도시자연공원",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "1602451",
+      "facts": {
+        "parking": "장애인 주차장 있음_무장애 편의시설",
+        "route": "출입구까지 턱이 없어 휠체어 접근 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "주출입구는 턱이 없어 휠체어 접근 가능함",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": "전동휠체어 충전기 있음 무장애 자락길 있음(데크로드)",
+        "braileblock": null,
+        "helpdog": "동반가능",
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": "점자안내판 있음_시각장애인 편의시설",
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 6,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-127942",
+      "name": "사직공원(서울)",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "127942",
+      "facts": {
+        "parking": "장애인 전용 주차구역 있음(서울 어린이도서관 근처)_무장애 편의시설",
+        "route": "출입구까지 평지로 연결되어 있으나 턱이 있어 접근 불가능한 구간 있음",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": "장애인용 화장실 있음(단군성전 산책로, 손잡이, 등받이, 자동물내림, 비상호출벨)",
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": "유아용 세면대, 기저귀 교환대"
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": true,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": true,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2724392",
+      "name": "은평한옥마을",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "2724392",
+      "facts": {
+        "parking": "지상에 장애인 주차장 5면출입구까지 경사로 없이 접근 가능",
+        "route": null,
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": "휠체어 대여 가능",
+        "exit": null,
+        "elevator": "엘리베이터 있음",
+        "restroom": "은평한옥마을 주차장 앞 1개소, 은평한옥마을 너나들이센터(기념품,한복체험소) 1층 1개소, 은평역사한옥박물관 1층과 2층 2개소자동문 손잡이,자동물내림,영유아 거치대 있음",
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": "점자블록 있음",
+        "helpdog": "보조견 동반 입장 가능",
+        "guidehuman": "안내 요원 있음",
+        "audioguide": "오디오 가이드 있음, 음성 안내 서비스 있음",
+        "bigprint": null,
+        "brailepromotion": "점자 홍보물, 큰활자 홍보물 있음",
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": "수유실, 기저귀 교환대 있음",
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 10,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": true,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": true,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-678899",
+      "name": "도일처",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "678899",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 턱이 없어 휠체어 접근 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "주출입구는 턱이 없어 휠체어 접근 가능함",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": "의자식 테이블 있음_무장애 편의시설",
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2818756",
+      "name": "사담",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "2818756",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 턱이 없어 휠체어 접근 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "주출입구는 턱이 없어 휠체어 접근 가능함(수동문)",
+        "elevator": "엘리베이터 있음",
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": "의자식 테이블 있음_무장애 편의시설",
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
       "id": "tour-127688",
       "name": "사나사(양평)",
       "region": "경기",
@@ -569,6 +1402,147 @@
       }
     },
     {
+      "id": "tour-2650828",
+      "name": "신해철거리(성남)",
+      "region": "경기",
+      "category": "나들이",
+      "contentId": "2650828",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 턱이 없어 휠체어 접근 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "주출입구는 턱이 없어 휠체어 접근 가능함_무장애 편의시설",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": "동반가능_시각장애인 편의시설",
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2674763",
+      "name": "서후리숲",
+      "region": "경기",
+      "category": "나들이",
+      "contentId": "2674763",
+      "facts": {
+        "parking": null,
+        "route": "주 출입구 경사로 가파름",
+        "publictransport": null,
+        "ticketoffice": "매표소 높이 높음",
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "휠체어 출입 요청 시 다른 입구로 출입 가능",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": "화장실 내 기저귀 교환대 있음"
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": true,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-126618",
+      "name": "인계예술공원",
+      "region": "경기",
+      "category": "나들이",
+      "contentId": "126618",
+      "facts": {
+        "parking": null,
+        "route": "출입구가지 단차 없이 연결 됨(잔디구간 있음)",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": "장애인 전용 화장실 있음(야외공연장 쪽,공원 변두리)",
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": "보조견동반 가능함",
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": true,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
       "id": "tour-2799624",
       "name": "설문커피",
       "region": "경기",
@@ -612,6 +1586,194 @@
         "hasParkingInfo": false,
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2859801",
+      "name": "문산부대찌개 정미식당",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2859801",
+      "facts": {
+        "parking": "위치 : 식당 앞 주차장, 개수 : 1대",
+        "route": "휠체어 접근이 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "휠체어 접근이 가능함",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": "유아용보조의자 있음",
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": true,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2829956",
+      "name": "레드브릿지",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2829956",
+      "facts": {
+        "parking": "위치 : 건물 앞 주차장, 개수 : 1대",
+        "route": "휠체어 접근이 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "휠체어 접근이 가능함",
+        "elevator": "엘리베이터 있음",
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-3588837",
+      "name": "강남할배제빵소 오이도",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "3588837",
+      "facts": {
+        "parking": null,
+        "route": "휠체어 접근이 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "휠체어 접근이 가능함",
+        "elevator": "전층 운행 엘리베이터",
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-1846815",
+      "name": "맛집막국수",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "1846815",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 경사로가 설치되어 있음",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "주출입구는 경사로가 있어 휠체어 접근 가능함(자동문)",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": "의자식 테이블 있음_무장애 편의시설",
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
         "hasHearingInfo": false
       }
     },
@@ -757,6 +1919,53 @@
       }
     },
     {
+      "id": "tour-125768",
+      "name": "보현사(강릉)",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "125768",
+      "facts": {
+        "parking": null,
+        "route": null,
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": "장애인 화장실 있음",
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 1,
+        "totalFields": 28,
+        "hasMobilityInfo": false,
+        "hasRestroomInfo": true,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
       "id": "tour-2662628",
       "name": "보헤미안 박이추커피",
       "region": "강릉",
@@ -851,21 +2060,68 @@
       }
     },
     {
-      "id": "tour-125768",
-      "name": "보현사(강릉)",
+      "id": "tour-2775515",
+      "name": "정은숙초당순두부",
       "region": "강릉",
-      "category": "나들이",
-      "contentId": "125768",
+      "category": "맛집",
+      "contentId": "2775515",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 경사로 설치되어 있음",
+        "publictransport": "허난설헌삼거리 하차, 도보 2분",
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "출입구에 턱이 없음",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2808098",
+      "name": "철뚝소머리집",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2808098",
       "facts": {
         "parking": null,
         "route": null,
-        "publictransport": null,
+        "publictransport": "주문진읍사무소 정류장에서 95m",
         "ticketoffice": null,
         "promotion": null,
         "wheelchair": null,
         "exit": null,
         "elevator": null,
-        "restroom": "장애인 화장실 있음",
+        "restroom": null,
         "auditorium": null,
         "room": null,
         "handicapetc": null,
@@ -890,7 +2146,195 @@
         "knownFields": 1,
         "totalFields": 28,
         "hasMobilityInfo": false,
-        "hasRestroomInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2876196",
+      "name": "초당버거 강릉본점",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2876196",
+      "facts": {
+        "parking": null,
+        "route": null,
+        "publictransport": "강릉고정문 하차, 도보 5분",
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "출입구에 턱이 없음",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": "유아용보조의자 있음",
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": true,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2818352",
+      "name": "카페폴앤메리",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2818352",
+      "facts": {
+        "parking": null,
+        "route": "출입구에 턱이 없어 휠체어 접근 가능",
+        "publictransport": "강문해변 정류장에서 190m",
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "출입구에 턱이 없음, 여닫이문",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": "의자식 테이블 있음_무장애 편의시설",
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-610465",
+      "name": "해동횟집",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "610465",
+      "facts": {
+        "parking": null,
+        "route": null,
+        "publictransport": "사천진해변 정류장에서 30M",
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 1,
+        "totalFields": 28,
+        "hasMobilityInfo": false,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-133497",
+      "name": "영진횟집",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "133497",
+      "facts": {
+        "parking": null,
+        "route": null,
+        "publictransport": "300번 버스, 삼천리아파트 역 하차 후 도보 15분",
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 1,
+        "totalFields": 28,
+        "hasMobilityInfo": false,
+        "hasRestroomInfo": false,
         "hasParkingInfo": false,
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
@@ -992,6 +2436,100 @@
       }
     },
     {
+      "id": "tour-2617724",
+      "name": "마린시티",
+      "region": "부산",
+      "category": "나들이",
+      "contentId": "2617724",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 턱이 없어 휠체어 접근 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "주출입구는 턱이 없어 휠체어 접근 가능함_무장애 편의시설",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": "동반가능_시각장애인 편의시설",
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-128886",
+      "name": "홍법사(부산)",
+      "region": "부산",
+      "category": "나들이",
+      "contentId": "128886",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 단차가 없어 휠체어 접근 가능함_무장애 편의시설",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": "대여가능",
+        "exit": "주출입구는 경사로 있어 휠체어 접근 가능함",
+        "elevator": "엘리베이터 있음",
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
       "id": "tour-2723542",
       "name": "한담해변",
       "region": "제주",
@@ -1035,6 +2573,100 @@
         "hasParkingInfo": false,
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-129395",
+      "name": "천지연 걸매생태공원",
+      "region": "제주",
+      "category": "나들이",
+      "contentId": "129395",
+      "facts": {
+        "parking": "장애인 전용 주차구역 있음_무장애 편의시설",
+        "route": "공원 진입로에 휠체어 이동가능한 목재데크 설치됨 경사로 설치됨 미끄럼 방지 설비가 되어 있음",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": "장애인전용화장실 있음(주차장 옆에 위치)",
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": true,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      }
+    },
+    {
+      "id": "tour-2755895",
+      "name": "아트인명도암",
+      "region": "제주",
+      "category": "맛집",
+      "contentId": "2755895",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 턱이 없어 휠체어 접근 가능함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "주출입구는 턱이 없어 휠체어 접근 가능함(수동문)",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": "의자식 테이블 있음_무장애 편의시설",
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 3,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
         "hasHearingInfo": false
       }
     }
