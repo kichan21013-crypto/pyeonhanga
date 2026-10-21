@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-21T05:16:24.923Z",
+  "generatedAt": "2026-10-21T06:03:34.199Z",
   "source": "data/places.json",
-  "strategy": "region-balanced candidate sample, up to 8 per region, 나들이/맛집 균형 우선",
+  "strategy": "region-balanced candidate sample, up to 12 per region, 나들이/맛집 균형 우선",
   "summary": {
-    "selected": 48,
-    "enriched": 48,
+    "selected": 72,
+    "enriched": 72,
     "errors": 0,
     "byRegion": {
-      "서울": 8,
-      "경기": 8,
-      "강릉": 8,
-      "경주": 8,
-      "부산": 8,
-      "제주": 8
+      "서울": 12,
+      "경기": 12,
+      "강릉": 12,
+      "경주": 12,
+      "부산": 12,
+      "제주": 12
     },
     "withOverview": 0,
-    "withParking": 40,
-    "withHours": 40,
+    "withParking": 63,
+    "withHours": 63,
     "withExtraImages": 0
   },
   "errors": [],
@@ -334,6 +334,146 @@
       "images": []
     },
     {
+      "id": "tour-1364975",
+      "name": "충무공 이순신 동상",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "1364975",
+      "contentTypeId": "12",
+      "modifiedTime": "20251231092235",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "불가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "서울시청 광장관리팀 02-2133-1296",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "충무공 이순신 동상",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "1364975",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "서울시청 광장관리팀 02-2133-1296",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "불가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "1364975",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "입 장 료",
+          "infotext": "무료",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-1364932",
+      "name": "세종대왕 동상",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "1364932",
+      "contentTypeId": "12",
+      "modifiedTime": "20251231091446",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "불가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "서울시청 광장관리팀 02-2133-1296",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "세종대왕 동상",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "1364932",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "서울시청 광장관리팀 02-2133-1296",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "불가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "1364932",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "입 장 료",
+          "infotext": "무료",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
       "id": "tour-2783356",
       "name": "작은공간",
       "region": "서울",
@@ -612,6 +752,148 @@
           "serialnum": "0",
           "infoname": "화장실",
           "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2758130",
+      "name": "오만지아",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "2758130",
+      "contentTypeId": "39",
+      "modifiedTime": "20251230132557",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "[평일] - 12:00~24:00 - 준비시간 15:00~17:30 - 점심 마지막 주문 14:00 / 저녁 마지막 주문 23:00 [주말] - 12:00~24:00 - 마지막 주문 23:00",
+        "restDayText": "연중무휴",
+        "infoCenterText": "02-749-2900",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "Mare misti",
+        "menuText": "Busiate Siciliana / Melanzane Pizza / Bottarga Sardinia 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "오만지아",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2758130",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "Mare misti",
+        "treatmenu": "Busiate Siciliana / Melanzane Pizza / Bottarga Sardinia 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "02-749-2900",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "[평일]<br>- 12:00~24:00<br>- 준비시간 15:00~17:30<br>- 점심 마지막 주문 14:00 / 저녁 마지막 주문 23:00<br>[주말]<br>- 12:00~24:00<br>- 마지막 주문 23:00",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20160033305"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2758130",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음\n",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2758158",
+      "name": "풍년뼈다귀해장국",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "2758158",
+      "contentTypeId": "39",
+      "modifiedTime": "20251229180426",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "불가능",
+        "operatingHoursText": "00:00~24:00",
+        "restDayText": "매월 첫째, 셋째 월요일",
+        "infoCenterText": "02-415-0631",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "뼈해장국",
+        "menuText": "우거지탕 / 안주",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "풍년뼈다귀해장국",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2758158",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "뼈해장국",
+        "treatmenu": "우거지탕 / 안주",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "02-415-0631",
+        "scalefood": "",
+        "parkingfood": "불가능",
+        "opendatefood": "",
+        "opentimefood": "00:00~24:00",
+        "restdatefood": "매월 첫째, 셋째 월요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "19880114179"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2758158",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음\n",
           "fldgubun": "1"
         }
       ],
@@ -914,6 +1196,146 @@
       "images": []
     },
     {
+      "id": "tour-129645",
+      "name": "석산계곡",
+      "region": "경기",
+      "category": "나들이",
+      "contentId": "129645",
+      "contentTypeId": "12",
+      "modifiedTime": "20251231101937",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "양평 관광안내소 031-770-1001~2",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "석산계곡",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "129645",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "양평 관광안내소 031-770-1001~2",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "129645",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "입 장 료",
+          "infotext": "무료",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-127688",
+      "name": "사나사(양평)",
+      "region": "경기",
+      "category": "나들이",
+      "contentId": "127688",
+      "contentTypeId": "12",
+      "modifiedTime": "20251231101434",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "09:00~18:00",
+        "restDayText": "연중무휴",
+        "infoCenterText": "031-772-5182",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "사나사(양평)",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "127688",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "031-772-5182",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "09:00~18:00",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "127688",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "입 장 료",
+          "infotext": "무료",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
       "id": "tour-2717413",
       "name": "보개바람",
       "region": "경기",
@@ -1109,35 +1531,35 @@
       "images": []
     },
     {
-      "id": "tour-129645",
-      "name": "석산계곡",
+      "id": "tour-2872886",
+      "name": "화림",
       "region": "경기",
-      "category": "나들이",
-      "contentId": "129645",
-      "contentTypeId": "12",
-      "modifiedTime": "20251231101937",
+      "category": "맛집",
+      "contentId": "2872886",
+      "contentTypeId": "39",
+      "modifiedTime": "20251222180122",
       "facts": {
         "overview": null,
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "상시 개방",
+        "operatingHoursText": "11:00~21:30",
         "restDayText": "연중무휴",
-        "infoCenterText": "양평 관광안내소 031-770-1001~2",
+        "infoCenterText": "031-975-2332",
         "reservationText": null,
         "seatText": null,
-        "firstMenuText": null,
-        "menuText": null,
+        "firstMenuText": "해피데이",
+        "menuText": "화림 정식 코스 / 화 코스 / 림 코스 등",
         "petText": null,
         "babyCarriageText": null,
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 4,
+        "knownOperationalFacts": 6,
         "totalOperationalFactFields": 11
       },
       "common": {
-        "title": "석산계곡",
+        "title": "화림",
         "addr1": null,
         "addr2": null,
         "zipcode": null,
@@ -1148,32 +1570,175 @@
         "firstimage2": null
       },
       "intro": {
-        "contentid": "129645",
-        "contenttypeid": "12",
-        "heritage1": "0",
-        "heritage2": "0",
-        "heritage3": "0",
-        "infocenter": "양평 관광안내소 031-770-1001~2",
-        "opendate": "",
-        "restdate": "연중무휴",
-        "expguide": "",
-        "expagerange": "",
-        "accomcount": "",
-        "useseason": "",
-        "usetime": "상시 개방",
-        "parking": "가능",
-        "chkbabycarriage": "",
-        "chkpet": "",
-        "chkcreditcard": ""
+        "contentid": "2872886",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "해피데이",
+        "treatmenu": "화림 정식 코스 / 화 코스 / 림 코스 등",
+        "smoking": "",
+        "packing": "가능",
+        "infocenterfood": "031-975-2332",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "11:00~21:30",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20180341597"
       },
       "repeatedInfo": [
         {
-          "contentid": "129645",
-          "contenttypeid": "12",
+          "contentid": "2872886",
+          "contenttypeid": "39",
           "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-133082",
+      "name": "안양정가삼계탕",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "133082",
+      "contentTypeId": "39",
+      "modifiedTime": "20251219154410",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "10:00~22:00",
+        "restDayText": "연중무휴",
+        "infoCenterText": "031-441-5779",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "삼계탕",
+        "menuText": "닭볶음탕 / 닭모래집",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "안양정가삼계탕",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "133082",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "삼계탕",
+        "treatmenu": "닭볶음탕 / 닭모래집",
+        "smoking": "모두 금연석",
+        "packing": "",
+        "infocenterfood": "031-441-5779",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "10:00~22:00",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20010290240"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "133082",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음 ",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2799624",
+      "name": "설문커피",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2799624",
+      "contentTypeId": "39",
+      "modifiedTime": "20251211172403",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "- 10:00~21:30 - 마지막 주문 21:00",
+        "restDayText": "연중무휴",
+        "infoCenterText": "031-975-5078",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "크림커피",
+        "menuText": "라떼 / 아메리카노 / 모카 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "설문커피",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2799624",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "크림커피",
+        "treatmenu": "라떼 / 아메리카노 / 모카 등",
+        "smoking": "",
+        "packing": "가능",
+        "infocenterfood": "031-975-5078",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "- 10:00~21:30<br>- 마지막 주문 21:00",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20160325399"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2799624",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음\n",
+          "fldgubun": "1"
         }
       ],
       "images": []
@@ -1458,6 +2023,145 @@
       "images": []
     },
     {
+      "id": "tour-3454461",
+      "name": "경포호수광장",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "3454461",
+      "contentTypeId": "12",
+      "modifiedTime": "20251030093441",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": null,
+        "operatingHoursText": null,
+        "restDayText": "연중무휴 24시개방",
+        "infoCenterText": "0336404531",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 2,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "경포호수광장",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "3454461",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "0336404531",
+        "opendate": "",
+        "restdate": "연중무휴 24시개방",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "",
+        "parking": "",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [],
+      "images": []
+    },
+    {
+      "id": "tour-128359",
+      "name": "강릉 복사꽃마을",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "128359",
+      "contentTypeId": "12",
+      "modifiedTime": "20251023143000",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "033-661-5207~8",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "강릉 복사꽃마을",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "128359",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "033-661-5207~8",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "과일 따기 체험 / 복사꽃길 걷기 / 전통놀이 체험 등",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "128359",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "3"
+        },
+        {
+          "contentid": "128359",
+          "contenttypeid": "12",
+          "serialnum": "1",
+          "infoname": "주차요금",
+          "infotext": "무료",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
       "id": "tour-2662628",
       "name": "보헤미안 박이추커피",
       "region": "강릉",
@@ -1653,21 +2357,21 @@
       "images": []
     },
     {
-      "id": "tour-3454461",
-      "name": "경포호수광장",
+      "id": "tour-125748",
+      "name": "남대천(강릉)",
       "region": "강릉",
       "category": "나들이",
-      "contentId": "3454461",
+      "contentId": "125748",
       "contentTypeId": "12",
-      "modifiedTime": "20251030093441",
+      "modifiedTime": "20251023143000",
       "facts": {
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": null,
-        "operatingHoursText": null,
-        "restDayText": "연중무휴 24시개방",
-        "infoCenterText": "0336404531",
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "강릉시 종합관광안내소 033-640-4414 / 033-640-4531",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -1677,11 +2381,11 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 2,
+        "knownOperationalFacts": 4,
         "totalOperationalFactFields": 11
       },
       "common": {
-        "title": "경포호수광장",
+        "title": "남대천(강릉)",
         "addr1": null,
         "addr2": null,
         "zipcode": null,
@@ -1692,25 +2396,174 @@
         "firstimage2": null
       },
       "intro": {
-        "contentid": "3454461",
+        "contentid": "125748",
         "contenttypeid": "12",
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "0336404531",
+        "infocenter": "강릉시 종합관광안내소 033-640-4414 / 033-640-4531",
         "opendate": "",
-        "restdate": "연중무휴 24시개방",
+        "restdate": "연중무휴",
         "expguide": "",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "",
-        "parking": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
       },
-      "repeatedInfo": [],
+      "repeatedInfo": [
+        {
+          "contentid": "125748",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-129029",
+      "name": "주문리마을",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "129029",
+      "contentTypeId": "12",
+      "modifiedTime": "20250917091936",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "점포 별로 상이함",
+        "restDayText": "연중무휴",
+        "infoCenterText": "주문리어촌계사무실 033-662-2106 / 033-640-4535",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "주문리마을",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "129029",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "주문리어촌계사무실 033-662-2106 / 033-640-4535",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "점포 별로 상이함",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "129029",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-125768",
+      "name": "보현사(강릉)",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "125768",
+      "contentTypeId": "12",
+      "modifiedTime": "20250901115639",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "033-648-9431",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "보현사(강릉)",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "125768",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "033-648-9431",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "템플스테이(휴식형 / 체험형)",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "125768",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "3"
+        }
+      ],
       "images": []
     },
     {
@@ -2042,6 +2895,145 @@
       "images": []
     },
     {
+      "id": "tour-337505",
+      "name": "연지암(경주)",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "337505",
+      "contentTypeId": "12",
+      "modifiedTime": "20251224165130",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능 요금 (무료)",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "054-744-7314",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "연지암(경주)",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "337505",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "054-744-7314",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "가능<br>요금 (무료)",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "337505",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "입 장 료",
+          "infotext": "무료 ",
+          "fldgubun": "3"
+        },
+        {
+          "contentid": "337505",
+          "contenttypeid": "12",
+          "serialnum": "1",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-319572",
+      "name": "경주 동부 사적지대",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "319572",
+      "contentTypeId": "12",
+      "modifiedTime": "20251212105152",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": null,
+        "operatingHoursText": null,
+        "restDayText": null,
+        "infoCenterText": "054-772-3843",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 1,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "경주 동부 사적지대",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "319572",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "054-772-3843",
+        "opendate": "",
+        "restdate": "",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "",
+        "parking": "",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [],
+      "images": []
+    },
+    {
       "id": "tour-2876577",
       "name": "송정원순두부",
       "region": "경주",
@@ -2320,6 +3312,148 @@
           "serialnum": "0",
           "infoname": "화장실",
           "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2838772",
+      "name": "경주밀면 본점",
+      "region": "경주",
+      "category": "맛집",
+      "contentId": "2838772",
+      "contentTypeId": "39",
+      "modifiedTime": "20251127172213",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능 요금 (무료)",
+        "operatingHoursText": "10:40~19:00 - 준비시간 15:50~16:30 - 마지막 주문 18:30",
+        "restDayText": "연중무휴",
+        "infoCenterText": "054-748-5058",
+        "reservationText": "가능(전화 문의)",
+        "seatText": null,
+        "firstMenuText": "밀면+석쇠불고기",
+        "menuText": "비빔밀면+석쇠불고기 / 석쇠불고기한판 / 손만두 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": "가능"
+      },
+      "completeness": {
+        "knownOperationalFacts": 8,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "경주밀면 본점",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2838772",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "밀면+석쇠불고기",
+        "treatmenu": "비빔밀면+석쇠불고기 / 석쇠불고기한판 / 손만두 등",
+        "smoking": "",
+        "packing": "가능",
+        "infocenterfood": "054-748-5058",
+        "scalefood": "",
+        "parkingfood": "가능<br>요금 (무료)",
+        "opendatefood": "",
+        "opentimefood": "10:40~19:00<br>- 준비시간 15:50~16:30<br>- 마지막 주문 18:30",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "가능",
+        "reservationfood": "가능(전화 문의)",
+        "lcnsno": "20090538542"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2838772",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음\n",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2838704",
+      "name": "가봉반과",
+      "region": "경주",
+      "category": "맛집",
+      "contentId": "2838704",
+      "contentTypeId": "39",
+      "modifiedTime": "20251127171730",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "불가능",
+        "operatingHoursText": "[평일] 11:00~18:00 [주말] 11:00~19:00",
+        "restDayText": "매주 수요일",
+        "infoCenterText": "054-744-6648",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "화과자",
+        "menuText": "오미자차 / 홍매실차 / 미숫가루 / 제주 녹차 / 보성 호지차 / 밀크티 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "가봉반과",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2838704",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "화과자",
+        "treatmenu": "오미자차 / 홍매실차 / 미숫가루 / 제주 녹차 / 보성 호지차 / 밀크티 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "054-744-6648",
+        "scalefood": "",
+        "parkingfood": "불가능",
+        "opendatefood": "",
+        "opentimefood": "[평일]<br>11:00~18:00<br>[주말]<br>11:00~19:00",
+        "restdatefood": "매주 수요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20180542606"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2838704",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음 \n",
           "fldgubun": "1"
         }
       ],
@@ -2622,6 +3756,137 @@
       "images": []
     },
     {
+      "id": "tour-128810",
+      "name": "동백공원",
+      "region": "부산",
+      "category": "나들이",
+      "contentId": "128810",
+      "contentTypeId": "12",
+      "modifiedTime": "20251219095747",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "해운대구 관광시설관리사업소 051-749-7622",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "동백공원",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "128810",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "해운대구 관광시설관리사업소 051-749-7622",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "128810",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "입 장 료",
+          "infotext": "무료",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2614725",
+      "name": "송도반도 (부산 국가지질공원)",
+      "region": "부산",
+      "category": "나들이",
+      "contentId": "2614725",
+      "contentTypeId": "12",
+      "modifiedTime": "20251219092914",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중 무휴",
+        "infoCenterText": "부산광역시청 환경정책과 051-888-3636",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "송도반도 (부산 국가지질공원)",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2614725",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "부산광역시청 환경정책과 051-888-3636",
+        "opendate": "",
+        "restdate": "연중 무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [],
+      "images": []
+    },
+    {
       "id": "tour-2752996",
       "name": "브라운피크닉",
       "region": "부산",
@@ -2895,6 +4160,148 @@
       "repeatedInfo": [
         {
           "contentid": "2891745",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2872442",
+      "name": "마포면옥",
+      "region": "부산",
+      "category": "맛집",
+      "contentId": "2872442",
+      "contentTypeId": "39",
+      "modifiedTime": "20251106095036",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "- 10:10~19:30 - 점심 마지막 주문 14:50 - 준비시간 15:00~16:00 - 저녁 마지막 주문 19:20",
+        "restDayText": "연중무휴",
+        "infoCenterText": "051-727-5585",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "물밀면",
+        "menuText": "비빔밀면 / 찐만두",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "마포면옥",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2872442",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "물밀면",
+        "treatmenu": "비빔밀면 / 찐만두",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "051-727-5585",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "- 10:10~19:30<br>- 점심 마지막 주문 14:50<br>- 준비시간 15:00~16:00<br>- 저녁 마지막 주문 19:20",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20050156146"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2872442",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2872395",
+      "name": "미동암소정",
+      "region": "부산",
+      "category": "맛집",
+      "contentId": "2872395",
+      "contentTypeId": "39",
+      "modifiedTime": "20251106094416",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "11:00~20:30 (마지막 주문 19:30)",
+        "restDayText": "연중무휴",
+        "infoCenterText": "0507-1426-9441",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "생고기모듬",
+        "menuText": "한우등심불고기 / 등심 / 낙엽살 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "미동암소정",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2872395",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "생고기모듬",
+        "treatmenu": "한우등심불고기 / 등심 / 낙엽살 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "0507-1426-9441",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "11:00~20:30 (마지막 주문 19:30)",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20020156250"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2872395",
           "contenttypeid": "39",
           "serialnum": "0",
           "infoname": "화장실",
@@ -3209,6 +4616,170 @@
       "images": []
     },
     {
+      "id": "tour-129405",
+      "name": "소정방폭포",
+      "region": "제주",
+      "category": "나들이",
+      "contentId": "129405",
+      "contentTypeId": "12",
+      "modifiedTime": "20251224152459",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "064-733-1530",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "소정방폭포",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "129405",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "064-733-1530",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "전 연령",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "129405",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음\n",
+          "fldgubun": "3"
+        },
+        {
+          "contentid": "129405",
+          "contenttypeid": "12",
+          "serialnum": "1",
+          "infoname": "주차요금",
+          "infotext": "무료",
+          "fldgubun": "3"
+        },
+        {
+          "contentid": "129405",
+          "contenttypeid": "12",
+          "serialnum": "2",
+          "infoname": "입 장 료",
+          "infotext": "무료",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-309943",
+      "name": "법화사",
+      "region": "제주",
+      "category": "나들이",
+      "contentId": "309943",
+      "contentTypeId": "12",
+      "modifiedTime": "20251224150800",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
+        "restDayText": "연중무휴",
+        "infoCenterText": "064-738-5225",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 4,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "법화사",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "309943",
+        "contenttypeid": "12",
+        "heritage1": "0",
+        "heritage2": "0",
+        "heritage3": "0",
+        "infocenter": "064-738-5225",
+        "opendate": "",
+        "restdate": "연중무휴",
+        "expguide": "",
+        "expagerange": "",
+        "accomcount": "",
+        "useseason": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
+        "chkbabycarriage": "",
+        "chkpet": "",
+        "chkcreditcard": ""
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "309943",
+          "contenttypeid": "12",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음\n",
+          "fldgubun": "3"
+        },
+        {
+          "contentid": "309943",
+          "contenttypeid": "12",
+          "serialnum": "1",
+          "infoname": "이용가능시설",
+          "infotext": "대웅전 / 구품연지 / 구화루 등\t\t",
+          "fldgubun": "3"
+        }
+      ],
+      "images": []
+    },
+    {
       "id": "tour-2755445",
       "name": "드르쿰다",
       "region": "제주",
@@ -3474,6 +5045,148 @@
       "repeatedInfo": [
         {
           "contentid": "2802732",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2860639",
+      "name": "송림반점",
+      "region": "제주",
+      "category": "맛집",
+      "contentId": "2860639",
+      "contentTypeId": "39",
+      "modifiedTime": "20251105142816",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "11:30~15:00 (마지막 주문 14:30)",
+        "restDayText": "매주 일요일",
+        "infoCenterText": "064-722-4229",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "간짜장",
+        "menuText": "우동 / 짬뽕 / 볶음밥 / 탕수육 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "송림반점",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2860639",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "간짜장",
+        "treatmenu": "우동 / 짬뽕 / 볶음밥 / 탕수육 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "064-722-4229",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "11:30~15:00 (마지막 주문 14:30)",
+        "restdatefood": "매주 일요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "19790627039"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2860639",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "tour-2758924",
+      "name": "미스칠",
+      "region": "제주",
+      "category": "맛집",
+      "contentId": "2758924",
+      "contentTypeId": "39",
+      "modifiedTime": "20251105111939",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "08:00~16:30 (마지막 주문 15:30)",
+        "restDayText": "매주 수요일",
+        "infoCenterText": "0507-1446-8011",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "돔베정식",
+        "menuText": "미스칠특선 / 전복뚝배기정식 / 돌솥정식 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "미스칠",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2758924",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "돔베정식",
+        "treatmenu": "미스칠특선 / 전복뚝배기정식 / 돌솥정식 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "0507-1446-8011",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "08:00~16:30 (마지막 주문 15:30)",
+        "restdatefood": "매주 수요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20160628443"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2758924",
           "contenttypeid": "39",
           "serialnum": "0",
           "infoname": "화장실",

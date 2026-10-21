@@ -1,26 +1,45 @@
 {
-  "generatedAt": "2026-10-21T05:15:37.377Z",
+  "generatedAt": "2026-10-21T06:02:14.613Z",
   "source": "data/places.json",
   "summary": {
-    "total": 257,
+    "total": 497,
     "byStatus": {
-      "candidate": 146,
-      "review": 94,
-      "source_only": 7,
+      "candidate": 301,
+      "review": 178,
+      "source_only": 8,
       "review_course": 10
     },
     "byRole": {
-      "place": 240,
+      "place": 480,
       "course": 14,
       "facility": 3
     },
-    "invalidCoordinate": 3,
+    "invalidCoordinate": 4,
     "missingAddress": 4,
-    "placeholderImage": 99,
+    "placeholderImage": 183,
     "regionAddressMismatch": 0,
-    "comfortUnknown": 257
+    "comfortUnknown": 497
   },
   "topCandidates": [
+    {
+      "id": "tour-2755053",
+      "name": "가람돌솥밥",
+      "region": "제주",
+      "category": "맛집",
+      "contentId": "2755053",
+      "contentTypeId": "39",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
     {
       "id": "tour-2838704",
       "name": "가봉반과",
@@ -60,12 +79,221 @@
       "comfortKnownCount": 0
     },
     {
+      "id": "tour-1935608",
+      "name": "가톨릭 특성화 거리",
+      "region": "부산",
+      "category": "나들이",
+      "contentId": "1935608",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-128677",
+      "name": "감포항",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "128677",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-2456536",
+      "name": "강남 마이스 관광특구",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "2456536",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-2756802",
+      "name": "강동리조트 프라이빗콘도",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "2756802",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-125769",
+      "name": "강릉 굴산사지",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "125769",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
       "id": "tour-128359",
       "name": "강릉 복사꽃마을",
       "region": "강릉",
       "category": "나들이",
       "contentId": "128359",
       "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-2702581",
+      "name": "강릉 오금집",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "2702581",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-128360",
+      "name": "강릉 한울타리마을",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "128360",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-129337",
+      "name": "강릉 해살이마을",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "129337",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-2761294",
+      "name": "개미허리아치교",
+      "region": "경기",
+      "category": "나들이",
+      "contentId": "2761294",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-1889833",
+      "name": "갯거리오름",
+      "region": "제주",
+      "category": "나들이",
+      "contentId": "1889833",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-2758836",
+      "name": "경미네집",
+      "region": "제주",
+      "category": "맛집",
+      "contentId": "2758836",
+      "contentTypeId": "39",
       "role": "place",
       "status": "candidate",
       "score": 100,
@@ -117,11 +345,68 @@
       "comfortKnownCount": 0
     },
     {
+      "id": "tour-250263",
+      "name": "경주 남산 미륵곡 석조여래좌상",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "250263",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
       "id": "tour-250262",
       "name": "경주 남산 탑곡 마애불상군",
       "region": "경주",
       "category": "나들이",
       "contentId": "250262",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-129522",
+      "name": "경주 남산동 동·서 삼층석탑",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "129522",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-250269",
+      "name": "경주 능지탑지",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "250269",
       "contentTypeId": "12",
       "role": "place",
       "status": "candidate",
@@ -193,11 +478,68 @@
       "comfortKnownCount": 0
     },
     {
+      "id": "tour-1621727",
+      "name": "경주 서악동 고분군",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "1621727",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-128612",
+      "name": "경주 서출지",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "128612",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
       "id": "tour-126211",
       "name": "경주 선덕여왕릉",
       "region": "경주",
       "category": "나들이",
       "contentId": "126211",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-1621820",
+      "name": "경주 성덕왕릉",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "1621820",
       "contentTypeId": "12",
       "role": "place",
       "status": "candidate",
@@ -250,6 +592,25 @@
       "comfortKnownCount": 0
     },
     {
+      "id": "tour-129518",
+      "name": "경주 양동마을 송첨종택",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "129518",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
       "id": "tour-250281",
       "name": "경주 인왕동 사지",
       "region": "경주",
@@ -288,12 +649,126 @@
       "comfortKnownCount": 0
     },
     {
+      "id": "tour-319726",
+      "name": "경주 정강왕릉",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "319726",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-1621714",
+      "name": "경주 지마왕릉",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "1621714",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-126208",
+      "name": "경주 포석정지",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "126208",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-1621799",
+      "name": "경주 헌덕왕릉",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "1621799",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-1621842",
+      "name": "경주 효소왕릉",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "1621842",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
       "id": "tour-2838772",
       "name": "경주밀면 본점",
       "region": "경주",
       "category": "맛집",
       "contentId": "2838772",
       "contentTypeId": "39",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-127487",
+      "name": "경주엑스포대공원",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "127487",
+      "contentTypeId": "12",
       "role": "place",
       "status": "candidate",
       "score": 100,
@@ -440,6 +915,44 @@
       "comfortKnownCount": 0
     },
     {
+      "id": "tour-1918984",
+      "name": "구두리오름",
+      "region": "제주",
+      "category": "나들이",
+      "contentId": "1918984",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-125669",
+      "name": "구룡폭포(소금강)",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "125669",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
       "id": "tour-1621059",
       "name": "구시물",
       "region": "제주",
@@ -459,11 +972,49 @@
       "comfortKnownCount": 0
     },
     {
+      "id": "tour-125464",
+      "name": "국망봉자연휴양림",
+      "region": "경기",
+      "category": "나들이",
+      "contentId": "125464",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
       "id": "tour-298099",
       "name": "국청사(부산)",
       "region": "부산",
       "category": "나들이",
       "contentId": "298099",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-2591809",
+      "name": "궁동저수지 생태공원",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "2591809",
       "contentTypeId": "12",
       "role": "place",
       "status": "candidate",
@@ -502,6 +1053,44 @@
       "region": "경주",
       "category": "나들이",
       "contentId": "1958053",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-1606052",
+      "name": "극락사(서울)",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "1606052",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-125770",
+      "name": "금강사(강릉)",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "125770",
       "contentTypeId": "12",
       "role": "place",
       "status": "candidate",
@@ -559,595 +1148,6 @@
       "region": "부산",
       "category": "나들이",
       "contentId": "298111",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-126028",
-      "name": "금정산",
-      "region": "부산",
-      "category": "나들이",
-      "contentId": "126028",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2643873",
-      "name": "금정산성마을 먹거리촌",
-      "region": "부산",
-      "category": "나들이",
-      "contentId": "2643873",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2766532",
-      "name": "기와메밀막국수",
-      "region": "경주",
-      "category": "맛집",
-      "contentId": "2766532",
-      "contentTypeId": "39",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2871246",
-      "name": "까치장칼국수",
-      "region": "강릉",
-      "category": "맛집",
-      "contentId": "2871246",
-      "contentTypeId": "39",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-1958111",
-      "name": "나산서원",
-      "region": "경주",
-      "category": "나들이",
-      "contentId": "1958111",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-125748",
-      "name": "남대천(강릉)",
-      "region": "강릉",
-      "category": "나들이",
-      "contentId": "125748",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2753136",
-      "name": "노암터널",
-      "region": "강릉",
-      "category": "나들이",
-      "contentId": "2753136",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-1993734",
-      "name": "녹산로 유채꽃도로",
-      "region": "제주",
-      "category": "나들이",
-      "contentId": "1993734",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2740127",
-      "name": "느지리오름",
-      "region": "제주",
-      "category": "나들이",
-      "contentId": "2740127",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2766846",
-      "name": "당남지구공원",
-      "region": "경기",
-      "category": "나들이",
-      "contentId": "2766846",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2704447",
-      "name": "당케포구",
-      "region": "제주",
-      "category": "나들이",
-      "contentId": "2704447",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-1602451",
-      "name": "대모산도시자연공원",
-      "region": "서울",
-      "category": "나들이",
-      "contentId": "1602451",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-131032",
-      "name": "덕우저수지",
-      "region": "경기",
-      "category": "나들이",
-      "contentId": "131032",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-1899959",
-      "name": "도리미오름",
-      "region": "제주",
-      "category": "나들이",
-      "contentId": "1899959",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-585615",
-      "name": "도직해변",
-      "region": "강릉",
-      "category": "나들이",
-      "contentId": "585615",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2736719",
-      "name": "돌고래횟집",
-      "region": "경주",
-      "category": "맛집",
-      "contentId": "2736719",
-      "contentTypeId": "39",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-128810",
-      "name": "동백공원",
-      "region": "부산",
-      "category": "나들이",
-      "contentId": "128810",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2614716",
-      "name": "두도",
-      "region": "부산",
-      "category": "나들이",
-      "contentId": "2614716",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2891745",
-      "name": "듀스포레",
-      "region": "부산",
-      "category": "맛집",
-      "contentId": "2891745",
-      "contentTypeId": "39",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2755445",
-      "name": "드르쿰다",
-      "region": "제주",
-      "category": "맛집",
-      "contentId": "2755445",
-      "contentTypeId": "39",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2654539",
-      "name": "들꽃가람농장",
-      "region": "경기",
-      "category": "나들이",
-      "contentId": "2654539",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2759629",
-      "name": "디저트시네마",
-      "region": "부산",
-      "category": "맛집",
-      "contentId": "2759629",
-      "contentTypeId": "39",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2500214",
-      "name": "로렌스길",
-      "region": "서울",
-      "category": "나들이",
-      "contentId": "2500214",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-129145",
-      "name": "마라도 등대",
-      "region": "제주",
-      "category": "나들이",
-      "contentId": "129145",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2617724",
-      "name": "마린시티",
-      "region": "부산",
-      "category": "나들이",
-      "contentId": "2617724",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2872442",
-      "name": "마포면옥",
-      "region": "부산",
-      "category": "맛집",
-      "contentId": "2872442",
-      "contentTypeId": "39",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-127307",
-      "name": "망원정 터",
-      "region": "서울",
-      "category": "나들이",
-      "contentId": "127307",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2792940",
-      "name": "명달리계곡",
-      "region": "경기",
-      "category": "나들이",
-      "contentId": "2792940",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2872395",
-      "name": "미동암소정",
-      "region": "부산",
-      "category": "맛집",
-      "contentId": "2872395",
-      "contentTypeId": "39",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-126468",
-      "name": "방선문",
-      "region": "제주",
-      "category": "나들이",
-      "contentId": "126468",
-      "contentTypeId": "12",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-309307",
-      "name": "백련사(강북)",
-      "region": "서울",
-      "category": "나들이",
-      "contentId": "309307",
       "contentTypeId": "12",
       "role": "place",
       "status": "candidate",
@@ -1666,6 +1666,26 @@
       ],
       "validCoordinate": false,
       "addressKnown": false,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
+      "id": "tour-2611568",
+      "name": "계남근린공원",
+      "region": "서울",
+      "category": "나들이",
+      "contentId": "2611568",
+      "contentTypeId": "12",
+      "role": "place",
+      "status": "source_only",
+      "score": 70,
+      "flags": [
+        "invalid_korea_coordinate",
+        "comfort_unknown"
+      ],
+      "validCoordinate": false,
+      "addressKnown": true,
       "hasRealImage": true,
       "regionAddressMatch": true,
       "comfortKnownCount": 0
