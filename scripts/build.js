@@ -14,12 +14,14 @@ const sourcePlaces = JSON.parse(await readFile(resolve(root, 'data/places.json')
 const generalReport = JSON.parse(await readFile(resolve(root, 'data/tourapi-enrichment-report.json'), 'utf8'));
 const barrierReport = JSON.parse(await readFile(resolve(root, 'data/barrierfree-enrichment-report.json'), 'utf8'));
 validatePlaces(sourcePlaces);
-const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 6);
+const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 8);
 validatePlaces(places);
 const siteUrl = (process.env.SITE_URL || process.env.CF_PAGES_URL || 'http://localhost:4173').replace(/\/$/, '');
 if (!/^https?:\/\/[^/]+$/.test(siteUrl)) throw new Error('SITE_URL에는 https://서비스주소 형태의 주소를 입력하세요.');
 if (siteUrl.startsWith('http://localhost')) console.log('안내: 현재 SEO 주소는 로컬용입니다. 배포 시 SITE_URL을 설정하세요.');
-const index = (await readFile(resolve(root, 'index.html'), 'utf8')).replace(/<meta name="robots" content="noindex,nofollow">/g,'');
+let index = (await readFile(resolve(root, 'index.html'), 'utf8')).replace(/<meta name="robots" content="noindex,nofollow">/g,'');
+index = index.replace('<link rel="stylesheet" href="/styles.css">','<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/mobile-ux.css">');
+index = index.replace('<nav aria-label="주 메뉴">','<nav aria-label="주 메뉴"><a class="nav-home" href="/" aria-label="홈으로">홈</a>');
 const header = index.match(/<header class="site-header">[\s\S]*?<\/header>/)[0];
 const footer = `<footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="/">나가치</a><p>오늘, 내 리듬대로.</p><p>© ${new Date().getUTCFullYear()} 나가치 · 시장 검증용 MVP</p></div><div class="footer-links"><a href="/about.html">편안함 점수 안내</a><a href="/privacy.html">데이터 안내</a></div></div></footer>`;
 function seo(path, title, description, image = '/assets/garden.svg', noindex = false) {
@@ -28,11 +30,11 @@ function seo(path, title, description, image = '/assets/garden.svg', noindex = f
   return `<link rel="canonical" href="${url}"><meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta property="og:site_name" content="나가치"><meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${safeUrl(imageUrl)}">${!INDEXING_ENABLED || noindex ? '<meta name="robots" content="noindex,nofollow">' : ''}`;
 }
 function page({ title, description, path, content, page = 'info', id = '', image, noindex = false }) {
-  return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}">${seo(path, title, description, image, noindex)}<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"><script type="module" src="/app.js"></script></head><body data-page="${page}" data-place-id="${escapeHtml(id)}"><a class="skip-link" href="#main">본문 바로가기</a>${header}<main id="main" class="container ${page === 'detail' ? 'detail-main' : 'prose'}">${content}</main>${footer}<div id="toast" class="toast" role="status" hidden></div></body></html>`;
+  return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escapeHtml(title)}</title><meta name="description" content="${escapeHtml(description)}">${seo(path, title, description, image, noindex)}<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/mobile-ux.css"><script type="module" src="/app.js"></script></head><body data-page="${page}" data-place-id="${escapeHtml(id)}"><a class="skip-link" href="#main">본문 바로가기</a>${header}<main id="main" class="container ${page === 'detail' ? 'detail-main' : 'prose'}">${content}</main>${footer}<div id="toast" class="toast" role="status" hidden></div></body></html>`;
 }
 await rm(out, { recursive: true, force: true }); await mkdir(out, { recursive: true });
-for (const file of ['styles.css', 'app.js', 'ui.js', 'verified-facts.js', 'analytics.js', 'storage.js', 'comfort-score.js', 'search.js', 'rhythm.js', 'actions.js', 'flow.js', 'assets', 'data']) await cp(resolve(root, file), resolve(out, file), { recursive: true });
-// 원천 257개는 저장소에 유지하고, 공개 검증판에는 지역별 6개씩 선별한 파일럿만 제공합니다.
+for (const file of ['styles.css', 'mobile-ux.css', 'app.js', 'ui.js', 'verified-facts.js', 'analytics.js', 'storage.js', 'comfort-score.js', 'search.js', 'rhythm.js', 'actions.js', 'flow.js', 'assets', 'data']) await cp(resolve(root, file), resolve(out, file), { recursive: true });
+// 원천 257개는 저장소에 유지하고, 공개 검증판에는 상세 검증을 마친 48개 파일럿만 제공합니다.
 await writeFile(resolve(out, 'data', 'places.json'), JSON.stringify(places, null, 2) + '\n');
 let configInput;
 if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
@@ -45,7 +47,7 @@ if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
 await writeFile(resolve(out, 'config.js'), `export default ${JSON.stringify(publicConfig(configInput))};\n`);
 await writeFile(resolve(out, 'index.html'), index.replace('<!-- SEO -->', seo('/', '나가치 — 오늘, 내 리듬대로.', '막연히 뭔가 하고 싶은 날, 내 상황과 취향에 맞는 하루를 찾아보세요.', '/assets/garden.svg', places.every(p => p.isDemo))).replace('<!-- CARDS -->', recommendRhythms(places).map(r => card(r.place,false,undefined,r)).join('')).replace('<!-- FOOTER -->', footer).replace(/<p class="demo-notice">[\s\S]*?<\/p>/, places.some(p => p.isDemo) ? '<p class="demo-notice">DEMO SAMPLE 배지가 붙은 장소는 기능 체험용 가상 데이터입니다. 실제 방문 정보가 아닙니다.</p>' : '<p class="demo-notice">확인한 정보만 표시합니다. 방문 전 출처와 최근 확인 날짜를 살펴보세요.</p>'));
 const saved = (await readFile(resolve(root, 'saved.html'), 'utf8')).replace(/<meta name="robots" content="noindex,nofollow">/g,'');
-await writeFile(resolve(out, 'saved.html'), saved.replace('<!-- SEO -->', seo('/saved.html', '저장한 곳 — 나가치', '마음에 담은 장소를 다시 살펴보세요.', undefined, true)).replace('<!-- HEADER -->', header).replace('<!-- FOOTER -->', footer));
+await writeFile(resolve(out, 'saved.html'), saved.replace('<!-- SEO -->', seo('/saved.html', '저장한 곳 — 나가치', '마음에 담은 장소를 다시 살펴보세요.', undefined, true)).replace('<!-- HEADER -->', header).replace('<link rel="stylesheet" href="/styles.css">','<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/mobile-ux.css">').replace('<!-- FOOTER -->', footer));
 for (const p of places) {
   const dir = resolve(out, 'places', p.slug); await mkdir(dir, { recursive: true });
   await writeFile(resolve(dir, 'index.html'), page({ title: `${p.name} · ${p.region} ${p.category} 편안함 정보 — 나가치`, description: p.isDemo ? `DEMO SAMPLE · ${p.shortDescription}` : p.shortDescription, path: placeUrl(p), content: detailMarkup(p), page: 'detail', id: p.id, image: p.image, noindex: p.isDemo }));
