@@ -1,0 +1,99 @@
+/* MVP 1.5 visual layer: 외부 테스트 전 서비스 완성도 보강 */
+body{background:linear-gradient(180deg,#fffdf8 0,#fff 32%,#f8fbf7 100%)}
+.rhythm-hero{background-image:radial-gradient(circle at 12% 12%,#ffdca766 0 5%,transparent 16%),radial-gradient(circle at 92% 18%,#b9dfe066 0 6%,transparent 19%),linear-gradient(135deg,#fff7e5 0%,#edf6e9 52%,#eaf5f6 100%)!important}
+.rhythm-hero:before{box-shadow:0 0 0 18px #ffffff1a,0 0 0 36px #ffffff10}
+.rhythm-hero .hero-support{margin-top:10px;color:#567064;font-weight:650}
+.rhythm-paths{overflow:hidden}
+.rhythm-paths>svg{background:#f7f5e9}
+
+/* 욕구 선택: 단순 아이콘이 아니라 작은 생활 장면으로 보이게 */
+.desire-grid .choice-chip{position:relative;overflow:hidden;min-height:92px;padding-right:88px!important;isolation:isolate}
+.desire-grid .choice-chip:after{content:"";position:absolute;right:7px;bottom:7px;width:72px;height:54px;border-radius:14px;background-image:url('/assets/choice-scenes.svg');background-size:432px 54px;background-repeat:no-repeat;box-shadow:0 5px 15px #334a3a18;z-index:-1;transition:transform .18s ease,opacity .18s ease}
+.desire-grid .choice-chip:hover:after{transform:translateY(-2px) scale(1.03)}
+.desire-grid [data-desire="eat"]:after{background-position:0 0}
+.desire-grid [data-desire="move"]:after{background-position:-72px 0}
+.desire-grid [data-desire="outdoor"]:after{background-position:-144px 0}
+.desire-grid [data-desire="rest"]:after{background-position:-216px 0}
+.desire-grid [data-desire="explore"]:after{background-position:-288px 0}
+.desire-grid [data-desire="social"]:after{background-position:-360px 0}
+.desire-grid .choice-chip[aria-pressed=true]:after{opacity:.42;filter:saturate(.85) brightness(1.08)}
+.desire-grid .selection-indicator{position:absolute;top:9px;right:9px}
+
+/* 선택 과정의 배경 흐름 */
+.discovery-flow{position:relative}
+.discovery-flow:before{content:"";position:absolute;inset:-28px -26px auto;height:170px;border-radius:40px;background:linear-gradient(90deg,#f8f3e822,#e7f2ec55,#eef4f855);pointer-events:none;z-index:0}
+.discovery-flow>*{position:relative;z-index:1}
+.progressive-step[open]{transform:translateZ(0)}
+.step-instruction{max-width:680px}
+.quick-intents button{box-shadow:inset 0 0 0 1px #fff8}
+
+/* 결과 영역은 '검색 결과'가 아니라 추천 카드처럼 */
+.results-heading{padding-top:8px}
+.results-heading h2{font-size:1.42rem!important}
+.places-grid{gap:20px!important}
+.place-card{border-radius:22px!important;overflow:hidden;background:#fff;box-shadow:0 10px 30px #2b473517!important}
+.card-image{overflow:hidden}
+.card-image:after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(180deg,transparent,#1c302038);pointer-events:none}
+.card-image img{aspect-ratio:1.48!important;transition:transform .25s ease}
+.place-card:hover .card-image img{transform:scale(1.018)}
+.save-icon{z-index:2;box-shadow:0 6px 20px #1d34222a}
+.card-body{padding:19px 20px 20px!important}
+.rhythm-activity{display:inline-flex!important;align-items:center;gap:6px;width:auto!important;margin:2px 0 10px!important;padding:6px 10px;border-radius:999px;background:#eef6f1;color:#245b46;font-size:.75rem;font-weight:800}
+.rhythm-activity .choice-icon{width:22px!important;height:22px!important}
+.rhythm-activity .choice-icon svg{width:16px!important;height:16px!important}
+.card-body h3{font-size:1.16rem!important;margin-top:2px!important}
+.recommendation-reason{display:flex;gap:8px;align-items:flex-start;margin:12px 0 10px;padding:10px 11px;border-radius:12px;background:linear-gradient(90deg,#eff7ee,#f7faf5);color:#315b47;font-size:.78rem;font-weight:700;line-height:1.55;border:1px solid #dce9dc}
+.recommendation-reason svg{width:17px;height:17px;margin-top:2px;flex:0 0 auto}
+.card-description{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em!important;margin:11px 0!important}
+.comfort-tags{gap:7px!important;margin-top:8px}
+.comfort-tags span{display:inline-flex!important;align-items:center;gap:4px;padding:5px 8px;border-radius:999px;background:#f5f7f2;border:1px solid #e4e9e0;color:#526458}
+.card-bottom{margin-top:14px}
+.rhythm-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.rhythm-card-actions .full{grid-column:1/-1}
+.rhythm-card-actions .button{min-height:45px;padding:9px 10px;font-size:.76rem}
+
+/* 상세 페이지도 같은 시각 언어 유지 */
+.detail-image{box-shadow:0 14px 36px #263d301c}
+.detail-intro{position:relative}
+.detail-intro:before{content:"";display:block;width:52px;height:5px;border-radius:5px;background:#d8663f;margin-bottom:14px}
+.info-panel{border-radius:18px!important}
+
+@media(min-width:761px){
+  .places-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .desire-grid .choice-chip{min-height:98px}
+}
+
+@media(max-width:760px){
+  .rhythm-hero{box-shadow:0 12px 30px #35523d16!important}
+  .rhythm-hero .hero-copy{padding-right:4px}
+  .rhythm-hero h1{font-size:2.08rem!important;line-height:1.25!important;margin:14px 0!important}
+  .rhythm-hero .hero-description{font-size:.92rem;line-height:1.72}
+  .rhythm-hero .hero-support{font-size:.78rem;line-height:1.55}
+  .start-cta{width:100%;margin-top:18px;min-height:54px!important}
+  .desire-grid .choice-chip{min-height:92px;padding-right:72px!important}
+  .desire-grid .choice-chip:after{width:60px;height:45px;background-size:360px 45px;right:6px;bottom:7px}
+  .desire-grid [data-desire="move"]:after{background-position:-60px 0}
+  .desire-grid [data-desire="outdoor"]:after{background-position:-120px 0}
+  .desire-grid [data-desire="rest"]:after{background-position:-180px 0}
+  .desire-grid [data-desire="explore"]:after{background-position:-240px 0}
+  .desire-grid [data-desire="social"]:after{background-position:-300px 0}
+  .places-grid{grid-template-columns:1fr!important;gap:16px!important}
+  .place-card{border-radius:20px!important}
+  .card-image img{aspect-ratio:1.62!important}
+  .card-body{padding:17px!important}
+  .results-heading{align-items:flex-end;margin-top:30px!important}
+  .results-heading h2{font-size:1.22rem!important}
+  .rhythm-card-actions{grid-template-columns:1fr}
+  .rhythm-card-actions .full{grid-column:auto}
+  .rhythm-card-actions .button{min-height:48px}
+}
+
+@media(max-width:390px){
+  .desire-grid .choice-chip{padding-right:58px!important}
+  .desire-grid .choice-chip:after{width:49px;height:37px;background-size:296px 37px}
+  .desire-grid [data-desire="move"]:after{background-position:-49px 0}
+  .desire-grid [data-desire="outdoor"]:after{background-position:-98px 0}
+  .desire-grid [data-desire="rest"]:after{background-position:-148px 0}
+  .desire-grid [data-desire="explore"]:after{background-position:-197px 0}
+  .desire-grid [data-desire="social"]:after{background-position:-247px 0}
+}
