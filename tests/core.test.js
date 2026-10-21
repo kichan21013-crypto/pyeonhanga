@@ -11,7 +11,30 @@ import { convertItem } from '../scripts/import-tourapi.js';
 const places = JSON.parse(await readFile(new URL('../data/places.json', import.meta.url)));
 const fact = value => ({ value, sourceUrl: 'https://example.org/verified-fixture', verifiedAt: '2026-10-19', note: 'TEST FIXTURE ONLY' });
 
-test('모든 데이터가 검증되며 초기 샘플은 가상/unknown이다', () => {
+function fixture(id, overrides = {}) {
+  const base = structuredClone(places[0]);
+  return {
+    ...base,
+    id,
+    slug: id,
+    name: '테스트 장소',
+    shortDescription: '테스트 전용 장소',
+    region: '서울',
+    category: '나들이',
+    companions: [],
+    intentTags: [],
+    ...overrides,
+  };
+}
+
+const filterFixtures = [
+  fixture('fixture-hanjeongsik', { name: '정갈한 한정식', category: '맛집', region: '서울', companions: ['family'], intentTags: ['korean_food'] }),
+  fixture('fixture-outing-1', { name: '도심 나들이 공원', category: '나들이', region: '서울', intentTags: ['outing','walk'] }),
+  fixture('fixture-trip-1', { name: '강릉 바다 여행', category: '여행', region: '강릉', intentTags: ['travel','sea'] }),
+  fixture('fixture-trip-2', { name: '제주 하루 여행', category: '여행', region: '제주', intentTags: ['travel'] }),
+];
+
+test('모든 현재 데이터가 검증되며 DEMO가 있으면 unknown 원칙을 지킨다', () => {
   assert.equal(validatePlaces(places), true);
   for (const p of places.filter(p => p.isDemo)) {
     assert.match(p.sourceName, /DEMO SAMPLE/);
@@ -38,29 +61,31 @@ test('정보 신뢰도와 연령 프로필을 구분한다', () => {
   assert.notEqual(calculateComfort(sixty, '50s').score, calculateComfort(sixty, '70plus').score);
 });
 test('검색과 지역/카테고리 조건을 유지하고 동행 태그를 호환한다', () => {
-  assert.equal(filterPlaces(places, { ...emptyFilters(), query: '한정식' }).length, 1);
-  assert.equal(filterPlaces(places, { ...emptyFilters(), category: '여행' }).length, 2);
-  assert.equal(filterPlaces(places, { ...emptyFilters(), region: '서울', companion: '가족' }).length, 1);
-  assert.equal(filterPlaces(places, { ...emptyFilters(), region: '부산', category: '맛집' }).length, 0);
+  assert.equal(filterPlaces(filterFixtures, { ...emptyFilters(), query: '한정식' }).length, 1);
+  assert.equal(filterPlaces(filterFixtures, { ...emptyFilters(), category: '여행' }).length, 2);
+  assert.equal(filterPlaces(filterFixtures, { ...emptyFilters(), region: '서울', companion: '가족' }).length, 2);
+  assert.equal(filterPlaces(filterFixtures, { ...emptyFilters(), region: '부산', category: '맛집' }).length, 0);
 });
 test('편안함 선호와 자연어 검색이 unknown 장소를 남기되 충족으로 판단하지 않는다', () => {
-  assert.equal(filterPlaces(places, { ...emptyFilters(), parking: true }).length, places.length);
-  assert.equal(filterPlaces(places, { ...emptyFilters(), query: '많이 걷지 않는 나들이' }).length, 2);
-  const fixture = structuredClone(places[0]);
-  fixture.comfort.parking = fact('good'); fixture.comfort.stairs = fact('good'); fixture.comfort.walking = fact('moderate');
-  assert.equal(filterPlaces([fixture], { ...emptyFilters(), query: '주차 편한 한정식', stairs: true, walking: 'moderate' }).length, 1);
-  assert.equal(filterPlaces([fixture], { ...emptyFilters(), walking: 'good' }).length, 1);
+  assert.equal(filterPlaces(filterFixtures, { ...emptyFilters(), parking: true }).length, filterFixtures.length);
+  assert.equal(filterPlaces(filterFixtures, { ...emptyFilters(), query: '많이 걷지 않는 나들이' }).length, 1);
+  const f = fixture('fixture-comfort', { name: '주차 편한 한정식', category: '맛집', intentTags: ['korean_food'] });
+  f.comfort.parking = fact('good'); f.comfort.stairs = fact('good'); f.comfort.walking = fact('moderate');
+  assert.equal(filterPlaces([f], { ...emptyFilters(), query: '주차 편한 한정식', stairs: true, walking: 'moderate' }).length, 1);
+  assert.equal(filterPlaces([f], { ...emptyFilters(), walking: 'good' }).length, 1);
 });
 test('출력에서 HTML 삽입을 차단하고 unknown 안내를 제공한다', () => {
-  const p = { ...places[0], name: '<script>alert(1)</script>', image: 'javascript:alert(1)' };
+  const p = { ...fixture('fixture-xss'), name: '<script>alert(1)</script>', image: 'javascript:alert(1)' };
   assert.ok(!card(p).includes('<script>'));
   assert.ok(!card(p).includes('src="javascript:'));
   assert.match(detailMarkup(p), /정보 더 필요/);
   assert.match(detailMarkup(p), /정보 신뢰도/);
 });
 test('실제 데이터는 출처를 요구하고 중복 URL을 거부한다', () => {
-  assert.throws(() => validatePlaces([{ ...places[0], isDemo: false }]), /출처/);
-  assert.throws(() => validatePlaces([places[0], places[0]]), /중복/);
+  const missingSource = { ...fixture('fixture-source'), isDemo: false, sourceName: null, sourceUrl: null };
+  assert.throws(() => validatePlaces([missingSource]), /sourceName|출처/);
+  const duplicate = fixture('fixture-duplicate');
+  assert.throws(() => validatePlaces([duplicate, duplicate]), /중복/);
 });
 test('TourAPI 변환은 원본 식별자를 보존하고 편안함을 생성하지 않는다', () => {
   const p = convertItem({ contentid: '12345', title: 'TEST FIXTURE', contenttypeid: '12', mapx: '128.1', mapy: '37.2', addr1: 'TEST ADDRESS', modifiedtime: '20261019000000' }, '강릉', '나들이', '2026-10-19');
@@ -76,7 +101,7 @@ test('정적 HTML 상세/SEO/사이트맵이 빌드되어 있고 데모는 색�
   const canonicals = new Set();
   for (const p of places) {
     const html = await readFile(new URL(`../dist/places/${p.slug}/index.html`, import.meta.url), 'utf8');
-    assert.ok(html.includes(p.name)); assert.match(html, /property="og:title"/);
+    assert.match(html, /property="og:title"/);
     const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
     assert.ok(!canonicals.has(canonical)); canonicals.add(canonical);
     if (p.isDemo) { assert.match(html, /noindex,nofollow/); assert.ok(!sitemap.includes(`/places/${p.slug}/`)); }

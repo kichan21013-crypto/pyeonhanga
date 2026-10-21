@@ -6,7 +6,21 @@ import { inferIntent } from '../search.js';
 import { card } from '../ui.js';
 import { validatePlaces } from '../scripts/validate-data.js';
 const places = JSON.parse(await readFile(new URL('../data/places.json',import.meta.url)));
-function sample(id, tags = ['walk']) { return { ...structuredClone(places[1]), id, slug:id, name:'DEMO SAMPLE 테스트 전용', intentTags:tags, companions:[], activityType:'unknown' }; }
+function sample(id, tags = ['walk']) {
+  return {
+    ...structuredClone(places[0]),
+    id,
+    slug:id,
+    name:'DEMO SAMPLE 테스트 전용',
+    isDemo:true,
+    sourceName:'DEMO SAMPLE · 테스트 전용 가상 데이터',
+    sourceUrl:null,
+    lastVerifiedAt:null,
+    intentTags:tags,
+    companions:[],
+    activityType:'unknown',
+  };
+}
 
 test('동행 다중선택은 AND가 아니며 여러 선택과 맞는 결과를 먼저 추천한다', () => {
   const solo=sample('demo-solo'),friend=sample('demo-friend'),both=sample('demo-both'),unknown=sample('demo-unknown');
@@ -45,8 +59,10 @@ test('시간·이동·편안함은 확인 근거가 있을 때만 우선순위�
   assert.equal(results[0].conditionMatches,2);assert.equal(results[1].conditionMatches,0);
   assert.ok(recommendRhythms([known,unknown],{...f,transport:'nearby',duration:'any'}).every(r=>r.conditionMatches===0));
 });
-test('추천은 실제 입력 장소 하나만 참조하며 코스·이동시간·거리를 생성하지 않는다', () => {
-  for (const result of recommendRhythms(places)) {
+test('추천은 입력 장소 하나만 참조하며 코스·이동시간·거리를 생성하지 않는다', () => {
+  const demo=[sample('demo-route-a',['walk']),sample('demo-route-b',['food'])];
+  demo[1].category='맛집';
+  for (const result of recommendRhythms(demo)) {
     assert.equal(result.plan.stops.length,1);assert.equal(result.plan.stops[0].placeId,result.place.id);
     assert.deepEqual(result.plan.transfers,[]);assert.equal(result.plan.duration,'unknown');assert.equal(result.plan.distanceKm,'unknown');
     assert.equal(result.plan.isDemo,true);

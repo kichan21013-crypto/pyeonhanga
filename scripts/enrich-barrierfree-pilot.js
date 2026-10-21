@@ -6,7 +6,8 @@ import { selectPilotCandidates } from './enrich-tourapi-pilot.js';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const sourcePath = resolve(root, process.env.BARRIERFREE_SOURCE || 'data/places.json');
 const reportPath = resolve(root, process.env.BARRIERFREE_REPORT || 'data/barrierfree-enrichment-report.json');
-const API_BASE = 'https://apis.data.go.kr/B551011/KorWithService1';
+const API_BASE = 'https://apis.data.go.kr/B551011/KorWithService2';
+const API_OPERATION = 'detailWithTour2';
 const DEFAULT_PER_REGION = 8;
 const FACT_FIELDS = [
   'parking','route','publictransport','ticketoffice','promotion',
@@ -39,7 +40,7 @@ function firstItem(json) {
 }
 
 async function fetchBarrierFree(contentId) {
-  const url = new URL(`${API_BASE}/detailWithTour1`);
+  const url = new URL(`${API_BASE}/${API_OPERATION}`);
   url.search = new URLSearchParams({
     serviceKey: getServiceKey(),
     MobileOS: 'ETC',
@@ -53,14 +54,17 @@ async function fetchBarrierFree(contentId) {
   try {
     response = await fetch(url, { signal: AbortSignal.timeout(20000) });
   } catch (error) {
-    throw new Error(`detailWithTour1 네트워크 오류: ${error?.name === 'TimeoutError' ? '시간 초과' : '요청 실패'}`);
+    throw new Error(`${API_OPERATION} 네트워크 오류: ${error?.name === 'TimeoutError' ? '시간 초과' : '요청 실패'}`);
   }
   const text = await response.text();
-  if (!response.ok) throw new Error(`detailWithTour1 HTTP ${response.status}`);
+  if (!response.ok) {
+    const diagnostic = clean(text).slice(0, 180);
+    throw new Error(`${API_OPERATION} HTTP ${response.status}${diagnostic ? `: ${diagnostic}` : ''}`);
+  }
   let json;
-  try { json = JSON.parse(text); } catch { throw new Error('detailWithTour1 JSON 응답 형식 오류'); }
+  try { json = JSON.parse(text); } catch { throw new Error(`${API_OPERATION} JSON 응답 형식 오류`); }
   const code = json?.response?.header?.resultCode;
-  if (code && code !== '0000') throw new Error(`detailWithTour1 API 오류 ${code}: ${clean(json?.response?.header?.resultMsg)}`);
+  if (code && code !== '0000') throw new Error(`${API_OPERATION} API 오류 ${code}: ${clean(json?.response?.header?.resultMsg)}`);
   return firstItem(json);
 }
 
@@ -130,7 +134,7 @@ async function main() {
   const report = {
     generatedAt: new Date().toISOString(),
     source: sourcePath.replace(root + '/', ''),
-    service: 'Korea Tourism Organization KorWithService1/detailWithTour1',
+    service: `Korea Tourism Organization KorWithService2/${API_OPERATION}`,
     strategy: `same region-balanced pilot as TourAPI detail enrichment, up to ${perRegion} per region`,
     summary: {
       selected: selected.length,
