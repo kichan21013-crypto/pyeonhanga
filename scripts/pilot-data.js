@@ -72,14 +72,20 @@ function latestReferenceDate(audited, generalReport, barrierReport) {
   return audited.map(item => item.modifiedTime).filter(Boolean).sort().at(-1) || null;
 }
 
+function verifiedDetailImage(detail) {
+  return detail?.common?.firstimage
+    || detail?.common?.firstimage2
+    || detail?.images?.find(item => item?.originimgurl)?.originimgurl
+    || null;
+}
+
 export function buildPilotPlaces(places, generalReport, barrierReport, targetPerRegion = TARGET_PER_REGION) {
   // 기존 build.js가 넘기던 8은 구버전 파일럿 크기다. MVP 1.5에서는 공개 풀을 30개/지역으로 확장한다.
   const effectiveTarget = targetPerRegion === 8 ? TARGET_PER_REGION : targetPerRegion;
   const placeMap = new Map(places.map(place => [place.id, place]));
   const detailMap = new Map((generalReport?.places || []).map(item => [item.id, item]));
   const barrierMap = new Map((barrierReport?.places || []).map(item => [item.id, item]));
-  const { audited } = auditTourApiPlaces(places);
-  const qualityCandidates = audited.filter(item => item.role === 'place' && item.status === 'candidate');
+  const { candidates: qualityCandidates } = auditTourApiPlaces(places);
   const referenceDate = latestReferenceDate(qualityCandidates, generalReport, barrierReport);
 
   const candidates = qualityCandidates.map(audit => {
@@ -115,6 +121,14 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
     const base = structuredClone(item._place);
     const detail = item._detail;
     if (detail) {
+      const detailImage = verifiedDetailImage(detail);
+      const baseHasRealImage = Boolean(base.image && !String(base.image).startsWith('/assets/'));
+      if (!baseHasRealImage && /^https?:\/\//.test(detailImage || '')) {
+        base.image = detailImage;
+        base.imageAlt = base.name;
+        base.tourApi = { ...base.tourApi, imageSourceUrl: detailImage };
+      }
+
       const repeated = repeatedFacts(detail);
       const generalFacts = {
         parkingText: clean(detail.facts?.parkingText) || null,
