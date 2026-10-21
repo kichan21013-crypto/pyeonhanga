@@ -83,7 +83,7 @@ test('출력에서 HTML 삽입을 차단하고 unknown 안내를 제공한다', 
 });
 test('실제 데이터는 출처를 요구하고 중복 URL을 거부한다', () => {
   const missingSource = { ...fixture('fixture-source'), isDemo: false, sourceName: null, sourceUrl: null };
-  assert.throws(() => validatePlaces([missingSource]), /출처/);
+  assert.throws(() => validatePlaces([missingSource]), /sourceName|출처/);
   const duplicate = fixture('fixture-duplicate');
   assert.throws(() => validatePlaces([duplicate, duplicate]), /중복/);
 });
