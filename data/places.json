@@ -14,7 +14,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -58,7 +58,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105142643",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/46/3466146_image2_1.jpg"
     },
     "comfort": {
@@ -128,7 +128,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -172,7 +172,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105111740",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/74/3589374_image2_1.jpg"
     },
     "comfort": {
@@ -242,7 +242,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -286,7 +286,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105103058",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/48/3589348_image2_1.jpg"
     },
     "comfort": {
@@ -356,7 +356,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -400,7 +400,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231104650",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/05/3590405_image2_1.jpg"
     },
     "comfort": {
@@ -470,7 +470,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -514,7 +514,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231092235",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/45/3590045_image2_1.jpg"
     },
     "comfort": {
@@ -584,7 +584,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -628,7 +628,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231091446",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/38/3590038_image2_1.jpg"
     },
     "comfort": {
@@ -698,7 +698,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -742,7 +742,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231090831",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/31/3590031_image2_1.jpg"
     },
     "comfort": {
@@ -812,7 +812,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -856,7 +856,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230174343",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/93/3589993_image2_1.jpg"
     },
     "comfort": {
@@ -926,7 +926,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -970,7 +970,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230173538",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/75/3589975_image2_1.jpg"
     },
     "comfort": {
@@ -1040,7 +1040,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1084,7 +1084,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230173013",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/61/3589961_image2_1.jpg"
     },
     "comfort": {
@@ -1154,7 +1154,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1198,7 +1198,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230171206",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/45/3589845_image2_1.jpg"
     },
     "comfort": {
@@ -1268,7 +1268,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1312,7 +1312,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251229151601",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/72/3589072_image2_1.jpg"
     },
     "comfort": {
@@ -1382,7 +1382,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1426,7 +1426,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224093703",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/83/3400583_image2_1.JPG"
     },
     "comfort": {
@@ -1496,7 +1496,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1540,7 +1540,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223165639",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/24/3530324_image2_1.JPG"
     },
     "comfort": {
@@ -1610,7 +1610,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1654,7 +1654,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223142246",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/63/2372563_image2_1.jpg"
     },
     "comfort": {
@@ -1724,7 +1724,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1768,7 +1768,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223133624",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/86/3463086_image2_1.jpg"
     },
     "comfort": {
@@ -1838,7 +1838,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1882,7 +1882,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223131704",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/43/720543_image2_1.jpg"
     },
     "comfort": {
@@ -1952,7 +1952,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -1996,7 +1996,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223110728",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/64/2611664_image2_1.bmp"
     },
     "comfort": {
@@ -2066,7 +2066,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -2110,7 +2110,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223095808",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/25/3464425_image2_1.jpg"
     },
     "comfort": {
@@ -2180,7 +2180,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -2224,7 +2224,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223093929",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/37/3464837_image2_1.jpg"
     },
     "comfort": {
@@ -2294,7 +2294,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -2338,7 +2338,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105185755",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -2408,7 +2408,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -2452,7 +2452,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105184718",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -2522,7 +2522,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -2566,7 +2566,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105181108",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -2636,7 +2636,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -2680,7 +2680,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105175011",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -2750,7 +2750,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -2794,7 +2794,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105174136",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -2864,7 +2864,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -2908,7 +2908,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231154048",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -2978,7 +2978,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3022,7 +3022,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231150302",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/54/2791154_image2_1.jpg"
     },
     "comfort": {
@@ -3092,7 +3092,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3136,7 +3136,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231144539",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/64/2790764_image2_1.jpg"
     },
     "comfort": {
@@ -3206,7 +3206,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3250,7 +3250,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231143941",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -3320,7 +3320,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3364,7 +3364,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231142544",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -3434,7 +3434,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3478,7 +3478,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231141515",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -3548,7 +3548,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3592,7 +3592,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231134648",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -3662,7 +3662,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3706,7 +3706,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231131416",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -3776,7 +3776,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3820,7 +3820,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231125927",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -3890,7 +3890,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -3934,7 +3934,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231112113",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -4004,7 +4004,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -4048,7 +4048,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231110443",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -4118,7 +4118,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -4162,7 +4162,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230175945",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/27/3486627_image2_1.jpg"
     },
     "comfort": {
@@ -4232,7 +4232,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -4276,7 +4276,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230134542",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/85/2789785_image2_1.jpg"
     },
     "comfort": {
@@ -4346,7 +4346,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -4390,7 +4390,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230132557",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/89/2789789_image2_1.jpg"
     },
     "comfort": {
@@ -4460,7 +4460,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -4504,7 +4504,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251229180426",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/76/2790576_image2_1.jpg"
     },
     "comfort": {
@@ -4574,7 +4574,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -4618,7 +4618,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260102171529",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/02/3589302_image2_1.jpg"
     },
     "comfort": {
@@ -4688,7 +4688,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -4732,7 +4732,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260102150310",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/42/3589242_image2_1.jpg"
     },
     "comfort": {
@@ -4802,7 +4802,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -4846,7 +4846,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231110612",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/24/3590424_image2_1.jpg"
     },
     "comfort": {
@@ -5030,7 +5030,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -5074,7 +5074,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231101937",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/38/3590338_image2_1.jpg"
     },
     "comfort": {
@@ -5144,7 +5144,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -5188,7 +5188,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231101434",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/22/3590322_image2_1.jpg"
     },
     "comfort": {
@@ -5258,7 +5258,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -5302,7 +5302,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230095237",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/34/3582534_image2_1.jpg"
     },
     "comfort": {
@@ -5486,7 +5486,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -5530,7 +5530,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251226171229",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/50/3588850_image2_1.jpg"
     },
     "comfort": {
@@ -5600,7 +5600,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -5644,7 +5644,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251226130410",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/15/3350115_image2_1.jpg"
     },
     "comfort": {
@@ -5714,7 +5714,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -5758,7 +5758,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251226105839",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/95/3352495_image2_1.jpg"
     },
     "comfort": {
@@ -5828,7 +5828,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -5872,7 +5872,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224103337",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/79/3400879_image2_1.JPG"
     },
     "comfort": {
@@ -5942,7 +5942,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -5986,7 +5986,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222184442",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/24/3587224_image2_1.jpg"
     },
     "comfort": {
@@ -6056,7 +6056,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -6100,7 +6100,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222183335",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -6170,7 +6170,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -6214,7 +6214,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222095851",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -6284,7 +6284,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -6328,7 +6328,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218142108",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/40/3022340_image2_1.JPG"
     },
     "comfort": {
@@ -6398,7 +6398,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -6442,7 +6442,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251216114055",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/03/3577703_image2_1.jpg"
     },
     "comfort": {
@@ -6512,7 +6512,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -6556,7 +6556,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215162835",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/15/3077115_image2_1.jpg"
     },
     "comfort": {
@@ -6626,7 +6626,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -6670,7 +6670,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215161102",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/85/3577785_image2_1.jpg"
     },
     "comfort": {
@@ -6740,7 +6740,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -6784,7 +6784,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215160526",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/78/3577778_image2_1.jpg"
     },
     "comfort": {
@@ -6854,7 +6854,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -6898,7 +6898,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230816112610",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/02/1850602_image2_1.jpg"
     },
     "comfort": {
@@ -6968,7 +6968,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7012,7 +7012,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230517202555",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/81/2642381_image2_1.jpg"
     },
     "comfort": {
@@ -7082,7 +7082,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7126,7 +7126,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230517135155",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/80/755180_image2_1.jpg"
     },
     "comfort": {
@@ -7196,7 +7196,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7240,7 +7240,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230517134557",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/90/2783190_image2_1.jpg"
     },
     "comfort": {
@@ -7310,7 +7310,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7354,7 +7354,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230516172007",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/32/2654232_image2_1.jpg"
     },
     "comfort": {
@@ -7424,7 +7424,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7468,7 +7468,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230516165137",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/81/2642381_image2_1.jpg"
     },
     "comfort": {
@@ -7538,7 +7538,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7582,7 +7582,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230516164903",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/17/2874217_image2_1.jpg"
     },
     "comfort": {
@@ -7652,7 +7652,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7696,7 +7696,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230516163120",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/98/2713098_image2_1.jpg"
     },
     "comfort": {
@@ -7766,7 +7766,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7810,7 +7810,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20230516162801",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/22/2638222_image2_1.jpg"
     },
     "comfort": {
@@ -7880,7 +7880,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -7924,7 +7924,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20221123164959",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -7994,7 +7994,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8038,7 +8038,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20221110175214",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/24/2846124_image2_1.jpg"
     },
     "comfort": {
@@ -8108,7 +8108,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8152,7 +8152,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20221031110559",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -8222,7 +8222,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8266,7 +8266,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260102180103",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/67/3588867_image2_1.jpg"
     },
     "comfort": {
@@ -8336,7 +8336,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8380,7 +8380,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251226153152",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -8450,7 +8450,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8494,7 +8494,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224175149",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/10/1994010_image2_1.jpg"
     },
     "comfort": {
@@ -8564,7 +8564,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8608,7 +8608,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224175044",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -8678,7 +8678,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8722,7 +8722,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223202041",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -8792,7 +8792,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8836,7 +8836,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223201042",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -8906,7 +8906,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -8950,7 +8950,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223195904",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -9020,7 +9020,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9064,7 +9064,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223192959",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -9134,7 +9134,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9178,7 +9178,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223192246",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/51/3588251_image2_1.jpg"
     },
     "comfort": {
@@ -9248,7 +9248,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9292,7 +9292,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223191410",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -9362,7 +9362,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9406,7 +9406,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223190702",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -9476,7 +9476,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9520,7 +9520,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223185816",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -9590,7 +9590,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9634,7 +9634,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223185000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -9704,7 +9704,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9748,7 +9748,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223184513",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -9818,7 +9818,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9862,7 +9862,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223183524",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -9932,7 +9932,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -9976,7 +9976,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222195302",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -10046,7 +10046,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -10090,7 +10090,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222193424",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -10160,7 +10160,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -10204,7 +10204,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222192755",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -10274,7 +10274,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -10318,7 +10318,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222191948",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -10388,7 +10388,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -10432,7 +10432,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222191252",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -10502,7 +10502,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -10546,7 +10546,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218103321",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/81/3069081_image2_1.jpg"
     },
     "comfort": {
@@ -10616,7 +10616,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -10660,7 +10660,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215112936",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/19/3577819_image2_1.jpg"
     },
     "comfort": {
@@ -10730,7 +10730,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -10774,7 +10774,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215112533",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/13/3577813_image2_1.jpg"
     },
     "comfort": {
@@ -10844,7 +10844,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -10888,7 +10888,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251120144915",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/94/2921894_image2_1.jpg"
     },
     "comfort": {
@@ -10958,7 +10958,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11002,7 +11002,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251030093441",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/60/3460260_image2_1.jpg"
     },
     "comfort": {
@@ -11072,7 +11072,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11116,7 +11116,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/34/3047934_image2_1.jpg"
     },
     "comfort": {
@@ -11186,7 +11186,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11230,7 +11230,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/42/3383742_image2_1.JPG"
     },
     "comfort": {
@@ -11300,7 +11300,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11344,7 +11344,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -11414,7 +11414,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11458,7 +11458,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -11528,7 +11528,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11572,7 +11572,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -11642,7 +11642,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11686,7 +11686,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -11756,7 +11756,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11800,7 +11800,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -11870,7 +11870,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -11914,7 +11914,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -11984,7 +11984,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12028,7 +12028,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -12098,7 +12098,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12142,7 +12142,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -12212,7 +12212,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12256,7 +12256,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -12326,7 +12326,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12370,7 +12370,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -12440,7 +12440,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12484,7 +12484,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20250924115802",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -12554,7 +12554,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12598,7 +12598,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20250923150343",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -12668,7 +12668,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12712,7 +12712,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20250919092114",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -12782,7 +12782,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12826,7 +12826,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223144743",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -12896,7 +12896,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -12940,7 +12940,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251219130619",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13010,7 +13010,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13054,7 +13054,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251219113802",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13124,7 +13124,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13168,7 +13168,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251219112621",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13238,7 +13238,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13282,7 +13282,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251219111144",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13352,7 +13352,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13396,7 +13396,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218174441",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13466,7 +13466,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13510,7 +13510,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218173203",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13580,7 +13580,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13624,7 +13624,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218172147",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13694,7 +13694,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13738,7 +13738,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218171712",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13808,7 +13808,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13852,7 +13852,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218170901",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -13922,7 +13922,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -13966,7 +13966,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218165351",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -14036,7 +14036,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14080,7 +14080,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218164147",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -14150,7 +14150,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14194,7 +14194,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251205132227",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -14264,7 +14264,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14308,7 +14308,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251125161932",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -14378,7 +14378,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14422,7 +14422,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251119141746",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -14492,7 +14492,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14536,7 +14536,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251112201553",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -14606,7 +14606,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14650,7 +14650,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251103191105",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/38/3560938_image2_1.jpg"
     },
     "comfort": {
@@ -14720,7 +14720,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14764,7 +14764,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/41/2871241_image2_1.jpg"
     },
     "comfort": {
@@ -14834,7 +14834,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14878,7 +14878,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/25/2894025_image2_1.jpg"
     },
     "comfort": {
@@ -14948,7 +14948,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -14992,7 +14992,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -15062,7 +15062,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -15106,7 +15106,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251226101722",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/58/3412358_image2_1.jpg"
     },
     "comfort": {
@@ -15176,7 +15176,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -15220,7 +15220,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224173608",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/05/3412405_image2_1.jpg"
     },
     "comfort": {
@@ -15290,7 +15290,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -15334,7 +15334,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224173510",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/26/3412526_image2_1.jpg"
     },
     "comfort": {
@@ -15404,7 +15404,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -15448,7 +15448,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224170604",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/07/3544407_image2_1.JPG"
     },
     "comfort": {
@@ -15518,7 +15518,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -15562,7 +15562,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224165130",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/69/3412469_image2_1.jpg"
     },
     "comfort": {
@@ -15632,7 +15632,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -15676,7 +15676,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218095145",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -15746,7 +15746,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -15790,7 +15790,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215172153",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -15860,7 +15860,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -15904,7 +15904,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215100539",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -15974,7 +15974,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16018,7 +16018,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215093850",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -16088,7 +16088,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16132,7 +16132,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251212105152",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/21/3582421_image2_1.jpg"
     },
     "comfort": {
@@ -16202,7 +16202,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16246,7 +16246,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211181115",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/71/3028671_image2_1.jpg"
     },
     "comfort": {
@@ -16316,7 +16316,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16360,7 +16360,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211161228",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/39/3028739_image2_1.jpg"
     },
     "comfort": {
@@ -16430,7 +16430,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16474,7 +16474,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211152839",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/08/3575908_image2_1.jpg"
     },
     "comfort": {
@@ -16544,7 +16544,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16588,7 +16588,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211152223",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/06/3575906_image2_1.jpg"
     },
     "comfort": {
@@ -16658,7 +16658,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16702,7 +16702,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211151746",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/19/3575819_image2_1.jpg"
     },
     "comfort": {
@@ -16772,7 +16772,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16816,7 +16816,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211150215",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/22/3575922_image2_1.jpg"
     },
     "comfort": {
@@ -16886,7 +16886,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -16930,7 +16930,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211143726",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/28/3575928_image2_1.jpg"
     },
     "comfort": {
@@ -17000,7 +17000,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17044,7 +17044,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211142651",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/20/3575920_image2_1.jpg"
     },
     "comfort": {
@@ -17114,7 +17114,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17158,7 +17158,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211142038",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/97/3575897_image2_1.jpg"
     },
     "comfort": {
@@ -17228,7 +17228,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17272,7 +17272,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251211141248",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/96/3575896_image2_1.jpg"
     },
     "comfort": {
@@ -17342,7 +17342,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17386,7 +17386,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20231017172335",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/56/1613356_image2_1.jpg"
     },
     "comfort": {
@@ -17456,7 +17456,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17500,7 +17500,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105163732",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -17570,7 +17570,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17614,7 +17614,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105160240",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -17684,7 +17684,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17728,7 +17728,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105154409",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -17798,7 +17798,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17842,7 +17842,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105153214",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -17912,7 +17912,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -17956,7 +17956,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251231110221",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -18026,7 +18026,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18070,7 +18070,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251218171806",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/65/2876565_image2_1.jpg"
     },
     "comfort": {
@@ -18140,7 +18140,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18184,7 +18184,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251215164114",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -18254,7 +18254,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18298,7 +18298,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251128151549",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/42/2840842_image2_1.jpg"
     },
     "comfort": {
@@ -18368,7 +18368,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18412,7 +18412,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251128094538",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/25/2840525_image2_1.jpg"
     },
     "comfort": {
@@ -18482,7 +18482,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18526,7 +18526,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251128094005",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/73/2840273_image2_1.jpg"
     },
     "comfort": {
@@ -18596,7 +18596,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18640,7 +18640,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127172213",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/63/2838763_image2_1.jpg"
     },
     "comfort": {
@@ -18710,7 +18710,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18754,7 +18754,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127171730",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/97/2838697_image2_1.jpg"
     },
     "comfort": {
@@ -18824,7 +18824,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18868,7 +18868,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251118114142",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/45/3095945_image2_1.jpg"
     },
     "comfort": {
@@ -18938,7 +18938,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -18982,7 +18982,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251104111055",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/56/2738256_image2_1.jpg"
     },
     "comfort": {
@@ -19052,7 +19052,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -19096,7 +19096,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251030165627",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/01/2902101_image2_1.jpg"
     },
     "comfort": {
@@ -19166,7 +19166,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -19210,7 +19210,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251027173215",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/06/2766906_image2_1.jpg"
     },
     "comfort": {
@@ -19280,7 +19280,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -19324,7 +19324,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/12/2736812_image2_1.jpg"
     },
     "comfort": {
@@ -19394,7 +19394,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -19438,7 +19438,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/34/2736934_image2_1.jpg"
     },
     "comfort": {
@@ -19508,7 +19508,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -19552,7 +19552,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/90/2736990_image2_1.jpg"
     },
     "comfort": {
@@ -19622,7 +19622,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -19666,7 +19666,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251023143000",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/52/2838852_image2_1.jpg"
     },
     "comfort": {
@@ -19736,7 +19736,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -19780,7 +19780,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260105153917",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/82/3552382_image2_1.jpg"
     },
     "comfort": {
@@ -19850,7 +19850,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -19894,7 +19894,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230172635",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -19964,7 +19964,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20008,7 +20008,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230155532",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/58/3589758_image2_1.jpg"
     },
     "comfort": {
@@ -20078,7 +20078,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20122,7 +20122,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230154307",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/43/3589743_image2_1.jpg"
     },
     "comfort": {
@@ -20192,7 +20192,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20236,7 +20236,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230152504",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/28/3589728_image2_1.jpg"
     },
     "comfort": {
@@ -20306,7 +20306,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20350,7 +20350,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251219095747",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/62/3575962_image2_1.jpg"
     },
     "comfort": {
@@ -20420,7 +20420,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20464,7 +20464,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251219092914",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/24/2614724_image2_1.bmp"
     },
     "comfort": {
@@ -20534,7 +20534,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20578,7 +20578,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251216142039",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -20648,7 +20648,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20692,7 +20692,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251128105741",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/89/3575989_image2_1.jpg"
     },
     "comfort": {
@@ -20762,7 +20762,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20806,7 +20806,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251128095142",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/38/3575838_image2_1.jpg"
     },
     "comfort": {
@@ -20876,7 +20876,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -20920,7 +20920,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251128094618",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/04/3575804_image2_1.jpg"
     },
     "comfort": {
@@ -20990,7 +20990,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21034,7 +21034,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251128091426",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/44/3575744_image2_1.jpg"
     },
     "comfort": {
@@ -21104,7 +21104,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21148,7 +21148,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127135416",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/14/3561514_image2_1.jpg"
     },
     "comfort": {
@@ -21218,7 +21218,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21262,7 +21262,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127134813",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/09/3561509_image2_1.jpg"
     },
     "comfort": {
@@ -21332,7 +21332,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21376,7 +21376,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127133752",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/04/3561504_image2_1.jpg"
     },
     "comfort": {
@@ -21446,7 +21446,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21490,7 +21490,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127132325",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/87/3561487_image2_1.jpg"
     },
     "comfort": {
@@ -21560,7 +21560,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21604,7 +21604,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127112255",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/82/3561482_image2_1.jpg"
     },
     "comfort": {
@@ -21674,7 +21674,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21718,7 +21718,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105153332",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/43/2947043_image2_1.jpg"
     },
     "comfort": {
@@ -21788,7 +21788,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21832,7 +21832,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251104163758",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/73/3561273_image2_1.jpg"
     },
     "comfort": {
@@ -21902,7 +21902,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -21946,7 +21946,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251104144348",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/89/3561189_image2_1.jpg"
     },
     "comfort": {
@@ -22016,7 +22016,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22060,7 +22060,7 @@
       "contentTypeId": "25",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20231017171538",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/46/2653346_image2_1.jpg"
     },
     "comfort": {
@@ -22130,7 +22130,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22174,7 +22174,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20260102180409",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -22244,7 +22244,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22288,7 +22288,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251229143651",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -22358,7 +22358,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22402,7 +22402,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251223131258",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -22472,7 +22472,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22516,7 +22516,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222151606",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -22586,7 +22586,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22630,7 +22630,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251216113322",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -22700,7 +22700,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22744,7 +22744,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251124180757",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/15/2753515_image2_1.jpg"
     },
     "comfort": {
@@ -22814,7 +22814,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22858,7 +22858,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251120203444",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/06/2852406_image2_1.jpg"
     },
     "comfort": {
@@ -22928,7 +22928,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -22972,7 +22972,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251120092557",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/14/2773614_image2_1.jpg"
     },
     "comfort": {
@@ -23042,7 +23042,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23086,7 +23086,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251120091625",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/40/2891740_image2_1.jpg"
     },
     "comfort": {
@@ -23156,7 +23156,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23200,7 +23200,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251106095036",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/10/2872410_image2_1.JPG"
     },
     "comfort": {
@@ -23270,7 +23270,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23314,7 +23314,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251106094416",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/86/2872386_image2_1.JPG"
     },
     "comfort": {
@@ -23384,7 +23384,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23428,7 +23428,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251106092030",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/79/2870379_image2_1.JPG"
     },
     "comfort": {
@@ -23498,7 +23498,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23542,7 +23542,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105175542",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/03/2869603_image2_1.JPG"
     },
     "comfort": {
@@ -23612,7 +23612,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23656,7 +23656,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105175141",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/29/2869329_image2_1.JPG"
     },
     "comfort": {
@@ -23726,7 +23726,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23770,7 +23770,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105173354",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/07/2867607_image2_1.JPG"
     },
     "comfort": {
@@ -23840,7 +23840,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23884,7 +23884,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105173039",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/90/2867590_image2_1.JPG"
     },
     "comfort": {
@@ -23954,7 +23954,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -23998,7 +23998,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105172754",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/60/2867160_image2_1.JPG"
     },
     "comfort": {
@@ -24068,7 +24068,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -24112,7 +24112,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105143502",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/16/2860816_image2_1.jpg"
     },
     "comfort": {
@@ -24182,7 +24182,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -24226,7 +24226,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105113448",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/66/2761266_image2_1.jpg"
     },
     "comfort": {
@@ -24296,7 +24296,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -24340,7 +24340,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251105112455",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/10/2759810_image2_1.jpg"
     },
     "comfort": {
@@ -24410,7 +24410,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -24454,7 +24454,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230161028",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/82/3477882_image2_1.jpg"
     },
     "comfort": {
@@ -24524,7 +24524,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -24568,7 +24568,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251230092732",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/19/3589219_image2_1.jpg"
     },
     "comfort": {
@@ -24638,7 +24638,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -24682,7 +24682,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224175308",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/93/3413993_image2_1.jpg"
     },
     "comfort": {
@@ -24752,7 +24752,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -24796,7 +24796,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224153825",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/62/3383862_image2_1.jpg"
     },
     "comfort": {
@@ -24866,7 +24866,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -24910,7 +24910,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224152459",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/77/3384477_image2_1.jpg"
     },
     "comfort": {
@@ -24980,7 +24980,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -25024,7 +25024,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224150800",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/72/3384572_image2_1.jpg"
     },
     "comfort": {
@@ -25094,7 +25094,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -25138,7 +25138,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224143822",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/57/3390157_image2_1.jpg"
     },
     "comfort": {
@@ -25208,7 +25208,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -25252,7 +25252,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224143356",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/22/3391622_image2_1.jpg"
     },
     "comfort": {
@@ -25322,7 +25322,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -25366,7 +25366,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224140127",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/02/3391902_image2_1.jpg"
     },
     "comfort": {
@@ -25550,7 +25550,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -25594,7 +25594,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224135413",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/92/3389992_image2_1.jpg"
     },
     "comfort": {
@@ -25664,7 +25664,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -25708,7 +25708,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224133705",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/90/3400790_image2_1.jpg"
     },
     "comfort": {
@@ -25778,7 +25778,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -25822,7 +25822,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224130708",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/02/1802002_image2_1.jpg"
     },
     "comfort": {
@@ -25892,7 +25892,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -25936,7 +25936,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224112133",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/06/3403406_image2_1.jpg"
     },
     "comfort": {
@@ -26006,7 +26006,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26050,7 +26050,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251224111410",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/69/3588469_image2_1.jpg"
     },
     "comfort": {
@@ -26120,7 +26120,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26164,7 +26164,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222175834",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/18/3586318_image2_1.jpg"
     },
     "comfort": {
@@ -26234,7 +26234,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26278,7 +26278,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251222130009",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/15/3587015_image2_1.jpg"
     },
     "comfort": {
@@ -26348,7 +26348,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26392,7 +26392,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251217150456",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/80/3585580_image2_1.jpg"
     },
     "comfort": {
@@ -26462,7 +26462,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26506,7 +26506,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251217145233",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/56/3585556_image2_1.jpg"
     },
     "comfort": {
@@ -26576,7 +26576,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26620,7 +26620,7 @@
       "contentTypeId": "12",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251217144302",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/40/3585540_image2_1.jpg"
     },
     "comfort": {
@@ -26690,7 +26690,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26734,7 +26734,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251229104551",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -26804,7 +26804,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26848,7 +26848,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251203153026",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -26918,7 +26918,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -26962,7 +26962,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251203151348",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27032,7 +27032,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27076,7 +27076,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251203133220",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27146,7 +27146,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27190,7 +27190,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251203132033",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27260,7 +27260,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27304,7 +27304,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251202155101",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27374,7 +27374,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27418,7 +27418,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251202152441",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27488,7 +27488,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27532,7 +27532,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251202145943",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27602,7 +27602,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27646,7 +27646,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251202144230",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27716,7 +27716,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27760,7 +27760,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251202142131",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27830,7 +27830,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27874,7 +27874,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251202135448",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -27944,7 +27944,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -27988,7 +27988,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251202133448",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -28058,7 +28058,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -28102,7 +28102,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251202131953",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -28172,7 +28172,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -28216,7 +28216,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127095336",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -28286,7 +28286,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -28330,7 +28330,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251127092701",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -28400,7 +28400,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -28444,7 +28444,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251126112101",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": null
     },
     "comfort": {
@@ -28514,7 +28514,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -28558,7 +28558,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251119175932",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/88/2755588_image2_1.jpg"
     },
     "comfort": {
@@ -28628,7 +28628,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -28672,7 +28672,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251117191057",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/38/2800138_image2_1.jpg"
     },
     "comfort": {
@@ -28742,7 +28742,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -28786,7 +28786,7 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251117174948",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/78/2794178_image2_1.jpg"
     },
     "comfort": {
@@ -28856,7 +28856,7 @@
     "priceRange": "확인 전",
     "sourceName": "한국관광공사 TourAPI",
     "sourceUrl": "https://api.visitkorea.or.kr/",
-    "lastVerifiedAt": "2026-10-20",
+    "lastVerifiedAt": "2026-10-21",
     "isDemo": false,
     "companions": [],
     "intentTags": [],
@@ -28900,8 +28900,350 @@
       "contentTypeId": "39",
       "operation": "KorService2/areaBasedList2",
       "modifiedTime": "20251110182706",
-      "importedAt": "2026-10-20",
+      "importedAt": "2026-10-21",
       "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/11/3564111_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-126552",
+    "slug": "tour-126552",
+    "name": "안성 봉업사지",
+    "category": "나들이",
+    "region": "경기",
+    "address": "경기도 안성시 죽산면 죽산리 145-3",
+    "latitude": 37.0784633578,
+    "longitude": 127.4307660116,
+    "shortDescription": "경기의 나들이 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/19/3577719_image2_1.jpg",
+    "imageAlt": "안성 봉업사지",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-10-21",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type1",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "126552",
+      "contentTypeId": "12",
+      "operation": "KorService2/areaBasedList2",
+      "modifiedTime": "20251215153605",
+      "importedAt": "2026-10-21",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/19/3577719_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-127889",
+    "slug": "tour-127889",
+    "name": "캐리비안베이",
+    "category": "나들이",
+    "region": "경기",
+    "address": "경기도 용인시 처인구 포곡읍 에버랜드로 199",
+    "latitude": 37.2933788242,
+    "longitude": 127.2013390401,
+    "shortDescription": "경기의 나들이 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "/assets/garden.svg",
+    "imageAlt": "장소 사진이 없어 표시한 대체 일러스트",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-10-21",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "127889",
+      "contentTypeId": "12",
+      "operation": "KorService2/areaBasedList2",
+      "modifiedTime": "20251215094610",
+      "importedAt": "2026-10-21",
+      "imageSourceUrl": null
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-1926369",
+    "slug": "tour-1926369",
+    "name": "정물알오름",
+    "category": "나들이",
+    "region": "제주",
+    "address": "제주특별자치도 제주시 한림읍 금악리",
+    "latitude": 33.3393282866,
+    "longitude": 126.3249106803,
+    "shortDescription": "제주의 나들이 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/43/3585443_image2_1.jpg",
+    "imageAlt": "정물알오름",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-10-21",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type1",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "1926369",
+      "contentTypeId": "12",
+      "operation": "KorService2/areaBasedList2",
+      "modifiedTime": "20251217142752",
+      "importedAt": "2026-10-21",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/43/3585443_image2_1.jpg"
     },
     "comfort": {
       "parking": {
