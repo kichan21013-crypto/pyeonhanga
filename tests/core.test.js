@@ -96,12 +96,22 @@ test('TourAPI 변환은 원본 식별자를 보존하고 편안함을 생성하�
   assert.deepEqual(p.companions, []);
   assert.equal(convertItem({ contentid: 'bad' }, '서울', '맛집'), null);
 });
-test('정적 HTML 상세/SEO/사이트맵이 빌드되어 있고 데모는 색인 제외된다', async () => {
+test('배포용 파일럿은 36개이고 사실형 정보를 포함하지만 편안함 점수를 만들지 않는다', async () => {
+  const builtPlaces = JSON.parse(await readFile(new URL('../dist/data/places.json', import.meta.url)));
+  assert.equal(builtPlaces.length, 36);
+  assert.equal(new Set(builtPlaces.map(p => p.region)).size, 6);
+  assert.ok(builtPlaces.every(p => p.verifiedFacts?.verifiedAt));
+  assert.ok(builtPlaces.some(p => Object.values(p.verifiedFacts?.barrierFree || {}).some(Boolean)));
+  assert.ok(builtPlaces.every(p => calculateComfort(p.comfort).score === null));
+});
+test('정적 HTML 상세/SEO/사이트맵이 배포용 파일럿 기준으로 빌드된다', async () => {
   const sitemap = await readFile(new URL('../dist/sitemap.xml', import.meta.url), 'utf8');
+  const builtPlaces = JSON.parse(await readFile(new URL('../dist/data/places.json', import.meta.url)));
   const canonicals = new Set();
-  for (const p of places) {
+  for (const p of builtPlaces) {
     const html = await readFile(new URL(`../dist/places/${p.slug}/index.html`, import.meta.url), 'utf8');
     assert.match(html, /property="og:title"/);
+    assert.match(html, /확인된 이용 정보/);
     const canonical = html.match(/rel="canonical" href="([^"]+)"/)[1];
     assert.ok(!canonicals.has(canonical)); canonicals.add(canonical);
     if (p.isDemo) { assert.match(html, /noindex,nofollow/); assert.ok(!sitemap.includes(`/places/${p.slug}/`)); }
