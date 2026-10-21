@@ -29,3 +29,21 @@ export function verifiedFactBadges(place, limit = 3) {
   const preferred = verifiedFactItems(place).filter(item => ['주차','화장실','무장애 주차','이동 경로','출입구','무장애 화장실','이용시간'].includes(item.label));
   return preferred.slice(0, limit);
 }
+
+export function verifiedRecommendationReason(place) {
+  const items = verifiedFactItems(place);
+  if (!items.length) return '';
+  const labels = new Set(items.map(item => item.label));
+  const pair = (...wanted) => wanted.every(label => labels.has(label));
+
+  if (pair('주차','이용시간')) return '주차와 이용시간 정보를 확인해 두었어요';
+  if (pair('이용시간','휴무')) return '이용시간과 휴무 정보를 확인해 두었어요';
+  if (pair('대표메뉴','이용시간')) return '대표메뉴와 이용시간 정보를 확인해 두었어요';
+
+  const barrier = items.filter(item => item.kind === 'barrier').slice(0,2).map(item => item.label);
+  if (barrier.length >= 2) return `${barrier.join('·')} 정보를 확인해 두었어요`;
+
+  const preferred = ['주차','이용시간','휴무','화장실','대표메뉴','이용요금'].filter(label => labels.has(label)).slice(0,2);
+  if (preferred.length) return `${preferred.join('·')} 정보를 확인해 두었어요`;
+  return `${items[0].label} 정보를 확인해 두었어요`;
+}
