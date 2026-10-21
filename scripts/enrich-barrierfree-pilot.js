@@ -1,14 +1,13 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { selectPilotCandidates } from './enrich-tourapi-pilot.js';
+import { selectPilotCandidates, resolvePerRegion } from './enrich-tourapi-pilot.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const sourcePath = resolve(root, process.env.BARRIERFREE_SOURCE || 'data/places.json');
 const reportPath = resolve(root, process.env.BARRIERFREE_REPORT || 'data/barrierfree-enrichment-report.json');
 const API_BASE = 'https://apis.data.go.kr/B551011/KorWithService2';
 const API_OPERATION = 'detailWithTour2';
-const DEFAULT_PER_REGION = 8;
 const FACT_FIELDS = [
   'parking','route','publictransport','ticketoffice','promotion',
   'wheelchair','exit','elevator','restroom','auditorium','room','handicapetc',
@@ -93,7 +92,7 @@ export function summarizeBarrierFreeFacts(facts) {
 
 async function main() {
   const places = JSON.parse(await readFile(sourcePath, 'utf8'));
-  const perRegion = Math.min(12, Math.max(2, Number(process.env.BARRIERFREE_PER_REGION) || DEFAULT_PER_REGION));
+  const perRegion = resolvePerRegion(process.env.BARRIERFREE_PER_REGION);
   const selected = selectPilotCandidates(places, perRegion);
   const matched = [];
   const unmatched = [];

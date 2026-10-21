@@ -37,6 +37,16 @@ function freshnessScore(modifiedTime, referenceDate) {
   return 2;
 }
 
+function hasVerifiedImage(place = {}, audit = {}, detail = null) {
+  return Boolean(
+    audit?.hasRealImage
+    || place?.tourApi?.imageSourceUrl
+    || detail?.common?.firstimage
+    || detail?.common?.firstimage2
+    || (detail?.images || []).some(item => item?.originimgurl)
+  );
+}
+
 export function scoreRecommendationReadiness({ place = {}, audit = {}, detail = null, barrier = null, referenceDate = null } = {}) {
   const facts = detail?.facts || {};
   const repeated = repeatedFacts(detail || {});
@@ -60,7 +70,7 @@ export function scoreRecommendationReadiness({ place = {}, audit = {}, detail = 
   if (has(facts.telephone)) detailQuality += 3;
   if ((detail?.images || []).length > 0) detailQuality += 3;
 
-  const visual = audit?.hasRealImage || place?.tourApi?.imageSourceUrl ? 10 : 0;
+  const visual = hasVerifiedImage(place, audit, detail) ? 10 : 0;
   const freshness = freshnessScore(detail?.modifiedTime || place?.tourApi?.modifiedTime, referenceDate);
   const sourceQuality = Math.round(Math.max(0, Math.min(100, Number(audit?.score || 0))) / 10);
 
@@ -71,7 +81,7 @@ export function scoreRecommendationReadiness({ place = {}, audit = {}, detail = 
   if (has(facts.parkingText)) signals.push('주차 정보 확인');
   if (knownBarrierFields > 0) signals.push(`무장애 ${knownBarrierFields}항목 확인`);
   if (has(facts.overview)) signals.push('상세 설명 확인');
-  if ((detail?.images || []).length > 0) signals.push('추가 이미지 확인');
+  if (hasVerifiedImage(place, audit, detail)) signals.push('실제 장소 이미지 확인');
 
   return {
     score,

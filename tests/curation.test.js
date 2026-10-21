@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { buildPilotPlaces } from '../scripts/pilot-data.js';
 import { scoreRecommendationReadiness } from '../scripts/recommendation-readiness.js';
+import { selectPilotCandidates, resolvePerRegion } from '../scripts/enrich-tourapi-pilot.js';
 import { verifiedRecommendationReason } from '../verified-facts.js';
 
 const comfort = () => Object.fromEntries(['parking','stairs','accessibility','restroom','seating','walking','noise','waiting'].map(key => [key, { value: 'unknown' }]));
@@ -45,6 +46,7 @@ function detail(id, overrides = {}) {
       ...overrides,
     },
     completeness: { knownOperationalFacts: 4 },
+    common: { firstimage: null, firstimage2: null },
     repeatedInfo: [{ infoname: '화장실', infotext: '화장실 정보' }],
     images: [{ originimgurl: 'https://example.com/extra.jpg' }],
   };
@@ -65,7 +67,7 @@ test('오늘 추천 준비도는 운영·접근 정보가 많은 장소를 더 �
   assert.ok(rich.factors.accessibility > 0);
 });
 
-test('48개 선별 풀은 상세수집 목록에 갇히지 않고 품질게이트 원천 후보 전체를 본다', () => {
+test('공개 추천 풀은 상세수집 목록에 갇히지 않고 품질게이트 원천 후보 전체를 본다', () => {
   const places = [place('101','상세 장소'), place('102','원천 후보 A'), place('103','원천 후보 B')];
   const generalReport = { generatedAt: '2026-10-21T00:00:00Z', places: [detail('101')] };
   const result = buildPilotPlaces(places, generalReport, { generatedAt: '2026-10-21T00:00:00Z', places: [] }, 2);
@@ -75,8 +77,32 @@ test('48개 선별 풀은 상세수집 목록에 갇히지 않고 품질게이�
   assert.ok(result.every(item => Number.isFinite(item.pilotRankScore)));
 });
 
+test('사진 없는 review 후보도 상세조회에서 실제 이미지가 확인되면 추천 풀에 복구한다', () => {
+  const reviewed = place('104','리뷰 후보');
+  reviewed.image = '/assets/garden.svg';
+  reviewed.tourApi.imageSourceUrl = null;
+  const recoveredDetail = detail('104');
+  recoveredDetail.common.firstimage = 'https://example.com/recovered-104.jpg';
+  const result = buildPilotPlaces([reviewed], { generatedAt: '2026-10-21T00:00:00Z', places: [recoveredDetail] }, { generatedAt: '2026-10-21T00:00:00Z', places: [] }, 1);
+  assert.equal(result.length, 1);
+  assert.equal(result[0].id, '104');
+  assert.equal(result[0].image, 'https://example.com/recovered-104.jpg');
+  assert.equal(result[0].recommendationReadiness.factors.visual, 10);
+});
+
+test('enrichment는 candidate를 우선하되 review까지 포함하고 지역당 30개 설정을 허용한다', () => {
+  const strict = place('201','실사진 후보');
+  const review = place('202','사진 확인 필요 후보');
+  review.image = '/assets/garden.svg';
+  review.tourApi.imageSourceUrl = null;
+  const selected = selectPilotCandidates([review, strict], 2);
+  assert.deepEqual(selected.map(item => item.id), ['201','202']);
+  assert.equal(resolvePerRegion('30'), 30);
+  assert.equal(resolvePerRegion('99'), 30);
+});
+
 test('추천 이유는 사실형 이용정보를 과장 없이 요약한다', () => {
-  const p = place('201');
+  const p = place('301');
   p.verifiedFacts = {
     verifiedAt: '2026-10-21',
     sourceName: '한국관광공사 TourAPI',
