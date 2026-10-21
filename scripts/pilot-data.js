@@ -73,6 +73,8 @@ function latestReferenceDate(audited, generalReport, barrierReport) {
 }
 
 export function buildPilotPlaces(places, generalReport, barrierReport, targetPerRegion = TARGET_PER_REGION) {
+  // 기존 build.js가 넘기던 8은 구버전 파일럿 크기다. MVP 1.5에서는 공개 풀을 30개/지역으로 확장한다.
+  const effectiveTarget = targetPerRegion === 8 ? TARGET_PER_REGION : targetPerRegion;
   const placeMap = new Map(places.map(place => [place.id, place]));
   const detailMap = new Map((generalReport?.places || []).map(item => [item.id, item]));
   const barrierMap = new Map((barrierReport?.places || []).map(item => [item.id, item]));
@@ -105,7 +107,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       b._readiness.score - a._readiness.score
       || String(b.modifiedTime || '').localeCompare(String(a.modifiedTime || ''))
       || a.name.localeCompare(b.name,'ko'));
-    selected.push(...pickBalanced(regionItems, targetPerRegion));
+    selected.push(...pickBalanced(regionItems, effectiveTarget));
   }
 
   const reportDate = String(generalReport?.generatedAt || barrierReport?.generatedAt || '').slice(0,10);
