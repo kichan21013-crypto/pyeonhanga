@@ -35,7 +35,7 @@ function prepareQuickFlow(root) {
 
   const refine = document.createElement('details');
   refine.className = 'quick-refine';
-  refine.innerHTML = '<summary><span>조금 더 맞춤 추천</span><small>동행 · 시간 · 이동 · 편안함</small></summary><div class="quick-refine-body"></div>';
+  refine.innerHTML = '<summary><span>조금 더 맞춤 추천</span><small>세부 활동 · 동행 · 시간 · 이동 · 편안함</small></summary><div class="quick-refine-body"></div>';
   const body = refine.querySelector('.quick-refine-body');
 
   const addGroup = (label, node) => {
@@ -48,6 +48,8 @@ function prepareQuickFlow(root) {
     body.append(section);
   };
 
+  // 세부 활동도 기본 화면에서는 감춰 질문 수를 줄입니다.
+  addGroup('세부 활동', step1.querySelector('#activity-options'));
   addGroup('누구와', step2.querySelector('.companion-choices'));
   const companionHelp = step2.querySelector('#companion-help');
   if (companionHelp) body.append(companionHelp);
