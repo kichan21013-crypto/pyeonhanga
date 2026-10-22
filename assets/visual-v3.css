@@ -136,9 +136,102 @@
 .rhythm-card-actions .full{grid-column:1/-1!important}
 .companion-interest-cta{background:#f7faf8!important;border-color:#dbe7df!important;color:#35624f!important}
 
+/* v3.1 declutter: 첫 단계만 이미지 중심, 나머지는 하나의 중립 카드 시스템 */
+#flow-summary,
+.discovery-flow .selection-summary,
+.discovery-flow #intent-summary{
+  display:none!important;
+}
+
+.discovery-flow{
+  max-width:760px;
+  margin-inline:auto;
+}
+
+.progressive-step{
+  background:#fff!important;
+  border:1px solid #e3e8e2!important;
+  border-radius:24px!important;
+  box-shadow:0 8px 26px rgba(32,63,49,.055)!important;
+}
+.progressive-step[open]{
+  box-shadow:0 10px 30px rgba(32,63,49,.065)!important;
+}
+.step-heading{padding-top:20px!important;padding-bottom:18px!important}
+.step-instruction{color:#68756d!important;margin-bottom:18px!important}
+.step-progress{
+  background:#f5f7f3!important;
+  border:1px solid #d9e1d9!important;
+  color:#315f4b!important;
+  font-weight:750!important;
+}
+
+/* 동행/시간/이동/편안함 선택은 전부 같은 흰 카드 */
+.discovery-flow .choice-grid .choice-chip{
+  min-height:76px!important;
+  background:#fff!important;
+  color:#234235!important;
+  border:1px solid #dce3dc!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+  gap:12px!important;
+  padding:14px 16px!important;
+}
+.discovery-flow .choice-grid .choice-chip .choice-icon{
+  width:36px!important;
+  height:36px!important;
+  background:#f3f6f1!important;
+  color:#426a58!important;
+  border:0!important;
+}
+.discovery-flow .choice-grid .choice-chip [data-choice-label]{
+  color:#234235!important;
+  font-weight:750!important;
+}
+.discovery-flow .choice-grid .choice-chip[aria-pressed=true]{
+  background:#eef5f0!important;
+  color:#1f4e39!important;
+  border:1.5px solid #3f735a!important;
+  box-shadow:0 0 0 2px rgba(63,115,90,.08)!important;
+}
+.discovery-flow .choice-grid .choice-chip[aria-pressed=true] .choice-icon{
+  background:#dfece3!important;
+  color:#245b46!important;
+}
+.discovery-flow .choice-grid .selection-indicator{
+  background:#245b46!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+
+/* 자유문장 예시는 큰 카드 대신 가벼운 추천 문장으로 */
+.quick-intents{
+  gap:4px!important;
+  margin-top:8px!important;
+}
+.quick-intents button{
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  padding:7px 2px!important;
+  text-align:left!important;
+  color:#6f6657!important;
+  font-size:.82rem!important;
+}
+.quick-intents button:before{content:"예: ";color:#9a8d78;font-weight:600}
+.intent-search{box-shadow:none!important;border-color:#dde3dd!important}
+
+/* 하위 조건 아코디언은 버튼처럼 과장하지 않음 */
+.discovery-flow details details,
+.discovery-flow .advanced-filters,
+.discovery-flow .filter-accordion{
+  box-shadow:none!important;
+}
+
 @media(max-width:760px){
   .rhythm-hero{
-    min-height:690px!important;
+    min-height:640px!important;
     margin-top:10px!important;
     padding:28px 22px!important;
     align-items:flex-start!important;
@@ -147,22 +240,27 @@
     background-position:center bottom!important;
   }
   .rhythm-hero .hero-copy{max-width:none!important;width:100%}
-  .rhythm-hero h1{font-size:2.65rem!important;line-height:1.08!important;margin:16px 0!important}
+  .rhythm-hero h1{font-size:2.55rem!important;line-height:1.08!important;margin:16px 0!important}
   .rhythm-hero .hero-description{font-size:.98rem!important;max-width:330px}
   .rhythm-hero .hero-support{max-width:100%!important;font-size:.76rem!important;line-height:1.45!important}
   .start-cta{margin-top:18px!important;min-height:56px!important}
   .desire-grid{gap:10px!important}
-  .desire-grid .choice-chip{min-height:148px!important;padding:14px 12px!important}
+  .desire-grid .choice-chip{min-height:140px!important;padding:14px 12px!important}
   .desire-grid .choice-chip [data-choice-label]{font-size:.9rem!important;word-break:keep-all!important}
   .results-heading h2{font-size:1.32rem!important}
   .results-help{font-size:.82rem!important}
   .card-image img{aspect-ratio:1.55!important}
   .rhythm-card-actions{grid-template-columns:1fr 1fr!important}
   .rhythm-card-actions .card-detail-cta,.rhythm-card-actions .companion-interest-cta{grid-column:1/-1!important}
+
+  .discovery-flow{max-width:none!important}
+  .progressive-step{border-radius:20px!important}
+  .discovery-flow .choice-grid{gap:10px!important}
+  .discovery-flow .choice-grid .choice-chip{min-height:70px!important;padding:12px 14px!important}
 }
 @media(max-width:390px){
-  .rhythm-hero{min-height:650px!important;padding:24px 18px!important}
-  .rhythm-hero h1{font-size:2.35rem!important}
-  .desire-grid .choice-chip{min-height:136px!important;padding:12px 10px!important}
+  .rhythm-hero{min-height:610px!important;padding:24px 18px!important}
+  .rhythm-hero h1{font-size:2.3rem!important}
+  .desire-grid .choice-chip{min-height:130px!important;padding:12px 10px!important}
   .desire-grid .choice-chip [data-choice-label]{font-size:.82rem!important}
 }
