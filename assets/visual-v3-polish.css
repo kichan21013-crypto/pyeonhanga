@@ -1,0 +1,20 @@
+/* UI v3 polish: 숫자/중복 정보/결과 카드 밀도 정리 */
+#result-count::after{content:'곳'}
+.results-help{font-size:0!important;max-width:690px!important}
+.results-help::after{content:'지금 고른 활동과 조건에 가까운 장소부터 보여드려요. 딱 맞는 정보가 부족하면 비슷한 리듬을 함께 제안합니다.';font-size:.9rem;line-height:1.65;color:#68756d}
+.place-card .card-meta-row .verified-summary{display:none!important}
+.place-card .card-bottom .verified-summary{display:none!important}
+.place-card:has(.rhythm-card-actions) .card-bottom{display:none!important}
+.place-card .card-meta-row{min-height:24px}
+.place-card .data-confidence{display:inline-flex!important;width:auto!important;padding:7px 11px!important;border-radius:999px!important;font-size:.78rem!important}
+.place-card .recommendation-reason{border-radius:14px!important;padding:12px 13px!important}
+.place-card .reason-label{font-size:.74rem!important}
+.place-card .reason-text{font-size:.85rem!important;line-height:1.55!important}
+.place-card .comfort-tags span{font-size:.76rem!important}
+.results-heading .reset-rhythm{border-radius:12px!important;min-height:44px!important;background:#fff!important;border-color:#cbd7cf!important;color:#354f43!important}
+
+@media(max-width:760px){
+  .results-help::after{font-size:.82rem}
+  #result-count{display:inline!important;font-size:.76rem!important}
+  .place-card .card-meta-row{align-items:center!important}
+}
