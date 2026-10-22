@@ -1,0 +1,97 @@
+/* v3.3 card clean: 선택카드는 정보 UI, 일러스트는 Hero에만 사용 */
+.desire-grid .choice-chip,
+.desire-grid .choice-chip[aria-pressed="true"]{
+  min-height:92px!important;
+  padding:14px 14px!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:12px!important;
+  background-image:none!important;
+  background-size:auto!important;
+  background-position:initial!important;
+  border:1px solid #dde4dd!important;
+  border-radius:18px!important;
+  box-shadow:none!important;
+  color:#203f33!important;
+  overflow:visible!important;
+}
+.desire-grid .choice-chip:before,
+.desire-grid .choice-chip:after,
+.desire-grid .choice-chip[aria-pressed="true"]:before,
+.desire-grid .choice-chip[aria-pressed="true"]:after{
+  display:none!important;
+  content:none!important;
+}
+
+/* 카테고리별 아주 옅은 바탕만 남겨 의미 구분 */
+.desire-grid [data-desire="eat"]{background:#fff9f1!important;border-color:#eadcca!important}
+.desire-grid [data-desire="move"]{background:#fff7f5!important;border-color:#ead8d3!important}
+.desire-grid [data-desire="outdoor"]{background:#f6faf3!important;border-color:#d8e5d1!important}
+.desire-grid [data-desire="rest"]{background:#f8f7fb!important;border-color:#ded9e8!important}
+.desire-grid [data-desire="explore"]{background:#f4f9fb!important;border-color:#d5e2e8!important}
+.desire-grid [data-desire="social"]{background:#f8f7fa!important;border-color:#ddd9e4!important}
+
+.desire-grid .choice-chip .choice-icon{
+  width:40px!important;
+  height:40px!important;
+  flex:0 0 40px!important;
+  border-radius:13px!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+}
+.desire-grid .choice-chip [data-choice-label]{
+  position:relative!important;
+  z-index:1!important;
+  max-width:none!important;
+  font-size:.9rem!important;
+  line-height:1.35!important;
+  font-weight:800!important;
+  color:#203f33!important;
+  text-shadow:none!important;
+  word-break:keep-all!important;
+}
+
+/* 선택 상태는 사진/강한 채움 대신 얇은 그린 테두리와 체크 */
+.desire-grid .choice-chip[aria-pressed="true"]{
+  background:#eef6f1!important;
+  border:2px solid #2f6a50!important;
+  box-shadow:0 0 0 2px rgba(47,106,80,.07)!important;
+}
+.desire-grid .choice-chip[aria-pressed="true"] .choice-icon{
+  background:#dcebe2!important;
+  color:#245b46!important;
+}
+.desire-grid .selection-indicator{
+  top:8px!important;
+  right:8px!important;
+  width:24px!important;
+  height:24px!important;
+  background:#245b46!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+
+@media(max-width:760px){
+  .desire-grid{gap:10px!important}
+  .desire-grid .choice-chip,
+  .desire-grid .choice-chip[aria-pressed="true"]{
+    min-height:88px!important;
+    padding:12px 11px!important;
+    gap:9px!important;
+    border-radius:16px!important;
+  }
+  .desire-grid .choice-chip .choice-icon{
+    width:36px!important;
+    height:36px!important;
+    flex-basis:36px!important;
+    border-radius:11px!important;
+  }
+  .desire-grid .choice-chip [data-choice-label]{font-size:.84rem!important}
+}
+@media(max-width:390px){
+  .desire-grid .choice-chip,
+  .desire-grid .choice-chip[aria-pressed="true"]{min-height:82px!important;padding:10px!important}
+  .desire-grid .choice-chip [data-choice-label]{font-size:.8rem!important}
+}
