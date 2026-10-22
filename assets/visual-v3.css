@@ -28,41 +28,89 @@
 .rhythm-hero .hero-support{max-width:455px!important;border-radius:14px!important;background:rgba(255,255,255,.86)!important;backdrop-filter:blur(10px)}
 .start-cta{border-radius:16px!important;min-height:60px!important}
 
+/* 선택 카드: 이미지를 선명하게 유지하고 텍스트만 하단에서 읽히게 */
 .desire-grid .choice-chip{
   position:relative!important;
-  min-height:132px!important;
-  padding:18px 16px!important;
+  display:flex!important;
+  min-height:146px!important;
+  padding:16px!important;
   align-items:flex-start!important;
   flex-direction:column!important;
   justify-content:flex-end!important;
-  gap:8px!important;
+  gap:7px!important;
   overflow:hidden!important;
+  background-color:#f4f6f1!important;
   background-size:cover!important;
   background-position:center!important;
-  border:1px solid rgba(31,76,57,.14)!important;
-  box-shadow:0 10px 24px rgba(34,70,52,.10)!important;
+  border:1px solid rgba(31,76,57,.16)!important;
+  box-shadow:0 8px 20px rgba(34,70,52,.10)!important;
+  color:#203f33!important;
+  -webkit-tap-highlight-color:transparent;
 }
 .desire-grid .choice-chip:after{display:none!important}
-.desire-grid .choice-chip:before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(255,255,255,.08) 8%,rgba(255,252,246,.48) 50%,rgba(255,252,246,.97) 84%);pointer-events:none}
+.desire-grid .choice-chip:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.03) 48%,rgba(250,250,245,.58) 68%,rgba(250,250,245,.90) 100%);
+  pointer-events:none;
+}
 .desire-grid .choice-chip>*{position:relative;z-index:1}
-.desire-grid .choice-chip .choice-icon{width:34px!important;height:34px!important;background:rgba(255,255,255,.86)!important;border:1px solid rgba(36,91,70,.14);backdrop-filter:blur(7px)}
-.desire-grid .choice-chip [data-choice-label]{max-width:100%;font-size:.94rem!important;line-height:1.32!important;font-weight:800!important;color:#203f33;text-shadow:0 1px 0 rgba(255,255,255,.72)}
+.desire-grid .choice-chip .choice-icon{
+  width:34px!important;
+  height:34px!important;
+  background:rgba(255,255,255,.92)!important;
+  border:1px solid rgba(36,91,70,.15)!important;
+  backdrop-filter:blur(6px);
+  box-shadow:0 2px 8px rgba(32,63,49,.08);
+}
+.desire-grid .choice-chip [data-choice-label]{
+  max-width:100%;
+  font-size:.94rem!important;
+  line-height:1.28!important;
+  font-weight:800!important;
+  color:#173c2f!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.95),0 0 10px rgba(255,255,255,.45);
+}
 .desire-grid [data-desire="eat"]{background-image:var(--v3-eat)!important;background-position:center 52%!important}
 .desire-grid [data-desire="move"]{background-image:var(--v3-move)!important;background-position:center 49%!important}
 .desire-grid [data-desire="outdoor"]{background-image:var(--v3-outdoor)!important;background-position:center 52%!important}
 .desire-grid [data-desire="rest"]{background-image:var(--v3-rest)!important;background-position:center 52%!important}
 .desire-grid [data-desire="explore"]{background-image:var(--v3-explore)!important;background-position:center 54%!important}
 .desire-grid [data-desire="social"]{background-image:var(--v3-social)!important;background-position:center 50%!important}
-.desire-grid .choice-chip[aria-pressed=true]{border:2px solid #245b46!important;box-shadow:0 0 0 3px rgba(36,91,70,.15),0 12px 28px rgba(32,78,59,.22)!important;color:#183e2f!important}
-.desire-grid .choice-chip[aria-pressed=true]:before{background:linear-gradient(180deg,rgba(29,76,56,.08),rgba(245,250,246,.54) 52%,rgba(232,245,237,.97) 84%)!important}
+
+/* 기존 선택 상태의 background shorthand가 이미지를 지우지 못하도록 명시적으로 재지정 */
+.desire-grid .choice-chip[aria-pressed=true]{
+  background-color:transparent!important;
+  border:2px solid #245b46!important;
+  box-shadow:0 0 0 3px rgba(36,91,70,.13),0 10px 24px rgba(32,78,59,.18)!important;
+  color:#183e2f!important;
+}
+.desire-grid [data-desire="eat"][aria-pressed=true]{background-image:var(--v3-eat)!important}
+.desire-grid [data-desire="move"][aria-pressed=true]{background-image:var(--v3-move)!important}
+.desire-grid [data-desire="outdoor"][aria-pressed=true]{background-image:var(--v3-outdoor)!important}
+.desire-grid [data-desire="rest"][aria-pressed=true]{background-image:var(--v3-rest)!important}
+.desire-grid [data-desire="explore"][aria-pressed=true]{background-image:var(--v3-explore)!important}
+.desire-grid [data-desire="social"][aria-pressed=true]{background-image:var(--v3-social)!important}
+.desire-grid .choice-chip[aria-pressed=true]:before{
+  background:linear-gradient(180deg,rgba(36,91,70,.03) 0%,rgba(36,91,70,.05) 52%,rgba(238,247,241,.64) 72%,rgba(238,247,241,.92) 100%)!important;
+}
 .desire-grid .choice-chip[aria-pressed=true] .choice-icon{background:#245b46!important;color:#fff!important}
-.desire-grid .selection-indicator{top:10px!important;right:10px!important;background:#245b46!important;color:#fff!important}
+.desire-grid .selection-indicator{top:10px!important;right:10px!important;background:#245b46!important;color:#fff!important;box-shadow:0 2px 8px rgba(21,61,44,.18)}
 
 .progressive-step{border-color:#e0e6df!important;box-shadow:0 14px 38px rgba(39,66,51,.08)!important}
 .progressive-step[open]{border-color:#d4ddd5!important}
-.step-heading{background:#fff!important;border-bottom:1px solid #edf0ea!important}
-.step-heading:focus{outline:none!important}
-.step-heading:focus-visible{outline:2px solid #9db8a8!important;outline-offset:-3px!important}
+.step-heading,
+.step-heading:focus,
+.step-heading:focus-visible{
+  background:#fff!important;
+  border:0!important;
+  border-bottom:1px solid #edf0ea!important;
+  outline:none!important;
+  box-shadow:none!important;
+  -webkit-tap-highlight-color:transparent;
+}
 #flow-step-1 .step-heading,#flow-step-2 .step-heading,#flow-step-3 .step-heading{background:#fff!important}
 .step-progress{background:#f0f5f1!important;color:#315f4b!important}
 .intent-search{border:1px solid #d7dfd8!important;box-shadow:0 8px 22px rgba(46,72,57,.07)!important}
@@ -104,7 +152,7 @@
   .rhythm-hero .hero-support{max-width:100%!important;font-size:.76rem!important;line-height:1.45!important}
   .start-cta{margin-top:18px!important;min-height:56px!important}
   .desire-grid{gap:10px!important}
-  .desire-grid .choice-chip{min-height:142px!important;padding:14px 12px!important}
+  .desire-grid .choice-chip{min-height:148px!important;padding:14px 12px!important}
   .desire-grid .choice-chip [data-choice-label]{font-size:.9rem!important;word-break:keep-all!important}
   .results-heading h2{font-size:1.32rem!important}
   .results-help{font-size:.82rem!important}
@@ -115,6 +163,6 @@
 @media(max-width:390px){
   .rhythm-hero{min-height:650px!important;padding:24px 18px!important}
   .rhythm-hero h1{font-size:2.35rem!important}
-  .desire-grid .choice-chip{min-height:128px!important;padding:12px 10px!important}
+  .desire-grid .choice-chip{min-height:136px!important;padding:12px 10px!important}
   .desire-grid .choice-chip [data-choice-label]{font-size:.82rem!important}
 }
