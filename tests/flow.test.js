@@ -10,39 +10,40 @@ function harness(reducedMotion = true) {
   const root={querySelector:key=>({'#explore':explore,'#rhythm-results':results,'#recommend-button':final})[key],querySelectorAll:key=>key==='[data-flow-step]'?steps:next};
   return { flow:createProgressiveFlow(root,{reducedMotion:()=>reducedMotion}),explore,results,steps,final,next };
 }
-test('시작 전 질문/결과는 숨기고 CTA로 시작하면 현재 질문 하나만 보인다',()=>{
+test('시작 전 추천 영역은 숨기고 CTA로 시작하면 핵심 선택 화면 하나만 보인다',()=>{
   const h=harness(),f=emptyRhythmFilters();h.flow.update(f);assert.equal(h.explore.hidden,true);
   h.flow.start(f);assert.equal(h.explore.hidden,false);assert.deepEqual(h.steps.map(e=>e.hidden),[false,true,true]);
-  assert.equal(h.steps[0].open,true);assert.equal(h.results.hidden,true);assert.equal(h.final.disabled,true);
+  assert.equal(h.steps[0].open,true);assert.equal(h.results.hidden,true);assert.equal(h.final.hidden,true);
 });
-test('욕구를 고른 뒤에도 현재 질문만 유지하고 다음 버튼으로 화면을 전환한다',()=>{
+test('욕구 하나만 고르면 추가 단계 없이 바로 추천할 준비가 된다',()=>{
   const h=harness(),f=emptyRhythmFilters();h.flow.start(f);
   f.desires=toggleSelection(f.desires,'move');h.flow.update(f);
-  assert.deepEqual(h.steps.map(e=>e.hidden),[false,true,true]);assert.equal(h.final.disabled,false);
+  assert.deepEqual(h.steps.map(e=>e.hidden),[false,true,true]);assert.equal(h.final.hidden,false);
   f.desires=toggleSelection(f.desires,'eat');f.activities=['walk','noodle'];h.flow.update(f);
   assert.deepEqual(f.desires,['move','eat']);assert.deepEqual(activeActivities(f.desires,f.activities),['walk','noodle']);
-  assert.equal(h.flow.activate(2),true);assert.deepEqual(h.steps.map(e=>e.hidden),[true,false,true]);assert.equal(h.steps[1].open,true);
+  assert.equal(h.flow.activate(2),false);
+  assert.equal(h.flow.submit(f),true);assert.equal(h.results.hidden,false);
 });
-test('동행은 선택 사항이며 선택하지 않아도 조건 화면과 추천 결과로 갈 수 있다',()=>{
+test('동행·시간·이동을 고르지 않아도 바로 추천 결과로 갈 수 있다',()=>{
   const h=harness(),f={...emptyRhythmFilters(),desires:['eat']};h.flow.start(f);
-  assert.equal(h.flow.activate(2),true);assert.deepEqual(h.steps.map(e=>e.hidden),[true,false,true]);
-  assert.equal(h.flow.activate(3),true);assert.deepEqual(h.steps.map(e=>e.hidden),[true,true,false]);assert.equal(h.final.disabled,false);
+  assert.equal(h.final.hidden,false);
+  assert.equal(h.flow.activate(2),false);assert.equal(h.flow.activate(3),false);
   assert.equal(h.flow.submit(f),true);assert.deepEqual(h.steps.map(e=>e.hidden),[true,true,true]);assert.equal(h.results.hidden,false);
 });
-test('선택 수정과 초기화는 결과를 숨기고 핵심 욕구가 없으면 다음 단계 접근을 막는다',()=>{
+test('선택 수정과 초기화는 결과를 숨기고 핵심 욕구가 없으면 추천 실행을 막는다',()=>{
   const h=harness(),f={...emptyRhythmFilters(),desires:['move']};h.flow.start(f);h.flow.submit(f);
   f.companions=[];h.flow.update(f);assert.equal(h.results.hidden,true);assert.equal(h.flow.submit(f),true);
-  f.desires=[];h.flow.update(f);assert.equal(h.steps[1].hidden,true);assert.equal(h.flow.activate(3),false);assert.equal(h.flow.submit(f),false);
+  f.desires=[];h.flow.update(f);assert.equal(h.final.hidden,true);assert.equal(h.flow.activate(3),false);assert.equal(h.flow.submit(f),false);
   h.flow.update(emptyRhythmFilters());h.flow.activate(1);assert.equal(h.steps[0].open,true);assert.equal(h.results.hidden,true);
 });
-test('자연어만 입력해도 추천 준비가 되며 동행·조건은 건너뛸 수 있다',()=>{
+test('자연어만 입력해도 추천 준비가 되며 추가 조건은 모두 건너뛸 수 있다',()=>{
   const h=harness(),f={...emptyRhythmFilters(),query:'친구랑 드라이브하고 칼국수 먹고 싶어'};
-  h.flow.start(f);assert.equal(h.final.disabled,false);assert.equal(h.flow.submit(f),true);assert.equal(h.results.hidden,false);
+  h.flow.start(f);assert.equal(h.final.hidden,false);assert.equal(h.flow.submit(f),true);assert.equal(h.results.hidden,false);
 });
-test('전환은 짧게 나타나며 reduced-motion에서는 애니메이션하지 않는다',()=>{
+test('추천 결과 전환은 짧게 나타나며 reduced-motion에서는 애니메이션하지 않는다',()=>{
   const f={...emptyRhythmFilters(),desires:['outdoor']};const h=harness(false);h.flow.start(f);
-  assert.equal(h.explore.animations.length,1);h.flow.activate(2);assert.equal(h.steps[1].animations.length,1);
-  const reduced=harness(true);reduced.flow.start(f);reduced.flow.activate(2);reduced.flow.submit(f);
+  assert.equal(h.explore.animations.length,1);h.flow.submit(f);assert.equal(h.results.animations.length,1);
+  const reduced=harness(true);reduced.flow.start(f);reduced.flow.submit(f);
   assert.ok([reduced.explore,reduced.results,...reduced.steps].every(e=>e.animations.length===0));assert.equal(reduced.results.hidden,false);
 });
 test('생성 홈에는 단계 UI·홈 이동·모바일 보정 CSS와 숨긴 결과가 있다',async()=>{

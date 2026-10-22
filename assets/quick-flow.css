@@ -1,0 +1,164 @@
+/* Quick flow: 설문처럼 보이는 다단계 흐름을 한 화면 선택 + 선택형 세부설정으로 단순화 */
+#flow-step-1{
+  max-width:720px!important;
+  margin-inline:auto!important;
+  border:1px solid #e5e9e4!important;
+  border-radius:24px!important;
+  box-shadow:0 8px 26px rgba(32,63,49,.045)!important;
+}
+#flow-step-1>.step-heading{
+  padding:18px 22px 14px!important;
+  border-bottom:0!important;
+}
+#flow-step-1>.step-heading h2{
+  font-size:1.45rem!important;
+  line-height:1.25!important;
+}
+#flow-step-1>.step-instruction{
+  margin:0 22px 16px!important;
+  font-size:.9rem!important;
+  color:#6b756e!important;
+}
+#flow-step-1 .step-progress{display:none!important}
+
+/* 첫 화면에는 6개 핵심 선택만 또렷하게 */
+#flow-step-1 .desire-grid{
+  padding-inline:22px!important;
+  gap:9px!important;
+}
+#flow-step-1 .desire-grid .choice-chip,
+#flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{
+  min-height:76px!important;
+}
+
+/* 자연어는 보조 입력. 예시 문장과 설명은 기본 화면에서 생략 */
+#flow-step-1 .intent-search{
+  margin:16px 22px 0!important;
+  min-height:50px!important;
+}
+#flow-step-1 .quick-intents,
+#flow-step-1 #intent-help,
+#flow-step-1 #intent-summary,
+#flow-step-1 #desire-summary{
+  display:none!important;
+}
+
+.quick-refine{
+  margin:12px 22px 0!important;
+  border-top:1px solid #edf0ec!important;
+  border-bottom:1px solid #edf0ec!important;
+  background:transparent!important;
+}
+.quick-refine>summary{
+  list-style:none;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  padding:13px 2px!important;
+  cursor:pointer;
+  color:#355747!important;
+  font-size:.88rem!important;
+  font-weight:800!important;
+}
+.quick-refine>summary::-webkit-details-marker{display:none}
+.quick-refine>summary:after{
+  content:'＋';
+  flex:0 0 auto;
+  color:#668071;
+  font-size:1rem;
+}
+.quick-refine[open]>summary:after{content:'−'}
+.quick-refine>summary small{
+  margin-left:auto;
+  color:#8a948e!important;
+  font-size:.68rem!important;
+  font-weight:600!important;
+}
+.quick-refine-body{
+  padding:2px 0 16px!important;
+}
+.quick-refine-group{
+  padding:12px 0!important;
+  border-top:1px solid #f0f2ef!important;
+}
+.quick-refine-group:first-child{border-top:0!important}
+.quick-refine-group>h3{
+  margin:0 0 9px!important;
+  font-size:.78rem!important;
+  color:#64746b!important;
+}
+.quick-refine .choice-grid,
+.quick-refine .condition-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+}
+.quick-refine .choice-chip{
+  min-height:52px!important;
+  padding:9px 11px!important;
+  border-radius:13px!important;
+  box-shadow:none!important;
+  font-size:.82rem!important;
+}
+.quick-refine .choice-icon{
+  width:30px!important;
+  height:30px!important;
+  flex-basis:30px!important;
+}
+.quick-refine .activity-options{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+.quick-refine .activity-subgroup{margin-bottom:10px!important}
+.quick-refine .activity-subgroup:last-child{margin-bottom:0!important}
+.quick-refine .activity-subgroup h3{display:none!important}
+.quick-refine .activity-chips{gap:7px!important}
+.quick-refine details{
+  margin-top:10px!important;
+  border:1px solid #e4e8e3!important;
+  border-radius:13px!important;
+  box-shadow:none!important;
+  background:#fff!important;
+}
+.quick-refine details>summary{
+  padding:11px 12px!important;
+  font-size:.82rem!important;
+  font-weight:750!important;
+}
+.quick-refine .small-text,
+.quick-refine .selection-summary{font-size:.72rem!important;color:#7b857f!important}
+
+.quick-recommend{
+  margin:16px 22px 22px!important;
+  width:calc(100% - 44px)!important;
+  min-height:54px!important;
+  border-radius:16px!important;
+  font-size:1rem!important;
+}
+
+@media(max-width:760px){
+  #flow-step-1{border-radius:20px!important}
+  #flow-step-1>.step-heading{padding:16px 16px 11px!important}
+  #flow-step-1>.step-heading h2{font-size:1.28rem!important}
+  #flow-step-1>.step-instruction{margin:0 16px 13px!important;font-size:.84rem!important}
+  #flow-step-1 .desire-grid{padding-inline:16px!important;gap:8px!important}
+  #flow-step-1 .desire-grid .choice-chip,
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{min-height:70px!important}
+  #flow-step-1 .intent-search{margin:13px 16px 0!important;min-height:48px!important}
+  .quick-refine{margin:10px 16px 0!important}
+  .quick-refine>summary{padding:12px 1px!important}
+  .quick-refine>summary small{display:none!important}
+  .quick-refine .choice-grid,
+  .quick-refine .condition-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .quick-recommend{margin:14px 16px 18px!important;width:calc(100% - 32px)!important;min-height:52px!important}
+}
+
+@media(max-width:390px){
+  #flow-step-1 .desire-grid .choice-chip,
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{min-height:66px!important}
+  .quick-refine .choice-grid,
+  .quick-refine .condition-grid{grid-template-columns:1fr!important}
+}
