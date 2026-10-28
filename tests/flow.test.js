@@ -46,6 +46,15 @@ test('추천 결과 전환은 짧게 나타나며 reduced-motion에서는 애니
   const reduced=harness(true);reduced.flow.start(f);reduced.flow.submit(f);
   assert.ok([reduced.explore,reduced.results,...reduced.steps].every(e=>e.animations.length===0));assert.equal(reduced.results.hidden,false);
 });
+test('집중형 UX는 상위 5곳부터 보여주고 맞춤 조건을 보조 필터로 유지한다',async()=>{
+  const flowSource=await readFile(new URL('../flow.js',import.meta.url),'utf8');
+  const css=await readFile(new URL('../assets/quick-flow.css',import.meta.url),'utf8');
+  assert.match(flowSource,/RESULT_BATCH_SIZE = 5/);
+  assert.match(flowSource,/다른 추천 더 보기/);
+  assert.match(flowSource,/편안함 · 지역까지 더 정하기/);
+  assert.match(css,/\.quick-refine \.choice-grid/);
+  assert.match(css,/#rhythm-results #result-count\{display:none/);
+});
 test('생성 홈에는 단계 UI·홈 이동·모바일 보정 CSS와 숨긴 결과가 있다',async()=>{
   const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
   assert.match(html,/<section id="explore"[^>]* hidden>/);assert.match(html,/id="flow-step-1"[^>]* open>/);
