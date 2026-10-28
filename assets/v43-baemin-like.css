@@ -1,28 +1,43 @@
 /* v4.3: 더 직관적인 앱 탐색 문법 — 짧은 라벨, 큰 아이콘, 최소 설명 */
 @media(max-width:760px){
-  .rhythm-hero .eyebrow{font-size:.72rem!important;padding:6px 10px!important}
-  .rhythm-hero h1{font-size:2.35rem!important;line-height:.98!important;margin:10px 0 10px!important}
-  .rhythm-hero .hero-description{font-size:.92rem!important;line-height:1.45!important;margin:0 0 8px!important}
-  .rhythm-hero .hero-support{font-size:.78rem!important;line-height:1.35!important;margin:0 0 12px!important}
-  .rhythm-hero .start-cta{min-height:54px!important;font-size:.98rem!important;border-radius:18px!important;margin-top:10px!important}
+  /* Home: 감성은 남기고 설명은 한 문장으로 */
+  .rhythm-hero .eyebrow{font-size:.7rem!important;padding:6px 10px!important}
+  .rhythm-hero h1{font-size:2.28rem!important;line-height:.98!important;margin:10px 0 10px!important}
+  .rhythm-hero .hero-description{font-size:0!important;line-height:1.4!important;margin:0 0 12px!important}
+  .rhythm-hero .hero-description br{display:none!important}
+  .rhythm-hero .hero-description::after{content:'오늘 하고 싶은 걸 고르면, 딱 맞는 장소를 추천해요.';font-size:.92rem;font-weight:800;color:#314e40}
+  .rhythm-hero .hero-support{display:none!important}
+  .rhythm-hero .start-cta{min-height:54px!important;font-size:.98rem!important;border-radius:18px!important;margin-top:8px!important}
 
+  /* 1단계: 설명보다 카테고리 */
   #flow-step-1{background:#fff!important;border-radius:22px!important}
-  #flow-step-1>.step-heading{padding:18px 18px 4px!important}
-  #flow-step-1>.step-heading h2{font-size:1.25rem!important;gap:8px!important}
+  #flow-step-1>.step-heading{padding:18px 18px 6px!important}
+  #flow-step-1>.step-heading h2{font-size:1.24rem!important;gap:8px!important}
+  #flow-step-1 .step-progress{display:none!important}
   #flow-step-1>.step-instruction{display:none!important}
-  #flow-step-1 .desire-grid{padding:6px 16px 8px!important;gap:12px 6px!important}
+  #flow-step-1 .desire-grid{padding:4px 16px 8px!important;gap:12px 6px!important}
   #flow-step-1 .desire-grid .choice-chip,
-  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{min-height:84px!important;padding:4px 2px!important;gap:6px!important}
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{min-height:82px!important;padding:4px 2px!important;gap:6px!important}
   #flow-step-1 .desire-grid .choice-chip .choice-icon{width:56px!important;height:56px!important;flex-basis:56px!important;border-radius:20px!important;background:#f7f7f3!important;border:0!important}
-  #flow-step-1 .desire-grid .choice-chip [data-choice-label]{font-size:.76rem!important;line-height:1.15!important;font-weight:800!important;max-width:none!important}
+  #flow-step-1 .desire-grid .choice-chip [data-choice-label]{font-size:0!important;line-height:1.15!important;font-weight:800!important;max-width:none!important}
+  #flow-step-1 .desire-grid .choice-chip [data-choice-label]::after{font-size:.76rem;font-weight:800;color:#263f33}
+  #flow-step-1 .desire-grid [data-desire='eat'] [data-choice-label]::after{content:'먹기'}
+  #flow-step-1 .desire-grid [data-desire='move'] [data-choice-label]::after{content:'움직이기'}
+  #flow-step-1 .desire-grid [data-desire='outdoor'] [data-choice-label]::after{content:'바람'}
+  #flow-step-1 .desire-grid [data-desire='rest'] [data-choice-label]::after{content:'쉬기'}
+  #flow-step-1 .desire-grid [data-desire='explore'] [data-choice-label]::after{content:'새로움'}
+  #flow-step-1 .desire-grid [data-desire='social'] [data-choice-label]::after{content:'함께'}
   #flow-step-1 .desire-grid .choice-chip[aria-pressed=true] .choice-icon{background:#e9f4ed!important;border:2px solid #2f7457!important}
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true] [data-choice-label]::after{color:#1f654a}
   #flow-step-1 .selection-indicator{right:7px!important;top:2px!important}
   #flow-step-1 .intent-search{margin:8px 16px 0!important;min-height:46px!important}
-  #flow-step-1 .intent-search input{font-size:.82rem!important}
+  #flow-step-1 .intent-search input{font-size:.8rem!important}
   .two-step-next{margin:12px 16px 16px!important;min-height:52px!important;font-size:.95rem!important}
 
-  .condition-stage>.step-heading{padding:17px 16px 4px!important}
-  .condition-stage>.step-heading h2{font-size:1.22rem!important}
+  /* 2단계: 빠른 필터 화면 */
+  .condition-stage>.step-heading{padding:17px 16px 6px!important}
+  .condition-stage>.step-heading h2{font-size:1.2rem!important}
+  .condition-stage .step-progress{display:none!important}
   .condition-stage>.step-instruction{display:none!important}
   .condition-stage-body{padding-top:2px!important}
   .condition-stage-group{padding:8px 14px!important}
