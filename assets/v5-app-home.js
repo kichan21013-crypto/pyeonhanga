@@ -4,7 +4,8 @@ const icon = name => ({
   home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 11 9-8 9 8v9H4z"/><path d="M9 20v-6h6v6"/></svg>',
   heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>',
   compass:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>',
-  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>'
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>',
+  sliders:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h10m4 0h2M4 12h3m4 0h9M4 18h8m4 0h4"/><circle cx="16" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg>'
 })[name];
 
 function setupHome() {
@@ -53,23 +54,64 @@ function setupHome() {
   nav.innerHTML = `<a href="/" class="is-active">${icon('home')}<span>홈</span></a><button type="button" data-v5-today>${icon('compass')}<span>오늘</span></button><a href="/saved.html">${icon('heart')}<span>저장</span></a>`;
   document.body.append(nav);
 
-  const openConditions = () => {
-    document.body.classList.add('v5-flow-active');
-    document.body.classList.remove('v5-results-active');
-    qs('#rhythm-start')?.click();
-    setTimeout(() => {
-      qs('[data-next-step="2"]')?.click();
-      qs('#flow-step-2')?.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
-    }, 0);
+  let refinement = null;
+  let started = false;
+
+  const ensureStarted = () => {
+    if (started) return;
+    const start = qs('#rhythm-start');
+    if (start) start.click();
+    started = true;
+  };
+
+  const buildRefinement = () => {
+    if (refinement?.isConnected) return refinement;
+    const conditionBody = qs('.condition-stage-body');
+    if (!conditionBody) return null;
+
+    refinement = document.createElement('section');
+    refinement.className = 'live-refinement';
+    refinement.innerHTML = `<div class="live-refinement-head"><div><strong>조금 더 맞춰볼까요?</strong><span>고를 때마다 추천이 바로 바뀌어요.</span></div></div>`;
+
+    const activities = qs('.condition-activities', conditionBody);
+    if (activities) {
+      activities.classList.add('live-activity-group');
+      refinement.append(activities);
+    }
+
+    const more = document.createElement('details');
+    more.className = 'live-more';
+    more.innerHTML = `<summary>${icon('sliders')}<span>누구와 · 시간 · 이동 · 편안함</span><b aria-hidden="true">＋</b></summary><div class="live-more-body"></div>`;
+    const body = qs('.live-more-body', more);
+    qsa('.condition-stage-group', conditionBody).filter(group => !group.classList.contains('condition-activities')).forEach(group => body.append(group));
+    const optional = qs('.condition-more', conditionBody);
+    if (optional) body.append(optional);
+    refinement.append(more);
+
+    preview.parentElement?.insertBefore(refinement, preview);
+    return refinement;
+  };
+
+  const submitLive = ({ scroll = false } = {}) => {
+    ensureStarted();
+    const button = qs('#recommend-button');
+    if (!button) return;
+    button.disabled = false;
+    button.click();
+    document.body.classList.add('v5-live-active','v5-results-active');
+    document.body.classList.remove('v5-flow-active');
+    results.dataset.mode = 'results';
+    buildRefinement();
+    if (scroll) setTimeout(() => refinement?.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'}), 0);
   };
 
   qsa('[data-desire]', desireGrid).forEach(button => button.addEventListener('click', () => {
-    setTimeout(openConditions, 0);
+    setTimeout(() => submitLive({ scroll:true }), 0);
   }));
 
   searchForm.addEventListener('keydown', event => {
     if (event.key !== 'Enter' || event.isComposing) return;
-    setTimeout(openConditions, 0);
+    setTimeout(() => submitLive({ scroll:true }), 0);
   });
 
   nav.querySelector('[data-v5-today]').addEventListener('click', () => shell.scrollIntoView({behavior:'smooth', block:'start'}));
@@ -78,19 +120,24 @@ function setupHome() {
     if (event.target.closest('.condition-back')) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      location.href = '/';
+      shell.scrollIntoView({behavior:'smooth', block:'start'});
       return;
     }
-    if (event.target.closest('#recommend-button')) {
-      document.body.classList.remove('v5-flow-active');
-      document.body.classList.add('v5-results-active');
-      results.dataset.mode = 'results';
-    }
     if (event.target.closest('[data-reset], #reset-filters')) {
-      document.body.classList.remove('v5-flow-active','v5-results-active');
+      document.body.classList.remove('v5-flow-active','v5-results-active','v5-live-active');
       results.dataset.mode = 'preview';
+      refinement?.remove();
+      refinement = null;
+      return;
     }
-  }, true);
+
+    const liveFilter = event.target.closest('[data-activity],[data-companion],[data-duration],[data-transport],[data-comfort]');
+    if (liveFilter && refinement?.contains(liveFilter)) setTimeout(() => submitLive(), 0);
+  });
+
+  document.addEventListener('change', event => {
+    if (event.target.matches('#region,#category') && refinement?.contains(event.target)) setTimeout(() => submitLive(), 0);
+  });
 
   results.dataset.mode = 'preview';
 }
