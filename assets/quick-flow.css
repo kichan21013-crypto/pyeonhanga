@@ -1,4 +1,4 @@
-/* Quick flow: 설문처럼 보이는 다단계 흐름을 한 화면 선택 + 선택형 세부설정으로 단순화 */
+/* Quick flow: 한 번 고르고 바로 추천 + 선택형 보조 필터 */
 #flow-step-1{
   max-width:720px!important;
   margin-inline:auto!important;
@@ -43,6 +43,7 @@
   display:none!important;
 }
 
+/* 세부 조건은 질문 카드가 아니라 작은 필터 칩처럼 보이게 */
 .quick-refine{
   margin:12px 22px 0!important;
   border-top:1px solid #edf0ec!important;
@@ -76,35 +77,46 @@
   font-weight:600!important;
 }
 .quick-refine-body{
-  padding:2px 0 16px!important;
+  padding:2px 0 12px!important;
 }
 .quick-refine-group{
-  padding:12px 0!important;
+  padding:9px 0!important;
   border-top:1px solid #f0f2ef!important;
 }
 .quick-refine-group:first-child{border-top:0!important}
 .quick-refine-group>h3{
-  margin:0 0 9px!important;
-  font-size:.78rem!important;
+  margin:0 0 7px!important;
+  font-size:.74rem!important;
   color:#64746b!important;
 }
 .quick-refine .choice-grid,
-.quick-refine .condition-grid{
-  display:grid!important;
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  gap:8px!important;
+.quick-refine .condition-grid,
+.quick-refine .activity-chips{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:7px!important;
 }
-.quick-refine .choice-chip{
-  min-height:52px!important;
-  padding:9px 11px!important;
-  border-radius:13px!important;
+.quick-refine .choice-chip,
+.quick-refine .activity-chips .choice-chip{
+  min-height:40px!important;
+  width:auto!important;
+  flex:0 0 auto!important;
+  padding:7px 10px!important;
+  border-radius:999px!important;
   box-shadow:none!important;
-  font-size:.82rem!important;
+  font-size:.78rem!important;
+  gap:6px!important;
 }
 .quick-refine .choice-icon{
-  width:30px!important;
-  height:30px!important;
-  flex-basis:30px!important;
+  width:24px!important;
+  height:24px!important;
+  flex-basis:24px!important;
+  border-radius:8px!important;
+}
+.quick-refine .selection-indicator{
+  width:18px!important;
+  height:18px!important;
+  font-size:.68rem!important;
 }
 .quick-refine .activity-options{
   display:block!important;
@@ -112,24 +124,43 @@
   padding:0!important;
   border:0!important;
 }
-.quick-refine .activity-subgroup{margin-bottom:10px!important}
+.quick-refine .activity-subgroup{margin-bottom:8px!important}
 .quick-refine .activity-subgroup:last-child{margin-bottom:0!important}
 .quick-refine .activity-subgroup h3{display:none!important}
-.quick-refine .activity-chips{gap:7px!important}
-.quick-refine details{
-  margin-top:10px!important;
+.quick-refine .small-text,
+.quick-refine .selection-summary{font-size:.7rem!important;color:#7b857f!important}
+
+/* 편안함·지역 등은 한 번 더 열어야 보이는 고급 조건 */
+.quick-refine-extra{
+  margin-top:8px!important;
   border:1px solid #e4e8e3!important;
-  border-radius:13px!important;
+  border-radius:12px!important;
+  background:#fafbf9!important;
+  box-shadow:none!important;
+}
+.quick-refine-extra>summary{
+  list-style:none;
+  padding:10px 12px!important;
+  font-size:.76rem!important;
+  font-weight:750!important;
+  color:#52675c!important;
+}
+.quick-refine-extra>summary::-webkit-details-marker{display:none}
+.quick-refine-extra>summary:after{content:'＋';float:right;color:#7f9187}
+.quick-refine-extra[open]>summary:after{content:'−'}
+.quick-refine-extra-body{padding:0 10px 10px!important}
+.quick-refine-extra-body>details{
+  margin-top:7px!important;
+  border:1px solid #e9ece7!important;
+  border-radius:10px!important;
   box-shadow:none!important;
   background:#fff!important;
 }
-.quick-refine details>summary{
-  padding:11px 12px!important;
-  font-size:.82rem!important;
-  font-weight:750!important;
+.quick-refine-extra-body>details>summary{
+  padding:9px 10px!important;
+  font-size:.75rem!important;
+  font-weight:700!important;
 }
-.quick-refine .small-text,
-.quick-refine .selection-summary{font-size:.72rem!important;color:#7b857f!important}
 
 .quick-recommend{
   margin:16px 22px 22px!important;
@@ -139,26 +170,53 @@
   font-size:1rem!important;
 }
 
+/* 추천은 목록이 아니라 상위 몇 곳부터 보여줍니다. */
+#rhythm-results #result-count{display:none!important}
+.result-more-button{
+  display:block!important;
+  width:min(100%,420px)!important;
+  margin:18px auto 4px!important;
+  min-height:48px!important;
+  border-radius:14px!important;
+  font-weight:750!important;
+}
+#rhythm-results .place-card[hidden]{display:none!important}
+
 @media(max-width:760px){
+  /* Hero는 브랜드 소개보다 선택 진입을 빠르게 하는 수준으로 축소 */
+  .rhythm-hero{
+    min-height:0!important;
+    margin-bottom:18px!important;
+  }
+  .rhythm-hero .hero-support{display:none!important}
+  .rhythm-hero .hero-copy{padding-bottom:12px!important}
+  .rhythm-hero .hero-art{
+    min-height:0!important;
+    height:210px!important;
+    max-height:210px!important;
+  }
+  .rhythm-hero h1{font-size:clamp(2.25rem,11vw,3.15rem)!important;line-height:.98!important}
+  .rhythm-hero .hero-description{margin-bottom:10px!important}
+  .rhythm-hero .start-cta{min-height:54px!important}
+
   #flow-step-1{border-radius:20px!important}
   #flow-step-1>.step-heading{padding:16px 16px 11px!important}
   #flow-step-1>.step-heading h2{font-size:1.28rem!important}
   #flow-step-1>.step-instruction{margin:0 16px 13px!important;font-size:.84rem!important}
   #flow-step-1 .desire-grid{padding-inline:16px!important;gap:8px!important}
   #flow-step-1 .desire-grid .choice-chip,
-  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{min-height:70px!important}
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{min-height:66px!important}
   #flow-step-1 .intent-search{margin:13px 16px 0!important;min-height:48px!important}
   .quick-refine{margin:10px 16px 0!important}
   .quick-refine>summary{padding:12px 1px!important}
   .quick-refine>summary small{display:none!important}
-  .quick-refine .choice-grid,
-  .quick-refine .condition-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .quick-refine .choice-chip,
+  .quick-refine .activity-chips .choice-chip{min-height:38px!important;padding:6px 9px!important;font-size:.76rem!important}
   .quick-recommend{margin:14px 16px 18px!important;width:calc(100% - 32px)!important;min-height:52px!important}
 }
 
 @media(max-width:390px){
   #flow-step-1 .desire-grid .choice-chip,
-  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{min-height:66px!important}
-  .quick-refine .choice-grid,
-  .quick-refine .condition-grid{grid-template-columns:1fr!important}
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{min-height:62px!important}
+  .rhythm-hero .hero-art{height:190px!important;max-height:190px!important}
 }

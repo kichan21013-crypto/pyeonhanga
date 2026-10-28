@@ -35,7 +35,7 @@ function prepareQuickFlow(root) {
 
   const refine = document.createElement('details');
   refine.className = 'quick-refine';
-  refine.innerHTML = '<summary><span>조금 더 맞춤 추천</span><small>세부 활동 · 동행 · 시간 · 이동 · 편안함</small></summary><div class="quick-refine-body"></div>';
+  refine.innerHTML = '<summary><span>조금 더 맞춤 추천</span><small>원할 때만 더 고르기</small></summary><div class="quick-refine-body"></div>';
   const body = refine.querySelector('.quick-refine-body');
 
   const addGroup = (label, node) => {
@@ -57,7 +57,16 @@ function prepareQuickFlow(root) {
   addGroup('시간', step3.querySelector('[aria-labelledby="duration-title"]'));
   addGroup('이동', step3.querySelector('[aria-labelledby="transport-title"]'));
 
-  [...step3.querySelectorAll(':scope > details')].forEach(details => body.append(details));
+  // 편안함·지역 같은 고급 조건은 한 번 더 열어야 보이도록 분리합니다.
+  const extraDetails = [...step3.querySelectorAll(':scope > details')];
+  if (extraDetails.length) {
+    const extra = document.createElement('details');
+    extra.className = 'quick-refine-extra';
+    extra.innerHTML = '<summary>편안함 · 지역까지 더 정하기</summary><div class="quick-refine-extra-body"></div>';
+    const extraBody = extra.querySelector('.quick-refine-extra-body');
+    extraDetails.forEach(details => extraBody.append(details));
+    body.append(extra);
+  }
 
   const searchForm = step1.querySelector('#search-form');
   if (searchForm) step1.insertBefore(refine, quickButton || null);
@@ -82,7 +91,11 @@ export function createProgressiveFlow(root, { reducedMotion = () => globalThis.m
   const { step1, quickButton } = prepareQuickFlow(root);
   const steps = step1 ? [step1] : [...root.querySelectorAll('[data-flow-step]')];
   const results = root.querySelector('#rhythm-results');
-  let started = false, selection = {}, showingResults = false, activeStep = 1;
+  const resultGrid = root.querySelector('#places-grid');
+  const resultCount = root.querySelector('#result-count');
+  const resultStatus = root.querySelector('#result-status');
+  const RESULT_BATCH_SIZE = 5;
+  let started = false, selection = {}, showingResults = false, activeStep = 1, visibleResults = RESULT_BATCH_SIZE;
 
   function visible(element, show) {
     if (!element) return;
@@ -90,6 +103,33 @@ export function createProgressiveFlow(root, { reducedMotion = () => globalThis.m
     element.hidden = !show;
     if (reveal && !reducedMotion() && typeof element.animate === 'function') {
       element.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 160, easing: 'ease-out' });
+    }
+  }
+
+  function applyResultPreview() {
+    if (!resultGrid || !showingResults) return;
+    const cards = [...resultGrid.querySelectorAll('.place-card')];
+    const oldMore = root.querySelector('#show-more-results');
+    oldMore?.remove();
+    if (!cards.length) return;
+
+    const shown = Math.min(visibleResults, cards.length);
+    cards.forEach((card, index) => { card.hidden = index >= shown; });
+    if (resultCount) resultCount.textContent = '';
+    if (resultStatus) resultStatus.textContent = `${cards.length}곳 중 추천 순서대로 ${shown}곳을 먼저 보여드려요.`;
+
+    if (shown < cards.length) {
+      const more = document.createElement('button');
+      more.type = 'button';
+      more.id = 'show-more-results';
+      more.className = 'button secondary result-more-button';
+      more.textContent = '다른 추천 더 보기';
+      more.onclick = () => {
+        visibleResults += RESULT_BATCH_SIZE;
+        applyResultPreview();
+        cards[Math.min(shown, cards.length - 1)]?.focus?.({ preventScroll: true });
+      };
+      resultGrid.insertAdjacentElement('afterend', more);
     }
   }
 
@@ -110,6 +150,8 @@ export function createProgressiveFlow(root, { reducedMotion = () => globalThis.m
     selection = filters;
     showingResults = false;
     activeStep = 1;
+    visibleResults = RESULT_BATCH_SIZE;
+    root.querySelector('#show-more-results')?.remove();
     paint();
   }
 
@@ -123,13 +165,16 @@ export function createProgressiveFlow(root, { reducedMotion = () => globalThis.m
 
   return {
     update,
-    start(filters) { started = true; activeStep = 1; selection = filters; showingResults = false; paint(); },
+    start(filters) { started = true; activeStep = 1; selection = filters; showingResults = false; visibleResults = RESULT_BATCH_SIZE; paint(); },
     activate,
     submit(filters) {
       selection = filters;
       if (!started || !flowAvailability(filters).ready) { paint(); return false; }
       showingResults = true;
+      visibleResults = RESULT_BATCH_SIZE;
       paint();
+      // app.js가 같은 이벤트 루프에서 카드 렌더를 마친 뒤 상위 추천만 먼저 노출합니다.
+      queueMicrotask(applyResultPreview);
       return true;
     },
   };
