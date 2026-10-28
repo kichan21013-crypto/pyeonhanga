@@ -12,6 +12,8 @@
   .app-home-search svg{width:21px;height:21px;flex:none}
   .app-home-search input{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:.9rem;color:#243d31}
   .app-home-search input::placeholder{color:#8a958f}
+  .app-home-search .intent-input{border:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;min-height:0!important}
+  .app-home-search .intent-input>[data-icon]{display:none!important}
 
   .app-home-title{display:flex;align-items:center;justify-content:space-between;padding:0 16px 8px}
   .app-home-title h1{margin:0;font-size:1.05rem;line-height:1.2;color:#243d31}
@@ -33,16 +35,16 @@
   .app-category-grid .choice-chip[aria-pressed=true] [data-choice-label]::after{color:#1f654a}
   .app-category-grid .selection-indicator{position:absolute!important;top:-1px!important;right:18px!important;width:21px!important;height:21px!important;font-size:.7rem!important;border-radius:999px!important}
 
-  .app-promo{margin:12px 16px 2px;min-height:162px;border-radius:24px;overflow:hidden;position:relative;background:linear-gradient(90deg,rgba(24,68,50,.9),rgba(24,68,50,.38)),url('/assets/hero-home.webp') center/cover no-repeat;box-shadow:0 8px 24px rgba(40,60,48,.12);padding:22px 20px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end}
+  .app-promo{margin:12px 16px 2px;min-height:162px;border-radius:24px;overflow:hidden;position:relative;background-image:linear-gradient(90deg,rgba(24,68,50,.9),rgba(24,68,50,.36)),var(--v3-hero-mobile);background-size:cover;background-position:center 64%;box-shadow:0 8px 24px rgba(40,60,48,.12);padding:22px 20px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end}
   .app-promo small{font-size:.7rem;font-weight:800;opacity:.9}
   .app-promo strong{font-size:1.45rem;line-height:1.15;margin-top:5px;max-width:80%}
   .app-promo span{font-size:.78rem;margin-top:6px;opacity:.9}
-  .app-promo button{align-self:flex-start;margin-top:12px;border:0;border-radius:999px;padding:9px 13px;background:#fff;color:#1f5e45;font-weight:900;font-size:.76rem}
 
   body[data-page='home'] .rhythm-hero{display:none!important}
   body[data-page='home'] .brand-story{display:none!important}
   body[data-page='home'] .site-footer{display:none!important}
 
+  body[data-page='home'] .explore-section[hidden]{display:block!important}
   body[data-page='home'] .explore-section{background:#f7f7f3!important;padding:12px 0 0!important}
   body[data-page='home'] .discovery-flow{padding:0 12px!important}
   body[data-page='home'] #flow-step-1{display:none!important}
@@ -61,13 +63,17 @@
   body[data-page='home'] .condition-recommend{margin:11px 14px 12px!important;min-height:52px!important;border-radius:16px!important;font-size:.95rem!important}
   body[data-page='home'] .condition-back{margin:0 14px 10px!important;font-size:.68rem!important}
 
+  body[data-page='home']:not(.v5-flow-active) #rhythm-results[hidden]{display:block!important}
+  body[data-page='home'].v5-flow-active #rhythm-results{display:none!important}
   .app-home-preview{margin:14px 0 0;background:#fff;border-radius:24px 24px 0 0;padding:18px 14px 10px}
   .app-home-preview-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:10px}
   .app-home-preview-head h2{margin:0;font-size:1.08rem;color:#243d31}
   .app-home-preview-head span{font-size:.68rem;color:#8c968f}
+  body[data-page='home'].v5-flow-active .app-home-preview,body[data-page='home'].v5-results-active .app-home-preview{display:none!important}
 
   body[data-page='home'] .rhythm-results{background:#fff!important;border-radius:0!important;padding:0 14px 96px!important;margin:0!important}
-  body[data-page='home'] .rhythm-results>.results-heading,body[data-page='home'] .rhythm-results>.results-help,body[data-page='home'] .rhythm-results>.demo-notice{display:none!important}
+  body[data-page='home']:not(.v5-results-active) .rhythm-results>.results-heading,body[data-page='home'] .rhythm-results>.results-help,body[data-page='home'] .rhythm-results>.demo-notice{display:none!important}
+  body[data-page='home']:not(.v5-results-active) #places-grid .place-card:nth-child(n+4){display:none!important}
   body[data-page='home'] .places-grid{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}
   body[data-page='home'] .place-card{display:grid!important;grid-template-columns:118px 1fr!important;border:1px solid #edf0ea!important;border-radius:17px!important;overflow:hidden!important;box-shadow:none!important;background:#fff!important}
   body[data-page='home'] .place-card .card-image{min-height:118px!important;height:100%!important;border-radius:0!important}
