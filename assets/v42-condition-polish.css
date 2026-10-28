@@ -1,0 +1,40 @@
+/* v4.2: 2단계 조건 화면을 더 짧고 앱답게 정돈 */
+@media(max-width:760px){
+  .condition-stage .step-heading h2{
+    display:flex!important;align-items:center!important;gap:9px!important;flex-wrap:wrap!important;
+  }
+  .condition-stage .step-progress{
+    white-space:nowrap!important;margin:0!important;padding:5px 9px!important;
+    border-radius:999px!important;font-size:.66rem!important;line-height:1!important;
+  }
+  .condition-stage-cue{display:none!important}
+  .condition-stage .step-instruction{margin-bottom:4px!important}
+  .condition-stage-body{margin-top:0!important}
+  .condition-stage-group{padding:9px 14px!important}
+  .condition-stage-group+ .condition-stage-group{border-top:1px solid #edf1ed!important}
+  .condition-stage-group>h3{margin:0 0 6px!important;font-size:.72rem!important;font-weight:750!important;color:#66756d!important}
+  .condition-stage-group .choice-grid,
+  .condition-stage-group .condition-grid,
+  .condition-stage-group .activity-chips,
+  .condition-stage .companion-choices{gap:6px!important}
+  .condition-stage-group .choice-chip,
+  .condition-stage-group .choice-chip[aria-pressed=true],
+  .condition-stage .companion-choices .choice-chip,
+  .condition-stage .companion-choices .choice-chip[aria-pressed=true]{
+    min-height:36px!important;padding:5px 9px!important;font-size:.74rem!important;gap:5px!important;
+  }
+  .condition-stage-group .choice-chip .choice-icon,
+  .condition-stage .companion-choices .choice-chip .choice-icon{
+    width:24px!important;height:24px!important;flex:0 0 24px!important;border-radius:9px!important;
+  }
+  .condition-activities{padding-top:6px!important}
+  .condition-activities .activity-subgroup{margin:0!important}
+  .condition-activities .activity-subgroup h3{display:none!important}
+  .condition-more{margin:6px 14px 8px!important}
+  .condition-more>summary{padding:12px!important;font-size:.78rem!important}
+  .condition-recommend{
+    margin:10px 14px 8px!important;width:calc(100% - 28px)!important;min-height:52px!important;
+    font-size:.95rem!important;
+  }
+  .condition-back{margin:4px 14px 8px!important;font-size:.72rem!important}
+}
