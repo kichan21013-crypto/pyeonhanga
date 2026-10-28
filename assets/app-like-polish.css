@@ -1,0 +1,103 @@
+/* App-like polish: 빠른 카테고리 런처 + compact condition chips + mobile bottom nav */
+@media(max-width:760px){
+  body{padding-bottom:86px!important}
+
+  /* 홈: 서비스 정체성은 짧고 명확하게 */
+  .rhythm-hero .hero-description{font-size:1rem!important;line-height:1.55!important}
+  .rhythm-hero .hero-support{font-size:.83rem!important;line-height:1.45!important;color:#52675c!important}
+  .hero-service-strip{
+    display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    margin:12px 0 2px;padding:0 1px 3px;
+  }
+  .hero-service-strip::-webkit-scrollbar{display:none}
+  .hero-service-strip span{
+    flex:0 0 auto;padding:7px 10px;border-radius:999px;
+    background:rgba(255,255,255,.86);border:1px solid rgba(46,92,70,.12);
+    color:#355747;font-size:.68rem;font-weight:750;
+  }
+
+  /* 1단계: 큰 설문 카드가 아니라 카테고리 런처 */
+  #flow-step-1 .desire-grid{
+    display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px 6px!important;padding:0 14px 4px!important;
+  }
+  #flow-step-1 .desire-grid .choice-chip,
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true]{
+    min-height:98px!important;padding:9px 4px 8px!important;
+    border:0!important;border-radius:18px!important;box-shadow:none!important;
+    background:transparent!important;display:flex!important;flex-direction:column!important;
+    justify-content:flex-start!important;align-items:center!important;text-align:center!important;gap:7px!important;
+    position:relative!important;
+  }
+  #flow-step-1 .desire-grid .choice-chip .choice-icon{
+    width:50px!important;height:50px!important;flex:0 0 50px!important;
+    border-radius:18px!important;background:#f5f7f2!important;border:1px solid #e4e9e2!important;
+    display:grid!important;place-items:center!important;
+  }
+  #flow-step-1 .desire-grid .choice-chip [data-choice-label]{
+    font-size:.72rem!important;line-height:1.25!important;font-weight:750!important;color:#263f33!important;
+    word-break:keep-all!important;max-width:92px!important;
+  }
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true] .choice-icon{
+    background:#e7f2eb!important;border:2px solid #2f7457!important;box-shadow:0 4px 12px rgba(47,116,87,.12)!important;
+  }
+  #flow-step-1 .desire-grid .choice-chip[aria-pressed=true] [data-choice-label]{color:#1f654a!important}
+  #flow-step-1 .desire-grid .selection-indicator{
+    width:20px!important;height:20px!important;right:5px!important;top:4px!important;font-size:.67rem!important;
+  }
+  #flow-step-1 .two-step-search{margin-top:10px!important}
+  .two-step-next{margin-top:12px!important}
+
+  /* 2단계: 설문 카드 대신 짧은 선택칩 */
+  .condition-stage{border:0!important;box-shadow:none!important;background:#fff!important}
+  .condition-stage .step-heading{padding-bottom:10px!important}
+  .condition-stage-cue{margin:0 14px 12px!important;padding:11px 12px!important;border-radius:14px!important}
+  .condition-stage-group{padding:12px 14px!important}
+  .condition-stage-group>h3{margin-bottom:8px!important;font-size:.76rem!important;color:#68766e!important}
+  .condition-stage-group .choice-grid,
+  .condition-stage-group .condition-grid,
+  .condition-stage-group .activity-chips,
+  .condition-stage .companion-choices{
+    display:flex!important;flex-wrap:wrap!important;gap:7px!important;
+  }
+  .condition-stage-group .choice-chip,
+  .condition-stage-group .choice-chip[aria-pressed=true],
+  .condition-stage .companion-choices .choice-chip,
+  .condition-stage .companion-choices .choice-chip[aria-pressed=true]{
+    width:auto!important;min-width:0!important;min-height:42px!important;padding:7px 11px!important;
+    border-radius:999px!important;box-shadow:none!important;gap:6px!important;flex:0 0 auto!important;
+    font-size:.78rem!important;background:#fff!important;border:1px solid #dfe6df!important;
+  }
+  .condition-stage-group .choice-chip .choice-icon,
+  .condition-stage .companion-choices .choice-chip .choice-icon{
+    width:27px!important;height:27px!important;flex:0 0 27px!important;border-radius:10px!important;
+  }
+  .condition-stage-group .choice-chip[aria-pressed=true],
+  .condition-stage .companion-choices .choice-chip[aria-pressed=true]{
+    background:#eaf3ed!important;border-color:#4d8068!important;color:#1f5e46!important;
+  }
+  .condition-stage-group .selection-indicator,
+  .condition-stage .companion-choices .selection-indicator{display:none!important}
+  .condition-more{margin:8px 14px!important;border-radius:14px!important}
+  .condition-recommend{margin:14px!important;width:calc(100% - 28px)!important}
+  .condition-back{margin-bottom:8px!important}
+
+  /* 모바일 앱 하단 내비 */
+  .app-bottom-nav{
+    position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);
+    z-index:80;width:min(calc(100% - 28px),520px);height:64px;padding:6px 10px;
+    border:1px solid rgba(41,74,58,.12);border-radius:24px;
+    background:rgba(255,255,255,.91);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    box-shadow:0 10px 30px rgba(32,54,43,.14);display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
+  }
+  .app-bottom-nav a,.app-bottom-nav button{
+    appearance:none;border:0;background:transparent;text-decoration:none;color:#758078;
+    border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    font:inherit;font-size:.66rem;font-weight:700;min-width:0;
+  }
+  .app-bottom-nav svg{width:21px;height:21px}
+  .app-bottom-nav .is-active,.app-bottom-nav a:active,.app-bottom-nav button:active{color:#245f47;background:#edf5f0}
+  .app-bottom-nav .nav-today{color:#245f47;font-weight:850}
+}
+
+@media(min-width:761px){.app-bottom-nav{display:none!important}.hero-service-strip{display:none!important}}
