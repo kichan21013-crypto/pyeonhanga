@@ -1,3 +1,7 @@
+import { recommendRhythms, emptyRhythmFilters } from '/rhythm.js?v=20261030-v53';
+import { card } from '/ui.js?v=20261030-v53';
+import { savedIds } from '/storage.js?v=20261030-v53';
+
 const qs = (selector, root = document) => root.querySelector(selector);
 const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
 const icon = name => ({
@@ -7,6 +11,60 @@ const icon = name => ({
   search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>',
   sliders:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 6h10m4 0h2M4 12h3m4 0h9M4 18h8m4 0h4"/><circle cx="16" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg>'
 })[name];
+
+const selectedValues = (selector, key) => qsa(`${selector}[aria-pressed="true"]`).map(node => node.dataset[key]).filter(Boolean);
+
+function filtersFromUi() {
+  const filters = emptyRhythmFilters();
+  filters.query = qs('#search-input')?.value?.trim() || '';
+  filters.desires = selectedValues('[data-desire]', 'desire');
+  filters.activities = selectedValues('[data-activity]', 'activity');
+  filters.companions = selectedValues('[data-companion]', 'companion');
+  filters.comforts = selectedValues('[data-comfort]', 'comfort');
+  filters.duration = selectedValues('[data-duration]', 'duration')[0] || 'any';
+  filters.transport = selectedValues('[data-transport]', 'transport')[0] || 'any';
+  filters.region = qs('#region')?.value || '';
+  filters.category = qs('#category')?.value || 'auto';
+  return filters;
+}
+
+let livePlacesPromise = null;
+function loadLivePlaces() {
+  if (!livePlacesPromise) {
+    livePlacesPromise = fetch('/data/places.json?v=20261030-v53', { cache: 'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error('live places load failed');
+        return response.json();
+      })
+      .catch(error => {
+        livePlacesPromise = null;
+        throw error;
+      });
+  }
+  return livePlacesPromise;
+}
+
+async function renderLiveResults() {
+  const grid = qs('#places-grid');
+  if (!grid) return false;
+  try {
+    const places = await loadLivePlaces();
+    const filters = filtersFromUi();
+    const rhythms = recommendRhythms(places, filters);
+    const ids = savedIds();
+    grid.innerHTML = rhythms.length
+      ? rhythms.map(result => card(result.place, ids.includes(result.place.id), filters, result)).join('')
+      : '<div class="empty-state"><h3>조건에 맞는 장소가 아직 없어요</h3><p>다른 세부활동을 함께 골라보세요.</p></div>';
+    if (qs('#result-count')) qs('#result-count').textContent = rhythms.length;
+    if (qs('#result-status')) qs('#result-status').textContent = `${rhythms.length}개의 오늘의 리듬을 찾았습니다.`;
+    document.dispatchEvent(new CustomEvent('nagachi:v5-results-rendered', {
+      detail: { count: rhythms.length, activities: [...filters.activities] }
+    }));
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 function setupHome() {
   if (document.body.dataset.page !== 'home' || document.body.dataset.v5Home === 'ready') return;
@@ -93,15 +151,16 @@ function setupHome() {
 
   const submitLive = ({ scroll = false } = {}) => {
     ensureStarted();
-    const button = qs('#recommend-button');
-    if (!button) return;
-    button.disabled = false;
-    button.click();
     document.body.classList.add('v5-live-active','v5-results-active');
     document.body.classList.remove('v5-flow-active');
+    results.hidden = false;
     results.dataset.mode = 'results';
     buildRefinement();
-    if (scroll) setTimeout(() => refinement?.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'}), 0);
+    setTimeout(() => {
+      results.hidden = false;
+      renderLiveResults();
+      if (scroll) refinement?.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+    }, 0);
   };
 
   qsa('[data-desire]', desireGrid).forEach(button => button.addEventListener('click', () => {
@@ -118,8 +177,8 @@ function setupHome() {
     (refinement || shell).scrollIntoView({behavior:'smooth', block:'start'});
   });
 
-  // activityOptions()는 클릭 처리 중 칩 DOM을 다시 그립니다. 버블 단계에서 원래 버튼이
-  // refinement에서 분리되기 전에 클릭을 캡처해 두고, 기존 필터 상태 갱신이 끝난 다음 재계산합니다.
+  // app.js가 세부활동 칩 DOM을 다시 그린 뒤, 현재 aria-pressed 상태를 직접 읽어
+  // v5 결과 엔진이 권위 있게 다시 렌더합니다. 숨겨진 추천 버튼 클릭에 의존하지 않습니다.
   document.addEventListener('click', event => {
     const activity = event.target.closest?.('[data-activity]');
     if (!activity || !refinement?.contains(activity)) return;
