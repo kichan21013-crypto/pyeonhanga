@@ -118,6 +118,14 @@ function setupHome() {
     (refinement || shell).scrollIntoView({behavior:'smooth', block:'start'});
   });
 
+  // activityOptions()는 클릭 처리 중 칩 DOM을 다시 그립니다. 버블 단계에서 원래 버튼이
+  // refinement에서 분리되기 전에 클릭을 캡처해 두고, 기존 필터 상태 갱신이 끝난 다음 재계산합니다.
+  document.addEventListener('click', event => {
+    const activity = event.target.closest?.('[data-activity]');
+    if (!activity || !refinement?.contains(activity)) return;
+    setTimeout(() => submitLive(), 0);
+  }, true);
+
   document.addEventListener('click', event => {
     const closeMore = event.target.closest('[data-live-more-close]');
     if (closeMore) {
@@ -140,7 +148,7 @@ function setupHome() {
       return;
     }
 
-    const liveFilter = event.target.closest('[data-activity],[data-companion],[data-duration],[data-transport],[data-comfort]');
+    const liveFilter = event.target.closest('[data-companion],[data-duration],[data-transport],[data-comfort]');
     if (liveFilter && refinement?.contains(liveFilter)) setTimeout(() => submitLive(), 0);
   });
 

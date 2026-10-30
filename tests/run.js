@@ -6,6 +6,7 @@ import './rhythm.test.js';
 import './market-readiness.test.js';
 import './actions.test.js';
 import './flow.test.js';
+import './v5-live-filter.test.js';
 import './tourapi-quality.test.js';
 import './tourapi-enrichment.test.js';
 import './barrierfree-enrichment.test.js';
