@@ -1,11 +1,11 @@
 const qs = (selector, root = document) => root.querySelector(selector);
 const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
 const icon = name => ({
-  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 11 9-8 9 8v9H4z"/><path d="M9 20v-6h6v6"/></svg>',
-  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>',
-  compass:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>',
-  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>',
-  sliders:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h10m4 0h2M4 12h3m4 0h9M4 18h8m4 0h4"/><circle cx="16" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg>'
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="m3 11 9-8 9 8v9H4z"/><path d="M9 20v-6h6v6"/></svg>',
+  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>',
+  compass:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>',
+  sliders:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 6h10m4 0h2M4 12h3m4 0h9M4 18h8m4 0h4"/><circle cx="16" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="14" cy="18" r="2"/></svg>'
 })[name];
 
 function setupHome() {
@@ -51,7 +51,7 @@ function setupHome() {
   const nav = document.createElement('nav');
   nav.className = 'app-bottom-nav';
   nav.setAttribute('aria-label','하단 메뉴');
-  nav.innerHTML = `<a href="/" class="is-active">${icon('home')}<span>홈</span></a><button type="button" data-v5-today>${icon('compass')}<span>오늘</span></button><a href="/saved.html">${icon('heart')}<span>저장</span></a>`;
+  nav.innerHTML = `<button type="button" class="is-active" data-v5-home>${icon('home')}<span>홈</span></button><button type="button" data-v5-today>${icon('compass')}<span>오늘</span></button><a href="/saved.html">${icon('heart')}<span>저장</span></a>`;
   document.body.append(nav);
 
   let refinement = null;
@@ -59,8 +59,7 @@ function setupHome() {
 
   const ensureStarted = () => {
     if (started) return;
-    const start = qs('#rhythm-start');
-    if (start) start.click();
+    qs('#rhythm-start')?.click();
     started = true;
   };
 
@@ -71,7 +70,7 @@ function setupHome() {
 
     refinement = document.createElement('section');
     refinement.className = 'live-refinement';
-    refinement.innerHTML = `<div class="live-refinement-head"><div><strong>조금 더 맞춰볼까요?</strong><span>고를 때마다 추천이 바로 바뀌어요.</span></div></div>`;
+    refinement.innerHTML = '<div class="live-refinement-head"><strong>추천 더 좁히기</strong></div>';
 
     const activities = qs('.condition-activities', conditionBody);
     if (activities) {
@@ -81,8 +80,8 @@ function setupHome() {
 
     const more = document.createElement('details');
     more.className = 'live-more';
-    more.innerHTML = `<summary>${icon('sliders')}<span>누구와 · 시간 · 이동 · 편안함</span><b aria-hidden="true">＋</b></summary><div class="live-more-body"></div>`;
-    const body = qs('.live-more-body', more);
+    more.innerHTML = `<summary>${icon('sliders')}<span>조건 더보기</span><b aria-hidden="true">＋</b></summary><div class="live-more-backdrop" data-live-more-close></div><div class="live-more-body" role="dialog" aria-label="추천 조건 더보기"><div class="live-more-sheet-head"><strong>조건 더하기</strong><button type="button" data-live-more-close aria-label="조건 닫기">×</button></div><div class="live-more-sheet-content"></div></div>`;
+    const body = qs('.live-more-sheet-content', more);
     qsa('.condition-stage-group', conditionBody).filter(group => !group.classList.contains('condition-activities')).forEach(group => body.append(group));
     const optional = qs('.condition-more', conditionBody);
     if (optional) body.append(optional);
@@ -114,9 +113,19 @@ function setupHome() {
     setTimeout(() => submitLive({ scroll:true }), 0);
   });
 
-  nav.querySelector('[data-v5-today]').addEventListener('click', () => shell.scrollIntoView({behavior:'smooth', block:'start'}));
+  nav.querySelector('[data-v5-home]').addEventListener('click', () => shell.scrollIntoView({behavior:'smooth', block:'start'}));
+  nav.querySelector('[data-v5-today]').addEventListener('click', () => {
+    (refinement || shell).scrollIntoView({behavior:'smooth', block:'start'});
+  });
 
   document.addEventListener('click', event => {
+    const closeMore = event.target.closest('[data-live-more-close]');
+    if (closeMore) {
+      event.preventDefault();
+      const details = closeMore.closest('.live-more');
+      if (details) details.open = false;
+      return;
+    }
     if (event.target.closest('.condition-back')) {
       event.preventDefault();
       event.stopImmediatePropagation();

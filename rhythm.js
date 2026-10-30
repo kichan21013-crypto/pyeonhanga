@@ -56,25 +56,32 @@ export function recommendRhythms(places, f = emptyRhythmFilters()) {
     const p = candidate.place, tags = activityTags(p), matches = wanted.filter(key => hasActivity(tags,key));
     if (intent.regions.length > 1 && !f.region && !intent.regions.includes(p.region)) return null;
     const companionMatches = selectedCompanions.filter(key => p.companions?.some(value => companionCode(value) === key)).length;
-    // 알 수 없는 동행 적합성은 허위 일치로 세지 않으며, 확인된 하나 이상의 일치를 먼저 추천합니다.
     const desireMatches = selectedDesires.filter(key => (DESIRES[key].tags || DESIRES[key].activities).some(tag => hasActivity(tags,tag))).length;
+    const selectedActivityMatches = selectedActivities.filter(key => hasActivity(tags,key)).length;
     const visit = p.visitContext, verifiedVisit = Boolean(visit?.sourceUrl && visit?.verifiedAt);
     const durationMatch = verifiedVisit && f.duration !== 'any' && visit.duration === f.duration ? 1 : 0;
     const transportMatch = verifiedVisit && ['car','transit'].includes(f.transport) && visit.transportModes?.includes(f.transport) ? 1 : 0;
-    // 현재 위치를 수집하지 않으므로 '가까운 곳'과 이동시간을 임의로 만들지 않습니다.
     const conditionMatches = candidate.matchedComforts + durationMatch + transportMatch;
     const activity = matches.find(key => !['food','outing','travel'].includes(key)) || matches[0] || [...tags].find(key => ACTIVITIES[key]) || 'outing';
     const label = ACTIVITIES[activity]?.[0] || '장소 둘러보기';
     const route = p.route?.sourceUrl && p.route?.verifiedAt ? p.route : unknownRoute();
     const fallbackActivity = Boolean(wanted.length && !matches.length && desireMatches > 0);
     const fallbackReason = !p.isDemo && fallbackActivity ? '선택한 세부 활동 정보는 부족해 비슷한 유형부터 보여드려요' : null;
-    return { ...candidate, id: `rhythm-${p.id}`, title: `${label} · ${p.name}`, activityType: activity, conditionMatches, companionMatches, desireMatches, activityMatches: matches.length, fallbackActivity,
+    return { ...candidate, id: `rhythm-${p.id}`, title: `${label} · ${p.name}`, activityType: activity, conditionMatches, companionMatches, desireMatches, activityMatches: matches.length, selectedActivityMatches, fallbackActivity,
       plan: { region: p.region, stops: [{ placeId: p.id, activityType: activity }], transfers: [], duration: verifiedVisit ? visit.duration : 'unknown', distanceKm: route.distanceKm, isDemo: Boolean(p.isDemo) },
       reasons: [...candidate.reasons, ...(fallbackReason ? [fallbackReason] : []), ...(!p.isDemo && durationMatch ? [`확인된 체류 시간: ${DURATION_OPTIONS[f.duration]}`] : []), ...(!p.isDemo && transportMatch ? [`${TRANSPORT_OPTIONS[f.transport]} 방문 정보 확인`] : [])].slice(0,2),
     };
   }).filter(Boolean);
 
-  // 세부 활동이 희소해도 같은 욕구(예: 러닝→걷기/등산)의 후보는 남긴다.
+  // 사용자가 세부활동 칩을 직접 고른 경우에는 해당 활동과 실제로 맞는 장소를 먼저 '필터'처럼 좁힌다.
+  // 정확히 맞는 장소가 하나도 없을 때만 기존의 같은 욕구 fallback을 사용한다. 다중선택은 OR이다.
+  if (selectedActivities.length) {
+    const exactSelected = ranked.filter(result => result.selectedActivityMatches > 0);
+    if (exactSelected.length) {
+      return exactSelected.sort((a,b) => b.conditionMatches-a.conditionMatches || b.companionMatches-a.companionMatches || b.selectedActivityMatches-a.selectedActivityMatches || b.activityMatches-a.activityMatches || b.desireMatches-a.desireMatches || b.relevance-a.relevance || a.order-b.order);
+    }
+  }
+
   const related = wanted.length ? ranked.filter(result => result.activityMatches > 0 || result.desireMatches > 0) : ranked;
   const pool = related.length ? related : ranked;
   return pool.sort((a,b) => b.conditionMatches-a.conditionMatches || b.companionMatches-a.companionMatches || b.activityMatches-a.activityMatches || b.desireMatches-a.desireMatches || b.relevance-a.relevance || a.order-b.order);

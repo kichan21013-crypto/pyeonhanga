@@ -31,14 +31,21 @@ test('동행 다중선택은 AND가 아니며 여러 선택과 맞는 결과를 
   assert.equal(results.find(r=>r.place.id===unknown.id).companionMatches,0);
   assert.equal(companionSummary(['solo','friend']),'혼자 · 친구');
 });
-test('욕구·세부활동은 하나라도 맞으면 남기며 여러 욕구에 맞을수록 우선한다', () => {
+test('세부활동을 직접 고르면 해당 활동과 맞는 후보로 즉시 좁히고 다중선택은 OR로 유지한다', () => {
   const walk=sample('demo-walk',['walk']),food=sample('demo-food',['food']),both=sample('demo-multiple',['walk','food']);
   food.category='맛집';
   const f={...emptyRhythmFilters(),desires:['eat','move'],activities:['walk']};
   const results=recommendRhythms([walk,food,both],f);
-  assert.equal(results[0].place.id,both.id);assert.equal(results.length,3);
+  assert.equal(results[0].place.id,both.id);assert.equal(results.length,2);
+  assert.ok(results.every(r=>r.selectedActivityMatches>0));
   assert.deepEqual(activeActivities(['move'],['walk','noodle']),['walk']);
   assert.deepEqual(toggleSelection(['move'],'move'),[]);
+
+  const korean=sample('demo-korean',['korean_food']);korean.category='맛집';
+  const noodle=sample('demo-noodle',['noodle']);noodle.category='맛집';
+  const cafe=sample('demo-cafe',['cafe']);cafe.category='맛집';
+  const foodResults=recommendRhythms([cafe,korean,noodle],{...emptyRhythmFilters(),desires:['eat'],activities:['korean_food','noodle']});
+  assert.deepEqual(foodResults.map(r=>r.place.id).sort(),['demo-korean','demo-noodle']);
 });
 test('세부 활동 정보가 없으면 결과를 비우지 않고 같은 욕구의 후보로 완화한다', () => {
   const walk=sample('demo-walk-fallback',['walk']),food=sample('demo-food-fallback',['food']);
@@ -46,6 +53,7 @@ test('세부 활동 정보가 없으면 결과를 비우지 않고 같은 욕구
   const results=recommendRhythms([food,walk],{...emptyRhythmFilters(),desires:['move'],activities:['run']});
   assert.equal(results.length,1);
   assert.equal(results[0].place.id,walk.id);
+  assert.equal(results[0].selectedActivityMatches,0);
   assert.equal(results[0].activityMatches,0);
   assert.equal(results[0].desireMatches,1);
   assert.equal(results[0].fallbackActivity,true);
@@ -56,7 +64,7 @@ test('자연어와 선택한 칩을 함께 반영하고 복합 문장에서 거�
   assert.ok(intent.intents.includes('run'));assert.ok(intent.intents.includes('food'));
   const running=sample('demo-running',['run']),meal=sample('demo-meal',['food']);meal.category='맛집';
   const results=recommendRhythms([running,meal],{...emptyRhythmFilters(),query,desires:['move','eat'],activities:['run']});
-  assert.equal(results.length,2);assert.ok(results.every(r=>r.plan.distanceKm==='unknown'));
+  assert.equal(results.length,1);assert.equal(results[0].place.id,running.id);assert.ok(results.every(r=>r.plan.distanceKm==='unknown'));
   const compound=inferIntent('친구랑 드라이브하고 칼국수 먹고 싶어');assert.deepEqual(compound.tokens,[]);
   assert.ok(compound.intents.includes('drive'));assert.ok(compound.intents.includes('noodle'));
 });
