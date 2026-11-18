@@ -11,3 +11,4 @@ import './tourapi-quality.test.js';
 import './tourapi-enrichment.test.js';
 import './barrierfree-enrichment.test.js';
 import './curation.test.js';
+import './v6-ui.test.js';
