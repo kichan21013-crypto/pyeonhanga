@@ -68,3 +68,16 @@ test('v6.3 활동 런처는 여섯 개 이미지 아이콘과 풍경 배너를 �
   assert.ok(visualCss.includes("v3-hero-mobile.css"));
   assert.ok(heroCss.includes('--v3-hero-mobile:url('));
 });
+
+test('선택한 6개 활동 아이콘은 이전 배경 덮어쓰기를 피하고 그림이 계속 표시된다', async () => {
+  const [css, legacy] = await Promise.all([
+    readFile(new URL('../assets/v6-ui.css', import.meta.url), 'utf8'),
+    readFile(new URL('../assets/v43-baemin-like.css', import.meta.url), 'utf8'),
+  ]);
+  assert.match(legacy, /#flow-step-1 \.desire-grid \.choice-chip\[aria-pressed=true\] \.choice-icon\{background:/);
+  const selectedIconRule = css.match(/#flow-step-1 \.desire-grid\.app-category-grid \.choice-chip\[aria-pressed='true'\] \.choice-icon\{([^}]*)\}/);
+  assert.ok(selectedIconRule, '선택 상태에서 레거시 id 선택자보다 높은 우선순위의 아이콘 복원 필요');
+  assert.match(selectedIconRule[1], /background-image:url\('\/assets\/activity-illustrations-v63\.svg'\)!important/);
+  assert.match(selectedIconRule[1], /background-repeat:no-repeat!important/);
+  assert.match(selectedIconRule[1], /background-size:600% 100%!important/);
+});
