@@ -22,8 +22,9 @@ test('세부활동 칩 DOM이 다시 그려져도 다음 틱에서 라이브 결
 
 test('배포 HTML은 새 클라이언트 버전을 사용해 이전 Safari 캐시와 섞이지 않는다', async () => {
   const buildSource = await readFile(new URL('../scripts/build.js', import.meta.url), 'utf8');
-  assert.match(buildSource, /const CLIENT_VERSION = '20261118-v7'/);
+  assert.match(buildSource, /const CLIENT_VERSION = '20261118-v8'/);
   assert.ok(buildSource.includes('/assets/v7-photo-icons.css?v=${CLIENT_VERSION}'));
   assert.ok(buildSource.includes('src="/app.js?v=${CLIENT_VERSION}"'));
   assert.ok(buildSource.includes('/assets/v5-app-home.js?v=${CLIENT_VERSION}'));
+  assert.ok(buildSource.includes('/assets/v8-photo-icon-loader.js?v=${CLIENT_VERSION}'));
 });
