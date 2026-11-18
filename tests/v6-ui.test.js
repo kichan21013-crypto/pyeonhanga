@@ -84,3 +84,22 @@ test('선택한 6개 활동 아이콘은 이전 배경 덮어쓰기를 피하고
     assert.ok(css.includes("#flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='" + key + "'] .choice-icon{background-position:" + pos + "% 50%!important}"), key);
   }
 });
+
+test('v7 사진형 6종 아이콘은 선택 중에도 유지되며 실사 배너는 보존한다', async () => {
+  const [sprite, css, build, legacy] = await Promise.all([
+    readFile(new URL('../assets/activity-photo-sprite-v7.webp', import.meta.url)),
+    readFile(new URL('../assets/v7-photo-icons.css', import.meta.url), 'utf8'),
+    readFile(new URL('../scripts/build.js', import.meta.url), 'utf8'),
+    readFile(new URL('../assets/v6-ui.css', import.meta.url), 'utf8'),
+  ]);
+  assert.equal(sprite.toString('ascii', 0, 4), 'RIFF');
+  assert.equal(sprite.toString('ascii', 8, 12), 'WEBP');
+  assert.ok(sprite.length > 2000 && sprite.length < 50000);
+  assert.ok(css.includes('background-size:300% 200%!important'));
+  for(const desire of ['eat','move','outdoor','rest','explore','social']) {
+    assert.ok(css.includes("[data-desire='" + desire + "'] .choice-icon"), desire);
+    assert.ok(css.includes("[aria-pressed='true'][data-desire='" + desire + "'] .choice-icon"), 'selected ' + desire);
+  }
+  assert.ok(build.includes('/assets/v7-photo-icons.css?v='));
+  assert.ok(legacy.includes('var(--v3-hero-mobile)!important'), 'approved scenic photo banner remains');
+});
