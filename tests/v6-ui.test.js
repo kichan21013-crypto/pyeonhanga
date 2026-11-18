@@ -103,3 +103,24 @@ test('v7 사진형 6종 아이콘은 선택 중에도 유지되며 실사 배너
   assert.ok(build.includes('/assets/v7-photo-icons.css?v='));
   assert.ok(legacy.includes('var(--v3-hero-mobile)!important'), 'approved scenic photo banner remains');
 });
+
+
+test('v8 사진형 아이콘은 홈으로 옮겨진 6개 버튼에서만 켜지고 로딩 실패 시 기존 아이콘을 유지한다', async () => {
+  const [css, home, loader, build] = await Promise.all([
+    readFile(new URL('../assets/v7-photo-icons.css', import.meta.url), 'utf8'),
+    readFile(new URL('../assets/v5-app-home.js', import.meta.url), 'utf8'),
+    readFile(new URL('../assets/v8-photo-icon-loader.js', import.meta.url), 'utf8'),
+    readFile(new URL('../scripts/build.js', import.meta.url), 'utf8'),
+  ]);
+  assert.ok(home.includes("desireGrid.classList.add('app-category-grid')"));
+  assert.ok(home.includes('shell.append(desireGrid)'), 'home script relocates icon grid outside #flow-step-1');
+  assert.ok(css.includes('html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid'));
+  assert.ok(!css.includes('#flow-step-1 .desire-grid.app-category-grid'), 'old parent selector never matches after relocation');
+  assert.ok(loader.includes("document.documentElement.classList.add('photo-icons-ready')"));
+  assert.ok(loader.includes('image.naturalWidth > 0'));
+  assert.ok(loader.includes('image.onerror'));
+  assert.ok(build.includes('v8-photo-icon-loader.js'));
+  for (const key of ['eat','move','outdoor','rest','explore','social']) {
+    assert.ok(css.includes("[data-desire='" + key + "'] .choice-icon"), key);
+  }
+});
