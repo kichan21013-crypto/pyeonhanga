@@ -182,6 +182,13 @@ body[data-page='detail'] .detail-actions-bottom button{flex:1;min-height:47px;bo
     background-repeat:no-repeat!important;
     background-size:600% 100%!important;
   }
+  /* 선택 상태에서 background shorthand가 sprite 위치도 초기화하는 것을 방지 */
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='eat'] .choice-icon{background-position:0% 50%!important}
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='move'] .choice-icon{background-position:20% 50%!important}
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='outdoor'] .choice-icon{background-position:40% 50%!important}
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='rest'] .choice-icon{background-position:60% 50%!important}
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='explore'] .choice-icon{background-position:80% 50%!important}
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='social'] .choice-icon{background-position:100% 50%!important}
   /* 배너에는 기존 승인된 풍경 이미지를 사용하며 아이콘형 벡터 배너는 숨김 */
   .app-promo{
     background-color:#f6eedd!important;
