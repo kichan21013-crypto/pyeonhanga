@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { meaningfulDescription } from '../ui.js';
 
 test('v6 디자인 레이어는 마지막으로 로드되어 모바일 주요 영역을 구분한다', async () => {
   const [imports, css, client] = await Promise.all([
@@ -21,4 +22,18 @@ test('추천 풀 180개는 기능 테스트 동안 유지하며 출처 기반 �
   assert.equal(published.length, 180);
   assert.ok(published.every(p => !p.isDemo));
   assert.ok(published.every(p => p.sourceUrl && p.sourceName));
+});
+
+
+test('v6 하단 탭은 이전 중앙 정렬 변환을 제거해 세 메뉴 모두 표시한다', async () => {
+  const css = await readFile(new URL('../assets/v6-ui.css', import.meta.url), 'utf8');
+  assert.match(css, /\.app-bottom-nav\{[^}]*transform:none!important;[^}]*width:100%!important;/s);
+  assert.match(css, /grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+});
+
+test('장소 상세·목록에서 무의미한 자동 생성 소개만 제거하고 실제 문장은 유지한다', () => {
+  const sample = { region: '경기', category: '맛집', shortDescription: '경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.' };
+  assert.equal(meaningfulDescription(sample), '');
+  assert.equal(meaningfulDescription({ ...sample, shortDescription: '공식 운영시간은 18시까지입니다. 편안함 관련 정보는 추가 확인이 필요합니다.' }), '공식 운영시간은 18시까지입니다.');
+  assert.equal(meaningfulDescription({ ...sample, shortDescription: '이 장소는 창가 좌석이 있는 카페입니다.' }), '이 장소는 창가 좌석이 있는 카페입니다.');
 });
