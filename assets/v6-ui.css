@@ -159,3 +159,31 @@ body[data-page='detail'] .detail-actions-bottom button{flex:1;min-height:47px;bo
  body[data-page='detail'] .detail-quick-facts{padding:18px!important}
  body[data-page='detail'] .detail-fact-list>div{grid-template-columns:86px minmax(0,1fr);gap:9px}
 }
+
+
+/* v6.3: 고해상도 일러스트 아이콘; 탐색·필터 기능은 그대로 유지 */
+@media(max-width:760px){
+  .app-category-grid .choice-chip .choice-icon{
+    background-image:url('/assets/activity-illustrations-v63.svg')!important;
+    background-repeat:no-repeat!important;
+    background-size:600% 100%!important;
+  }
+  .app-category-grid .choice-chip .choice-icon svg{display:none!important}
+  .app-category-grid .choice-chip .choice-icon:after{display:none!important}
+  .app-category-grid [data-desire='eat'] .choice-icon{background-position:0% 50%!important}
+  .app-category-grid [data-desire='move'] .choice-icon{background-position:20% 50%!important}
+  .app-category-grid [data-desire='outdoor'] .choice-icon{background-position:40% 50%!important}
+  .app-category-grid [data-desire='rest'] .choice-icon{background-position:60% 50%!important}
+  .app-category-grid [data-desire='explore'] .choice-icon{background-position:80% 50%!important}
+  .app-category-grid [data-desire='social'] .choice-icon{background-position:100% 50%!important}
+  /* 배너에는 기존 승인된 풍경 이미지를 사용하며 아이콘형 벡터 배너는 숨김 */
+  .app-promo{
+    background-color:#f6eedd!important;
+    background-image:linear-gradient(90deg,rgba(251,249,239,.96) 0%,rgba(251,249,239,.85) 38%,rgba(251,249,239,.35) 73%,rgba(251,249,239,.09) 100%),var(--v3-hero-mobile)!important;
+    background-repeat:no-repeat!important;
+    background-size:cover!important;
+    background-position:center 64%!important;
+    border-color:#e8e6db!important;
+  }
+  .app-promo-art{display:none!important}
+}
