@@ -37,3 +37,11 @@ test('장소 상세·목록에서 무의미한 자동 생성 소개만 제거하
   assert.equal(meaningfulDescription({ ...sample, shortDescription: '공식 운영시간은 18시까지입니다. 편안함 관련 정보는 추가 확인이 필요합니다.' }), '공식 운영시간은 18시까지입니다.');
   assert.equal(meaningfulDescription({ ...sample, shortDescription: '이 장소는 창가 좌석이 있는 카페입니다.' }), '이 장소는 창가 좌석이 있는 카페입니다.');
 });
+
+
+test('홈 검색창은 단일 입력 박스로 정리하며 안쪽 폼·입력 테두리를 제거한다', async () => {
+  const css = await readFile(new URL('../assets/v6-ui.css', import.meta.url), 'utf8');
+  assert.match(css, /\.app-home-search #search-form\.intent-search\{[^}]*border:0!important;[^}]*background:transparent!important;/s);
+  assert.match(css, /\.app-home-search #search-form \.intent-input\{[^}]*border:0!important;[^}]*background:transparent!important;/s);
+  assert.match(css, /\.app-home-search #search-input\{[^}]*border:0!important;[^}]*background:transparent!important;/s);
+});

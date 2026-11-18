@@ -65,7 +65,7 @@ export function recommendRhythms(places, f = emptyRhythmFilters()) {
     const activity = matches.find(key => !['food','outing','travel'].includes(key)) || matches[0] || [...tags].find(key => ACTIVITIES[key]) || 'outing';
     const label = ACTIVITIES[activity]?.[0] || '장소 둘러보기';
     const route = p.route?.sourceUrl && p.route?.verifiedAt ? p.route : unknownRoute();
-    const fallbackActivity = Boolean(wanted.length && !matches.length && desireMatches > 0);
+    const fallbackActivity = Boolean(desireMatches > 0 && ((selectedActivities.length > 0 && selectedActivityMatches === 0) || (wanted.length > 0 && matches.length === 0)));
     const fallbackReason = !p.isDemo && fallbackActivity ? '선택한 세부 활동 정보는 부족해 비슷한 유형부터 보여드려요' : null;
     return { ...candidate, id: `rhythm-${p.id}`, title: `${label} · ${p.name}`, activityType: activity, conditionMatches, companionMatches, desireMatches, activityMatches: matches.length, selectedActivityMatches, fallbackActivity,
       plan: { region: p.region, stops: [{ placeId: p.id, activityType: activity }], transfers: [], duration: verifiedVisit ? visit.duration : 'unknown', distanceKm: route.distanceKm, isDemo: Boolean(p.isDemo) },

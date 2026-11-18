@@ -37,7 +37,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{o
  .app-home-title small{font-size:.72rem!important;color:#77818c!important}
  .app-home-search{background:#f5f7fa!important;border:1.5px solid #edf0f3!important;border-radius:16px!important;box-shadow:none!important;margin:0 18px 19px!important;min-height:52px!important;color:#546477!important}
  .app-home-search:focus-within{border-color:#ff8f6f!important;background:#fff!important;box-shadow:0 0 0 3px rgba(255,120,79,.11)!important}
- .app-home-search input{font-size:.88rem!important;color:#202b38!important}
+
+ /* 검색 영역 자체가 입력 박스이며, 이전 단계의 form 테두리가 중첩되지 않도록 함 */
+ .app-home-search #search-form.intent-search{display:flex!important;flex:1 1 auto!important;min-width:0!important;width:100%!important;min-height:0!important;margin:0!important;padding:0!important;gap:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+ .app-home-search #search-form .intent-input{display:flex!important;flex:1 1 auto!important;width:100%!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;gap:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+ .app-home-search #search-input{display:block!important;flex:1 1 auto!important;width:100%!important;min-width:0!important;min-height:44px!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;outline-offset:3px!important;text-overflow:ellipsis}
+  .app-home-search input{font-size:.88rem!important;color:#202b38!important}
  .app-home-search input::placeholder{color:#84909c!important}
  .app-category-grid{gap:16px 8px!important;padding:4px 17px 12px!important}
  .app-category-grid .choice-chip,.app-category-grid .choice-chip[aria-pressed=true]{min-height:91px!important;gap:8px!important}
