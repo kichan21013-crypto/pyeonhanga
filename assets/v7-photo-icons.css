@@ -1,25 +1,25 @@
-/* v7 · 승인 시안에서 추출한 사진형 활동 아이콘. 실사 풍경 배너는 변경하지 않음. */
+/* v8: app-home moves the six-icon grid out of #flow-step-1. Target its actual parent. Activate only after WebP loads; retain v6 icons on failure. */
 @media(max-width:760px){
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip .choice-icon,
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'] .choice-icon{
-    background-image:url('/assets/activity-photo-sprite-v7.webp')!important;
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip .choice-icon,
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip[aria-pressed='true'] .choice-icon{
+    background-image:url('/assets/activity-photo-sprite-v7.webp?v=20261118-v8')!important;
     background-size:300% 200%!important;
     background-repeat:no-repeat!important;
     border-radius:23px!important;
     overflow:visible;
   }
-  #flow-step-1 .desire-grid.app-category-grid [data-desire='eat'] .choice-icon,
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='eat'] .choice-icon{background-position:0% 0%!important}
-  #flow-step-1 .desire-grid.app-category-grid [data-desire='move'] .choice-icon,
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='move'] .choice-icon{background-position:50% 0%!important}
-  #flow-step-1 .desire-grid.app-category-grid [data-desire='outdoor'] .choice-icon,
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='outdoor'] .choice-icon{background-position:100% 0%!important}
-  #flow-step-1 .desire-grid.app-category-grid [data-desire='rest'] .choice-icon,
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='rest'] .choice-icon{background-position:0% 100%!important}
-  #flow-step-1 .desire-grid.app-category-grid [data-desire='explore'] .choice-icon,
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='explore'] .choice-icon{background-position:50% 100%!important}
-  #flow-step-1 .desire-grid.app-category-grid [data-desire='social'] .choice-icon,
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='social'] .choice-icon{background-position:100% 100%!important}
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip .choice-icon svg{display:none!important}
-  #flow-step-1 .desire-grid.app-category-grid .choice-chip .choice-icon::after{display:none!important}
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid [data-desire='eat'] .choice-icon,
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='eat'] .choice-icon{background-position:0% 0%!important}
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid [data-desire='move'] .choice-icon,
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='move'] .choice-icon{background-position:50% 0%!important}
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid [data-desire='outdoor'] .choice-icon,
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='outdoor'] .choice-icon{background-position:100% 0%!important}
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid [data-desire='rest'] .choice-icon,
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='rest'] .choice-icon{background-position:0% 100%!important}
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid [data-desire='explore'] .choice-icon,
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='explore'] .choice-icon{background-position:50% 100%!important}
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid [data-desire='social'] .choice-icon,
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='social'] .choice-icon{background-position:100% 100%!important}
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip .choice-icon svg{display:none!important}
+  html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip .choice-icon::after{display:none!important}
 }
