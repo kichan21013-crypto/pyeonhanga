@@ -45,3 +45,26 @@ test('홈 검색창은 단일 입력 박스로 정리하며 안쪽 폼·입력 �
   assert.match(css, /\.app-home-search #search-form \.intent-input\{[^}]*border:0!important;[^}]*background:transparent!important;/s);
   assert.match(css, /\.app-home-search #search-input\{[^}]*border:0!important;[^}]*background:transparent!important;/s);
 });
+
+
+test('v6.3 활동 런처는 여섯 개 이미지 아이콘과 풍경 배너를 사용한다', async () => {
+  const [sprite, css, visualCss, heroCss] = await Promise.all([
+    readFile(new URL('../assets/activity-illustrations-v63.svg', import.meta.url), 'utf8'),
+    readFile(new URL('../assets/v6-ui.css', import.meta.url), 'utf8'),
+    readFile(new URL('../assets/visual-v3.css', import.meta.url), 'utf8'),
+    readFile(new URL('../assets/v3-hero-mobile.css', import.meta.url), 'utf8'),
+  ]);
+  for (const id of ['eat', 'move', 'outdoor', 'rest', 'explore', 'social']) {
+    assert.match(sprite, new RegExp('<g id="' + id + '"'));
+  }
+  assert.equal((sprite.match(/<g id="/g) || []).length, 6);
+  assert.match(css, /background-image:url\('\/assets\/activity-illustrations-v63\.svg'\)!important/);
+  for (const [desire, position] of [['eat', 0], ['move', 20], ['outdoor', 40], ['rest', 60], ['explore', 80], ['social', 100]]) {
+    assert.ok(css.includes("[data-desire='" + desire + "'] .choice-icon{background-position:" + position + "% 50%!important}"), desire);
+  }
+  assert.ok(css.includes('.app-category-grid .choice-chip .choice-icon svg{display:none!important}'));
+  assert.ok(css.includes('var(--v3-hero-mobile)!important'));
+  assert.ok(css.includes('.app-promo-art{display:none!important}'));
+  assert.ok(visualCss.includes("v3-hero-mobile.css"));
+  assert.ok(heroCss.includes('--v3-hero-mobile:url('));
+});
