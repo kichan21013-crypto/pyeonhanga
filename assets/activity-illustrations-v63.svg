@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="120" viewBox="0 0 720 120" fill="none">
+<!-- Original NaGachi activity illustrations: six transparent 120x120 cells -->
+<g stroke-linecap="round" stroke-linejoin="round">
+<g id="eat">
+<path d="M39 39c-6-8 7-11 1-19M60 36c-7-8 8-11 1-20M81 39c-6-8 7-11 1-19" stroke="#45454A" stroke-width="4.7"/>
+<path d="M24 61c1 27 11 41 36 41s35-14 36-41" fill="#344450" stroke="#25313B" stroke-width="5.5"/>
+<ellipse cx="60" cy="61" rx="38" ry="15" fill="#F4AA62" stroke="#25313B" stroke-width="5.5"/>
+<path d="M30 61c13 7 47 11 60-1" stroke="#D9853D" stroke-width="3"/>
+<path d="M48 61c-6-8 2-14 11-15 6 0 12 5 14 13-5 6-19 7-25 2Z" fill="#FFF4DA"/>
+<circle cx="40" cy="60" r="3" fill="#6B8D55"/><circle cx="78" cy="65" r="2.7" fill="#6B8D55"/>
+</g>
+<g id="move" transform="translate(120 0)">
+<path d="M58 19c-4 0-9 4-9 10 0 6 4 10 10 10 6 0 10-5 10-11 0-5-5-9-11-9Z" fill="#F2B786" stroke="#293641" stroke-width="4.5"/>
+<path d="M50 23c0-6 5-10 11-10 7 0 11 5 11 10H50Z" fill="#4C5C53" stroke="#293641" stroke-width="3.8"/>
+<path d="M60 23h18" stroke="#293641" stroke-width="4.5"/>
+<path d="M54 40l20 7 1 28-25 0-3-23Z" fill="#F1A06F" stroke="#293641" stroke-width="4.6"/>
+<path d="M48 47c-13 0-15 10-13 26l14-1" fill="#77A392" stroke="#293641" stroke-width="4.5"/>
+<path d="M73 47l17 17 12 2M50 49 39 62l-11 4" stroke="#293641" stroke-width="5"/>
+<path d="M56 75 42 94l-10 11M72 75l11 12 14 10" stroke="#293641" stroke-width="6"/>
+<path d="m26 105 11 1M92 100l12 4" stroke="#293641" stroke-width="5"/>
+<path d="M51 78h22" stroke="#4C5C53" stroke-width="4.4"/>
+</g>
+<g id="outdoor" transform="translate(240 0)">
+<circle cx="88" cy="34" r="11" fill="#FFD38A"/>
+<path d="M31 92 61 42l22 30 9-13 20 33H31Z" fill="#8CBCA1" stroke="#365B4B" stroke-width="4.4"/>
+<path d="m54 53 7-11 9 13" stroke="#F7F8F0" stroke-width="4"/>
+<path d="M16 93h96" stroke="#365B4B" stroke-width="4.5"/>
+<path d="M35 56v41" stroke="#4B604E" stroke-width="6"/>
+<path d="M34 24c-15-2-21 11-17 21-14 10-7 26 8 26h23c14 0 21-15 10-25 2-13-10-22-24-22Z" fill="#70A35D" stroke="#365B4B" stroke-width="5"/>
+<path d="M29 54 36 63l7-10" stroke="#365B4B" stroke-width="3"/>
+</g>
+<g id="rest" transform="translate(360 0)">
+<path d="m31 27 12 0-11 15h12M51 13h10l-10 14h12" stroke="#33404A" stroke-width="4.5"/>
+<path d="M27 55V97M27 80h78v17M105 62v35" stroke="#293641" stroke-width="6"/>
+<rect x="34" y="63" width="24" height="16" rx="8" fill="#FAFAF7" stroke="#293641" stroke-width="4.2"/>
+<path d="M60 63h37a8 8 0 0 1 8 8v10H60V63Z" fill="#AC9FE2" stroke="#293641" stroke-width="4.2"/>
+<path d="M27 81h78" stroke="#293641" stroke-width="5"/>
+<path d="M22 97v9M105 97v9" stroke="#293641" stroke-width="5"/>
+</g>
+<g id="explore" transform="translate(480 0)">
+<path d="m20 61 83-38-28 78-18-31-37-9Z" fill="#C4E5F5" stroke="#304755" stroke-width="5.5"/>
+<path d="m57 70 46-47-28 78-7-24" fill="#86C1E4" stroke="#304755" stroke-width="4.5"/>
+<path d="M20 91h18M26 78h15M39 102h13" stroke="#69B8A1" stroke-width="4.8"/>
+<circle cx="17" cy="77" r="3" fill="#F0B16E"/>
+</g>
+<g id="social" transform="translate(600 0)">
+<path d="m50 23 0-9M72 22l6-9M29 28l-6-7" stroke="#EBA272" stroke-width="4.8"/>
+<circle cx="43" cy="46" r="13" fill="#F3B58F" stroke="#293641" stroke-width="4.8"/>
+<circle cx="76" cy="46" r="13" fill="#F4CE9E" stroke="#293641" stroke-width="4.8"/>
+<path d="M20 96V86c0-17 9-25 23-25s23 8 23 25v10" fill="#F6A58E" stroke="#293641" stroke-width="4.8"/>
+<path d="M54 96V87c0-17 9-25 23-25s23 8 23 25v9" fill="#EAC471" stroke="#293641" stroke-width="4.8"/>
+<path d="M55 80v16M65 79v17" stroke="#293641" stroke-width="3.4"/>
+</g>
+</g></svg>
