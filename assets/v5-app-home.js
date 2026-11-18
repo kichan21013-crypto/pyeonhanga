@@ -1,6 +1,6 @@
-import { recommendRhythms, emptyRhythmFilters } from '/rhythm.js?v=20261030-v53';
-import { card } from '/ui.js?v=20261030-v53';
-import { savedIds } from '/storage.js?v=20261030-v53';
+import { recommendRhythms, emptyRhythmFilters } from '/rhythm.js?v=20261118-v6';
+import { card } from '/ui.js?v=20261118-v6';
+import { savedIds } from '/storage.js?v=20261118-v6';
 
 const qs = (selector, root = document) => root.querySelector(selector);
 const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -29,9 +29,10 @@ function filtersFromUi() {
 }
 
 let livePlacesPromise = null;
+let liveVisibleCount = 6;
 function loadLivePlaces() {
   if (!livePlacesPromise) {
-    livePlacesPromise = fetch('/data/places.json?v=20261030-v53', { cache: 'no-store' })
+    livePlacesPromise = fetch('/data/places.json?v=20261118-v6', { cache: 'no-store' })
       .then(response => {
         if (!response.ok) throw new Error('live places load failed');
         return response.json();
@@ -44,7 +45,9 @@ function loadLivePlaces() {
   return livePlacesPromise;
 }
 
-async function renderLiveResults() {
+async function renderLiveResults({ more = false } = {}) {
+  if (more) liveVisibleCount += 6;
+  else liveVisibleCount = 6;
   const grid = qs('#places-grid');
   if (!grid) return false;
   try {
@@ -53,8 +56,13 @@ async function renderLiveResults() {
     const rhythms = recommendRhythms(places, filters);
     const ids = savedIds();
     grid.innerHTML = rhythms.length
-      ? rhythms.map(result => card(result.place, ids.includes(result.place.id), filters, result)).join('')
+      ? rhythms.slice(0, liveVisibleCount).map(result => card(result.place, ids.includes(result.place.id), filters, result)).join('')
       : '<div class="empty-state"><h3>조건에 맞는 장소가 아직 없어요</h3><p>다른 세부활동을 함께 골라보세요.</p></div>';
+    const moreButton = qs('#app-load-more');
+    if (moreButton) {
+      moreButton.hidden = rhythms.length <= liveVisibleCount;
+      moreButton.textContent = `장소 더 보기 (${Math.min(liveVisibleCount, rhythms.length)} / ${rhythms.length})  ＋`;
+    }
     if (qs('#result-count')) qs('#result-count').textContent = rhythms.length;
     if (qs('#result-status')) qs('#result-status').textContent = `${rhythms.length}개의 오늘의 리듬을 찾았습니다.`;
     document.dispatchEvent(new CustomEvent('nagachi:v5-results-rendered', {
@@ -92,10 +100,31 @@ function setupHome() {
   desireGrid.classList.add('app-category-grid');
   shell.prepend(searchWrap);
   shell.append(desireGrid);
+  
+  // 지역은 현재 위치를 추정하지 않고 사용자가 누른 값만 사용합니다.
+  const regions = ['', '서울', '경기', '강릉', '경주', '부산', '제주'];
+  const regionRow = document.createElement('div');
+  regionRow.className = 'app-area-nav';
+  regionRow.setAttribute('role','group');
+  regionRow.setAttribute('aria-label','추천 지역 고르기');
+  regionRow.innerHTML = '<span class="app-area-nav-label">지역</span>' + regions.map(region =>
+    `<button type="button" data-v6-region="${region}" aria-pressed="${region === ''}">${region || '전체'}</button>`
+  ).join('');
+  shell.append(regionRow);
 
   const promo = document.createElement('section');
   promo.className = 'app-promo';
-  promo.innerHTML = '<small>오늘, 내 리듬대로</small><strong>내 기분에 맞는 곳을<br>가볍게 골라보세요.</strong><span>장소보다 먼저, 오늘 하고 싶은 것부터.</span>';
+  promo.innerHTML = `<small>오늘의 작은 발견</small><strong>가볍게 떠나는<br>나만의 하루.</strong><span>원하는 리듬을 골라보세요</span>
+  <svg class="app-promo-art" viewBox="0 0 190 170" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="131" cy="48" r="42" fill="#FFBF82"/><circle cx="151" cy="35" r="16" fill="#FFDDAC"/>
+    <path d="M14 171c19-31 31-60 66-62 26-1 44 30 97 9l19 56H14Z" fill="#8DB69E"/>
+    <path d="M45 172c22-45 53-59 90-61" stroke="#fff7e8" stroke-width="17" stroke-linecap="round"/>
+    <path d="M45 172c22-45 53-59 90-61" stroke="#EF996C" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 8"/>
+    <rect x="97" y="71" width="54" height="39" rx="9" fill="#FFF6E6" stroke="#B87950" stroke-width="3"/>
+    <path d="M103 70c0-14 12-24 22-24s20 10 20 24" fill="#E9A97B"/>
+    <path d="M120 91h14M127 84v14" stroke="#B87950" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="48" cy="129" r="9" fill="#284E48"/><path d="m46 140-7 17m8-15 12 12m-13-8-15 11" stroke="#284E48" stroke-width="6" stroke-linecap="round"/>
+  </svg>`;
   shell.append(promo);
 
   const hero = qs('.rhythm-hero');
@@ -105,6 +134,13 @@ function setupHome() {
   preview.className = 'app-home-preview';
   preview.innerHTML = '<div class="app-home-preview-head"><h2>오늘 이런 곳 어때요?</h2><span>확인된 장소부터</span></div>';
   results.parentElement?.insertBefore(preview, results);
+  const moreButton = document.createElement('button');
+  moreButton.type = 'button';
+  moreButton.id = 'app-load-more';
+  moreButton.className = 'app-load-more';
+  moreButton.hidden = true;
+  results.append(moreButton);
+  moreButton.addEventListener('click', () => renderLiveResults({more:true}));
 
   const nav = document.createElement('nav');
   nav.className = 'app-bottom-nav';
@@ -114,6 +150,18 @@ function setupHome() {
 
   let refinement = null;
   let started = false;
+
+  regionRow.addEventListener('click', event => {
+    const button = event.target.closest('[data-v6-region]');
+    if (!button) return;
+    const region = button.dataset.v6Region;
+    const select = qs('#region');
+    if (!select) return;
+    select.value = region;
+    regionRow.querySelectorAll('[data-v6-region]').forEach(el => el.setAttribute('aria-pressed',String(el === button)));
+    select.dispatchEvent(new Event('change',{bubbles:true}));
+    submitLive({scroll:true});
+  });
 
   const ensureStarted = () => {
     if (started) return;
