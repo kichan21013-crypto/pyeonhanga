@@ -57,8 +57,17 @@ function factBadgeMarkup(p) {
 function verifiedFactsPanel(p) {
   const items = verifiedFactItems(p);
   if (!items.length) return '';
-  const facts = p.verifiedFacts;
-  return `<section class="info-panel verified-facts-panel"><div class="panel-kicker">${icon('check')} 공식 정보 확인</div><h2>방문 전에 필요한 정보부터</h2><p>공공데이터에서 확인한 사실을 그대로 보여드려요. 편안함 평가는 확인 근거가 생긴 항목만 별도로 표시합니다.</p><dl class="comfort-list">${items.slice(0,12).map(item => `<div><dt>${escapeHtml(item.label)}</dt><dd>${escapeHtml(item.text)}</dd></div>`).join('')}</dl><p class="small-text">확인 ${escapeHtml(facts.verifiedAt || '')} · ${facts.sourceUrl ? `<a href="${safeUrl(facts.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(facts.sourceName || '한국관광공사 TourAPI')} ↗</a>` : escapeHtml(facts.sourceName || '')}</p></section>`;
+  const priority = ['대표메뉴', '이용시간', '주차', '휴무', '메뉴', '화장실'];
+  const rank = label => { const i = priority.indexOf(label); return i < 0 ? 99 : i; };
+  const ordered = [...items].sort((a, b) => rank(a.label) - rank(b.label));
+  const first = ordered.slice(0, 5);
+  const additional = ordered.slice(5);
+  const rows = list => list.map(item => `<div><dt>${escapeHtml(item.label)}</dt><dd>${escapeHtml(item.text)}</dd></div>`).join('');
+  const facts = p.verifiedFacts || {};
+  const source = facts.sourceUrl
+    ? `<a href="${safeUrl(facts.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(facts.sourceName || '정보 출처')} ↗</a>`
+    : escapeHtml(facts.sourceName || '출처 확인 필요');
+  return `<section class="info-panel verified-facts-panel detail-quick-facts"><div class="panel-kicker">${icon('check')} 확인된 방문정보 ${items.length}건</div><h2>방문 핵심정보</h2><dl class="comfort-list detail-fact-list">${rows(first)}</dl>${additional.length ? `<details class="detail-more-facts"><summary>정보 ${additional.length}건 더 보기</summary><dl class="comfort-list detail-fact-list">${rows(additional)}</dl></details>` : ''}<p class="detail-source">확인 ${escapeHtml(facts.verifiedAt || '날짜 미상')} · ${source}</p></section>`;
 }
 
 function comfortEvidencePanel(p) {
@@ -67,9 +76,9 @@ function comfortEvidencePanel(p) {
     return f && f.value !== 'unknown' && f.sourceUrl && f.verifiedAt;
   });
   if (!known.length) {
-    return `<section class="info-panel comfort-pending-panel"><div class="panel-kicker">${icon('leaf')} 나가치 편안함 기준</div><h2>편안함 정보는 확인된 것만</h2><p>걷기 부담, 계단, 화장실, 좌석, 소음, 대기 같은 조건은 추측하지 않아요. 근거가 확보된 항목부터 차례로 표시합니다.</p><div class="pending-condition-grid">${Object.values(COMFORT_LABELS).map(label => `<span>${escapeHtml(label)} <small>확인 중</small></span>`).join('')}</div><p class="notice">방문 전 장소의 최신 현장 조건을 한 번 더 확인해 주세요.</p></section>`;
+    return `<details class="info-panel comfort-pending-panel detail-expand-panel"><summary>${icon('leaf')} 편안함 정보 <small>확인 중</small></summary><p class="small-text">편안함 정보는 확인된 것만 표시합니다. 주차·걷기 부담·계단·좌석처럼 현장 상황은 추측하지 않으며, 방문 전 최신 정보를 확인해 주세요.</p></details>`;
   }
-  return `<section class="info-panel"><h2>확인된 편안함 정보</h2><p>근거가 있는 항목만 보여드려요.</p><dl class="comfort-list">${known.map(([key, label]) => { const f = p.comfort[key]; return `<div><dt>${label}</dt><dd>${comfortText(key, f.value)}<small>${escapeHtml(f.note || '')} · 확인 ${escapeHtml(f.verifiedAt)} <a href="${safeUrl(f.sourceUrl)}" target="_blank" rel="noopener noreferrer">근거 보기 ↗</a></small></dd></div>`; }).join('')}</dl><p class="notice">방문 전 장소에 최신 이용 조건을 확인해 주세요.</p></section>`;
+  return `<details class="info-panel detail-expand-panel"><summary>${icon('leaf')} 확인된 편안함 정보 ${known.length}건</summary><dl class="comfort-list">${known.map(([key, label]) => { const f = p.comfort[key]; return `<div><dt>${escapeHtml(label)}</dt><dd>${comfortText(key, f.value)}<small>${escapeHtml(f.note || '')} · 확인 ${escapeHtml(f.verifiedAt)} <a href="${safeUrl(f.sourceUrl)}" target="_blank" rel="noopener noreferrer">근거 보기 ↗</a></small></dd></div>`; }).join('')}</dl><p class="small-text">방문 전 현장 상황은 다시 확인해 주세요.</p></details>`;
 }
 
 // API에서 생성된 지역/유형 소개와 확인 필요 안내는 장소 고유 설명이 아닙니다.
@@ -99,11 +108,14 @@ export function card(p, saved = false, filters, rhythm) {
 }
 
 export function detailMarkup(p) {
-  const s = calculateComfort(p.comfort);
-  const factCount = verifiedFactCount(p);
+  const comfort = calculateComfort(p.comfort);
   const description = meaningfulDescription(p);
-  const scoreSummary = s.score === null
-    ? `<div class="verified-count">${icon('check')}<strong>${factCount || 0}</strong><span>가지 이용정보 확인</span></div><p>주차·이용시간 같은 방문 정보는 먼저 보여드리고, 편안함 점수는 충분한 근거가 모였을 때만 표시합니다.</p><p class="confidence">편안함 점수는 확인 근거 40% 이상일 때 표시</p>`
-    : `<h2 class="big-score">${s.score}<small> / 100</small></h2><p class="confidence">정보 신뢰도 <strong>${s.confidence}</strong> · 확인 비중 ${Math.round(s.coverage * 100)}%</p><p class="small-text">이용자 평점이 아니라 확인된 편안함 정보로 계산합니다.</p>`;
-  return `<nav class="breadcrumbs" aria-label="현재 위치"><a href="/">홈</a><span>/</span><a href="/?category=${encodeURIComponent(p.category)}">${escapeHtml(p.category)}</a><span>/</span><span>${escapeHtml(p.name)}</span></nav><div class="detail-layout"><div><div class="detail-image"><img src="${safeUrl(p.image) || '/assets/garden.svg'}" alt="${escapeHtml(p.imageAlt || p.name)}" width="800" height="520">${p.isDemo ? '<span class="demo-badge">DEMO SAMPLE · 가상 장소</span>' : ''}</div><section class="detail-intro"><p class="eyebrow">${escapeHtml(p.region)} · ${escapeHtml(p.category)}</p><h1>${escapeHtml(p.name)}</h1><p class="detail-address">${escapeHtml(p.address)}</p>${description ? `<p>${escapeHtml(description)}</p>` : ''}${p.isDemo ? '<p class="notice">개발 테스트용 가상 장소입니다. 실제 방문 정보로 사용하지 마세요.</p>' : ''}</section>${verifiedFactsPanel(p)}${comfortEvidencePanel(p)}<section class="info-panel"><h2>방문 정보</h2><dl class="comfort-list"><div><dt>주소</dt><dd>${escapeHtml(p.address)}</dd></div><div><dt>가격대</dt><dd>${escapeHtml(p.priceRange)}</dd></div><div><dt>최근 정보 확인</dt><dd>${escapeHtml(p.lastVerifiedAt || '아직 확인 전')}</dd></div><div><dt>출처</dt><dd>${p.sourceUrl ? `<a href="${safeUrl(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.sourceName)} ↗</a>` : escapeHtml(p.sourceName)}</dd></div></dl>${!p.isDemo ? `<a class="button secondary" target="_blank" rel="noopener noreferrer" href="https://map.naver.com/p/search/${encodeURIComponent(p.address + ' ' + p.name)}">${icon('pin')} 외부 지도에서 주소 찾기 ↗</a>` : ''}</section></div><aside class="detail-aside"><div class="info-panel score-panel"><span class="eyebrow">나가치가 확인한 정보</span>${scoreSummary}<div class="action-row"><button class="button secondary" data-save="${escapeHtml(p.id)}" aria-pressed="false">${icon('heart')} 저장</button><button class="button secondary" id="share-place">↗ 공유하기</button></div><button class="button companion-interest-cta full" id="companion-open">${icon('people')} 동행이 있으면 좋겠어요</button><p class="small-text">동행에 대한 의견만 받습니다.<br>실제 연결이나 결제는 없어요.</p></div><div class="aside-note">${icon('leaf')}<p>나의 상황과 취향에,<br><strong>오늘, 내 리듬대로.</strong></p></div></aside></div>`;
+  const factCount = verifiedFactCount(p);
+  const mapUrl = `https://map.naver.com/p/search/${encodeURIComponent(p.address + ' ' + p.name)}`;
+  const mapButton = p.isDemo ? '' : `<a class="button secondary detail-map-link" href="${mapUrl}" target="_blank" rel="noopener noreferrer">${icon('pin')} 지도에서 위치 보기 ↗</a>`;
+  const scorePanel = comfort.score === null
+    ? `<details class="info-panel detail-expand-panel detail-score-note"><summary>나가치 편안함 점수 기준</summary><p class="small-text">편안함 점수는 확인 근거 40% 이상일 때 표시합니다. ${factCount}건의 방문정보 확인은 편안함 평가와 별개입니다.</p></details>`
+    : `<section class="info-panel detail-comfort-score"><h2>정보 기반 편안함 ${comfort.score}점</h2><p class="small-text">정보 신뢰도 ${escapeHtml(comfort.confidence)} · 확인 비중 ${Math.round(comfort.coverage * 100)}%. 이용자 별점이 아닙니다.</p></section>`;
+  const sourcePanel = `<details class="info-panel detail-expand-panel detail-source-panel"><summary>주소·출처 등 자세히</summary><dl class="comfort-list"><div><dt>주소</dt><dd>${escapeHtml(p.address)}</dd></div>${p.priceRange && !/^(확인 전|미확인)$/.test(p.priceRange) ? `<div><dt>가격대</dt><dd>${escapeHtml(p.priceRange)}</dd></div>` : ''}<div><dt>최근 정보 확인</dt><dd>${escapeHtml(p.lastVerifiedAt || '아직 확인 전')}</dd></div><div><dt>출처</dt><dd>${p.sourceUrl ? `<a href="${safeUrl(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.sourceName || '원문 확인')} ↗</a>` : escapeHtml(p.sourceName || '출처 확인 전')}</dd></div></dl></details>`;
+  return `<nav class="breadcrumbs" aria-label="현재 위치"><a href="/">홈</a><span>/</span><a href="/?category=${encodeURIComponent(p.category)}">${escapeHtml(p.category)}</a></nav><div class="detail-layout detail-stream"><div class="detail-content"><div class="detail-image"><img src="${safeUrl(p.image) || '/assets/garden.svg'}" alt="${escapeHtml(p.imageAlt || p.name)}" width="800" height="520">${p.isDemo ? '<span class="demo-badge">DEMO SAMPLE · 가상 장소</span>' : ''}</div><section class="detail-intro"><p class="eyebrow">${escapeHtml(p.region)} · ${escapeHtml(p.category)}</p><h1>${escapeHtml(p.name)}</h1><p class="detail-address">${escapeHtml(p.address)}</p>${description ? `<p>${escapeHtml(description)}</p>` : ''}${mapButton}${p.isDemo ? '<p class="notice">개발 테스트용 가상 장소입니다. 실제 방문 정보로 사용하지 마세요.</p>' : ''}</section>${verifiedFactsPanel(p)}<section class="detail-companion-panel"><div><span class="panel-kicker">${icon('people')} 나가치 동행</span><h2>이곳에 함께 가고 싶다면?</h2><p>모임·동행 서비스에 대한 의견을 남겨주세요.</p></div><button type="button" class="button companion-interest-cta" id="companion-open">동행 관심 남기기 ${icon('arrow')}</button><p class="small-text">현재 수요 조사 단계이며 예약·결제는 제공하지 않습니다.</p></section>${comfortEvidencePanel(p)}${sourcePanel}${scorePanel}<div class="detail-actions-bottom"><button type="button" class="button secondary" data-save="${escapeHtml(p.id)}" aria-pressed="false">${icon('heart')} 저장</button><button type="button" class="button secondary" id="share-place">↗ 공유하기</button></div></div></div>`;
 }
