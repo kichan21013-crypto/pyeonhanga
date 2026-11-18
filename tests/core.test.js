@@ -143,3 +143,22 @@ test('생성한 모든 HTML의 기본 접근성과 내부 링크가 유효하다
   }
   await visit(root);
 });
+
+
+test('장소 상세는 핵심정보와 동행 버튼을 먼저 보여주고 미확인 조건은 접는다', () => {
+  const sample = fixture('fixture-compact', { verifiedFacts: {
+    verifiedAt: '2026-10-21', sourceName: 'TEST FIXTURE ONLY', sourceUrl: 'https://example.org',
+    general: { parkingText: '주차 가능', operatingHoursText: '오전 9시~오후 6시', restDayText: '월요일', restroomText: '화장실 있음', firstMenuText: '갈비', menuText: '불고기', reservationText: '사전 예약 가능' },
+  }});
+  const html = detailMarkup(sample);
+  assert.match(html, /방문 핵심정보/);
+  assert.match(html, /정보 2건 더 보기/);
+  assert.ok(html.indexOf('방문 핵심정보') < html.indexOf('id="companion-open"'));
+  assert.ok(html.indexOf('id="companion-open"') < html.indexOf('comfort-pending-panel'));
+  assert.match(html, /<details class="info-panel comfort-pending-panel detail-expand-panel">/);
+  assert.equal((html.match(/id="companion-open"/g) || []).length, 1);
+  assert.equal((html.match(/id="share-place"/g) || []).length, 1);
+  assert.ok(!html.includes('공공데이터에서 확인한 사실을 그대로 보여드려요'));
+  assert.ok(!html.includes('pending-condition-grid'));
+  assert.match(html, /편안함 점수는 확인 근거 40% 이상일 때 표시/);
+});
