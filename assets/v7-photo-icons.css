@@ -1,0 +1,25 @@
+/* v7 · 승인 시안에서 추출한 사진형 활동 아이콘. 실사 풍경 배너는 변경하지 않음. */
+@media(max-width:760px){
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip .choice-icon,
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'] .choice-icon{
+    background-image:url('/assets/activity-photo-sprite-v7.webp')!important;
+    background-size:300% 200%!important;
+    background-repeat:no-repeat!important;
+    border-radius:23px!important;
+    overflow:visible;
+  }
+  #flow-step-1 .desire-grid.app-category-grid [data-desire='eat'] .choice-icon,
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='eat'] .choice-icon{background-position:0% 0%!important}
+  #flow-step-1 .desire-grid.app-category-grid [data-desire='move'] .choice-icon,
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='move'] .choice-icon{background-position:50% 0%!important}
+  #flow-step-1 .desire-grid.app-category-grid [data-desire='outdoor'] .choice-icon,
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='outdoor'] .choice-icon{background-position:100% 0%!important}
+  #flow-step-1 .desire-grid.app-category-grid [data-desire='rest'] .choice-icon,
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='rest'] .choice-icon{background-position:0% 100%!important}
+  #flow-step-1 .desire-grid.app-category-grid [data-desire='explore'] .choice-icon,
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='explore'] .choice-icon{background-position:50% 100%!important}
+  #flow-step-1 .desire-grid.app-category-grid [data-desire='social'] .choice-icon,
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='social'] .choice-icon{background-position:100% 100%!important}
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip .choice-icon svg{display:none!important}
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip .choice-icon::after{display:none!important}
+}
