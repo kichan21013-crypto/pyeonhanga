@@ -176,6 +176,12 @@ body[data-page='detail'] .detail-actions-bottom button{flex:1;min-height:47px;bo
   .app-category-grid [data-desire='rest'] .choice-icon{background-position:60% 50%!important}
   .app-category-grid [data-desire='explore'] .choice-icon{background-position:80% 50%!important}
   .app-category-grid [data-desire='social'] .choice-icon{background-position:100% 50%!important}
+  /* 이전 v4.3의 선택 상태 background 단축 속성이 그림을 지우지 않도록 높은 우선순위로 복원 */
+  #flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'] .choice-icon{
+    background-image:url('/assets/activity-illustrations-v63.svg')!important;
+    background-repeat:no-repeat!important;
+    background-size:600% 100%!important;
+  }
   /* 배너에는 기존 승인된 풍경 이미지를 사용하며 아이콘형 벡터 배너는 숨김 */
   .app-promo{
     background-color:#f6eedd!important;
