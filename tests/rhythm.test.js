@@ -112,3 +112,21 @@ test('검증 기간의 모든 HTML과 응답 헤더가 noindex,nofollow이고 �
   assert.match(await readFile(new URL('../dist/_headers',import.meta.url),'utf8'),/X-Robots-Tag: noindex, nofollow/);
   assert.ok(!(await readFile(new URL('../dist/sitemap.xml',import.meta.url),'utf8')).includes('<url>'));
 });
+
+
+test('세부활동 정확한 후보가 없을 때만 유사 추천을 명확히 표시한다', () => {
+  const general=sample('demo-general-food',['food']);general.category='맛집';
+  const exact=sample('demo-exact-meat',['meat']);exact.category='맛집';
+  const f={...emptyRhythmFilters(),desires:['eat'],activities:['meat'],region:general.region};
+  const exactResults=recommendRhythms([general,exact],f);
+  assert.deepEqual(exactResults.map(x=>x.place.id),['demo-exact-meat']);
+  assert.equal(exactResults[0].fallbackActivity,false);
+  assert.match(card(exactResults[0].place,false,f,exactResults[0]),/오늘의 리듬 · 고기/);
+  const similarResults=recommendRhythms([general],f);
+  assert.equal(similarResults.length,1);
+  assert.equal(similarResults[0].selectedActivityMatches,0);
+  assert.equal(similarResults[0].fallbackActivity,true);
+  const html=card(similarResults[0].place,false,f,similarResults[0]);
+  assert.match(html,/유사 추천 · 식사/);
+  assert.ok(!html.includes('오늘의 리듬 · 식사'));
+});
