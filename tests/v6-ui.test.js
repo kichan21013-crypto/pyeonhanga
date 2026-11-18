@@ -80,4 +80,7 @@ test('선택한 6개 활동 아이콘은 이전 배경 덮어쓰기를 피하고
   assert.match(selectedIconRule[1], /background-image:url\('\/assets\/activity-illustrations-v63\.svg'\)!important/);
   assert.match(selectedIconRule[1], /background-repeat:no-repeat!important/);
   assert.match(selectedIconRule[1], /background-size:600% 100%!important/);
+  for (const [key, pos] of [['eat',0],['move',20],['outdoor',40],['rest',60],['explore',80],['social',100]]) {
+    assert.ok(css.includes("#flow-step-1 .desire-grid.app-category-grid .choice-chip[aria-pressed='true'][data-desire='" + key + "'] .choice-icon{background-position:" + pos + "% 50%!important}"), key);
+  }
 });
