@@ -10,6 +10,15 @@ export const REGIONS = [
   { name: '부산', areaCode: '6' }, { name: '제주', areaCode: '39' },
 ];
 export const CONTENT_TYPES = { '39': '맛집', '12': '나들이', '14': '나들이', '28': '나들이', '25': '여행' };
+// 지역별 최초 페이지 수집은 업종 다양성이 부족하므로 음식점 희소 분야만 공식 키워드로 추가 검색합니다.
+export const TARGETED_FOOD_KEYWORDS = ['횟집','물회','해물','조개','생선'];
+export function makeKeywordUrl({serviceKey,region,keyword,page=1,rowsPerPage=50,arrange='C'}) {
+  const url = new URL('https://apis.data.go.kr/B551011/KorService2/searchKeyword2');
+  url.search = new URLSearchParams({serviceKey,MobileOS:'ETC',MobileApp:'Nagachi',_type:'json',
+    numOfRows:String(rowsPerPage),pageNo:String(page),arrange,keyword,areaCode:region.areaCode,
+    ...(region.sigunguCode?{sigunguCode:region.sigunguCode}:{})});
+  return url;
+}
 function clean(value) { return String(value || '').replace(/<[^>]*>/g, '').trim(); }
 function apiMessage(text) {
   if (!text) return '';
@@ -43,7 +52,7 @@ async function fetchTourJson(url) {
     throw new Error(`TourAPI 응답 형식 오류${message ? ` · ${message}` : ''}. 인증키가 막 승인된 경우 잠시 뒤 다시 시도하세요. 기존 파일은 변경하지 않았습니다.`);
   }
 }
-export function convertItem(item, region, category, today = new Date().toISOString().slice(0, 10)) {
+export function convertItem(item, region, category, today = new Date().toISOString().slice(0, 10), operation = 'KorService2/areaBasedList2') {
   const contentId = String(item.contentid || '');
   if (!/^\d+$/.test(contentId) || !item.title) return null;
   const lat = Number(item.mapy);
@@ -61,7 +70,7 @@ export function convertItem(item, region, category, today = new Date().toISOStri
     activityType: 'unknown', route: unknownRoute(), visitContext: { duration: 'unknown', transportModes: [], sourceUrl: null, verifiedAt: null },
     sourceLicense: { name: null, url: null, attribution: '한국관광공사 TourAPI', copyrightCode: item.cpyrhtDivCd ? String(item.cpyrhtDivCd) : null, usageNotes: null },
     imageLicense: { name: null, url: null, attribution: null, copyrightCode: null, usageNotes: null },
-    tourApi: { contentId, contentTypeId: String(item.contenttypeid || ''), operation: 'KorService2/areaBasedList2', modifiedTime: item.modifiedtime || null, importedAt: today, imageSourceUrl: item.firstimage || null },
+    tourApi: { contentId, contentTypeId: String(item.contenttypeid || ''), operation, modifiedTime: item.modifiedtime || null, importedAt: today, imageSourceUrl: item.firstimage || null },
     comfort: Object.fromEntries(['parking','stairs','accessibility','restroom','seating','walking','noise','waiting'].map(key => [key, { value: 'unknown', note: 'TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.', sourceUrl: null, verifiedAt: null, ...(key === 'restroom' ? { proximity: 'unknown' } : {}) }])),
   };
 }
@@ -107,6 +116,39 @@ export async function importTourApi() {
       }
     }
   }
+  // 추가 수집은 공개적으로 확인 가능한 한국관광공사 키워드 검색만 사용합니다.
+  // 결과가 키워드를 포함하더라도 음식점(contentTypeId=39) 여부를 다시 검증합니다.
+  // 오류가 나면 기존 지역기반 수집은 보존하고 실패 건수를 명확히 기록합니다.
+  const keywordPages = Math.min(3, Math.max(0, Number(process.env.TOUR_API_KEYWORD_MAX_PAGES ?? '2') || 0));
+  const keywords = [...new Set(String(process.env.TOUR_API_TARGETED_KEYWORDS ?? TARGETED_FOOD_KEYWORDS.join(','))
+    .split(',').map(value => value.trim()).filter(Boolean))].slice(0,8);
+  let keywordAdded = 0, keywordErrors = 0, keywordRows = 0;
+  let decodedKey = key.trim(); try { decodedKey = decodeURIComponent(decodedKey); } catch {}
+  if (keywordPages > 0) {
+    for (const region of REGIONS) for (const keyword of keywords) for (let page = 1; page <= keywordPages; page++) {
+      const url = makeKeywordUrl({serviceKey:decodedKey,region,keyword,page,rowsPerPage,arrange});
+      let body;
+      try {
+        const json = await fetchTourJson(url);
+        if (json.response?.header?.resultCode !== '0000') throw new Error(json.response?.header?.resultMsg || 'TourAPI 오류');
+        body = json.response.body || {};
+      } catch (error) {
+        keywordErrors++;
+        console.warn(`추가 수집 미완료: ${region.name}/${keyword}/${page} · ${error.message}`);
+        break;
+      }
+      const raw = body.items?.item || [];
+      const items = Array.isArray(raw) ? raw : [raw];
+      keywordRows += items.length;
+      for (const item of items) {
+        if (String(item.contenttypeid || '') !== '39') continue;
+        const p = convertItem(item,region.name,'맛집',new Date().toISOString().slice(0,10),'KorService2/searchKeyword2');
+        if (p && !imported.has(p.id)) { imported.set(p.id,p); keywordAdded++; }
+      }
+      if (page * rowsPerPage >= Number(body.totalCount || 0) || !items.length) break;
+    }
+  }
+  console.log(`음식점 세부분야 키워드 수집: 검색 ${keywords.length}종 × 지역 ${REGIONS.length}, 새 항목 ${keywordAdded}건, 조회 행 ${keywordRows}건, 오류 ${keywordErrors}건`);
   if (!imported.size) { console.log('가져온 장소가 없어 기존 파일을 유지합니다.'); return; }
   const merged = new Map(existing.filter(p => !p.isDemo).map(p => [p.id, p]));
   for (const p of imported.values()) {
