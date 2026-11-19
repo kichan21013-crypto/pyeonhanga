@@ -101,7 +101,7 @@ test('v7 사진형 6종 아이콘은 선택 중에도 유지되며 실사 배너
     assert.ok(css.includes("[data-desire='" + desire + "'] .choice-icon"), desire);
     assert.ok(css.includes("[aria-pressed='true'][data-desire='" + desire + "'] .choice-icon"), 'selected ' + desire);
   }
-  assert.ok(build.includes('/assets/v7-photo-icons.css?v='));
+  assert.ok(build.includes('/assets/v12-direct-home.css?v='));
   assert.ok(legacy.includes('var(--v3-hero-mobile)!important'), 'approved scenic photo banner remains');
 });
 
@@ -120,7 +120,7 @@ test('v8 사진형 아이콘은 홈으로 옮겨진 6개 버튼에서만 켜지�
   assert.ok(loader.includes("document.documentElement.classList.add('photo-icons-ready')"));
   assert.ok(loader.includes('image.naturalWidth > 0'));
   assert.ok(loader.includes('image.onerror'));
-  assert.ok(build.includes('v8-photo-icon-loader.js'));
+  assert.ok(!build.includes('v8-photo-icon-loader.js'));
   for (const key of ['eat','move','outdoor','rest','explore','social']) {
     assert.ok(css.includes("[data-desire='" + key + "'] .choice-icon"), key);
   }
