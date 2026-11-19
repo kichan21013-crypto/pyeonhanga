@@ -127,7 +127,8 @@ body[data-page='home'].n12-ready .n12-home,body[data-page='home'].n12-ready .n12
   .n12-category{min-height:93px;gap:7px;}
   .n12-emoji{width:61px;height:61px;border-radius:20px;font-size:32px;}
   .n12-category-name{font-size:12px;}
-  .n12-feature{padding:19px 16px;min-height:100px;border-radius:18px;gap:10px;}
+  /* 모바일에서는 실제 장소 사진이 첫 화면에 빨리 보이도록 안내 배너를 생략합니다. */
+  .n12-feature{display:none!important;}
   .n12-feature p{font-size:10px;margin-bottom:4px;}
   .n12-feature strong{font-size:16px;}
   .n12-feature button{font-size:11px;min-height:40px;padding:9px 10px;border-radius:12px;}
