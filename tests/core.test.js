@@ -96,9 +96,10 @@ test('TourAPI 변환은 원본 식별자를 보존하고 편안함을 생성하�
   assert.deepEqual(p.companions, []);
   assert.equal(convertItem({ contentid: 'bad' }, '서울', '맛집'), null);
 });
-test('배포용 추천 풀은 최대 180개로 확대되고 확인된 사실과 unknown 원칙을 함께 유지한다', async () => {
+test('확대된 추천 풀은 실사진 후보로 구성되며 확인된 사실과 unknown 원칙을 함께 유지한다', async () => {
   const builtPlaces = JSON.parse(await readFile(new URL('../dist/data/places.json', import.meta.url)));
-  assert.ok(builtPlaces.length >= 150 && builtPlaces.length <= 180, `배포 장소 수 ${builtPlaces.length}`);
+  assert.ok(builtPlaces.length >= 190 && builtPlaces.length <= 480, `배포 장소 수 ${builtPlaces.length}`);
+  assert.ok(builtPlaces.every(p => /^https?:\/\//.test(p.image)), '실사진이 확인된 장소만 배포');
   assert.equal(new Set(builtPlaces.map(p => p.region)).size, 6);
   const withFacts = builtPlaces.filter(p => p.verifiedFacts?.verifiedAt);
   assert.ok(withFacts.length >= 60, `확인된 사실 장소 ${withFacts.length}`);
