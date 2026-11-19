@@ -2,7 +2,7 @@ import { auditTourApiPlaces } from './tourapi-quality.js';
 import { scoreRecommendationReadiness } from './recommendation-readiness.js';
 
 const REGIONS = ['서울','경기','강릉','경주','부산','제주'];
-const TARGET_PER_REGION = 80;
+const TARGET_PER_REGION = 120;
 const SOURCE_URL = 'https://api.visitkorea.or.kr/';
 
 const clean = value => String(value || '').replace(/<br\s*\/?>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
