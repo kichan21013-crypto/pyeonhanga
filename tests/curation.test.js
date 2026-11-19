@@ -150,3 +150,21 @@ test('카페 이름에 해산물처럼 보이는 빵 메뉴가 있어도 회·�
   const [result] = buildPilotPlaces([cafe], report, {places:[]}, 1);
   assert.ok(!result.intentTags.includes('seafood'));
 });
+
+
+test('실사진 있는 경기 해산물 식당이 충분할 때 최소 12곳을 지역별 공개 후보에 남긴다', () => {
+  const ordinary = Array.from({length:140},(_,i)=>({
+    ...place(String(30000+i), '일반 식당 '+i,'맛집'),
+    region:'경기',address:'경기도 수원시 팔달구 효원로 1',
+  }));
+  const seafood = Array.from({length:19},(_,i)=>({
+    ...place(String(40000+i),'경기 해물탕 전문점 '+i,'맛집'),
+    region:'경기',address:'경기도 수원시 팔달구 효원로 2',
+  }));
+  const result = buildPilotPlaces([...ordinary,...seafood], {places:[]}, {places:[]}, 120);
+  const exact = result.filter(p=>p.region==='경기' && p.intentTags.includes('seafood'));
+  assert.ok(exact.length >= 12, '사진이 확인된 해산물 19곳 중 최소 12곳을 보여줘야 함');
+  assert.ok(result.every(p=>p.image.startsWith('https://')));
+  assert.ok(result.every(p=>p.comfort.parking.value==='unknown'));
+  assert.ok(result.length<=120);
+});
