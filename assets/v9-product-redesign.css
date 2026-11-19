@@ -366,3 +366,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
   body[data-page='saved'] .n-mobile-nav a,body[data-page='detail'] .n-mobile-nav a{white-space:nowrap;}
   body[data-page='home'].v5-live-active .app-home-preview-head h2{font-size:18px!important;}
 }
+
+/* The legacy v5 live-state hides all header spans; keep the grounded result count legible. */
+@media(max-width:760px) {
+ body[data-page='home'].v5-live-active .app-home-preview-head .app-preview-count {
+   display:block!important; font-size:12px!important; color:#73808a!important;
+ }
+ body[data-page='home'] .app-quick-shortcuts button:focus-visible {
+   outline:3px solid #ee896b!important;outline-offset:2px!important;
+ }
+}
