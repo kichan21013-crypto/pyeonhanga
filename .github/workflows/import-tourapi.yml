@@ -31,8 +31,9 @@ jobs:
       - name: Import pilot data
         env:
           TOUR_API_KEY: ${{ secrets.TOUR_API_KEY }}
-          TOUR_API_MAX_PAGES: '2'
-          TOUR_API_ROWS_PER_PAGE: '20'
+          TOUR_API_MAX_PAGES: '6'
+          TOUR_API_ROWS_PER_PAGE: '50'
+          TOUR_API_CONTENT_TYPES: '39,12'
           TOUR_API_ARRANGE: 'C'
         run: npm run import:tourapi
 
@@ -73,7 +74,7 @@ jobs:
           echo "- General source: Korea Tourism Organization KorService2" >> "$GITHUB_STEP_SUMMARY"
           echo "- Barrier-free source: Korea Tourism Organization KorWithService2/detailWithTour2" >> "$GITHUB_STEP_SUMMARY"
           echo "- Baseline build and application tests run before replacing service data" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Area/category import scans up to 2 pages instead of 1 for broader source coverage" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Import scans up to 6 pages x 50 rows for food (39) and outings (12) across 6 regions; courses excluded until a separate course model is ready" >> "$GITHUB_STEP_SUMMARY"
           echo "- Korea-outside coordinates are nulled before storage" >> "$GITHUB_STEP_SUMMARY"
           echo "- Quality report separates recommendation candidates, courses, facilities, and source-only records" >> "$GITHUB_STEP_SUMMARY"
           echo "- General detail pilot enriches up to 30 recommendation candidates per region (up to 180 total)" >> "$GITHUB_STEP_SUMMARY"
