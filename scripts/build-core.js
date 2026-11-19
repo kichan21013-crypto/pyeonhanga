@@ -14,7 +14,7 @@ const sourcePlaces = JSON.parse(await readFile(resolve(root, 'data/places.json')
 const generalReport = JSON.parse(await readFile(resolve(root, 'data/tourapi-enrichment-report.json'), 'utf8'));
 const barrierReport = JSON.parse(await readFile(resolve(root, 'data/barrierfree-enrichment-report.json'), 'utf8'));
 validatePlaces(sourcePlaces);
-const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 8);
+const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 80);
 validatePlaces(places);
 const siteUrl = (process.env.SITE_URL || process.env.CF_PAGES_URL || 'http://localhost:4173').replace(/\/$/, '');
 if (!/^https?:\/\/[^/]+$/.test(siteUrl)) throw new Error('SITE_URL에는 https://서비스주소 형태의 주소를 입력하세요.');
@@ -34,7 +34,7 @@ function page({ title, description, path, content, page = 'info', id = '', image
 }
 await rm(out, { recursive: true, force: true }); await mkdir(out, { recursive: true });
 for (const file of ['styles.css', 'mobile-ux.css', 'app.js', 'ui.js', 'verified-facts.js', 'analytics.js', 'storage.js', 'comfort-score.js', 'search.js', 'rhythm.js', 'actions.js', 'flow.js', 'assets', 'data']) await cp(resolve(root, file), resolve(out, file), { recursive: true });
-// 원천 257개는 저장소에 유지하고, 공개 검증판에는 상세 검증을 마친 48개 파일럿만 제공합니다.
+// 실사진과 주소·좌표가 확인된 후보를 지역별 최대 80곳까지 공개합니다. 미확인 편안함 점수는 생성하지 않습니다.
 await writeFile(resolve(out, 'data', 'places.json'), JSON.stringify(places, null, 2) + '\n');
 let configInput;
 if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
@@ -60,4 +60,6 @@ await writeFile(resolve(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-
 const robots = `User-agent: *\nAllow: /\n${INDEXING_ENABLED ? `Sitemap: ${siteUrl}/sitemap.xml\n` : '# Internal validation: all HTML has noindex,nofollow; allow crawling to read it.\n'}`;
 await writeFile(resolve(out, 'robots.txt'), robots);
 await writeFile(resolve(out, '_headers'), `/*\n${!INDEXING_ENABLED ? '  X-Robots-Tag: noindex, nofollow\n' : ''}  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https:; connect-src 'self' https://*.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Content-Type-Options: nosniff\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n`);
-console.log(`빌드 완료: 파일럿 장소 ${places.length}개 / 원천 ${sourcePlaces.length}개 · 실행 npm start`);
+const regionCounts = places.reduce((acc,p) => (acc[p.region] = (acc[p.region] || 0) + 1, acc), {});
+const activityCounts = ['korean_food','noodle','meat','seafood','cafe','walk','run','drive'].map(t => [t, places.filter(p => p.intentTags.includes(t)).length]);
+console.log(`빌드 완료: 공개 장소 ${places.length}개 / 원천 ${sourcePlaces.length}개 · 지역별 ${JSON.stringify(regionCounts)} · 활동별 ${JSON.stringify(Object.fromEntries(activityCounts))}`);

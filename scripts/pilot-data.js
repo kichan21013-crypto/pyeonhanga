@@ -2,7 +2,7 @@ import { auditTourApiPlaces } from './tourapi-quality.js';
 import { scoreRecommendationReadiness } from './recommendation-readiness.js';
 
 const REGIONS = ['서울','경기','강릉','경주','부산','제주'];
-const TARGET_PER_REGION = 30;
+const TARGET_PER_REGION = 80;
 const SOURCE_URL = 'https://api.visitkorea.or.kr/';
 
 const clean = value => String(value || '').replace(/<br\s*\/?>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
@@ -43,7 +43,7 @@ function derivedIntentTags(place) {
 }
 
 function reserveCount(count) {
-  if (count >= 20) return Math.max(4, Math.round(count * 0.2));
+  if (count >= 20) return 5;
   if (count >= 8) return 2;
   if (count >= 2) return 1;
   return 0;
@@ -59,6 +59,11 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
     selectedIds.add(item.id);
   };
   const realImageItems = items.filter(item => item._hasRealImage);
+  // 실사진 비중을 최소 80%로 보전하면서 사진 없는 후보는 카테고리 부족을 메우는 용도로만 사용한다.
+  const maxPlaceholderCount = Math.floor(realImageItems.length / 4);
+  const pickPlaceholder = item => {
+    if (selected.filter(value => !value._hasRealImage).length < maxPlaceholderCount) pick(item);
+  };
 
   // 외부 테스트에서는 장소 사진이 서비스 인상에 직접 영향을 준다.
   // 각 카테고리의 최소 다양성을 지키되, 그 안에서도 실사진 후보를 먼저 고른다.
@@ -67,13 +72,13 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
     const categoryReal = categoryItems.filter(item => item._hasRealImage);
     categoryReal.slice(0, reserveEach).forEach(pick);
     if (categoryReal.length < reserveEach) {
-      categoryItems.filter(item => !item._hasRealImage).slice(0, reserveEach - categoryReal.length).forEach(pick);
+      categoryItems.filter(item => !item._hasRealImage).slice(0, reserveEach - categoryReal.length).forEach(pickPlaceholder);
     }
   }
 
   // 카테고리 최소량 이후에는 실사진 후보를 최대한 활용하고, 부족한 자리만 무사진 후보로 채운다.
   for (const item of realImageItems) pick(item);
-  for (const item of items) pick(item);
+  for (const item of items.filter(item => !item._hasRealImage)) pickPlaceholder(item);
   return selected.slice(0, count);
 }
 
@@ -91,14 +96,14 @@ function verifiedDetailImage(detail) {
 }
 
 export function buildPilotPlaces(places, generalReport, barrierReport, targetPerRegion = TARGET_PER_REGION) {
-  // 기존 build.js가 넘기던 8은 구버전 파일럿 크기다. MVP 1.5에서는 공개 풀을 30개/지역으로 확장한다.
-  const effectiveTarget = targetPerRegion === 8 ? TARGET_PER_REGION : targetPerRegion;
+  const effectiveTarget = targetPerRegion;
   const placeMap = new Map(places.map(place => [place.id, place]));
   const detailMap = new Map((generalReport?.places || []).map(item => [item.id, item]));
   const barrierMap = new Map((barrierReport?.places || []).map(item => [item.id, item]));
   const { candidates: qualityCandidates } = auditTourApiPlaces(places);
   const referenceDate = latestReferenceDate(qualityCandidates, generalReport, barrierReport);
 
+  // 실제 사진이 있는 품질검사 통과 장소만 공개한다. 사진 없는 항목은 상세 API 이미지가 확인된 경우에만 복구한다.
   const candidates = qualityCandidates.map(audit => {
     const place = placeMap.get(audit.id);
     if (!place) return null;
@@ -162,7 +167,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       };
       const barrierFacts = item._barrier ? Object.fromEntries(Object.entries(item._barrier.facts || {}).map(([key,value]) => [key, clean(value) || null])) : {};
       base.verifiedFacts = {
-        verifiedAt: reportDate,
+        verifiedAt: String(detail.verifiedAt || reportDate).slice(0,10),
         sourceName: '한국관광공사 TourAPI',
         sourceUrl: SOURCE_URL,
         general: generalFacts,

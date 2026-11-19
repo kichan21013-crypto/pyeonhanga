@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { mergeEnrichmentRows } from './merge-enrichment.js';
 import { auditTourApiPlaces } from './tourapi-quality.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -207,12 +208,17 @@ async function main() {
   const withHours = enriched.filter(item => item.facts.operatingHoursText).length;
   const withOverview = enriched.filter(item => item.facts.overview).length;
   const withExtraImages = enriched.filter(item => item.images.length > 0).length;
+  let previousReport = null;
+  try { previousReport = JSON.parse(await readFile(reportPath, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const collectedAt = new Date().toISOString();
+  const retainedPlaces = mergeEnrichmentRows(previousReport, enriched, collectedAt);
   const report = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: collectedAt,
     source: sourcePath.replace(root + '/', ''),
     strategy: `region-balanced candidate sample, up to ${perRegion} per region, 나들이/맛집 균형 우선`,
     summary: {
       selected: selected.length,
+      totalAvailable: retainedPlaces.length,
       enriched: enriched.length,
       errors: errors.length,
       byRegion,
@@ -222,7 +228,7 @@ async function main() {
       withExtraImages,
     },
     errors,
-    places: enriched,
+    places: retainedPlaces,
   };
   await writeFile(reportPath, JSON.stringify(report, null, 2) + '\n');
   console.log(`상세정보 파일럿 완료: ${enriched.length}/${selected.length}개 · 오류 ${errors.length}개`);

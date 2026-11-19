@@ -112,3 +112,23 @@ test('추천 이유는 사실형 이용정보를 과장 없이 요약한다', ()
   };
   assert.equal(verifiedRecommendationReason(p), '주차와 이용시간 정보를 확인해 두었어요');
 });
+
+
+test('새 공개 풀은 지역당 80개까지 확장하되 사진 없는 원천 장소를 무리하게 노출하지 않는다', () => {
+ const places = Array.from({length:85}, (_,i)=>place(String(5000+i),'실사진 '+i, i%2 ? '나들이':'맛집'));
+ places.push({...place('5999','사진 없는 장소'), image:'/assets/garden.svg'});
+ const result = buildPilotPlaces(places, {places:[]}, {places:[]}, 80);
+ assert.equal(result.length, 80);
+ assert.ok(result.every(p=>p.image.startsWith('https://')));
+ assert.ok(result.every(p=>p.comfort.parking.value==='unknown'));
+});
+
+
+test('사진이 없는 장소는 실사진 비율 80% 이내에서만 카테고리 부족분을 채운다', () => {
+ const real = Array.from({length:24},(_,i)=>place(String(7000+i),'실사진 '+i,'나들이'));
+ const food = Array.from({length:10},(_,i)=>({...place(String(8000+i),'음식점 '+i,'맛집'),image:'/assets/garden.svg'}));
+ const result = buildPilotPlaces([...real,...food],{places:[]},{places:[]},80);
+ assert.ok(result.filter(p=>p.category==='맛집').length>=5);
+ assert.ok(result.filter(p=>p.image.startsWith('https://')).length / result.length >= .8);
+ assert.ok(result.length <= 30);
+});

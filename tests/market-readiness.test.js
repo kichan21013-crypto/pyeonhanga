@@ -52,8 +52,8 @@ test('희소한 세부 활동도 같은 욕구의 부분일치 후보로 완화�
   }
 });
 
-test('180개 공개 추천 풀은 지역당 충분한 후보와 실제 이미지를 유지한다', () => {
-  assert.equal(places.length, 180);
+test('확대된 공개 추천 풀은 지역당 충분한 후보와 실제 이미지 80% 이상을 유지한다', () => {
+  assert.ok(places.length > 180 && places.length <= 480, `공개 ${places.length}곳`);
   for (const region of regions) {
     const regional = places.filter(place => place.region === region);
     const sourceRegional = sourcePlaces.filter(place => place.region === region && /^https:\/\//.test(place.image || ''));

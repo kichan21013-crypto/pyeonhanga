@@ -17,9 +17,9 @@ test('v6 디자인 레이어는 마지막으로 로드되어 모바일 주요 �
   assert.match(client,/data-v6-region/);
 });
 
-test('추천 풀 180개는 기능 테스트 동안 유지하며 출처 기반 사실만 보여준다', async () => {
+test('확대된 추천 풀은 180곳 이상이며 출처 기반 사실만 보여준다', async () => {
   const published = JSON.parse(await readFile(new URL('../dist/data/places.json', import.meta.url), 'utf8'));
-  assert.equal(published.length, 180);
+  assert.ok(published.length > 180 && published.length <= 480, `공개 ${published.length}곳`);
   assert.ok(published.every(p => !p.isDemo));
   assert.ok(published.every(p => p.sourceUrl && p.sourceName));
 });
