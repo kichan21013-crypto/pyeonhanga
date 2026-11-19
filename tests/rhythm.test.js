@@ -143,3 +143,18 @@ test('해산물 선택에 카페와 일반 음식점이 섞이지 않으며 다�
   assert.deepEqual(recommendRhythms([seafood,cafe,food],{...f,activities:['seafood','cafe']}).map(x=>x.place.id).sort(), ['demo-cafe','demo-seafood']);
   assert.ok(recommendRhythms([cafe,food],{...f,allowActivityFallback:true}).every(x=>x.fallbackActivity));
 });
+
+
+test('해산물 대안에는 카페가 섞이지 않으며 실제 업종명으로 정직하게 표시한다', () => {
+  const cafe = sample('cafe-alternative',['food','cafe']); cafe.category='맛집'; cafe.name='설문커피';
+  const noodles = sample('noodle-alternative',['food','noodle']); noodles.category='맛집'; noodles.name='바지락칼국수';
+  const f = {...emptyRhythmFilters(), desires:['eat'],activities:['seafood'],allowActivityFallback:true};
+  const results = recommendRhythms([cafe,noodles],f);
+  assert.deepEqual(results.map(result=>result.place.id),['noodle-alternative']);
+  assert.equal(results[0].fallbackActivity,true);
+  assert.equal(results[0].activityType,'noodle');
+  assert.match(card(results[0].place,false,f,results[0]),/유사 추천 · 면요리/);
+  assert.equal(recommendRhythms([cafe],f).length,0);
+  const exact = sample('seafood-candidate',['food','seafood']); exact.category='맛집';
+  assert.deepEqual(recommendRhythms([cafe,noodles,exact],f).map(result=>result.place.id),['seafood-candidate']);
+});
