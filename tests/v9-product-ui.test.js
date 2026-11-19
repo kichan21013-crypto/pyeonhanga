@@ -45,7 +45,7 @@ test('빌드된 모든 핵심 화면은 같은 디자인과 모바일 3개 메�
 
 test('장소 카드 제목은 활동 분류가 아니라 실제 장소명을 먼저 노출한다', async () => {
   const source = await fromRoot('ui.js');
-  assert.match(source,/escapeHtml\(p\.name\)<\/a><\/h3>/);
+  assert.ok(source.includes('escapeHtml(p.name)}</a></h3>'));
   assert.match(source,/aria-label=.*저장/);
   assert.match(source,/rhythm\?\.fallbackActivity/);
 });
