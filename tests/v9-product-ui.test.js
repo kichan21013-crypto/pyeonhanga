@@ -34,7 +34,8 @@ test('빌드된 모든 핵심 화면은 같은 디자인과 모바일 3개 메�
   const saved = await fromRoot('dist/saved.html');
   const build = await fromRoot('scripts/build-core.js');
   const packageJson = JSON.parse(await fromRoot('package.json'));
-  assert.match(index,/v9-product-redesign|mobile-ux\.css/);
+  assert.match(index,/mobile-ux\.css\?v=20261119-v11/);
+  assert.match(saved,/mobile-ux\.css\?v=20261119-v11/);
   assert.match(index,/v5-app-home\.js\?v=20261119-v11/);
   assert.match(saved,/class="n-mobile-nav"/);
   assert.match(saved,/저장<\/span>/);
