@@ -38,6 +38,9 @@ test('라이브 추천은 하나의 카테고리 선택과 지역/검색을 사�
   assert.match(source,/state\.query = \$\('#n12-query'\)\.value\.trim\(\)/);
   assert.match(source,/const requestId = \+\+state\.requestId/);
   assert.match(source,/if \(requestId !== state\.requestId\) return/);
+  assert.match(source,/results\.id = 'n12-results'/);
+  assert.match(source,/\$\('#n12-results'\)\?\.scrollIntoView/);
+  assert.doesNotMatch(source,/oldResults\.id =/,'기존 3단계 흐름의 결과 영역을 건드리지 않음');
   assert.doesNotMatch(source,/desireButton\?\.click\(\)|data-desire|data-quick-desire/,'기분 선택 동기화 코드 없음');
 });
 
