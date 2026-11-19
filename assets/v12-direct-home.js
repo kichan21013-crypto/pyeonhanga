@@ -30,7 +30,7 @@ const options = [
   ...['서울','경기','강릉','경주','부산','제주'].map(label => ({value:label,label})),
 ];
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const scrollToResults = () => $('#rhythm-results')?.scrollIntoView({
+const scrollToResults = () => $('#n12-results')?.scrollIntoView({
   behavior: reduceMotion() ? 'auto' : 'smooth',block:'start',
 });
 
@@ -176,8 +176,6 @@ function setupHome() {
   document.body.dataset.n12Home = 'ready';
   document.body.classList.add('n12-ready');
   // 기존 설문/선택 UI는 DOM에 남겨 두지만, 새 홈에서 연결하거나 표시하지 않습니다.
-  const oldResults = $('#rhythm-results');
-  if (oldResults) oldResults.id = 'legacy-rhythm-results';
 
   const home = document.createElement('section');
   home.className = 'n12-home';
@@ -200,7 +198,8 @@ function setupHome() {
 
   const results = document.createElement('section');
   results.className = 'n12-results';
-  results.id = 'rhythm-results';
+  // legacy flow.js는 #rhythm-results를 숨기므로 새 목록에는 별도 ID를 사용합니다.
+  results.id = 'n12-results';
   results.innerHTML = '<div class="n12-results-head"><div><p>나가치 추천</p><h2 id="n12-heading">전체 장소</h2>' +
     '<small id="n12-subtitle">관광공사에 등록된 실제 장소를 살펴보세요.</small></div>' +
     '<div class="n12-results-aside"><span id="n12-count"></span><button type="button" id="n12-clear" hidden>초기화</button></div></div>' +
