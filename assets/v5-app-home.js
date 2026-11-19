@@ -32,6 +32,7 @@ function filtersFromUi() {
 let livePlacesPromise = null;
 let liveVisibleCount = 6;
 let allowSimilarOnEmpty = false;
+let renderSequence = 0;
 function loadLivePlaces() {
   if (!livePlacesPromise) {
     livePlacesPromise = fetch('/data/places.json?v=20261119-v11', { cache: 'no-store' })
@@ -52,8 +53,12 @@ async function renderLiveResults({ more = false } = {}) {
   else liveVisibleCount = 6;
   const grid = qs('#places-grid');
   if (!grid) return false;
+  const sequence = ++renderSequence;
+  grid.setAttribute('aria-busy','true');
+  if (!more) grid.innerHTML = '<div class="app-loading-skeleton" aria-hidden="true"></div><div class="app-loading-skeleton" aria-hidden="true"></div>';
   try {
     const places = await loadLivePlaces();
+    if (sequence !== renderSequence) return false;
     const filters = filtersFromUi();
     const rhythms = recommendRhythms(places, filters);
     const ids = savedIds();
@@ -90,8 +95,11 @@ async function renderLiveResults({ more = false } = {}) {
     document.dispatchEvent(new CustomEvent('nagachi:v5-results-rendered', {
       detail: { count: rhythms.length, activities: [...filters.activities] }
     }));
+    grid.removeAttribute('aria-busy');
     return true;
   } catch {
+    if (sequence !== renderSequence) return false;
+    grid.removeAttribute('aria-busy');
     grid.innerHTML = '<div class="empty-state"><h3>장소를 불러오지 못했어요</h3><p>연결을 확인한 뒤 다시 시도해주세요.</p><button type="button" class="button secondary" data-retry-recommend>다시 시도</button></div>';
     grid.classList.add('is-empty');
     return false;
@@ -363,6 +371,7 @@ function setupHome() {
   });
 
   results.dataset.mode = 'preview';
+  if (location.hash === '#rhythm-results') setTimeout(() => submitLive({scroll:true}), 0);
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupHome, { once:true });
