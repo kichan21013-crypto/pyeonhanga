@@ -9,7 +9,8 @@ test('v6 디자인 레이어는 마지막으로 로드되어 모바일 주요 �
     readFile(new URL('../assets/v6-ui.css', import.meta.url), 'utf8'),
     readFile(new URL('../assets/v5-app-home.js', import.meta.url), 'utf8'),
   ]);
-  assert.ok(imports.trimEnd().endsWith("@import url('/assets/v6-ui.css');"));
+  assert.ok(imports.includes("@import url('/assets/v6-ui.css');"));
+  assert.ok(imports.trimEnd().endsWith("@import url('/assets/v9-product-redesign.css');"));
   for(const token of ['.app-category-grid','.app-promo','.app-bottom-nav','.app-load-more','.app-area-nav']) assert.ok(css.includes(token),token);
   assert.match(client,/regionRow\.addEventListener\('click'/);
   assert.match(client,/renderLiveResults\(\{more:true\}\)/);
@@ -113,7 +114,7 @@ test('v8 사진형 아이콘은 홈으로 옮겨진 6개 버튼에서만 켜지�
     readFile(new URL('../scripts/build.js', import.meta.url), 'utf8'),
   ]);
   assert.ok(home.includes("desireGrid.classList.add('app-category-grid')"));
-  assert.ok(home.includes('shell.append(desireGrid)'), 'home script relocates icon grid outside #flow-step-1');
+  assert.ok(home.includes('shell.append(sectionTitle,desireGrid)'), 'home script relocates icon grid outside #flow-step-1');
   assert.ok(css.includes('html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid'));
   assert.ok(!css.includes('#flow-step-1 .desire-grid.app-category-grid'), 'old parent selector never matches after relocation');
   assert.ok(loader.includes("document.documentElement.classList.add('photo-icons-ready')"));
