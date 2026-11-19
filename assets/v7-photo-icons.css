@@ -23,3 +23,10 @@
   html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip .choice-icon svg{display:none!important}
   html.photo-icons-ready .app-home-shell .desire-grid.app-category-grid .choice-chip .choice-icon::after{display:none!important}
 }
+
+/* 정확한 세부 활동이 없을 때만 사용자가 명시적으로 유사 추천을 확장할 수 있다. */
+.app-similar-notice{grid-column:1/-1;display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;padding:14px 16px;margin:3px 0 12px;background:#f3f7f5;border:1px solid #cee1d7;border-radius:18px;color:#254b3f}
+.app-similar-notice strong{font-size:15px}
+.app-similar-notice span{font-size:13px;color:#52645c}
+.app-similar-notice button{margin-left:auto;padding:9px 12px;border:1px solid #bdd2c6;border-radius:18px;background:#fff;color:#254b3f;font-weight:700;cursor:pointer}
+@media(max-width:760px){.app-similar-notice{display:block;font-size:14px}.app-similar-notice span{display:block;margin:4px 0 10px}.app-similar-notice button{margin-left:0}}
