@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-19T05:06:13.755Z",
+  "generatedAt": "2026-11-19T06:14:00.593Z",
   "source": "data/places.json",
   "summary": {
-    "total": 1821,
+    "total": 1841,
     "byStatus": {
-      "candidate": 1453,
+      "candidate": 1473,
       "review": 348,
       "source_only": 10,
       "review_course": 10
     },
     "byRole": {
-      "place": 1803,
+      "place": 1823,
       "course": 14,
       "facility": 4
     },
@@ -18,7 +18,7 @@
     "missingAddress": 4,
     "placeholderImage": 354,
     "regionAddressMismatch": 1,
-    "comfortUnknown": 1821
+    "comfortUnknown": 1841
   },
   "topCandidates": [
     {
@@ -896,6 +896,25 @@
       "comfortKnownCount": 0
     },
     {
+      "id": "tour-2839510",
+      "name": "강동해물찜해천탕",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "2839510",
+      "contentTypeId": "39",
+      "role": "place",
+      "status": "candidate",
+      "score": 100,
+      "flags": [
+        "comfort_unknown"
+      ],
+      "validCoordinate": true,
+      "addressKnown": true,
+      "hasRealImage": true,
+      "regionAddressMatch": true,
+      "comfortKnownCount": 0
+    },
+    {
       "id": "tour-125769",
       "name": "강릉 굴산사지",
       "region": "강릉",
@@ -1130,25 +1149,6 @@
       "category": "나들이",
       "contentId": "2753942",
       "contentTypeId": "28",
-      "role": "place",
-      "status": "candidate",
-      "score": 100,
-      "flags": [
-        "comfort_unknown"
-      ],
-      "validCoordinate": true,
-      "addressKnown": true,
-      "hasRealImage": true,
-      "regionAddressMatch": true,
-      "comfortKnownCount": 0
-    },
-    {
-      "id": "tour-2758836",
-      "name": "경미네집",
-      "region": "제주",
-      "category": "맛집",
-      "contentId": "2758836",
-      "contentTypeId": "39",
       "role": "place",
       "status": "candidate",
       "score": 100,

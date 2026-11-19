@@ -1,26 +1,33 @@
 {
-  "generatedAt": "2026-11-19T05:08:58.283Z",
+  "generatedAt": "2026-11-19T06:17:30.115Z",
   "source": "data/places.json",
   "strategy": "region-balanced candidate sample, up to 30 per region, 나들이/맛집 균형 우선",
   "summary": {
     "selected": 180,
     "totalAvailable": 197,
-    "enriched": 180,
-    "errors": 0,
+    "enriched": 179,
+    "errors": 1,
     "byRegion": {
       "서울": 30,
-      "경기": 30,
+      "경기": 29,
       "강릉": 30,
       "경주": 30,
       "부산": 30,
       "제주": 30
     },
     "withOverview": 0,
-    "withParking": 154,
-    "withHours": 167,
+    "withParking": 153,
+    "withHours": 166,
     "withExtraImages": 0
   },
-  "errors": [],
+  "errors": [
+    {
+      "id": "tour-129645",
+      "name": "석산계곡",
+      "region": "경기",
+      "message": "detailIntro2 네트워크 오류: 시간 초과"
+    }
+  ],
   "places": [
     {
       "id": "tour-2031668",

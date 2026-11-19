@@ -207592,5 +207592,2285 @@
         "verifiedAt": null
       }
     }
+  },
+  {
+    "id": "tour-2839510",
+    "slug": "tour-2839510",
+    "name": "강동해물찜해천탕",
+    "category": "맛집",
+    "region": "서울",
+    "address": "서울특별시 강동구 양재대로 1416",
+    "latitude": 37.5323083258,
+    "longitude": 127.1385935255,
+    "shortDescription": "서울의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/99/2839499_image2_1.jpg",
+    "imageAlt": "강동해물찜해천탕",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2839510",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250911112125",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/99/2839499_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2757541",
+    "slug": "tour-2757541",
+    "name": "계정횟집",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 양평군 양동면 양서북로 666-13",
+    "latitude": 37.4691272751,
+    "longitude": 127.7743959839,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/10/2757710_image2_1.jpg",
+    "imageAlt": "계정횟집",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2757541",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250627105617",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/10/2757710_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2842724",
+    "slug": "tour-2842724",
+    "name": "양수리 송어횟집",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 양평군 양서면 양수로152번길 27-1",
+    "latitude": 37.5459572019,
+    "longitude": 127.3172602207,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/18/2842718_image2_1.jpg",
+    "imageAlt": "양수리 송어횟집",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2842724",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250625093651",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/18/2842718_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2864356",
+    "slug": "tour-2864356",
+    "name": "포항물회",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 안양시 동안구 경수대로 829 (비산동)",
+    "latitude": 37.3930737402,
+    "longitude": 126.9423458663,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/50/2864350_image2_1.jpg",
+    "imageAlt": "포항물회",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2864356",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250619134904",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/50/2864350_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2845510",
+    "slug": "tour-2845510",
+    "name": "물회의정석 곰치국 본점",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 김포시 양촌읍 김포대로 1644",
+    "latitude": 37.6646981772,
+    "longitude": 126.655650508,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/02/2845502_image2_1.jpg",
+    "imageAlt": "물회의정석 곰치국 본점",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2845510",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250502134421",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/02/2845502_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2736052",
+    "slug": "tour-2736052",
+    "name": "포항물회집",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 광명시 안재로2번길 33 (하안동)",
+    "latitude": 37.4605980414,
+    "longitude": 126.8753028518,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/08/2745408_image2_1.jpg",
+    "imageAlt": "포항물회집",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2736052",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250424165527",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/08/2745408_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2757171",
+    "slug": "tour-2757171",
+    "name": "어가해물찜칼국수",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 용인시 수지구 신봉1로301번길 3 (신봉동)",
+    "latitude": 37.3322078401,
+    "longitude": 127.0566121898,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/67/2774467_image2_1.jpg",
+    "imageAlt": "어가해물찜칼국수",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2757171",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250718112414",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/67/2774467_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2843634",
+    "slug": "tour-2843634",
+    "name": "오복이해물찜",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 용인시 수지구 현암로 28 (죽전동)",
+    "latitude": 37.3313672714,
+    "longitude": 127.1124626982,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/24/2843624_image2_1.jpg",
+    "imageAlt": "오복이해물찜",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2843634",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250718090000",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/24/2843624_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2782818",
+    "slug": "tour-2782818",
+    "name": "복많네해물칼국수",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 파주시 지목로 108 (문발동)",
+    "latitude": 37.7280721868,
+    "longitude": 126.7028027444,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/92/2782892_image2_1.png",
+    "imageAlt": "복많네해물칼국수",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2782818",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250626142912",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/92/2782892_image2_1.png"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2738674",
+    "slug": "tour-2738674",
+    "name": "칠곡해물손칼국수",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 안성시 원곡면 만세로 1090",
+    "latitude": 37.0486841118,
+    "longitude": 127.1579442658,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/50/2740650_image2_1.png",
+    "imageAlt": "칠곡해물손칼국수",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2738674",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250617121956",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/50/2740650_image2_1.png"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2846949",
+    "slug": "tour-2846949",
+    "name": "군포해물탕",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 수원시 영통구 동수원로513번길 11 (매탄동)",
+    "latitude": 37.273506123,
+    "longitude": 127.0463730986,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/42/2846942_image2_1.jpg",
+    "imageAlt": "군포해물탕",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2846949",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250526172152",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/42/2846942_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2843171",
+    "slug": "tour-2843171",
+    "name": "다온쭈꾸미해물찜",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 부천시 소향로 233",
+    "latitude": 37.5009276631,
+    "longitude": 126.7738526341,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/53/2843153_image2_1.JPG",
+    "imageAlt": "다온쭈꾸미해물찜",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2843171",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250516130811",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/53/2843153_image2_1.JPG"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2854697",
+    "slug": "tour-2854697",
+    "name": "통영해물뚝배기 장기점",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 김포시 김포한강4로212번길 29 (장기동)",
+    "latitude": 37.6505388017,
+    "longitude": 126.6605199045,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/87/2854687_image2_1.jpg",
+    "imageAlt": "통영해물뚝배기 장기점",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2854697",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250502164113",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/87/2854687_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2845525",
+    "slug": "tour-2845525",
+    "name": "박승광해물손칼국수 본점",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 김포시 김포한강4로 211-43 (장기동)",
+    "latitude": 37.6485167726,
+    "longitude": 126.6581090704,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/13/2845513_image2_1.jpg",
+    "imageAlt": "박승광해물손칼국수 본점",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2845525",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250502134517",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/13/2845513_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2846902",
+    "slug": "tour-2846902",
+    "name": "해물로",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 김포시 승가로 101",
+    "latitude": 37.6066587059,
+    "longitude": 126.7116109095,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/77/2846877_image2_1.jpg",
+    "imageAlt": "해물로",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2846902",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250113150956",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/77/2846877_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2830624",
+    "slug": "tour-2830624",
+    "name": "청춘조개본점",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 시흥시 오이도로 199-1 (정왕동)",
+    "latitude": 37.3430944573,
+    "longitude": 126.6871260378,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/17/2830617_image2_1.jpeg",
+    "imageAlt": "청춘조개본점",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2830624",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250626145147",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/17/2830617_image2_1.jpeg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2751431",
+    "slug": "tour-2751431",
+    "name": "조개포차",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 시흥시 오이도로 215 (정왕동)",
+    "latitude": 37.3418807009,
+    "longitude": 126.6866705574,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/59/2751559_image2_1.jpeg",
+    "imageAlt": "조개포차",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2751431",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250609100858",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/59/2751559_image2_1.jpeg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2844781",
+    "slug": "tour-2844781",
+    "name": "풍어생선구이정식",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 수원시 장안구 천천로210번길 17-12 (이목동)",
+    "latitude": 37.3110367136,
+    "longitude": 126.9806807894,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/78/2844778_image2_1.jpg",
+    "imageAlt": "풍어생선구이정식",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2844781",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250526170119",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/78/2844778_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2844493",
+    "slug": "tour-2844493",
+    "name": "스시생선가게",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 성남시 분당구 불정로77번길 4-6",
+    "latitude": 37.3602833911,
+    "longitude": 127.1138867547,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/89/2844489_image2_1.jpg",
+    "imageAlt": "스시생선가게",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2844493",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250520172635",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/89/2844489_image2_1.jpg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
+  },
+  {
+    "id": "tour-2736049",
+    "slug": "tour-2736049",
+    "name": "생선명가거북명태",
+    "category": "맛집",
+    "region": "경기",
+    "address": "경기도 광명시 범안로 856 (하안동)",
+    "latitude": 37.4504767924,
+    "longitude": 126.8639708344,
+    "shortDescription": "경기의 맛집 장소입니다. 편안함 관련 정보는 추가 확인이 필요합니다.",
+    "image": "https://tong.visitkorea.or.kr/cms/resource/65/2774665_image2_1.jpeg",
+    "imageAlt": "생선명가거북명태",
+    "priceRange": "확인 전",
+    "sourceName": "한국관광공사 TourAPI",
+    "sourceUrl": "https://api.visitkorea.or.kr/",
+    "lastVerifiedAt": "2026-11-19",
+    "isDemo": false,
+    "companions": [],
+    "intentTags": [],
+    "userRating": null,
+    "activityType": "unknown",
+    "route": {
+      "distanceKm": "unknown",
+      "difficulty": "unknown",
+      "flatness": "unknown",
+      "restroom": "unknown",
+      "parking": "unknown",
+      "lighting": "unknown",
+      "crowd": "unknown",
+      "scenery": "unknown",
+      "loop": "unknown",
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "visitContext": {
+      "duration": "unknown",
+      "transportModes": [],
+      "sourceUrl": null,
+      "verifiedAt": null
+    },
+    "sourceLicense": {
+      "name": null,
+      "url": null,
+      "attribution": "한국관광공사 TourAPI",
+      "copyrightCode": "Type3",
+      "usageNotes": null
+    },
+    "imageLicense": {
+      "name": null,
+      "url": null,
+      "attribution": null,
+      "copyrightCode": null,
+      "usageNotes": null
+    },
+    "tourApi": {
+      "contentId": "2736049",
+      "contentTypeId": "39",
+      "operation": "KorService2/searchKeyword2",
+      "modifiedTime": "20250424182324",
+      "importedAt": "2026-11-19",
+      "imageSourceUrl": "http://tong.visitkorea.or.kr/cms/resource/65/2774665_image2_1.jpeg"
+    },
+    "comfort": {
+      "parking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "stairs": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "accessibility": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "restroom": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null,
+        "proximity": "unknown"
+      },
+      "seating": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "walking": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "noise": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      },
+      "waiting": {
+        "value": "unknown",
+        "note": "TourAPI 목록에는 해당 편안함 정보가 없어 별도 확인이 필요합니다.",
+        "sourceUrl": null,
+        "verifiedAt": null
+      }
+    }
   }
 ]

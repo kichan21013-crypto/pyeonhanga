@@ -87,10 +87,25 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
   // 목록 순서가 인기 식당·카페에 쏠리더라도 찾고자 하는 세부활동이 누락되지 않도록
   // 공식 데이터로 확인된 유형별 사진 후보를 우선 확보합니다. 없는 유형은 억지로 생성하지 않습니다.
   for (const tag of ['seafood','noodle','meat','korean_food','cafe','run','walk']) {
+    // 사진이 확인된 해산물 식당이 여럿 있어도 상단의 4곳만 살아남던 현상을 개선합니다.
+    // 120곳짜리 지역 추천 풀에서는 해산물 후보를 최대 12곳 먼저 확보하고,
+    // 부족한 유형을 억지로 만들거나 다른 활동을 대량 제외하지 않습니다.
+    const reserve = tag === 'seafood' && count >= 60 ? 12 : 4;
     const matches = items.filter(item => item._intentTags?.includes(tag));
-    matches.filter(item => item._hasRealImage).slice(0, 4).forEach(pick);
-    if (matches.filter(item => item._hasRealImage).length < 4) {
-      matches.filter(item => !item._hasRealImage).slice(0, 4).forEach(pickPlaceholder);
+    const withPhotos = matches.filter(item => item._hasRealImage);
+    const selectedOfTag = () => selected.filter(item => item._intentTags?.includes(tag)).length;
+    // 지역 단순 목록의 최신 상위 장소만 계속 재선택하지 않도록 공식 키워드로
+    // 발굴한 실사진 해산물 식당을 최대 8곳 먼저 살펴봅니다. 사용자 평점/방문 순위 아님.
+    const extraSeafood = tag === 'seafood' && count >= 60
+      ? withPhotos.filter(item => item._place.tourApi?.operation === 'KorService2/searchKeyword2').slice(0, 8)
+      : [];
+    for (const item of [...extraSeafood, ...withPhotos]) {
+      if (selectedOfTag() >= reserve) break;
+      pick(item);
+    }
+    for (const item of matches.filter(item => !item._hasRealImage)) {
+      if (selectedOfTag() >= reserve) break;
+      pickPlaceholder(item);
     }
   }
 
