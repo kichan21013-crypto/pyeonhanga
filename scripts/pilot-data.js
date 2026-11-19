@@ -93,9 +93,19 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
     const reserve = tag === 'seafood' && count >= 60 ? 12 : 4;
     const matches = items.filter(item => item._intentTags?.includes(tag));
     const withPhotos = matches.filter(item => item._hasRealImage);
-    withPhotos.slice(0, reserve).forEach(pick);
-    if (withPhotos.length < reserve) {
-      matches.filter(item => !item._hasRealImage).slice(0, reserve - withPhotos.length).forEach(pickPlaceholder);
+    const selectedOfTag = () => selected.filter(item => item._intentTags?.includes(tag)).length;
+    // 지역 단순 목록의 최신 상위 장소만 계속 재선택하지 않도록 공식 키워드로
+    // 발굴한 실사진 해산물 식당을 최대 8곳 먼저 살펴봅니다. 사용자 평점/방문 순위 아님.
+    const extraSeafood = tag === 'seafood' && count >= 60
+      ? withPhotos.filter(item => item._place.tourApi?.operation === 'KorService2/searchKeyword2').slice(0, 8)
+      : [];
+    for (const item of [...extraSeafood, ...withPhotos]) {
+      if (selectedOfTag() >= reserve) break;
+      pick(item);
+    }
+    for (const item of matches.filter(item => !item._hasRealImage)) {
+      if (selectedOfTag() >= reserve) break;
+      pickPlaceholder(item);
     }
   }
 
