@@ -38,7 +38,7 @@ test('홈과 저장·상세 화면은 서로 이동하고 캐시 변경이 적�
   assert.match(index,/mobile-ux\.css\?v=20261119-v13/);
   assert.match(saved,/mobile-ux\.css\?v=20261119-v13/);
   assert.match(saved,/class="n-mobile-nav"/);
-  assert.match(build,/mobileNav\('recommend'\)/);
+  assert.ok(build.includes("mobileNav(path === '/companion.html' ? 'companion' : 'recommend')"));
   assert.match(build,/mobileNav\('saved'\)/);
   assert.doesNotMatch(index,/v5-app-home\.js\?v=/);
 });
