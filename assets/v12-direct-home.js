@@ -5,6 +5,7 @@
 import { recommendRhythms } from '../rhythm.js';
 import { escapeHtml, safeUrl, placeUrl, icon } from '../ui.js';
 import { savedIds } from '../storage.js';
+import { analyticsEnabled } from '../analytics.js';
 import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHeading } from './v12-browse-state.js';
 
 const $ = selector => document.querySelector(selector);
@@ -194,14 +195,15 @@ function setupHome() {
     '<div class="n12-location-select"><select id="n12-region" aria-label="추천 지역">' +
     options.map(opt => '<option value="' + opt.value + '">' + opt.label + '</option>').join('') +
     '</select><span aria-hidden="true">⌄</span></div></div>' +
-    '<div class="n12-section-heading"><h2>뭐 하고 싶으세요?</h2><span>하나만 골라보세요</span></div>' +
-    '<div class="n12-categories" role="group" aria-label="활동 카테고리 하나 선택">' + categoryButtons() + '</div>' +
     '<section class="n13-companion-hero" aria-labelledby="n13-companion-title">' +
     '<div><p class="n13-kicker">나가치의 핵심 서비스 · 동행</p>' +
     '<h2 id="n13-companion-title">같이 가고 싶은 곳,<br>함께할 사람도 생각해봐요.</h2>' +
     '<p>지금은 실제 연결 전에 여러분의 동행 취향과 의향을 알아보는 단계예요.</p>' +
-    '<a class="n13-companion-link" href="/companion.html">동행 알아보기 →</a></div>' +
+    '<a class="n13-companion-link" href="/companion.html">동행 알아보기 →</a>' +
+    '<p class="n13-storage-note">' + (analyticsEnabled ? '설문 저장 설정이 있습니다. 실제 저장 여부는 제출 후 확인하세요.' : '현재 설문 체험 단계입니다. 답변은 아직 저장되지 않습니다.') + '</p></div>' +
     '<span class="n13-hero-graphic" aria-hidden="true">🫶</span></section>' +
+    '<div class="n12-section-heading"><h2>뭐 하고 싶으세요?</h2><span>하나만 골라보세요</span></div>' +
+    '<div class="n12-categories" role="group" aria-label="활동 카테고리 하나 선택">' + categoryButtons() + '</div>' +
     '<div class="n12-feature"><div><p>나가치의 작은 제안</p><strong>어디 갈지 고민될 땐,<br>전체 장소를 둘러보세요.</strong></div>' +
     '<button type="button" data-n12-reset>전체 보기 ' + svg('chevron') + '</button>' +
     '<span class="n12-feature-decoration" aria-hidden="true">✦</span></div>';
