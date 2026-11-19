@@ -9,7 +9,7 @@ export const REGIONS = [
   { name: '강릉', areaCode: '32', sigunguCode: '1' }, { name: '경주', areaCode: '35', sigunguCode: '2' },
   { name: '부산', areaCode: '6' }, { name: '제주', areaCode: '39' },
 ];
-export const CONTENT_TYPES = { '39': '맛집', '12': '나들이', '25': '여행' };
+export const CONTENT_TYPES = { '39': '맛집', '12': '나들이', '14': '나들이', '28': '나들이', '25': '여행' };
 function clean(value) { return String(value || '').replace(/<[^>]*>/g, '').trim(); }
 function apiMessage(text) {
   if (!text) return '';
@@ -82,7 +82,7 @@ export async function importTourApi() {
   const maxPages = Math.min(100, Math.max(1, Number(process.env.TOUR_API_MAX_PAGES) || 2));
   const rowsPerPage = Math.min(50, Math.max(1, Number(process.env.TOUR_API_ROWS_PER_PAGE) || 50));
   const configuredTypes = String(process.env.TOUR_API_CONTENT_TYPES || Object.keys(CONTENT_TYPES).join(',')).split(',').map(v => v.trim()).filter(Boolean);
-  if (!configuredTypes.length || configuredTypes.some(v => !Object.hasOwn(CONTENT_TYPES, v))) throw new Error('TOUR_API_CONTENT_TYPES에는 39,12,25 중 하나 이상을 쉼표로 구분해 입력하세요.');
+  if (!configuredTypes.length || configuredTypes.some(v => !Object.hasOwn(CONTENT_TYPES, v))) throw new Error('TOUR_API_CONTENT_TYPES에는 39,12,14,28,25 중 하나 이상을 쉼표로 구분해 입력하세요.');
   const selectedTypes = [...new Set(configuredTypes)].map(id => [id, CONTENT_TYPES[id]]);
   const requestedArrange = String(process.env.TOUR_API_ARRANGE || 'C').toUpperCase();
   const arrange = ['A', 'C', 'D'].includes(requestedArrange) ? requestedArrange : 'C';
