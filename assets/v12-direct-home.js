@@ -216,6 +216,9 @@ function setupHome() {
     if (category) {
       state.activity = toggleBrowseCategory(state.activity,category.dataset.n12Category);
       state.broadCategory = '';
+      // 과거 검색어가 보이지 않는 추가 필터로 남지 않도록 정리합니다.
+      state.query = '';
+      $('#n12-query').value = '';
       render({scroll:true});
       return;
     }
@@ -223,7 +226,7 @@ function setupHome() {
   });
   $('#n12-region').addEventListener('change',event => {
     state.region = event.target.value;
-    render();
+    render({scroll:true});
   });
   $('#n12-search').addEventListener('submit',event => {
     event.preventDefault();
