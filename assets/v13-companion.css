@@ -89,3 +89,17 @@ body[data-companion="true"] .n13-landing{max-width:960px;margin:0 auto;padding:3
  .n-mobile-nav .n13-nav-companion{color:#397b5d!important;}
  .n-mobile-nav .n13-nav-companion.is-active{color:#e16f50!important;}
 }
+
+/* Avoid duplicate top and bottom navigation in the mobile app shell. */
+@media(max-width:760px){
+  body[data-page='saved'] .site-header nav,
+  body[data-page='detail'] .site-header nav,
+  body[data-companion='true'] .site-header nav {display:none!important;}
+  body[data-companion='true'] .site-header {
+    position:sticky!important;top:0!important;z-index:52!important;
+    background:#fff!important;border-bottom:1px solid #e9edeb!important;
+  }
+  body[data-companion='true'] .header-inner{min-height:60px!important;padding:8px 18px!important;}
+  body[data-companion='true'] .brand{font-size:23px!important;color:#202b27!important;font-weight:900!important;}
+  .n13-companion-hero .n13-storage-note{margin-top:9px!important;color:#6a8573!important;font-size:10px!important;}
+}
