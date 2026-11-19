@@ -139,7 +139,13 @@ async function render({more=false,scroll=false}={}) {
     loadMore.textContent = '장소 더 보기 (' + Math.min(state.visible,matches.length) + ' / ' + matches.length + ')';
     grid.removeAttribute('aria-busy');
     $('#n12-status').textContent = matches.length + '곳의 장소를 찾았습니다.';
-    if (scroll) scrollToResults();
+    if (scroll) {
+      const homeButton = $('[data-n12-home]');
+      const recButton = $('[data-n12-recommend]');
+      homeButton?.classList.remove('is-active');
+      recButton?.classList.add('is-active');
+      scrollToResults();
+    }
   } catch {
     if (requestId !== state.requestId) return;
     grid.removeAttribute('aria-busy');
