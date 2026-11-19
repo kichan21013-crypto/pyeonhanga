@@ -81,10 +81,13 @@ export async function importTourApi() {
   const imported = new Map();
   const maxPages = Math.min(100, Math.max(1, Number(process.env.TOUR_API_MAX_PAGES) || 2));
   const rowsPerPage = Math.min(50, Math.max(1, Number(process.env.TOUR_API_ROWS_PER_PAGE) || 50));
+  const configuredTypes = String(process.env.TOUR_API_CONTENT_TYPES || Object.keys(CONTENT_TYPES).join(',')).split(',').map(v => v.trim()).filter(Boolean);
+  if (!configuredTypes.length || configuredTypes.some(v => !Object.hasOwn(CONTENT_TYPES, v))) throw new Error('TOUR_API_CONTENT_TYPES에는 39,12,25 중 하나 이상을 쉼표로 구분해 입력하세요.');
+  const selectedTypes = [...new Set(configuredTypes)].map(id => [id, CONTENT_TYPES[id]]);
   const requestedArrange = String(process.env.TOUR_API_ARRANGE || 'C').toUpperCase();
   const arrange = ['A', 'C', 'D'].includes(requestedArrange) ? requestedArrange : 'C';
   for (const region of REGIONS) {
-    for (const [contentTypeId, category] of Object.entries(CONTENT_TYPES)) {
+    for (const [contentTypeId, category] of selectedTypes) {
       for (let page = 1; page <= maxPages; page++) {
         const url = new URL('https://apis.data.go.kr/B551011/KorService2/areaBasedList2');
         let decodedKey = key.trim(); try { decodedKey = decodeURIComponent(decodedKey); } catch {}
