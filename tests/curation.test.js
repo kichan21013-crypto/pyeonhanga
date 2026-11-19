@@ -122,3 +122,13 @@ test('새 공개 풀은 지역당 80개까지 확장하되 사진 없는 원천 
  assert.ok(result.every(p=>p.image.startsWith('https://')));
  assert.ok(result.every(p=>p.comfort.parking.value==='unknown'));
 });
+
+
+test('사진이 없는 장소는 실사진 비율 80% 이내에서만 카테고리 부족분을 채운다', () => {
+ const real = Array.from({length:24},(_,i)=>place(String(7000+i),'실사진 '+i,'나들이'));
+ const food = Array.from({length:10},(_,i)=>({...place(String(8000+i),'음식점 '+i,'맛집'),image:'/assets/garden.svg'}));
+ const result = buildPilotPlaces([...real,...food],{places:[]},{places:[]},80);
+ assert.ok(result.filter(p=>p.category==='맛집').length>=5);
+ assert.ok(result.filter(p=>p.image.startsWith('https://')).length / result.length >= .8);
+ assert.ok(result.length <= 30);
+});
