@@ -220,6 +220,10 @@ function companionDialog(p, trigger = null) {
   };
 }
 document.querySelectorAll('[data-icon]').forEach(el => el.innerHTML = icon(el.dataset.icon));
+const companionStatus = $('#n13-save-status');
+if (companionStatus) companionStatus.textContent = analyticsEnabled
+  ? '설문 저장 설정이 등록돼 있습니다. 실제 저장 여부는 제출 후 확인할 수 있습니다. 현재 동행 연결·예약·결제는 없습니다.'
+  : '현재 분석 서버가 연결되지 않아 설문 응답은 저장되지 않습니다. 실제 동행 연결·예약·결제도 제공하지 않습니다.';
 updateSaved();
 document.addEventListener('click', event => {
   const save = event.target.closest('[data-save]');
