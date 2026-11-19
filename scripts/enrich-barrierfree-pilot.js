@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { mergeEnrichmentRows } from './merge-enrichment.js';
 import { selectPilotCandidates, resolvePerRegion } from './enrich-tourapi-pilot.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -130,13 +131,18 @@ async function main() {
     return acc;
   }, {});
   const count = predicate => matched.filter(item => predicate(item.facts)).length;
+  let previousReport = null;
+  try { previousReport = JSON.parse(await readFile(reportPath, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const collectedAt = new Date().toISOString();
+  const retainedPlaces = mergeEnrichmentRows(previousReport, matched, collectedAt);
   const report = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: collectedAt,
     source: sourcePath.replace(root + '/', ''),
     service: `Korea Tourism Organization KorWithService2/${API_OPERATION}`,
     strategy: `same region-balanced pilot as TourAPI detail enrichment, up to ${perRegion} per region`,
     summary: {
       selected: selected.length,
+      totalAvailable: retainedPlaces.length,
       matched: matched.length,
       unmatched: unmatched.length,
       errors: errors.length,
@@ -155,7 +161,7 @@ async function main() {
     },
     errors,
     unmatched,
-    places: matched,
+    places: retainedPlaces,
     note: '원문 무장애 정보를 수집한 검증 리포트이며 comfort 좋음/보통/부담 있음 평가는 자동 생성하지 않습니다.',
   };
 
