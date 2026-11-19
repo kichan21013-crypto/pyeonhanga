@@ -2,7 +2,7 @@ import { auditTourApiPlaces } from './tourapi-quality.js';
 import { scoreRecommendationReadiness } from './recommendation-readiness.js';
 
 const REGIONS = ['서울','경기','강릉','경주','부산','제주'];
-const TARGET_PER_REGION = 30;
+const TARGET_PER_REGION = 80;
 const SOURCE_URL = 'https://api.visitkorea.or.kr/';
 
 const clean = value => String(value || '').replace(/<br\s*\/?>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&nbsp;/gi,' ').replace(/\s+/g,' ').trim();
@@ -91,14 +91,14 @@ function verifiedDetailImage(detail) {
 }
 
 export function buildPilotPlaces(places, generalReport, barrierReport, targetPerRegion = TARGET_PER_REGION) {
-  // 기존 build.js가 넘기던 8은 구버전 파일럿 크기다. MVP 1.5에서는 공개 풀을 30개/지역으로 확장한다.
-  const effectiveTarget = targetPerRegion === 8 ? TARGET_PER_REGION : targetPerRegion;
+  const effectiveTarget = targetPerRegion;
   const placeMap = new Map(places.map(place => [place.id, place]));
   const detailMap = new Map((generalReport?.places || []).map(item => [item.id, item]));
   const barrierMap = new Map((barrierReport?.places || []).map(item => [item.id, item]));
   const { candidates: qualityCandidates } = auditTourApiPlaces(places);
   const referenceDate = latestReferenceDate(qualityCandidates, generalReport, barrierReport);
 
+  // 실제 사진이 있는 품질검사 통과 장소만 공개한다. 사진 없는 항목은 상세 API 이미지가 확인된 경우에만 복구한다.
   const candidates = qualityCandidates.map(audit => {
     const place = placeMap.get(audit.id);
     if (!place) return null;
@@ -122,7 +122,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       _readiness: readiness,
       _hasRealImage: hasRealImage,
     };
-  }).filter(Boolean);
+  }).filter(item => item && item._hasRealImage);
 
   const selected = [];
   for (const region of REGIONS) {
@@ -162,7 +162,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       };
       const barrierFacts = item._barrier ? Object.fromEntries(Object.entries(item._barrier.facts || {}).map(([key,value]) => [key, clean(value) || null])) : {};
       base.verifiedFacts = {
-        verifiedAt: reportDate,
+        verifiedAt: String(detail.verifiedAt || reportDate).slice(0,10),
         sourceName: '한국관광공사 TourAPI',
         sourceUrl: SOURCE_URL,
         general: generalFacts,
