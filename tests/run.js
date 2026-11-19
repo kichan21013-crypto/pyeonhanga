@@ -12,3 +12,4 @@ import './tourapi-enrichment.test.js';
 import './barrierfree-enrichment.test.js';
 import './curation.test.js';
 import './v6-ui.test.js';
+import './v9-product-ui.test.js';
