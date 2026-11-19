@@ -43,7 +43,7 @@ function derivedIntentTags(place) {
 }
 
 function reserveCount(count) {
-  if (count >= 20) return Math.max(4, Math.round(count * 0.2));
+  if (count >= 20) return 5;
   if (count >= 8) return 2;
   if (count >= 2) return 1;
   return 0;
@@ -59,6 +59,11 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
     selectedIds.add(item.id);
   };
   const realImageItems = items.filter(item => item._hasRealImage);
+  // 실사진 비중을 최소 80%로 보전하면서 사진 없는 후보는 카테고리 부족을 메우는 용도로만 사용한다.
+  const maxPlaceholderCount = Math.floor(realImageItems.length / 4);
+  const pickPlaceholder = item => {
+    if (selected.filter(value => !value._hasRealImage).length < maxPlaceholderCount) pick(item);
+  };
 
   // 외부 테스트에서는 장소 사진이 서비스 인상에 직접 영향을 준다.
   // 각 카테고리의 최소 다양성을 지키되, 그 안에서도 실사진 후보를 먼저 고른다.
@@ -67,13 +72,13 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
     const categoryReal = categoryItems.filter(item => item._hasRealImage);
     categoryReal.slice(0, reserveEach).forEach(pick);
     if (categoryReal.length < reserveEach) {
-      categoryItems.filter(item => !item._hasRealImage).slice(0, reserveEach - categoryReal.length).forEach(pick);
+      categoryItems.filter(item => !item._hasRealImage).slice(0, reserveEach - categoryReal.length).forEach(pickPlaceholder);
     }
   }
 
   // 카테고리 최소량 이후에는 실사진 후보를 최대한 활용하고, 부족한 자리만 무사진 후보로 채운다.
   for (const item of realImageItems) pick(item);
-  for (const item of items) pick(item);
+  for (const item of items.filter(item => !item._hasRealImage)) pickPlaceholder(item);
   return selected.slice(0, count);
 }
 
@@ -122,7 +127,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       _readiness: readiness,
       _hasRealImage: hasRealImage,
     };
-  }).filter(item => item && item._hasRealImage);
+  }).filter(Boolean);
 
   const selected = [];
   for (const region of REGIONS) {
