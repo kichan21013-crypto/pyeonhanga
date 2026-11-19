@@ -19,9 +19,13 @@ function repeatedFacts(item = {}) {
   return facts;
 }
 
-function derivedIntentTags(place) {
+function derivedIntentTags(place, detail = null) {
   const tags = new Set(place.intentTags || []);
+  // 메뉴 전체에서 곁들임 하나만 발견돼도 전문점으로 취급하는 오류를 막습니다.
+  // 공식 대표메뉴에만 보조 분류 근거를 부여하고, 매장명은 별도 검증된 키워드로 분류합니다.
   const text = `${place.name || ''} ${place.shortDescription || ''}`;
+  const firstMenu = clean(detail?.facts?.firstMenuText);
+  const isFood = place.category === '맛집';
   if (place.category === '맛집') tags.add('food');
   if (place.category === '여행') ['travel','outing'].forEach(v => tags.add(v));
   if (place.category === '나들이') tags.add('outing');
@@ -30,7 +34,11 @@ function derivedIntentTags(place) {
   if (/칼국수|국수|냉면|밀면|라멘|라면|우동|막국수|메밀/.test(text)) tags.add('noodle');
   if (/한식|백반|정식|돌솥|국밥|해장국|순두부|찌개|전골|밥상/.test(text)) ['korean_food','food'].forEach(v => tags.add(v));
   if (/갈비|숯불|고기|암소|돼지|한우|삼겹|불고기|곱창/.test(text)) ['meat','food'].forEach(v => tags.add(v));
-  if (/횟집|회|해물|수산|생선|조개|대게|문어|전복/.test(text)) ['seafood','food'].forEach(v => tags.add(v));
+  const seafoodName = /횟집|회센터|활어회|생선회|물회|해물|수산|생선|조개|대게|문어|전복|장어|꽃게|게장|갈치|고등어|초밥|스시|참치|낙지|아귀|쭈꾸미|주꾸미|꼬막|복어|오징어|새우|매운탕/.test(text);
+  const seafoodMain = /물회|회덮밥|광어회|우럭회|모[둠듬]회|생선회|활어회|해물|조개구이|전복|장어구이|게장|꽃게|갈치|고등어|초밥|스시|참치|낙지|아귀|쭈꾸미|주꾸미|꼬막|복어|오징어|새우구이|매운탕|바지락탕/.test(firstMenu);
+  // 음식점만 대상입니다. 빵/카페 메뉴에 포함된 '조개' 등 단어를 해산물 식당으로 착각하지 않습니다.
+  const cafeLike = /카페|커피|제빵|베이커리|디저트|빵집/.test(place.name || '');
+  if (isFood && (seafoodName || (seafoodMain && !cafeLike))) ['seafood','food'].forEach(v => tags.add(v));
 
   if (/산|오름|계곡|숲|수목원|휴양림|둘레길|등산/.test(text)) ['hike','walk','scenery'].forEach(v => tags.add(v));
   if (/해변|바다|포구|항|해수욕|해안|섬/.test(text)) ['sea','walk','scenery','drive'].forEach(v => tags.add(v));
@@ -76,7 +84,17 @@ function pickBalanced(items, count = TARGET_PER_REGION) {
     }
   }
 
-  // 카테고리 최소량 이후에는 실사진 후보를 최대한 활용하고, 부족한 자리만 무사진 후보로 채운다.
+  // 목록 순서가 인기 식당·카페에 쏠리더라도 찾고자 하는 세부활동이 누락되지 않도록
+  // 공식 데이터로 확인된 유형별 사진 후보를 우선 확보합니다. 없는 유형은 억지로 생성하지 않습니다.
+  for (const tag of ['seafood','noodle','meat','korean_food','cafe','run','walk']) {
+    const matches = items.filter(item => item._intentTags?.includes(tag));
+    matches.filter(item => item._hasRealImage).slice(0, 4).forEach(pick);
+    if (matches.filter(item => item._hasRealImage).length < 4) {
+      matches.filter(item => !item._hasRealImage).slice(0, 4).forEach(pickPlaceholder);
+    }
+  }
+
+  // 카테고리/세부활동 최소량 이후에는 실사진 후보를 최대한 활용합니다.
   for (const item of realImageItems) pick(item);
   for (const item of items.filter(item => !item._hasRealImage)) pickPlaceholder(item);
   return selected.slice(0, count);
@@ -125,6 +143,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
       _detail: detail,
       _barrier: barrier,
       _readiness: readiness,
+      _intentTags: derivedIntentTags(place, detail),
       _hasRealImage: hasRealImage,
     };
   }).filter(Boolean);
@@ -174,7 +193,7 @@ export function buildPilotPlaces(places, generalReport, barrierReport, targetPer
         barrierFree: barrierFacts,
       };
     }
-    base.intentTags = derivedIntentTags(base);
+    base.intentTags = derivedIntentTags(base, detail);
     base.recommendationReadiness = item._readiness;
     base.pilotRankScore = item._readiness.score;
     return base;
