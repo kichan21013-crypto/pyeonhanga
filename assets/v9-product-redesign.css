@@ -341,3 +341,28 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after {scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;}
 }
+
+/* In the desktop static preview, show the same selected shortlist without exposing hundreds of cards. */
+@media(min-width:761px) {
+  body[data-page='home'] #rhythm-results[hidden]{display:block!important;}
+  body[data-page='home']:not(.v5-live-active) #places-grid .place-card:nth-child(n+7){display:none!important;}
+  body[data-page='home'] .rhythm-results>.results-heading,
+  body[data-page='home'] .rhythm-results>.results-help,
+  body[data-page='home'] .rhythm-results>.demo-notice{display:none!important;}
+  body[data-page='home'] .app-home-preview{margin-top:18px;}
+  body[data-page='home'] .app-home-preview .app-results-edit {display:none;}
+  body[data-page='home'].v5-live-active .app-home-preview .app-results-edit {display:inline-flex;}
+  body[data-page='home'] .app-load-more {display:none;width:100%;max-width:300px;margin:20px auto 35px;min-height:50px;border:1px solid var(--n-line);border-radius:13px;background:#fff;font-weight:800;}
+  body[data-page='home'].v5-live-active .app-load-more:not([hidden]){display:block!important;}
+  body[data-page='home'] .rhythm-results .place-card .card-image img{aspect-ratio:1.6;object-fit:cover;}
+  body[data-page='home'] .rhythm-results .place-card .card-body{padding:19px;}
+  body[data-page='home'] .rhythm-results .place-card h3{margin:8px 0;}
+  body[data-page='home'] .rhythm-results .place-card .rhythm-card-actions .button{font-size:13px;}
+  body[data-page='home'] .rhythm-results .place-card .recommendation-reason{font-size:13px;}
+  body[data-page='home'] .app-loading-skeleton{min-height:280px;border-radius:20px;background:#f2f4f6;}
+}
+@media (max-width:760px) {
+  body[data-page='saved'] .n-mobile-nav,body[data-page='detail'] .n-mobile-nav{list-style:none;}
+  body[data-page='saved'] .n-mobile-nav a,body[data-page='detail'] .n-mobile-nav a{white-space:nowrap;}
+  body[data-page='home'].v5-live-active .app-home-preview-head h2{font-size:18px!important;}
+}
