@@ -132,3 +132,21 @@ test('사진이 없는 장소는 실사진 비율 80% 이내에서만 카테고�
  assert.ok(result.filter(p=>p.image.startsWith('https://')).length / result.length >= .8);
  assert.ok(result.length <= 30);
 });
+
+
+test('실제 이름·공식 대표메뉴가 확인된 해산물 식당은 목록 상위가 아니어도 세부 추천에 남는다', () => {
+  const ordinary = Array.from({length:28},(_,i)=>place(String(9000+i),'가나다 일반식당 '+i,'맛집'));
+  const special = place('9999','하늘정식','맛집');
+  const generalReport = {generatedAt:'2026-11-19T00:00:00Z', places:[detail('9999',{firstMenuText:'광어회',menuText:'광어회 / 생선회 / 매운탕'})]};
+  const result = buildPilotPlaces([...ordinary,special],generalReport,{places:[]},12);
+  assert.ok(result.some(p=>p.id==='9999'),'확인된 해산물 메뉴가 일반 인기 목록에 밀려 빠지지 않아야 함');
+  assert.ok(result.find(p=>p.id==='9999').intentTags.includes('seafood'));
+  assert.ok(result.every(p=>p.comfort.parking.value==='unknown'));
+});
+
+test('카페 이름에 해산물처럼 보이는 빵 메뉴가 있어도 회·해산물 분류를 생성하지 않는다', () => {
+  const cafe = place('9998','강남할배제빵소','맛집');
+  const report = {places:[detail('9998',{firstMenuText:'오이도치즈조개바타',menuText:'커피 / 라떼'})]};
+  const [result] = buildPilotPlaces([cafe], report, {places:[]}, 1);
+  assert.ok(!result.intentTags.includes('seafood'));
+});

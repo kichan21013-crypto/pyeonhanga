@@ -35,6 +35,8 @@ jobs:
           TOUR_API_ROWS_PER_PAGE: '50'
           TOUR_API_CONTENT_TYPES: '39,12,14,28'
           TOUR_API_ARRANGE: 'C'
+          TOUR_API_KEYWORD_MAX_PAGES: '2'
+          TOUR_API_TARGETED_KEYWORDS: '횟집,물회,해물,조개,생선'
         run: npm run import:tourapi
 
       - name: Audit imported data
@@ -75,6 +77,7 @@ jobs:
           echo "- Barrier-free source: Korea Tourism Organization KorWithService2/detailWithTour2" >> "$GITHUB_STEP_SUMMARY"
           echo "- Baseline build and application tests run before replacing service data" >> "$GITHUB_STEP_SUMMARY"
           echo "- Import scans up to 6 pages x 50 rows for food (39), attractions (12), cultural facilities (14), and sports (28) across 6 regions; courses excluded until a separate course model is ready" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Supplemental official searchKeyword2 checks five seafood-related terms per region (up to 2 pages x 50 results); retains only food type 39 and deduplicates by content ID" >> "$GITHUB_STEP_SUMMARY"
           echo "- Korea-outside coordinates are nulled before storage" >> "$GITHUB_STEP_SUMMARY"
           echo "- Quality report separates recommendation candidates, courses, facilities, and source-only records" >> "$GITHUB_STEP_SUMMARY"
           echo "- General detail pilot enriches up to 30 recommendation candidates per region (up to 180 total)" >> "$GITHUB_STEP_SUMMARY"

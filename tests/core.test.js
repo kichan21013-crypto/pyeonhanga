@@ -7,7 +7,7 @@ import { calculateComfort, WEIGHTS } from '../comfort-score.js';
 import { filterPlaces, emptyFilters } from '../search.js';
 import { card, detailMarkup } from '../ui.js';
 import { validatePlaces } from '../scripts/validate-data.js';
-import { convertItem } from '../scripts/import-tourapi.js';
+import { convertItem, makeKeywordUrl, REGIONS, TARGETED_FOOD_KEYWORDS } from '../scripts/import-tourapi.js';
 const places = JSON.parse(await readFile(new URL('../data/places.json', import.meta.url)));
 const fact = value => ({ value, sourceUrl: 'https://example.org/verified-fixture', verifiedAt: '2026-10-19', note: 'TEST FIXTURE ONLY' });
 
@@ -164,4 +164,19 @@ test('장소 상세는 핵심정보와 동행 버튼을 먼저 보여주고 미�
   assert.ok(!html.includes('공공데이터에서 확인한 사실을 그대로 보여드려요'));
   assert.ok(!html.includes('pending-condition-grid'));
   assert.match(html, /편안함 점수는 확인 근거 40% 이상일 때 표시/);
+});
+
+
+test('희소한 해산물 음식점은 공공 API의 지역별 키워드 검색으로만 보충하며 출처를 명확히 남긴다', () => {
+  assert.ok(TARGETED_FOOD_KEYWORDS.includes('횟집'));
+  const url=makeKeywordUrl({serviceKey:'TEST_ONLY',region:REGIONS.find(r=>r.name==='경기'),keyword:'물회',page:2,rowsPerPage:50});
+  assert.equal(url.pathname,'/B551011/KorService2/searchKeyword2');
+  assert.equal(url.searchParams.get('areaCode'),'31');
+  assert.equal(url.searchParams.get('keyword'),'물회');
+  assert.equal(url.searchParams.get('numOfRows'),'50');
+  assert.equal(url.searchParams.get('serviceKey'),'TEST_ONLY');
+  const item=convertItem({contentid:'12345',title:'테스트 횟집',contenttypeid:'39',mapy:'37.2',mapx:'127.1',addr1:'경기도 수원시 테스트'},'경기','맛집','2026-11-19','KorService2/searchKeyword2');
+  assert.equal(item.tourApi.operation,'KorService2/searchKeyword2');
+  assert.equal(item.intentTags.length,0);
+  assert.equal(item.comfort.parking.value,'unknown');
 });

@@ -69,4 +69,6 @@ const activityCoverage = Object.fromEntries(['서울','경기','강릉','경주'
     [tag, places.filter(p => p.region === region && p.intentTags.includes(tag)).length]))
 ]));
 console.log(`세부활동 지역별 확인 후보(카테고리 태그 기준): ${JSON.stringify(activityCoverage)}`);
+console.log('경기 회·해산물 후보 검수: '+JSON.stringify(places.filter(p=>p.region==='경기'&&p.intentTags.includes('seafood')).map(p=>({name:p.name,representativeMenu:p.verifiedFacts?.general?.firstMenuText||null}))));
+
 
