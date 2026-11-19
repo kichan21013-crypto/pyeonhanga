@@ -168,3 +168,22 @@ test('실사진 있는 경기 해산물 식당이 충분할 때 최소 12곳을 
   assert.ok(result.every(p=>p.comfort.parking.value==='unknown'));
   assert.ok(result.length<=120);
 });
+
+
+test('공식 키워드로 새로 수집한 실사진 해산물 식당을 기존 인기 목록에 묻히지 않고 8곳 이상 반영한다', () => {
+  const old = Array.from({length:145},(_,i)=>({
+    ...place(String(50000+i),'가나다 일반음식 '+i,'맛집'),
+    region:'경기',address:'경기도 수원시 팔달구 효원로 1',
+  }));
+  const fresh = Array.from({length:19},(_,i)=>{
+    const p=place(String(60000+i),'푸른 해물탕 '+i,'맛집');
+    return {...p,region:'경기',address:'경기도 양평군 양서면 양수로 1',
+      tourApi:{...p.tourApi,operation:'KorService2/searchKeyword2',modifiedTime:'20250401000000'}};
+  });
+  const result=buildPilotPlaces([...old,...fresh],{places:[]},{places:[]},120);
+  const keywordSeafood=result.filter(p=>p.tourApi?.operation==='KorService2/searchKeyword2' && p.intentTags.includes('seafood'));
+  assert.ok(keywordSeafood.length >= 8,'공식 키워드 새 수집 결과가 8곳 이상 노출되어야 함');
+  assert.ok(result.filter(p=>p.intentTags.includes('seafood')).length >= 12);
+  assert.ok(result.every(p=>p.image.startsWith('https://')));
+  assert.ok(result.every(p=>p.comfort.parking.value==='unknown'));
+});
