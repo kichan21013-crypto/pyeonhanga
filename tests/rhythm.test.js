@@ -47,10 +47,10 @@ test('세부활동을 직접 고르면 해당 활동과 맞는 후보로 즉시 
   const foodResults=recommendRhythms([cafe,korean,noodle],{...emptyRhythmFilters(),desires:['eat'],activities:['korean_food','noodle']});
   assert.deepEqual(foodResults.map(r=>r.place.id).sort(),['demo-korean','demo-noodle']);
 });
-test('세부 활동 정보가 없으면 결과를 비우지 않고 같은 욕구의 후보로 완화한다', () => {
+test('명시적으로 허용했을 때만 세부활동의 유사 추천을 제공한다', () => {
   const walk=sample('demo-walk-fallback',['walk']),food=sample('demo-food-fallback',['food']);
   food.category='맛집';
-  const results=recommendRhythms([food,walk],{...emptyRhythmFilters(),desires:['move'],activities:['run']});
+  const results=recommendRhythms([food,walk],{...emptyRhythmFilters(),desires:['move'],activities:['run'],allowActivityFallback:true});
   assert.equal(results.length,1);
   assert.equal(results[0].place.id,walk.id);
   assert.equal(results[0].selectedActivityMatches,0);
@@ -122,11 +122,24 @@ test('세부활동 정확한 후보가 없을 때만 유사 추천을 명확히 
   assert.deepEqual(exactResults.map(x=>x.place.id),['demo-exact-meat']);
   assert.equal(exactResults[0].fallbackActivity,false);
   assert.match(card(exactResults[0].place,false,f,exactResults[0]),/오늘의 리듬 · 고기/);
-  const similarResults=recommendRhythms([general],f);
+  assert.equal(recommendRhythms([general],f).length,0, '고기 선택시 일반 식사를 자동 추천하지 않는다');
+  const similarResults=recommendRhythms([general],{...f,allowActivityFallback:true});
   assert.equal(similarResults.length,1);
   assert.equal(similarResults[0].selectedActivityMatches,0);
   assert.equal(similarResults[0].fallbackActivity,true);
   const html=card(similarResults[0].place,false,f,similarResults[0]);
   assert.match(html,/유사 추천 · 식사/);
   assert.ok(!html.includes('오늘의 리듬 · 식사'));
+});
+
+
+test('해산물 선택에 카페와 일반 음식점이 섞이지 않으며 다중 선택은 OR로 작동한다', () => {
+  const seafood = sample('demo-seafood',['seafood']); seafood.category='맛집';
+  const cafe = sample('demo-cafe',['cafe']); cafe.category='맛집';
+  const food = sample('demo-food',['food']); food.category='맛집';
+  const f = { ...emptyRhythmFilters(), desires:['eat'], activities:['seafood'], region:food.region };
+  assert.deepEqual(recommendRhythms([cafe,food],f), []);
+  assert.deepEqual(recommendRhythms([cafe,food,seafood],f).map(x=>x.place.id),['demo-seafood']);
+  assert.deepEqual(recommendRhythms([seafood,cafe,food],{...f,activities:['seafood','cafe']}).map(x=>x.place.id).sort(), ['demo-cafe','demo-seafood']);
+  assert.ok(recommendRhythms([cafe,food],{...f,allowActivityFallback:true}).every(x=>x.fallbackActivity));
 });

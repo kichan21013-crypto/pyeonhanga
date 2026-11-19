@@ -1,6 +1,6 @@
-import { recommendRhythms, emptyRhythmFilters } from '/rhythm.js?v=20261118-v6';
-import { card } from '/ui.js?v=20261118-v6';
-import { savedIds } from '/storage.js?v=20261118-v6';
+import { recommendRhythms, emptyRhythmFilters } from '/rhythm.js?v=20261119-v9';
+import { card } from '/ui.js?v=20261119-v9';
+import { savedIds } from '/storage.js?v=20261119-v9';
 
 const qs = (selector, root = document) => root.querySelector(selector);
 const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -25,14 +25,16 @@ function filtersFromUi() {
   filters.transport = selectedValues('[data-transport]', 'transport')[0] || 'any';
   filters.region = qs('#region')?.value || '';
   filters.category = qs('#category')?.value || 'auto';
+  filters.allowActivityFallback = allowSimilarOnEmpty;
   return filters;
 }
 
 let livePlacesPromise = null;
 let liveVisibleCount = 6;
+let allowSimilarOnEmpty = false;
 function loadLivePlaces() {
   if (!livePlacesPromise) {
-    livePlacesPromise = fetch('/data/places.json?v=20261118-v6', { cache: 'no-store' })
+    livePlacesPromise = fetch('/data/places.json?v=20261119-v9', { cache: 'no-store' })
       .then(response => {
         if (!response.ok) throw new Error('live places load failed');
         return response.json();
@@ -55,9 +57,16 @@ async function renderLiveResults({ more = false } = {}) {
     const filters = filtersFromUi();
     const rhythms = recommendRhythms(places, filters);
     const ids = savedIds();
+    // 명시적 세부활동 선택이 0건일 때는 일반 장소를 맞는 장소처럼 섞지 않는다.
+    const strictEmpty = filters.activities.length > 0 && !allowSimilarOnEmpty && rhythms.length === 0;
+    const similarBanner = allowSimilarOnEmpty && filters.activities.length > 0 && rhythms.some(result => result.fallbackActivity)
+      ? '<div class="app-similar-notice"><strong>비슷한 장소를 보여드려요</strong><span>선택한 세부활동과 일치하는 장소는 아닙니다.</span><button type="button" data-hide-similar>정확한 조건만 보기</button></div>'
+      : '';
     grid.innerHTML = rhythms.length
-      ? rhythms.slice(0, liveVisibleCount).map(result => card(result.place, ids.includes(result.place.id), filters, result)).join('')
-      : '<div class="empty-state"><h3>조건에 맞는 장소가 아직 없어요</h3><p>다른 세부활동을 함께 골라보세요.</p></div>';
+      ? similarBanner + rhythms.slice(0, liveVisibleCount).map(result => card(result.place, ids.includes(result.place.id), filters, result)).join('')
+      : strictEmpty
+        ? '<div class="empty-state"><h3>이 지역에서 조건에 맞는 장소가 없어요</h3><p>다른 세부활동이나 지역을 골라주세요. 또는 조건을 넓혀 비슷한 장소를 볼 수 있어요.</p><button type="button" class="button secondary" data-show-similar>비슷한 장소 보기</button></div>'
+        : '<div class="empty-state"><h3>조건에 맞는 장소가 아직 없어요</h3><p>다른 지역 또는 활동을 골라보세요.</p></div>';
     const moreButton = qs('#app-load-more');
     if (moreButton) {
       moreButton.hidden = rhythms.length <= liveVisibleCount;
@@ -155,6 +164,7 @@ function setupHome() {
     const button = event.target.closest('[data-v6-region]');
     if (!button) return;
     const region = button.dataset.v6Region;
+    allowSimilarOnEmpty = false;
     const select = qs('#region');
     if (!select) return;
     select.value = region;
@@ -212,6 +222,7 @@ function setupHome() {
   };
 
   qsa('[data-desire]', desireGrid).forEach(button => button.addEventListener('click', () => {
+    allowSimilarOnEmpty = false;
     setTimeout(() => submitLive({ scroll:true }), 0);
   }));
 
@@ -230,10 +241,21 @@ function setupHome() {
   document.addEventListener('click', event => {
     const activity = event.target.closest?.('[data-activity]');
     if (!activity || !refinement?.contains(activity)) return;
+    allowSimilarOnEmpty = false;
     setTimeout(() => submitLive(), 0);
   }, true);
 
   document.addEventListener('click', event => {
+    if (event.target.closest('[data-show-similar]')) {
+      allowSimilarOnEmpty = true;
+      renderLiveResults();
+      return;
+    }
+    if (event.target.closest('[data-hide-similar]')) {
+      allowSimilarOnEmpty = false;
+      renderLiveResults();
+      return;
+    }
     const closeMore = event.target.closest('[data-live-more-close]');
     if (closeMore) {
       event.preventDefault();
@@ -248,6 +270,7 @@ function setupHome() {
       return;
     }
     if (event.target.closest('[data-reset], #reset-filters')) {
+      allowSimilarOnEmpty = false;
       document.body.classList.remove('v5-flow-active','v5-results-active','v5-live-active');
       results.dataset.mode = 'preview';
       refinement?.remove();
@@ -256,11 +279,17 @@ function setupHome() {
     }
 
     const liveFilter = event.target.closest('[data-companion],[data-duration],[data-transport],[data-comfort]');
-    if (liveFilter && refinement?.contains(liveFilter)) setTimeout(() => submitLive(), 0);
+    if (liveFilter && refinement?.contains(liveFilter)) {
+      allowSimilarOnEmpty = false;
+      setTimeout(() => submitLive(), 0);
+    }
   });
 
   document.addEventListener('change', event => {
-    if (event.target.matches('#region,#category') && refinement?.contains(event.target)) setTimeout(() => submitLive(), 0);
+    if (event.target.matches('#region,#category') && refinement?.contains(event.target)) {
+      allowSimilarOnEmpty = false;
+      setTimeout(() => submitLive(), 0);
+    }
   });
 
   results.dataset.mode = 'preview';

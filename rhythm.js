@@ -74,10 +74,12 @@ export function recommendRhythms(places, f = emptyRhythmFilters()) {
   }).filter(Boolean);
 
   // 사용자가 세부활동 칩을 직접 고른 경우에는 해당 활동과 실제로 맞는 장소를 먼저 '필터'처럼 좁힌다.
-  // 정확히 맞는 장소가 하나도 없을 때만 기존의 같은 욕구 fallback을 사용한다. 다중선택은 OR이다.
+  // 다중선택은 OR. 유사 활동은 사용자가 동의한 경우에만 별도 제공한다.
   if (selectedActivities.length) {
     const exactSelected = ranked.filter(result => result.selectedActivityMatches > 0);
-    if (exactSelected.length) {
+    // 정확한 세부 활동 검색은 다른 음식을 임의로 대체하지 않는다.
+    // 유사 추천은 사용자가 "비슷한 장소 보기"를 명시적으로 누른 경우에만 제공한다.
+    if (exactSelected.length || f.allowActivityFallback !== true) {
       return exactSelected.sort((a,b) => b.conditionMatches-a.conditionMatches || b.companionMatches-a.companionMatches || b.selectedActivityMatches-a.selectedActivityMatches || b.activityMatches-a.activityMatches || b.desireMatches-a.desireMatches || b.relevance-a.relevance || a.order-b.order);
     }
   }

@@ -1,31 +1,32 @@
 {
-  "generatedAt": "2026-10-21T07:46:38.697Z",
+  "generatedAt": "2026-11-19T05:09:56.055Z",
   "source": "data/places.json",
   "service": "Korea Tourism Organization KorWithService2/detailWithTour2",
   "strategy": "same region-balanced pilot as TourAPI detail enrichment, up to 30 per region",
   "summary": {
     "selected": 180,
-    "matched": 38,
-    "unmatched": 142,
+    "totalAvailable": 43,
+    "matched": 36,
+    "unmatched": 144,
     "errors": 0,
-    "matchRate": 21.1,
+    "matchRate": 20,
     "byRegion": {
-      "서울": 10,
-      "경기": 9,
-      "강릉": 12,
-      "경주": 1,
+      "서울": 9,
+      "경기": 8,
+      "강릉": 10,
+      "경주": 3,
       "부산": 3,
       "제주": 3
     },
-    "withParking": 12,
-    "withRoute": 29,
+    "withParking": 13,
+    "withRoute": 27,
     "withWheelchair": 3,
-    "withElevator": 8,
+    "withElevator": 6,
     "withRestroom": 12,
-    "withPublicTransport": 11,
+    "withPublicTransport": 8,
     "withStroller": 1,
-    "withFamilyInfo": 9,
-    "withVisualInfo": 12,
+    "withFamilyInfo": 10,
+    "withVisualInfo": 11,
     "withHearingInfo": 0
   },
   "errors": [],
@@ -127,28 +128,34 @@
       "contentId": "2495458"
     },
     {
-      "id": "tour-2871081",
-      "name": "생강김밥 본점",
+      "id": "tour-2733861",
+      "name": "서강팔경",
       "region": "서울",
-      "contentId": "2871081"
+      "contentId": "2733861"
     },
     {
-      "id": "tour-2807321",
-      "name": "박재성의 메밀숯불닭갈비",
+      "id": "tour-2819962",
+      "name": "인더베이글",
       "region": "서울",
-      "contentId": "2807321"
+      "contentId": "2819962"
     },
     {
-      "id": "tour-2755513",
-      "name": "다래함박스텍",
+      "id": "tour-2778425",
+      "name": "군산오징어 본점",
       "region": "서울",
-      "contentId": "2755513"
+      "contentId": "2778425"
     },
     {
-      "id": "tour-1756249",
-      "name": "강남목장",
+      "id": "tour-403283",
+      "name": "국화정원",
       "region": "서울",
-      "contentId": "1756249"
+      "contentId": "403283"
+    },
+    {
+      "id": "tour-2833461",
+      "name": "스시초심",
+      "region": "서울",
+      "contentId": "2833461"
     },
     {
       "id": "tour-125518",
@@ -259,22 +266,28 @@
       "contentId": "2738661"
     },
     {
-      "id": "tour-1013270",
-      "name": "남한산성 일번지",
+      "id": "tour-2850266",
+      "name": "쌍용해장국",
       "region": "경기",
-      "contentId": "1013270"
+      "contentId": "2850266"
     },
     {
-      "id": "tour-1013250",
-      "name": "청기와뼈다귀해장국 본점",
+      "id": "tour-2732323",
+      "name": "카페더공생",
       "region": "경기",
-      "contentId": "1013250"
+      "contentId": "2732323"
     },
     {
-      "id": "tour-856918",
-      "name": "양평해장국",
+      "id": "tour-2872295",
+      "name": "오늘도웃자두루치기 본점",
       "region": "경기",
-      "contentId": "856918"
+      "contentId": "2872295"
+    },
+    {
+      "id": "tour-2845574",
+      "name": "신간짬뽕",
+      "region": "경기",
+      "contentId": "2845574"
     },
     {
       "id": "tour-2753136",
@@ -307,6 +320,12 @@
       "contentId": "129029"
     },
     {
+      "id": "tour-2792307",
+      "name": "바람부리별밤캠핑장 관광농원",
+      "region": "강릉",
+      "contentId": "2792307"
+    },
+    {
       "id": "tour-2511677",
       "name": "정감이마을",
       "region": "강릉",
@@ -337,16 +356,40 @@
       "contentId": "125769"
     },
     {
-      "id": "tour-125669",
-      "name": "구룡폭포(소금강)",
+      "id": "tour-2662628",
+      "name": "보헤미안 박이추커피",
       "region": "강릉",
-      "contentId": "125669"
+      "contentId": "2662628"
     },
     {
       "id": "tour-2894037",
       "name": "오브더모먼트",
       "region": "강릉",
       "contentId": "2894037"
+    },
+    {
+      "id": "tour-2844107",
+      "name": "툇마루",
+      "region": "강릉",
+      "contentId": "2844107"
+    },
+    {
+      "id": "tour-2870203",
+      "name": "서당골산채",
+      "region": "강릉",
+      "contentId": "2870203"
+    },
+    {
+      "id": "tour-623279",
+      "name": "옛날초당순두부",
+      "region": "강릉",
+      "contentId": "623279"
+    },
+    {
+      "id": "tour-2789528",
+      "name": "점봉산산채산나물천국",
+      "region": "강릉",
+      "contentId": "2789528"
     },
     {
       "id": "tour-2775525",
@@ -365,24 +408,6 @@
       "name": "강릉꼬막집 독도네 본점",
       "region": "강릉",
       "contentId": "2775529"
-    },
-    {
-      "id": "tour-2775555",
-      "name": "토담순두부",
-      "region": "강릉",
-      "contentId": "2775555"
-    },
-    {
-      "id": "tour-133817",
-      "name": "강릉감자옹심 강릉본점",
-      "region": "강릉",
-      "contentId": "133817"
-    },
-    {
-      "id": "tour-2775521",
-      "name": "장안횟집",
-      "region": "강릉",
-      "contentId": "2775521"
     },
     {
       "id": "tour-128430",
@@ -443,18 +468,6 @@
       "name": "경주 인왕동 사지",
       "region": "경주",
       "contentId": "250281"
-    },
-    {
-      "id": "tour-128681",
-      "name": "경주 신문왕릉",
-      "region": "경주",
-      "contentId": "128681"
-    },
-    {
-      "id": "tour-319571",
-      "name": "경주 경애왕릉",
-      "region": "경주",
-      "contentId": "319571"
     },
     {
       "id": "tour-250262",
@@ -929,7 +942,8 @@
         "hasFamilyInfo": true,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1364975",
@@ -976,7 +990,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1364932",
@@ -1023,7 +1038,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-699249",
@@ -1070,7 +1086,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126482",
@@ -1117,7 +1134,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1602451",
@@ -1164,7 +1182,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-127942",
@@ -1211,7 +1230,8 @@
         "hasFamilyInfo": true,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2724392",
@@ -1258,7 +1278,8 @@
         "hasFamilyInfo": true,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-678899",
@@ -1305,7 +1326,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2818756",
@@ -1352,7 +1374,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-127688",
@@ -1399,7 +1422,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2650828",
@@ -1446,7 +1470,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2674763",
@@ -1493,7 +1518,8 @@
         "hasFamilyInfo": true,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126618",
@@ -1540,7 +1566,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2799624",
@@ -1587,7 +1614,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2859801",
@@ -1634,7 +1662,8 @@
         "hasFamilyInfo": true,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2829956",
@@ -1681,7 +1710,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-3588837",
@@ -1728,7 +1758,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-1846815",
@@ -1775,7 +1806,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-585615",
@@ -1822,7 +1854,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-3454461",
@@ -1869,7 +1902,8 @@
         "hasFamilyInfo": true,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128359",
@@ -1916,7 +1950,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-125768",
@@ -1963,7 +1998,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2662628",
@@ -2010,7 +2046,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-2871246",
@@ -2057,7 +2094,8 @@
         "hasFamilyInfo": true,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2775515",
@@ -2104,7 +2142,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2808098",
@@ -2151,7 +2190,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2876196",
@@ -2198,7 +2238,8 @@
         "hasFamilyInfo": true,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2818352",
@@ -2245,7 +2286,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-610465",
@@ -2292,7 +2334,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-133497",
@@ -2339,7 +2382,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-590997",
@@ -2362,7 +2406,7 @@
         "handicapetc": "의무실",
         "braileblock": null,
         "helpdog": null,
-        "guidehuman": "안내요원 있음",
+        "guidehuman": null,
         "audioguide": null,
         "bigprint": null,
         "brailepromotion": null,
@@ -2378,15 +2422,16 @@
         "infantsfamilyetc": "미아보호실"
       },
       "completeness": {
-        "knownFields": 8,
+        "knownFields": 7,
         "totalFields": 28,
         "hasMobilityInfo": true,
         "hasRestroomInfo": true,
         "hasParkingInfo": true,
         "hasFamilyInfo": true,
-        "hasVisualInfo": true,
+        "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128810",
@@ -2433,7 +2478,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2617724",
@@ -2480,7 +2526,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": true,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128886",
@@ -2527,7 +2574,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2723542",
@@ -2549,7 +2597,7 @@
         "room": null,
         "handicapetc": "휠체어 이동 가능한 산책로 있음",
         "braileblock": null,
-        "helpdog": "동반가능_시각장애인 편의시설",
+        "helpdog": null,
         "guidehuman": null,
         "audioguide": null,
         "bigprint": null,
@@ -2566,15 +2614,16 @@
         "infantsfamilyetc": null
       },
       "completeness": {
-        "knownFields": 4,
+        "knownFields": 3,
         "totalFields": 28,
         "hasMobilityInfo": true,
         "hasRestroomInfo": false,
         "hasParkingInfo": false,
         "hasFamilyInfo": false,
-        "hasVisualInfo": true,
+        "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-129395",
@@ -2583,8 +2632,8 @@
       "category": "나들이",
       "contentId": "129395",
       "facts": {
-        "parking": "장애인 전용 주차구역 있음_무장애 편의시설",
-        "route": "공원 진입로에 휠체어 이동가능한 목재데크 설치됨 경사로 설치됨 미끄럼 방지 설비가 되어 있음",
+        "parking": "장애인 전용 주차구역 있음(걸매생태공원 주차장 4대)",
+        "route": "공원 진입로에 휠체어 이동 가능한 목재데크 설치됨경사로 설치됨미끄럼 방지 설비가 되어 있음",
         "publictransport": null,
         "ticketoffice": null,
         "promotion": null,
@@ -2621,7 +2670,8 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2755895",
@@ -2668,7 +2718,248 @@
         "hasFamilyInfo": false,
         "hasVisualInfo": false,
         "hasHearingInfo": false
-      }
+      },
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2830222",
+      "name": "블루문",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2830222",
+      "facts": {
+        "parking": "장애인 주차장 있음 (1면, 건물 뒷편)",
+        "route": "주 출입구 경사로 완만함",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": "건물 입구 점자블록 있음",
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": "화장실 내 기저귀 교환대 있음"
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": true,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      },
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2871297",
+      "name": "대동면옥 강릉점",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2871297",
+      "facts": {
+        "parking": null,
+        "route": "출입구까지 경사로 설치되어 있음",
+        "publictransport": "300번 버스, 율곡중학교역 하차 후 도보 7분",
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": "경사로 있음",
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": "점자블록 있음(주출입구)_시각장애인 편의시설",
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 4,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": true,
+        "hasHearingInfo": false
+      },
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2845593",
+      "name": "강릉불고기 초당점",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2845593",
+      "facts": {
+        "parking": "위치 : 지상주차장, 개수 : 1대",
+        "route": "출입구에 턱이 없어 휠체어 접근 가능",
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 2,
+        "totalFields": 28,
+        "hasMobilityInfo": true,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": true,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      },
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-128681",
+      "name": "경주 신문왕릉",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "128681",
+      "facts": {
+        "parking": null,
+        "route": null,
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 0,
+        "totalFields": 28,
+        "hasMobilityInfo": false,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      },
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-319571",
+      "name": "경주 경애왕릉",
+      "region": "경주",
+      "category": "나들이",
+      "contentId": "319571",
+      "facts": {
+        "parking": null,
+        "route": null,
+        "publictransport": null,
+        "ticketoffice": null,
+        "promotion": null,
+        "wheelchair": null,
+        "exit": null,
+        "elevator": null,
+        "restroom": null,
+        "auditorium": null,
+        "room": null,
+        "handicapetc": null,
+        "braileblock": null,
+        "helpdog": null,
+        "guidehuman": null,
+        "audioguide": null,
+        "bigprint": null,
+        "brailepromotion": null,
+        "guidesystem": null,
+        "blindhandicapetc": null,
+        "signguide": null,
+        "videoguide": null,
+        "hearingroom": null,
+        "hearinghandicapetc": null,
+        "stroller": null,
+        "lactationroom": null,
+        "babysparechair": null,
+        "infantsfamilyetc": null
+      },
+      "completeness": {
+        "knownFields": 0,
+        "totalFields": 28,
+        "hasMobilityInfo": false,
+        "hasRestroomInfo": false,
+        "hasParkingInfo": false,
+        "hasFamilyInfo": false,
+        "hasVisualInfo": false,
+        "hasHearingInfo": false
+      },
+      "verifiedAt": "2026-11-19"
     }
   ],
   "note": "원문 무장애 정보를 수집한 검증 리포트이며 comfort 좋음/보통/부담 있음 평가는 자동 생성하지 않습니다."

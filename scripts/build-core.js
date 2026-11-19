@@ -14,7 +14,7 @@ const sourcePlaces = JSON.parse(await readFile(resolve(root, 'data/places.json')
 const generalReport = JSON.parse(await readFile(resolve(root, 'data/tourapi-enrichment-report.json'), 'utf8'));
 const barrierReport = JSON.parse(await readFile(resolve(root, 'data/barrierfree-enrichment-report.json'), 'utf8'));
 validatePlaces(sourcePlaces);
-const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 80);
+const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 120);
 validatePlaces(places);
 const siteUrl = (process.env.SITE_URL || process.env.CF_PAGES_URL || 'http://localhost:4173').replace(/\/$/, '');
 if (!/^https?:\/\/[^/]+$/.test(siteUrl)) throw new Error('SITE_URL에는 https://서비스주소 형태의 주소를 입력하세요.');
@@ -34,7 +34,7 @@ function page({ title, description, path, content, page = 'info', id = '', image
 }
 await rm(out, { recursive: true, force: true }); await mkdir(out, { recursive: true });
 for (const file of ['styles.css', 'mobile-ux.css', 'app.js', 'ui.js', 'verified-facts.js', 'analytics.js', 'storage.js', 'comfort-score.js', 'search.js', 'rhythm.js', 'actions.js', 'flow.js', 'assets', 'data']) await cp(resolve(root, file), resolve(out, file), { recursive: true });
-// 실사진과 주소·좌표가 확인된 후보를 지역별 최대 80곳까지 공개합니다. 미확인 편안함 점수는 생성하지 않습니다.
+// 검증된 주소·좌표와 실사진 비중을 유지하며 지역별 최대 120곳을 선정합니다. 미확인 편안함 점수는 생성하지 않습니다.
 await writeFile(resolve(out, 'data', 'places.json'), JSON.stringify(places, null, 2) + '\n');
 let configInput;
 if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
@@ -63,3 +63,10 @@ await writeFile(resolve(out, '_headers'), `/*\n${!INDEXING_ENABLED ? '  X-Robots
 const regionCounts = places.reduce((acc,p) => (acc[p.region] = (acc[p.region] || 0) + 1, acc), {});
 const activityCounts = ['korean_food','noodle','meat','seafood','cafe','walk','run','drive'].map(t => [t, places.filter(p => p.intentTags.includes(t)).length]);
 console.log(`빌드 완료: 공개 장소 ${places.length}개 / 원천 ${sourcePlaces.length}개 · 지역별 ${JSON.stringify(regionCounts)} · 활동별 ${JSON.stringify(Object.fromEntries(activityCounts))}`);
+const activityCoverage = Object.fromEntries(['서울','경기','강릉','경주','부산','제주'].map(region => [
+  region,
+  Object.fromEntries(['korean_food','noodle','meat','seafood','cafe','walk','run','drive'].map(tag =>
+    [tag, places.filter(p => p.region === region && p.intentTags.includes(tag)).length]))
+]));
+console.log(`세부활동 지역별 확인 후보(카테고리 태그 기준): ${JSON.stringify(activityCoverage)}`);
+
