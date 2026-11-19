@@ -1,6 +1,6 @@
-import { recommendRhythms, emptyRhythmFilters } from '/rhythm.js?v=20261119-v9';
-import { card } from '/ui.js?v=20261119-v9';
-import { savedIds } from '/storage.js?v=20261119-v9';
+import { recommendRhythms, emptyRhythmFilters, ACTIVITIES } from '/rhythm.js?v=20261119-v10';
+import { card, escapeHtml } from '/ui.js?v=20261119-v10';
+import { savedIds } from '/storage.js?v=20261119-v10';
 
 const qs = (selector, root = document) => root.querySelector(selector);
 const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -34,7 +34,7 @@ let liveVisibleCount = 6;
 let allowSimilarOnEmpty = false;
 function loadLivePlaces() {
   if (!livePlacesPromise) {
-    livePlacesPromise = fetch('/data/places.json?v=20261119-v9', { cache: 'no-store' })
+    livePlacesPromise = fetch('/data/places.json?v=20261119-v10', { cache: 'no-store' })
       .then(response => {
         if (!response.ok) throw new Error('live places load failed');
         return response.json();
@@ -59,14 +59,19 @@ async function renderLiveResults({ more = false } = {}) {
     const ids = savedIds();
     // 명시적 세부활동 선택이 0건일 때는 일반 장소를 맞는 장소처럼 섞지 않는다.
     const strictEmpty = filters.activities.length > 0 && !allowSimilarOnEmpty && rhythms.length === 0;
+    const anotherMeal = filters.activities.some(value => ['seafood','meat','noodle','korean_food'].includes(value));
+    const fallbackLabel = anotherMeal ? '다른 식사 장소' : '비슷한 장소';
+    const chosenLabel = filters.activities.map(value => ACTIVITIES[value]?.[0]).filter(Boolean).join(' · ');
+    const areaLabel = filters.region || '선택한 지역';
     const similarBanner = allowSimilarOnEmpty && filters.activities.length > 0 && rhythms.some(result => result.fallbackActivity)
-      ? '<div class="app-similar-notice"><strong>비슷한 장소를 보여드려요</strong><span>선택한 세부활동과 일치하는 장소는 아닙니다.</span><button type="button" data-hide-similar>정확한 조건만 보기</button></div>'
+      ? `<div class="app-similar-notice"><strong>${fallbackLabel}를 보여드려요</strong><span>선택한 세부활동과 일치하는 장소는 아닙니다.</span><button type="button" data-hide-similar>정확한 조건만 보기</button></div>`
       : '';
     grid.innerHTML = rhythms.length
       ? similarBanner + rhythms.slice(0, liveVisibleCount).map(result => card(result.place, ids.includes(result.place.id), filters, result)).join('')
       : strictEmpty
-        ? '<div class="empty-state"><h3>이 지역에서 조건에 맞는 장소가 없어요</h3><p>다른 세부활동이나 지역을 골라주세요. 또는 조건을 넓혀 비슷한 장소를 볼 수 있어요.</p><button type="button" class="button secondary" data-show-similar>비슷한 장소 보기</button></div>'
+        ? `<div class="empty-state"><h3>${escapeHtml(areaLabel)} · ${escapeHtml(chosenLabel)} 0곳</h3><p>현재 확인된 정확한 추천이 없어요. 다른 활동이나 지역을 선택할 수 있어요.</p><button type="button" class="button secondary" data-show-similar>${fallbackLabel} 보기</button></div>`
         : '<div class="empty-state"><h3>조건에 맞는 장소가 아직 없어요</h3><p>다른 지역 또는 활동을 골라보세요.</p></div>';
+    grid.classList.toggle('is-empty',rhythms.length===0);
     const moreButton = qs('#app-load-more');
     if (moreButton) {
       moreButton.hidden = rhythms.length <= liveVisibleCount;
