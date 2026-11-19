@@ -14,7 +14,7 @@ const sourcePlaces = JSON.parse(await readFile(resolve(root, 'data/places.json')
 const generalReport = JSON.parse(await readFile(resolve(root, 'data/tourapi-enrichment-report.json'), 'utf8'));
 const barrierReport = JSON.parse(await readFile(resolve(root, 'data/barrierfree-enrichment-report.json'), 'utf8'));
 validatePlaces(sourcePlaces);
-const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 80);
+const places = buildPilotPlaces(sourcePlaces, generalReport, barrierReport, 120);
 validatePlaces(places);
 const siteUrl = (process.env.SITE_URL || process.env.CF_PAGES_URL || 'http://localhost:4173').replace(/\/$/, '');
 if (!/^https?:\/\/[^/]+$/.test(siteUrl)) throw new Error('SITE_URL에는 https://서비스주소 형태의 주소를 입력하세요.');
@@ -34,7 +34,7 @@ function page({ title, description, path, content, page = 'info', id = '', image
 }
 await rm(out, { recursive: true, force: true }); await mkdir(out, { recursive: true });
 for (const file of ['styles.css', 'mobile-ux.css', 'app.js', 'ui.js', 'verified-facts.js', 'analytics.js', 'storage.js', 'comfort-score.js', 'search.js', 'rhythm.js', 'actions.js', 'flow.js', 'assets', 'data']) await cp(resolve(root, file), resolve(out, file), { recursive: true });
-// 실사진과 주소·좌표가 확인된 후보를 지역별 최대 80곳까지 공개합니다. 미확인 편안함 점수는 생성하지 않습니다.
+// 검증된 주소·좌표와 실사진 비중을 유지하며 지역별 최대 120곳을 선정합니다. 미확인 편안함 점수는 생성하지 않습니다.
 await writeFile(resolve(out, 'data', 'places.json'), JSON.stringify(places, null, 2) + '\n');
 let configInput;
 if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
