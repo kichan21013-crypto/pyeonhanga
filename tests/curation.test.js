@@ -112,3 +112,13 @@ test('추천 이유는 사실형 이용정보를 과장 없이 요약한다', ()
   };
   assert.equal(verifiedRecommendationReason(p), '주차와 이용시간 정보를 확인해 두었어요');
 });
+
+
+test('새 공개 풀은 지역당 80개까지 확장하되 사진 없는 원천 장소를 무리하게 노출하지 않는다', () => {
+ const places = Array.from({length:85}, (_,i)=>place(String(5000+i),'실사진 '+i, i%2 ? '나들이':'맛집'));
+ places.push({...place('5999','사진 없는 장소'), image:'/assets/garden.svg'});
+ const result = buildPilotPlaces(places, {places:[]}, {places:[]}, 80);
+ assert.equal(result.length, 80);
+ assert.ok(result.every(p=>p.image.startsWith('https://')));
+ assert.ok(result.every(p=>p.comfort.parking.value==='unknown'));
+});
