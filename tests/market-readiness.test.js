@@ -44,21 +44,31 @@ test('편안함 선호 여러 개를 골라도 broad 추천 결과가 0건으로
   }
 });
 
-test('희소한 세부 활동도 같은 욕구의 부분일치 후보로 완화된다', () => {
+test('사용자가 허용했을 때만 희소 세부활동의 유사 후보를 노출한다', () => {
   for (const region of regions) {
-    const running = results(region, { desires: ['move'], activities: ['run'], comforts: ['walking','restroom'] });
+    const running = results(region, { desires: ['move'], activities: ['run'], comforts: ['walking','restroom'], allowActivityFallback: true });
     assert.ok(running.length >= 1, `${region} · 러닝 fallback 0건`);
     assert.ok(running.some(item => item.activityMatches > 0 || item.fallbackActivity), `${region} · 러닝 부분일치 표시 없음`);
   }
 });
 
 test('확대된 공개 추천 풀은 지역당 충분한 후보와 실제 이미지 80% 이상을 유지한다', () => {
-  assert.ok(places.length > 180 && places.length <= 480, `공개 ${places.length}곳`);
+  assert.ok(places.length > 180 && places.length <= 720, `공개 ${places.length}곳`);
   for (const region of regions) {
     const regional = places.filter(place => place.region === region);
     const sourceRegional = sourcePlaces.filter(place => place.region === region && /^https:\/\//.test(place.image || ''));
     assert.ok(regional.length >= 25, `${region}: ${regional.length}개`);
     const realImages = regional.filter(place => /^https:\/\//.test(place.image || ''));
     assert.ok(realImages.length >= Math.ceil(regional.length * 0.8), `${region}: 선택 실사진 ${realImages.length}/${regional.length} · 원천 실사진 ${sourceRegional.length}개`);
+  }
+});
+
+
+test('실제 추천 풀에서 세부 활동을 선택하면 비슷한 음식 대신 정확한 것만 보여준다', () => {
+  for (const region of regions) {
+    for (const activity of ['seafood','cafe','noodle','run']) {
+      const exact = results(region, {desires:['eat','move'],activities:[activity]});
+      assert.ok(exact.every(result=>result.selectedActivityMatches > 0), `${region} ${activity} 잘못된 대체 추천`);
+    }
   }
 });
