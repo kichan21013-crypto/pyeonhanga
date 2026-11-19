@@ -4,49 +4,52 @@ import { readFile } from 'node:fs/promises';
 
 const fromRoot = path => readFile(new URL('../'+path, import.meta.url), 'utf8');
 
-test('새 나가치 디자인은 외부 CSS·유료 폰트 없이 기존 자산 위에 마지막으로 적용한다', async () => {
-  const mobile = await fromRoot('mobile-ux.css');
-  const design = await fromRoot('assets/v9-product-redesign.css');
-  assert.ok(mobile.trimEnd().endsWith("@import url('/assets/v9-product-redesign.css');"));
-  assert.match(design,/--n-primary:/);
-  assert.match(design,/app-quick-shortcuts/);
-  assert.match(design,/prefers-reduced-motion/);
-  assert.doesNotMatch(design,/@import\s+url\(['"]https?:/);
-  assert.doesNotMatch(design,/fonts\.googleapis|fonts\.gstatic/);
+test('새 나가치 홈은 카테고리 단일 영역과 실제 사진 중심 목록으로 구성한다',async()=>{
+  const js=await fromRoot('assets/v12-direct-home.js');
+  const css=await fromRoot('assets/v12-direct-home.css');
+  assert.match(js,/뭐 하고 싶으세요\?/);
+  assert.match(js,/n12-categories/);
+  assert.match(js,/n12-grid/);
+  assert.match(js,/n12-card/);
+  assert.match(js,/data-n12-category/);
+  assert.doesNotMatch(js,/기분 따라 고르기|app-category-grid|shortcut.*desireButton/);
+  assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(css,/\.n12-photo img/);
+  assert.match(css,/\.n12-save/);
+  assert.match(css,/\.n12-nav/);
 });
 
-test('원터치 선택은 기존 활동·욕구 버튼을 사용해 정확 일치 추천을 실행한다', async () => {
-  const source = await fromRoot('assets/v5-app-home.js');
-  for (const activity of ['seafood','cafe','walk','meat','drive','run'])
-    assert.match(source,new RegExp("activity:'"+activity+"'"));
-  assert.match(source,/shortcuts\.addEventListener\('click'/);
-  assert.match(source,/data-quick-activity/);
-  assert.match(source,/desireButton\?\.click\(\)/);
-  assert.match(source,/allowSimilarOnEmpty = false/);
-  assert.match(source,/submitLive\(\{scroll:true\}\)/);
-  assert.match(source,/data-edit-choices/);
-  assert.match(source,/data-retry-recommend/);
-  assert.match(source,/aria-busy/);
+test('기존 추천·저장·상세·출처 데이터를 유지하고 가짜 평점은 넣지 않는다',async()=>{
+  const js=await fromRoot('assets/v12-direct-home.js');
+  assert.match(js,/recommendRhythms\(catalog,filters\)/);
+  assert.match(js,/savedIds\(\)/);
+  assert.match(js,/data-save/);
+  assert.match(js,/placeUrl\(place\)/);
+  assert.match(js,/verifiedFacts\?\.general/);
+  assert.doesNotMatch(js,/userRating|4\.9|별점|배달/);
 });
 
-test('빌드된 모든 핵심 화면은 같은 디자인과 모바일 3개 메뉴를 사용한다', async () => {
-  const index = await fromRoot('dist/index.html');
-  const saved = await fromRoot('dist/saved.html');
-  const build = await fromRoot('scripts/build-core.js');
-  const packageJson = JSON.parse(await fromRoot('package.json'));
-  assert.match(index,/mobile-ux\.css\?v=20261119-v11/);
-  assert.match(saved,/mobile-ux\.css\?v=20261119-v11/);
-  assert.match(index,/v5-app-home\.js\?v=20261119-v11/);
+test('홈과 저장·상세 화면은 서로 이동하고 캐시 변경이 적용된다',async()=>{
+  const index=await fromRoot('dist/index.html');
+  const saved=await fromRoot('dist/saved.html');
+  const build=await fromRoot('scripts/build-core.js');
+  assert.match(index,/v12-direct-home\.js\?v=20261119-v12/);
+  assert.match(index,/v12-direct-home\.css\?v=20261119-v12/);
+  assert.match(index,/mobile-ux\.css\?v=20261119-v12/);
+  assert.match(saved,/mobile-ux\.css\?v=20261119-v12/);
   assert.match(saved,/class="n-mobile-nav"/);
-  assert.match(saved,/저장<\/span>/);
   assert.match(build,/mobileNav\('recommend'\)/);
   assert.match(build,/mobileNav\('saved'\)/);
-  assert.ok(!('dependencies' in packageJson),'기본 기능에 유료 SDK나 외부 패키지 의존을 추가하지 않음');
+  assert.doesNotMatch(index,/v5-app-home\.js\?v=/);
 });
 
-test('장소 카드 제목은 활동 분류가 아니라 실제 장소명을 먼저 노출한다', async () => {
-  const source = await fromRoot('ui.js');
-  assert.ok(source.includes('escapeHtml(p.name)}</a></h3>'));
-  assert.match(source,/aria-label=.*저장/);
-  assert.match(source,/rhythm\?\.fallbackActivity/);
+test('무료 운영: 외부 UI·폰트·유료 SDK 없이 기존 스택만 사용한다',async()=>{
+  const css=await fromRoot('assets/v12-direct-home.css');
+  const js=await fromRoot('assets/v12-direct-home.js');
+  const pkg=JSON.parse(await fromRoot('package.json'));
+  assert.ok(!('dependencies' in pkg));
+  assert.doesNotMatch(css,/@import|fonts\.googleapis|fonts\.gstatic/);
+  assert.doesNotMatch(js,/https?:\/\/|openai\.com|maps\.googleapis\.com|billing/);
+  assert.match(css,/prefers-reduced-motion/);
+  assert.match(js,/aria-busy/);
 });
