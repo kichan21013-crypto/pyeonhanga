@@ -114,26 +114,107 @@ function showCopyFallback(url, p) {
   dialog.onclose = () => { dialog.remove(); if (trigger?.isConnected) trigger.focus(); };
 }
 const choices = SURVEY_CHOICES;
-function companionDialog(p) {
+function companionDialog(p, trigger = null) {
+  if (document.querySelector('dialog.n13-survey-dialog')) return;
+  // 별개의 퍼널 지표: 관심을 연 사람 vs 설문까지 제출한 사람.
   trackRhythm('companion_interest', { ...metadata(p), ...rhythmContext(p) });
   const dialog = document.createElement('dialog');
+  dialog.className = 'n13-survey-dialog';
   const responseId = anonymousId();
-  const select = (name, label) => `<label for="survey-${name}">${label}<select id="survey-${name}" name="${name}" required><option value="">선택해 주세요</option>${choices[name].map(v => `<option>${v}</option>`).join('')}</select></label>`;
-  dialog.setAttribute('aria-labelledby', 'survey-title');
-  dialog.innerHTML = `<div class="dialog-content"><div class="dialog-heading"><h2 id="survey-title">같이 할 사람이 있으면 좋겠어요</h2><button class="close-dialog" aria-label="설문 닫기">×</button></div><form class="survey"><p><strong>${escapeHtml(p.name)}</strong>에서 어떤 동행을 원하시나요?</p><p class="notice">시장 수요를 알아보기 위한 설문입니다. 실제 연결·예약·결제는 없으며 이름과 연락처를 받지 않습니다.</p>${select('age', '연령대')}${select('preference', '희망 동행')}${select('purpose', '목적')}${select('group_size', '선호 인원')}<fieldset><legend>비슷한 연령과 취향의 멤버를 플랫폼이 대신 구성해준다면 어느 정도까지 지불할 의향이 있나요?</legend>${choices.willingness.map((v, i) => `<label class="radio-option" for="willingness-${i}"><input type="radio" id="willingness-${i}" name="willingness" value="${v}" required> ${v}</label>`).join('')}</fieldset><p class="small-text">${analyticsEnabled ? '선택 항목과 익명 브라우저 식별값을 수요 분석에 사용합니다. 개인정보는 입력하지 마세요.' : '지금은 설문 체험 모드입니다. 분석 연결 전에는 응답이 전송되거나 저장되지 않아요.'} ${p.isDemo ? '이 가상 장소의 응답은 실제 시장 KPI에서 제외됩니다.' : ''} <a href="/privacy.html" target="_blank" rel="noopener">데이터 안내 ↗</a></p><button type="submit" class="button primary full">${analyticsEnabled ? '동의하고 의견 남기기' : '응답 체험 완료'}</button><p class="survey-status" role="status"></p></form></div>`;
-  document.body.append(dialog); dialog.showModal();
+  const safe = value => escapeHtml(value);
+  const select = (name, label) =>
+    '<label for="survey-' + name + '">' + label +
+    '<select id="survey-' + name + '" name="' + name + '" required>' +
+    '<option value="">선택해 주세요</option>' +
+    choices[name].map(v => '<option value="' + safe(v) + '">' + safe(v) + '</option>').join('') +
+    '</select></label>';
+  const willingness = choices.willingness.map((value,i) =>
+    '<label class="radio-option" for="willingness-' + i + '">' +
+    '<input type="radio" id="willingness-' + i + '" name="willingness" value="' + safe(value) + '" required> ' + safe(value) + '</label>'
+  ).join('');
+  dialog.setAttribute('aria-labelledby','survey-title');
+  dialog.innerHTML = '<div class="dialog-content">' +
+    '<div class="dialog-heading"><h2 id="survey-title">나가치 동행 희망 남기기</h2>' +
+    '<button type="button" class="close-dialog" aria-label="설문 닫기">×</button></div>' +
+    '<div class="n13-survey-progress" aria-label="2단계 중 1단계"><span class="is-active"></span><span></span></div>' +
+    '<p class="n13-survey-step-title">1 / 2 · 함께 가고 싶은 방식</p>' +
+    '<form class="survey" id="companion-survey">' +
+    '<p class="n13-intro"><strong>' + safe(p.name) + '</strong>에서의 동행을 생각해 주세요.</p>' +
+    '<div class="n13-disclaimer">지금은 실제 사람 연결이 아닌 수요 조사 단계입니다. 이름·연락처를 받지 않고, 예약이나 결제도 진행하지 않습니다. 초기 응답 대상은 50세 이상입니다.</div>' +
+    '<div class="n13-survey-step" data-n13-step="1">' +
+    select('age','연령대') + select('preference','어떤 동행이 좋으세요?') +
+    select('purpose','동행 목적') +
+    '<button type="button" class="button primary full" data-n13-next>다음 · 참여 조건 고르기 →</button>' +
+    '</div>' +
+    '<div class="n13-survey-step" data-n13-step="2" hidden>' +
+    select('group_size','몇 명이 편하실까요?') +
+    '<fieldset><legend>비슷한 취향의 사람들과 함께할 모임을 나가치가 구성한다면, 서비스비는 어느 정도가 적당할까요? (식사·교통·입장료 별도)</legend>' +
+    willingness + '</fieldset>' +
+    '<label class="n13-consent"><input type="checkbox" name="consent" value="yes" required> 동행 수요 분석을 위해 선택한 답변과 익명 브라우저 식별값을 저장하는 데 동의합니다. <a href="/privacy.html" target="_blank" rel="noopener">데이터 안내</a></label>' +
+    '<button type="submit" class="button primary full">' + (analyticsEnabled ? '동의하고 동행 희망 제출' : '설문 체험 완료 (미저장)') + '</button>' +
+    '<button type="button" class="n13-back" data-n13-back>← 이전 단계</button>' +
+    '</div>' +
+    '<p class="survey-status" role="status">' +
+    (analyticsEnabled ? '동의 후 제출한 응답만 저장됩니다.' : '현재 분석 서버가 연결되지 않아 작성한 응답은 저장되지 않습니다.') +
+    '</p></form></div>';
+  document.body.append(dialog);
+  dialog.showModal();
+  const form = dialog.querySelector('form');
+  const step1 = dialog.querySelector('[data-n13-step="1"]');
+  const step2 = dialog.querySelector('[data-n13-step="2"]');
+  const progress = dialog.querySelector('.n13-survey-progress');
+  const stepLabel = dialog.querySelector('.n13-survey-step-title');
+  const status = dialog.querySelector('.survey-status');
+  const showStep = number => {
+    step1.hidden = number !== 1;
+    step2.hidden = number !== 2;
+    progress.children[0].classList.add('is-active');
+    progress.children[1].classList.toggle('is-active',number===2);
+    progress.setAttribute('aria-label','2단계 중 '+number+'단계');
+    stepLabel.textContent = number === 1 ? '1 / 2 · 함께 가고 싶은 방식' : '2 / 2 · 참여 조건과 서비스비';
+    status.textContent = number===2
+      ? (analyticsEnabled ? '동의 후 제출한 응답만 저장됩니다.' : '현재 분석 서버가 미연결 상태로 응답은 저장되지 않습니다.')
+      : '';
+    dialog.scrollTop = 0;
+  };
+  dialog.querySelector('[data-n13-next]').onclick = () => {
+    const inputs = [...step1.querySelectorAll('[required]')];
+    const invalid = inputs.find(input => !input.checkValidity());
+    if (invalid) { invalid.reportValidity(); return; }
+    showStep(2);
+    step2.querySelector('select')?.focus({preventScroll:true});
+  };
+  dialog.querySelector('[data-n13-back]').onclick = () => { showStep(1); step1.querySelector('select')?.focus({preventScroll:true}); };
   dialog.querySelector('.close-dialog').onclick = () => dialog.close();
-  dialog.onclose = () => { dialog.remove(); ($('#companion-open') || document.querySelector(`[data-companion-interest="${p.id}"]`))?.focus(); };
-  dialog.querySelector('form').onsubmit = async event => {
-    event.preventDefault(); const form = event.currentTarget;
+  dialog.onclose = () => {
+    dialog.remove();
+    if (trigger?.isConnected) trigger.focus();
+    else ($('#companion-open') || document.querySelector('[data-companion-interest]'))?.focus();
+  };
+  form.onsubmit = async event => {
+    event.preventDefault();
     if (!form.reportValidity()) return;
-    const button = form.querySelector('[type=submit]'); button.disabled = true;
+    const button = form.querySelector('[type=submit]');
+    if (button.disabled) return;
+    button.disabled = true;
     const values = Object.fromEntries(new FormData(form));
-    const success = await trackRhythm('premium_willingness', { ...metadata(p), ...rhythmContext(p), ...values, response_id: responseId });
+    delete values.consent; // 동의 체크 원문은 분석 이벤트에 보관하지 않음
+    const success = analyticsEnabled && await trackRhythm('premium_willingness', {
+      ...metadata(p), ...rhythmContext(p), ...values, response_id:responseId,
+    });
     if (analyticsEnabled && !success) {
-      button.disabled = false; form.querySelector('[role=status]').textContent = '응답을 전송하지 못했어요. 잠시 후 다시 눌러 주세요.'; return;
+      button.disabled = false;
+      status.textContent = '서버에 저장하지 못했습니다. 연결을 확인하고 다시 제출해 주세요.';
+      return;
     }
-    dialog.querySelector('.dialog-content').innerHTML = `<div class="dialog-heading"><h2 id="survey-title">의견을 선택했어요</h2><button class="close-dialog" aria-label="닫기">×</button></div><p>${analyticsEnabled ? '응답을 저장했습니다. 더 편안한 동행을 준비하는 데 참고하겠습니다.' : '설문 체험을 완료했어요. 현재 분석 연결이 없어 응답은 저장되지 않았습니다.'}</p><p class="notice">실제 연결이나 결제는 진행되지 않습니다.</p><button class="button primary full" id="survey-done">장소 다시 보기</button>`;
+    dialog.querySelector('.dialog-content').innerHTML =
+      '<div class="dialog-heading"><h2 id="survey-title">' +
+      (success ? '동행 희망을 전달했어요' : '설문 체험을 마쳤어요') +
+      '</h2><button type="button" class="close-dialog" aria-label="닫기">×</button></div>' +
+      '<p>' + (success
+        ? '응답이 저장됐습니다. 아직 실제 동행 연결이나 신청은 아닙니다.'
+        : '분석 서버가 연결되지 않아 응답이 저장되지 않았습니다.') + '</p>' +
+      '<button type="button" class="button primary full" id="survey-done">닫기</button>';
     dialog.querySelector('.close-dialog').onclick = dialog.querySelector('#survey-done').onclick = () => dialog.close();
     dialog.querySelector('#survey-done').focus();
   };
@@ -156,7 +237,7 @@ document.addEventListener('click', event => {
     toast(removing ? '저장한 곳에서 지웠어요.' : '저장한 곳에 담았어요.');
   }
   const share = event.target.closest('[data-share]'); if (share) { const p = places.find(p=>p.id===share.dataset.share); if(p) sharePlace(p); }
-  const interest = event.target.closest('[data-companion-interest]'); if (interest) { const p = places.find(p=>p.id===interest.dataset.companionInterest); if(p) companionDialog(p); }
+  const interest = event.target.closest('[data-companion-interest]'); if (interest) { const p = places.find(p=>p.id===interest.dataset.companionInterest); if(p) companionDialog(p,interest); }
   if (event.target.closest('[data-reset], #reset-filters')) reset();
 });
 window.addEventListener('storage', () => { updateSaved(); if (page === 'saved') render(); });
@@ -220,7 +301,7 @@ async function init() {
   if (page === 'detail' && current) {
     updateSaved(); track('place_view', metadata(current));
     $('#share-place').onclick = () => sharePlace(current);
-    $('#companion-open').onclick = () => companionDialog(current);
+    $('#companion-open').onclick = () => companionDialog(current,$('#companion-open'));
   }
 }
 init();
