@@ -10,7 +10,8 @@ test('v6 디자인 레이어는 마지막으로 로드되어 모바일 주요 �
     readFile(new URL('../assets/v5-app-home.js', import.meta.url), 'utf8'),
   ]);
   assert.ok(imports.includes("@import url('/assets/v6-ui.css');"));
-  assert.ok(imports.trimEnd().endsWith("@import url('/assets/v9-product-redesign.css');"));
+  assert.ok(imports.includes("@import url('/assets/v9-product-redesign.css');"));
+  assert.ok(imports.trimEnd().endsWith("@import url('/assets/v13-companion.css');"));
   for(const token of ['.app-category-grid','.app-promo','.app-bottom-nav','.app-load-more','.app-area-nav']) assert.ok(css.includes(token),token);
   assert.match(client,/regionRow\.addEventListener\('click'/);
   assert.match(client,/renderLiveResults\(\{more:true\}\)/);
