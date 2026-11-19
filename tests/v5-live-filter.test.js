@@ -19,7 +19,7 @@ test('v5 라이브 필터는 현재 UI 선택값으로 추천 엔진을 직접 �
 test('세부활동 칩 DOM이 다시 그려져도 다음 틱에서 라이브 결과를 다시 계산한다', async () => {
   const source = await readFile(new URL('../assets/v5-app-home.js', import.meta.url), 'utf8');
   assert.match(source, /const activity = event\.target\.closest\?\.\('\[data-activity\]'\)/);
-  assert.match(source, /if \(!activity \|\| !refinement\?\.contains\(activity\)\) return;\s*setTimeout\(\(\) => submitLive\(\), 0\);\s*\}, true\);/s);
+  assert.match(source, /if \(!activity \|\| !refinement\?\.contains\(activity\)\) return;\s*allowSimilarOnEmpty = false;\s*setTimeout\(\(\) => submitLive\(\), 0\);\s*\}, true\);/s);
   assert.match(source, /const liveFilter = event\.target\.closest\('\[data-companion\],\[data-duration\],\[data-transport\],\[data-comfort\]'\)/);
 });
 
