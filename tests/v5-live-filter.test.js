@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 test('v5 라이브 필터는 현재 UI 선택값으로 추천 엔진을 직접 다시 렌더한다', async () => {
   const source = await readFile(new URL('../assets/v5-app-home.js', import.meta.url), 'utf8');
-  assert.match(source, /import \{ recommendRhythms, emptyRhythmFilters \} from '\/rhythm\.js\?v=20261119-v10'/);
+  assert.match(source, /import \{ recommendRhythms, emptyRhythmFilters, ACTIVITIES \} from '\/rhythm\.js\?v=20261119-v10'/);
   assert.match(source, /function filtersFromUi\(\)/);
   assert.match(source, /filters\.activities = selectedValues\('\[data-activity\]', 'activity'\)/);
   assert.match(source, /const rhythms = recommendRhythms\(places, filters\)/);
