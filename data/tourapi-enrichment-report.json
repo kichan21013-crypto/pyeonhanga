@@ -1,9 +1,10 @@
 {
-  "generatedAt": "2026-10-21T07:45:36.127Z",
+  "generatedAt": "2026-11-19T05:08:58.283Z",
   "source": "data/places.json",
   "strategy": "region-balanced candidate sample, up to 30 per region, 나들이/맛집 균형 우선",
   "summary": {
     "selected": 180,
+    "totalAvailable": 197,
     "enriched": 180,
     "errors": 0,
     "byRegion": {
@@ -16,7 +17,7 @@
     },
     "withOverview": 0,
     "withParking": 154,
-    "withHours": 170,
+    "withHours": 167,
     "withExtraImages": 0
   },
   "errors": [],
@@ -33,7 +34,7 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "불가능",
+        "parkingText": null,
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
         "infoCenterText": "노원구청 푸른도시과 02-2116-3943",
@@ -46,7 +47,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 4,
+        "knownOperationalFacts": 3,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -74,7 +75,7 @@
         "accomcount": "",
         "useseason": "",
         "usetime": "상시 개방",
-        "parking": "불가능",
+        "parking": "",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -83,29 +84,14 @@
         {
           "contentid": "2031668",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입산통제 기간",
-          "infotext": "[봄·가을철 산불조심기간] <br />\n(산불예방을 위해 한시적으로 등산로 구간통제)<br />\n- 봄철 3월 2일~4월 30일 <br />\n- 가을철 11월 1일~12월 15일<br />\n- 국립공원 11월 15일~12월 15일 (경주, 태안해안 제외)<br />\n※ 통제기간과 통제구간은 기상여건 등을 감안하여 산별로 일부 조정될 수 있으니 산행 시 사전 확인 ",
-          "fldgubun": "1"
-        },
-        {
-          "contentid": "2031668",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "입산통제 구간",
-          "infotext": "등산로 통제구간&nbsp;안내 <a title=\"등산로 통제구간 검색\" href=\"http://hiking.kworks.co.kr/sub_map/map_user01.aspx\" target=\"_blank\">http://hiking.kworks.co.kr/sub_map/map_user01.aspx</a>",
-          "fldgubun": "1"
-        },
-        {
-          "contentid": "2031668",
-          "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "입 장 료",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126480",
@@ -175,7 +161,8 @@
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-309307",
@@ -239,21 +226,22 @@
         {
           "contentid": "309307",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "309307",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "입 장 료",
-          "infotext": "무료 ",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128622",
@@ -317,21 +305,30 @@
         {
           "contentid": "128622",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "128622",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "serialnum": "4",
+          "infoname": "주차요금",
+          "infotext": "10분당 300원",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "128622",
+          "contenttypeid": "12",
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1364975",
@@ -395,13 +392,14 @@
         {
           "contentid": "1364975",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1364932",
@@ -465,13 +463,14 @@
         {
           "contentid": "1364932",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-809190",
@@ -485,8 +484,8 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": null,
-        "operatingHoursText": "[3월~4월] - 07:00~18:00 (입산 가능 16:00) [5월~8월] - 07:00~19:00 (입산 가능 17:00) [9월~10월] - 07:00~18:00 (입산 가능 16:00) [11월~2월] - 09:00~17:00 (입산 가능 15:00)",
+        "parkingText": "가능",
+        "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
         "infoCenterText": "종로구청 도시녹지과 02-2148-2835",
         "reservationText": null,
@@ -498,7 +497,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 3,
+        "knownOperationalFacts": 4,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -525,8 +524,8 @@
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "[3월~4월]<br>\n- 07:00~18:00 (입산 가능 16:00)<br>\n[5월~8월]<br>\n- 07:00~19:00 (입산 가능 17:00)<br>\n[9월~10월]<br>\n- 07:00~18:00 (입산 가능 16:00)<br>\n[11월~2월]<br>\n- 09:00~17:00 (입산 가능 15:00)",
-        "parking": "",
+        "usetime": "상시 개방",
+        "parking": "가능",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -535,29 +534,30 @@
         {
           "contentid": "809190",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "관광코스안내",
-          "infotext": "[코스1] 창의문안내소-말바위안내소 구간: 2시간 내외 소요<br>\n[코스2] 숙정문 안내소 - 창의문안내소 구간 : 약2시간 내외 소요<br>\n[코스3] 창의문안내소 - 말바위안내소 구간 : 약2시간 내외 소요",
-          "fldgubun": "2"
-        },
-        {
-          "contentid": "809190",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "입 장 료",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "809190",
           "contenttypeid": "12",
-          "serialnum": "2",
+          "serialnum": "4",
+          "infoname": "주차요금",
+          "infotext": "10분당 400원",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "809190",
+          "contenttypeid": "12",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-699249",
@@ -571,9 +571,9 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능",
-        "operatingHoursText": "점포 별로 상이함",
-        "restDayText": "점포 별로 상이함",
+        "parkingText": "가능※ 점포 별로 상이함",
+        "operatingHoursText": "※ 점포 별로 상이함",
+        "restDayText": "※ 점포 별로 상이함",
         "infoCenterText": "명동 관광정보센터 02-778-0333",
         "reservationText": null,
         "seatText": null,
@@ -606,13 +606,13 @@
         "heritage3": "0",
         "infocenter": "명동 관광정보센터 02-778-0333",
         "opendate": "",
-        "restdate": "점포 별로 상이함",
+        "restdate": "※ 점포 별로 상이함",
         "expguide": "",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "점포 별로 상이함",
-        "parking": "가능",
+        "usetime": "※ 점포 별로 상이함",
+        "parking": "가능※ 점포 별로 상이함",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -621,13 +621,14 @@
         {
           "contentid": "699249",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-127557",
@@ -691,21 +692,22 @@
         {
           "contentid": "127557",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "127557",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126482",
@@ -722,7 +724,7 @@
         "parkingText": "가능",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
-        "infoCenterText": "노원구청 푸른도시과 02-2116-4939",
+        "infoCenterText": "노원구청 푸른도시과 02-2116-3964",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -752,7 +754,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "노원구청 푸른도시과 02-2116-4939",
+        "infocenter": "노원구청 푸른도시과 02-2116-3964",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "",
@@ -769,42 +771,18 @@
         {
           "contentid": "126482",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "등산로",
-          "infotext": "공원관리소 - 청암약수터입구 - 돌다방쉼터 - 능선사거리 - 정상 (3.1km<br />* 공원관리소 - 정암사 - 불암체육회 - 깔딱고개 - 정상 (3.2km)<br />* 양지초소 - 천병약수터 - 헬기장 - 깔딱고개 - 정상 (3.8km) <br />* 원자력병원후문 - 삼육대갈림길 - 학도암갈림길 - 헬기장 - 정상 (5.8km)",
-          "fldgubun": "1"
-        },
-        {
-          "contentid": "126482",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "입산통제 기간",
-          "infotext": "[탐방로 통제기간] <br />\n[탐방로 통제기간] <br />\n(봄가을철 산불조심기간 한시적 등산로구간 통제)<br />\n봄철 3월 2일 ~ 4월 30일 <br />\n가을철 11월 1일 ~ 12월 15일<br />\n-국립공원 11월 15일 ~ 12월 15일(경주,태안해안제외)\n\n※ 통제기간은 기상여건 등을 감안하여 공원별로 일부 조정될 수 있으니 공원탐방 시 해당 공원 홈페이지 공지사항 참고",
+          "infoname": "입장료",
+          "infotext": "무료",
           "fldgubun": "1"
-        },
-        {
-          "contentid": "126482",
-          "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "입산통제 구간",
-          "infotext": "등산로 통제구간안내 <a title=\"등산로 통제구간 검색\" href=\"http://hiking.kworks.co.kr/sub_map/map_user01.aspx\" target=\"_blank\">http://hiking.kworks.co.kr/sub_map/map_user01.aspx</a>\n\n",
-          "fldgubun": "1"
-        },
-        {
-          "contentid": "126482",
-          "contenttypeid": "12",
-          "serialnum": "3",
-          "infoname": "관광코스안내",
-          "infotext": "* 하룻길 코스 : 넓은마당→불암산허브공원→좆바위→음바위→학도암→백사마을→산들메수목원→불암사→ 덕릉고개→넓은마당 \n<br />\n* 나절길 코스 : 강릉→태릉선수촌→조선왕릉전시관,태릉→육군박물관→서울여대박물관→화랑대역사→공릉동백세문→백사마을→노원고개 →제명호→삼육대박물관 ",
-          "fldgubun": "2"
         },
         {
           "contentid": "126482",
           "contenttypeid": "12",
           "serialnum": "4",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "infoname": "주차요금",
+          "infotext": "5분당 150원",
+          "fldgubun": "1"
         },
         {
           "contentid": "126482",
@@ -812,10 +790,11 @@
           "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1602451",
@@ -832,7 +811,7 @@
         "parkingText": "가능",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
-        "infoCenterText": "강남구청 공원녹지과 02-3423-6283",
+        "infoCenterText": "02-2104-1912",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -862,7 +841,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "강남구청 공원녹지과 02-3423-6283",
+        "infocenter": "02-2104-1912",
         "opendate": "1989년 11월 23일",
         "restdate": "연중무휴",
         "expguide": "",
@@ -879,21 +858,22 @@
         {
           "contentid": "1602451",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "1602451",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-699279",
@@ -907,9 +887,9 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "불가능",
-        "operatingHoursText": "점포 별로 상이함",
-        "restDayText": "점포 별로 상이함",
+        "parkingText": "※ 점포 별로 상이함",
+        "operatingHoursText": "※ 점포 별로 상이함",
+        "restDayText": "※ 점포 별로 상이함",
         "infoCenterText": "동대문 관광안내소 02-2236-9135",
         "reservationText": null,
         "seatText": null,
@@ -942,13 +922,13 @@
         "heritage3": "0",
         "infocenter": "동대문 관광안내소 02-2236-9135",
         "opendate": "",
-        "restdate": "점포 별로 상이함",
+        "restdate": "※ 점포 별로 상이함",
         "expguide": "",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "점포 별로 상이함",
-        "parking": "불가능",
+        "usetime": "※ 점포 별로 상이함",
+        "parking": "※ 점포 별로 상이함",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -957,13 +937,14 @@
         {
           "contentid": "699279",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-127942",
@@ -1027,21 +1008,22 @@
         {
           "contentid": "127942",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "4",
+          "infoname": "주차요금",
+          "infotext": "5분당 300원",
+          "fldgubun": "1"
         },
         {
           "contentid": "127942",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "이용가능시설",
-          "infotext": "어린이도서관 / 종로시립도서관 / 수영장 등",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2724392",
@@ -1105,21 +1087,14 @@
         {
           "contentid": "2724392",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "관광코스안내",
-          "infotext": "[문화공간]<br>\n은평역사한옥박물관 (02-351-8524)<br>\n너나들이센터 (02-351-4433)<br>\n삼각산금암미술관<br>\n셋이서문학관 (02-355-5800)",
-          "fldgubun": "2"
-        },
-        {
-          "contentid": "2724392",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "입 장 료",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2401757",
@@ -1134,8 +1109,8 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "점포별 상이",
-        "restDayText": "점포별 상이",
+        "operatingHoursText": "※ 점포별 상이",
+        "restDayText": "※ 점포별 상이",
         "infoCenterText": "성동구 성수관광안내소 02-466-2286",
         "reservationText": null,
         "seatText": null,
@@ -1168,12 +1143,12 @@
         "heritage3": "0",
         "infocenter": "성동구 성수관광안내소 02-466-2286",
         "opendate": "",
-        "restdate": "점포별 상이",
+        "restdate": "※ 점포별 상이",
         "expguide": "",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "점포별 상이",
+        "usetime": "※ 점포별 상이",
         "parking": "가능",
         "chkbabycarriage": "",
         "chkpet": "",
@@ -1183,13 +1158,14 @@
         {
           "contentid": "2401757",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "4",
           "infoname": "주차요금",
-          "infotext": "[기본 30분]<br>\n- 2,000원",
-          "fldgubun": "3"
+          "infotext": "5분당 250원",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2783356",
@@ -1204,7 +1180,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "[평일] - 11:00~20:50 (마지막 주문 20:20) [주말] - 11:00~20:30 (라스트오더 20:00)",
+        "operatingHoursText": "[평일]- 11:00~20:50 (마지막 주문 20:20)[주말]- 11:00~20:30 (라스트오더 20:00)",
         "restDayText": "연중무휴",
         "infoCenterText": "02-3462-3533",
         "reservationText": null,
@@ -1243,24 +1219,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "[평일]<br>- 11:00~20:50 (마지막 주문 20:20)<br>[주말]<br>- 11:00~20:30 (라스트오더 20:00)",
+        "opentimefood": "[평일]- 11:00~20:50 (마지막 주문 20:20)[주말]- 11:00~20:30 (라스트오더 20:00)",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20000105385"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2783356",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2753157",
@@ -1331,7 +1299,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2899749",
@@ -1402,7 +1371,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2758163",
@@ -1473,7 +1443,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2758130",
@@ -1544,7 +1515,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2758158",
@@ -1615,7 +1587,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2784696",
@@ -1686,7 +1659,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2495915",
@@ -1748,7 +1722,8 @@
         "lcnsno": "20040050759"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-678899",
@@ -1762,9 +1737,9 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능",
-        "operatingHoursText": "[평일] - 11:00~21:30 - 준비 시간 15:30~16:30 - 마지막 주문 20:50 [주말] - 11:00~21:30 (마지막 주문 20:50)",
-        "restDayText": "매월 첫째 주 / 셋째 주 월요일 / 설·추석 당일",
+        "parkingText": "가능(유료)정액 3,000원발렛가능(무료)",
+        "operatingHoursText": "[평일] - 11:00~21:30 - 준비 시간 15:30~16:30 - 마지막 주문 21:00 [토요일] - 11:00~21:30 - 마지막 주문 21:00 [일요일] - 10:00~22:00 - 준비 시간 16:00~16:30 - 마지막 주문 21:30",
+        "restDayText": "매월 1, 2, 4번째 월요일 / 설·추석 당일",
         "infoCenterText": "02-2662-2322",
         "reservationText": null,
         "seatText": null,
@@ -1796,30 +1771,22 @@
         "kidsfacility": "0",
         "firstmenu": "동파육",
         "treatmenu": "탕수육 / 해물누룽지탕 / 고추꽁바우갑오징어 등",
-        "smoking": "금연",
+        "smoking": "",
         "packing": "",
         "infocenterfood": "02-2662-2322",
         "scalefood": "",
-        "parkingfood": "가능",
+        "parkingfood": "가능(유료)정액 3,000원발렛가능(무료)",
         "opendatefood": "",
-        "opentimefood": "[평일]<br>- 11:00~21:30<br>- 준비 시간 15:30~16:30<br>- 마지막 주문 20:50<br>[주말]<br>- 11:00~21:30 (마지막 주문 20:50)",
-        "restdatefood": "매월 첫째 주 / 셋째 주 월요일 / 설·추석 당일",
+        "opentimefood": "[평일] - 11:00~21:30 - 준비 시간 15:30~16:30 - 마지막 주문 21:00 [토요일] - 11:00~21:30 - 마지막 주문 21:00 [일요일] - 10:00~22:00 - 준비 시간 16:00~16:30 - 마지막 주문 21:30",
+        "restdatefood": "매월 1, 2, 4번째 월요일 / 설·추석 당일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "19880076094"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "678899",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2495458",
@@ -1890,7 +1857,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2871081",
@@ -1961,7 +1929,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-2818756",
@@ -2032,7 +2001,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-2807321",
@@ -2103,7 +2073,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-2755513",
@@ -2174,7 +2145,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-1756249",
@@ -2245,7 +2217,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-125518",
@@ -2262,7 +2235,7 @@
         "parkingText": "가능",
         "operatingHoursText": "09:00~17:00",
         "restDayText": "매주 화요일",
-        "infoCenterText": "031-533-9090",
+        "infoCenterText": "031-533-9000",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -2292,7 +2265,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "031-533-9090",
+        "infocenter": "031-533-9000",
         "opendate": "",
         "restdate": "매주 화요일",
         "expguide": "",
@@ -2309,29 +2282,38 @@
         {
           "contentid": "125518",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "[4월1일~11월 30일]\n- 소인/ 포천시민/경로우대 / 장애 5,000원\n- 성인(15세이상) 7,000원\n[12월1일~3월31일]\n- 소인/ 포천시민/ 경로우대 / 장애 4,000원\n- 성인(15세이상) 6,000원\n※ 무료\n- 유아(36개월 미만)",
+          "fldgubun": "1"
         },
         {
           "contentid": "125518",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "4",
           "infoname": "주차요금",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "125518",
           "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "입 장 료",
-          "infotext": "[4월1일~11월 30일]<br>\n- 소인/ 포천시민/경로우대 / 장애우 5,000원<br>\n- 성인(15세이상) 7,000원<br>\n[12월1일~3월31일]<br>\n- 유아(36개월 미만) 무료<br>\n- 소인/ 포천시민/ 경로우대 / 장애우 4,000원<br>\n- 성인(15세이상) 6,000원<br>\n※ 무료<br>\n- 유아(36개월 미만)",
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
+        },
+        {
+          "contentid": "125518",
+          "contenttypeid": "12",
+          "serialnum": "9",
+          "infoname": "외국어안내서비스",
+          "infotext": "가능",
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-125572",
@@ -2395,13 +2377,14 @@
         {
           "contentid": "125572",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-129647",
@@ -2465,13 +2448,14 @@
         {
           "contentid": "129647",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2792940",
@@ -2541,7 +2525,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-129645",
@@ -2605,13 +2590,22 @@
         {
           "contentid": "129645",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "129645",
+          "contenttypeid": "12",
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-127688",
@@ -2675,13 +2669,14 @@
         {
           "contentid": "127688",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-131032",
@@ -2745,13 +2740,14 @@
         {
           "contentid": "131032",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2654539",
@@ -2829,7 +2825,8 @@
           "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2717416",
@@ -2899,7 +2896,8 @@
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2650828",
@@ -2913,10 +2911,10 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능 요금 (30분 400원 / 이후 10분 당 200원씩 추가 요금 발생)",
+        "parkingText": null,
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
-        "infoCenterText": "성남시청 관광팀 031-729-8602",
+        "infoCenterText": "031-711-0506",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -2926,7 +2924,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 4,
+        "knownOperationalFacts": 3,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -2946,7 +2944,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "성남시청 관광팀 031-729-8602",
+        "infocenter": "031-711-0506",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "",
@@ -2954,7 +2952,7 @@
         "accomcount": "",
         "useseason": "",
         "usetime": "상시 개방",
-        "parking": "가능<br>요금 (30분 400원 / 이후 10분 당 200원씩 추가 요금 발생)",
+        "parking": "",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -2963,13 +2961,14 @@
         {
           "contentid": "2650828",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2674763",
@@ -2986,7 +2985,7 @@
         "parkingText": "가능",
         "operatingHoursText": "09:00~18:00",
         "restDayText": "매주 수요일",
-        "infoCenterText": "031-774-2387",
+        "infoCenterText": "0507-1369-2387",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -3016,7 +3015,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "031-774-2387",
+        "infocenter": "0507-1369-2387",
         "opendate": "",
         "restdate": "매주 수요일",
         "expguide": "",
@@ -3033,45 +3032,30 @@
         {
           "contentid": "2674763",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "관광코스안내",
-          "infotext": "[A코스] <br>\n- 서후리숲이 추천하는 힐링 산책 코스<br>\n- 매표소 > 구상나무숲 > 단풍나무숲 > A,B 분기점 > 백합나무숲 > 자작나무숲 > 메타세콰이어숲 > 귀룽나무 > 구상나무숲 > 매표소<br>\n- 총 소요시간 1시간 <br><br>\n\n[B코스]<br>\n- 시간이 없으신 분들과 거동이 불편하신 분들을 위한 침엽수림 중심의 코스<br>\n- 매표소 > 구상나무숲 > 단풍나무숲 > A,B 분기점 > 침엽수림 > 소나무숲 > 매표소<br>\n- 총 소요시간 30분",
-          "fldgubun": "2"
-        },
-        {
-          "contentid": "2674763",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "주차요금",
-          "infotext": "무료",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "2674763",
-          "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "2674763",
-          "contenttypeid": "12",
-          "serialnum": "3",
-          "infoname": "이용가능시설",
-          "infotext": "카페 / 산책로",
-          "fldgubun": "3"
+          "infoname": "입장료",
+          "infotext": "[일반]\n- 8,000원\n[청소년, 장애인, 경로, 국가유공자, 단체(30인 이상)]\n- 7,000원\n[초등학생 미만, 서종 면민]\n- 5,000원\n※ 자세한 사항은 홈페이지 참고",
+          "fldgubun": "1"
         },
         {
           "contentid": "2674763",
           "contenttypeid": "12",
           "serialnum": "4",
-          "infoname": "입 장 료",
-          "infotext": "[일반]<br>\n- 8,000원<br>\n[청소년, 장애인, 경로, 국가유공자, 단체(30인 이상)]<br>\n- 7,000원<br>\n[초등학생 미만, 서종 면민]<br>\n- 5,000원<br>\n※ 자세한 사항은 홈페이지 참고 ",
-          "fldgubun": "3"
+          "infoname": "주차요금",
+          "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "2674763",
+          "contenttypeid": "12",
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126618",
@@ -3135,29 +3119,22 @@
         {
           "contentid": "126618",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "이용가능시설",
-          "infotext": "파고라 / 음수대 / 야외음악당 등",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "126618",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "126618",
-          "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2766846",
@@ -3171,10 +3148,10 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능",
-        "operatingHoursText": "상시 개방",
-        "restDayText": "연중무휴",
-        "infoCenterText": "031-887-2114",
+        "parkingText": null,
+        "operatingHoursText": null,
+        "restDayText": null,
+        "infoCenterText": null,
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -3184,7 +3161,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 4,
+        "knownOperationalFacts": 0,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -3198,36 +3175,10 @@
         "firstimage": null,
         "firstimage2": null
       },
-      "intro": {
-        "contentid": "2766846",
-        "contenttypeid": "12",
-        "heritage1": "0",
-        "heritage2": "0",
-        "heritage3": "0",
-        "infocenter": "031-887-2114",
-        "opendate": "",
-        "restdate": "연중무휴",
-        "expguide": "",
-        "expagerange": "",
-        "accomcount": "",
-        "useseason": "",
-        "usetime": "상시 개방",
-        "parking": "가능",
-        "chkbabycarriage": "",
-        "chkpet": "",
-        "chkcreditcard": ""
-      },
-      "repeatedInfo": [
-        {
-          "contentid": "2766846",
-          "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료   \n",
-          "fldgubun": "3"
-        }
-      ],
-      "images": []
+      "intro": {},
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-318182",
@@ -3291,13 +3242,14 @@
         {
           "contentid": "318182",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128542",
@@ -3361,13 +3313,14 @@
         {
           "contentid": "128542",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료 ",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2717413",
@@ -3429,7 +3382,8 @@
         "lcnsno": ""
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1994200",
@@ -3491,7 +3445,8 @@
         "lcnsno": "20000290343"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-699552",
@@ -3505,10 +3460,10 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능",
+        "parkingText": "가능(무료)",
         "operatingHoursText": "11:00~20:00 (마지막 주문 19:00)",
         "restDayText": "연중무휴",
-        "infoCenterText": "이동폭포갈비",
+        "infoCenterText": "0507-1377-4415",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "생갈비",
@@ -3539,11 +3494,11 @@
         "kidsfacility": "0",
         "firstmenu": "생갈비",
         "treatmenu": "양념갈비(이동갈비) / 한우육회 / 갈비탕 / 물냉면 등",
-        "smoking": "모두 금연석",
+        "smoking": "",
         "packing": "",
-        "infocenterfood": "이동폭포갈비",
+        "infocenterfood": "0507-1377-4415",
         "scalefood": "",
-        "parkingfood": "가능",
+        "parkingfood": "가능(무료)",
         "opendatefood": "",
         "opentimefood": "11:00~20:00 (마지막 주문 19:00)",
         "restdatefood": "연중무휴",
@@ -3552,17 +3507,9 @@
         "reservationfood": "",
         "lcnsno": "19950372361"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "699552",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음\n",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2872886",
@@ -3577,7 +3524,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "11:00~21:30",
+        "operatingHoursText": "11:00~21:30 (마지막 주문 20:50)",
         "restDayText": "연중무휴",
         "infoCenterText": "031-975-2332",
         "reservationText": null,
@@ -3611,29 +3558,21 @@
         "firstmenu": "해피데이",
         "treatmenu": "화림 정식 코스 / 화 코스 / 림 코스 등",
         "smoking": "",
-        "packing": "가능",
+        "packing": "",
         "infocenterfood": "031-975-2332",
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "11:00~21:30",
+        "opentimefood": "11:00~21:30 (마지막 주문 20:50)",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20180341597"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2872886",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-133082",
@@ -3704,7 +3643,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2799624",
@@ -3719,7 +3659,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "- 10:00~21:30 - 마지막 주문 21:00",
+        "operatingHoursText": "- 10:00~21:30- 마지막 주문 21:00",
         "restDayText": "연중무휴",
         "infoCenterText": "031-975-5078",
         "reservationText": null,
@@ -3758,24 +3698,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "- 10:00~21:30<br>- 마지막 주문 21:00",
+        "opentimefood": "- 10:00~21:30- 마지막 주문 21:00",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20160325399"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2799624",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음\n",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2874200",
@@ -3790,8 +3722,8 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "- 11:00~20:00 - 마지막 주문 19:30",
-        "restDayText": "매주 목요일",
+        "operatingHoursText": "11:00~20:00 (마지막 주문 19:30)",
+        "restDayText": "연중무휴",
         "infoCenterText": "031-977-3608",
         "reservationText": null,
         "seatText": null,
@@ -3829,24 +3761,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "- 11:00~20:00<br>- 마지막 주문 19:30",
-        "restdatefood": "매주 목요일",
+        "opentimefood": "11:00~20:00 (마지막 주문 19:30)",
+        "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20160325654"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2874200",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2738661",
@@ -3917,7 +3841,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2859801",
@@ -3932,7 +3857,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "- 07:35~21:00 - 마지막 주문 20:30",
+        "operatingHoursText": "- 07:35~21:00- 마지막 주문 20:30",
         "restDayText": "연중무휴",
         "infoCenterText": "0507-1343-1892",
         "reservationText": null,
@@ -3971,24 +3896,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "- 07:35~21:00<br>- 마지막 주문 20:30",
+        "opentimefood": "- 07:35~21:00- 마지막 주문 20:30",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20170327349"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2859801",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2829956",
@@ -4049,17 +3966,9 @@
         "reservationfood": "",
         "lcnsno": "20200372866"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2829956",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-3588837",
@@ -4121,7 +4030,8 @@
         "lcnsno": "20210355557"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-1846815",
@@ -4192,7 +4102,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-1013270",
@@ -4263,7 +4174,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-1013250",
@@ -4325,7 +4237,8 @@
         "lcnsno": "19960297542"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-856918",
@@ -4387,7 +4300,8 @@
         "lcnsno": "20040355101"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-585615",
@@ -4451,21 +4365,22 @@
         {
           "contentid": "585615",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         },
         {
           "contentid": "585615",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "6",
           "infoname": "이용가능시설",
           "infotext": "샤워장 / 탈의실 / 야영장 등",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2753136",
@@ -4529,13 +4444,14 @@
         {
           "contentid": "2753136",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-127922",
@@ -4599,13 +4515,22 @@
         {
           "contentid": "127922",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "127922",
+          "contenttypeid": "12",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2773046",
@@ -4619,10 +4544,10 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": null,
+        "parkingText": "불가능",
         "operatingHoursText": "상시 개방",
         "restDayText": null,
-        "infoCenterText": "033-640-4414 033-660-3658",
+        "infoCenterText": "033-660-3658",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -4632,7 +4557,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 2,
+        "knownOperationalFacts": 3,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -4652,7 +4577,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "033-640-4414<br>\n033-660-3658",
+        "infocenter": "033-660-3658",
         "opendate": "",
         "restdate": "",
         "expguide": "",
@@ -4660,13 +4585,23 @@
         "accomcount": "",
         "useseason": "",
         "usetime": "상시 개방",
-        "parking": "",
+        "parking": "불가능",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
       },
-      "repeatedInfo": [],
-      "images": []
+      "repeatedInfo": [
+        {
+          "contentid": "2773046",
+          "contenttypeid": "12",
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-3454461",
@@ -4727,7 +4662,8 @@
         "chkcreditcard": ""
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128359",
@@ -4777,7 +4713,7 @@
         "infocenter": "033-661-5207~8",
         "opendate": "",
         "restdate": "연중무휴",
-        "expguide": "과일 따기 체험 / 복사꽃길 걷기 / 전통놀이 체험 등",
+        "expguide": "과일 따기 체험 / 복사꽃길 걷기 / 전통놀이 체험 / 다슬기 잡기 등",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
@@ -4791,21 +4727,22 @@
         {
           "contentid": "128359",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "4",
+          "infoname": "주차요금",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "128359",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "주차요금",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-125748",
@@ -4822,7 +4759,7 @@
         "parkingText": "가능",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
-        "infoCenterText": "강릉시 종합관광안내소 033-640-4414 / 033-640-4531",
+        "infoCenterText": "경포여행자센터 033-640-4531",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -4852,7 +4789,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "강릉시 종합관광안내소 033-640-4414 / 033-640-4531",
+        "infocenter": "경포여행자센터 033-640-4531",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "",
@@ -4869,13 +4806,14 @@
         {
           "contentid": "125748",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-129029",
@@ -4889,10 +4827,10 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능",
-        "operatingHoursText": "점포 별로 상이함",
-        "restDayText": "연중무휴",
-        "infoCenterText": "주문리어촌계사무실 033-662-2106 / 033-640-4535",
+        "parkingText": null,
+        "operatingHoursText": null,
+        "restDayText": null,
+        "infoCenterText": null,
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -4902,7 +4840,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 4,
+        "knownOperationalFacts": 0,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -4916,36 +4854,10 @@
         "firstimage": null,
         "firstimage2": null
       },
-      "intro": {
-        "contentid": "129029",
-        "contenttypeid": "12",
-        "heritage1": "0",
-        "heritage2": "0",
-        "heritage3": "0",
-        "infocenter": "주문리어촌계사무실 033-662-2106 / 033-640-4535",
-        "opendate": "",
-        "restdate": "연중무휴",
-        "expguide": "",
-        "expagerange": "",
-        "accomcount": "",
-        "useseason": "",
-        "usetime": "점포 별로 상이함",
-        "parking": "가능",
-        "chkbabycarriage": "",
-        "chkpet": "",
-        "chkcreditcard": ""
-      },
-      "repeatedInfo": [
-        {
-          "contentid": "129029",
-          "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
-        }
-      ],
-      "images": []
+      "intro": {},
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-125768",
@@ -5009,13 +4921,30 @@
         {
           "contentid": "125768",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "125768",
+          "contenttypeid": "12",
+          "serialnum": "4",
+          "infoname": "주차요금",
+          "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "125768",
+          "contenttypeid": "12",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2511677",
@@ -5039,10 +4968,10 @@
         "menuText": null,
         "petText": null,
         "babyCarriageText": "없음",
-        "creditCardText": "없음"
+        "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 6,
+        "knownOperationalFacts": 5,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -5065,7 +4994,7 @@
         "infocenter": "033-645-5114",
         "opendate": "",
         "restdate": "설·추석 명절",
-        "expguide": "곶감타르트만들기 / 곶감고추장만들기 / 감자수확 농촌체험<br>\n※ 농촌 체험 예약은 전화를 통하여 가능<br>\n※ 예약 인원에서 추가 인원이 발생하였을 경우, 사전에 알려주어야 함",
+        "expguide": "곶감타르트만들기 / 곶감고추장만들기 / 감자수확 농촌체험\n※ 농촌 체험 예약은 전화를 통하여 가능\n※ 예약 인원에서 추가 인원이 발생하였을 경우, 사전에 알려주어야 함",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
@@ -5073,35 +5002,28 @@
         "parking": "가능 (약 소형 50대 / 대형 2대)",
         "chkbabycarriage": "없음",
         "chkpet": "",
-        "chkcreditcard": "없음"
+        "chkcreditcard": ""
       },
       "repeatedInfo": [
         {
           "contentid": "2511677",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "2511677",
-          "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "3",
           "infoname": "시설이용료",
           "infotext": "※ 프로그램에 따라 소요 시간 및 체험비가 다르니, 아래 홈페이지 참고",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "2511677",
           "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "이용가능시설",
-          "infotext": "정감이마을 한우촌(한식 뷔페) / 정감이곶감가공및판매장 / 곶감체험방문자센터 / 정감이능이백숙",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-125791",
@@ -5125,10 +5047,10 @@
         "menuText": null,
         "petText": null,
         "babyCarriageText": "없음",
-        "creditCardText": "없음"
+        "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 6,
+        "knownOperationalFacts": 5,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -5159,19 +5081,20 @@
         "parking": "가능",
         "chkbabycarriage": "없음",
         "chkpet": "",
-        "chkcreditcard": "없음"
+        "chkcreditcard": ""
       },
       "repeatedInfo": [
         {
           "contentid": "125791",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128724",
@@ -5195,10 +5118,10 @@
         "menuText": null,
         "petText": null,
         "babyCarriageText": "없음",
-        "creditCardText": "없음"
+        "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 6,
+        "knownOperationalFacts": 5,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -5229,35 +5152,20 @@
         "parking": "가능 (소형 4대)",
         "chkbabycarriage": "없음",
         "chkpet": "",
-        "chkcreditcard": "없음"
+        "chkcreditcard": ""
       },
       "repeatedInfo": [
         {
           "contentid": "128724",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "관광코스안내",
-          "infotext": "* 오봉서원 → 오죽헌·시립박물관 → 선교장 → 경포대 → 참소리 박물관 → 소금강<br />\n * 오봉서원 → 대관령박물관 → 통일공원 → 등명락가사 → 정동진 → 심곡·금진항",
-          "fldgubun": "2"
-        },
-        {
-          "contentid": "128724",
-          "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "이용가능시설",
-          "infotext": "집성사 / 칠봉사 / 오봉강당 / 묘비정각 / 묘정비\t\t",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "128724",
-          "contenttypeid": "12",
-          "serialnum": "2",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126895",
@@ -5271,7 +5179,7 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능 (약 소형 20대) 요금 (무료)",
+        "parkingText": "가능 (약 소형 20대)요금 (무료)",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
         "infoCenterText": "033-661-6671",
@@ -5281,10 +5189,10 @@
         "menuText": null,
         "petText": null,
         "babyCarriageText": "없음",
-        "creditCardText": "없음"
+        "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 6,
+        "knownOperationalFacts": 5,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -5312,30 +5220,23 @@
         "accomcount": "",
         "useseason": "",
         "usetime": "상시 개방",
-        "parking": "가능 (약 소형 20대)<br>요금 (무료)",
+        "parking": "가능 (약 소형 20대)요금 (무료)",
         "chkbabycarriage": "없음",
         "chkpet": "",
-        "chkcreditcard": "없음"
+        "chkcreditcard": ""
       },
       "repeatedInfo": [
         {
           "contentid": "126895",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "관광코스안내",
-          "infotext": "\n",
-          "fldgubun": "2"
-        },
-        {
-          "contentid": "126895",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "입 장 료",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-125769",
@@ -5359,10 +5260,10 @@
         "menuText": null,
         "petText": null,
         "babyCarriageText": "없음",
-        "creditCardText": "없음"
+        "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 6,
+        "knownOperationalFacts": 5,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -5393,19 +5294,20 @@
         "parking": "불가능",
         "chkbabycarriage": "없음",
         "chkpet": "",
-        "chkcreditcard": "없음"
+        "chkcreditcard": ""
       },
       "repeatedInfo": [
         {
           "contentid": "125769",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-125669",
@@ -5515,7 +5417,8 @@
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-2662628",
@@ -5532,7 +5435,7 @@
         "parkingText": null,
         "operatingHoursText": null,
         "restDayText": null,
-        "infoCenterText": "033-642-6688",
+        "infoCenterText": null,
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -5542,7 +5445,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 1,
+        "knownOperationalFacts": 0,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -5556,28 +5459,10 @@
         "firstimage": null,
         "firstimage2": null
       },
-      "intro": {
-        "contentid": "2662628",
-        "contenttypeid": "39",
-        "seat": "",
-        "kidsfacility": "0",
-        "firstmenu": "",
-        "treatmenu": "",
-        "smoking": "",
-        "packing": "",
-        "infocenterfood": "033-642-6688",
-        "scalefood": "",
-        "parkingfood": "",
-        "opendatefood": "",
-        "opentimefood": "",
-        "restdatefood": "",
-        "discountinfofood": "",
-        "chkcreditcardfood": "",
-        "reservationfood": "",
-        "lcnsno": ""
-      },
+      "intro": {},
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2871246",
@@ -5592,9 +5477,9 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능 요금 (무료)",
-        "operatingHoursText": "10:30~17:40 (라스트 오더 17:00)",
+        "operatingHoursText": "10:00~19:40 (마지막 주문 19:00)",
         "restDayText": "연중무휴",
-        "infoCenterText": "033-652-7410",
+        "infoCenterText": "0507-1319-7410",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "검은콩 장칼국수",
@@ -5627,11 +5512,11 @@
         "treatmenu": "소고기김밥 / 불향어묵김밥 / 냉콩국수",
         "smoking": "",
         "packing": "",
-        "infocenterfood": "033-652-7410",
+        "infocenterfood": "0507-1319-7410",
         "scalefood": "",
-        "parkingfood": "가능 <br>요금 (무료)",
+        "parkingfood": "가능 요금 (무료)",
         "opendatefood": "",
-        "opentimefood": "10:30~17:40 (라스트 오더 17:00)",
+        "opentimefood": "10:00~19:40 (마지막 주문 19:00)",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
@@ -5639,7 +5524,8 @@
         "lcnsno": "20030386853"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2894037",
@@ -5654,13 +5540,13 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "불가능",
-        "operatingHoursText": "11:00~18:00 (마지막 주문 17:30)",
-        "restDayText": "매주 화요일 / 매월 첫번째·세번째 월요일",
+        "operatingHoursText": "[월요일]- 11:00~17:00- 마지막 주문 16:30[수요일~일요일]- 11:00~18:00- 마지막 주문 17:30",
+        "restDayText": "매주 화요일 / 매월 첫째, 셋째 주 월요일",
         "infoCenterText": "0507-1345-1346",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "블랙위도우",
-        "menuText": "토마토 셔벗 / 바나나푸딩 / otmm 커피 / 바나나푸딩 등",
+        "menuText": "토마토 셔벗 / 바나나푸딩 / 발로나초코무스 등",
         "petText": null,
         "babyCarriageText": null,
         "creditCardText": null
@@ -5686,31 +5572,23 @@
         "seat": "",
         "kidsfacility": "0",
         "firstmenu": "블랙위도우",
-        "treatmenu": "토마토 셔벗 / 바나나푸딩 / otmm 커피 / 바나나푸딩 등",
+        "treatmenu": "토마토 셔벗 / 바나나푸딩 / 발로나초코무스 등",
         "smoking": "",
         "packing": "",
         "infocenterfood": "0507-1345-1346",
         "scalefood": "",
         "parkingfood": "불가능",
         "opendatefood": "",
-        "opentimefood": "11:00~18:00 (마지막 주문 17:30)",
-        "restdatefood": "매주 화요일 / 매월 첫번째·세번째 월요일",
+        "opentimefood": "[월요일]- 11:00~17:00- 마지막 주문 16:30[수요일~일요일]- 11:00~18:00- 마지막 주문 17:30",
+        "restdatefood": "매주 화요일 / 매월 첫째, 셋째 주 월요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20130386332"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2894037",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2775525",
@@ -5725,7 +5603,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "- 11:30~20:00 - 마지막 주문 19:30",
+        "operatingHoursText": "- 11:30~20:00- 브레이크 타임 15:00~17:00- 마지막 주문 19:30",
         "restDayText": "매주 수요일",
         "infoCenterText": "033-644-3929",
         "reservationText": null,
@@ -5764,7 +5642,7 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "- 11:30~20:00<br>- 마지막 주문 19:30",
+        "opentimefood": "- 11:30~20:00- 브레이크 타임 15:00~17:00- 마지막 주문 19:30",
         "restdatefood": "매주 수요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
@@ -5772,7 +5650,8 @@
         "lcnsno": "20200404322"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2775515",
@@ -5787,9 +5666,9 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "[월요일] - 08:00~16:00 - 마지막 주문 15:00 [수요일~일요일] - 08:00~18:30 - 마지막 주문 17:30",
+        "operatingHoursText": "[월요일]- 08:00~16:00- 마지막 주문 15:00[수요일~일요일]- 08:00~18:30- 마지막 주문 17:30",
         "restDayText": "매주 화요일",
-        "infoCenterText": "033-652-3696",
+        "infoCenterText": "0507-1424-3696",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "초당두부밥상",
@@ -5822,28 +5701,20 @@
         "treatmenu": "초당 명품밥상 / 초당 순두부전골 / 두부전골 등",
         "smoking": "",
         "packing": "",
-        "infocenterfood": "033-652-3696",
+        "infocenterfood": "0507-1424-3696",
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "[월요일]<br>- 08:00~16:00<br>- 마지막 주문 15:00<br>[수요일~일요일]<br>- 08:00~18:30<br>- 마지막 주문 17:30",
+        "opentimefood": "[월요일]- 08:00~16:00- 마지막 주문 15:00[수요일~일요일]- 08:00~18:30- 마지막 주문 17:30",
         "restdatefood": "매주 화요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20060386322"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2775515",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-624640",
@@ -5905,7 +5776,8 @@
         "lcnsno": "20050386673"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2775529",
@@ -5920,9 +5792,9 @@
         "homepage": null,
         "telephone": null,
         "parkingText": null,
-        "operatingHoursText": "12:00~22:00",
-        "restDayText": "매주 화요일",
-        "infoCenterText": "033-653-9658",
+        "operatingHoursText": "금요일~일요일 12:00~21:40(마지막 주문 20:40)",
+        "restDayText": "매주 월요일~목요일",
+        "infoCenterText": "0507-1306-9658",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "꼬막무침",
@@ -5955,19 +5827,20 @@
         "treatmenu": "육사시미 / 비빔밥",
         "smoking": "",
         "packing": "가능",
-        "infocenterfood": "033-653-9658",
+        "infocenterfood": "0507-1306-9658",
         "scalefood": "",
         "parkingfood": "",
         "opendatefood": "",
-        "opentimefood": "12:00~22:00",
-        "restdatefood": "매주 화요일",
+        "opentimefood": "금요일~일요일 12:00~21:40(마지막 주문 20:40)",
+        "restdatefood": "매주 월요일~목요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "19950386355"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2808098",
@@ -5983,7 +5856,7 @@
         "telephone": null,
         "parkingText": "가능",
         "operatingHoursText": "07:00~16:00",
-        "restDayText": "매월 첫째, 둘째, 셋째 목요일",
+        "restDayText": "매주 목요일 정기휴무",
         "infoCenterText": "033-662-3747",
         "reservationText": null,
         "seatText": null,
@@ -6022,23 +5895,15 @@
         "parkingfood": "가능",
         "opendatefood": "",
         "opentimefood": "07:00~16:00",
-        "restdatefood": "매월 첫째, 둘째, 셋째 목요일",
+        "restdatefood": "매주 목요일 정기휴무",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20010386342"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2808098",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음 ",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2876196",
@@ -6053,8 +5918,8 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "- 10:30~19:00 - 준비시간 15:00~16:00 - 마지막 주문 18:00",
-        "restDayText": "연중무휴",
+        "operatingHoursText": "- 10:30~19:00- 준비시간 15:00~16:00- 마지막 주문 18:20",
+        "restDayText": "매주 화요일",
         "infoCenterText": "0507-1312-0948",
         "reservationText": null,
         "seatText": null,
@@ -6087,29 +5952,21 @@
         "firstmenu": "초당버거",
         "treatmenu": "초당타노스버거 / 초당레이디버거 / 초당치즈버거 등",
         "smoking": "",
-        "packing": "가능",
+        "packing": "",
         "infocenterfood": "0507-1312-0948",
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "- 10:30~19:00<br>- 준비시간 15:00~16:00<br>- 마지막 주문 18:00",
-        "restdatefood": "연중무휴",
+        "opentimefood": "- 10:30~19:00- 준비시간 15:00~16:00- 마지막 주문 18:20",
+        "restdatefood": "매주 화요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20200404662"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2876196",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2818352",
@@ -6171,7 +6028,8 @@
         "lcnsno": "19760386007"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-2775555",
@@ -6242,7 +6100,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-610465",
@@ -6313,7 +6172,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-133817",
@@ -6384,7 +6244,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-2775521",
@@ -6455,7 +6316,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-133497",
@@ -6526,7 +6388,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-10-21"
     },
     {
       "id": "tour-128430",
@@ -6541,9 +6404,9 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "상시 개방 ※ 체험 프로그램 이용은 전화 문의",
+        "operatingHoursText": "상시 개방※ 체험 프로그램 이용은 전화 문의",
         "restDayText": "연중무휴",
-        "infoCenterText": "010-2082-6148",
+        "infoCenterText": "054-762-6148",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -6573,14 +6436,14 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "010-2082-6148",
+        "infocenter": "054-762-6148",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "칼국수 만들어 먹기 체험 / 손수건 풀잎 염색 체험 / 두부 만들어먹기 등",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "상시 개방<br>\n※ 체험 프로그램 이용은 전화 문의",
+        "usetime": "상시 개방※ 체험 프로그램 이용은 전화 문의",
         "parking": "가능",
         "chkbabycarriage": "",
         "chkpet": "",
@@ -6590,37 +6453,30 @@
         {
           "contentid": "128430",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "이용가능시설",
-          "infotext": "실내체험실 / 실외체험실 / 숙박시설 등",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "128430",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "시설이용료",
-          "infotext": "- 칼국수 만들어 먹기 체험 7,000원<br>\n- 손수건 풀잎 염색 체험 5,000원<br>\n- 두부 만들어 먹기 6,000원 등",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "128430",
-          "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "infoname": "입장료",
+          "infotext": "무료\n※ 단, 체험비 별도",
+          "fldgubun": "1"
         },
         {
           "contentid": "128430",
           "contenttypeid": "12",
           "serialnum": "3",
-          "infoname": "입 장 료",
-          "infotext": "무료<br>\n※ 단, 체험비 별도",
-          "fldgubun": "3"
+          "infoname": "시설이용료",
+          "infotext": "- 칼국수 만들어 먹기 체험 7,000원\n- 손수건 풀잎 염색 체험 5,000원\n- 두부 만들어 먹기 6,000원 등",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "128430",
+          "contenttypeid": "12",
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1958111",
@@ -6684,13 +6540,14 @@
         {
           "contentid": "1958111",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료 ",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1958053",
@@ -6754,13 +6611,14 @@
         {
           "contentid": "1958053",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료 ",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-590997",
@@ -6824,37 +6682,30 @@
         {
           "contentid": "590997",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "이용가능시설",
-          "infotext": "유수풀 / 파도풀 / 튜브슬라이드 / 팜스프링 / 방갈로",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "590997",
-          "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "3",
           "infoname": "시설이용료",
           "infotext": "※ 시즌 별로 상이하므로 홈페이지 참조",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "590997",
           "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "화장실",
-          "infotext": "있음  ",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "590997",
-          "contenttypeid": "12",
-          "serialnum": "3",
+          "serialnum": "4",
           "infoname": "주차요금",
-          "infotext": "[1~2 주차장] 1일 최대 5,000원<br>\n[3~4 주차장] 무료",
-          "fldgubun": "3"
+          "infotext": "[1~2 주차장] 1일 최대 5,000원[3~4 주차장] 무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "590997",
+          "contenttypeid": "12",
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-337505",
@@ -6868,7 +6719,7 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능 요금 (무료)",
+        "parkingText": "가능요금 (무료)",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
         "infoCenterText": "054-744-7314",
@@ -6909,7 +6760,7 @@
         "accomcount": "",
         "useseason": "",
         "usetime": "상시 개방",
-        "parking": "가능<br>요금 (무료)",
+        "parking": "가능요금 (무료)",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -6918,21 +6769,22 @@
         {
           "contentid": "337505",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료 ",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "337505",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-319572",
@@ -6993,7 +6845,8 @@
         "chkcreditcard": ""
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128682",
@@ -7057,21 +6910,30 @@
         {
           "contentid": "128682",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "128682",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "5",
           "infoname": "화장실",
+          "infotext": "없음",
+          "fldgubun": "2"
+        },
+        {
+          "contentid": "128682",
+          "contenttypeid": "12",
+          "serialnum": "8",
+          "infoname": "한국어안내서비스",
           "infotext": "없음",
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126211",
@@ -7088,7 +6950,7 @@
         "parkingText": "가능",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중 무휴",
-        "infoCenterText": "054-772-3632",
+        "infoCenterText": "054-779-6100",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -7118,7 +6980,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "054-772-3632",
+        "infocenter": "054-779-6100",
         "opendate": "",
         "restdate": "연중 무휴",
         "expguide": "",
@@ -7135,13 +6997,22 @@
         {
           "contentid": "126211",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "126211",
+          "contenttypeid": "12",
+          "serialnum": "8",
+          "infoname": "한국어안내서비스",
+          "infotext": "불가",
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-250274",
@@ -7205,13 +7076,14 @@
         {
           "contentid": "250274",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-250267",
@@ -7275,13 +7147,14 @@
         {
           "contentid": "250267",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-250281",
@@ -7345,13 +7218,14 @@
         {
           "contentid": "250281",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128681",
@@ -7415,13 +7289,14 @@
         {
           "contentid": "128681",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-319571",
@@ -7485,13 +7360,14 @@
         {
           "contentid": "319571",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-250262",
@@ -7555,13 +7431,14 @@
         {
           "contentid": "250262",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1621809",
@@ -7625,13 +7502,14 @@
         {
           "contentid": "1621809",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2876577",
@@ -7646,7 +7524,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능 요금 (무료)",
-        "operatingHoursText": "[평일] - 10:00~16:30 [주말] - 10:00~15:30 ※ 재료소진시 마감 / 방문 전 전화 필요",
+        "operatingHoursText": "- 평일 10:00~16:30 - 주말 10:00~15:30 ※ 재료소진시 마감 / 방문 전 전화 필요",
         "restDayText": "매주 월요일",
         "infoCenterText": "054-742-8828",
         "reservationText": null,
@@ -7683,26 +7561,18 @@
         "packing": "가능",
         "infocenterfood": "054-742-8828",
         "scalefood": "",
-        "parkingfood": "가능 <br> 요금 (무료)",
+        "parkingfood": "가능  요금 (무료)",
         "opendatefood": "",
-        "opentimefood": "[평일]<br> - 10:00~16:30 <br> [주말]<br> - 10:00~15:30 <br> ※ 재료소진시 마감 / 방문 전 전화 필요",
+        "opentimefood": "- 평일 10:00~16:30 - 주말 10:00~15:30  ※ 재료소진시 마감 / 방문 전 전화 필요",
         "restdatefood": "매주 월요일",
         "discountinfofood": "",
         "chkcreditcardfood": "가능",
         "reservationfood": "",
         "lcnsno": "20140538262"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2876577",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2840855",
@@ -7773,7 +7643,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2840527",
@@ -7787,8 +7658,8 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능(30대) 요금 (무료)",
-        "operatingHoursText": "11:00~21:00 - 준비 시간 15:00~16:00 - 마지막 주문 20:40",
+        "parkingText": "가능(30대)요금 (무료)",
+        "operatingHoursText": "11:00~21:00- 준비 시간 15:00~16:00- 마지막 주문 20:40",
         "restDayText": "연중무휴",
         "infoCenterText": "054-741-0100",
         "reservationText": null,
@@ -7825,26 +7696,18 @@
         "packing": "",
         "infocenterfood": "054-741-0100",
         "scalefood": "",
-        "parkingfood": "가능(30대)<br>요금 (무료)",
+        "parkingfood": "가능(30대)요금 (무료)",
         "opendatefood": "",
-        "opentimefood": "11:00~21:00<br>- 준비 시간 15:00~16:00<br>- 마지막 주문 20:40",
+        "opentimefood": "11:00~21:00- 준비 시간 15:00~16:00- 마지막 주문 20:40",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "가능",
         "reservationfood": "",
         "lcnsno": "20060538519"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2840527",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음 \n",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2840275",
@@ -7859,7 +7722,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "[평일] - 10:30~21:30 - 준비시간 15:00~16:00 [주말] - 10:30~21:30",
+        "operatingHoursText": "[평일]- 10:30~21:30- 준비시간 15:00~16:00[주말]- 10:30~21:30",
         "restDayText": "연중무휴",
         "infoCenterText": "054-741-9201",
         "reservationText": null,
@@ -7898,24 +7761,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "[평일]<br>- 10:30~21:30<br>- 준비시간 15:00~16:00<br>[주말]<br>- 10:30~21:30",
+        "opentimefood": "[평일]- 10:30~21:30- 준비시간 15:00~16:00[주말]- 10:30~21:30",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "가능",
         "reservationfood": "",
         "lcnsno": "20020538503"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2840275",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2838772",
@@ -7929,11 +7784,11 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능 요금 (무료)",
-        "operatingHoursText": "10:40~19:00 - 준비시간 15:50~16:30 - 마지막 주문 18:30",
+        "parkingText": "가능요금 (무료)",
+        "operatingHoursText": "10:40~19:00- 준비시간 15:50~16:30- 마지막 주문 18:30",
         "restDayText": "연중무휴",
         "infoCenterText": "054-748-5058",
-        "reservationText": "가능(전화 문의)",
+        "reservationText": null,
         "seatText": null,
         "firstMenuText": "밀면+석쇠불고기",
         "menuText": "비빔밀면+석쇠불고기 / 석쇠불고기한판 / 손만두 등",
@@ -7942,7 +7797,7 @@
         "creditCardText": "가능"
       },
       "completeness": {
-        "knownOperationalFacts": 8,
+        "knownOperationalFacts": 7,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -7967,26 +7822,18 @@
         "packing": "가능",
         "infocenterfood": "054-748-5058",
         "scalefood": "",
-        "parkingfood": "가능<br>요금 (무료)",
+        "parkingfood": "가능요금 (무료)",
         "opendatefood": "",
-        "opentimefood": "10:40~19:00<br>- 준비시간 15:50~16:30<br>- 마지막 주문 18:30",
+        "opentimefood": "10:40~19:00- 준비시간 15:50~16:30- 마지막 주문 18:30",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "가능",
-        "reservationfood": "가능(전화 문의)",
+        "reservationfood": "",
         "lcnsno": "20090538542"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2838772",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음\n",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2838704",
@@ -8057,7 +7904,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-3101705",
@@ -8074,17 +7922,17 @@
         "parkingText": null,
         "operatingHoursText": null,
         "restDayText": null,
-        "infoCenterText": "010-5220-3899",
+        "infoCenterText": null,
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
         "menuText": null,
         "petText": null,
         "babyCarriageText": null,
-        "creditCardText": "가능"
+        "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 2,
+        "knownOperationalFacts": 0,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -8098,28 +7946,10 @@
         "firstimage": null,
         "firstimage2": null
       },
-      "intro": {
-        "contentid": "3101705",
-        "contenttypeid": "39",
-        "seat": "",
-        "kidsfacility": "0",
-        "firstmenu": "",
-        "treatmenu": "",
-        "smoking": "",
-        "packing": "",
-        "infocenterfood": "010-5220-3899",
-        "scalefood": "",
-        "parkingfood": "",
-        "opendatefood": "",
-        "opentimefood": "",
-        "restdatefood": "",
-        "discountinfofood": "",
-        "chkcreditcardfood": "가능",
-        "reservationfood": "",
-        "lcnsno": ""
-      },
+      "intro": {},
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2738038",
@@ -8190,7 +8020,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2902110",
@@ -8261,7 +8092,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2766532",
@@ -8332,7 +8164,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2838855",
@@ -8347,7 +8180,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "10:30~19:30 ※ 재료 소진 시 조기 마감",
+        "operatingHoursText": "10:30~19:30※ 재료 소진 시 조기 마감",
         "restDayText": "매주 수요일",
         "infoCenterText": "0507-1323-7169",
         "reservationText": null,
@@ -8386,24 +8219,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "10:30~19:30<br>※ 재료 소진 시 조기 마감",
+        "opentimefood": "10:30~19:30※ 재료 소진 시 조기 마감",
         "restdatefood": "매주 수요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "19980538078"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2838855",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2736715",
@@ -8421,7 +8246,7 @@
         "operatingHoursText": "11:00~21:00",
         "restDayText": "매주 수요일",
         "infoCenterText": "0507-1385-1052",
-        "reservationText": "가능",
+        "reservationText": null,
         "seatText": null,
         "firstMenuText": "바지락 칼국수",
         "menuText": "상황버섯보쌈 / 해물파전 / 냉칼국수 등",
@@ -8430,7 +8255,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 7,
+        "knownOperationalFacts": 6,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -8461,20 +8286,12 @@
         "restdatefood": "매주 수요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
-        "reservationfood": "가능",
+        "reservationfood": "",
         "lcnsno": "20070538412"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2736715",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2838967",
@@ -8545,7 +8362,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2736719",
@@ -8616,7 +8434,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2876431",
@@ -8677,17 +8496,9 @@
         "reservationfood": "",
         "lcnsno": "19860538092"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2876431",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-298099",
@@ -8702,7 +8513,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "상시 개방 ※ 자세한 사항은 전화문의 요망",
+        "operatingHoursText": "상시 개방※ 자세한 사항은 전화문의 요망",
         "restDayText": "연중무휴",
         "infoCenterText": "051-517-5003",
         "reservationText": null,
@@ -8741,7 +8552,7 @@
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "상시 개방<br>\n※ 자세한 사항은 전화문의 요망",
+        "usetime": "상시 개방※ 자세한 사항은 전화문의 요망",
         "parking": "가능",
         "chkbabycarriage": "",
         "chkpet": "",
@@ -8751,13 +8562,22 @@
         {
           "contentid": "298099",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "298099",
+          "contenttypeid": "12",
+          "serialnum": "9",
+          "infoname": "외국어안내서비스",
+          "infotext": "불가",
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128134",
@@ -8821,13 +8641,14 @@
         {
           "contentid": "128134",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-129140",
@@ -8891,29 +8712,22 @@
         {
           "contentid": "129140",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입산통제 구간",
-          "infotext": "등산로 통제구간&nbsp;안내 <a title=\"등산로 통제구간 검색\" href=\"http://hiking.kworks.co.kr/sub_map/map_user01.aspx\" target=\"_blank\">http://hiking.kworks.co.kr/sub_map/map_user01.aspx</a>",
-          "fldgubun": "1"
-        },
-        {
-          "contentid": "129140",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "입산통제 기간",
-          "infotext": "[탐방로 통제기간] <br />\n(봄가을철 산불조심기간 한시적 등산로구간 통제)<br />\n봄철 3월 2일 ~ 4월 30일 <br />\n가을철 11월 1일 ~ 12월 15일<br />\n-국립공원 11월 15일 ~ 12월 15일(경주,태안해안제외)<br />\n※ 통제기간은 기상여건 등을 감안하여 공원별로 일부 조정될 수 있으니 공원탐방 시 해당 공원 홈페이지 공지사항 참고",
+          "infoname": "입장료",
+          "infotext": "무료",
           "fldgubun": "1"
         },
         {
           "contentid": "129140",
           "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "serialnum": "4",
+          "infoname": "주차요금",
+          "infotext": "30분당 300원",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2614716",
@@ -8977,13 +8791,22 @@
         {
           "contentid": "2614716",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "2614716",
+          "contenttypeid": "12",
+          "serialnum": "4",
+          "infoname": "주차요금",
+          "infotext": "10분당 300원",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128810",
@@ -9000,7 +8823,7 @@
         "parkingText": "가능",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
-        "infoCenterText": "해운대구 관광시설관리사업소 051-749-7622",
+        "infoCenterText": "051-749-4491",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -9030,7 +8853,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "해운대구 관광시설관리사업소 051-749-7622",
+        "infocenter": "051-749-4491",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "",
@@ -9047,13 +8870,22 @@
         {
           "contentid": "128810",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "128810",
+          "contenttypeid": "12",
+          "serialnum": "4",
+          "infoname": "주차요금",
+          "infotext": "10분당 300원",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2614725",
@@ -9114,7 +8946,8 @@
         "chkcreditcard": ""
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2617724",
@@ -9178,13 +9011,14 @@
         {
           "contentid": "2617724",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2782626",
@@ -9198,7 +9032,7 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능",
+        "parkingText": null,
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
         "infoCenterText": "광안리관광안내소 051-610-4848",
@@ -9211,7 +9045,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 4,
+        "knownOperationalFacts": 3,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -9239,7 +9073,7 @@
         "accomcount": "",
         "useseason": "",
         "usetime": "상시 개방",
-        "parking": "가능",
+        "parking": "",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -9248,13 +9082,14 @@
         {
           "contentid": "2782626",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2677748",
@@ -9271,7 +9106,7 @@
         "parkingText": "가능",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
-        "infoCenterText": "부산 사상구청 녹지공원과 051-310-4548",
+        "infoCenterText": "부산 사상구청 녹지공원과 051-310-4544",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -9301,7 +9136,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "부산 사상구청 녹지공원과 051-310-4548",
+        "infocenter": "부산 사상구청 녹지공원과 051-310-4544",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "",
@@ -9318,13 +9153,22 @@
         {
           "contentid": "2677748",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료 ",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "2677748",
+          "contenttypeid": "12",
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126028",
@@ -9388,21 +9232,22 @@
         {
           "contentid": "126028",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "등산로",
-          "infotext": "* 제1코스 (8km, 3시간 30분소요) 부산대 - 고별대 - 동문 - 부채바위 - 북문 - 금정산<br /> \n* 제2코스 (7km, 2시간 소요) 동래 - 만덕고개 - 석불사 - 상계봉<br /> \n* 제3코스 (6km, 2시간 소요) 금강공원 - 남문 - 상계봉<br />\n* 제4코스 (6km, 2시간 소요) 부산대 - 동문 - 상계봉<br /> \n* 제5코스 (6.5km) 범어사 - 북문 - 동문<br />\n* 제6코스 식물원 - 동문 - 북문 - 범어사<br />\n* 제7코스 (8km, 2시간 40분 소요) 중리(산성마을) - 국청사 - 북문 - 고당봉",
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
           "fldgubun": "1"
         },
         {
           "contentid": "126028",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "입 장 료",
+          "serialnum": "4",
+          "infoname": "주차요금",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1607440",
@@ -9417,7 +9262,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": null,
-        "operatingHoursText": "10:00~17:00",
+        "operatingHoursText": "10:00~17:00※ 방문 전 전화문의",
         "restDayText": "연중무휴",
         "infoCenterText": "051-555-1383",
         "reservationText": null,
@@ -9452,11 +9297,11 @@
         "infocenter": "051-555-1383",
         "opendate": "",
         "restdate": "연중무휴",
-        "expguide": "차 만들기 체험",
+        "expguide": "차 만들기 체험 ※ 변동될 수 있으므로 방문 전 전화 문의",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "10:00~17:00",
+        "usetime": "10:00~17:00※ 방문 전 전화문의",
         "parking": "",
         "chkbabycarriage": "",
         "chkpet": "",
@@ -9466,13 +9311,14 @@
         {
           "contentid": "1607440",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1607335",
@@ -9536,21 +9382,22 @@
         {
           "contentid": "1607335",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "1607335",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-298111",
@@ -9614,21 +9461,30 @@
         {
           "contentid": "298111",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "298111",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
+          "fldgubun": "2"
+        },
+        {
+          "contentid": "298111",
+          "contenttypeid": "12",
+          "serialnum": "9",
+          "infoname": "외국어안내서비스",
+          "infotext": "불가",
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-128886",
@@ -9645,7 +9501,7 @@
         "parkingText": "가능",
         "operatingHoursText": "09:00~17:30",
         "restDayText": "연중무휴",
-        "infoCenterText": "0507-1418-0395",
+        "infoCenterText": "051-508-0345",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -9675,7 +9531,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "0507-1418-0395",
+        "infocenter": "051-508-0345",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "템플스테이",
@@ -9692,21 +9548,22 @@
         {
           "contentid": "128886",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료 ",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "128886",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2643873",
@@ -9720,9 +9577,9 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": null,
-        "operatingHoursText": "점포별 상이",
-        "restDayText": "점포별 상이",
+        "parkingText": "※ 점포별 상이",
+        "operatingHoursText": "※ 점포별 상이",
+        "restDayText": "※ 점포별 상이",
         "infoCenterText": "금정구청 문화관광과 051-519-4085",
         "reservationText": null,
         "seatText": null,
@@ -9733,7 +9590,7 @@
         "creditCardText": null
       },
       "completeness": {
-        "knownOperationalFacts": 3,
+        "knownOperationalFacts": 4,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -9755,13 +9612,13 @@
         "heritage3": "0",
         "infocenter": "금정구청 문화관광과 051-519-4085",
         "opendate": "",
-        "restdate": "점포별 상이",
+        "restdate": "※ 점포별 상이",
         "expguide": "",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "점포별 상이",
-        "parking": "",
+        "usetime": "※ 점포별 상이",
+        "parking": "※ 점포별 상이",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -9770,13 +9627,14 @@
         {
           "contentid": "2643873",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2752996",
@@ -9791,19 +9649,19 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "[평일] - 11:00~19:00 - 마지막 주문 18:30 [주말} - 11:00~21:00 - 마지막 주문 20:30",
+        "operatingHoursText": "[평일]- 11:00~18:00- 마지막 주문 17:30[주말]- 11:00~20:00- 마지막 주문 19:30",
         "restDayText": "매주 수요일",
         "infoCenterText": "0507-1315-2192",
-        "reservationText": "전화 예약",
+        "reservationText": null,
         "seatText": null,
         "firstMenuText": "브라운마운틴 라떼",
-        "menuText": "수제 바닐라빈라떼 / 바스크 치즈케이크 / 에이드 등",
+        "menuText": "수제 바닐라빈라떼 / 바스크 치즈케이크 / 유자에이드 등",
         "petText": null,
         "babyCarriageText": null,
         "creditCardText": "가능"
       },
       "completeness": {
-        "knownOperationalFacts": 8,
+        "knownOperationalFacts": 7,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -9823,39 +9681,23 @@
         "seat": "",
         "kidsfacility": "0",
         "firstmenu": "브라운마운틴 라떼",
-        "treatmenu": "수제 바닐라빈라떼 / 바스크 치즈케이크 / 에이드 등",
+        "treatmenu": "수제 바닐라빈라떼 / 바스크 치즈케이크 / 유자에이드 등",
         "smoking": "",
         "packing": "가능",
         "infocenterfood": "0507-1315-2192",
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "[평일]<br>- 11:00~19:00<br>- 마지막 주문 18:30<br>[주말}<br>- 11:00~21:00<br>- 마지막 주문 20:30",
+        "opentimefood": "[평일]- 11:00~18:00- 마지막 주문 17:30[주말]- 11:00~20:00- 마지막 주문 19:30",
         "restdatefood": "매주 수요일",
         "discountinfofood": "",
         "chkcreditcardfood": "가능",
-        "reservationfood": "전화 예약",
-        "lcnsno": ""
+        "reservationfood": "",
+        "lcnsno": "20250214799"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2752996",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "부대시설",
-          "infotext": "무선 인터넷 / 화장실 / 주차장",
-          "fldgubun": "1"
-        },
-        {
-          "contentid": "2752996",
-          "contenttypeid": "39",
-          "serialnum": "1",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2852408",
@@ -9876,7 +9718,7 @@
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "만디라떼",
-        "menuText": "초코 생크림 케이크 / 만디 티라미수 / 오레오 쉐이크 등",
+        "menuText": "초코 생크림 케이크 / 만디 티라미수 / 엑설런트 라떼 등",
         "petText": null,
         "babyCarriageText": null,
         "creditCardText": "가능"
@@ -9902,7 +9744,7 @@
         "seat": "",
         "kidsfacility": "0",
         "firstmenu": "만디라떼",
-        "treatmenu": "초코 생크림 케이크 / 만디 티라미수 / 오레오 쉐이크 등",
+        "treatmenu": "초코 생크림 케이크 / 만디 티라미수 / 엑설런트 라떼 등",
         "smoking": "",
         "packing": "",
         "infocenterfood": "051-977-0049",
@@ -9916,17 +9758,9 @@
         "reservationfood": "",
         "lcnsno": "20190144752"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2852408",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2773623",
@@ -9940,20 +9774,20 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": null,
-        "operatingHoursText": "12:00~01:00 - 준비시간 15:30~17:30 - 점심 마지막 주문 14:30 / 저녁 마지막 주문 00:00",
+        "parkingText": "불가능",
+        "operatingHoursText": "12:00~22:00- 준비시간 15:40~17:30- 점심 마지막 주문 14:40 / 저녁 마지막 주문 21:00",
         "restDayText": "매주 일요일 / 매월 2, 4번째 월요일",
         "infoCenterText": "010-7144-7600",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "파랑국수",
-        "menuText": "고등어봉초밥 / 된장구이닭 / 통삼겹수육 / 튀김 등",
+        "menuText": "고등어봉초밥 / 된장구이닭 / 스키야끼 등",
         "petText": null,
         "babyCarriageText": null,
         "creditCardText": "가능"
       },
       "completeness": {
-        "knownOperationalFacts": 6,
+        "knownOperationalFacts": 7,
         "totalOperationalFactFields": 11
       },
       "common": {
@@ -9973,22 +9807,23 @@
         "seat": "",
         "kidsfacility": "0",
         "firstmenu": "파랑국수",
-        "treatmenu": "고등어봉초밥 / 된장구이닭 / 통삼겹수육 / 튀김 등",
+        "treatmenu": "고등어봉초밥 / 된장구이닭 / 스키야끼 등",
         "smoking": "",
         "packing": "",
         "infocenterfood": "010-7144-7600",
         "scalefood": "",
-        "parkingfood": "",
+        "parkingfood": "불가능",
         "opendatefood": "",
-        "opentimefood": "12:00~01:00<br>- 준비시간 15:30~17:30<br>- 점심 마지막 주문 14:30 / 저녁 마지막 주문 00:00",
+        "opentimefood": "12:00~22:00- 준비시간 15:40~17:30- 점심 마지막 주문 14:40 / 저녁 마지막 주문 21:00",
         "restdatefood": "매주 일요일 / 매월 2, 4번째 월요일",
         "discountinfofood": "",
         "chkcreditcardfood": "가능",
         "reservationfood": "",
-        "lcnsno": "20140131636"
+        "lcnsno": "20210132468"
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2891745",
@@ -10002,14 +9837,14 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능 요금(무료)",
-        "operatingHoursText": "- 10:00~18:00 - 마지막 주문 17:30",
-        "restDayText": "연중무휴",
+        "parkingText": "가능",
+        "operatingHoursText": "10:00~18:30 (마지막 주문 18:00)",
+        "restDayText": "매주 화요일",
         "infoCenterText": "051-746-5887",
         "reservationText": null,
         "seatText": null,
-        "firstMenuText": "프렌치토스트",
-        "menuText": "명란오일 파스타 / 토마토 파스타 / 루꼴라 샌드위치 / 브라타치즈 떡볶이 등",
+        "firstMenuText": "불고기퀘사디아",
+        "menuText": "모짜렐라 에그인헬 / 구운야채샐러드 / 숲속 크림라떼 등",
         "petText": null,
         "babyCarriageText": null,
         "creditCardText": null
@@ -10034,32 +9869,24 @@
         "contenttypeid": "39",
         "seat": "",
         "kidsfacility": "0",
-        "firstmenu": "프렌치토스트",
-        "treatmenu": "명란오일 파스타 / 토마토 파스타 / 루꼴라 샌드위치 / 브라타치즈 떡볶이 등",
+        "firstmenu": "불고기퀘사디아",
+        "treatmenu": "모짜렐라 에그인헬 / 구운야채샐러드 / 숲속 크림라떼 등",
         "smoking": "",
         "packing": "",
         "infocenterfood": "051-746-5887",
         "scalefood": "",
-        "parkingfood": "가능<br>요금(무료)",
+        "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "- 10:00~18:00<br>- 마지막 주문 17:30",
-        "restdatefood": "연중무휴",
+        "opentimefood": "10:00~18:30 (마지막 주문 18:00)",
+        "restdatefood": "매주 화요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20210137185"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2891745",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2872442",
@@ -10074,7 +9901,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "- 10:10~19:30 - 점심 마지막 주문 14:50 - 준비시간 15:00~16:00 - 저녁 마지막 주문 19:20",
+        "operatingHoursText": "[매일]- 10:20~19:10- 준비시간 15:00~16:00- 마지막 주문 19:00 [동절기]- 10:20~18:10",
         "restDayText": "연중무휴",
         "infoCenterText": "051-727-5585",
         "reservationText": null,
@@ -10113,24 +9940,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "- 10:10~19:30<br>- 점심 마지막 주문 14:50<br>- 준비시간 15:00~16:00<br>- 저녁 마지막 주문 19:20",
+        "opentimefood": "[매일]- 10:20~19:10- 준비시간 15:00~16:00- 마지막 주문 19:00 [동절기]- 10:20~18:10",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20050156146"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2872442",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2872395",
@@ -10145,7 +9964,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "11:00~20:30 (마지막 주문 19:30)",
+        "operatingHoursText": "11:00~20:30 (마지막 주문 19:45)",
         "restDayText": "연중무휴",
         "infoCenterText": "0507-1426-9441",
         "reservationText": null,
@@ -10184,24 +10003,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "11:00~20:30 (마지막 주문 19:30)",
+        "opentimefood": "11:00~20:30 (마지막 주문 19:45)",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
-        "lcnsno": "20020156250"
+        "lcnsno": "20060156057"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2872395",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2870394",
@@ -10217,12 +10028,12 @@
         "telephone": null,
         "parkingText": "불가능",
         "operatingHoursText": "11:00~22:00",
-        "restDayText": "매월 두번째 화요일",
+        "restDayText": "매월 둘째 주 화요일",
         "infoCenterText": "051-467-4303",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "돼지양념갈비",
-        "menuText": "돼지목살 / 된장찌개 / 삼겹살 등",
+        "menuText": "돼지생목살 / 된장찌개 / 돼지삼겹살 등",
         "petText": null,
         "babyCarriageText": null,
         "creditCardText": null
@@ -10248,7 +10059,7 @@
         "seat": "",
         "kidsfacility": "0",
         "firstmenu": "돼지양념갈비",
-        "treatmenu": "돼지목살 / 된장찌개 / 삼겹살 등",
+        "treatmenu": "돼지생목살 / 된장찌개 / 돼지삼겹살 등",
         "smoking": "",
         "packing": "",
         "infocenterfood": "051-467-4303",
@@ -10256,23 +10067,15 @@
         "parkingfood": "불가능",
         "opendatefood": "",
         "opentimefood": "11:00~22:00",
-        "restdatefood": "매월 두번째 화요일",
+        "restdatefood": "매월 둘째 주 화요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "19770129024"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2870394",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2869618",
@@ -10286,8 +10089,8 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능",
-        "operatingHoursText": "09:30~20:00 (준비시간 14:00~14:30)",
+        "parkingText": "불가능",
+        "operatingHoursText": "[평일]- 09:10~19:30- 마지막 주문 19:20 [주말]- 09:10~19:20- 준비시간 14:30~15:00- 마지막 주문 19:10",
         "restDayText": "연중무휴",
         "infoCenterText": "051-628-4898",
         "reservationText": null,
@@ -10324,26 +10127,18 @@
         "packing": "",
         "infocenterfood": "051-628-4898",
         "scalefood": "",
-        "parkingfood": "가능",
+        "parkingfood": "불가능",
         "opendatefood": "",
-        "opentimefood": "09:30~20:00 (준비시간 14:00~14:30)",
+        "opentimefood": "[평일]- 09:10~19:30- 마지막 주문 19:20 [주말]- 09:10~19:20- 준비시간 14:30~15:00- 마지막 주문 19:10",
         "restdatefood": "연중무휴",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20120137280"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2869618",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2869343",
@@ -10358,7 +10153,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "- 12:00~22:00 - 준비시간 15:00~16:30 - 마지막 주문 20:50",
+        "operatingHoursText": "[평일]- 12:00~22:00- 준비시간 15:00~16:30- 마지막 주문 20:50 [주말]- 12:00~22:00- 마지막 주문 20:50",
         "restDayText": "매주 화요일",
         "infoCenterText": "0507-1352-0543",
         "reservationText": null,
@@ -10397,24 +10192,16 @@
         "scalefood": "",
         "parkingfood": "가능",
         "opendatefood": "",
-        "opentimefood": "- 12:00~22:00<br>- 준비시간 15:00~16:30<br>- 마지막 주문 20:50",
+        "opentimefood": "[평일]- 12:00~22:00- 준비시간 15:00~16:30- 마지막 주문 20:50 [주말]- 12:00~22:00- 마지막 주문 20:50",
         "restdatefood": "매주 화요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20000152016"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2869343",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2867626",
@@ -10475,17 +10262,9 @@
         "reservationfood": "",
         "lcnsno": "19980128096"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2867626",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2867598",
@@ -10546,17 +10325,9 @@
         "reservationfood": "",
         "lcnsno": "20080128170"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2867598",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2867167",
@@ -10617,17 +10388,9 @@
         "reservationfood": "",
         "lcnsno": "20010141986"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2867167",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2860819",
@@ -10698,7 +10461,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2760773",
@@ -10759,17 +10523,9 @@
         "reservationfood": "",
         "lcnsno": "19890141026"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2760773",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2759629",
@@ -10823,24 +10579,16 @@
         "scalefood": "",
         "parkingfood": "불가능",
         "opendatefood": "",
-        "opentimefood": "12:00~16:00 (마지막 주문 15:30) <br>※ 재료 소진 시 조기 마감",
+        "opentimefood": "12:00~16:00 (마지막 주문 15:30) ※ 재료 소진 시 조기 마감",
         "restdatefood": "매주 월요일~금요일",
         "discountinfofood": "",
         "chkcreditcardfood": "",
         "reservationfood": "",
         "lcnsno": "20180150294"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2759629",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음\n",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1884521",
@@ -10904,13 +10652,14 @@
         {
           "contentid": "1884521",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2791433",
@@ -10924,7 +10673,7 @@
         "overview": null,
         "homepage": null,
         "telephone": null,
-        "parkingText": "가능 요금 (무료)",
+        "parkingText": "가능요금 (무료)",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
         "infoCenterText": "제주관광정보센터 064-740-6000",
@@ -10965,7 +10714,7 @@
         "accomcount": "",
         "useseason": "",
         "usetime": "상시 개방",
-        "parking": "가능<br>요금 (무료)",
+        "parking": "가능요금 (무료)",
         "chkbabycarriage": "",
         "chkpet": "",
         "chkcreditcard": ""
@@ -10974,13 +10723,14 @@
         {
           "contentid": "2791433",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
-          "infotext": "무료 ",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2723542",
@@ -11044,21 +10794,22 @@
         {
           "contentid": "2723542",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "2723542",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "4",
           "infoname": "주차요금",
-          "infotext": "2시간 4000원",
-          "fldgubun": "3"
+          "infotext": "1시간 4000원",
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2715651",
@@ -11122,29 +10873,22 @@
         {
           "contentid": "2715651",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "2715651",
+          "contenttypeid": "12",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "2715651",
-          "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "이용가능시설",
-          "infotext": "섯알오름예비검속희생자추모비 / 일본군탄약고 / 추모의 길 등",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "2715651",
-          "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-129405",
@@ -11208,29 +10952,30 @@
         {
           "contentid": "129405",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음\n",
-          "fldgubun": "3"
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
         },
         {
           "contentid": "129405",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "4",
           "infoname": "주차요금",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "129405",
           "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-309943",
@@ -11247,7 +10992,7 @@
         "parkingText": "가능",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
-        "infoCenterText": "064-738-5225",
+        "infoCenterText": "0507-1472-5225",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -11277,7 +11022,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "064-738-5225",
+        "infocenter": "0507-1472-5225",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "",
@@ -11294,21 +11039,14 @@
         {
           "contentid": "309943",
           "contenttypeid": "12",
-          "serialnum": "0",
+          "serialnum": "5",
           "infoname": "화장실",
-          "infotext": "있음\n",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "309943",
-          "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "이용가능시설",
-          "infotext": "대웅전 / 구품연지 / 구화루 등\t\t",
-          "fldgubun": "3"
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2740129",
@@ -11358,7 +11096,7 @@
         "infocenter": "제주 관광정보센터 064-764-6000",
         "opendate": "",
         "restdate": "연중무휴",
-        "expguide": "스킨스쿠버 / 바다 낚시 / 바릇잡이 체험 (위미1리 어촌체험 휴양 마을) 등",
+        "expguide": "",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
@@ -11372,37 +11110,38 @@
         {
           "contentid": "2740129",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
+          "serialnum": "1",
+          "infoname": "입장료",
+          "infotext": "무료",
+          "fldgubun": "1"
+        },
+        {
+          "contentid": "2740129",
+          "contenttypeid": "12",
+          "serialnum": "10",
+          "infoname": "내국인예약안내",
+          "infotext": "064-764-0303(체험 예약)",
           "fldgubun": "3"
         },
         {
           "contentid": "2740129",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "4",
           "infoname": "주차요금",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "2740129",
           "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "입 장 료",
-          "infotext": "무료",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "2740129",
-          "contenttypeid": "12",
-          "serialnum": "3",
-          "infoname": "내국인 예약안내",
-          "infotext": "064-764-0303(체험 예약)",
-          "fldgubun": "4"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1620883",
@@ -11480,7 +11219,8 @@
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-129395",
@@ -11497,7 +11237,7 @@
         "parkingText": "가능 (약 소형 14대)",
         "operatingHoursText": "상시 개방",
         "restDayText": "연중무휴",
-        "infoCenterText": "서귀포시청 환경관리과 064-760-3191",
+        "infoCenterText": "서귀포시청 공원녹지과 064-760-3191",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -11527,7 +11267,7 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "서귀포시청 환경관리과 064-760-3191",
+        "infocenter": "서귀포시청 공원녹지과 064-760-3191",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "",
@@ -11544,13 +11284,14 @@
         {
           "contentid": "129395",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2765245",
@@ -11620,7 +11361,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2704447",
@@ -11684,13 +11426,14 @@
         {
           "contentid": "2704447",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-129145",
@@ -11705,7 +11448,7 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "불가능",
-        "operatingHoursText": "[마라도 등대] - 09:00~18:00 [운진항 여객터미널] - 09:40~15:50 [마라도 가는 여객선 / 산이수동항] - 09:20~16:10 ※ 사전 전화문의 필수",
+        "operatingHoursText": "[마라도 등대]- 09:00~18:00[운진항 여객터미널] - 09:40~15:50[마라도 가는 여객선 / 산이수동항] - 09:20~16:10 ※ 사전 전화문의 필수",
         "restDayText": "연중무휴",
         "infoCenterText": "064-792-8507",
         "reservationText": null,
@@ -11744,7 +11487,7 @@
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "[마라도 등대]<br>\n- 09:00~18:00<br>\n\n[운진항 여객터미널] <br>\n- 09:40~15:50<br>\n\n[마라도 가는 여객선 / 산이수동항] <br>\n- 09:20~16:10 <br>\n※ 사전 전화문의 필수",
+        "usetime": "[마라도 등대]- 09:00~18:00[운진항 여객터미널] - 09:40~15:50[마라도 가는 여객선 / 산이수동항] - 09:20~16:10 ※ 사전 전화문의 필수",
         "parking": "불가능",
         "chkbabycarriage": "",
         "chkpet": "",
@@ -11754,21 +11497,22 @@
         {
           "contentid": "129145",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음\n",
-          "fldgubun": "3"
+          "serialnum": "3",
+          "infoname": "시설이용료",
+          "infotext": "[운진항 여객터미널]\n- 대인 21,000원\n- 중/고등 20,800원\n- 초등 10,500원\n- 미취학 10,000원\n- 경로 (만 65세 이상) 16,000원 등\n※ 자세한 내용은 홈페이지 참고\n\n[마라도 가는 여객선 / 산이수동항]\n- 성인 21,000원\n- 중/고등 20,800원\n- 초등 10,500원\n- 미취학 10,000원\n- 경로 (만 65세 이상) 16,000원 등\n※ 자세한 내용은 홈페이지 참고",
+          "fldgubun": "1"
         },
         {
           "contentid": "129145",
           "contenttypeid": "12",
-          "serialnum": "1",
-          "infoname": "시설이용료",
-          "infotext": "[운진항 여객터미널]<br>\n- 대인 21,000원<br>\n- 중/고등 20,800원<br>\n- 초등 10,500원<br>\n- 미취학 10,000원<br>\n- 경로 (만 65세 이상) 16,000원 등<br>\n※ 자세한 내용은 홈페이지 참고<br>\n\n[마라도 가는 여객선 / 산이수동항]<br>\n- 성인 21,000원<br>\n- 중/고등 20,800원<br>\n- 초등 10,500원<br>\n- 미취학 10,000원<br>\n- 경로 (만 65세 이상) 16,000원 등<br>\n※ 자세한 내용은 홈페이지 참고",
-          "fldgubun": "3"
+          "serialnum": "5",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-126468",
@@ -11783,9 +11527,9 @@
         "homepage": null,
         "telephone": null,
         "parkingText": "가능",
-        "operatingHoursText": "상시 개방",
+        "operatingHoursText": "계곡 입구 숲길 탐방 가능※ 방선문 계곡은 낙석 우려로 출입 통제. 안전끈 설치 구역 출입금지",
         "restDayText": "연중무휴",
-        "infoCenterText": "064-710-3314",
+        "infoCenterText": "064-728-4802",
         "reservationText": null,
         "seatText": null,
         "firstMenuText": null,
@@ -11815,14 +11559,14 @@
         "heritage1": "0",
         "heritage2": "0",
         "heritage3": "0",
-        "infocenter": "064-710-3314",
+        "infocenter": "064-728-4802",
         "opendate": "",
         "restdate": "연중무휴",
         "expguide": "",
         "expagerange": "",
         "accomcount": "",
         "useseason": "",
-        "usetime": "상시 개방",
+        "usetime": "계곡 입구 숲길 탐방 가능※ 방선문 계곡은 낙석 우려로 출입 통제. 안전끈 설치 구역 출입금지",
         "parking": "가능",
         "chkbabycarriage": "",
         "chkpet": "",
@@ -11832,29 +11576,22 @@
         {
           "contentid": "126468",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "입 장 료",
+          "serialnum": "1",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         },
         {
           "contentid": "126468",
           "contenttypeid": "12",
-          "serialnum": "1",
+          "serialnum": "5",
           "infoname": "화장실",
           "infotext": "있음",
-          "fldgubun": "3"
-        },
-        {
-          "contentid": "126468",
-          "contenttypeid": "12",
-          "serialnum": "2",
-          "infoname": "이용가능시설",
-          "infotext": "참꽃산책로 / 쉼터 / 전망대 등",
-          "fldgubun": "3"
+          "fldgubun": "2"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1621059",
@@ -11924,7 +11661,8 @@
           "fldgubun": "3"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-1993734",
@@ -11988,21 +11726,14 @@
         {
           "contentid": "1993734",
           "contenttypeid": "12",
-          "serialnum": "0",
-          "infoname": "관광코스안내",
-          "infotext": "- 먹거리 : 유채 비빔밥, 유채 우동, 유채 튀김<br />\n- 인근볼거리 : 조랑말체험공원, 정석항공관, 성읍민속마을\n",
-          "fldgubun": "2"
-        },
-        {
-          "contentid": "1993734",
-          "contenttypeid": "12",
           "serialnum": "1",
-          "infoname": "입 장 료",
+          "infoname": "입장료",
           "infotext": "무료",
-          "fldgubun": "3"
+          "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2755445",
@@ -12073,7 +11804,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2798036",
@@ -12144,7 +11876,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2778916",
@@ -12206,7 +11939,8 @@
         "lcnsno": ""
       },
       "repeatedInfo": [],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2802732",
@@ -12277,7 +12011,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2860639",
@@ -12298,7 +12033,7 @@
         "reservationText": null,
         "seatText": null,
         "firstMenuText": "간짜장",
-        "menuText": "우동 / 짬뽕 / 볶음밥 / 탕수육 등",
+        "menuText": "우동 / 짬뽕 / 볶음밥 등",
         "petText": null,
         "babyCarriageText": null,
         "creditCardText": null
@@ -12324,7 +12059,7 @@
         "seat": "",
         "kidsfacility": "0",
         "firstmenu": "간짜장",
-        "treatmenu": "우동 / 짬뽕 / 볶음밥 / 탕수육 등",
+        "treatmenu": "우동 / 짬뽕 / 볶음밥 등",
         "smoking": "",
         "packing": "",
         "infocenterfood": "064-722-4229",
@@ -12338,17 +12073,9 @@
         "reservationfood": "",
         "lcnsno": "19790627039"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2860639",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2758924",
@@ -12419,7 +12146,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2758900",
@@ -12490,7 +12218,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2758859",
@@ -12561,7 +12290,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2755006",
@@ -12632,7 +12362,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2753037",
@@ -12703,7 +12434,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2758837",
@@ -12774,7 +12506,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2758836",
@@ -12845,7 +12578,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2756100",
@@ -12916,7 +12650,8 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2755895",
@@ -12977,17 +12712,9 @@
         "reservationfood": "",
         "lcnsno": "20190620820"
       },
-      "repeatedInfo": [
-        {
-          "contentid": "2755895",
-          "contenttypeid": "39",
-          "serialnum": "0",
-          "infoname": "화장실",
-          "infotext": "있음",
-          "fldgubun": "1"
-        }
-      ],
-      "images": []
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     },
     {
       "id": "tour-2755458",
@@ -13058,7 +12785,1141 @@
           "fldgubun": "1"
         }
       ],
-      "images": []
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2733861",
+      "name": "서강팔경",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "2733861",
+      "contentTypeId": "39",
+      "modifiedTime": "20251209155821",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "- 12:00~24:00 - 점심 준비시간 15:00~17:30 / 저녁 준비시간 19:30~20:00 - 마지막 주문 23:30 ※ 22시부터 주류 고객만 이용 가능",
+        "restDayText": "연중무휴",
+        "infoCenterText": "02-334-1919",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "코스요리",
+        "menuText": "베르사유 런치코스 / 베르사유 디너코스 / 마르세유 디너코스 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "서강팔경",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2733861",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "코스요리",
+        "treatmenu": "베르사유 런치코스 / 베르사유 디너코스 / 마르세유 디너코스 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "02-334-1919",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "- 12:00~24:00<br>- 점심 준비시간 15:00~17:30 / 저녁 준비시간 19:30~20:00<br>- 마지막 주문 23:30<br>※ 22시부터 주류 고객만 이용 가능",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20090070146"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2733861",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음\n",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2819962",
+      "name": "인더베이글",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "2819962",
+      "contentTypeId": "39",
+      "modifiedTime": "20251204171941",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "불가능",
+        "operatingHoursText": "08:00~21:00",
+        "restDayText": "매주 일요일",
+        "infoCenterText": "0507-1374-3338",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "베이글",
+        "menuText": "샐러드 / 샌드위치 / 포케 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "인더베이글",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2819962",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "베이글",
+        "treatmenu": "샐러드 / 샌드위치 / 포케 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "0507-1374-3338",
+        "scalefood": "",
+        "parkingfood": "불가능",
+        "opendatefood": "",
+        "opentimefood": "08:00~21:00",
+        "restdatefood": "매주 일요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20060042540"
+      },
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2778425",
+      "name": "군산오징어 본점",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "2778425",
+      "contentTypeId": "39",
+      "modifiedTime": "20251204161722",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "11:30~22:30",
+        "restDayText": "연중무휴",
+        "infoCenterText": "02-413-2046",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "오징어 불고기",
+        "menuText": "오낙불고기 / 오징어튀김 / 오징어 숙회 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "군산오징어 본점",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2778425",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "오징어 불고기",
+        "treatmenu": "오낙불고기 / 오징어튀김 / 오징어 숙회 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "02-413-2046",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "11:30~22:30",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20080114248"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2778425",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음\n",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-403283",
+      "name": "국화정원",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "403283",
+      "contentTypeId": "39",
+      "modifiedTime": "20251204152625",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "- 12:00~21:00 - 준비시간 15:00~17:00 - 마지막 주문 20:00",
+        "restDayText": "매주 수요일",
+        "infoCenterText": "0507-1361-0159",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "국화특선",
+        "menuText": "정1품 / 정2품 / 정3품 / 간장게장 특선 / 점심 특선 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "국화정원",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "403283",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "국화특선",
+        "treatmenu": "정1품 / 정2품 / 정3품 / 간장게장 특선 / 점심 특선 등",
+        "smoking": "모두 금연석",
+        "packing": "",
+        "infocenterfood": "0507-1361-0159",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "- 12:00~21:00<br>- 준비시간 15:00~17:00<br>- 마지막 주문 20:00",
+        "restdatefood": "매주 수요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20050050554"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "403283",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2833461",
+      "name": "스시초심",
+      "region": "서울",
+      "category": "맛집",
+      "contentId": "2833461",
+      "contentTypeId": "39",
+      "modifiedTime": "20251204150935",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "09:00~21:00 - 준비시간 15:00~19:00",
+        "restDayText": "매주 일요일",
+        "infoCenterText": "0507-1433-3491",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "스시 오마카세",
+        "menuText": "런치 오마카세 / 디너 오마카세 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "스시초심",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2833461",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "스시 오마카세",
+        "treatmenu": "런치 오마카세 / 디너 오마카세 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "0507-1433-3491",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "09:00~21:00<br> - 준비시간 15:00~19:00",
+        "restdatefood": "매주 일요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20210059865"
+      },
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2830222",
+      "name": "블루문",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2830222",
+      "contentTypeId": "39",
+      "modifiedTime": "20251204171744",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "10:00~02:00",
+        "restDayText": "연중무휴",
+        "infoCenterText": "0507-1422-1197",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "리얼바나나쉐이크",
+        "menuText": "딸기요거트라떼 / 베리베리쉐이크 / 수박주스 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": "가능"
+      },
+      "completeness": {
+        "knownOperationalFacts": 7,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "블루문",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2830222",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "리얼바나나쉐이크",
+        "treatmenu": "딸기요거트라떼 / 베리베리쉐이크 / 수박주스 등",
+        "smoking": "",
+        "packing": "가능",
+        "infocenterfood": "0507-1422-1197",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "10:00~02:00",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "가능",
+        "reservationfood": "",
+        "lcnsno": "20170332912"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2830222",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2850266",
+      "name": "쌍용해장국",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2850266",
+      "contentTypeId": "39",
+      "modifiedTime": "20251201130329",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "- 06:00~21:00 - 마지막 주문 20:30",
+        "restDayText": "설·추석 당일",
+        "infoCenterText": "031-636-3319",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "쌍용탕(선지해장국)",
+        "menuText": "우거지탕 / 갈비탕 / 도가니탕 / 뼈해장국 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "쌍용해장국",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2850266",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "쌍용탕(선지해장국)",
+        "treatmenu": "우거지탕 / 갈비탕 / 도가니탕 / 뼈해장국 등",
+        "smoking": "",
+        "packing": "가능",
+        "infocenterfood": "031-636-3319",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "- 06:00~21:00<br>- 마지막 주문 20:30",
+        "restdatefood": "설·추석 당일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "19980358029"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2850266",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2732323",
+      "name": "카페더공생",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2732323",
+      "contentTypeId": "39",
+      "modifiedTime": "20251117153019",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능 요금 (무료)",
+        "operatingHoursText": "11:00~21:30",
+        "restDayText": "매주 월요일",
+        "infoCenterText": "070-8211-1851",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "아메리카노",
+        "menuText": "즉석라면 / 라볶이 / 패션후르츠에이드 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": "가능"
+      },
+      "completeness": {
+        "knownOperationalFacts": 7,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "카페더공생",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2732323",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "아메리카노",
+        "treatmenu": "즉석라면 / 라볶이 / 패션후르츠에이드 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "070-8211-1851",
+        "scalefood": "",
+        "parkingfood": "가능 <br>요금 (무료)",
+        "opendatefood": "",
+        "opentimefood": "11:00~21:30",
+        "restdatefood": "매주 월요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "가능",
+        "reservationfood": "",
+        "lcnsno": "20160327202"
+      },
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2872295",
+      "name": "오늘도웃자두루치기 본점",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2872295",
+      "contentTypeId": "39",
+      "modifiedTime": "20251117094604",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "- 11:00~22:00 - 마지막 주문 21:00",
+        "restDayText": "연중무휴",
+        "infoCenterText": "031-795-3355",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "돼지 두루치기",
+        "menuText": "오징어제육두루치기 / 옛날김치찌개 / 왕 계란말이 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "오늘도웃자두루치기 본점",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2872295",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "돼지 두루치기",
+        "treatmenu": "오징어제육두루치기 / 옛날김치찌개 / 왕 계란말이 등",
+        "smoking": "",
+        "packing": "가능",
+        "infocenterfood": "031-795-3355",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "- 11:00~22:00<br>- 마지막 주문 21:00",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20080345101"
+      },
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2845574",
+      "name": "신간짬뽕",
+      "region": "경기",
+      "category": "맛집",
+      "contentId": "2845574",
+      "contentTypeId": "39",
+      "modifiedTime": "20251114093337",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "- 11:30~20:00 - 준비시간 15:00~17:00 - 마지막 주문 14:30, 19:30",
+        "restDayText": "매주 월요일",
+        "infoCenterText": "031-987-5214",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "간짬뽕",
+        "menuText": "탕수육 / 짜장면 / 군만두 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": "가능"
+      },
+      "completeness": {
+        "knownOperationalFacts": 7,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "신간짬뽕",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2845574",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "간짬뽕",
+        "treatmenu": "탕수육 / 짜장면 / 군만두 등",
+        "smoking": "",
+        "packing": "가능",
+        "infocenterfood": "031-987-5214",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "- 11:30~20:00<br>- 준비시간 15:00~17:00<br>- 마지막 주문 14:30, 19:30",
+        "restdatefood": "매주 월요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "가능",
+        "reservationfood": "",
+        "lcnsno": "20150362721"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2845574",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2792307",
+      "name": "바람부리별밤캠핑장 관광농원",
+      "region": "강릉",
+      "category": "나들이",
+      "contentId": "2792307",
+      "contentTypeId": "28",
+      "modifiedTime": "20250708101053",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": null,
+        "operatingHoursText": null,
+        "restDayText": null,
+        "infoCenterText": null,
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": null,
+        "menuText": null,
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 0,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "바람부리별밤캠핑장 관광농원",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {},
+      "repeatedInfo": [
+        {
+          "contentid": "2792307",
+          "contenttypeid": "28",
+          "serialnum": "0",
+          "infoname": "이용요금",
+          "infotext": "- 오토캠핑 50,000원~100,000원<br>\n- 펜션 80,000원~300,000원<br>\n※ 이용요금은 변동될 수 있으므로 홈페이지 참조 또는 전화 문의 요망",
+          "fldgubun": "3"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2871297",
+      "name": "대동면옥 강릉점",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2871297",
+      "contentTypeId": "39",
+      "modifiedTime": "20250905112706",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "있음",
+        "operatingHoursText": "10:30~19:00(브레이크 타임 15:30~16:30, 라스트 오더 19:10)",
+        "restDayText": "연중무휴",
+        "infoCenterText": "033-644-6008",
+        "reservationText": "가능",
+        "seatText": null,
+        "firstMenuText": "물 막국수",
+        "menuText": "회비빔 막국수, 물 냉면, 회비빔 냉면, 수육, 왕갈비탕, 육개장, 육갈탕",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 7,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "대동면옥 강릉점",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2871297",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "물 막국수",
+        "treatmenu": "회비빔 막국수, 물 냉면, 회비빔 냉면, 수육, 왕갈비탕, 육개장, 육갈탕",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "033-644-6008",
+        "scalefood": "",
+        "parkingfood": "있음",
+        "opendatefood": "",
+        "opentimefood": "10:30~19:00(브레이크 타임 15:30~16:30, 라스트 오더 19:10)",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "가능",
+        "lcnsno": "20080386302"
+      },
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2845593",
+      "name": "강릉불고기 초당점",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2845593",
+      "contentTypeId": "39",
+      "modifiedTime": "20250905110340",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "있음(무료)",
+        "operatingHoursText": "10:00~20:30 (라스트 오더 19:30)",
+        "restDayText": "매주 수요일",
+        "infoCenterText": "033-652-8800",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "한우불고기",
+        "menuText": "돼지불고기, 찰강냉이범벅, 초당모두부, 수제식혜",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": "가능"
+      },
+      "completeness": {
+        "knownOperationalFacts": 7,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "강릉불고기 초당점",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2845593",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "한우불고기",
+        "treatmenu": "돼지불고기, 찰강냉이범벅, 초당모두부, 수제식혜",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "033-652-8800",
+        "scalefood": "",
+        "parkingfood": "있음(무료)",
+        "opendatefood": "",
+        "opentimefood": "10:00~20:30 (라스트 오더 19:30)",
+        "restdatefood": "매주 수요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "가능",
+        "reservationfood": "",
+        "lcnsno": "20180404707"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2845593",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2844107",
+      "name": "툇마루",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2844107",
+      "contentTypeId": "39",
+      "modifiedTime": "20250717092037",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "11:00~19:00 (마지막 주문 18:00)",
+        "restDayText": "매주 화요일",
+        "infoCenterText": "0507-1349-7175",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "툇마루커피",
+        "menuText": "밤 슈 / 옥수수 슈 / 카푸치노 슈 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "툇마루",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2844107",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "툇마루커피",
+        "treatmenu": "밤 슈 / 옥수수 슈 / 카푸치노 슈 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "0507-1349-7175",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "11:00~19:00 (마지막 주문 18:00)",
+        "restdatefood": "매주 화요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20200404714"
+      },
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2870203",
+      "name": "서당골산채",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2870203",
+      "contentTypeId": "39",
+      "modifiedTime": "20250708091921",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "- 11:00~20:00 - 준비시간 15:00~17:00 - 마지막 주문 19:00",
+        "restDayText": "매주 일요일",
+        "infoCenterText": "033-643-5158",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "보리굴비 정식",
+        "menuText": "더덕구이 / 황태구이 / 서당골 정식 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": null
+      },
+      "completeness": {
+        "knownOperationalFacts": 6,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "서당골산채",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2870203",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "보리굴비 정식",
+        "treatmenu": "더덕구이 / 황태구이 / 서당골 정식 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "033-643-5158",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "- 11:00~20:00<br>- 준비시간 15:00~17:00<br>- 마지막 주문 19:00",
+        "restdatefood": "매주 일요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "",
+        "reservationfood": "",
+        "lcnsno": "20150386105"
+      },
+      "repeatedInfo": [
+        {
+          "contentid": "2870203",
+          "contenttypeid": "39",
+          "serialnum": "0",
+          "infoname": "화장실",
+          "infotext": "있음",
+          "fldgubun": "1"
+        }
+      ],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-623279",
+      "name": "옛날초당순두부",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "623279",
+      "contentTypeId": "39",
+      "modifiedTime": "20250117090715",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "07:00~21:00",
+        "restDayText": "연중무휴",
+        "infoCenterText": "033-645-0557",
+        "reservationText": "전화 예약 문의 (033-641-9582)",
+        "seatText": null,
+        "firstMenuText": "초당순두부·두부전골",
+        "menuText": "초당두부 / 문어무침 / 제육볶음 / 통메밀전 / 순두부 외",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": "가능"
+      },
+      "completeness": {
+        "knownOperationalFacts": 8,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "옛날초당순두부",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "623279",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "초당순두부·두부전골",
+        "treatmenu": "초당두부 / 문어무침 / 제육볶음 / 통메밀전 / 순두부 외",
+        "smoking": "모두 금연석",
+        "packing": "가능(일부 메뉴)",
+        "infocenterfood": "033-645-0557",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "07:00~21:00",
+        "restdatefood": "연중무휴",
+        "discountinfofood": "",
+        "chkcreditcardfood": "가능",
+        "reservationfood": "전화 예약 문의 (033-641-9582)",
+        "lcnsno": "19990386206"
+      },
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
+    },
+    {
+      "id": "tour-2789528",
+      "name": "점봉산산채산나물천국",
+      "region": "강릉",
+      "category": "맛집",
+      "contentId": "2789528",
+      "contentTypeId": "39",
+      "modifiedTime": "20250114151450",
+      "facts": {
+        "overview": null,
+        "homepage": null,
+        "telephone": null,
+        "parkingText": "가능",
+        "operatingHoursText": "10:30~15:30 (14:30 라스트오더)",
+        "restDayText": "매주 일요일",
+        "infoCenterText": "033-652-7033",
+        "reservationText": null,
+        "seatText": null,
+        "firstMenuText": "산채 돌솥밥 정식",
+        "menuText": "돌솥 비빔밥 / 산채 비빔밥 / 산채 더덕 정식 등",
+        "petText": null,
+        "babyCarriageText": null,
+        "creditCardText": "없음"
+      },
+      "completeness": {
+        "knownOperationalFacts": 7,
+        "totalOperationalFactFields": 11
+      },
+      "common": {
+        "title": "점봉산산채산나물천국",
+        "addr1": null,
+        "addr2": null,
+        "zipcode": null,
+        "tel": null,
+        "homepage": null,
+        "overview": null,
+        "firstimage": null,
+        "firstimage2": null
+      },
+      "intro": {
+        "contentid": "2789528",
+        "contenttypeid": "39",
+        "seat": "",
+        "kidsfacility": "0",
+        "firstmenu": "산채 돌솥밥 정식",
+        "treatmenu": "돌솥 비빔밥 / 산채 비빔밥 / 산채 더덕 정식 등",
+        "smoking": "",
+        "packing": "",
+        "infocenterfood": "033-652-7033",
+        "scalefood": "",
+        "parkingfood": "가능",
+        "opendatefood": "",
+        "opentimefood": "10:30~15:30 (14:30 라스트오더)",
+        "restdatefood": "매주 일요일",
+        "discountinfofood": "",
+        "chkcreditcardfood": "없음",
+        "reservationfood": "",
+        "lcnsno": "19970386394"
+      },
+      "repeatedInfo": [],
+      "images": [],
+      "verifiedAt": "2026-11-19"
     }
   ]
 }
