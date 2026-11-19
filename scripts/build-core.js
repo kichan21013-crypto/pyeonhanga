@@ -63,3 +63,10 @@ await writeFile(resolve(out, '_headers'), `/*\n${!INDEXING_ENABLED ? '  X-Robots
 const regionCounts = places.reduce((acc,p) => (acc[p.region] = (acc[p.region] || 0) + 1, acc), {});
 const activityCounts = ['korean_food','noodle','meat','seafood','cafe','walk','run','drive'].map(t => [t, places.filter(p => p.intentTags.includes(t)).length]);
 console.log(`빌드 완료: 공개 장소 ${places.length}개 / 원천 ${sourcePlaces.length}개 · 지역별 ${JSON.stringify(regionCounts)} · 활동별 ${JSON.stringify(Object.fromEntries(activityCounts))}`);
+const activityCoverage = Object.fromEntries(['서울','경기','강릉','경주','부산','제주'].map(region => [
+  region,
+  Object.fromEntries(['korean_food','noodle','meat','seafood','cafe','walk','run','drive'].map(tag =>
+    [tag, places.filter(p => p.region === region && p.intentTags.includes(tag)).length]))
+]));
+console.log(`세부활동 지역별 확인 후보(카테고리 태그 기준): ${JSON.stringify(activityCoverage)}`);
+
