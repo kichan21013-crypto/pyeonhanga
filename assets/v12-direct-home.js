@@ -5,6 +5,7 @@
 import { recommendRhythms } from '../rhythm.js';
 import { escapeHtml, safeUrl, placeUrl, icon } from '../ui.js';
 import { savedIds } from '../storage.js';
+import { analyticsEnabled } from '../analytics.js';
 import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHeading } from './v12-browse-state.js';
 
 const $ = selector => document.querySelector(selector);
@@ -61,6 +62,7 @@ function card(place, saved) {
     '<a href="' + href + '" aria-label="' + name + ' 자세히 보기">' +
     '<img src="' + photo + '" alt="' + name + ' 장소 사진" loading="lazy" width="600" height="480">' +
     '</a>' +
+    '<span class="n13-interest-tag">동행 수요 조사</span>' +
     '<button type="button" class="save-icon n12-save ' + (saved ? 'is-saved' : '') +
     '" data-save="' + escapeHtml(place.id) + '" aria-label="' + name + ' 저장하기" aria-pressed="' + Boolean(saved) + '">' +
     icon('heart') + '</button></div>' +
@@ -68,7 +70,10 @@ function card(place, saved) {
     '<h3><a href="' + href + '">' + name + '</a></h3>' +
     (safeDescription ? '<p class="n12-card-description">' + escapeHtml(safeDescription) + '</p>' : '') +
     '<p class="n12-card-verified">' + escapeHtml(verification) + '</p>' +
-    '<a href="' + href + '" class="n12-detail-link">장소 보기 ' + svg('chevron') + '</a></div></article>';
+    '<a href="' + href + '" class="n12-detail-link">장소 정보 ' + svg('chevron') + '</a>' +
+    '<button type="button" class="n13-card-companion" data-companion-interest="' + escapeHtml(place.id) +
+    '" aria-label="' + name + ' 동행 관심 남기기">' + icon('people') + ' 동행 희망 남기기</button>' +
+    '<p class="n13-survey-note">실제 동행 연결은 아직 제공하지 않아요</p></div></article>';
 }
 
 function syncControls() {
@@ -89,7 +94,7 @@ function currentFilters() {
 
 function loadCatalog() {
   if (!state.catalogPromise) {
-    state.catalogPromise = fetch('/data/places.json?v=20261119-v12', {cache:'no-store'})
+    state.catalogPromise = fetch('/data/places.json?v=20261119-v13', {cache:'no-store'})
       .then(response => {
         if (!response.ok) throw new Error('places unavailable');
         return response.json();
@@ -190,6 +195,13 @@ function setupHome() {
     '<div class="n12-location-select"><select id="n12-region" aria-label="추천 지역">' +
     options.map(opt => '<option value="' + opt.value + '">' + opt.label + '</option>').join('') +
     '</select><span aria-hidden="true">⌄</span></div></div>' +
+    '<section class="n13-companion-hero" aria-labelledby="n13-companion-title">' +
+    '<div><p class="n13-kicker">나가치의 핵심 서비스 · 동행</p>' +
+    '<h2 id="n13-companion-title">같이 가고 싶은 곳,<br>함께할 사람도 생각해봐요.</h2>' +
+    '<p>지금은 실제 연결 전에 여러분의 동행 취향과 의향을 알아보는 단계예요.</p>' +
+    '<a class="n13-companion-link" href="/companion.html">동행 알아보기 →</a>' +
+    '<p class="n13-storage-note">' + (analyticsEnabled ? '설문 저장 설정이 있습니다. 실제 저장 여부는 제출 후 확인하세요.' : '현재 설문 체험 단계입니다. 답변은 아직 저장되지 않습니다.') + '</p></div>' +
+    '<span class="n13-hero-graphic" aria-hidden="true">🫶</span></section>' +
     '<div class="n12-section-heading"><h2>뭐 하고 싶으세요?</h2><span>하나만 골라보세요</span></div>' +
     '<div class="n12-categories" role="group" aria-label="활동 카테고리 하나 선택">' + categoryButtons() + '</div>' +
     '<div class="n12-feature"><div><p>나가치의 작은 제안</p><strong>어디 갈지 고민될 땐,<br>전체 장소를 둘러보세요.</strong></div>' +
@@ -213,6 +225,7 @@ function setupHome() {
   nav.setAttribute('aria-label','하단 메뉴');
   nav.innerHTML = '<button type="button" data-n12-home class="is-active">' + svg('home') + '<span>홈</span></button>' +
     '<button type="button" data-n12-recommend>' + svg('compass') + '<span>추천</span></button>' +
+    '<a class="n13-nav-companion" href="/companion.html">' + icon('people') + '<span>동행</span></a>' +
     '<a href="/saved.html">' + icon('heart') + '<span>저장</span></a>';
   document.body.append(nav);
 

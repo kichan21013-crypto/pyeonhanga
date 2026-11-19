@@ -156,7 +156,7 @@ test('장소 상세는 핵심정보와 동행 버튼을 먼저 보여주고 미�
   const html = detailMarkup(sample);
   assert.match(html, /방문 핵심정보/);
   assert.match(html, /정보 2건 더 보기/);
-  assert.ok(html.indexOf('방문 핵심정보') < html.indexOf('id="companion-open"'));
+  assert.ok(html.indexOf('id="companion-open"') < html.indexOf('방문 핵심정보'), '동행을 핵심 정보보다 먼저 노출');
   assert.ok(html.indexOf('id="companion-open"') < html.indexOf('comfort-pending-panel'));
   assert.match(html, /<details class="info-panel comfort-pending-panel detail-expand-panel">/);
   assert.equal((html.match(/id="companion-open"/g) || []).length, 1);
