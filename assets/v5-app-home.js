@@ -221,6 +221,14 @@ function setupHome() {
   shortcuts.addEventListener('click', event => {
     const quick = event.target.closest('[data-quick-activity]');
     if (!quick) return;
+    const wasSelected = quick.getAttribute('aria-pressed') === 'true';
+    // 같은 버튼을 다시 누르면 해당 빠른 선택을 해제합니다.
+    if (wasSelected) {
+      qsa('[data-desire][aria-pressed="true"]',desireGrid).forEach(button => button.click());
+      allowSimilarOnEmpty = false;
+      setTimeout(() => submitLive({scroll:true}), 0);
+      return;
+    }
     // 선택한 빠른 활동을 정확 일치 조건으로 적용합니다.
     // 다른 욕구/세부활동 선택은 기존 앱 이벤트로 해제해 두 계층의 상태를 일치시킵니다.
     qsa('[data-desire][aria-pressed="true"]',desireGrid).forEach(button => button.click());
