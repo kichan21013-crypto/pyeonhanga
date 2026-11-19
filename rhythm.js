@@ -62,7 +62,11 @@ export function recommendRhythms(places, f = emptyRhythmFilters()) {
     const durationMatch = verifiedVisit && f.duration !== 'any' && visit.duration === f.duration ? 1 : 0;
     const transportMatch = verifiedVisit && ['car','transit'].includes(f.transport) && visit.transportModes?.includes(f.transport) ? 1 : 0;
     const conditionMatches = candidate.matchedComforts + durationMatch + transportMatch;
-    const activity = matches.find(key => !['food','outing','travel'].includes(key)) || matches[0] || [...tags].find(key => ACTIVITIES[key]) || 'outing';
+    // 유사 추천이어도 실제 장소의 세부 유형을 사용합니다. 카페를 '식사'로 위장하지 않습니다.
+    const distinct = ['seafood','meat','noodle','korean_food','cafe','run','hike','bike','walk','sea','drive','culture','quiet_rest','conversation','scenery'];
+    const activity = matches.find(key => !['food','outing','travel'].includes(key))
+      || distinct.find(key => tags.has(key))
+      || matches[0] || [...tags].find(key => ACTIVITIES[key]) || 'outing';
     const label = ACTIVITIES[activity]?.[0] || '장소 둘러보기';
     const route = p.route?.sourceUrl && p.route?.verifiedAt ? p.route : unknownRoute();
     const fallbackActivity = Boolean(desireMatches > 0 && ((selectedActivities.length > 0 && selectedActivityMatches === 0) || (wanted.length > 0 && matches.length === 0)));
@@ -84,6 +88,16 @@ export function recommendRhythms(places, f = emptyRhythmFilters()) {
     }
   }
 
+  // 회·해산물 등 식사를 특정한 분에게 '비슷한 장소'라며 커피전문점을 자동 제시하지 않습니다.
+  // 같은 지역의 다른 식사 장소가 없으면 0건을 유지합니다.
+  if (selectedDesires.includes('eat') && selectedActivities.some(key => ['seafood','meat','noodle','korean_food'].includes(key))) {
+    const foodAlternatives = ranked.filter(result => {
+      if (result.place.category !== '맛집') return false;
+      const tags = activityTags(result.place);
+      return tags.has('food') && !tags.has('cafe');
+    });
+    return foodAlternatives.sort((a,b) => b.conditionMatches-a.conditionMatches || b.companionMatches-a.companionMatches || b.activityMatches-a.activityMatches || b.desireMatches-a.desireMatches || b.relevance-a.relevance || a.order-b.order);
+  }
   const related = wanted.length ? ranked.filter(result => result.activityMatches > 0 || result.desireMatches > 0) : ranked;
   const pool = related.length ? related : ranked;
   return pool.sort((a,b) => b.conditionMatches-a.conditionMatches || b.companionMatches-a.companionMatches || b.activityMatches-a.activityMatches || b.desireMatches-a.desireMatches || b.relevance-a.relevance || a.order-b.order);
