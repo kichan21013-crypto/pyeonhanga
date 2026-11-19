@@ -59,3 +59,22 @@ test('음식점 전용 필드도 공통 사실 이름으로 정규화한다', ()
   assert.equal(facts.reservationText, '예약 가능');
   assert.equal(facts.firstMenuText, '칼국수');
 });
+
+
+import { mergeEnrichmentRows } from '../scripts/merge-enrichment.js';
+import { CONTENT_TYPES } from '../scripts/import-tourapi.js';
+
+test('누적 수집은 이전 상세정보와 확인일을 보존하고 동일 ID의 새 정보만 갱신한다', () => {
+ const old = { generatedAt:'2026-10-21T12:00:00Z', places:[{id:'tour-1',facts:{parkingText:'이전 주차 안내'}},{id:'tour-2',facts:{parkingText:'유지할 안내'}}] };
+ const fresh = [{id:'tour-1',facts:{parkingText:'새로 확인된 안내'}},{id:'tour-3',facts:{parkingText:'추가 장소'}}];
+ const result = mergeEnrichmentRows(old, fresh, '2026-11-19T12:00:00Z');
+ assert.equal(result.length,3);
+ assert.equal(result.find(x=>x.id==='tour-1').facts.parkingText,'새로 확인된 안내');
+ assert.equal(result.find(x=>x.id==='tour-2').verifiedAt,'2026-10-21');
+ assert.equal(result.find(x=>x.id==='tour-3').verifiedAt,'2026-11-19');
+});
+test('수집 타입에는 레포츠와 문화시설을 포함하되 수익/코스 관련 가짜 태그는 만들지 않는다', () => {
+ assert.equal(CONTENT_TYPES['28'],'나들이');
+ assert.equal(CONTENT_TYPES['14'],'나들이');
+ assert.equal(CONTENT_TYPES['39'],'맛집');
+});
