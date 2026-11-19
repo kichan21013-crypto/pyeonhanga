@@ -1,6 +1,6 @@
-import { recommendRhythms, emptyRhythmFilters, ACTIVITIES } from '/rhythm.js?v=20261119-v10';
-import { card, escapeHtml } from '/ui.js?v=20261119-v10';
-import { savedIds } from '/storage.js?v=20261119-v10';
+import { recommendRhythms, emptyRhythmFilters, ACTIVITIES } from '/rhythm.js?v=20261119-v11';
+import { card, escapeHtml } from '/ui.js?v=20261119-v11';
+import { savedIds } from '/storage.js?v=20261119-v11';
 
 const qs = (selector, root = document) => root.querySelector(selector);
 const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -34,7 +34,7 @@ let liveVisibleCount = 6;
 let allowSimilarOnEmpty = false;
 function loadLivePlaces() {
   if (!livePlacesPromise) {
-    livePlacesPromise = fetch('/data/places.json?v=20261119-v10', { cache: 'no-store' })
+    livePlacesPromise = fetch('/data/places.json?v=20261119-v11', { cache: 'no-store' })
       .then(response => {
         if (!response.ok) throw new Error('live places load failed');
         return response.json();
@@ -79,11 +79,21 @@ async function renderLiveResults({ more = false } = {}) {
     }
     if (qs('#result-count')) qs('#result-count').textContent = rhythms.length;
     if (qs('#result-status')) qs('#result-status').textContent = `${rhythms.length}개의 오늘의 리듬을 찾았습니다.`;
+    const previewCount = qs('.app-preview-count');
+    if (previewCount) previewCount.textContent = `${rhythms.length}곳`;
+    const previewTitle = qs('.app-home-preview-head h2');
+    if (previewTitle) previewTitle.textContent = filters.activities.length
+      ? `${filters.activities.map(value => ACTIVITIES[value]?.[0]).filter(Boolean).join(' · ')} 추천`
+      : (filters.region ? `${filters.region}에서 찾은 장소` : '오늘의 추천 장소');
+    qsa('[data-quick-activity]').forEach(button => button.setAttribute('aria-pressed',
+      String(filters.activities.includes(button.dataset.quickActivity))));
     document.dispatchEvent(new CustomEvent('nagachi:v5-results-rendered', {
       detail: { count: rhythms.length, activities: [...filters.activities] }
     }));
     return true;
   } catch {
+    grid.innerHTML = '<div class="empty-state"><h3>장소를 불러오지 못했어요</h3><p>연결을 확인한 뒤 다시 시도해주세요.</p><button type="button" class="button secondary" data-retry-recommend>다시 시도</button></div>';
+    grid.classList.add('is-empty');
     return false;
   }
 }
@@ -102,7 +112,7 @@ function setupHome() {
 
   const shell = document.createElement('section');
   shell.className = 'app-home-shell';
-  shell.innerHTML = '<div class="app-home-title"><h1>오늘 뭐 할까요?</h1><small>하나만 골라도 돼요</small></div>';
+  shell.innerHTML = '<div class="app-home-title"><p class="app-home-kicker">NAGACHI · 나가치</p><h1>오늘은 <span>뭐 하고 싶으세요?</span></h1><small>맛있는 곳부터 산책까지, 마음 가는 대로 골라보세요.</small></div>';
 
   const searchWrap = document.createElement('div');
   searchWrap.className = 'app-home-search';
@@ -112,8 +122,13 @@ function setupHome() {
   searchWrap.append(searchForm);
 
   desireGrid.classList.add('app-category-grid');
-  shell.prepend(searchWrap);
-  shell.append(desireGrid);
+  // 시각적으로 짧고 명확한 라벨; 앱 내부 필터값은 그대로 사용합니다.
+  const desireLabels = {eat:'맛집',move:'활동',outdoor:'산책',rest:'휴식',explore:'나들이',social:'함께'};
+  for (const [key,label] of Object.entries(desireLabels)) {
+    const span = desireGrid.querySelector(`[data-desire="${key}"] [data-choice-label]`);
+    if (span) span.textContent = label;
+  }
+  shell.append(searchWrap);
   
   // 지역은 현재 위치를 추정하지 않고 사용자가 누른 값만 사용합니다.
   const regions = ['', '서울', '경기', '강릉', '경주', '부산', '제주'];
@@ -126,19 +141,36 @@ function setupHome() {
   ).join('');
   shell.append(regionRow);
 
+  const quickLabel = document.createElement('h2');
+  quickLabel.className = 'app-shortcut-title';
+  quickLabel.textContent = '바로 찾아보기';
+  shell.append(quickLabel);
+
+  // 원터치 세부활동: 기존 추천 상태와 클릭 동작을 재사용합니다.
+  const shortcuts = document.createElement('div');
+  shortcuts.className = 'app-quick-shortcuts';
+  shortcuts.setAttribute('role','group');
+  shortcuts.setAttribute('aria-label','자주 찾는 활동을 바로 선택');
+  const quickItems = [
+    {activity:'seafood',desire:'eat',label:'회·해산물'},
+    {activity:'cafe',desire:'rest',label:'카페'},
+    {activity:'walk',desire:'outdoor',label:'산책'},
+    {activity:'meat',desire:'eat',label:'고기'},
+    {activity:'drive',desire:'explore',label:'드라이브'},
+    {activity:'run',desire:'move',label:'러닝'},
+  ];
+  shortcuts.innerHTML = quickItems.map(({activity,desire,label}) =>
+    `<button type="button" data-quick-activity="${activity}" data-quick-desire="${desire}" aria-pressed="false">${label}</button>`
+  ).join('');
+  shell.append(shortcuts);
+  const sectionTitle = document.createElement('div');
+  sectionTitle.className = 'app-section-title';
+  sectionTitle.innerHTML = '<span>기분 따라 고르기</span><small>여러 개 선택할 수 있어요</small>';
+  shell.append(sectionTitle,desireGrid);
+
   const promo = document.createElement('section');
   promo.className = 'app-promo';
-  promo.innerHTML = `<small>오늘의 작은 발견</small><strong>가볍게 떠나는<br>나만의 하루.</strong><span>원하는 리듬을 골라보세요</span>
-  <svg class="app-promo-art" viewBox="0 0 190 170" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="131" cy="48" r="42" fill="#FFBF82"/><circle cx="151" cy="35" r="16" fill="#FFDDAC"/>
-    <path d="M14 171c19-31 31-60 66-62 26-1 44 30 97 9l19 56H14Z" fill="#8DB69E"/>
-    <path d="M45 172c22-45 53-59 90-61" stroke="#fff7e8" stroke-width="17" stroke-linecap="round"/>
-    <path d="M45 172c22-45 53-59 90-61" stroke="#EF996C" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 8"/>
-    <rect x="97" y="71" width="54" height="39" rx="9" fill="#FFF6E6" stroke="#B87950" stroke-width="3"/>
-    <path d="M103 70c0-14 12-24 22-24s20 10 20 24" fill="#E9A97B"/>
-    <path d="M120 91h14M127 84v14" stroke="#B87950" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="48" cy="129" r="9" fill="#284E48"/><path d="m46 140-7 17m8-15 12 12m-13-8-15 11" stroke="#284E48" stroke-width="6" stroke-linecap="round"/>
-  </svg>`;
+  promo.innerHTML = '<div class="app-promo-copy"><small>처음 이용하신다면</small><strong>한 가지만 골라도<br>추천을 볼 수 있어요.</strong><span>가고 싶은 곳은 하트로 저장하세요.</span></div><button type="button" class="app-promo-link" data-browse-all>전체 보기 →</button>';
   shell.append(promo);
 
   const hero = qs('.rhythm-hero');
@@ -146,7 +178,7 @@ function setupHome() {
 
   const preview = document.createElement('div');
   preview.className = 'app-home-preview';
-  preview.innerHTML = '<div class="app-home-preview-head"><h2>오늘 이런 곳 어때요?</h2><span>확인된 장소부터</span></div>';
+  preview.innerHTML = '<div class="app-home-preview-head"><h2>이런 곳은 어떠세요?</h2><div class="app-preview-tools"><span class="app-preview-count">실제 등록된 장소</span><button type="button" class="app-results-edit" data-edit-choices>조건 수정</button></div></div>';
   results.parentElement?.insertBefore(preview, results);
   const moreButton = document.createElement('button');
   moreButton.type = 'button';
@@ -159,7 +191,7 @@ function setupHome() {
   const nav = document.createElement('nav');
   nav.className = 'app-bottom-nav';
   nav.setAttribute('aria-label','하단 메뉴');
-  nav.innerHTML = `<button type="button" class="is-active" data-v5-home>${icon('home')}<span>홈</span></button><button type="button" data-v5-today>${icon('compass')}<span>오늘</span></button><a href="/saved.html">${icon('heart')}<span>저장</span></a>`;
+  nav.innerHTML = `<button type="button" class="is-active" data-v5-home>${icon('home')}<span>홈</span></button><button type="button" data-v5-today>${icon('compass')}<span>추천</span></button><a href="/saved.html">${icon('heart')}<span>저장</span></a>`;
   document.body.append(nav);
 
   let refinement = null;
@@ -176,6 +208,23 @@ function setupHome() {
     regionRow.querySelectorAll('[data-v6-region]').forEach(el => el.setAttribute('aria-pressed',String(el === button)));
     select.dispatchEvent(new Event('change',{bubbles:true}));
     submitLive({scroll:true});
+  });
+
+  shortcuts.addEventListener('click', event => {
+    const quick = event.target.closest('[data-quick-activity]');
+    if (!quick) return;
+    // 선택한 빠른 활동을 정확 일치 조건으로 적용합니다.
+    // 다른 욕구/세부활동 선택은 기존 앱 이벤트로 해제해 두 계층의 상태를 일치시킵니다.
+    qsa('[data-desire][aria-pressed="true"]',desireGrid).forEach(button => button.click());
+    const desireButton = desireGrid.querySelector(`[data-desire="${quick.dataset.quickDesire}"]`);
+    desireButton?.click();
+    qsa('#activity-options [data-activity][aria-pressed="true"]').forEach(button => {
+      const current = qs(`#activity-options [data-activity="${button.dataset.activity}"]`);
+      current?.click();
+    });
+    qs(`#activity-options [data-activity="${quick.dataset.quickActivity}"]`)?.click();
+    allowSimilarOnEmpty = false;
+    setTimeout(() => submitLive({scroll:true}), 0);
   });
 
   const ensureStarted = () => {
@@ -214,6 +263,8 @@ function setupHome() {
 
   const submitLive = ({ scroll = false } = {}) => {
     ensureStarted();
+    nav.querySelector('[data-v5-home]')?.classList.remove('is-active');
+    nav.querySelector('[data-v5-today]')?.classList.add('is-active');
     document.body.classList.add('v5-live-active','v5-results-active');
     document.body.classList.remove('v5-flow-active');
     results.hidden = false;
@@ -236,7 +287,17 @@ function setupHome() {
     setTimeout(() => submitLive({ scroll:true }), 0);
   });
 
-  nav.querySelector('[data-v5-home]').addEventListener('click', () => shell.scrollIntoView({behavior:'smooth', block:'start'}));
+  nav.querySelector('[data-v5-home]').addEventListener('click', () => {
+    nav.querySelector('[data-v5-today]')?.classList.remove('is-active');
+    nav.querySelector('[data-v5-home]')?.classList.add('is-active');
+    shell.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  preview.addEventListener('click', event => {
+    if (event.target.closest('[data-edit-choices]')) shell.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  promo.addEventListener('click', event => {
+    if (event.target.closest('[data-browse-all]')) submitLive({scroll:true});
+  });
   nav.querySelector('[data-v5-today]').addEventListener('click', () => {
     (refinement || shell).scrollIntoView({behavior:'smooth', block:'start'});
   });
@@ -251,6 +312,10 @@ function setupHome() {
   }, true);
 
   document.addEventListener('click', event => {
+    if (event.target.closest('[data-retry-recommend]')) {
+      renderLiveResults();
+      return;
+    }
     if (event.target.closest('[data-show-similar]')) {
       allowSimilarOnEmpty = true;
       renderLiveResults();
