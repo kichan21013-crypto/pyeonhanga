@@ -109,3 +109,21 @@ body[data-page=home].n12-ready .n16-invites-section{margin-top:25px!important;}
  .n21-hero .n16-hero-cta{margin-top:52px!important;}
 }
 @media(prefers-reduced-motion:reduce){.n21-popular-loading span{animation:none;}}
+
+/* v28 approved category art. Keep actual place photography separate. */
+.n28-quick-categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-width:1060px;margin:16px auto 20px;padding:4px 0}
+.n28-quick-category{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:0;min-height:92px;border:1px solid #e6e8eb;border-radius:16px;background:#fff;color:#222;font-size:14px;font-weight:800;cursor:pointer;padding:8px 3px}
+.n28-quick-category img{display:block;width:64px;height:64px;object-fit:contain}
+.n28-quick-category:focus-visible{outline:3px solid #f4774d;outline-offset:3px}
+.n28-quick-category:hover{border-color:#176647;background:#faf9f6}
+body[data-page=home].n12-ready .n16-invite{background:#fff!important;border-color:#e6e8eb!important;box-shadow:0 2px 8px rgba(0,0,0,.045)!important;min-height:188px!important}
+body[data-page=home].n12-ready .n16-invite[aria-pressed=true]{border-color:#176647!important;background:#f4faf6!important}
+body[data-page=home].n12-ready .n16-invite-art{width:88px!important;height:88px!important;min-height:88px!important;background:transparent!important;align-self:flex-start!important;margin:0!important;overflow:visible!important}
+body[data-page=home].n12-ready .n16-invite-art img{width:100%!important;height:100%!important;object-fit:contain!important;box-shadow:none!important;border-radius:0!important}
+.n21-discovery-picks button{background:#fff!important;border-color:#e6e8eb!important;color:#222!important}
+.n21-discovery-picks img,.n21-popular-activity-art img,.n15-intent-icon img{object-fit:contain!important;box-shadow:none!important;background:transparent!important}
+.n21-popular-activity-art img{width:96px!important;height:96px!important}
+.n15-intent-icon{background:transparent!important}
+.n15-intent-icon img{width:100%!important;height:100%!important;border-radius:0!important}
+@media(max-width:480px){.n28-quick-categories{gap:5px;margin:12px 0 18px}.n28-quick-category{min-height:88px;font-size:13px;border-radius:12px}.n28-quick-category img{width:56px;height:56px}body[data-page=home].n12-ready .n16-invite{min-height:174px!important}body[data-page=home].n12-ready .n16-invite-art{width:76px!important;height:76px!important;min-height:76px!important}}
+@media(max-width:340px){.n28-quick-category img{width:48px;height:48px}}
