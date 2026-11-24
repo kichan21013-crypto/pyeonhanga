@@ -282,6 +282,10 @@ function setupHome() {
   };
   const cta=home.querySelector('.n16-hero-cta');
   cta?.addEventListener('click',event=>{event.preventDefault();scrollToInvites();});
+  // 다른 탭/상세에서 '같이갈래?'로 돌아오면 동적 홈 생성 후 스크롤합니다.
+  if(['#n16-invites-title','#n16-invites'].includes(location.hash)) {
+    requestAnimationFrame(scrollToInvites);
+  }
   setupTogetherJourney({home,loadPlaces:loadCatalog});
   setupGroupExperience(home);
   const placeDrawer = $('#n14-place-browse');
