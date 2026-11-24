@@ -21,14 +21,14 @@ test('v28 승인 이미지 4개가 원본 변환 결과와 일치하며 가볍�
 test('v28 상단 버튼과 기존 동행 탐색을 연결하고 전 화면에 통일된 아이콘 사용',async()=>{
  const home=await read('assets/v12-direct-home.js'),core=await read('scripts/build-core.js'),css=await read('assets/v21-popular-first.css');
  assert.match(home,/\['eat','맛집'\],\['outing','나들이'\],\['travel','여행'\],\['hike','산행'\]/);
- assert.match(home,/data-n28-quick/);
- assert.match(home,/b\.dataset\.v16Invite===quick\.dataset\.n28Quick/);
- assert.match(home,/target\?\.click\(\)/);
+ assert.match(home,/class="n28-quick-category" data-v16-invite/);
+ assert.match(home,/id="n16-invites"/);
+ assert.equal((home.match(/id="n16-invites"/g)||[]).length,1);
  assert.match(home,/setupTogetherJourney\(\{home,loadPlaces:loadCatalog\}\)/);
  assert.match(home,/가고 싶은 곳,<br><em>함께할 사람\./);
  assert.match(core,/v28-'\+invite\.id\+'\.webp/);
  for(const item of POPULAR_ACTIVITIES)assert.equal(item.image,'v28-'+item.invite+'.webp');
  assert.match(css,/\.n28-quick-category:focus-visible/);
  assert.match(css,/grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v28/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v29/);
 });

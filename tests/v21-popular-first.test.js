@@ -40,13 +40,13 @@ test('특정 인기 장소가 없어도 활동별 실제 응답으로 정렬하�
  assert.equal(choosePopularView({places:[],activities:[]}),'discovery');
  assert.equal(POPULAR_ACTIVITIES.length,4);
 });
-test('실제 홈페이지는 짧은 히어로 직후 인기 동행 → 4개 활동 → 실제 장소 순서다',async()=>{
+test('실제 홈페이지는 짧은 히어로 직후 단일 카테고리 → 인기 동행 순서다',async()=>{
  const home=await read('assets/v12-direct-home.js');
  const ui=await read('assets/v21-popular-first.js');
  const css=await read('assets/v21-popular-first.css');
  assert.ok(home.indexOf('n21-hero')<home.indexOf('n21-popular" id="n21-popular"'));
- assert.ok(home.indexOf('n21-popular" id="n21-popular"')<home.indexOf('n16-invites-section'));
- assert.match(home,/좋은 하루,<br><em>같이 갈 사람\?/);
+ assert.ok(home.indexOf('n16-invites-section')<home.indexOf('n21-popular" id="n21-popular"'));
+ assert.match(home,/가고 싶은 곳,<br><em>함께할 사람\./);
  assert.match(home,/href="#n21-popular"/);
  assert.match(home,/setupPopularFirst\(\{home,loadPlaces:loadCatalog,scrollToInvites\}\)/);
  assert.match(home,/scrollToPopular/);
@@ -57,9 +57,9 @@ test('실제 홈페이지는 짧은 히어로 직후 인기 동행 → 4개 활�
  assert.match(ui,/data-n21-activity/);
  assert.match(ui,/data-companion-interest/);
  assert.match(ui,/button\.click\(\)/);
- assert.match(ui,/첫 번째 동행을 찾아볼까요\?/);
- assert.match(ui,/아직 관심 데이터 연결을 준비하고 있어요/);
- assert.match(css,/min-height:298px!important/);
+ assert.match(ui,/함께 가보고 싶은 곳/);
+ assert.match(ui,/인기 집계가 준비되면 순위를 보여드려요/);
+ assert.match(css,/min-height:208px!important/);
  assert.match(css,/n21-popular-rail/);
 });
 test('인기 표시의 근거는 최근 90일 실제 설문, 5개 이상 서로 다른 브라우저이며 실제 모임과 구분한다',async()=>{
@@ -74,7 +74,7 @@ test('인기 표시의 근거는 최근 90일 실제 설문, 5개 이상 서로 
  assert.match(sql,/grant execute on function public\.nagachi_public_popular_places\(\) to anon/);
  assert.doesNotMatch(sql,/returns table\([^)]*(session_id|age|willingness|email)/i);
  assert.match(client,/companionRpc\('nagachi_public_popular_places'\)/);
- assert.match(ui,/실제 참가 확정이나 현재 모집 중인 모임은 아닙니다/);
+ assert.match(ui,/실제 모집 인원 아님/);
  assert.match(ui,/동의·저장된 관심/);
  assert.doesNotMatch(ui,/(가상 인원|Math\.random\(\)|하트 수 999|모집 확정된 모임)/);
 });
@@ -83,10 +83,10 @@ test('실제 빌드 버전 v21을 모든 페이지에 적용하고 기존 장소
   read('dist/index.html'),read('dist/companion.html'),read('dist/saved.html'),
   read('scripts/build-core.js'),read('scripts/build.js')
  ]);
- for(const page of [index,companion,saved])assert.match(page,/v21-popular-first\.css\?v=20261124-v28/);
- assert.match(index,/v12-direct-home\.js\?v=20261124-v28/);
+ for(const page of [index,companion,saved])assert.match(page,/v21-popular-first\.css\?v=20261124-v29/);
+ assert.match(index,/v12-direct-home\.js\?v=20261124-v29/);
  assert.match(core,/href="\/#n21-popular"/);
- assert.match(build,/const CLIENT_VERSION = '20261124-v28'/);
+ assert.match(build,/const CLIENT_VERSION = '20261124-v29'/);
  assert.match(index,/id="main"/);
  const home=await read('assets/v12-direct-home.js');
  assert.match(home,/n14-place-browse/);
