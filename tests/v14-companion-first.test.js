@@ -53,7 +53,7 @@ test('첫 화면에서 자연스러운 질문을 클릭하면 지역·메뉴·�
   assert.match(home,/n16-invites/);
   assert.match(home,/n16-journey/);
   assert.match(home,/n16-meals/);
-  assert.match(home,/취향으로 만나는 동행/);
+  assert.match(home,/NAGACHI/);
   assert.ok(home.indexOf('n16-invites') < home.indexOf('n15-place-drawer'));
   assert.match(home,/setupTogetherJourney\(\{home,loadPlaces:loadCatalog\}\)/);
   assert.match(flow,/togetherPlaceMatches\(place,state\)/);
@@ -79,7 +79,7 @@ test('동행 전용 메뉴는 사람을 먼저 모집하지 않고 동일한 실
   assert.match(page,/아직 실제 동행 모집·예약·결제는 제공하지 않아요/);
   assert.doesNotMatch(page,/data-program-interest=|data-companion-interest=|data-n14-interest=/);
   assert.match(build,/TOGETHER_INVITES/);
-  assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v29/);
+  assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v30/);
 });
 
 test('익명 동행 설문은 장소 이름·취향·동행 구성·서비스비 의향을 수집한다',async()=>{
@@ -119,9 +119,9 @@ test('코스 제안과 모임 구성의 미래 수익모델은 분리하고 계�
   const css=await read('assets/v16-together.css');
   assert.match(home,/코스 제안과 동행 구성·일정 조율 서비스비/);
   assert.match(home,/식비·교통비·입장료/);
-  assert.match(index,/v16-together\.css\?v=20261124-v29/);
-  assert.match(index,/v12-direct-home\.js\?v=20261124-v29/);
-  assert.match(saved,/mobile-ux\.css\?v=20261124-v29/);
+  assert.match(index,/v16-together\.css\?v=20261124-v30/);
+  assert.match(index,/v12-direct-home\.js\?v=20261124-v30/);
+  assert.match(saved,/mobile-ux\.css\?v=20261124-v30/);
   assert.ok(!('dependencies' in pkg));
   assert.doesNotMatch(css,/@import|https?:\/\//);
   assert.equal(PROGRAMS.length,4);

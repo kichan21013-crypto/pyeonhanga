@@ -29,3 +29,5 @@ import './v25-party-applications.test.js';
 import './v26-business-dashboard.test.js';
 
 import './v28-category-icons.test.js';
+
+import './v30-commercial-home.test.js';
