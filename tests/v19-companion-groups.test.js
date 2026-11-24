@@ -126,3 +126,17 @@ test('v40 account notices require authenticated server identity and explicit con
  assert.match(admin,/companionRpc\('nagachi_admin_dashboard',\{\},t\)/);
  assert.match(home,/href="\/account\.html" aria-label="내 계정"/);
 });
+
+test('v41 계정 구독자 집계와 연결 점검은 관리자 권한과 읽기 전용 진단으로 분리',async()=>{
+ const sql=await read('supabase/account-notices-v41.sql'),check=await read('supabase/check-account-v41.sql'),auth=await read('assets/v40-account-auth.js'),admin=await read('assets/v19-admin.js'),page=await read('assets/v40-account-page.js');
+ assert.match(sql,/nagachi_admin_account_subscribers\(\)/);
+ assert.match(sql,/a\.user_id=auth\.uid\(\)/);
+ assert.match(sql,/where expires_at>now\(\) group by activity/);
+ assert.match(sql,/grant execute on function public\.nagachi_admin_account_subscribers\(\) to authenticated/);
+ assert.match(check,/has_function_privilege\('anon',oid,'EXECUTE'\)/);
+ assert.doesNotMatch(check,/\b(?:insert into|delete from|update public|create table)\b/i);
+ assert.match(admin,/accounts===null\?'연결 확인 필요'/);
+ assert.match(auth,/auth\/v1\/user/);
+ assert.match(auth,/if\(accountToken\(\)!==t\)return \{ok:false,reason:'login'\}/);
+ assert.match(page,/이 번호만으로 관리자 권한이 생기지 않습니다/);
+});
