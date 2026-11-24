@@ -96,7 +96,7 @@ function currentFilters() {
 
 function loadCatalog() {
   if (!state.catalogPromise) {
-    state.catalogPromise = fetch('/data/places.json?v=20261124-v16', {cache:'no-store'})
+    state.catalogPromise = fetch('/data/places.json?v=20261124-v17', {cache:'no-store'})
       .then(response => {
         if (!response.ok) throw new Error('places unavailable');
         return response.json();
