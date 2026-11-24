@@ -25,6 +25,7 @@ export function operatorMarkup(){
       <div><button type="button" id="n19-admin-refresh">새로고침</button>
         <button type="button" id="n19-admin-logout">로그아웃</button></div>
     </div>
+    <p id="n22-load-status" class="n22-load-status" role="status">운영 자료 연결 대기 중</p>
     <nav class="n22-admin-tabs" aria-label="운영 관리 메뉴">
       <button type="button" data-n22-tab="overview" aria-pressed="true">◫ <span>운영 현황</span></button>
       <button type="button" data-n22-tab="courses" aria-pressed="false">◉ <span>코스 만들기</span></button>
