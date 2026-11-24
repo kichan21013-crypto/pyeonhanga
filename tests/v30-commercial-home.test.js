@@ -7,11 +7,11 @@ import {togetherPlaceMatches} from '../assets/v16-together-model.js';
 import {escapeHtml,safeUrl,placeUrl,icon} from '../ui.js';
 const read=p=>readFile(new URL('../'+p,import.meta.url),'utf8');
 test('v30 승인 시안에서 분리한 인물 사진의 빌드 사본 일치',async()=>{
- const a=await readFile(new URL('../assets/v30-hero.webp',import.meta.url));
- assert.equal(createHash('sha1').update('blob '+a.length+'\0').update(a).digest('hex'),'a0b6c19dac1fbc6e1cceda0a508769dd6eda1139');
- assert.deepEqual(a,await readFile(new URL('../dist/assets/v30-hero.webp',import.meta.url)));
+ const a=await readFile(new URL('../assets/v31-hero.webp',import.meta.url));
+ assert.equal(createHash('sha1').update('blob '+a.length+'\0').update(a).digest('hex'),'ca27908d4a2c1c348bfd930477629edfeb5e0c29');
+ assert.deepEqual(a,await readFile(new URL('../dist/assets/v31-hero.webp',import.meta.url)));
  const home=await read('assets/v12-direct-home.js');
- assert.match(home,/src="\/assets\/v30-hero\.webp"/);
+ assert.match(home,/src="\/assets\/v31-hero\.webp"/);
  assert.match(home,/연출 이미지/);
  assert.equal((home.match(/id="n16-invites"/g)||[]).length,1);
  assert.match(home,/href="#n21-popular"/);
@@ -42,5 +42,13 @@ test('v30 두 카드 표시, 버튼 대비, 전체보기와 기존 기능 연결
  assert.match(ui,/all\.addEventListener|all\?\.addEventListener/);
  assert.match(ui,/aria-expanded/);
  assert.match(ui,/추천 동행 보기/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v30/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v31/);
+});
+
+test('v31 원본 사진 비율 및 얼굴 그라데이션 제거',async()=>{
+ const home=await read('assets/v12-direct-home.js'),css=await read('assets/v21-popular-first.css');
+ assert.match(home,/width="451" height="469"/);
+ assert.match(css,/\.n21-hero:before\{background:none!important\}/);
+ assert.match(css,/object-fit:contain!important;object-position:right center!important;filter:none!important/);
+ assert.match(css,/mask-image:linear-gradient\(90deg,transparent 0%,#000 4%,#000 100%\)/);
 });
