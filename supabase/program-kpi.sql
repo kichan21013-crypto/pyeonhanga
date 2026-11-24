@@ -33,7 +33,8 @@ with recent as (
 )
 select invitation,invitation_sessions,venue_interest_sessions,survey_sessions,completed_surveys,
  paid_intent_surveys,
- round(100.0 * survey_sessions/nullif(invitation_sessions,0),1) as invite_to_survey_pct,
+ -- 방문·활동 선택은 일반 통계 동의자, 설문은 별도 동의자를 포함합니다.
+ -- 모집단이 다르므로 단순 관심→완료 전환율을 계산하지 않습니다.
  round(100.0 * paid_intent_surveys/nullif(completed_surveys,0),1) as paid_intent_pct
 from grouped order by completed_surveys desc;
 

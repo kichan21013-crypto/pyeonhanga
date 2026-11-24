@@ -32,8 +32,8 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
   assert.match(page,/현재는 참여 의향을 확인하는 무료 시범 서비스입니다/);
   assert.match(page,/class="n13-landing n15-program-hub n16-companion-hub"/);
   assert.match(page,/data-companion="true"/);
-  assert.match(home,/v12-direct-home\.js\?v=20261124-v16/);
-  assert.match(saved,/app\.js\?v=20261124-v16/);
+  assert.match(home,/v12-direct-home\.js\?v=20261124-v17/);
+  assert.match(saved,/app\.js\?v=20261124-v17/);
   assert.match(detailFiles,/mobileNav\(path === '\/companion\.html' \? 'companion' : 'recommend'\)/);
   assert.match(detailFiles,/class="n13-nav-companion/);
 });

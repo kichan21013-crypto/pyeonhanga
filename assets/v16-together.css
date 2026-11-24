@@ -116,3 +116,26 @@ body[data-page='home'].n12-ready .n15-place-drawer{margin-top:24px;}
 }
 @media(max-width:375px){.n16-hero h1{font-size:26px!important;}.n16-invite strong{font-size:13px;}.n16-venue-together{font-size:9px;}}
 @media(prefers-reduced-motion:reduce){.n16-loading{animation:none!important;}}
+
+/* Optional, reversible behavioural analytics consent. Survey has its own checkbox. */
+.nagachi-usage-consent{position:fixed;z-index:90;left:50%;bottom:calc(77px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(96vw,560px);display:flex;align-items:center;gap:12px;justify-content:space-between;padding:15px 16px;border:1px solid #d0e3d6;border-radius:17px;background:#fff;box-shadow:0 6px 32px rgba(27,59,37,.17);}
+.nagachi-usage-consent>p{margin:0;flex:1;min-width:0;color:#31543c;}
+.nagachi-usage-consent strong{display:block;font-size:13px;font-weight:900;margin-bottom:4px;}
+.nagachi-usage-consent span{display:block;font-size:11px;line-height:1.4;color:#667c6c;}
+.nagachi-usage-consent>div{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:5px;flex:0 0 152px;}
+.nagachi-usage-consent button{border:0;border-radius:9px;min-height:38px;padding:8px 9px;font-size:11px;font-weight:850;color:#3d6f4e;background:#e9f3ea;}
+.nagachi-usage-consent [data-usage-allow]{background:#2d754f;color:#fff;}
+.nagachi-usage-consent a{font-size:11px;font-weight:700;color:#6d8171;text-decoration:underline;padding:5px;}
+#usage-consent-settings{border:1px solid #d9e7dc;border-radius:14px;padding:18px 20px;background:#f5faf6;margin:22px 0;}
+#usage-consent-settings h2{margin:0 0 8px;}
+#usage-consent-settings p{font-size:13px;line-height:1.5;color:#5c6f60;}
+.usage-consent-options{display:flex;gap:9px;flex-wrap:wrap;}
+.usage-consent-options button{min-height:43px;padding:9px 15px;border:1px solid #d3e5d8;border-radius:11px;background:#fff;font-weight:850;color:#386d4c;}
+.usage-consent-options [data-usage-decision=allow]{background:#2d754f;color:#fff;}
+@media(max-width:760px){
+ .nagachi-usage-consent{width:calc(100% - 20px);gap:8px;padding:13px 12px;border-radius:14px;bottom:calc(71px + env(safe-area-inset-bottom));}
+ .nagachi-usage-consent>div{flex-basis:135px;}
+ .nagachi-usage-consent strong{font-size:12px;}
+ .nagachi-usage-consent span{font-size:10px;}
+ .nagachi-usage-consent button{font-size:10px;min-height:36px;padding:6px 8px;}
+}

@@ -1,6 +1,6 @@
 import { card, icon, escapeHtml, placeUrl } from './ui.js';
 import { savedIds, anonymousId } from './storage.js';
-import { track, trackRhythm, analyticsEnabled } from './analytics.js';
+import { track, trackRhythm, analyticsEnabled, usageAnalyticsConsent, setUsageAnalyticsConsent } from './analytics.js';
 import { inferIntent, requestedComforts, COMPANIONS } from './search.js';
 import { emptyRhythmFilters, recommendRhythms, DESIRES, ACTIVITIES, DURATION_OPTIONS, TRANSPORT_OPTIONS, companionSummary, toggleSelection, activeActivities } from './rhythm.js';
 import { toggleSavedPlace, shareOrCopy, SURVEY_CHOICES } from './actions.js';
@@ -216,7 +216,7 @@ function companionDialog(p, trigger = null, program = null) {
     const values = Object.fromEntries(new FormData(form));
     delete values.consent; // 동의 체크 원문은 분석 이벤트에 보관하지 않음
     const success = analyticsEnabled && await trackRhythm('premium_willingness', {
-      ...metadata(p), ...context, ...values, response_id:responseId,
+      ...metadata(p), ...context, ...values, response_id:responseId, surveyConsent:true,
     });
     if (analyticsEnabled && !success) {
       button.disabled = false;
@@ -241,7 +241,7 @@ if (companionStatus) companionStatus.textContent = analyticsEnabled
   ? '설문 저장 설정이 등록돼 있습니다. 실제 저장 여부는 제출 후 확인할 수 있습니다. 현재 동행 연결·예약·결제는 없습니다.'
   : '현재 분석 서버가 연결되지 않아 설문 응답은 저장되지 않습니다. 실제 동행 연결·예약·결제도 제공하지 않습니다.';
 updateSaved();
-document.addEventListener('click', event => {
+document.addEventListener('click', async event => {
   const save = event.target.closest('[data-save]');
   if (save) {
     const p = places.find(item => item.id === save.dataset.save); if (!p) return;
@@ -263,7 +263,26 @@ document.addEventListener('click', event => {
     if (program) companionDialog(programContext(program),planButton,program);
     return;
   }
-  const interest = event.target.closest('[data-companion-interest]'); if (interest) { const p = places.find(p=>p.id===interest.dataset.companionInterest); if(p) companionDialog(p,interest); }
+  const interest = event.target.closest('[data-companion-interest]');
+  if (interest) {
+    let place = places.find(item=>item.id===interest.dataset.companionInterest);
+    // 홈 추천은 독립된 빠른 장소 로더를 사용합니다.
+    // 연결 속도가 달라 상세 메인 로더가 아직 끝나지 않아도 클릭을 잃지 않습니다.
+    if (!place) {
+      try {
+        const response = await fetch('/data/places.json');
+        if (!response.ok) throw new Error('Venue list unavailable');
+        const latest = await response.json();
+        if (Array.isArray(latest)) {
+          places = latest;
+          place = places.find(item=>item.id===interest.dataset.companionInterest);
+        }
+      } catch {}
+    }
+    if (place) companionDialog(place,interest);
+    else toast('이 장소의 동행 정보를 불러오지 못했습니다. 새로고침 후 다시 시도해 주세요.');
+    return;
+  }
   if (event.target.closest('[data-reset], #reset-filters')) reset();
 });
 window.addEventListener('storage', () => { updateSaved(); if (page === 'saved') render(); });
@@ -330,4 +349,59 @@ async function init() {
     $('#companion-open').onclick = () => companionDialog(current,$('#companion-open'));
   }
 }
+
+// 일반 이용통계는 선택 동의, 개별 동행 설문은 체크박스 동의로만 수집합니다.
+// 동의하지 않아도 서비스 이용과 장소 저장에는 영향을 주지 않습니다.
+function setupUsageAnalyticsConsent() {
+  const controls = document.querySelector('#usage-consent-settings');
+  function refreshControls() {
+    if (!controls) return;
+    const consent = usageAnalyticsConsent();
+    const status = controls.querySelector('[data-usage-status]');
+    if (status) status.textContent = !analyticsEnabled
+      ? '현재 분석 서버가 연결되지 않아 이용 통계가 전송되지 않습니다.'
+      : consent === true ? '익명 이용 통계: 허용됨' : consent === false ? '익명 이용 통계: 거부됨' : '익명 이용 통계: 선택 전';
+  }
+  if (controls) {
+    controls.addEventListener('click', event => {
+      const decision = event.target.closest('[data-usage-decision]');
+      if (!decision || !analyticsEnabled) return;
+      const allowed = decision.dataset.usageDecision === 'allow';
+      if (!setUsageAnalyticsConsent(allowed)) {
+        const status = controls.querySelector('[data-usage-status]');
+        if (status) status.textContent = '설정을 저장하지 못했습니다. 브라우저 저장공간을 확인해 주세요.';
+        return;
+      }
+      refreshControls();
+      if (allowed) track('page_view');
+    });
+    refreshControls();
+  }
+  if (!analyticsEnabled || usageAnalyticsConsent() !== null) return;
+  const banner = document.createElement('aside');
+  banner.className = 'nagachi-usage-consent';
+  banner.setAttribute('aria-label','익명 이용 통계 선택');
+  banner.innerHTML =
+    '<p><strong>나가치 개선에 도움을 주시겠어요?</strong>' +
+    '<span>방문·카테고리 선택을 익명 브라우저 ID와 함께 분석합니다. 선택이며, 거절해도 이용할 수 있어요.</span></p>' +
+    '<div><button type="button" data-usage-allow>통계 허용</button>' +
+    '<button type="button" data-usage-decline>괜찮아요</button>' +
+    '<a href="/privacy.html">자세히</a></div>';
+  document.body.append(banner);
+  banner.addEventListener('click', event => {
+    const allow = event.target.closest('[data-usage-allow]');
+    const decline = event.target.closest('[data-usage-decline]');
+    if (!allow && !decline) return;
+    const accepted = Boolean(allow);
+    if (!setUsageAnalyticsConsent(accepted)) {
+      banner.querySelector('span').textContent = '설정을 저장하지 못했습니다. 브라우저 저장 공간을 확인해 주세요.';
+      return;
+    }
+    banner.remove();
+    refreshControls();
+    if (accepted) track('page_view');
+  });
+}
+setupUsageAnalyticsConsent();
+
 init();
