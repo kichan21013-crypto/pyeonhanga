@@ -3,6 +3,7 @@
  * No private credentials, no stored passwords and no real transactions.
  */
 import { companionRpc } from './v19-companion-service.js';
+import { mountBusinessDashboard } from './v26-business-dashboard.js';
 import { escapeHtml } from '../ui.js';
 import { estimateRevenue, cleanCoursePlaceIds, ADMIN_ACTIVITY_LABELS, MEETUP_STAGE_LABELS } from './v22-operations-model.js';
 
@@ -39,6 +40,7 @@ export function mountOperations({getToken,notify}){
  // Markup is in n19-admin-panel, so unauthenticated users cannot operate anything.
  if(!root)return {load:async()=>{},reset:()=>{}};
  document.body.classList.add('n22-admin-page');
+ const business=mountBusinessDashboard(root,getToken);
  const courseForm=$('#n22-course-form');
  const meetupForm=$('#n22-meetup-form');
  const revenueForm=$('#n22-revenue-form');
@@ -186,6 +188,7 @@ export function mountOperations({getToken,notify}){
   const jwt=getToken();
   if(!jwt)return;
   const request=++requestId;
+  void business.load();
   const status=$('#n22-load-status');
   status.textContent='운영 자료를 불러오고 있어요.';
   const [result,interestResult]=await Promise.all([
@@ -394,7 +397,7 @@ export function mountOperations({getToken,notify}){
  });
  renderPicked();renderRevenuePreview();
  return {load,reset:()=>{
-   requestId++;partyRequest++;partyId=null;partyBusy=false;const partyPanel=$('#n25-party-panel');if(partyPanel){partyPanel.hidden=true;partyPanel.replaceChildren();}data={courses:[],meetups:[],pricing:[]};interestCounts=null;
+   business.reset();requestId++;partyRequest++;partyId=null;partyBusy=false;const partyPanel=$('#n25-party-panel');if(partyPanel){partyPanel.hidden=true;partyPanel.replaceChildren();}data={courses:[],meetups:[],pricing:[]};interestCounts=null;
    $('#n22-operation-metrics').replaceChildren();
    $('#n22-course-list').replaceChildren();
    $('#n22-meetup-list').replaceChildren();
