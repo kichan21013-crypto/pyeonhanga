@@ -201,7 +201,7 @@ function setupHome() {
   home.innerHTML =
     '<section class="n16-hero n18-hero n19-hero" aria-labelledby="n16-home-title">' +
     '<span class="n16-kicker">나가치 · 취향 동행</span>' +
-    '<h1 id="n16-home-title">우리, <em>오늘 같이</em><br>즐겨볼까요?</h1>' +
+    '<h1 id="n16-home-title">맛집·산행·나들이<br><em>같이 갈 사람?</em></h1>' +
     '<p>맛있는 한 끼부터 산행과 나들이까지.<br>하고 싶은 하루를 고르면, 함께 갈 곳을 찾아드려요.</p>' +
     '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"></div><div class="n19-photo-slot n19-photo-side"></div><span class="n19-mosaic-stamp">REAL PLACES · REAL MOMENTS</span></div>' +
     '<a class="n16-hero-cta" href="#n16-invites-title">' + icon('people') + ' 어떤 하루를 함께할까요? <span aria-hidden="true">→</span></a>' +
@@ -263,8 +263,8 @@ function setupHome() {
   // 사용자가 보던 636개 실제 장소 사진 중 두 장만 히어로에 사용합니다.
   // 사진의 인물/모임 현황을 의미하지 않으며 새로운 API나 외부 사진 서비스는 사용하지 않습니다.
   loadCatalog().then(catalog=>{
-    const food=catalog.find(p=>p.category==='맛집'&&String(p.image||'').startsWith('https://'));
-    const walk=catalog.find(p=>p.category==='나들이'&&String(p.image||'').startsWith('https://'));
+    const food=catalog.find(p=>p.category==='맛집'&&safeUrl(p.image));
+    const walk=catalog.find(p=>p.category==='나들이'&&safeUrl(p.image));
     for (const [sel,place] of [['.n19-photo-main',food],['.n19-photo-side',walk]]) {
       const slot=home.querySelector(sel);
       if(slot&&place){const img=document.createElement('img');img.src=place.image;img.alt='';img.loading='eager';img.decoding='async';slot.append(img);}
