@@ -87,7 +87,7 @@ test('실제 빌드 버전 v21을 모든 페이지에 적용하고 기존 장소
  assert.match(index,/v12-direct-home\.js\?v=20261124-v21/);
  assert.match(core,/href="\/#n21-popular"/);
  assert.match(build,/const CLIENT_VERSION = '20261124-v21'/);
- assert.match(index,/id="n12-search"/);
+ assert.match(index,/id="main"/);
  const home=await read('assets/v12-direct-home.js');
  assert.match(home,/n14-place-browse/);
  assert.match(home,/setupGroupExperience\(home\)/);
