@@ -31,3 +31,14 @@ export function cleanCoursePlaceIds(ids,allowed=new Set()){
 export function safePublicMeetupStatus(stage){
  return stage==='announced'?'모임 준비 소식':'준비 중';
 }
+
+export function sanitizePublicCourses(rows,catalog){
+ if(!Array.isArray(rows)||!Array.isArray(catalog))return [];
+ const places=new Map(catalog.filter(p=>p&&typeof p.id==='string'&&!p.isDemo).map(p=>[p.id,p]));
+ return rows.filter(c=>c&&Number.isSafeInteger(Number(c.id))&&Number(c.id)>0
+   &&typeof c.title==='string'&&typeof c.description==='string'
+   &&['food','hike','outing','travel'].includes(c.activity)
+   &&Array.isArray(c.place_ids)&&c.place_ids.length>0)
+   .map(c=>({...c,places:c.place_ids.map(id=>places.get(id)).filter(Boolean)}))
+   .filter(c=>c.places.length>0).slice(0,12);
+}
