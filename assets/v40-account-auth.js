@@ -39,7 +39,18 @@ export async function accountRole(){const t=accountToken();if(!t)return {ok:fals
 export async function saveAccountActivities(activities){
  const t=accountToken();if(!t)return {ok:false,reason:'login'};
  const r=await companionRpc('nagachi_account_subscribe',{p_activities:cleanGroupActivities(activities)},t);
+ if(accountToken()!==t)return {ok:false,reason:'login'};
  if(r.ok&&r.data===true){clearPending();return {ok:true}}return {ok:false,reason:r.reason||'server'};
+}
+export async function accountSetupIdentity(){
+ const t=accountToken();if(!t)return {ok:false,reason:'login'};
+ try{
+  const r=await fetch(config.supabaseUrl+'/auth/v1/user',{headers:{apikey:config.supabaseAnonKey,Authorization:'Bearer '+t},signal:AbortSignal.timeout(7000)});
+  if(!r.ok||accountToken()!==t)return {ok:false,reason:'login'};
+  const u=await r.json();
+  if(accountToken()!==t||!(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(u.id||'')))return {ok:false,reason:'identity'};
+  return {ok:true,id:u.id};
+ }catch{return {ok:false,reason:'offline'}}
 }
 export async function readAccountNews(){const t=accountToken();return t?companionRpc('nagachi_account_news',{},t):{ok:false,reason:'login'}}
 export async function signOutAccount(){
