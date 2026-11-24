@@ -272,16 +272,16 @@ function setupHome() {
   }).catch(()=>{});
   // 원래 앵커는 카드 그리드 맨 위를 sticky 헤더 뒤로 보내 제목을 가렸습니다.
   // 제목부터 보이도록 헤더 높이만큼 보정해 네 카드의 시작 지점을 확실하게 보여줍니다.
-  const cta=home.querySelector('.n16-hero-cta');
-  cta?.addEventListener('click',event=>{
-    event.preventDefault();
+  const scrollToInvites=()=>{
     const target=home.querySelector('#n16-invites-title');
     if(!target)return;
     const header=document.querySelector('.site-header');
     const offset=(header?.getBoundingClientRect().height||0)+18;
     const top=Math.max(0,window.scrollY+target.getBoundingClientRect().top-offset);
     window.scrollTo({top,behavior:reduceMotion()?'auto':'smooth'});
-  });
+  };
+  const cta=home.querySelector('.n16-hero-cta');
+  cta?.addEventListener('click',event=>{event.preventDefault();scrollToInvites();});
   setupTogetherJourney({home,loadPlaces:loadCatalog});
   setupGroupExperience(home);
   const placeDrawer = $('#n14-place-browse');
@@ -333,7 +333,7 @@ function setupHome() {
   nav.querySelector('[data-n12-recommend]').addEventListener('click', () => {
     nav.querySelector('[data-n12-home]').classList.remove('is-active');
     nav.querySelector('[data-n12-recommend]').classList.add('is-active');
-    document.querySelector('#n16-invites')?.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});
+    scrollToInvites();
   });
   window.addEventListener('storage', () => {
     $$('.n12-save').forEach(button => {
