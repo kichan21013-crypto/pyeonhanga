@@ -329,3 +329,14 @@ body[data-page=home].n12-ready .n35-recommend-link{display:flex!important;align-
 .n35-recommend-link span{margin-left:auto;font-size:20px;line-height:1}
 .n35-recommend-link:focus-visible{outline:3px solid #e87553;outline-offset:3px}
 @media(min-width:761px){body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero.n34-full-photo.n35-photo-banner{aspect-ratio:1.7!important;max-width:680px!important;margin:0 auto!important}.n21-hero.n35-photo-banner>h1{left:24px!important;bottom:20px!important;font-size:28px!important}body[data-page=home].n12-ready .n35-recommend-link{max-width:680px!important;margin:10px auto 0!important}}
+
+/* v36: keep the approved layout, ease the portrait crop, and balance action weight. */
+body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero.n34-full-photo.n35-photo-banner{aspect-ratio:1.55!important}
+.n21-hero.n35-photo-banner .n19-photo-mosaic::before{content:"";position:absolute;inset:0;background:url('/assets/v31-hero.webp') center 33% / cover no-repeat;filter:blur(18px);transform:scale(1.25);opacity:.85;pointer-events:none}
+.n21-hero.n35-photo-banner .n19-photo-main{inset:0 6%!important;width:88%!important;height:100%!important;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.n21-hero.n35-photo-banner .n19-photo-main img{object-position:center 0%!important;object-fit:cover!important;filter:none!important}
+.n21-hero.n35-photo-banner:before{background:linear-gradient(180deg,transparent 0%,transparent 60%,rgba(19,37,28,.73) 100%)!important}
+.n21-hero.n35-photo-banner>h1{font-size:clamp(16px,4.75vw,23px)!important;bottom:12px!important;font-weight:750!important;letter-spacing:-.035em!important}
+body[data-page=home].n12-ready .n35-recommend-link{min-height:44px!important;padding:10px 14px!important;font-size:14px!important;border-radius:12px!important}
+body[data-page=home].n12-ready .n29-discover{padding-top:12px!important;padding-bottom:10px!important}
+@media(min-width:761px){body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero.n34-full-photo.n35-photo-banner{aspect-ratio:1.65!important}.n21-hero.n35-photo-banner>h1{font-size:26px!important;bottom:20px!important}}
