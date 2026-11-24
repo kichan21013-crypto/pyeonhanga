@@ -4,8 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {operatorMarkup} from '../assets/v22-admin-markup.js';
-import {estimateRevenue,cleanCoursePlaceIds} from '../assets/v22-operations-model.js';
-import {sanitizePublicCourses} from '../assets/v22-public-programs.js';
+import {estimateRevenue,cleanCoursePlaceIds,sanitizePublicCourses} from '../assets/v22-operations-model.js';
 const read=p=>readFile(new URL('../'+p,import.meta.url),'utf8');
 
 test('운영자만 로그인하는 별도 모바일 스튜디오에 4개 실제 관리 메뉴와 폼이 있다',()=>{
