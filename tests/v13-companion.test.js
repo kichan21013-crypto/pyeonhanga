@@ -32,8 +32,8 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
   assert.match(page,/아직 실제 동행 모집·예약·결제는 제공하지 않아요/);
   assert.match(page,/class="n13-landing n15-program-hub n16-companion-hub"/);
   assert.match(page,/data-companion="true"/);
-  assert.match(home,/v12-direct-home\.js\?v=20261124-v18/);
-  assert.match(saved,/app\.js\?v=20261124-v18/);
+  assert.match(home,/v12-direct-home\.js\?v=20261124-v19/);
+  assert.match(saved,/app\.js\?v=20261124-v19/);
   assert.match(detailFiles,/mobileNav\(path === '\/companion\.html' \? 'companion' : 'recommend'\)/);
   assert.match(detailFiles,/class="n13-nav-companion/);
 });
@@ -58,9 +58,9 @@ test('2단계 설문은 익명/동의/저장결과/실패를 명확히 표시한
   assert.match(src,/response_id:responseId/);
   assert.match(src,/await recordConsentedSurvey/);
   assert.match(src,/저장되지 않았어요/);
-  assert.match(src,/선택한 내용이 저장됐어요/);
+  assert.match(src,/관심이 저장됐어요/);
   assert.match(src,/응답은 저장되지 않았어요/);
-  assert.match(src,/나의 연령대/);
+  assert.match(src,/어느 연령대이세요\?/);
   assert.match(styles,/\.n13-survey-step\[hidden\]/);
   assert.doesNotMatch(src,/예약이 확정됐습니다|동행 신청 완료/);
 });

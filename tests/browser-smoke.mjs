@@ -18,9 +18,10 @@ const ok=(value,label)=>{assert.ok(value,label);passed++;};
 async function chooseSurvey(page) {
   const dialog=page.locator('dialog.n13-survey-dialog');
   await dialog.locator('[name=age][value="45~49"]').check();
-  await dialog.locator('[name=preference][value="성별 상관없음"]').check();
-  await dialog.locator('[name=purpose][value="식사동행"]').check();
+  await dialog.locator('[name=activity-interest][value="food"]').check();
+  
   await dialog.locator('[data-n13-next]').click();
+  await dialog.locator('[name=preference][value="성별 상관없음"]').check();
   await dialog.locator('[name=group_size][value="3~4명"]').check();
   await dialog.locator('[name=willingness][value="약 2만원"]').check();
   await dialog.locator('[name=consent]').check();
