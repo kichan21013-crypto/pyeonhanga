@@ -11,6 +11,7 @@ import { TOGETHER_INVITES, TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-mo
 import { setupTogetherJourney } from './v16-together.js';
 import { setupGroupExperience } from './v19-group-ui.js';
 import { setupPopularFirst } from './v21-popular-first.js';
+import { setupPublicPrograms } from './v22-public-programs.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -214,6 +215,12 @@ function setupHome() {
     '<div id="n21-popular-content" role="status" aria-live="polite">' +
     '<div class="n21-popular-loading" aria-label="인기 동행 확인 중"><span></span><span></span></div></div>' +
     '<button type="button" class="n21-find-btn" data-n21-find>다른 동행도 찾아보기 →</button></section>' +
+    '<section class="n22-public-programs" id="n22-public-programs" aria-labelledby="n22-public-heading" hidden>' +
+    '<div class="n22-public-heading"><div><span>CURATED BY NAGACHI</span>' +
+    '<h2 id="n22-public-heading">나가치가 제안하는 동행 코스</h2>' +
+    '<p>운영자가 실제 장소를 골라 구성한 하루예요. 아직 실제 참가 예약은 아닙니다.</p>' +
+    '</div></div><div id="n22-public-course-list" class="n22-public-course-list"></div>' +
+    '<div id="n22-public-meetups"></div></section>' +
     '<section class="n16-invites-section" aria-labelledby="n16-invites-title">' +
     '<div class="n16-section-head"><span>취향대로, 나가치</span>' +
     '<h2 id="n16-invites-title">어떤 하루를 함께할까요?</h2>' +
@@ -305,6 +312,7 @@ function setupHome() {
   setupTogetherJourney({home,loadPlaces:loadCatalog});
   setupGroupExperience(home);
   setupPopularFirst({home,loadPlaces:loadCatalog,scrollToInvites});
+  setupPublicPrograms({home,loadPlaces:loadCatalog});
   const placeDrawer = $('#n14-place-browse');
   placeDrawer?.addEventListener('toggle', () => {
     document.body.classList.toggle('n15-browse-open',placeDrawer.open);
