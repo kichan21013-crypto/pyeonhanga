@@ -156,6 +156,7 @@ function companionDialog(p, trigger = null, program = null) {
           '<p>끌리는 건 여러 개 골라도 괜찮아요.</p>' +
           '<div class="n19-activity-options">'+activityCards+'</div>' +
           '<div class="n19-chosen-status" role="status">선택한 취향 <strong id="n19-choice-total">1개</strong></div></fieldset>' +
+          '<p class="n20-first-status" role="status" aria-live="polite"></p>' +
           '<button type="button" class="button primary full n18-next" data-n13-next>' +
             '다음 · 모임 방식 고르기 <span aria-hidden="true">→</span></button></div>' +
         '<div class="n13-survey-step n20-last-step" data-n13-step="2" hidden>' +
@@ -194,6 +195,7 @@ function companionDialog(p, trigger = null, program = null) {
   const progress=dialog.querySelector('.n13-survey-progress');
   const stepLabel=dialog.querySelector('.n13-survey-step-title');
   const status=dialog.querySelector('.survey-status');
+  const firstStatus=dialog.querySelector('.n20-first-status');
   const chosenActivities=()=>cleanGroupActivities(
     [...form.querySelectorAll('[name="activity-interest"]:checked')].map(x=>x.value)
   );
@@ -213,6 +215,7 @@ function companionDialog(p, trigger = null, program = null) {
     stepLabel.textContent=number===1?'1 / 2 · 관심 있는 하루':'2 / 2 · 동행 관심 남기기';
     status.textContent='';
     status.dataset.state='';
+    firstStatus.textContent='';
     if(number===2){
       const interests=chosenActivities();
       const summary=dialog.querySelector('#n20-interest-summary');
@@ -223,7 +226,7 @@ function companionDialog(p, trigger = null, program = null) {
   dialog.querySelector('[data-n13-next]').onclick=()=>{
     const age=form.querySelector('[name="age"]:checked');
     if(!age){form.querySelector('[name="age"]')?.reportValidity();return;}
-    if(!chosenActivities().length){status.textContent='같이 해보고 싶은 일을 하나 이상 골라주세요.';return;}
+    if(!chosenActivities().length){firstStatus.textContent='같이 해보고 싶은 일을 하나 이상 골라주세요.';return;}
     showStep(2);
   };
   dialog.querySelector('[data-n13-back]').onclick=()=>showStep(1);
