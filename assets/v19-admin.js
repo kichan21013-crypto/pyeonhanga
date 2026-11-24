@@ -1,6 +1,6 @@
 import {accountToken,signOutAccount} from './v40-account-auth.js';
 /* 나가치 운영자 콘솔: Supabase Auth 사용자 + DB의 명시적 관리자 allowlist 필수.
- * 로그인 비밀번호/토큰은 이 탭의 메모리에만 보관, 영속 저장하지 않습니다.
+ * 이메일 로그인 토큰은 메모리, 카카오 로그인 토큰은 이 탭의 제한 시간 세션에 보관합니다.
  * 공개 key로 읽기/쓰기 RPC 요청만 사용하며 서버의 auth.uid() 검사가 진짜 접근 통제입니다.
  */
 import { GROUP_ACTIVITIES,authenticateCompanionAdmin,companionRpc } from './v19-companion-service.js';

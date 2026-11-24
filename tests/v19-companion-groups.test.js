@@ -110,3 +110,19 @@ test('가짜 서버에서 공개 집계 5명 임계값, 수신신청, 앱 내 �
   await rm(temp,{recursive:true,force:true});
  }
 });
+
+test('v40 account notices require authenticated server identity and explicit consent',async()=>{
+ const sql=await read('supabase/account-notices-v40.sql'),auth=await read('assets/v40-account-auth.js'),page=await read('assets/v40-account-page.js'),admin=await read('assets/v19-admin.js'),home=await read('assets/v12-direct-home.js');
+ assert.match(sql,/alter table public\.nagachi_account_subscriptions enable row level security/);
+ assert.match(sql,/s\.user_id=v_uid/);
+ assert.match(sql,/revoke execute on function public\.nagachi_subscribe_updates/);
+ assert.match(sql,/grant execute on function public\.nagachi_account_news\(\) to authenticated/);
+ assert.match(sql,/a\.user_id=auth\.uid\(\)/);
+ assert.match(auth,/provider:'kakao'/);
+ assert.match(auth,/code_challenge_method:'s256'/);
+ assert.match(auth,/grant_type=pkce/);
+ assert.match(auth,/history\.replaceState/);
+ assert.match(page,/redirectAdmin&&role\.ok&&role\.data===true/);
+ assert.match(admin,/companionRpc\('nagachi_admin_dashboard',\{\},t\)/);
+ assert.match(home,/href="\/account\.html" aria-label="내 계정"/);
+});

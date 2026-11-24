@@ -36,3 +36,4 @@ const result=await finishKakaoLogin();
 if(!configured)show('현재 로그인 서버 연결 설정이 필요합니다.');
 else if(result.callback&&!result.ok)show('로그인이 완료되지 않았습니다. 다시 시도해 주세요.');
 await render(result.callback&&result.ok);
+let hadSession=!!accountToken();setInterval(()=>{const live=!!accountToken();if(hadSession&&!live){show('로그인이 만료되었습니다. 다시 로그인하세요.');void render();}hadSession=live;},5000);
