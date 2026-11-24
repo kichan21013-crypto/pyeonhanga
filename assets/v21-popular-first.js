@@ -1,25 +1,28 @@
 /* 나가치 홈 인기 동행 먼저: 실제 동의 기반 관심만 공개하며 데이터 없으면 취향 탐색 제공.
    실제 참가 확정자/운영 중인 모임/좋아요 수를 가장하거나 만들지 않습니다. */
-import { escapeHtml, safeUrl, placeUrl } from '../ui.js';
+import { escapeHtml, safeUrl, placeUrl, icon } from '../ui.js';
+import { savedIds } from '../storage.js';
 import { togetherPlaceMatches } from './v16-together-model.js';
 import { fetchPublicInterestCounts, fetchPopularCompanionPlaces } from './v19-companion-service.js';
 import { POPULAR_ACTIVITIES, normalizePopularPlaces, rankPopularActivities,choosePopularView } from './v21-popular-model.js';
 const $=(s,root=document)=>root.querySelector(s);
 const labelFor=id=>POPULAR_ACTIVITIES.find(a=>a.id===id);
 const bottomLine='<p class="n21-real-note">최근 90일 관심을 남긴 기기 기준 · 실제 모집 인원 아님</p>';
-function placeCard(entry){
- const p=entry.place;
- const image=safeUrl(p.image)||'/assets/garden.svg';
- const title=escapeHtml(p.name);
+const categoryLabel={food:'맛집',outing:'나들이',travel:'여행',hike:'산행'};
+const headlineSuffix={food:' 함께 가요',outing:' 산책 동행',travel:' 나들이 동행',hike:' 산행 동행'};
+function placeCard(entry,index=0){
+ const p=entry.place,ranked=Number.isSafeInteger(entry.interestedCount)&&entry.interestedCount>=5;
+ const image=safeUrl(p.image)||'/assets/garden.svg',title=escapeHtml(p.name);
+ const saved=savedIds().includes(p.id);
  return '<article class="n21-popular-card n21-place-card">'+
-    '<a class="n21-popular-photo" href="'+placeUrl(p)+'" aria-label="'+title+' 장소 자세히 보기">'+
-    '<img src="'+image+'" alt="'+title+' 실제 장소 사진" loading="lazy" width="480" height="340"></a>'+
-    '<div class="n21-popular-content"><span class="n21-popular-type">'+escapeHtml(entry.activity.tag)+
-      ' · '+escapeHtml(p.region)+'</span>'+
-    '<h3>'+title+'</h3><span class="n21-popular-count">♥ 가고 싶은 마음 '+entry.interestedCount+'건</span>'+
-    '<button type="button" data-companion-interest="'+escapeHtml(p.id)+
-      '" data-companion-activity="'+entry.activity.id+'" class="n21-popular-action">'+
-      '나도 가보고 싶어요 <span aria-hidden="true">→</span></button></div></article>';
+  '<div class="n30-card-media"><a class="n21-popular-photo" href="'+placeUrl(p)+'" aria-label="'+title+' 장소 자세히 보기">'+
+  '<img src="'+image+'" alt="'+title+' 실제 장소 사진" loading="lazy" width="480" height="340"></a>'+
+  '<span class="n30-rank '+(ranked?'is-ranked':'')+'">'+(ranked?'인기 '+(index+1)+'위':'동행 추천')+'</span>'+
+  '<button type="button" class="save-icon n12-save n30-save '+(saved?'is-saved':'')+'" data-save="'+escapeHtml(p.id)+'" aria-label="'+title+' 저장하기" aria-pressed="'+saved+'">'+icon('heart')+'</button></div>'+
+  '<div class="n21-popular-content"><h3>'+title+escapeHtml(headlineSuffix[entry.activity.id]||' 함께 가요')+'</h3>'+
+  '<div class="n30-meta"><span class="n21-popular-type">'+icon('pin')+escapeHtml(p.region||'')+' · '+escapeHtml(p.category||categoryLabel[entry.activity.id])+'</span>'+
+  (ranked?'<span class="n30-count">'+icon('people')+entry.interestedCount+'건 관심</span>':'')+'</div>'+
+  '<button type="button" data-companion-interest="'+escapeHtml(p.id)+'" data-companion-activity="'+entry.activity.id+'" class="n21-popular-action">동행 살펴보기 <span aria-hidden="true">→</span></button></div></article>';
 }
 function activityCard(item){
  return '<article class="n21-popular-card n21-activity-card">'+
@@ -31,18 +34,12 @@ function activityCard(item){
 }
 function discovery(state,catalog){
  const candidates=[];
- for(const activity of ['travel','outing','food','hike']){
+ for(const activity of ['food','outing','travel','hike']){
    const item=labelFor(activity);
-   const place=catalog.find(p=>p&&!p.isDemo&&p.id&&p.name&&safeUrl(p.image)&&!candidates.some(x=>x.place.id===p.id)&&
-     togetherPlaceMatches(p,{interest:item.invite}));
+   const place=catalog.find(p=>p&&!p.isDemo&&p.id&&p.name&&safeUrl(p.image)&&!candidates.some(x=>x.place.id===p.id)&&togetherPlaceMatches(p,{interest:item.invite}));
    if(place)candidates.push({place,activity:item});
  }
- const status=state==='unconfigured'?'인기 집계가 준비되면 순위를 보여드려요.':'아직 공개할 수 있는 관심 순위가 없어요.';
- return '<p class="n29-empty-note">'+status+'</p>'+
-  (candidates.length?'<div class="n21-popular-rail n29-candidate-rail">'+candidates.map(({place:p,activity})=>
-    '<article class="n21-popular-card n21-place-card"><a class="n21-popular-photo" href="'+placeUrl(p)+'"><img src="'+escapeHtml(safeUrl(p.image))+'" alt="'+escapeHtml(p.name)+'" loading="lazy" width="480" height="340"></a>'+
-    '<div class="n21-popular-content"><span class="n21-popular-type">'+escapeHtml(p.region||'')+' · '+escapeHtml(activity.tag)+'</span><h3>'+escapeHtml(p.name)+'</h3>'+
-    '<button type="button" class="n21-popular-action" data-companion-interest="'+escapeHtml(p.id)+'" data-companion-activity="'+activity.id+'">같이 가보고 싶어요 <span aria-hidden="true">→</span></button></div></article>').join('')+'</div>':'');
+ return candidates.length?'<div class="n21-popular-rail n29-candidate-rail">'+candidates.map(placeCard).join('')+'</div>':'<p class="n29-empty-note">해당 지역의 동행 후보를 찾지 못했어요. 다른 지역을 선택해 주세요.</p>';
 }
 export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
  if(!home||home.dataset.n21Popular)return;
@@ -53,6 +50,9 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
  const content=$('#n21-popular-content',target);
  const find=$('[data-n21-find]',target);
  const regionSelect=$('#n29-region',home);
+ const all=$('[data-n30-all]',target),heroLabel=$('[data-n30-hero-label]',home);
+ function setExpanded(value){target.classList.toggle('n30-expanded',value);all.setAttribute('aria-expanded',String(value));all.textContent=value?'접기 ↑':'전체보기 →';}
+ all?.addEventListener('click',()=>setExpanded(all.getAttribute('aria-expanded')!=='true'));
  let serial=0;
  async function refresh(){
   const request=++serial;
@@ -70,21 +70,24 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
   const activities=acts.ok&&!region?rankPopularActivities(acts.counts):[];
   const view=choosePopularView({places,activities});
   target.dataset.view=view;
+  setExpanded(false);
+  if(heroLabel)heroLabel.textContent=view==='discovery'?'추천 동행 보기':'지금 인기 있는 동행 보기';
   if(view==='places'){
-    heading.textContent=(region?region+' · ':'')+'지금 관심 많은 동행 장소';
-    sub.textContent='직접 “가고 싶어요”를 남긴 분들이 많은 장소부터 보여드려요.';
+    heading.textContent=(region?region+' · ':'')+'지금 인기 있는 동행';
+    sub.textContent='지금 가장 많은 관심을 받고 있는 동행을 만나보세요.';
     content.innerHTML='<div class="n21-popular-rail">'+places.map(placeCard).join('')+'</div>'+bottomLine;
   }else if(view==='activities'){
-    heading.textContent='요즘 관심 많은 동행';
+    heading.textContent='지금 인기 있는 활동';
     sub.textContent='많은 분이 함께하고 싶다고 고른 활동부터 만나보세요.';
     content.innerHTML='<div class="n21-popular-rail">'+activities.map(activityCard).join('')+'</div>'+bottomLine;
   }else{
-    heading.textContent=(region?region+' · ':'')+'함께 가보고 싶은 곳';
-    sub.textContent='실제 장소 중 동행 후보를 골라보세요. 인기 순위나 모집 중인 모임은 아니에요.';
+    heading.textContent=(region?region+' · ':'')+'나가치 추천 동행';
+    sub.textContent='마음에 드는 동행 후보를 골라보세요. 아직 공개된 인기 순위는 없어요.';
     const state=(!pop.ok&&!acts.ok)?'unconfigured':'empty';
     content.innerHTML=discovery(state,regionalCatalog);
   }
-  find.textContent=view==='discovery'?'직접 동행 찾아보기 →':'다른 동행도 찾아보기 →';
+  all.hidden=content.querySelectorAll('.n21-popular-card').length<3;
+  find.textContent='직접 동행 찾아보기 →';
  }
  target.addEventListener('click',event=>{
   const activity=event.target.closest('[data-n21-activity]');

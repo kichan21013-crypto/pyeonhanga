@@ -203,11 +203,11 @@ function setupHome() {
   ).join('');
   home.innerHTML =
     '<section class="n16-hero n18-hero n19-hero n21-hero" aria-labelledby="n16-home-title">' +
-    '<span class="n16-kicker">취향으로 만나는 동행</span>' +
+    '<span class="n16-kicker">NAGACHI</span>' +
     '<h1 id="n16-home-title">가고 싶은 곳,<br><em>함께할 사람.</em></h1>' +
-    '<p>취향이 통하는 사람들과 새로운 하루.</p>' +
-    '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"></div><span class="n19-mosaic-stamp">장소 사진</span></div>' +
-    '<a class="n16-hero-cta" href="#n21-popular">' + icon('people') + ' 지금 인기 있는 동행 <span aria-hidden="true">→</span></a>' +
+    '<p>취향이 통하는 사람들과<br>더 특별한 하루를 만들어보세요.</p>' +
+    '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"><img src="/assets/v30-hero.webp" alt="" width="256" height="165" fetchpriority="high" decoding="async"></div></div><span class="n30-model-note">연출 이미지</span>' +
+    '<a class="n16-hero-cta" href="#n21-popular">' + icon('people') + ' <b data-n30-hero-label>동행 둘러보기</b> <span aria-hidden="true">→</span></a>' +
     '<small>관심을 남기면 나가치가 모임을 제안해요.</small></section>' +
     '<section class="n16-invites-section n29-discover" aria-labelledby="n16-invites-title">'+
     '<div class="n29-section-head"><h2 id="n16-invites-title">어떤 동행을 찾으세요?</h2><label class="n29-region">지역 <select id="n29-region" aria-label="희망 지역"><option value="">전체 지역</option>'+TOGETHER_REGIONS.map(region=>'<option value="'+region+'">'+region+'</option>').join('')+'</select></label></div>'+
@@ -215,7 +215,7 @@ function setupHome() {
     '<section class="n21-popular" id="n21-popular" aria-labelledby="n21-popular-heading">' +
     '<div class="n21-popular-top"><div>' +
     '<h2 id="n21-popular-heading">지금 인기 있는 동행</h2>' +
-    '<p id="n21-popular-sub">저장된 관심을 확인하고 있어요.</p></div></div>' +
+    '<p id="n21-popular-sub">저장된 관심을 확인하고 있어요.</p></div><button type="button" class="n30-all" data-n30-all aria-controls="n21-popular-content" aria-expanded="false" hidden>전체보기 →</button></div>' +
     '<div id="n21-popular-content" role="status" aria-live="polite">' +
     '<div class="n21-popular-loading" aria-label="인기 동행 확인 중"><span></span><span></span></div></div>' +
     '<button type="button" class="n21-find-btn" data-n21-find>다른 동행도 찾아보기 →</button></section>' +
@@ -275,14 +275,6 @@ function setupHome() {
 
   home.querySelector('.n29-discover').after(home.querySelector('#n16-journey'));
   main.prepend(home,results);
-  // A real scenic place photo, not a participant or recruitment photo.
-  loadCatalog().then(catalog=>{
-    const scenic=catalog.find(p=>!p.isDemo&&p.region==='강릉'&&p.category==='여행'&&safeUrl(p.image)&&/해변|해수욕장|바다/.test(p.name))
-      ||catalog.find(p=>!p.isDemo&&p.category==='여행'&&safeUrl(p.image))
-      ||catalog.find(p=>!p.isDemo&&p.category==='나들이'&&safeUrl(p.image));
-    const slot=home.querySelector('.n19-photo-main');
-    if(slot&&scenic){const img=document.createElement('img');img.src=scenic.image;img.alt='';img.loading='eager';img.decoding='async';slot.append(img);}
-  }).catch(()=>{});
   // 원래 앵커는 카드 그리드 맨 위를 sticky 헤더 뒤로 보내 제목을 가렸습니다.
   // 제목부터 보이도록 헤더 높이만큼 보정해 네 카드의 시작 지점을 확실하게 보여줍니다.
   const scrollToInvites=()=>{
@@ -315,6 +307,17 @@ function setupHome() {
   });
   journeyRegion.addEventListener('change',()=>{topRegion.value=journeyRegion.value;});
   setupGroupExperience(home);
+  const headerInner=document.querySelector('.site-header .header-inner');
+  if(headerInner&&!headerInner.querySelector('.n30-header-actions')){
+    const actions=document.createElement('div');actions.className='n30-header-actions';
+    actions.innerHTML='<button type="button" data-n30-updates aria-label="내 동행 소식"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a href="/companion.html" aria-label="동행 안내">'+icon('solo')+'</a>';
+    headerInner.append(actions);
+    actions.querySelector('[data-n30-updates]').addEventListener('click',()=>{
+      const inbox=home.querySelector('#n19-my-updates');if(!inbox)return;
+      const offset=(document.querySelector('.site-header')?.getBoundingClientRect().height||0)+12;
+      window.scrollTo({top:Math.max(0,window.scrollY+inbox.getBoundingClientRect().top-offset),behavior:reduceMotion()?'auto':'smooth'});
+    });
+  }
   setupPopularFirst({home,loadPlaces:loadCatalog,scrollToInvites});
   setupPublicPrograms({home,loadPlaces:loadCatalog});
   const placeDrawer = $('#n14-place-browse');
