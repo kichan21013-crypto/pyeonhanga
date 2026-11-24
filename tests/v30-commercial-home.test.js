@@ -6,12 +6,12 @@ import {POPULAR_ACTIVITIES,normalizePopularPlaces} from '../assets/v21-popular-m
 import {togetherPlaceMatches} from '../assets/v16-together-model.js';
 import {escapeHtml,safeUrl,placeUrl,icon} from '../ui.js';
 const read=p=>readFile(new URL('../'+p,import.meta.url),'utf8');
-test('v30 승인 시안에서 분리한 인물 사진의 빌드 사본 일치',async()=>{
- const a=await readFile(new URL('../assets/v31-hero.webp',import.meta.url));
- assert.equal(createHash('sha1').update('blob '+a.length+'\0').update(a).digest('hex'),'ca27908d4a2c1c348bfd930477629edfeb5e0c29');
- assert.deepEqual(a,await readFile(new URL('../dist/assets/v31-hero.webp',import.meta.url)));
+test('v38 가로 배너 사진의 원본 및 빌드 사본 일치',async()=>{
+ const a=await readFile(new URL('../assets/v38-hero.webp',import.meta.url));
+ assert.equal(createHash('sha1').update('blob '+a.length+'\0').update(a).digest('hex'),'3641b8b0bea884a67a2fa2df3a18700521af3b28');
+ assert.deepEqual(a,await readFile(new URL('../dist/assets/v38-hero.webp',import.meta.url)));
  const home=await read('assets/v12-direct-home.js');
- assert.match(home,/src="\/assets\/v31-hero\.webp"/);
+ assert.match(home,/src="\/assets\/v38-hero\.webp"/);
  assert.match(home,/연출 이미지/);
  assert.equal((home.match(/id="n16-invites"/g)||[]).length,1);
  assert.match(home,/href="#n21-popular"/);
@@ -42,17 +42,7 @@ test('v30 두 카드 표시, 버튼 대비, 전체보기와 기존 기능 연결
  assert.match(ui,/all\.addEventListener|all\?\.addEventListener/);
  assert.match(ui,/aria-expanded/);
  assert.match(ui,/추천 동행 보기/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v37/);
-});
-
-test('v32 배너 전체 배경과 선명한 사진을 별도 레이어로 구성',async()=>{
- const home=await read('assets/v12-direct-home.js'),css=await read('assets/v21-popular-first.css');
- assert.match(home,/width="451" height="469"/);
- const latest=css.slice(css.indexOf('/* v32:'));
- assert.match(latest,/url\('\/assets\/v31-hero\.webp'\) center 12% \/ cover/);
- assert.match(latest,/inset:0 0 0 auto!important/);
- assert.match(latest,/object-fit:cover!important;object-position:50% 36%!important;filter:none!important/);
- assert.match(latest,/mask-image:linear-gradient\(90deg,transparent 0%,rgba\(0,0,0,.4\) 5%,#000 12%,#000 100%\)/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v38/);
 });
 
 test('v33 홈은 탐색 중심이며 개인 소식은 별도 대화상자로 표시',async()=>{
@@ -77,8 +67,8 @@ test('v34 배너 전체 사진과 하단 카피, 최신 모듈 캐시 연결',as
  assert.match(latest,/mask-image:none!important/);
  assert.match(latest,/transparent 42%/);
  assert.match(latest,/padding:158px 15px 14px!important/);
- assert.match(home,/v19-group-ui\.js\?v=20261124-v37/);
- assert.match(home,/v21-popular-first\.js\?v=20261124-v37/);
+ assert.match(home,/v19-group-ui\.js\?v=20261124-v38/);
+ assert.match(home,/v21-popular-first\.js\?v=20261124-v38/);
  assert.match(build,/Cache-Control: no-cache, must-revalidate/);
 });
 
@@ -95,22 +85,16 @@ test('v35 소개 문구 한 줄과 독립 추천 버튼',async()=>{
  assert.match(latest,/margin:9px 0 0!important/);
 });
 
-test('v36 기존 배치 유지 및 인물 확대 완화',async()=>{
- const home=await read('assets/v12-direct-home.js'),css=await read('assets/v21-popular-first.css');
- const latest=css.slice(css.indexOf('/* v36:'));
- assert.match(latest,/width:88%!important/);
- assert.match(latest,/aspect-ratio:1\.55!important/);
- assert.match(latest,/filter:none!important/);
- assert.match(latest,/min-height:44px!important/);
- assert.match(home,/class="n34-version">v37/);
-});
 
-test('v37 원본 사진 전체 표시 및 기존 추천 버튼 유지',async()=>{
+test('v38 가로 원본 사진이 배너 전체에 잘림 없이 표시되고 추천 버튼은 별도 유지',async()=>{
  const home=await read('assets/v12-direct-home.js'),css=await read('assets/v21-popular-first.css');
- const latest=css.slice(css.indexOf('/* v37:'));
- assert.match(latest,/aspect-ratio:451 \/ 469!important/);
- assert.match(latest,/object-fit:contain!important;object-position:center!important/);
- assert.match(latest,/transparent 78%/);
- assert.match(home,/class="n34-version">v37/);
+ const latest=css.slice(css.indexOf('/* v38:'));
+ assert.match(home,/width="720" height="480"/);
+ assert.match(home,/class="n34-version">v38/);
  assert.match(home,/class="n16-hero-cta n35-recommend-link" href="#n21-popular"/);
+ assert.match(latest,/aspect-ratio:3 \/ 2!important/);
+ assert.match(latest,/object-fit:contain!important;object-position:center!important/);
+ assert.match(latest,/\.n19-photo-mosaic::before\{content:none!important;display:none!important/);
+ assert.match(latest,/mask-image:none!important/);
+ assert.match(latest,/transparent 70%/);
 });
