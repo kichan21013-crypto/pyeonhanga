@@ -35,7 +35,7 @@ function friendlyError(reason){
  })[reason]||'서버에 저장하거나 조회하지 못했습니다. 데이터베이스 설정을 확인해 주세요.';
 }
 export function mountOperations({getToken,notify}){
- const root=$('#n22-operations');
+ const root=$('#n19-admin-panel');
  // Markup is in n19-admin-panel, so unauthenticated users cannot operate anything.
  if(!root)return {load:async()=>{},reset:()=>{}};
  document.body.classList.add('n22-admin-page');
