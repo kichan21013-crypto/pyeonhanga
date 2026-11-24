@@ -42,7 +42,7 @@ test('v30 두 카드 표시, 버튼 대비, 전체보기와 기존 기능 연결
  assert.match(ui,/all\.addEventListener|all\?\.addEventListener/);
  assert.match(ui,/aria-expanded/);
  assert.match(ui,/추천 동행 보기/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v32/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v33/);
 });
 
 test('v32 배너 전체 배경과 선명한 사진을 별도 레이어로 구성',async()=>{
@@ -53,4 +53,18 @@ test('v32 배너 전체 배경과 선명한 사진을 별도 레이어로 구성
  assert.match(latest,/inset:0 0 0 auto!important/);
  assert.match(latest,/object-fit:cover!important;object-position:50% 36%!important;filter:none!important/);
  assert.match(latest,/mask-image:linear-gradient\(90deg,transparent 0%,rgba\(0,0,0,.4\) 5%,#000 12%,#000 100%\)/);
+});
+
+test('v33 홈은 탐색 중심이며 개인 소식은 별도 대화상자로 표시',async()=>{
+ const home=await read('assets/v12-direct-home.js'),group=await read('assets/v19-group-ui.js'),css=await read('assets/v21-popular-first.css');
+ assert.doesNotMatch(home,/class="n16-respect"/);
+ assert.match(home,/class="n33-utility-links"/);
+ assert.match(home,/aria-controls="n33-updates-dialog"/);
+ assert.match(home,/dialog\.showModal\(\)/);
+ assert.match(group,/document\.createElement\('dialog'\)/);
+ assert.match(group,/dialog\.append\(close,inbox\)/);
+ assert.match(group,/dialog\.close\(\)/);
+ assert.match(group,/focus\(\{preventScroll:true\}\)/);
+ assert.match(css,/\.n33-updates-dialog:not\(\[open\]\)\{display:none!important\}/);
+ assert.match(css,/\.n29-service-guide\>summary\{display:flex!important/);
 });
