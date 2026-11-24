@@ -214,3 +214,5 @@ body:has(.n22-admin) .site-header nav{display:none!important;}
 .n26-bar-row small{font-size:10px;color:#32483b}
 .n26-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;margin:8px 0}
 .n26-legend span:nth-child(1){color:#347b58}.n26-legend span:nth-child(2){color:#946024}.n26-legend span:nth-child(3){color:#50739c}
+
+.n26-controls input{width:140px;max-width:100%;min-height:42px;padding:8px;border:1px solid #bacdc0;border-radius:9px;background:white;color:#20583d}
