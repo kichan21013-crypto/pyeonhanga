@@ -90,7 +90,7 @@ begin
     ) then raise exception 'Invalid comfort preferences'; end if;
   end if;
 
-  if d ? 'age' and d->>'age' not in ('50~54','55~59','60~64','65~69','70+') then raise exception 'Invalid age'; end if;
+  if d ? 'age' and d->>'age' not in ('40~44','45~49','50~54','55~59','60~64','65~69','70+') then raise exception 'Invalid age'; end if;
   if d ? 'preference' and d->>'preference' not in ('동성 선호','혼성 선호','성별 상관없음','새로운 이성도 괜찮음') then raise exception 'Invalid preference'; end if;
   if d ? 'purpose' and d->>'purpose' not in ('식사동행','나들이동행','여행동행','취미친구','데이트도 괜찮음') then raise exception 'Invalid purpose'; end if;
   if d ? 'group_size' and d->>'group_size' not in ('2명','3~4명','5~8명','상관없음') then raise exception 'Invalid group size'; end if;
