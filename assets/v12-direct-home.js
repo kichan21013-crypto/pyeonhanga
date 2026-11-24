@@ -116,6 +116,11 @@ function showLoading() {
 }
 
 async function render({more=false,scroll=false}={}) {
+  if (scroll) {
+    const drawer = $('#n14-place-browse');
+    if (drawer) drawer.open = true;
+    document.body.classList.add('n15-browse-open');
+  }
   const requestId = ++state.requestId;
   state.visible = more ? state.visible + 8 : 8;
   syncControls();
@@ -250,6 +255,10 @@ function setupHome() {
     '<button type="button" id="n12-load-more" class="n12-load-more" hidden>장소 더 보기</button>';
 
   main.prepend(home,results);
+  const placeDrawer = $('#n14-place-browse');
+  placeDrawer?.addEventListener('toggle', () => {
+    document.body.classList.toggle('n15-browse-open',placeDrawer.open);
+  });
   const nav = document.createElement('nav');
   nav.className = 'n12-nav';
   nav.setAttribute('aria-label','하단 메뉴');
@@ -304,6 +313,11 @@ function setupHome() {
     });
   });
   render({scroll:location.hash==='#n12-results' || location.hash==='#rhythm-results'});
+  if (location.hash==='#n14-place-browse') {
+    placeDrawer.open=true;
+    document.body.classList.add('n15-browse-open');
+    placeDrawer.scrollIntoView({behavior:'auto',block:'start'});
+  }
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',setupHome,{once:true});
