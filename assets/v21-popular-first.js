@@ -1,6 +1,7 @@
 /* 나가치 홈 인기 동행 먼저: 실제 동의 기반 관심만 공개하며 데이터 없으면 취향 탐색 제공.
    실제 참가 확정자/운영 중인 모임/좋아요 수를 가장하거나 만들지 않습니다. */
 import { escapeHtml, safeUrl, placeUrl } from '../ui.js';
+import { togetherPlaceMatches } from './v16-together-model.js';
 import { fetchPublicInterestCounts, fetchPopularCompanionPlaces } from './v19-companion-service.js';
 import { POPULAR_ACTIVITIES, normalizePopularPlaces, rankPopularActivities,choosePopularView } from './v21-popular-model.js';
 const $=(s,root=document)=>root.querySelector(s);
@@ -33,7 +34,7 @@ function discovery(state,catalog){
  for(const activity of ['travel','outing','food','hike']){
    const item=labelFor(activity);
    const place=catalog.find(p=>p&&!p.isDemo&&p.id&&p.name&&safeUrl(p.image)&&!candidates.some(x=>x.place.id===p.id)&&
-     (activity==='food'?p.category==='맛집':activity==='travel'?p.category==='여행':activity==='outing'?p.category==='나들이':/산|등산|둘레길/.test(p.name)));
+     togetherPlaceMatches(p,{interest:item.invite}));
    if(place)candidates.push({place,activity:item});
  }
  const status=state==='unconfigured'?'인기 집계가 준비되면 순위를 보여드려요.':'아직 공개할 수 있는 관심 순위가 없어요.';
