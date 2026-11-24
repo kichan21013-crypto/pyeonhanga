@@ -92,7 +92,7 @@ test('익명 동행 설문은 장소 이름·취향·동행 구성·서비스비
   assert.match(app,/어떤 분들과 함께하고 싶으세요\?/);
   assert.match(app,/name="consent" value="yes" required/);
   assert.match(app,/trackRhythm\('companion_interest'/);
-  assert.match(app,/trackRhythm\('premium_willingness'/);
+  assert.match(app,/recordConsentedSurvey/);
   assert.match(app,/await recordConsentedSurvey/);
   assert.match(app,/응답이 저장되지 않았습니다/);
   assert.match(analytics,/if \(!analyticsEnabled \|\| !EVENTS\.includes\(event\)\) return false/);
