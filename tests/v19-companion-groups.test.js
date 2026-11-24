@@ -60,14 +60,14 @@ test('RLS + 관리자 Auth allowlist + 난수 토큰으로 관심 그룹 공지�
  assert.match(sql,/expires_at timestamptz/);
  assert.match(admin,/nagachi_admin_save_notice/);
  assert.match(page,/noindex,nofollow/);
- assert.match(page,/v19-admin\.js\?v=20261124-v22/);
+ assert.match(page,/v19-admin\.js\?v=20261124-v24/);
 });
 test('홈/저장/동행·개인정보 안내에서 v19 버전을 사용하고 무료 의존성 유지',async()=>{
  const [home,saved,companion,core]=await Promise.all([
   read('dist/index.html'),read('dist/saved.html'),read('dist/companion.html'),read('scripts/build-core.js')
  ]);
- for(const p of [home,saved,companion])assert.match(p,/v19-cohorts\.css\?v=20261124-v22/);
- assert.match(home,/v12-direct-home\.js\?v=20261124-v22/);
+ for(const p of [home,saved,companion])assert.match(p,/v19-cohorts\.css\?v=20261124-v24/);
+ assert.match(home,/v12-direct-home\.js\?v=20261124-v24/);
  assert.match(core,/소식 조회 권한은 90일간 유효/);
  assert.match(core,/해지하면 서버 구독이 삭제/);
  assert.ok(!('dependencies' in JSON.parse(await read('package.json'))));
