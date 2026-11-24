@@ -43,6 +43,8 @@ try {
   await page.locator('.n19-photo-main img').evaluate(img=>img.decode());
   ok(await page.locator('.n19-photo-main img').getAttribute('src')==='/assets/v31-hero.webp','승인 이미지 로드');
   ok(await page.locator('.n19-photo-main img').evaluate(img=>img.naturalWidth===451&&img.naturalHeight===469&&getComputedStyle(img).objectFit==='cover'),'고해상도 사진 및 배경 가득 채우기');
+  ok(await page.locator('.n34-full-photo').evaluate(el=>{const a=el.getBoundingClientRect(),b=el.querySelector('.n19-photo-mosaic').getBoundingClientRect();return Math.abs(a.width-b.width)<1&&Math.abs(a.height-b.height)<1;}),'사진이 배너 전체를 채움');
+  ok(await page.locator('.n34-full-photo h1').evaluate(el=>getComputedStyle(el).color==='rgb(255, 255, 255)'),'배경 위 흰색 제목 대비');
   await page.locator('.n21-place-card').first().waitFor();
   ok(await page.locator('.n21-popular-action').first().evaluate(el=>getComputedStyle(el).color==='rgb(255, 255, 255)'),'동행 카드 버튼 흰색 글자');
   ok(await page.locator('.n21-place-card .n30-save').first().isVisible(),'동행 카드 저장 버튼');
