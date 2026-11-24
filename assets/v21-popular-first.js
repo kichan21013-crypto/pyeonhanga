@@ -7,7 +7,7 @@ import { fetchPublicInterestCounts, fetchPopularCompanionPlaces } from './v19-co
 import { POPULAR_ACTIVITIES, normalizePopularPlaces, rankPopularActivities,choosePopularView } from './v21-popular-model.js';
 const $=(s,root=document)=>root.querySelector(s);
 const labelFor=id=>POPULAR_ACTIVITIES.find(a=>a.id===id);
-const bottomLine='<p class="n21-real-note">최근 90일 관심을 남긴 기기 기준 · 실제 모집 인원 아님</p>';
+const bottomLine='<p class="n21-real-note">최근 90일 동의·저장된 관심 기기 기준 · 실제 모집 인원 아님</p>';
 const categoryLabel={food:'맛집',outing:'나들이',travel:'여행',hike:'산행'};
 const headlineSuffix={food:' 함께 가요',outing:' 산책 동행',travel:' 나들이 동행',hike:' 산행 동행'};
 function placeCard(entry,index=0){
@@ -32,7 +32,7 @@ function activityCard(item){
     '<button type="button" data-n21-activity="'+item.id+'" class="n21-popular-action">'+
     '함께 갈 곳 보기 <span aria-hidden="true">→</span></button></div></article>';
 }
-function discovery(state,catalog){
+function discovery(catalog){
  const candidates=[];
  for(const activity of ['food','outing','travel','hike']){
    const item=labelFor(activity);
@@ -51,7 +51,7 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
  const find=$('[data-n21-find]',target);
  const regionSelect=$('#n29-region',home);
  const all=$('[data-n30-all]',target),heroLabel=$('[data-n30-hero-label]',home);
- function setExpanded(value){target.classList.toggle('n30-expanded',value);all.setAttribute('aria-expanded',String(value));all.textContent=value?'접기 ↑':'전체보기 →';}
+ function setExpanded(value){target.classList.toggle('n30-expanded',value);if(!all)return;all.setAttribute('aria-expanded',String(value));all.textContent=value?'접기 ↑':'전체보기 →';}
  all?.addEventListener('click',()=>setExpanded(all.getAttribute('aria-expanded')!=='true'));
  let serial=0;
  async function refresh(){
@@ -83,10 +83,9 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
   }else{
     heading.textContent=(region?region+' · ':'')+'나가치 추천 동행';
     sub.textContent='마음에 드는 동행 후보를 골라보세요. 아직 공개된 인기 순위는 없어요.';
-    const state=(!pop.ok&&!acts.ok)?'unconfigured':'empty';
-    content.innerHTML=discovery(state,regionalCatalog);
+    content.innerHTML=discovery(regionalCatalog);
   }
-  all.hidden=content.querySelectorAll('.n21-popular-card').length<3;
+  if(all)all.hidden=content.querySelectorAll('.n21-popular-card').length<3;
   find.textContent='직접 동행 찾아보기 →';
  }
  target.addEventListener('click',event=>{
