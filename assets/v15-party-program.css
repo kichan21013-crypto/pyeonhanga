@@ -100,3 +100,20 @@ body[data-page='home'].n12-ready .n12-results{scroll-margin-top:69px;}
 }
 @media(max-width:370px){.n15-hero h1{font-size:25px!important;}.n15-value>div{padding:4px 6px;}.n15-value small{font-size:9px;}}
 @media(prefers-reduced-motion:reduce){.n15-program-card>button{transition:none;}}
+
+/* Companion tab is for declaring interest, not a second duplicate catalogue. */
+.n15-program-hub .n15-program-signup{margin:24px 0;}
+.n15-intent-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;}
+.n15-intent-choice{min-width:0;min-height:92px;display:flex;align-items:center;gap:14px;padding:14px 16px;
+  background:#fff;border:1px solid #deebe2;border-radius:17px;color:#2e4839;text-align:left;cursor:pointer;}
+.n15-intent-choice:focus-visible{outline:3px solid #e88c70;outline-offset:3px;}
+.n15-intent-icon{display:grid;place-items:center;width:58px;height:58px;flex:0 0 58px;background:#eef5ed;font-size:33px;border-radius:16px;}
+.n15-intent-choice strong{display:block;font-size:16px;font-weight:900;margin-bottom:5px;}
+.n15-intent-choice small{display:block;font-size:11px;color:#7b8d7e;line-height:1.35;}
+.n15-intent-arrow{font-size:22px;font-weight:850;color:#6c9d7c;margin-left:auto;}
+@media(max-width:760px){
+ .n15-intent-grid{grid-template-columns:1fr;gap:8px;}
+ .n15-intent-choice{min-height:79px;padding:11px 13px;gap:12px;border-radius:14px;}
+ .n15-intent-icon{width:51px;height:51px;flex-basis:51px;font-size:29px;border-radius:15px;}
+ .n15-intent-choice strong{font-size:14px;}
+}
