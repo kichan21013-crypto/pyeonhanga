@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { SURVEY_CHOICES } from '../actions.js';
 const read=path=>readFile(new URL('../'+path,import.meta.url),'utf8');
 
-test('홈은 실제 앱 화면에 프리미엄 벡터 일러스트를 활용하며 기존 카테고리 클릭 동작을 보존한다',async()=>{
+test('홈은 승인된 카테고리 이미지와 기존 카테고리 클릭 동작을 보존한다',async()=>{
  const src=await read('assets/v12-direct-home.js');
  const css=await read('assets/v18-premium.css');
  const home=await read('dist/index.html');
@@ -16,12 +16,12 @@ test('홈은 실제 앱 화면에 프리미엄 벡터 일러스트를 활용하�
  }
  assert.match(src,/n19-photo-mosaic/);
  assert.match(src,/n19-photo-main/);
- assert.match(src,/src="\/assets\/v18-'\+item\.id\+'\.svg"/);
+ assert.match(src,/src="\/assets\/v28-'\+item\.id\+'\.webp"/);
  assert.match(src,/data-v16-invite/);
  assert.match(src,/setupTogetherJourney\(\{home,loadPlaces:loadCatalog\}\)/);
  assert.match(css,/\.n18-hero-art/);
  assert.match(css,/\.n16-invite\[aria-pressed=true\]/);
- assert.match(home,/v18-premium\.css\?v=20261124-v26/);
+ assert.match(home,/v18-premium\.css\?v=20261124-v28/);
 });
 
 test('선호도는 dropdown이 아닌 터치 가능한 원래 라디오 카드로 입력한다',async()=>{
@@ -89,9 +89,9 @@ test('모든 페이지의 실제 빌드 자산 URL이 v19로 버전 갱신된다
  const saved=await read('dist/saved.html');
  const core=await read('scripts/build-core.js');
  const build=await read('scripts/build.js');
- for(const page of [home,companion,saved]) assert.match(page,/v18-premium\.css\?v=20261124-v26/);
- assert.match(home,/v12-direct-home\.js\?v=20261124-v26/);
- assert.match(companion,/app\.js\?v=20261124-v26/);
- assert.match(build,/const CLIENT_VERSION = '20261124-v26'/);
- assert.match(core,/20261124-v26/);
+ for(const page of [home,companion,saved]) assert.match(page,/v18-premium\.css\?v=20261124-v28/);
+ assert.match(home,/v12-direct-home\.js\?v=20261124-v28/);
+ assert.match(companion,/app\.js\?v=20261124-v28/);
+ assert.match(build,/const CLIENT_VERSION = '20261124-v28'/);
+ assert.match(core,/20261124-v28/);
 });

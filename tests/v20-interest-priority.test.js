@@ -26,8 +26,8 @@ test('v20은 실제 HTML/JS에 설문보다 중요한 동행 관심 등록 UI를
  assert.match(css,/position:sticky/);
  assert.match(css,/\.n20-interest-dialog \.n20-submit-interest/);
  assert.match(css,/\.n20-save-status\[data-state='error'\]/);
- for(const page of [home,saved,detail])assert.match(page,/v20-interest-priority\.css\?v=20261124-v26/);
- assert.match(home,/v12-direct-home\.js\?v=20261124-v26/);
+ for(const page of [home,saved,detail])assert.match(page,/v20-interest-priority\.css\?v=20261124-v28/);
+ assert.match(home,/v12-direct-home\.js\?v=20261124-v28/);
 });
 
 test('비용 옵션은 접히고 기본 미응답으로 유지하며 서버에 선택한 값만 보낸다',async()=>{
@@ -117,8 +117,8 @@ test('가짜 Supabase 연결에 대한 저장 성공·실패 구분을 실제 JS
 test('v20 빌드와 브라우저 실사 검증은 문법 오류 없는 캐시 갱신 구조다',async()=>{
  const build=await read('scripts/build.js'),core=await read('scripts/build-core.js');
  const smoke=await read('tests/browser-smoke.mjs');
- assert.match(build,/CLIENT_VERSION = '20261124-v26'/);
- assert.match(core,/20261124-v26/);
+ assert.match(build,/CLIENT_VERSION = '20261124-v28'/);
+ assert.match(core,/20261124-v28/);
  assert.match(smoke,/\.n20-optional-fee summary/);
  assert.match(smoke,/\.n20-save-status\[data-state=error\]/);
  const files=['analytics.js','app.js','scripts/build.js'];

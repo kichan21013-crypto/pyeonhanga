@@ -27,3 +27,5 @@ import './v24-meetup-interest.test.js';
 import './v25-party-applications.test.js';
 
 import './v26-business-dashboard.test.js';
+
+import './v28-category-icons.test.js';
