@@ -20,7 +20,7 @@ function placeCard(place){
     '" alt="'+name+' 장소 사진" width="450" height="320"></a>'+
     '<div class="n13-location-body"><small>'+escapeHtml(place.region)+' · '+escapeHtml(place.category)+'</small>'+
     '<h3>'+name+'</h3>'+
-    '<button type="button" data-companion-interest="'+id+'">이곳 동행 희망 남기기</button></div></article>';
+    '<button type="button" data-companion-interest="'+id+'" data-companion-activity="'+state.interest+'">이곳 동행 희망 남기기</button></div></article>';
 }
 function render() {
   $$('[data-n14-interest]').forEach(button=>
