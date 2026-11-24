@@ -2,7 +2,7 @@
  * but all management data/actions are protected by Supabase Auth + DB allowlist.
  */
 export function operatorMarkup(){
- return \`
+ return `
 <section class="n19-admin n22-admin" aria-labelledby="n19-admin-title">
   <header class="n22-admin-heading">
     <span class="n22-owner-badge">NAGACHI OWNER STUDIO · 비공개 운영</span>
@@ -157,5 +157,5 @@ export function operatorMarkup(){
     </section>
   </div>
   <p class="n22-legal-footer">관리자 권한은 웹 주소 비공개가 아니라 Supabase 로그인과 서버 측 허용 목록으로 확인합니다. 실제 모임 모집·결제·운송·여행상품 판매 전에는 별도 법적·안전 검토가 필요합니다.</p>
-</section>\`;
+</section>`;
 }
