@@ -1,10 +1,11 @@
+import {accountToken,signOutAccount} from './v40-account-auth.js';
 /* 나가치 운영자 콘솔: Supabase Auth 사용자 + DB의 명시적 관리자 allowlist 필수.
  * 로그인 비밀번호/토큰은 이 탭의 메모리에만 보관, 영속 저장하지 않습니다.
  * 공개 key로 읽기/쓰기 RPC 요청만 사용하며 서버의 auth.uid() 검사가 진짜 접근 통제입니다.
  */
 import { GROUP_ACTIVITIES,authenticateCompanionAdmin,companionRpc } from './v19-companion-service.js';
 import { escapeHtml } from '../ui.js';
-import { mountOperations } from './v22-operations-admin.js?v=20261124-v39';
+import { mountOperations } from './v22-operations-admin.js?v=20261124-v40';
 const $=s=>document.querySelector(s);
 const labels=Object.fromEntries(GROUP_ACTIVITIES.map(x=>[x.id,x.label]));
 let jwt=null;
@@ -126,6 +127,8 @@ $('#n19-admin-notices').addEventListener('click',event=>{
  form.elements.title.focus({preventScroll:true});
 });
 $('#n19-admin-refresh').addEventListener('click',dashboard);
-$('#n19-admin-logout').addEventListener('click',()=>{
- clearSession();msg('로그아웃했습니다. 로그인 정보는 이 화면을 닫으면 남지 않습니다.');
+$('#n19-admin-logout').addEventListener('click',async()=>{
+ clearSession();await signOutAccount();msg('로그아웃했습니다.');
 });
+
+(async()=>{const t=accountToken();if(!t)return;const r=await companionRpc('nagachi_admin_dashboard',{},t);if(accountToken()!==t||jwt)return;if(!r.ok){msg('카카오 계정의 관리자 권한이 확인되지 않았습니다.');return;}jwt=t;login.hidden=true;panel.hidden=false;await dashboard();const timer=setInterval(()=>{if(jwt===t&&!accountToken()){clearInterval(timer);clearSession();msg('로그인이 만료되었습니다. 다시 로그인하세요.');}else if(jwt!==t)clearInterval(timer);},10000);})();

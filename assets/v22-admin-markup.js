@@ -12,7 +12,7 @@ export function operatorMarkup(){
   <p id="n19-admin-status" class="n22-admin-status" role="status">운영자 로그인 후 관리 기능을 사용할 수 있습니다.</p>
   <form class="n19-admin-form n19-admin-card n22-login" id="n19-admin-login" autocomplete="off">
     <div class="n22-login-mark" aria-hidden="true">✦</div>
-    <h2>관리자만 입장할 수 있어요</h2>
+    <h2>관리자만 입장할 수 있어요</h2><a class="button primary" href="/account.html">카카오 로그인으로 입장</a>
     <p>운영자 계정으로 로그인하면 코스·모임·수익 계획을 관리할 수 있습니다.</p>
     <label>관리자 이메일<input type="email" name="email" required autocomplete="username" placeholder="Supabase Auth에 등록한 이메일"></label>
     <label>비밀번호<input type="password" name="password" required autocomplete="current-password"></label>

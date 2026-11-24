@@ -1,3 +1,4 @@
+import {rememberActivities} from './assets/v40-account-auth.js';
 import { card, icon, escapeHtml, placeUrl } from './ui.js';
 import { savedIds, anonymousId } from './storage.js';
 import { track, trackRhythm, analyticsEnabled, recordConsentedSurvey, consentSaveFailure } from './analytics.js';
@@ -6,7 +7,7 @@ import { emptyRhythmFilters, recommendRhythms, DESIRES, ACTIVITIES, DURATION_OPT
 import { toggleSavedPlace, shareOrCopy, SURVEY_CHOICES } from './actions.js';
 import { createProgressiveFlow } from './flow.js';
 import { programById, programContext } from './assets/v15-programs.js';
-import { GROUP_ACTIVITIES, cleanGroupActivities, optInCompanionUpdates, fetchPublicInterestCounts } from './assets/v19-companion-service.js';
+import { GROUP_ACTIVITIES, cleanGroupActivities, fetchPublicInterestCounts } from './assets/v19-companion-service.js';
 
 const $ = selector => document.querySelector(selector);
 let places = [], filters = emptyRhythmFilters(), toastTimer, flow;
@@ -172,7 +173,7 @@ function companionDialog(p, trigger = null, program = null) {
           '<p class="n18-fee-note">선택하지 않으면 “아직 모르겠음”으로 기록됩니다. 식비·교통·입장료는 별도이며 현재 결제는 없어요.</p></div></details>' +
           '<label class="n19-updates-optin"><input type="checkbox" name="updates" value="yes" '+
             (!analyticsEnabled?'disabled ':'')+'><span><strong>내가 고른 동행 소식도 보고 싶어요</strong>' +
-            '<small>선택한 활동의 새 모임 준비·일정 공지를 이 기기에서 앱에 재방문할 때 볼 수 있어요. ' +
+            '<small>카카오 로그인 후 선택한 활동의 새 모임 준비·일정 공지를 내 계정에서 확인할 수 있어요. ' +
               '문자·이메일·푸시는 보내지 않으며 언제든 해지할 수 있어요.</small></span></label>' +
           '<label class="n13-consent n18-consent"><input type="checkbox" name="consent" value="yes" required>' +
             '<span>선택한 취향과 익명 식별값을 관심 인원 확인에 사용하는 데 동의합니다. ' +
@@ -300,17 +301,15 @@ function companionDialog(p, trigger = null, program = null) {
     status.dataset.state='success';
     let subscriptionMessage='';
     if(success&&subscribe){
-      const subscribed=await optInCompanionUpdates(responseId,activities);
-      subscriptionMessage=subscribed.ok
-        ? '선택한 동행 소식은 이 기기에서 나가치를 다시 열면 볼 수 있어요.'
-        : '관심은 저장됐지만 소식 수신 등록은 실패했어요. 현재 안내 기능 설정을 확인해야 합니다.';
+      rememberActivities(activities);
+      subscriptionMessage='관심은 저장됐어요. 일정 소식을 받으려면 카카오 로그인 후 수신 설정을 저장해 주세요.';
     }
     document.dispatchEvent(new CustomEvent('nagachi:interest-saved'));
     dialog.querySelector('.dialog-content').innerHTML=
       '<div class="n18-done"><span aria-hidden="true" class="n18-done-icon">'+(success?'✓':'✦')+'</span>' +
       '<h2 id="survey-title">동행 관심을 남겼어요!</h2>' +
       '<p>관심이 서버에 저장됐어요. 모임 신청이나 실제 참가 확정은 아니에요.</p>' +
-      (subscriptionMessage?'<p>'+escapeHtml(subscriptionMessage)+'</p>':'') +
+      (subscriptionMessage?'<p>'+escapeHtml(subscriptionMessage)+'</p><a class="button primary full" href="/account.html">로그인하고 일정 소식 받기</a>':'') +
       '<button type="button" class="button primary full" id="survey-done">확인</button></div>';
     dialog.querySelector('#survey-done').onclick=()=>dialog.close();
     dialog.querySelector('#survey-done').focus();
