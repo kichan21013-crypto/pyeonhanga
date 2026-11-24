@@ -29,7 +29,7 @@ const bottomNavHome = '<svg width="24" height="24" viewBox="0 0 24 24" fill="non
 function mobileNav(active = '') {
   return `<nav class="n-mobile-nav" aria-label="하단 메뉴">
     <a href="/" class="${active === 'home' ? 'is-active' : ''}">${bottomNavHome}<span>홈</span></a>
-    <a href="/#n16-invites" class="${active === 'recommend' ? 'is-active' : ''}">${icon('search')}<span>같이갈래?</span></a>
+    <a href="/#n16-invites-title" class="${active === 'recommend' ? 'is-active' : ''}">${icon('search')}<span>같이갈래?</span></a>
     <a href="/companion.html" class="n13-nav-companion ${active === 'companion' ? 'is-active' : ''}">${icon('people')}<span>동행</span></a>
     <a href="/saved.html" class="${active === 'saved' ? 'is-active' : ''}">${icon('heart')}<span>저장</span></a>
   </nav>`;
