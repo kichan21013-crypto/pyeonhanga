@@ -192,7 +192,8 @@ function setupHome() {
     '<p class="n14-hero-description">산책, 맛있는 식사, 작은 여행까지.<br>어떤 하루를 누구와 함께하고 싶은지 알려주세요.</p>' +
     '<div class="n14-actions"><a class="n14-main-button" href="/companion.html">나의 동행 희망 남기기 <span aria-hidden="true">→</span></a>' +
     '<a class="n14-sub-button" href="#n14-place-browse">함께 가볼 장소 보기</a></div>' +
-    '<p class="n14-trustline">현재는 동행 수요 조사 단계예요. 실제 연결·예약·결제는 아직 제공하지 않습니다.</p></div>' +
+    '<p class="n14-trustline">현재는 동행 수요 조사 단계이며 실제 연결·예약·결제는 없습니다. ' +
+    (analyticsEnabled ? '설문 저장 설정은 감지됐으며, 실제 저장 성공 여부는 제출 시 확인됩니다.' : '현재 설문 저장 미연결 상태로 응답은 저장되지 않습니다.') + '</p></div>' +
     '<div class="n14-hero-art" aria-hidden="true"><span class="n14-sun"></span>' +
     '<span class="n14-hill-back"></span><span class="n14-hill-front"></span>' +
     '<span class="n14-person n14-person-one">●</span><span class="n14-person n14-person-two">●</span>' +
