@@ -91,7 +91,9 @@ export function setupTogetherJourney({home,loadPlaces}){
     state.mealTag='';
     section.hidden=false;
     trackRhythm('activity_selected',{activities:[item.activity],desires:[item.desire]});
-    render({scroll:true});
+    // 결과가 느린 네트워크에서도 먼저 선택 영역을 보여줍니다.
+    render();
+    scrollToSection();
   });
   region.addEventListener('change',event=>{
     state.region=cleanTogetherRegion(event.target.value);
