@@ -1,89 +1,130 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { PROGRAMS, programById, programContext } from '../assets/v15-programs.js';
+import { TOGETHER_INVITES, TOGETHER_REGIONS, MEAL_TAGS, invitationById,
+  togetherPlaceMatches, cleanTogetherRegion, cleanMealTag } from '../assets/v16-together-model.js';
+import { PROGRAMS, programById } from '../assets/v15-programs.js';
+
 const read=path=>readFile(new URL('../'+path,import.meta.url),'utf8');
 
-test('4개 파티 프로그램은 소개팅·실제 모집상품이 아닌 취미별 기획안이다',()=>{
- assert.equal(PROGRAMS.length,4);
- assert.deepEqual(PROGRAMS.map(p=>p.id),['program-food','program-hike','program-outing','program-travel']);
- for(const plan of PROGRAMS){
-   assert.ok(plan.id.startsWith('program-'));
-   assert.ok(plan.title && plan.summary && plan.outline.length>=3);
-   assert.ok(!('price' in plan)&&!('availableSeats' in plan)&&!('date' in plan));
-   assert.ok(!/데이트|결혼|연애|즉시 모집/.test(plan.title+plan.summary));
-   assert.match(plan.transport,/이동|교통/);
-   const event=programContext(plan);
-   assert.equal(event.id,plan.id);
-   assert.equal(event.region,null);
-   assert.equal(event.category,null);
-   assert.equal(event.isDemo,false);
-   assert.equal(programById(plan.id),plan);
- }
- assert.equal(programById('missing'),null);
+test('동행 모집 문구는 50+가 자연스럽게 누를 4가지 질문으로 구성한다',()=>{
+  assert.deepEqual(TOGETHER_INVITES.map(x=>x.id),['eat','hike','outing','travel']);
+  assert.ok(TOGETHER_INVITES.every(x=>x.label.includes('사람?')));
+  assert.equal(invitationById('eat').label,'같이 맛있는 거 먹으러 갈 사람?');
+  assert.equal(invitationById('invalid'),null);
+  assert.equal(cleanTogetherRegion('경기'),'경기');
+  assert.equal(cleanTogetherRegion('경기/서울'),'');
+  assert.equal(cleanMealTag('seafood'),'seafood');
+  assert.equal(cleanMealTag('fake'),'');
+  assert.deepEqual(TOGETHER_REGIONS,['서울','경기','강릉','경주','부산','제주']);
+  assert.equal(MEAL_TAGS.length,5);
 });
 
-test('홈의 첫 상품은 파티 프로그램이며 장소 탐색은 접힌 보조 메뉴이다',async()=>{
- const src=await read('assets/v12-direct-home.js');
- const css=await read('assets/v15-party-program.css');
- assert.match(src,/PROGRAMS\.map/);
- assert.match(src,/NAGACHI · 50\+ 취향 동행 프로그램/);
- assert.match(src,/아직, 함께 놀/);
- assert.match(src,/파티원 구성을 돕습니다/);
- assert.ok(src.indexOf('n15-program-grid')<src.indexOf('n15-place-drawer'));
- assert.match(src,/data-program-interest/);
- assert.match(src,/기획안 · 참여 희망 조사/);
- assert.match(src,/실제 요금·일정은 아직 확정되지 않았습니다/);
- assert.match(src,/결혼 여부를 묻지 않고/);
- assert.match(css,/n15-program-grid/);
- assert.match(css,/\.n15-place-drawer/);
- assert.match(css,/\.n12-results\{display:none!important/);
- assert.match(src,/placeDrawer\?\.addEventListener\('toggle'/);
- assert.match(src,/n15-browse-open/);
+test('실제 636곳 가운데 음식 종류·지역이 정확히 일치하는 곳만 보여준다',async()=>{
+  const places=JSON.parse(await read('dist/data/places.json'));
+  const results=places.filter(p=>togetherPlaceMatches(p,{interest:'eat',region:'경기',mealTag:'seafood'}));
+  assert.ok(results.length>=8,'경기 회·해산물 공식 데이터는 최소 8곳');
+  assert.ok(results.every(p=>p.region==='경기' && p.category==='맛집'));
+  assert.ok(results.every(p=>(p.intentTags||[]).includes('seafood')));
+  assert.ok(results.every(p=>p.isDemo!==true && /^https:\/\//.test(p.image)));
+  assert.equal(togetherPlaceMatches({...results[0],isDemo:true},{interest:'eat'}),false);
+  assert.equal(togetherPlaceMatches({...results[0],image:'data:fake'},{interest:'eat'}),false);
+  assert.equal(togetherPlaceMatches(results[0],{interest:'hike'}),false);
 });
 
-test('별도 동행 페이지에서 실제 모집·참가인원이나 매칭을 허위로 표시하지 않는다',async()=>{
- const page=await read('dist/companion.html');
- const html=await read('dist/index.html');
- const build=await read('scripts/build-core.js');
- assert.match(page,/나의 동행 취향 남기기/);
- assert.match(page,/data-program-interest/);
- assert.equal((page.match(/class="n15-intent-choice"/g)||[]).length,4);
- assert.match(page,/실제 모임이 아닌 사업 검증용 기획안입니다/);
- assert.match(page,/식사·카페·교통·입장료는 이용처에 각자 직접 결제/);
- assert.match(page,/사생활/);
- assert.doesNotMatch(page,/data-companion-interest=|data-n14-interest=|n14-hub-grid/);
- assert.match(html,/v15-party-program\.css\?v=20261124-v15/);
- assert.match(html,/v12-direct-home\.js\?v=20261124-v15/);
- assert.match(build,/v15-programs\.js/);
- assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v15/);
+test('산책·카페는 구분된 실제 출처를 보여주며 산행에 일반 음식점을 섞지 않는다',async()=>{
+  const places=JSON.parse(await read('dist/data/places.json'));
+  const outing=places.filter(p=>togetherPlaceMatches(p,{interest:'outing'}));
+  assert.ok(outing.length>0);
+  assert.ok(outing.every(p=>(p.intentTags||[]).includes('cafe') ||
+    (['나들이','여행'].includes(p.category) &&
+     (p.intentTags||[]).some(t=>['walk','outing','culture','scenery'].includes(t)))));
+  const hike=places.filter(p=>togetherPlaceMatches(p,{interest:'hike'}));
+  assert.ok(hike.every(p=>(p.intentTags||[]).some(t=>['hike','trail'].includes(t))));
+  const travel=places.filter(p=>togetherPlaceMatches(p,{interest:'travel'}));
+  assert.ok(travel.length>0);
+  assert.ok(travel.every(p=>p.category==='여행' || (p.intentTags||[]).some(t=>['drive','travel'].includes(t))));
 });
 
-test('프로그램 수요는 기존 검증된 설문 수집 경로에 임시 분리 식별자로 보관한다',async()=>{
- const app=await read('app.js');
- const analytics=await read('analytics.js');
- const sql=await read('supabase/schema.sql');
- assert.match(app,/programById\(planButton\.dataset\.programInterest\)/);
- assert.match(app,/companionDialog\(programContext\(program\),planButton,program\)/);
- assert.match(app,/form\.elements\.purpose\.value = program\.purpose/);
- assert.match(app,/hike:'hike'/);
- assert.match(app,/premium_willingness/);
- assert.match(analytics,/premium_willingness/);
- assert.match(sql,/place_id text check/);
- assert.match(sql,/premium_willingness/);
- assert.doesNotMatch(app,/데이트도 괜찮음|새로운 이성도 괜찮음/);
- assert.match(app,/실제 사람 연결/);
+test('첫 화면에서 자연스러운 질문을 클릭하면 지역·메뉴·실제 장소를 제시한다',async()=>{
+  const home=await read('assets/v12-direct-home.js');
+  const flow=await read('assets/v16-together.js');
+  const css=await read('assets/v16-together.css');
+  assert.match(home,/n16-invites/);
+  assert.match(home,/n16-journey/);
+  assert.match(home,/n16-meals/);
+  assert.match(home,/나가치 · 취향 동행/);
+  assert.ok(home.indexOf('n16-invites') < home.indexOf('n15-place-drawer'));
+  assert.match(home,/setupTogetherJourney\(\{home,loadPlaces:loadCatalog\}\)/);
+  assert.match(flow,/togetherPlaceMatches\(place,state\)/);
+  assert.match(flow,/data-companion-interest/);
+  assert.match(flow,/여기, 같이 가보고 싶어요/);
+  assert.match(flow,/trackRhythm\('activity_selected'/);
+  assert.match(flow,/data-v16-retry/);
+  assert.match(flow,/aria-busy/);
+  assert.match(css,/\.n16-venue-grid/);
+  assert.match(css,/\.n16-invite\[aria-pressed=true\]/);
+  assert.match(css,/prefers-reduced-motion/);
 });
 
-test('개인별 현장 결제와 합법적 이동 및 개인정보 최소수집 경계',async()=>{
- const home=await read('assets/v12-direct-home.js');
- const page=await read('dist/companion.html');
- const styles=await read('assets/v15-party-program.css');
- const pkg=JSON.parse(await read('package.json'));
- assert.match(home,/식비·카페비·교통비·입장료/);
- assert.match(page,/자가용 유상 운송을 주선하지 않으며/);
- assert.match(page,/결혼 여부는 참여 기준이 아니며 공개를 요구하지 않습니다/);
- assert.match(home,/결혼 여부를 묻지 않고/);
- assert.doesNotMatch(styles,/@import|fonts\.googleapis|https?:\/\//);
- assert.ok(!('dependencies' in pkg),'유료 SDK 없이 공공 장소 데이터·자체 CSS 재사용');
+test('동행 전용 메뉴는 사람을 먼저 모집하지 않고 동일한 실제 장소 선택으로 연결한다',async()=>{
+  const page=await read('dist/companion.html');
+  const build=await read('scripts/build-core.js');
+  assert.match(page,/같이 맛있는 거 먹으러 갈 사람\?/);
+  assert.match(page,/\/\?together=eat/);
+  assert.match(page,/\/\?together=hike/);
+  assert.match(page,/\/\?together=outing/);
+  assert.match(page,/\/\?together=travel/);
+  assert.match(page,/관심사가 비슷한 사람들/);
+  assert.match(page,/현재는 참여 의향을 확인하는 무료 시범 서비스입니다/);
+  assert.doesNotMatch(page,/data-program-interest=|data-companion-interest=|data-n14-interest=/);
+  assert.match(build,/TOGETHER_INVITES/);
+  assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v16/);
+});
+
+test('익명 동행 설문은 장소 이름·취향·동행 구성·서비스비 의향을 수집한다',async()=>{
+  const app=await read('app.js');
+  const analytics=await read('analytics.js');
+  const schema=await read('supabase/schema.sql');
+  assert.match(app,/data-companion-interest/);
+  assert.match(app,/companionDialog\(p,interest\)/);
+  assert.match(app,/const activityMap = \{ walk:'walk', eat:'food', hike:'hike'/);
+  assert.match(app,/어떤 분들과 함께하고 싶으세요\?/);
+  assert.match(app,/name="consent" value="yes" required/);
+  assert.match(app,/trackRhythm\('companion_interest'/);
+  assert.match(app,/trackRhythm\('premium_willingness'/);
+  assert.match(app,/analyticsEnabled && await trackRhythm/);
+  assert.match(app,/응답이 저장되지 않았습니다/);
+  assert.match(analytics,/if \(!analyticsEnabled \|\| !EVENTS\.includes\(event\)\) return false/);
+  assert.match(schema,/place_id text check/);
+  assert.ok(!/동행 신청 완료|매칭 성공|잔여석 [0-9]+/.test(app));
+});
+
+test('차량 유상 연결·여행업 운영·개인정보 위험을 소비자에게 오인시키지 않는다',async()=>{
+  const homepage=await read('assets/v12-direct-home.js');
+  const page=await read('dist/companion.html');
+  assert.match(homepage,/실제 동행 모집·예약·결제는 없습니다/);
+  assert.match(homepage,/현재는 무료 수요 검증만 진행하며 유료 모집·차량 연결은 제공하지 않습니다/);
+  assert.match(homepage,/결혼 여부보다, 서로의 취향이 중요하니까/);
+  assert.match(page,/유료 여행상품·차량 배차·유상 자가용 운송 알선은 제공하지 않습니다/);
+  assert.match(page,/결혼 여부·연락처·민감한 사생활 정보를 요구하지 않습니다/);
+  assert.doesNotMatch(page,/지금 예약|참가비 결제|남은 자리/);
+});
+
+test('코스 제안과 모임 구성의 미래 수익모델은 분리하고 계속 무료 스택만 쓴다',async()=>{
+  const home=await read('assets/v12-direct-home.js');
+  const index=await read('dist/index.html');
+  const saved=await read('dist/saved.html');
+  const pkg=JSON.parse(await read('package.json'));
+  const css=await read('assets/v16-together.css');
+  assert.match(home,/코스 제안과 동행 구성·일정 조율 서비스비/);
+  assert.match(home,/식비·교통비·입장료/);
+  assert.match(index,/v16-together\.css\?v=20261124-v16/);
+  assert.match(index,/v12-direct-home\.js\?v=20261124-v16/);
+  assert.match(saved,/mobile-ux\.css\?v=20261124-v16/);
+  assert.ok(!('dependencies' in pkg));
+  assert.doesNotMatch(css,/@import|https?:\/\//);
+  assert.equal(PROGRAMS.length,4);
+  assert.ok(PROGRAMS.every(p=>!('price' in p)&&!('date' in p)&&!('availableSeats' in p)));
+  assert.equal(programById('program-food')?.interest,'eat');
 });
