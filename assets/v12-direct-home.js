@@ -198,15 +198,15 @@ function setupHome() {
     '<strong>'+item.label+'</strong><small>'+item.help+'</small><span class="n16-invite-arrow" aria-hidden="true">→</span></button>'
   ).join('');
   home.innerHTML =
-    '<section class="n16-hero n18-hero" aria-labelledby="n16-home-title">' +
+    '<section class="n16-hero n18-hero n19-hero" aria-labelledby="n16-home-title">' +
     '<span class="n16-kicker">나가치 · 취향 동행</span>' +
-    '<h1 id="n16-home-title">같이 맛있는 거<br><em>먹으러 갈 사람?</em></h1>' +
-    '<p>취향이 맞는 사람과 맛집도, 산책도,<br>좋은 하루도 함께해요.</p>' +
-    '<img class="n18-hero-art" src="/assets/v18-hero.svg" alt="" aria-hidden="true" decoding="async" width="780" height="490">' +
-    '<a class="n16-hero-cta" href="#n16-invites">' + icon('people') + ' 같이갈래? <span aria-hidden="true">→</span></a>' +
+    '<h1 id="n16-home-title">우리, <em>오늘 같이</em><br>즐겨볼까요?</h1>' +
+    '<p>맛있는 한 끼부터 산행과 나들이까지.<br>하고 싶은 하루를 고르면, 함께 갈 곳을 찾아드려요.</p>' +
+    '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"></div><div class="n19-photo-slot n19-photo-side"></div><span class="n19-mosaic-stamp">REAL PLACES · REAL MOMENTS</span></div>' +
+    '<a class="n16-hero-cta" href="#n16-invites-title">' + icon('people') + ' 어떤 하루를 함께할까요? <span aria-hidden="true">→</span></a>' +
     '<small>현재는 원하는 동행을 알아보는 단계예요. 실제 모임 연결·예약·결제는 제공하지 않습니다.</small></section>' +
     '<section class="n16-invites-section" aria-labelledby="n16-invites-title">' +
-    '<div class="n16-section-head"><span>TOGETHER, YOUR WAY</span>' +
+    '<div class="n16-section-head"><span>취향대로, 나가치</span>' +
     '<h2 id="n16-invites-title">어떤 하루를 함께할까요?</h2>' +
     '<p>끌리는 것을 선택해 주세요. 함께 가볼 곳을 추천해 드려요.</p></div>' +
     '<div class="n16-invites" id="n16-invites" role="group" aria-label="하고 싶은 동행 활동 선택">'+invitationCards+'</div></section>' +
@@ -259,6 +259,28 @@ function setupHome() {
     '<button type="button" id="n12-load-more" class="n12-load-more" hidden>장소 더 보기</button>';
 
   main.prepend(home,results);
+  // 사용자가 보던 636개 실제 장소 사진 중 두 장만 히어로에 사용합니다.
+  // 사진의 인물/모임 현황을 의미하지 않으며 새로운 API나 외부 사진 서비스는 사용하지 않습니다.
+  loadCatalog().then(catalog=>{
+    const food=catalog.find(p=>p.category==='맛집'&&/^https:\\/\\//.test(p.image||''));
+    const walk=catalog.find(p=>p.category==='나들이'&&/^https:\\/\\//.test(p.image||''));
+    for (const [sel,place] of [['.n19-photo-main',food],['.n19-photo-side',walk]]) {
+      const slot=home.querySelector(sel);
+      if(slot&&place){const img=document.createElement('img');img.src=place.image;img.alt='';img.loading='eager';img.decoding='async';slot.append(img);}
+    }
+  }).catch(()=>{});
+  // 원래 앵커는 카드 그리드 맨 위를 sticky 헤더 뒤로 보내 제목을 가렸습니다.
+  // 제목부터 보이도록 헤더 높이만큼 보정해 네 카드의 시작 지점을 확실하게 보여줍니다.
+  const cta=home.querySelector('.n16-hero-cta');
+  cta?.addEventListener('click',event=>{
+    event.preventDefault();
+    const target=home.querySelector('#n16-invites-title');
+    if(!target)return;
+    const header=document.querySelector('.site-header');
+    const offset=(header?.getBoundingClientRect().height||0)+18;
+    const top=Math.max(0,window.scrollY+target.getBoundingClientRect().top-offset);
+    window.scrollTo({top,behavior:reduceMotion()?'auto':'smooth'});
+  });
   setupTogetherJourney({home,loadPlaces:loadCatalog});
   const placeDrawer = $('#n14-place-browse');
   placeDrawer?.addEventListener('toggle', () => {
