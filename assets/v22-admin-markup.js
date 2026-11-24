@@ -17,7 +17,7 @@ export function operatorMarkup(){
     <label>관리자 이메일<input type="email" name="email" required autocomplete="username" placeholder="Supabase Auth에 등록한 이메일"></label>
     <label>비밀번호<input type="password" name="password" required autocomplete="current-password"></label>
     <button type="submit">관리자 운영실 들어가기 →</button>
-    <small>비밀번호는 브라우저에 저장하지 않습니다. 관리자 계정은 Supabase Auth와 DB 허용 목록에 모두 등록돼 있어야 합니다.</small><a class="n39-setup-link" href="https://github.com/kichan21013-crypto/pyeonhanga/blob/main/docs/v39-owner-workflow.md" target="_blank" rel="noopener noreferrer">최초 운영 연결 안내 보기</a>
+    <small>비밀번호는 브라우저에 저장하지 않습니다. 관리자 계정은 Supabase Auth와 DB 허용 목록에 모두 등록돼 있어야 합니다.</small><a class="n39-setup-link" href="https://github.com/kichan21013-crypto/pyeonhanga/blob/main/docs/v41-connection-guide.md" target="_blank" rel="noopener noreferrer">최초 운영 연결 안내 보기</a>
   </form>
   <div id="n19-admin-panel" hidden>
     <div class="n22-admin-toolbar">

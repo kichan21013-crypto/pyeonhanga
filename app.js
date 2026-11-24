@@ -1,4 +1,4 @@
-import {rememberActivities} from './assets/v40-account-auth.js';
+import {rememberActivities} from './assets/v40-account-auth.js?v=20261124-v41';
 import { card, icon, escapeHtml, placeUrl } from './ui.js';
 import { savedIds, anonymousId } from './storage.js';
 import { track, trackRhythm, analyticsEnabled, recordConsentedSurvey, consentSaveFailure } from './analytics.js';

@@ -1,11 +1,11 @@
-import {accountToken,signOutAccount} from './v40-account-auth.js';
+import {accountToken,signOutAccount} from './v40-account-auth.js?v=20261124-v41';
 /* 나가치 운영자 콘솔: Supabase Auth 사용자 + DB의 명시적 관리자 allowlist 필수.
  * 이메일 로그인 토큰은 메모리, 카카오 로그인 토큰은 이 탭의 제한 시간 세션에 보관합니다.
  * 공개 key로 읽기/쓰기 RPC 요청만 사용하며 서버의 auth.uid() 검사가 진짜 접근 통제입니다.
  */
 import { GROUP_ACTIVITIES,authenticateCompanionAdmin,companionRpc } from './v19-companion-service.js';
 import { escapeHtml } from '../ui.js';
-import { mountOperations } from './v22-operations-admin.js?v=20261124-v40';
+import { mountOperations } from './v22-operations-admin.js?v=20261124-v41';
 const $=s=>document.querySelector(s);
 const labels=Object.fromEntries(GROUP_ACTIVITIES.map(x=>[x.id,x.label]));
 let jwt=null;
@@ -42,13 +42,16 @@ async function dashboard(){
    return;
  }
  const data=result.data||{};
+ const members=await companionRpc('nagachi_admin_account_subscribers',{},token);
+ if(jwt!==token)return;
  const counts=$('#n19-admin-counts');
  counts.innerHTML=GROUP_ACTIVITIES.map(item=>{
    const interest=number(data.interest_counts,'activity',item.id,'people');
    const recipients=number(data.subscribers,'activity',item.id,'devices');
+   const accounts=members.ok?number(members.data,'activity',item.id,'accounts'):null;
    return '<article class="n19-admin-metric"><span>'+escapeHtml(item.label)+'</span>' +
-    '<strong>'+interest+'명</strong><small>동의한 익명 기기 기준, 참가 확정 아님</small>' +
-    '<p>앱 내 공지 수신 기기 <b>'+recipients+'개</b></p></article>';
+    '<strong>'+interest+'개 기기</strong><small>동의한 익명 기기 기준, 참가 확정 아님</small>' +
+    '<p>계정 수신자 <b>'+(accounts===null?'연결 확인 필요':escapeHtml(String(accounts))+'명')+'</b></p><p>기존 기기 구독 <b>'+recipients+'개</b></p></article>';
  }).join('');
  const list=$('#n19-admin-notices');
  list.innerHTML=Array.isArray(data.notices)&&data.notices.length?
@@ -95,7 +98,7 @@ $('#n19-admin-notice-form').addEventListener('submit',async event=>{
   p_publish:form.elements.publish.checked,
   p_notice_id:form.elements.notice_id.value?Number(form.elements.notice_id.value):null,
  };
- if(args.p_publish&&!confirm('선택한 활동의 소식 수신 신청 기기에만 공지를 게시합니다. 이 앱에 다시 방문해야 보입니다. 게시할까요?'))return;
+ if(args.p_publish&&!confirm('선택한 활동의 계정 및 기존 기기 구독자에게 앱 내 공지를 게시합니다. 다시 방문해야 볼 수 있습니다. 게시할까요?'))return;
  button.disabled=true;
  const token=jwt;
  const r=await companionRpc('nagachi_admin_save_notice',args,token);

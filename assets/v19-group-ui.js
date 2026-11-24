@@ -77,7 +77,7 @@ export function setupGroupExperience(home){
    '<p><a class="button primary" href="/account.html">카카오 로그인 · 내 일정 소식</a></p><div id="n19-update-list" role="status"></div>' +
    '<div class="n19-inbox-actions"><button type="button" data-n19-refresh>새 소식 확인</button>' +
    '<button type="button" data-n19-stop hidden>소식 받기 해지</button></div>' +
-   '<p class="n19-inbox-note">이메일·문자·푸시는 보내지 않습니다. 공지는 수신 신청한 기기에서만 확인되며, 모임 참가 확정이 아닙니다.</p>';
+   '<p class="n19-inbox-note">새 구독은 로그인한 계정에서 확인합니다. 기존 기기 구독은 이 기기에서 확인할 수 있습니다. 문자·카카오톡·푸시는 제공하지 않으며 참가 확정이 아닙니다.</p>';
  const dialog=document.createElement('dialog');
  dialog.id='n33-updates-dialog';
  dialog.className='n33-updates-dialog';

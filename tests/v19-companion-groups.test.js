@@ -61,14 +61,14 @@ test('RLS + 관리자 Auth allowlist + 난수 토큰으로 관심 그룹 공지�
  assert.match(sql,/expires_at timestamptz/);
  assert.match(admin,/nagachi_admin_save_notice/);
  assert.match(page,/noindex,nofollow/);
- assert.match(page,/v19-admin\.js\?v=20261124-v40/);
+ assert.match(page,/v19-admin\.js\?v=20261124-v41/);
 });
 test('홈/저장/동행·개인정보 안내에서 v19 버전을 사용하고 무료 의존성 유지',async()=>{
  const [home,saved,companion,core]=await Promise.all([
   read('dist/index.html'),read('dist/saved.html'),read('dist/companion.html'),read('scripts/build-core.js')
  ]);
- for(const p of [home,saved,companion])assert.match(p,/v19-cohorts\.css\?v=20261124-v40/);
- assert.match(home,/v12-direct-home\.js\?v=20261124-v40/);
+ for(const p of [home,saved,companion])assert.match(p,/v19-cohorts\.css\?v=20261124-v41/);
+ assert.match(home,/v12-direct-home\.js\?v=20261124-v41/);
  assert.match(core,/소식 조회 권한은 90일간 유효/);
  assert.match(core,/해지하면 서버 구독이 삭제/);
  assert.ok(!('dependencies' in JSON.parse(await read('package.json'))));
@@ -125,4 +125,18 @@ test('v40 account notices require authenticated server identity and explicit con
  assert.match(page,/redirectAdmin&&role\.ok&&role\.data===true/);
  assert.match(admin,/companionRpc\('nagachi_admin_dashboard',\{\},t\)/);
  assert.match(home,/href="\/account\.html" aria-label="내 계정"/);
+});
+
+test('v41 계정 구독자 집계와 연결 점검은 관리자 권한과 읽기 전용 진단으로 분리',async()=>{
+ const sql=await read('supabase/account-notices-v41.sql'),check=await read('supabase/check-account-v41.sql'),auth=await read('assets/v40-account-auth.js'),admin=await read('assets/v19-admin.js'),page=await read('assets/v40-account-page.js');
+ assert.match(sql,/nagachi_admin_account_subscribers\(\)/);
+ assert.match(sql,/a\.user_id=auth\.uid\(\)/);
+ assert.match(sql,/where expires_at>now\(\) group by activity/);
+ assert.match(sql,/grant execute on function public\.nagachi_admin_account_subscribers\(\) to authenticated/);
+ assert.match(check,/has_function_privilege\('anon',oid,'EXECUTE'\)/);
+ assert.doesNotMatch(check,/\b(?:insert into|delete from|update public|create table)\b/i);
+ assert.match(admin,/accounts===null\?'연결 확인 필요'/);
+ assert.match(auth,/auth\/v1\/user/);
+ assert.match(auth,/if\(accountToken\(\)!==t\)return \{ok:false,reason:'login'\}/);
+ assert.match(page,/이 번호만으로 관리자 권한이 생기지 않습니다/);
 });
