@@ -2,10 +2,10 @@
  * 모집/예약 확정이나 별점/좋아요 데이터를 만들지 않습니다.
  */
 export const POPULAR_ACTIVITIES=Object.freeze([
- {id:'food',invite:'eat',name:'맛있는 한 끼',tag:'식사 동행',image:'v18-eat.svg'},
- {id:'hike',invite:'hike',name:'주말 산행',tag:'함께 걷기',image:'v18-hike.svg'},
- {id:'outing',invite:'outing',name:'산책·카페',tag:'가벼운 동행',image:'v18-outing.svg'},
- {id:'travel',invite:'travel',name:'근교 나들이',tag:'하루 나들이',image:'v18-travel.svg'},
+ {id:'food',invite:'eat',name:'맛있는 한 끼',tag:'식사 동행',image:'v28-eat.webp'},
+ {id:'hike',invite:'hike',name:'주말 산행',tag:'함께 걷기',image:'v28-hike.webp'},
+ {id:'outing',invite:'outing',name:'산책·카페',tag:'가벼운 동행',image:'v28-outing.webp'},
+ {id:'travel',invite:'travel',name:'근교 나들이',tag:'하루 나들이',image:'v28-travel.webp'},
 ]);
 const supported = new Map(POPULAR_ACTIVITIES.map(x=>[x.id,x]));
 const count=value=>{
