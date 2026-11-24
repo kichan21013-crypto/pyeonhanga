@@ -197,17 +197,21 @@ function setupHome() {
   // 동행이 첫 번째 경험입니다. 장소 탐색은 동행 의향을 구체화하는 보조 수단입니다.
   const invitationCards=TOGETHER_INVITES.map(item=>
     '<button type="button" class="n16-invite" data-v16-invite="'+item.id+'" data-tone="'+item.tone+'" aria-pressed="false">' +
-    '<span class="n16-invite-art" aria-hidden="true"><img src="/assets/v18-'+item.id+'.svg" alt="" loading="lazy"></span>' +
+    '<span class="n16-invite-art" aria-hidden="true"><img src="/assets/v28-'+item.id+'.webp" alt="" loading="lazy"></span>' +
     '<strong>'+item.label+'</strong><small>'+item.help+'</small><span class="n19-interest-count" data-n19-count="'+item.activity+'" hidden></span><span class="n16-invite-arrow" aria-hidden="true">→</span></button>'
+  ).join('');
+  const quickCategories=[['eat','맛집'],['outing','나들이'],['travel','여행'],['hike','산행']].map(([id,label])=>
+    '<button type="button" class="n28-quick-category" data-n28-quick="'+id+'"><img src="/assets/v28-'+id+'.webp" width="112" height="112" alt="" decoding="async"><span>'+label+'</span></button>'
   ).join('');
   home.innerHTML =
     '<section class="n16-hero n18-hero n19-hero n21-hero" aria-labelledby="n16-home-title">' +
     '<span class="n16-kicker">나가치 · 취향 동행</span>' +
-    '<h1 id="n16-home-title">좋은 하루,<br><em>같이 갈 사람?</em></h1>' +
-    '<p>맛집부터 산행·나들이까지, 취향으로 함께해요.</p>' +
+    '<h1 id="n16-home-title">가고 싶은 곳,<br><em>함께할 사람.</em></h1>' +
+    '<p>취향이 통하는 사람들과 새로운 하루.</p>' +
     '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"></div><div class="n19-photo-slot n19-photo-side"></div><span class="n19-mosaic-stamp">한국관광공사 장소 사진 · 동행 모집 사진 아님</span></div>' +
-    '<a class="n16-hero-cta" href="#n21-popular">' + icon('people') + ' 요즘 관심 동행 보기 <span aria-hidden="true">→</span></a>' +
-    '<small>관심을 모으는 단계 · 실제 모임 모집·예약은 아직 없어요.</small></section>' +
+    '<a class="n16-hero-cta" href="#n21-popular">' + icon('people') + ' 지금 인기 있는 동행 <span aria-hidden="true">→</span></a>' +
+    '<small>관심을 남기면 나가치가 모임을 제안해요.</small></section>' +
+    '<div class="n28-quick-categories" role="group" aria-label="원하는 동행 찾기">'+quickCategories+'</div>' +
     '<section class="n21-popular" id="n21-popular" aria-labelledby="n21-popular-heading">' +
     '<div class="n21-popular-top"><div><span class="n21-section-kicker">TOGETHER NOW · 실제 관심 기반</span>' +
     '<h2 id="n21-popular-heading">요즘 관심 많은 동행</h2>' +
@@ -239,7 +243,7 @@ function setupHome() {
     '<div id="n16-venues" class="n16-venue-grid"></div>' +
     '<button type="button" id="n16-more" class="n16-more" hidden>다른 장소 더 보기</button>' +
     '<p class="n16-journey-note">마음에 드는 곳을 골랐다면 “여기, 같이 가보고 싶어요”를 눌러보세요. ' +
-    '아직 실제 동행이 연결되는 서비스는 아니에요.</p></section>' +
+    '운영자가 수요를 확인해 동행 모임을 제안해요.</p></section>' +
     '<section class="n16-value" aria-labelledby="n16-value-title"><h2 id="n16-value-title">장소만 찾는 앱이 아니에요</h2>' +
     '<div class="n16-value-grid"><div><span aria-hidden="true">📍</span><strong>좋은 곳 고르기</strong><p>실제 장소 정보를 바탕으로 코스를 제안해요.</p></div>' +
     '<div><span aria-hidden="true">🤝</span><strong>취향 맞는 사람</strong><p>비슷한 관심사의 동행 구성을 준비해요.</p></div>' +
@@ -310,6 +314,12 @@ function setupHome() {
     requestAnimationFrame(location.hash==='#n21-popular'?scrollToPopular:scrollToInvites);
   }
   setupTogetherJourney({home,loadPlaces:loadCatalog});
+  home.querySelector('.n28-quick-categories')?.addEventListener('click',event=>{
+    const quick=event.target.closest('[data-n28-quick]');
+    if(!quick)return;
+    const target=[...home.querySelectorAll('[data-v16-invite]')].find(b=>b.dataset.v16Invite===quick.dataset.n28Quick);
+    target?.click();
+  });
   setupGroupExperience(home);
   setupPopularFirst({home,loadPlaces:loadCatalog,scrollToInvites});
   setupPublicPrograms({home,loadPlaces:loadCatalog});
