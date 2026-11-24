@@ -1,29 +1,16 @@
 /* NAGACHI v14 companion interest → place → anonymous preference survey.
    Real matching is not offered. Uses the same approved public place data as the app. */
 import { escapeHtml, safeUrl, placeUrl } from '../ui.js';
-const INTERESTS = ['walk','eat','outing','travel'];
-const REGIONS = ['서울','경기','강릉','경주','부산','제주'];
-const TYPES = {walk:'산책 동행',eat:'식사 동행',outing:'나들이 동행',travel:'여행 동행'};
+import { COMPANION_INTERESTS, normalizeCompanionInterest, normalizeCompanionRegion, companionPlaceMatches } from './v14-companion-model.js';
 const params = new URLSearchParams(location.search);
 const state = {
-  interest:INTERESTS.includes(params.get('interest')) ? params.get('interest') : null,
-  region:REGIONS.includes(params.get('region')) ? params.get('region') : '',
+  interest:normalizeCompanionInterest(params.get('interest')),
+  region:normalizeCompanionRegion(params.get('region')),
   visible:8,
   places:[],
 };
 const $=selector=>document.querySelector(selector);
 const $$=selector=>[...document.querySelectorAll(selector)];
-function qualifies(place) {
-  if(!place || place.isDemo) return false;
-  if(!place.image || !safeUrl(place.image)) return false;
-  if(state.region && place.region!==state.region) return false;
-  const tags=Array.isArray(place.intentTags)?place.intentTags:[];
-  if(state.interest==='walk') return tags.some(t=>['walk','hike','scenery'].includes(t));
-  if(state.interest==='eat') return place.category==='맛집';
-  if(state.interest==='outing') return place.category==='나들이' || tags.some(t=>['outing','culture','scenery'].includes(t));
-  if(state.interest==='travel') return place.category==='여행' || tags.some(t=>['travel','drive','sea'].includes(t));
-  return false;
-}
 function placeCard(place){
   const id=escapeHtml(place.id);
   const name=escapeHtml(place.name);
@@ -47,8 +34,8 @@ function render() {
     $('#n14-hub-status').textContent='동행 활동을 선택해 주세요.';
     return;
   }
-  const matches=state.places.filter(qualifies);
-  count.textContent=matches.length+'곳 · '+TYPES[state.interest];
+  const matches=state.places.filter(place=>companionPlaceMatches(place,state));
+  count.textContent=matches.length+'곳 · '+COMPANION_INTERESTS[state.interest];
   grid.innerHTML=matches.length
     ? matches.slice(0,state.visible).map(placeCard).join('')
     : '<div class="n14-hub-empty">이 지역에서 확인된 장소가 부족해요. 다른 지역이나 동행 유형을 선택해 주세요.</div>';
@@ -66,7 +53,7 @@ async function setup() {
     render();
   });
   $('#n14-hub-region').addEventListener('change',event=>{
-    state.region=REGIONS.includes(event.target.value)?event.target.value:'';
+    state.region=normalizeCompanionRegion(event.target.value);
     state.visible=8;
     render();
   });
