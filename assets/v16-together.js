@@ -113,6 +113,6 @@ export function setupTogetherJourney({home,loadPlaces}){
   if(invitationById(requested)){
     state.interest=requested;
     section.hidden=false;
-    render({scroll:false});
+    render({scroll:true});
   }
 }
