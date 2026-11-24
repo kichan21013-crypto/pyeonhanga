@@ -81,7 +81,7 @@ test('일반 공개 영역에서 관리자 ID/정확한 만남장소/수익비�
  assert.match(publicCourse,/c\.status='published'/);
  assert.doesNotMatch(publicCourse,/c\.created_by|c\.note|service_fee_krw/);
  assert.match(publicUi,/setupPublicPrograms/);
- assert.match(publicUi,/관리자가 실제로 게시한/);
+ assert.match(publicUi,/운영자가 실제로 게시한/);
  assert.match(publicUi,/아직 실제 참가 예약은 아닙니다|실제 참가 확정 아님/);
  assert.doesNotMatch(publicUi,/Math\.random\(\)|잔여 좌석|지금 결제|참가 확정되었습니다/);
 });
