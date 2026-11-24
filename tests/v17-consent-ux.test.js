@@ -48,3 +48,21 @@ test('동행 희망 클릭은 두 장소 로더 간 순서가 달라도 설문 �
   assert.match(app,/if \(place\) companionDialog\(place,interest\)/);
   assert.match(app,/이 장소의 동행 정보를 불러오지 못했습니다/);
 });
+
+test('앱 운영 상태 페이지는 빌드 시각·버전·DB 설정 유무만 공개하고 비밀키는 노출하지 않는다',async()=>{
+  const html=await read('dist/status.html');
+  const manifest=JSON.parse(await read('dist/release-status.json'));
+  const app=await read('dist/index.html');
+  const core=await read('scripts/build-core.js');
+  assert.equal(manifest.version,'20261124-v17');
+  assert.match(manifest.built_at,/^\d{4}-\d\d-\d\dT/);
+  assert.equal(typeof manifest.analytics_setup_present,'boolean');
+  assert.equal(manifest.storage_verified,false,'서버 저장 성공 확인을 흉내 내지 않음');
+  assert.equal(manifest.public_venue_count,636);
+  assert.match(html,/Supabase 설정/);
+  assert.match(html,/실제 저장 여부는 동행 설문 제출 결과 및 Supabase 관리자 조회로 확인/);
+  assert.match(html,/개인정보·통계 설정 확인/);
+  assert.match(app,/v12-direct-home\.js\?v=20261124-v17/);
+  assert.match(core,/release-status\.json/);
+  assert.doesNotMatch(html,/sb_secret_|supabaseAnonKey|service_role/);
+});
