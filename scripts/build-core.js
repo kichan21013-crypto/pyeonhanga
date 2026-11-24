@@ -24,7 +24,7 @@ let index = (await readFile(resolve(root, 'index.html'), 'utf8')).replace(/<meta
 index = index.replace('<link rel="stylesheet" href="/styles.css">','<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/mobile-ux.css?v=20261124-v18">');
 index = index.replace('<nav aria-label="주 메뉴">','<nav aria-label="주 메뉴"><a class="nav-home" href="/" aria-label="홈으로">홈</a>');
 const header = index.match(/<header class="site-header">[\s\S]*?<\/header>/)[0];
-const footer = `<footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="/">나가치</a><p>오늘, 내 리듬대로.</p><p>© ${new Date().getUTCFullYear()} 나가치 · 시장 검증용 MVP</p></div><div class="footer-links"><a href="/about.html">편안함 점수 안내</a><a href="/privacy.html">데이터 안내</a></div></div></footer>`;
+const footer = `<footer class="site-footer"><div class="container footer-inner"><div><a class="footer-brand" href="/">나가치</a><p>함께하면 더 좋은 하루.</p><p>© ${new Date().getUTCFullYear()} 나가치 · 시장 검증용 MVP</p></div><div class="footer-links"><a href="/about.html">편안함 점수 안내</a><a href="/privacy.html">데이터 안내</a></div></div></footer>`;
 const bottomNavHome = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8v9H4z"/><path d="M9 20v-6h6v6"/></svg>';
 function mobileNav(active = '') {
   return `<nav class="n-mobile-nav" aria-label="하단 메뉴">
@@ -56,7 +56,7 @@ if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
   configInput = (await import(pathToFileURL(configPath).href)).default;
 }
 await writeFile(resolve(out, 'config.js'), `export default ${JSON.stringify(publicConfig(configInput))};\n`);
-await writeFile(resolve(out, 'index.html'), index.replace('<!-- SEO -->', seo('/', '나가치 — 오늘, 내 리듬대로.', '막연히 뭔가 하고 싶은 날, 내 상황과 취향에 맞는 하루를 찾아보세요.', '/assets/garden.svg', places.every(p => p.isDemo))).replace('<!-- CARDS -->', recommendRhythms(places).map(r => card(r.place,false,undefined,r)).join('')).replace('<!-- FOOTER -->', footer).replace(/<p class="demo-notice">[\s\S]*?<\/p>/, places.some(p => p.isDemo) ? '<p class="demo-notice">DEMO SAMPLE 배지가 붙은 장소는 기능 체험용 가상 데이터입니다. 실제 방문 정보가 아닙니다.</p>' : '<p class="demo-notice">확인한 정보만 표시합니다. 방문 전 출처와 최근 확인 날짜를 살펴보세요.</p>'));
+await writeFile(resolve(out, 'index.html'), index.replace('<!-- SEO -->', seo('/', '나가치 — 함께하면 더 좋은 하루.', '막연히 뭔가 하고 싶은 날, 내 상황과 취향에 맞는 하루를 찾아보세요.', '/assets/garden.svg', places.every(p => p.isDemo))).replace('<!-- CARDS -->', recommendRhythms(places).map(r => card(r.place,false,undefined,r)).join('')).replace('<!-- FOOTER -->', footer).replace(/<p class="demo-notice">[\s\S]*?<\/p>/, places.some(p => p.isDemo) ? '<p class="demo-notice">DEMO SAMPLE 배지가 붙은 장소는 기능 체험용 가상 데이터입니다. 실제 방문 정보가 아닙니다.</p>' : '<p class="demo-notice">확인한 정보만 표시합니다. 방문 전 출처와 최근 확인 날짜를 살펴보세요.</p>'));
 const saved = (await readFile(resolve(root, 'saved.html'), 'utf8')).replace(/<meta name="robots" content="noindex,nofollow">/g,'');
 await writeFile(resolve(out, 'saved.html'), saved.replace('<!-- SEO -->', seo('/saved.html', '저장한 곳 — 나가치', '마음에 담은 장소를 다시 살펴보세요.', undefined, true)).replace('<!-- HEADER -->', header).replace('<link rel="stylesheet" href="/styles.css">','<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/mobile-ux.css?v=20261124-v18"><link rel="stylesheet" href="/assets/v13-companion.css?v=20261124-v18"><link rel="stylesheet" href="/assets/v14-companion-first.css?v=20261124-v18"><link rel="stylesheet" href="/assets/v15-party-program.css?v=20261124-v18"><link rel="stylesheet" href="/assets/v16-together.css?v=20261124-v18"><link rel="stylesheet" href="/assets/v18-premium.css?v=20261124-v18">').replace('src="/app.js"', 'src="/app.js?v=20261124-v18"').replace('<!-- FOOTER -->', footer + mobileNav('saved')));
 for (const p of places) {
@@ -68,7 +68,7 @@ for (const p of places) {
 // 현재는 모임 인원/운송수단/요금이 확정되지 않아 모집글과 예약을 생성하지 않습니다.
 const invitationLinks = TOGETHER_INVITES.map(invite =>
   '<a class="n15-intent-choice n16-hub-choice" href="/?together='+invite.id+'">' +
-  '<span class="n15-intent-icon" aria-hidden="true">'+invite.icon+'</span>' +
+  '<span class="n15-intent-icon" aria-hidden="true"><img src="/assets/v18-'+invite.id+'.svg" alt="" loading="lazy"></span>' +
   '<span><strong>'+invite.label+'</strong><small>'+invite.help+' · 실제 장소 먼저 고르기</small></span>' +
   '<span class="n15-intent-arrow" aria-hidden="true">→</span></a>'
 ).join('');
