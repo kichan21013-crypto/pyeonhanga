@@ -23,6 +23,7 @@ async function chooseSurvey(page) {
   await dialog.locator('[data-n13-next]').click();
   await dialog.locator('[name=preference][value="성별 상관없음"]').check();
   await dialog.locator('[name=group_size][value="3~4명"]').check();
+  await dialog.locator('.n20-optional-fee summary').click();
   await dialog.locator('[name=willingness][value="약 2만원"]').check();
   await dialog.locator('[name=consent]').check();
   await dialog.locator('[type=submit]').click();
@@ -62,9 +63,9 @@ try {
   ok(await page.locator('[name=consent]').count()===1,'설문 필수 동의');
   ok(requests.length===0,'미연결 환경 동의 전 외부 분석 요청 없음');
   const dialog=await chooseSurvey(page);
-  await dialog.locator('#survey-done').waitFor();
-  ok(await dialog.innerText().then(t=>t.includes('저장되지 않았어요')),
-    '서버 미연결 시 미저장 표시');
+  await dialog.locator('.n20-save-status[data-state=error]').waitFor();
+  ok(await dialog.innerText().then(t=>t.includes('저장되지 않았습니다')),
+    '서버 미연결 시 핵심 CTA 아래 정확한 미저장 상태 표시');
   ok(requests.length===0,'미연결 환경 동의 후에도 외부 요청 없음');
   await page.goto(base+'/companion.html',{waitUntil:'domcontentloaded'});
   await page.locator('a[href="/?together=eat"]').click();
