@@ -49,7 +49,7 @@ export function setupTogetherJourney({home,loadPlaces}){
       button.setAttribute('aria-pressed',String(button.dataset.v16Meal===state.mealTag)));
     const item=invitationById(state.interest);
     heading.textContent=item?item.label:'어디로 함께 갈까요?';
-    subtitle.textContent='실제 등록된 장소 중 취향에 맞는 곳을 보여드릴게요. 아직 진행 중인 동행 모임은 없습니다.';
+    subtitle.textContent='관심 있는 장소를 고르면 나가치가 동행 모임을 기획할 때 참고해요.';
   };
   const render=async({scroll=false}={})=>{
     const requestId=++state.requestId;
@@ -99,7 +99,7 @@ export function setupTogetherJourney({home,loadPlaces}){
   region.addEventListener('change',event=>{
     state.region=cleanTogetherRegion(event.target.value);
     state.visible=6;
-    render();
+    if(state.interest)render();
   });
   menu.addEventListener('click',event=>{
     const button=event.target.closest('[data-v16-meal]');
