@@ -35,7 +35,8 @@ test('연령 선택 다음 활동은 복수 체크 가능하며 명시적 동의
  assert.match(app,/!form\.reportValidity\(\)\|\|!form\.elements\.consent\.checked/);
  assert.match(app,/await recordConsentedSurvey/);
  assert.match(app,/name="updates" value="yes"/);
- assert.match(app,/await optInCompanionUpdates\(responseId,activities\)/);
+ assert.match(app,/rememberActivities\(activities\)/);
+ assert.match(app,/로그인하고 일정 소식 받기/);
  assert.doesNotMatch(app,/실시간 참가|매칭 성공|예약이 확정됐습니다/);
 });
 test('5명 미만 비공개, 저장 안 된 응답으로 허위 관심 인원을 만들지 않는다',async()=>{
@@ -60,14 +61,14 @@ test('RLS + 관리자 Auth allowlist + 난수 토큰으로 관심 그룹 공지�
  assert.match(sql,/expires_at timestamptz/);
  assert.match(admin,/nagachi_admin_save_notice/);
  assert.match(page,/noindex,nofollow/);
- assert.match(page,/v19-admin\.js\?v=20261124-v39/);
+ assert.match(page,/v19-admin\.js\?v=20261124-v40/);
 });
 test('홈/저장/동행·개인정보 안내에서 v19 버전을 사용하고 무료 의존성 유지',async()=>{
  const [home,saved,companion,core]=await Promise.all([
   read('dist/index.html'),read('dist/saved.html'),read('dist/companion.html'),read('scripts/build-core.js')
  ]);
- for(const p of [home,saved,companion])assert.match(p,/v19-cohorts\.css\?v=20261124-v39/);
- assert.match(home,/v12-direct-home\.js\?v=20261124-v39/);
+ for(const p of [home,saved,companion])assert.match(p,/v19-cohorts\.css\?v=20261124-v40/);
+ assert.match(home,/v12-direct-home\.js\?v=20261124-v40/);
  assert.match(core,/소식 조회 권한은 90일간 유효/);
  assert.match(core,/해지하면 서버 구독이 삭제/);
  assert.ok(!('dependencies' in JSON.parse(await read('package.json'))));
@@ -108,4 +109,20 @@ test('가짜 서버에서 공개 집계 5명 임계값, 수신신청, 앱 내 �
   Object.assign(globalThis,previous);
   await rm(temp,{recursive:true,force:true});
  }
+});
+
+test('v40 account notices require authenticated server identity and explicit consent',async()=>{
+ const sql=await read('supabase/account-notices-v40.sql'),auth=await read('assets/v40-account-auth.js'),page=await read('assets/v40-account-page.js'),admin=await read('assets/v19-admin.js'),home=await read('assets/v12-direct-home.js');
+ assert.match(sql,/alter table public\.nagachi_account_subscriptions enable row level security/);
+ assert.match(sql,/s\.user_id=v_uid/);
+ assert.match(sql,/revoke execute on function public\.nagachi_subscribe_updates/);
+ assert.match(sql,/grant execute on function public\.nagachi_account_news\(\) to authenticated/);
+ assert.match(sql,/a\.user_id=auth\.uid\(\)/);
+ assert.match(auth,/provider:'kakao'/);
+ assert.match(auth,/code_challenge_method:'s256'/);
+ assert.match(auth,/grant_type=pkce/);
+ assert.match(auth,/history\.replaceState/);
+ assert.match(page,/redirectAdmin&&role\.ok&&role\.data===true/);
+ assert.match(admin,/companionRpc\('nagachi_admin_dashboard',\{\},t\)/);
+ assert.match(home,/href="\/account\.html" aria-label="내 계정"/);
 });

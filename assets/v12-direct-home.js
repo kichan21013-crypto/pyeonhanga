@@ -9,8 +9,8 @@ import { analyticsEnabled } from '../analytics.js';
 import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHeading } from './v12-browse-state.js';
 import { TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-model.js';
 import { setupTogetherJourney } from './v16-together.js';
-import { setupGroupExperience } from './v19-group-ui.js?v=20261124-v39';
-import { setupPopularFirst } from './v21-popular-first.js?v=20261124-v39';
+import { setupGroupExperience } from './v19-group-ui.js?v=20261124-v40';
+import { setupPopularFirst } from './v21-popular-first.js?v=20261124-v40';
 import { setupPublicPrograms } from './v22-public-programs.js';
 
 // Ordinary home entry starts at the top; preserve explicit detail/companion deep links.
@@ -244,7 +244,7 @@ function setupHome() {
     '<p>향후 수익모델은 <strong>코스 제안과 동행 구성·일정 조율 서비스비</strong>입니다. ' +
     '식비·교통비·입장료 등은 각자 현장에서 직접 결제하는 방향을 검토하고 있어요. ' +
     '현재는 무료 수요 검증을 진행하며 유료 모집·차량 연결은 제공하지 않습니다.</p></details>' +
-    '<div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a><span class="n34-version">v39</span></div>' +
+    '<div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a><span class="n34-version">v40</span></div>' +
     '<details class="n15-place-drawer" id="n14-place-browse"><summary>직접 장소 검색하기 <span>맛집·산책·나들이</span></summary>' +
     '<div class="n15-place-content"><form id="n12-search" role="search" class="n12-search">' + svg('search') +
     '<label for="n12-query" class="sr-only">장소 이름이나 원하는 활동 검색</label>' +
@@ -306,7 +306,7 @@ function setupHome() {
   const headerInner=document.querySelector('.site-header .header-inner');
   if(headerInner&&!headerInner.querySelector('.n30-header-actions')){
     const actions=document.createElement('div');actions.className='n30-header-actions';
-    actions.innerHTML='<button type="button" data-n30-updates aria-label="내 동행 소식" aria-haspopup="dialog" aria-controls="n33-updates-dialog"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a href="/companion.html" aria-label="동행 안내">'+icon('solo')+'</a>';
+    actions.innerHTML='<button type="button" data-n30-updates aria-label="내 동행 소식" aria-haspopup="dialog" aria-controls="n33-updates-dialog"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a href="/account.html" aria-label="내 계정">'+icon('solo')+'</a>';
     headerInner.append(actions);
     actions.querySelector('[data-n30-updates]').addEventListener('click',()=>{
       const dialog=home.querySelector('#n33-updates-dialog');

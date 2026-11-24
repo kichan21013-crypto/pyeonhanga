@@ -74,7 +74,7 @@ export function setupGroupExperience(home){
    '<h2 id="n19-updates-title">내가 고른 동행 소식</h2>' +
    '<p>관심을 남긴 활동의 새로운 일정과 모임 장소를 앱에서 확인해요.</p></div>' +
    '<span class="n19-inbox-symbol" aria-hidden="true">✦</span></div>' +
-   '<div id="n19-update-list" role="status"></div>' +
+   '<p><a class="button primary" href="/account.html">카카오 로그인 · 내 일정 소식</a></p><div id="n19-update-list" role="status"></div>' +
    '<div class="n19-inbox-actions"><button type="button" data-n19-refresh>새 소식 확인</button>' +
    '<button type="button" data-n19-stop hidden>소식 받기 해지</button></div>' +
    '<p class="n19-inbox-note">이메일·문자·푸시는 보내지 않습니다. 공지는 수신 신청한 기기에서만 확인되며, 모임 참가 확정이 아닙니다.</p>';
@@ -93,7 +93,7 @@ export function setupGroupExperience(home){
  const stop=$('[data-n19-stop]',inbox);
  async function refreshInbox(){
    if(!localSubscriptionToken()){
-     results.innerHTML='<p class="n19-inbox-empty">아직 소식 수신을 선택하지 않았어요. 마음에 드는 장소를 고른 뒤 <strong>“동행 소식도 보고 싶어요”</strong>를 체크하면, 해당 활동의 공지를 이곳에서 확인할 수 있어요.</p>';
+     results.innerHTML='<p class="n19-inbox-empty">새 동행 일정 소식은 카카오 로그인 후 확인해 주세요. 기존 기기 구독은 이 화면에서 확인하거나 해지할 수 있어요.</p>';
      stop.hidden=true;return;
    }
    stop.hidden=false;
