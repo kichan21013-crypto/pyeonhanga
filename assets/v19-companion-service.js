@@ -46,6 +46,12 @@ export async function fetchPublicInterestCounts(){
  }
  return {ok:true,counts};
 }
+export async function fetchPopularCompanionPlaces(){
+ const result=await companionRpc('nagachi_public_popular_places');
+ if(!result.ok)return result;
+ // 정확한 순위는 서버의 저장된 동의 데이터에서만 나옵니다.
+ return {ok:true,items:Array.isArray(result.data)?result.data:[]};
+}
 export function localSubscriptionToken(){
  const token=readLocal(TOKEN_KEY,'');
  return typeof token==='string' && hex.test(token)?token:'';

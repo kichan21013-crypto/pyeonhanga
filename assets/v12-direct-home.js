@@ -10,6 +10,7 @@ import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHea
 import { TOGETHER_INVITES, TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-model.js';
 import { setupTogetherJourney } from './v16-together.js';
 import { setupGroupExperience } from './v19-group-ui.js';
+import { setupPopularFirst } from './v21-popular-first.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -199,13 +200,20 @@ function setupHome() {
     '<strong>'+item.label+'</strong><small>'+item.help+'</small><span class="n19-interest-count" data-n19-count="'+item.activity+'" hidden></span><span class="n16-invite-arrow" aria-hidden="true">→</span></button>'
   ).join('');
   home.innerHTML =
-    '<section class="n16-hero n18-hero n19-hero" aria-labelledby="n16-home-title">' +
+    '<section class="n16-hero n18-hero n19-hero n21-hero" aria-labelledby="n16-home-title">' +
     '<span class="n16-kicker">나가치 · 취향 동행</span>' +
-    '<h1 id="n16-home-title">맛집·산행·나들이<br><em>같이 갈 사람?</em></h1>' +
-    '<p>맛있는 한 끼부터 산행과 나들이까지.<br>하고 싶은 하루를 고르면, 함께 갈 곳을 찾아드려요.</p>' +
+    '<h1 id="n16-home-title">좋은 하루,<br><em>같이 갈 사람?</em></h1>' +
+    '<p>맛집부터 산행·나들이까지, 취향으로 함께해요.</p>' +
     '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"></div><div class="n19-photo-slot n19-photo-side"></div><span class="n19-mosaic-stamp">한국관광공사 장소 사진 · 동행 모집 사진 아님</span></div>' +
-    '<a class="n16-hero-cta" href="#n16-invites-title">' + icon('people') + ' 어떤 하루를 함께할까요? <span aria-hidden="true">→</span></a>' +
-    '<small>현재는 원하는 동행을 알아보는 단계예요. 실제 모임 연결·예약·결제는 제공하지 않습니다.</small></section>' +
+    '<a class="n16-hero-cta" href="#n21-popular">' + icon('people') + ' 요즘 관심 동행 보기 <span aria-hidden="true">→</span></a>' +
+    '<small>관심을 모으는 단계 · 실제 모임 모집·예약은 아직 없어요.</small></section>' +
+    '<section class="n21-popular" id="n21-popular" aria-labelledby="n21-popular-heading">' +
+    '<div class="n21-popular-top"><div><span class="n21-section-kicker">TOGETHER NOW · 실제 관심 기반</span>' +
+    '<h2 id="n21-popular-heading">요즘 관심 많은 동행</h2>' +
+    '<p id="n21-popular-sub">저장된 관심을 확인하고 있어요.</p></div></div>' +
+    '<div id="n21-popular-content" role="status" aria-live="polite">' +
+    '<div class="n21-popular-loading" aria-label="인기 동행 확인 중"><span></span><span></span></div></div>' +
+    '<button type="button" class="n21-find-btn" data-n21-find>다른 동행도 찾아보기 →</button></section>' +
     '<section class="n16-invites-section" aria-labelledby="n16-invites-title">' +
     '<div class="n16-section-head"><span>취향대로, 나가치</span>' +
     '<h2 id="n16-invites-title">어떤 하루를 함께할까요?</h2>' +
@@ -280,14 +288,23 @@ function setupHome() {
     const top=Math.max(0,window.scrollY+target.getBoundingClientRect().top-offset);
     window.scrollTo({top,behavior:reduceMotion()?'auto':'smooth'});
   };
+  const scrollToPopular=()=>{
+    const target=home.querySelector('#n21-popular');
+    if(!target)return;
+    const header=document.querySelector('.site-header');
+    const offset=(header?.getBoundingClientRect().height||0)+14;
+    const top=Math.max(0,window.scrollY+target.getBoundingClientRect().top-offset);
+    window.scrollTo({top,behavior:reduceMotion()?'auto':'smooth'});
+  };
   const cta=home.querySelector('.n16-hero-cta');
-  cta?.addEventListener('click',event=>{event.preventDefault();scrollToInvites();});
-  // 다른 탭/상세에서 '같이갈래?'로 돌아오면 동적 홈 생성 후 스크롤합니다.
-  if(['#n16-invites-title','#n16-invites'].includes(location.hash)) {
-    requestAnimationFrame(scrollToInvites);
+  cta?.addEventListener('click',event=>{event.preventDefault();scrollToPopular();});
+  // 이전 즐겨찾기/상세의 동행 링크(#n16-invites)는 계속 호환합니다.
+  if(['#n16-invites-title','#n16-invites','#n21-popular'].includes(location.hash)) {
+    requestAnimationFrame(location.hash==='#n21-popular'?scrollToPopular:scrollToInvites);
   }
   setupTogetherJourney({home,loadPlaces:loadCatalog});
   setupGroupExperience(home);
+  setupPopularFirst({home,loadPlaces:loadCatalog,scrollToInvites});
   const placeDrawer = $('#n14-place-browse');
   placeDrawer?.addEventListener('toggle', () => {
     document.body.classList.toggle('n15-browse-open',placeDrawer.open);
@@ -337,7 +354,7 @@ function setupHome() {
   nav.querySelector('[data-n12-recommend]').addEventListener('click', () => {
     nav.querySelector('[data-n12-home]').classList.remove('is-active');
     nav.querySelector('[data-n12-recommend]').classList.add('is-active');
-    scrollToInvites();
+    scrollToPopular();
   });
   window.addEventListener('storage', () => {
     $$('.n12-save').forEach(button => {
