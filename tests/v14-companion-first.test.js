@@ -87,7 +87,9 @@ test('익명 동행 설문은 장소 이름·취향·동행 구성·서비스비
   const analytics=await read('analytics.js');
   const schema=await read('supabase/schema.sql');
   assert.match(app,/data-companion-interest/);
-  assert.match(app,/companionDialog\(p,interest\)/);
+  assert.match(app,/companionDialog\(place,interest\)/);
+  assert.match(app,/if \(!place\) \{/);
+  assert.match(app,/이 장소의 동행 정보를 불러오지 못했습니다/);
   assert.match(app,/const activityMap = \{ walk:'walk', eat:'food', hike:'hike'/);
   assert.match(app,/어떤 분들과 함께하고 싶으세요\?/);
   assert.match(app,/name="consent" value="yes" required/);
