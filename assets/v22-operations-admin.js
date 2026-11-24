@@ -50,6 +50,7 @@ export function mountOperations({getToken,notify}){
  const picked=$('#n22-course-picked');
  let data={courses:[],meetups:[],pricing:[]};
  let interestCounts=null;
+ let partyId=null,partyRequest=0,partyBusy=false;
  let places=[];
  let selectedPlaceIds=[];
  let requestId=0;
@@ -114,6 +115,33 @@ export function mountOperations({getToken,notify}){
    '<option value="'+Number(c.id)+'">'+escapeHtml(c.title)+(c.status==='draft'?' (초안)':'')+'</option>').join('');
   select.value=[...select.options].some(o=>o.value===current)?current:'';
  }
+ const partyStatus={pending:'승인 대기',approved:'승인',waitlisted:'대기자',cancelled:'취소'};
+ async function showParty(id){
+  const token=getToken(),panel=$('#n25-party-panel');
+  if(!token||!panel)return;
+  partyId=id;const seq=++partyRequest;
+  panel.hidden=false;panel.textContent='신청 현황을 확인하고 있습니다.';
+  const r=await companionRpc('nagachi_admin_party_list',{p_meetup_id:id},token);
+  if(seq!==partyRequest||getToken()!==token)return;
+  const m=data.meetups.find(x=>Number(x.id)===id);
+  if(!m||!r.ok||!r.data||!Array.isArray(r.data.applications)){panel.textContent='신청 관리 연결을 확인해 주세요. '+friendlyError(r.reason);return;}
+  const rows=r.data.applications.filter(x=>Number.isSafeInteger(Number(x.id))&&Object.hasOwn(partyStatus,x.status));
+  const capacity=Number(r.data.capacity),approved=rows.filter(x=>x.status==='approved').length;
+  const active=m.stage==='announced'&&m.meet_at&&new Date(m.meet_at).getTime()>Date.now()&&new Date(m.meet_at).getTime()<=Date.now()+90*86400000&&!!m.meet_place;
+  const canDecide=['announced','closed'].includes(m.stage)&&m.meet_at&&new Date(m.meet_at).getTime()>Date.now();
+  const toggle=r.data.open===true;
+  panel.innerHTML='<h3>'+escapeHtml(m.title)+' · 참가 신청 관리</h3>'+
+   '<p>신청 대기 '+rows.filter(x=>x.status==='pending').length+'건 · 승인 '+approved+'/'+capacity+' · 대기자 '+rows.filter(x=>x.status==='waitlisted').length+'건 · 취소 '+rows.filter(x=>x.status==='cancelled').length+'건</p>'+
+   '<p>기기 단위 신청입니다. 실제 신원이나 참석 여부가 확인된 것은 아닙니다.</p>'+
+   '<div class="n22-action-row"><button type="button" data-n25-toggle="'+(toggle?'close':'open')+'" '+(!toggle&&!active?'disabled':'')+'>'+(toggle?'신청 접수 마감':'무료 시범 모집 시작')+'</button><button type="button" data-n25-reload>새로고침</button></div>'+
+   (!active&&!toggle?'<p>모집하려면 모임을 공개하고 90일 이내 미래 일정과 집결지를 입력하세요.</p>':'')+
+   '<p role="status" data-n25-admin-message></p>'+
+   (rows.length?rows.map(a=>'<article class="n22-list-item"><div><strong>신청 #'+Number(a.id)+' · '+escapeHtml(partyStatus[a.status])+'</strong><p>'+escapeHtml(safeDate(a.requested_at))+'</p></div>'+
+    (a.status==='cancelled'?'':'<div class="n22-item-actions">'+
+      (canDecide&&a.status!=='approved'&&approved<capacity?'<button type="button" data-n25-decision="approved" data-n25-id="'+Number(a.id)+'">승인</button>':'')+
+      (canDecide&&a.status!=='waitlisted'?'<button type="button" data-n25-decision="waitlisted" data-n25-id="'+Number(a.id)+'">대기</button>':'')+
+      '<button type="button" data-n25-decision="cancelled" data-n25-id="'+Number(a.id)+'">취소</button></div>')+'</article>').join(''):'<p>아직 신청한 기기가 없습니다.</p>');
+ }
  function renderMeetups(){
   $('#n22-meetup-list').innerHTML=data.meetups.length?data.meetups.map(m=>{
    const course=data.courses.find(c=>Number(c.id)===Number(m.course_id));
@@ -125,7 +153,7 @@ export function mountOperations({getToken,notify}){
     '<p>'+escapeHtml(safeDate(m.meet_at))+' · 희망 '+Number(m.preferred_size)+'명'+
     (course?' · '+escapeHtml(course.title):'')+'</p><p><strong>'+escapeHtml(interestText)+'</strong></p></div>'+
     '<div class="n22-item-actions"><button type="button" data-n22-edit-meetup="'+Number(m.id)+'">수정</button>'+
-    '<button type="button" data-n22-notice-meetup="'+Number(m.id)+'">해당 관심자 공지</button></div></article>';
+    '<button type="button" data-n22-notice-meetup="'+Number(m.id)+'">해당 관심자 공지</button><button type="button" data-n25-manage="'+Number(m.id)+'">참가 신청 관리</button></div></article>';
   }).join(''):listEmpty('아직 준비 중인 동행 모임이 없어요.');
  }
  function renderPricing(){
@@ -180,6 +208,7 @@ export function mountOperations({getToken,notify}){
   status.textContent='운영 자료를 불러왔습니다. 각 메뉴에서 새 코스나 모임을 만들 수 있습니다.';
   status.dataset.error='false';
   renderMetrics();renderCourses();renderMeetups();renderPricing();
+  if(partyId!==null&&!partyBusy)await showParty(partyId);
   if(!placesLoaded){
    try{
     const response=await fetch('/data/places.json');
@@ -252,13 +281,33 @@ export function mountOperations({getToken,notify}){
   form.elements.title.value=m.title;
   form.elements.body.value=m.intro;
   form.elements.meet_at.value=localDateTime(m.meet_at);
-  form.elements.meet_place.value=m.meet_place||'';
+  form.elements.meet_place.value=''; // exact assembly location is for approved applications, not broad activity subscribers
   form.elements.publish.checked=false; // never publish automatically
   drawer.scrollIntoView({block:'start'});
   form.elements.title.focus({preventScroll:true});
   notify('동행 모임 내용을 공지 초안에 옮겼습니다. 확인 후 저장해 주세요. 공개 여부는 직접 선택해야 합니다.');
  }
- root.addEventListener('click',event=>{
+ root.addEventListener('click',async event=>{
+  const manage=event.target.closest('[data-n25-manage]');
+  const toggle=event.target.closest('[data-n25-toggle]');
+  const decide=event.target.closest('[data-n25-decision]');
+  const reload=event.target.closest('[data-n25-reload]');
+  if(manage||toggle||decide||reload){
+   const token=getToken();if(!token||partyBusy)return;
+   if(manage||reload){await showParty(manage?Number(manage.dataset.n25Manage):partyId);return;}
+   if(!partyId)return;
+   const id=partyId,action=toggle?toggle.dataset.n25Toggle:decide.dataset.n25Decision;
+   if(!confirm(toggle?(action==='open'?'무료 시범 모임 모집을 시작할까요? 성인 신청자 안전 안내, 운영자 현장 진행 및 취소 방법을 확인했습니다.':'새로운 신청 접수를 마감할까요? 기존 승인·대기 신청은 유지됩니다.'):'이 신청을 '+partyStatus[action]+' 처리할까요?'))return;
+   partyBusy=true;
+   const panel=$('#n25-party-panel');panel.querySelectorAll('button').forEach(b=>b.disabled=true);
+   const r=await companionRpc(toggle?'nagachi_admin_party_open':'nagachi_admin_party_decide',
+    toggle?{p_meetup_id:id,p_open:action==='open'}:{p_meetup_id:id,p_application_id:Number(decide.dataset.n25Id),p_status:action},token);
+   partyBusy=false;if(getToken()!==token)return;
+   await showParty(id);
+   const msg=panel.querySelector('[data-n25-admin-message]');
+   if(msg)msg.textContent=r.ok&&r.data===true?'서버에 반영했습니다.':'처리 여부를 확인하지 못했습니다. 모집 조건·정원·서버 상태를 확인해 주세요.';
+   return;
+  }
   const go=event.target.closest('[data-n22-tab],[data-n22-go]');
   if(go){tab(go.dataset.n22Tab||go.dataset.n22Go);return;}
   const add=event.target.closest('[data-n22-add-place]');
@@ -345,7 +394,7 @@ export function mountOperations({getToken,notify}){
  });
  renderPicked();renderRevenuePreview();
  return {load,reset:()=>{
-   requestId++;data={courses:[],meetups:[],pricing:[]};interestCounts=null;
+   requestId++;partyRequest++;partyId=null;partyBusy=false;const partyPanel=$('#n25-party-panel');if(partyPanel){partyPanel.hidden=true;partyPanel.replaceChildren();}data={courses:[],meetups:[],pricing:[]};interestCounts=null;
    $('#n22-operation-metrics').replaceChildren();
    $('#n22-course-list').replaceChildren();
    $('#n22-meetup-list').replaceChildren();

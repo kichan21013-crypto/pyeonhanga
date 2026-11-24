@@ -40,6 +40,14 @@ function ensureToken(){
  const t=[...globalThis.crypto.getRandomValues(new Uint8Array(32))].map(b=>b.toString(16).padStart(2,'0')).join('');
  return writeLocal(interestKey,t)&&storedToken()===t?t:'';
 }
+const partyKey='nagachi.party-token';
+function partyToken(create=false){
+ const t=readLocal(partyKey,'');if(validToken(t))return t;
+ if(!create||!globalThis.crypto?.getRandomValues)return '';
+ const fresh=[...globalThis.crypto.getRandomValues(new Uint8Array(32))].map(b=>b.toString(16).padStart(2,'0')).join('');
+ return writeLocal(partyKey,fresh)&&readLocal(partyKey,'')===fresh?fresh:'';
+}
+const partyLabels={pending:'승인 대기',approved:'참가 승인',waitlisted:'대기자',cancelled:'운영자 취소'};
 function meetupCard(meetup){
  return '<article class="n22-meetup-preview">'+
    '<span class="n22-meetup-kicker">모임 준비 소식 · '+escapeHtml(ADMIN_ACTIVITY_LABELS[meetup.activity]||'동행')+'</span>'+
@@ -49,7 +57,7 @@ function meetupCard(meetup){
    '<button type="button" data-n22-open-activity="'+escapeHtml(activityToInvite[meetup.activity]||'outing')+
    '">관련 장소 살펴보기 →</button></div>'+
    '<div class="n24-interest"><button type="button" data-n24-interest="'+Number(meetup.id)+'" aria-pressed="false" disabled>관심 확인 중</button>'+
-   '<p role="status" data-n24-message></p></div></article>';
+   '<p role="status" data-n24-message></p></div><div class="n24-interest" data-n25-slot="'+Number(meetup.id)+'" hidden></div></article>';
 }
 export function setupPublicPrograms({home,loadPlaces}){
  const section=$('#n22-public-programs',home);
@@ -57,6 +65,33 @@ export function setupPublicPrograms({home,loadPlaces}){
  const list=$('#n22-public-course-list',home);
  const meetups=$('#n22-public-meetups',home);
  let mine=new Set(),openIds=new Set(),ready=false,busy=false;
+ let partyOpen=new Set(),partyRows=[],partyReady=false,partyBusy=false;
+ async function refreshParty(){
+  const token=partyToken();
+  const [open,own]=await Promise.all([companionRpc('nagachi_public_party_open'),token?companionRpc('nagachi_my_party_applications',{p_token:token}):Promise.resolve({ok:true,data:[]})]);
+  partyReady=open.ok&&Array.isArray(open.data)&&own.ok&&Array.isArray(own.data);
+  partyOpen=open.ok&&Array.isArray(open.data)?new Set(open.data.map(x=>Number(x.meetup_id))):new Set();
+  if(own.ok&&Array.isArray(own.data))partyRows=own.data.filter(x=>Number.isSafeInteger(Number(x.meetup_id))&&Object.hasOwn(partyLabels,x.status));
+  else partyRows=[];
+  renderParty();
+ }
+ function renderParty(){
+  for(const slot of meetups.querySelectorAll('[data-n25-slot]')){
+   const id=Number(slot.dataset.n25Slot),own=partyRows.find(x=>Number(x.meetup_id)===id);
+   slot.hidden=!partyReady||(!partyOpen.has(id)&&!own);
+   slot.innerHTML=own?'<strong>'+escapeHtml(partyLabels[own.status])+'</strong>':
+    '<button type="button" data-n25-apply="'+id+'" '+(partyBusy?'disabled':'')+'>무료 동행 참가 신청</button>';
+  }
+  const panel=meetups.querySelector('[data-n25-own]');
+  if(!panel)return;
+  panel.hidden=!partyToken()&&!partyOpen.size;
+  panel.innerHTML='<h3>내 동행 신청</h3>'+
+   (!partyReady?'<p>신청 상태를 확인하지 못했습니다. 새로고침 후 다시 확인해 주세요.</p>':
+    partyRows.length?partyRows.map(x=>'<article class="n22-meetup-preview"><strong>'+escapeHtml(x.title)+'</strong><p>'+escapeHtml(dateText(x.meet_at))+' · '+escapeHtml(partyLabels[x.status])+'</p>'+
+     (x.status==='approved'&&x.meet_place?'<p>집결지: '+escapeHtml(x.meet_place)+'</p>':'')+
+     '<button type="button" data-n25-withdraw="'+Number(x.meetup_id)+'" '+(partyBusy?'disabled':'')+'>신청 취소·기록 삭제</button></article>').join(''):'<p>등록한 참가 신청이 없습니다.</p>');
+ }
+
  function renderInterest(){
   for(const b of meetups.querySelectorAll('[data-n24-interest]')){
    const id=Number(b.dataset.n24Interest),active=mine.has(id),open=openIds.has(id);
@@ -88,19 +123,37 @@ export function setupPublicPrograms({home,loadPlaces}){
      ['food','hike','outing','travel'].includes(m.activity)&&
      m.stage==='announced'&&typeof m.title==='string'&&typeof m.intro==='string');
   openIds=new Set(shownEvents.filter(m=>!m.meet_at||new Date(m.meet_at).getTime()>Date.now()).map(m=>Number(m.id)));
-  if(!shownCourses.length&&!shownEvents.length&&!storedToken()){
+  if(!shownCourses.length&&!shownEvents.length&&!storedToken()&&!partyToken()){
    section.hidden=true;return;
   }
   list.innerHTML=shownCourses.length?shownCourses.map(courseCard).join(''):'';
   meetups.innerHTML=shownEvents.length?
    '<div class="n22-meetup-header"><h3>운영자가 준비 중인 동행</h3>'+
-   '<p>관심을 함께 모으는 단계입니다. 아직 참가 예약·결제는 제공하지 않아요.</p></div>'+
+   '<p>관심을 모으고 운영자가 모집을 시작한 무료 시범 모임에 신청할 수 있어요. 결제는 제공하지 않아요.</p></div>'+
    '<div class="n22-meetup-grid">'+shownEvents.slice(0,6).map(meetupCard).join('')+'</div>':'';
   if(shownEvents.length||storedToken())meetups.insertAdjacentHTML('beforeend','<div class="n24-interest-privacy"><small>관심은 기기 단위로 저장되며 참가 예약이 아닙니다. <a href="/privacy.html">데이터 안내</a></small> <button type="button" data-n24-clear>이 기기의 모든 모임 관심 취소</button><p role="status" data-n24-clear-message></p></div>');
+  meetups.insertAdjacentHTML('beforeend','<div class="n24-interest" data-n25-own hidden></div><p role="status" data-n25-message></p>');
   section.hidden=false;
-  await loadMine();renderInterest();
+  await Promise.all([loadMine(),refreshParty()]);renderInterest();
  }
  home.addEventListener('click',async e=>{
+  const apply=e.target.closest('[data-n25-apply]'),withdraw=e.target.closest('[data-n25-withdraw]');
+  if(apply||withdraw){
+   if(partyBusy||!partyReady||!meetups.contains(apply||withdraw))return;
+   const id=Number(apply?apply.dataset.n25Apply:withdraw.dataset.n25Withdraw);
+   if(apply&&(!partyOpen.has(id)||partyRows.some(x=>Number(x.meetup_id)===id)))return;
+   if(withdraw&&!partyRows.some(x=>Number(x.meetup_id)===id))return;
+   if(apply&&!confirm('만 19세 이상이며 무료 시범 동행에 참가 신청하시겠습니까? 모임 ID, 무작위 기기 비밀값의 해시, 신청·변경 시각과 상태를 저장합니다. 승인 전에는 참가가 확정되지 않습니다. 일정 30일 이후 운영자가 기록을 정리하며, 이 기기에서 신청 취소·삭제할 수 있습니다. 식비 등 현장 비용은 각자 부담합니다. 개인정보·안전 안내를 확인하고 동의할 때만 신청해 주세요.'))return;
+   if(withdraw&&!confirm('신청을 취소하고 서버의 해당 신청 기록을 삭제할까요?'))return;
+   const msg=meetups.querySelector('[data-n25-message]');
+   const token=partyToken(!!apply);
+   if(!token){msg.textContent='이 기기의 안전한 저장 공간을 확인해 주세요.';return;}
+   partyBusy=true;renderParty();msg.textContent='서버 확인 중…';
+   const result=await companionRpc(apply?'nagachi_party_apply':'nagachi_party_withdraw',{p_meetup_id:id,p_token:token});
+   partyBusy=false;await refreshParty();
+   msg.textContent=result.ok&&result.data===true?(apply?'신청을 접수했습니다. 운영자 승인 여부는 내 동행 신청에서 확인하세요.':'신청을 취소하고 기록을 삭제했습니다.'):'처리 여부를 확인하지 못했습니다. 내 동행 신청을 확인하고 다시 시도해 주세요.';
+   return;
+  }
   const interest=e.target.closest('[data-n24-interest]');
   const clear=e.target.closest('[data-n24-clear]');
   if(interest||clear){

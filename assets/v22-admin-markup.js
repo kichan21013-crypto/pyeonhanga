@@ -97,23 +97,23 @@ export function operatorMarkup(){
         <label>모임 소개<textarea name="intro" minlength="12" maxlength="600" required
           placeholder="어떤 취향의 사람들이 어떻게 하루를 보낼지 적어주세요."></textarea></label>
         <div class="n22-two-cols">
-          <label>예정 시각(선택)<input type="datetime-local" name="meet_at"></label>
-          <label>편한 인원<select name="preferred_size"><option value="2">2명</option>
-            <option value="4" selected>3~4명</option><option value="6">5~6명</option>
-            <option value="8">7~8명</option></select></label>
+          <label>예정 시각(모집 시 필수)<input type="datetime-local" name="meet_at"></label>
+          <label>모집 정원<select name="preferred_size"><option value="2">2명</option>
+            <option value="4" selected>4명</option><option value="6">6명</option>
+            <option value="8">8명</option></select></label>
         </div>
-        <label>모일 곳(운영자·수신 동의자 안내용)<input name="meet_place" maxlength="120"
+        <label>모일 곳(승인된 신청자 안내용)<input name="meet_place" maxlength="120"
           placeholder="예: ○○역 근처, 정확한 집결지는 별도 공지"></label>
         <label>진행 단계<select name="stage"><option value="draft">내 초안 · 비공개</option>
           <option value="planning">구성 준비 · 비공개</option>
           <option value="announced">준비 소식 공개 · 참가 확정 아님</option>
           <option value="closed">마감 · 비공개</option></select></label>
-        <p class="n22-operating-note">실제 참여 신청, 예약 확정, 인원 명단, 유상 운송은 아직 제공하지 않습니다. 정확한 집결지는 일반 앱에 공개하지 않습니다.</p>
+        <p class="n22-operating-note">무료 시범 동행의 기기별 참가 신청과 승인을 관리합니다. 실명 확인·결제·유상 운송은 제공하지 않습니다. 집결지는 승인된 신청자에게만 안내하세요.</p>
         <div class="n22-action-row"><button type="submit">모임 계획 저장</button>
           <button type="button" data-n22-clear-meetup>새 모임으로 초기화</button></div>
         <p id="n22-meetup-status" role="status"></p>
       </form>
-      <div class="n22-list-card"><h3>내 동행 모임</h3><div id="n22-meetup-list"></div></div>
+      <div class="n22-list-card"><h3>내 동행 모임</h3><div id="n22-meetup-list"></div></div><div id="n25-party-panel" class="n22-list-card" hidden></div>
       <details class="n22-notice-drawer" id="n22-notice-drawer">
         <summary>활동별 관심자에게 앱 안 공지 작성하기 <span>기존 기능</span></summary>
         <div class="n22-notice-body">
@@ -126,7 +126,7 @@ export function operatorMarkup(){
             <label>공지 제목<input name="title" minlength="3" maxlength="80" required placeholder="예: 주말 산행 모임 안내"></label>
             <label>내용<textarea name="body" minlength="5" maxlength="800" required placeholder="일정과 필요한 안내를 적어주세요."></textarea></label>
             <label>모일 일시<input name="meet_at" type="datetime-local"></label>
-            <label>모일 장소<input name="meet_place" maxlength="120"></label>
+            <label>일반 공지 장소(정확한 집결지 제외)<input name="meet_place" maxlength="120"></label>
             <label class="n22-publish"><input type="checkbox" name="publish"><span>공지 게시하기(선택한 활동의 수신 신청 기기)</span></label>
             <button type="submit">동행 소식 저장</button>
           </form>
