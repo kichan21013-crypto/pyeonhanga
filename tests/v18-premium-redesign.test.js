@@ -14,14 +14,14 @@ test('홈은 실제 앱 화면에 프리미엄 벡터 일러스트를 활용하�
    assert.match(svg,/viewBox="0 0 480 340"|viewBox="0 0 780 490"/);
    assert.doesNotMatch(svg,/href="https?:|<script|<foreignObject/i);
  }
- assert.match(src,/n18-hero-art/);
- assert.match(src,/src="\/assets\/v18-hero\.svg"/);
+ assert.match(src,/n19-photo-mosaic/);
+ assert.match(src,/n19-photo-main/);
  assert.match(src,/src="\/assets\/v18-'\+item\.id\+'\.svg"/);
  assert.match(src,/data-v16-invite/);
  assert.match(src,/setupTogetherJourney\(\{home,loadPlaces:loadCatalog\}\)/);
  assert.match(css,/\.n18-hero-art/);
  assert.match(css,/\.n16-invite\[aria-pressed=true\]/);
- assert.match(home,/v18-premium\.css\?v=20261124-v18/);
+ assert.match(home,/v18-premium\.css\?v=20261124-v19/);
 });
 
 test('선호도는 dropdown이 아닌 터치 가능한 원래 라디오 카드로 입력한다',async()=>{
@@ -83,15 +83,15 @@ test('실제 장소 정보·개인정보 동의·무료 운영을 유지한다',
  assert.doesNotMatch(css,/@import|https?:\/\//);
 });
 
-test('모든 페이지의 실제 빌드 자산 URL이 v18로 버전 갱신된다',async()=>{
+test('모든 페이지의 실제 빌드 자산 URL이 v19로 버전 갱신된다',async()=>{
  const home=await read('dist/index.html');
  const companion=await read('dist/companion.html');
  const saved=await read('dist/saved.html');
  const core=await read('scripts/build-core.js');
  const build=await read('scripts/build.js');
- for(const page of [home,companion,saved]) assert.match(page,/v18-premium\.css\?v=20261124-v18/);
- assert.match(home,/v12-direct-home\.js\?v=20261124-v18/);
- assert.match(companion,/app\.js\?v=20261124-v18/);
- assert.match(build,/const CLIENT_VERSION = '20261124-v18'/);
- assert.match(core,/20261124-v18/);
+ for(const page of [home,companion,saved]) assert.match(page,/v18-premium\.css\?v=20261124-v19/);
+ assert.match(home,/v12-direct-home\.js\?v=20261124-v19/);
+ assert.match(companion,/app\.js\?v=20261124-v19/);
+ assert.match(build,/const CLIENT_VERSION = '20261124-v19'/);
+ assert.match(core,/20261124-v19/);
 });
