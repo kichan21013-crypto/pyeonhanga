@@ -46,7 +46,7 @@ test('실제 홈페이지는 짧은 히어로 직후 단일 카테고리 → 인
  const css=await read('assets/v21-popular-first.css');
  assert.ok(home.indexOf('n21-hero')<home.indexOf('n21-popular" id="n21-popular"'));
  assert.ok(home.indexOf('n16-invites-section')<home.indexOf('n21-popular" id="n21-popular"'));
- assert.match(home,/가고 싶은 곳,<br><em>함께할 사람\./);
+ assert.match(home,/가고 싶은 곳, 함께할 사람\./);
  assert.match(home,/href="#n21-popular"/);
  assert.match(home,/setupPopularFirst\(\{home,loadPlaces:loadCatalog,scrollToInvites\}\)/);
  assert.match(home,/scrollToPopular/);
@@ -83,10 +83,10 @@ test('실제 빌드 버전 v21을 모든 페이지에 적용하고 기존 장소
   read('dist/index.html'),read('dist/companion.html'),read('dist/saved.html'),
   read('scripts/build-core.js'),read('scripts/build.js')
  ]);
- for(const page of [index,companion,saved])assert.match(page,/v21-popular-first\.css\?v=20261124-v34/);
- assert.match(index,/v12-direct-home\.js\?v=20261124-v34/);
+ for(const page of [index,companion,saved])assert.match(page,/v21-popular-first\.css\?v=20261124-v35/);
+ assert.match(index,/v12-direct-home\.js\?v=20261124-v35/);
  assert.match(core,/href="\/#n21-popular"/);
- assert.match(build,/const CLIENT_VERSION = '20261124-v34'/);
+ assert.match(build,/const CLIENT_VERSION = '20261124-v35'/);
  assert.match(index,/id="main"/);
  const home=await read('assets/v12-direct-home.js');
  assert.match(home,/n14-place-browse/);
