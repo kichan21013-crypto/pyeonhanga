@@ -58,7 +58,7 @@ test('앱 운영 상태 페이지는 빌드 시각·버전·DB 설정 유무만 
   assert.match(manifest.built_at,/^\d{4}-\d\d-\d\dT/);
   assert.equal(typeof manifest.analytics_setup_present,'boolean');
   assert.equal(manifest.storage_verified,false,'서버 저장 성공 확인을 흉내 내지 않음');
-  assert.equal(manifest.public_venue_count,636);
+  assert.ok(Number.isInteger(manifest.public_venue_count) && manifest.public_venue_count > 0, '공공데이터 신규 수집 이후에도 검증 가능');
   assert.match(html,/Supabase 설정/);
   assert.match(html,/실제 저장 여부는 동행 설문 제출 결과 및 Supabase 관리자 조회로 확인/);
   assert.match(html,/개인정보·통계 설정 확인/);
