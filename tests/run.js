@@ -20,3 +20,4 @@ import './v18-premium-redesign.test.js';
 import './v19-companion-groups.test.js';
 import './v20-interest-priority.test.js';
 import './v21-popular-first.test.js';
+import './v22-owner-studio.test.js';

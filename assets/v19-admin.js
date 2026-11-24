@@ -4,6 +4,7 @@
  */
 import { GROUP_ACTIVITIES,authenticateCompanionAdmin,companionRpc } from './v19-companion-service.js';
 import { escapeHtml } from '../ui.js';
+import { mountOperations } from './v22-operations-admin.js';
 const $=s=>document.querySelector(s);
 const labels=Object.fromEntries(GROUP_ACTIVITIES.map(x=>[x.id,x.label]));
 let jwt=null;
@@ -11,6 +12,7 @@ const login=$('#n19-admin-login');
 const panel=$('#n19-admin-panel');
 const status=$('#n19-admin-status');
 const msg=t=>{status.textContent=t;};
+const operations=mountOperations({getToken:()=>jwt,notify:msg});
 const number=(rows,key,id,field)=>Array.isArray(rows)?
   (rows.find(r=>r[key]===id)?.[field]??0):0;
 function dateText(iso){
@@ -49,7 +51,8 @@ async function dashboard(){
    '<p class="n19-empty-state">아직 작성한 모임 공지가 없습니다.</p>';
  const form=$('#n19-admin-notice-form');
  form._notices=data.notices||[];
- msg('동의한 관심 인원과 소식 수신 기기를 구분해서 표시합니다. 본 화면은 운영자 전용입니다.');
+ msg('운영자 로그인이 확인되었습니다. 코스·모임·수익 계획을 관리할 수 있습니다.');
+ await operations.load();
 }
 login.addEventListener('submit',async event=>{
  event.preventDefault();
@@ -115,5 +118,6 @@ $('#n19-admin-notices').addEventListener('click',event=>{
 $('#n19-admin-refresh').addEventListener('click',dashboard);
 $('#n19-admin-logout').addEventListener('click',()=>{
  jwt=null;login.hidden=false;panel.hidden=true;
+ operations.reset();
  login.reset();msg('로그아웃했습니다. 로그인 정보는 이 화면을 닫으면 남지 않습니다.');
 });

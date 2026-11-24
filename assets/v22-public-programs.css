@@ -1,0 +1,52 @@
+/* 공개된 코스만 홈에 자연스럽게 나타나는 실제 제안 카드.
+ * 초안/관리자 개인 데이터 및 예정 집결장소 노출 금지. */
+.n22-public-programs{max-width:1060px;margin:23px auto 30px;padding:22px;border-radius:24px;
+ background:linear-gradient(125deg,#f4f8f2,#eaf6ed);border:1px solid #d9e9db;}
+.n22-public-heading{display:flex;justify-content:space-between;gap:13px;align-items:center;margin-bottom:15px;}
+.n22-public-heading span{font-size:10px;font-weight:950;letter-spacing:.12em;color:#d76e50;}
+.n22-public-heading h2{font-size:25px!important;font-weight:950;color:#1b4e3a;letter-spacing:-.06em;
+ margin:6px 0!important;}
+.n22-public-heading p{color:#708575;font-size:12px;line-height:1.6;margin:0!important;}
+.n22-public-course-list{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+ gap:13px;padding:2px 2px 15px;scrollbar-width:thin;scrollbar-color:#c7ddcd transparent;}
+.n22-public-card{flex:0 0 285px;scroll-snap-align:start;border:1px solid #d7e3d8;border-radius:19px;
+ background:#fff;overflow:hidden;box-shadow:0 5px 16px rgba(23,84,52,.045);}
+.n22-public-photo{display:block;width:100%;height:150px;overflow:hidden;background:#e6efe6;}
+.n22-public-photo img{width:100%;height:100%;display:block;object-fit:cover;}
+.n22-public-card-copy{padding:14px 15px;display:flex;flex-direction:column;gap:7px;min-height:210px;}
+.n22-public-tag{color:#d27252;font-size:11px;font-weight:950;}
+.n22-public-card h3{font-size:18px!important;font-weight:950!important;color:#1d4937;margin:0!important;
+ letter-spacing:-.035em;line-height:1.4;}
+.n22-public-desc{font-size:12px!important;color:#607b6a;line-height:1.6!important;display:-webkit-box;
+ -webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0!important;}
+.n22-public-route{font-size:11px!important;color:#8b9b90;margin:0!important;line-height:1.6!important;}
+.n22-public-bottom{margin-top:auto;display:flex;flex-direction:column;gap:9px;}
+.n22-public-bottom>span{font-size:11px;color:#78937e;font-weight:750;}
+.n22-public-bottom button{background:#0f714f;color:white;border:0;min-height:41px;padding:10px 11px;
+ border-radius:11px;font-size:12px;font-weight:900;text-align:center;cursor:pointer;}
+.n22-public-bottom button:focus-visible,.n22-meetup-bottom button:focus-visible{outline:3px solid #dd865b;outline-offset:3px;}
+.n22-meetup-header{margin:22px 0 12px!important;}
+.n22-meetup-header h3{font-size:20px!important;color:#20543b;font-weight:950;margin:0 0 5px!important;}
+.n22-meetup-header p{font-size:12px!important;color:#738678;margin:0!important;}
+.n22-meetup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.n22-meetup-preview{background:#fff;border-radius:16px;border:1px solid #dfebe1;padding:16px;}
+.n22-meetup-kicker{font-size:11px;color:#cf7451;font-weight:950;}
+.n22-meetup-preview h3{font-size:17px!important;color:#245037;margin:9px 0!important;}
+.n22-meetup-preview>p{font-size:12px!important;color:#6a8571;line-height:1.65!important;margin:0!important;}
+.n22-meetup-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;
+ margin-top:13px;flex-wrap:wrap;}
+.n22-meetup-bottom small{color:#8e998d;font-size:10px;}
+.n22-meetup-bottom button{border:1px solid #c4dfcc;background:#eef8f1;color:#206e4c;
+ font-size:11px;font-weight:900;border-radius:10px;padding:8px 10px;cursor:pointer;}
+@media(max-width:760px){
+ .n22-public-programs{margin:18px 0 26px;padding:16px;border-radius:19px;}
+ .n22-public-heading h2{font-size:21px!important;}
+ .n22-public-heading p{font-size:11px;}
+ .n22-public-card{flex-basis:238px;border-radius:16px;}
+ .n22-public-photo{height:132px;}
+ .n22-public-card-copy{padding:12px;min-height:195px;}
+ .n22-public-card h3{font-size:16px!important;}
+ .n22-meetup-grid{grid-template-columns:1fr;}
+ .n22-meetup-preview{padding:13px;}
+ .n22-meetup-preview h3{font-size:15px!important;}
+}
