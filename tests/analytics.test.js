@@ -100,7 +100,7 @@ test('저장공간 차단/손상에도 익명 식별과 저장 목록 읽기가 
     assert.equal(await track('page_view'), true);
     assert.match(JSON.parse(requests[0].options.body).payload.session_id, /^[a-f0-9]{8}-[a-f0-9]{4}-/);
     globalThis.localStorage = { getItem() { throw new Error('blocked'); }, setItem() { throw new Error('blocked'); } };
-    assert.equal(await track('place_view'), true); assert.deepEqual(savedIds(), []);
+    assert.equal(await track('place_view'), false, '저장공간 차단으로 동의를 확인할 수 없으면 통계를 전송하지 않음'); assert.deepEqual(savedIds(), []);
   });
 });
 
