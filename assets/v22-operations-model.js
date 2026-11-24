@@ -42,3 +42,11 @@ export function sanitizePublicCourses(rows,catalog){
    .map(c=>({...c,places:c.place_ids.map(id=>places.get(id)).filter(Boolean)}))
    .filter(c=>c.places.length>0).slice(0,12);
 }
+
+/* Existing catalog only. No automatic publish, pricing or generated schedule. */
+export function draftCourseFromPlace(p){
+ if(!p||p.isDemo||typeof p.id!=='string'||!p.id||typeof p.name!=='string'||!p.name.trim()||!['서울','경기','강릉','경주','부산','제주'].includes(p.region))return null;
+ const tags=Array.isArray(p.intentTags)?p.intentTags:[];
+ const activity=p.category==='맛집'?'food':tags.some(x=>x==='hike'||x==='trail')?'hike':p.category==='여행'?'travel':'outing';
+ return {placeId:p.id,title:(p.name.trim()+' 함께 가요').slice(0,90),region:p.region,activity};
+}
