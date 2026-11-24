@@ -1,6 +1,6 @@
 import { card, icon, escapeHtml, placeUrl } from './ui.js';
 import { savedIds, anonymousId } from './storage.js';
-import { track, trackRhythm, analyticsEnabled } from './analytics.js';
+import { track, trackRhythm, analyticsEnabled, recordConsentedSurvey } from './analytics.js';
 import { inferIntent, requestedComforts, COMPANIONS } from './search.js';
 import { emptyRhythmFilters, recommendRhythms, DESIRES, ACTIVITIES, DURATION_OPTIONS, TRANSPORT_OPTIONS, companionSummary, toggleSelection, activeActivities } from './rhythm.js';
 import { toggleSavedPlace, shareOrCopy, SURVEY_CHOICES } from './actions.js';
@@ -215,9 +215,12 @@ function companionDialog(p, trigger = null, program = null) {
     button.disabled = true;
     const values = Object.fromEntries(new FormData(form));
     delete values.consent; // 동의 체크 원문은 분석 이벤트에 보관하지 않음
-    const success = analyticsEnabled && await trackRhythm('premium_willingness', {
-      ...metadata(p), ...context, ...values, response_id:responseId,
-    });
+    // form.reportValidity()가 필수 동의 체크 여부를 먼저 확인합니다.
+    // 서버에는 명시적 동의한 설문 완료와 그 응답의 관심 활동만 전송합니다.
+    const success = analyticsEnabled && form.elements.consent.checked &&
+      await recordConsentedSurvey({
+        ...metadata(p), ...context, ...values, response_id:responseId,
+      });
     if (analyticsEnabled && !success) {
       button.disabled = false;
       status.textContent = '서버에 저장하지 못했습니다. 연결을 확인하고 다시 제출해 주세요.';
