@@ -241,3 +241,19 @@ body[data-companion=true] .n15-intent-choice strong{color:#2b533a!important;}
 .n-mobile-nav a svg{width:25px!important;height:25px!important;stroke-width:1.8!important;}
 .n15-intent-icon img{width:100%;height:100%;object-fit:cover;border-radius:14px;}
 .n13-detail-companion .panel-kicker{color:#b96547!important;}
+
+/* Activity choices use the same premium illustrated series as the home screen. */
+.n18-purpose-grid .n18-option span{min-height:97px;flex-direction:column!important;gap:7px!important;padding:8px 5px!important;line-height:1.25!important;}
+.n18-purpose-grid .n18-option span::before{
+  content:'';display:block;width:66px;height:51px;flex:none;border-radius:12px;
+  background-size:cover;background-repeat:no-repeat;background-position:center;
+}
+.n18-purpose-grid .n18-option:nth-child(1) span::before{background-image:url('/assets/v18-eat.svg');}
+.n18-purpose-grid .n18-option:nth-child(2) span::before{background-image:url('/assets/v18-outing.svg');}
+.n18-purpose-grid .n18-option:nth-child(3) span::before{background-image:url('/assets/v18-travel.svg');}
+.n18-purpose-grid .n18-option:nth-child(4) span::before{background-image:url('/assets/v18-hike.svg');}
+.n18-preference-dialog .n18-done .button{margin-top:16px!important;}
+@media(max-width:760px){
+ .n18-purpose-grid .n18-option span{min-height:79px!important;padding:7px 4px!important;gap:4px!important;}
+ .n18-purpose-grid .n18-option span::before{width:52px;height:39px;border-radius:9px;}
+}
