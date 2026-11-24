@@ -17,11 +17,11 @@ let passed=0;
 const ok=(value,label)=>{assert.ok(value,label);passed++;};
 async function chooseSurvey(page) {
   const dialog=page.locator('dialog.n13-survey-dialog');
-  await dialog.locator('[name=age]').selectOption('60~64');
-  await dialog.locator('[name=preference]').selectOption('성별 상관없음');
-  await dialog.locator('[name=purpose]').selectOption('식사동행');
+  await dialog.locator('[name=age][value="45~49"]').check();
+  await dialog.locator('[name=preference][value="성별 상관없음"]').check();
+  await dialog.locator('[name=purpose][value="식사동행"]').check();
   await dialog.locator('[data-n13-next]').click();
-  await dialog.locator('[name=group_size]').selectOption('3~4명');
+  await dialog.locator('[name=group_size][value="3~4명"]').check();
   await dialog.locator('[name=willingness][value="약 2만원"]').check();
   await dialog.locator('[name=consent]').check();
   await dialog.locator('[type=submit]').click();
@@ -62,7 +62,7 @@ try {
   ok(requests.length===0,'미연결 환경 동의 전 외부 분석 요청 없음');
   const dialog=await chooseSurvey(page);
   await dialog.locator('#survey-done').waitFor();
-  ok(await dialog.innerText().then(t=>t.includes('저장되지 않았습니다')),
+  ok(await dialog.innerText().then(t=>t.includes('저장되지 않았어요')),
     '서버 미연결 시 미저장 표시');
   ok(requests.length===0,'미연결 환경 동의 후에도 외부 요청 없음');
   await page.goto(base+'/companion.html',{waitUntil:'domcontentloaded'});
