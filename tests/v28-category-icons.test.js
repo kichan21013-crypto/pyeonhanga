@@ -25,10 +25,10 @@ test('v28 상단 버튼과 기존 동행 탐색을 연결하고 전 화면에 �
  assert.match(home,/id="n16-invites"/);
  assert.equal((home.match(/id="n16-invites"/g)||[]).length,1);
  assert.match(home,/setupTogetherJourney\(\{home,loadPlaces:loadCatalog\}\)/);
- assert.match(home,/가고 싶은 곳,<br><em>함께할 사람\./);
+ assert.match(home,/가고 싶은 곳, 함께할 사람\./);
  assert.match(core,/v28-'\+invite\.id\+'\.webp/);
  for(const item of POPULAR_ACTIVITIES)assert.equal(item.image,'v28-'+item.invite+'.webp');
  assert.match(css,/\.n28-quick-category:focus-visible/);
  assert.match(css,/grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v34/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v35/);
 });
