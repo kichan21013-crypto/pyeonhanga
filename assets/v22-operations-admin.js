@@ -49,6 +49,7 @@ export function mountOperations({getToken,notify}){
  const results=$('#n22-place-suggestions');
  const picked=$('#n22-course-picked');
  let data={courses:[],meetups:[],pricing:[]};
+ let interestCounts=null;
  let places=[];
  let selectedPlaceIds=[];
  let requestId=0;
@@ -116,11 +117,13 @@ export function mountOperations({getToken,notify}){
  function renderMeetups(){
   $('#n22-meetup-list').innerHTML=data.meetups.length?data.meetups.map(m=>{
    const course=data.courses.find(c=>Number(c.id)===Number(m.course_id));
+   const count=interestCounts?.get(Number(m.id));
+   const interestText=Number.isSafeInteger(count)?'관심 기기 '+count+'개 (참가 확정 아님)':'모임 관심 집계 연결 확인 필요';
    return '<article class="n22-list-item"><div><span class="n22-chip '+(m.stage==='announced'?'live':'')+'">'+
     escapeHtml(MEETUP_STAGE_LABELS[m.stage]||m.stage)+'</span> <small>'+
     escapeHtml(activityLabel(m.activity))+'</small><h4>'+selectedText(m,'title')+'</h4>'+
     '<p>'+escapeHtml(safeDate(m.meet_at))+' · 희망 '+Number(m.preferred_size)+'명'+
-    (course?' · '+escapeHtml(course.title):'')+'</p></div>'+
+    (course?' · '+escapeHtml(course.title):'')+'</p><p><strong>'+escapeHtml(interestText)+'</strong></p></div>'+
     '<div class="n22-item-actions"><button type="button" data-n22-edit-meetup="'+Number(m.id)+'">수정</button>'+
     '<button type="button" data-n22-notice-meetup="'+Number(m.id)+'">해당 관심자 공지</button></div></article>';
   }).join(''):listEmpty('아직 준비 중인 동행 모임이 없어요.');
@@ -157,13 +160,17 @@ export function mountOperations({getToken,notify}){
   const request=++requestId;
   const status=$('#n22-load-status');
   status.textContent='운영 자료를 불러오고 있어요.';
-  const result=await companionRpc('nagachi_admin_operations',{},jwt);
+  const [result,interestResult]=await Promise.all([
+   companionRpc('nagachi_admin_operations',{},jwt),
+   companionRpc('nagachi_admin_meetup_interest_counts',{},jwt)
+  ]);
   if(request!==requestId||!getToken())return;
   if(!result.ok){
    status.textContent=friendlyError(result.reason);
    status.dataset.error='true';
    return;
   }
+  interestCounts=interestResult.ok&&Array.isArray(interestResult.data)?new Map(interestResult.data.filter(x=>Number.isSafeInteger(Number(x.meetup_id))&&Number.isSafeInteger(Number(x.interest_count))&&Number(x.interest_count)>=0).map(x=>[Number(x.meetup_id),Number(x.interest_count)])):null;
   const body=result.data||{};
   data={
    courses:Array.isArray(body.courses)?body.courses:[],
@@ -338,7 +345,7 @@ export function mountOperations({getToken,notify}){
  });
  renderPicked();renderRevenuePreview();
  return {load,reset:()=>{
-   requestId++;data={courses:[],meetups:[],pricing:[]};
+   requestId++;data={courses:[],meetups:[],pricing:[]};interestCounts=null;
    $('#n22-operation-metrics').replaceChildren();
    $('#n22-course-list').replaceChildren();
    $('#n22-meetup-list').replaceChildren();
