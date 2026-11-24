@@ -7,6 +7,7 @@ import { escapeHtml, safeUrl, placeUrl, icon } from '../ui.js';
 import { savedIds } from '../storage.js';
 import { analyticsEnabled } from '../analytics.js';
 import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHeading } from './v12-browse-state.js';
+import { PROGRAMS } from './v15-programs.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -185,47 +186,63 @@ function setupHome() {
   const home = document.createElement('section');
   home.className = 'n12-home';
   // 동행이 첫 번째 경험입니다. 장소 탐색은 동행 의향을 구체화하는 보조 수단입니다.
+  const partyProgramCards = PROGRAMS.map(p=>
+    '<article class="n15-program-card" data-tone="'+p.tone+'">' +
+    '<div class="n15-program-heading"><span class="n15-program-icon" aria-hidden="true">'+p.icon+'</span>' +
+    '<span class="n15-program-status">기획안 · 참여 희망 조사</span></div>' +
+    '<p class="n15-program-kind">'+p.category+'</p><h3>'+p.title+'</h3>' +
+    '<p class="n15-program-description">'+p.summary+'</p>' +
+    '<ol class="n15-program-route">'+p.outline.map(step=>'<li>'+step+'</li>').join('')+'</ol>' +
+    '<p class="n15-program-transport">이동 안내: '+p.transport+'</p>' +
+    '<button type="button" data-program-interest="'+p.id+'" data-companion-activity="'+p.interest+'">이 프로그램 관심 남기기 →</button>' +
+    '</article>'
+  ).join('');
   home.innerHTML =
-    '<section class="n14-hero" aria-labelledby="n14-hero-title">' +
-    '<div class="n14-hero-copy"><span class="n14-eyebrow">NAGACHI · 나가치 동행</span>' +
-    '<h1 id="n14-hero-title">가고 싶은 곳은 있는데,<br><em>함께할 사람이 없나요?</em></h1>' +
-    '<p class="n14-hero-description">산책, 맛있는 식사, 작은 여행까지.<br>어떤 하루를 누구와 함께하고 싶은지 알려주세요.</p>' +
-    '<div class="n14-actions"><a class="n14-main-button" href="/companion.html">나의 동행 희망 남기기 <span aria-hidden="true">→</span></a>' +
-    '<a class="n14-sub-button" href="#n14-place-browse">함께 가볼 장소 보기</a></div>' +
-    '<p class="n14-trustline">현재는 동행 수요 조사 단계이며 실제 연결·예약·결제는 없습니다. ' +
-    (analyticsEnabled ? '설문 저장 설정은 감지됐으며, 실제 저장 성공 여부는 제출 시 확인됩니다.' : '현재 설문 저장 미연결 상태로 응답은 저장되지 않습니다.') + '</p></div>' +
-    '<div class="n14-hero-art" aria-hidden="true"><span class="n14-sun"></span>' +
-    '<span class="n14-hill-back"></span><span class="n14-hill-front"></span>' +
-    '<span class="n14-person n14-person-one">●</span><span class="n14-person n14-person-two">●</span>' +
-    '<span class="n14-road"></span></div></section>' +
-    '<section class="n14-moments" aria-labelledby="n14-moments-title">' +
-    '<div class="n14-section-heading"><div><p>이런 순간, 함께하고 싶어요</p><h2 id="n14-moments-title">어떤 동행이 끌리세요?</h2></div>' +
-    '<span>관심 있는 활동으로 시작하세요</span></div>' +
-    '<div class="n14-moments-grid">' +
-    '<a href="/companion.html?interest=walk" class="n14-moment" data-tone="sage"><span aria-hidden="true">🌿</span><strong>산책 동행</strong><small>풍경 보며 가볍게 걷기</small></a>' +
-    '<a href="/companion.html?interest=eat" class="n14-moment" data-tone="peach"><span aria-hidden="true">🍽️</span><strong>식사 동행</strong><small>맛있는 한 끼 함께하기</small></a>' +
-    '<a href="/companion.html?interest=outing" class="n14-moment" data-tone="lilac"><span aria-hidden="true">🎨</span><strong>나들이 동행</strong><small>전시와 새로운 공간 가기</small></a>' +
-    '<a href="/companion.html?interest=travel" class="n14-moment" data-tone="blue"><span aria-hidden="true">🚙</span><strong>여행 동행</strong><small>조금 더 멀리 떠나기</small></a>' +
-    '</div></section>' +
-    '<section id="n14-place-browse" class="n14-places" aria-labelledby="n14-place-title">' +
-    '<div class="n14-section-heading"><div><p>동행할 장소도 함께 찾아봐요</p><h2 id="n14-place-title">어디에서 만나고 싶으세요?</h2></div></div>' +
-    '<form id="n12-search" role="search" class="n12-search">' + svg('search') +
+    '<section class="n15-hero" aria-labelledby="n15-hero-title">' +
+    '<div class="n15-hero-copy"><span class="n15-hero-kicker">NAGACHI · 50+ 취향 동행 프로그램</span>' +
+    '<h1 id="n15-hero-title">아직, 함께 놀<br><em>좋은 날이 많으니까.</em></h1>' +
+    '<p>50대 이후에도 미식·산행·나들이·여행을 즐기는 방법.<br>' +
+    '나가치가 취향에 맞는 하루를 제안하고, 함께할 파티원 구성을 돕습니다.</p>' +
+    '<div class="n15-hero-actions"><a class="n15-primary-cta" href="#n15-programs">동행 프로그램 살펴보기 →</a>' +
+    '<a class="n15-secondary-cta" href="/companion.html">나의 동행 취향 남기기</a></div>' +
+    '<small>현재는 프로그램 기획·수요 조사 단계입니다. 확정된 일정이나 실제 모집 중인 파티가 아닙니다.</small></div>' +
+    '<div class="n15-hero-people" aria-hidden="true"><span class="n15-sun"></span><span class="n15-hill"></span>' +
+    '<span class="n15-person n15-one"></span><span class="n15-person n15-two"></span><span class="n15-person n15-three"></span></div></section>' +
+    '<section class="n15-value" aria-label="나가치가 하는 일">' +
+    '<div><strong>취향 맞는 사람</strong><small>대화·활동 분위기를 고려한 파티원 구성</small></div>' +
+    '<div><strong>하루 프로그램</strong><small>코스와 집합 방법, 진행 흐름 기획</small></div>' +
+    '<div><strong>자유로운 참여</strong><small>결혼 여부를 묻지 않고 서로의 사생활 존중</small></div></section>' +
+    '<section class="n15-programs" id="n15-programs" aria-labelledby="n15-programs-title">' +
+    '<div class="n15-section-head"><div><span>PARTY PROGRAM</span><h2 id="n15-programs-title">어떤 하루를 함께할까요?</h2>' +
+    '<p>소개팅이 아닌 취미 중심 모임. 먼저 해보고 싶은 프로그램을 골라주세요.</p></div></div>' +
+    '<div class="n15-program-grid">'+partyProgramCards+'</div>' +
+    '<div class="n15-fee-info"><strong>나가치가 판매하려는 것</strong><p>' +
+    '프로그램 기획·코스 제안·파티원 구성·운영 조율에 대한 <b>서비스비</b>입니다. ' +
+    '식비·카페비·교통비·입장료 등은 참가자가 이용처에 직접 결제하는 구조를 검토합니다. ' +
+    '실제 요금·일정은 아직 확정되지 않았습니다.</p></div></section>' +
+    '<section class="n15-privacy" aria-label="참여 원칙">' +
+    '<div><strong>편안하게 만나고, 서로를 존중하는 모임</strong>' +
+    '<p>연애나 결혼을 목적으로 연결하지 않습니다. 결혼 여부는 가입 조건이 아닙니다. ' +
+    '서로의 사생활과 동의를 존중하며, 안전 수칙을 갖춘 취미 모임을 준비합니다.</p></div>' +
+    '<a href="/companion.html">동행 희망 남기기 →</a></section>' +
+    '<details class="n15-place-drawer" id="n14-place-browse"><summary>코스 참고 장소 직접 찾아보기 <span>맛집·산책·나들이</span></summary>' +
+    '<div class="n15-place-content"><form id="n12-search" role="search" class="n12-search">' + svg('search') +
     '<label for="n12-query" class="sr-only">장소 이름이나 원하는 활동 검색</label>' +
     '<input id="n12-query" type="search" maxlength="160" placeholder="장소 이름이나 하고 싶은 일 검색" autocomplete="off">' +
     '<button type="submit" aria-label="장소 검색">검색</button></form>' +
     '<div class="n12-location"><label for="n12-region">지역을 선택하세요</label>' +
     '<div class="n12-location-select"><select id="n12-region" aria-label="추천 지역">' +
-    options.map(opt => '<option value="' + opt.value + '">' + opt.label + '</option>').join('') +
+    options.map(opt=>'<option value="'+opt.value+'">'+opt.label+'</option>').join('') +
     '</select><span aria-hidden="true">⌄</span></div></div>' +
-    '<div class="n12-section-heading"><h2>함께 가볼 장소 유형</h2><span>하나만 골라보세요</span></div>' +
+    '<div class="n12-section-heading"><h2>장소 종류</h2><span>하나만 선택</span></div>' +
     '<div class="n12-categories" role="group" aria-label="장소 카테고리 하나 선택">' + categoryButtons() + '</div>' +
-    '<p class="n14-place-footnote">장소는 실제 공공데이터를 기반으로 안내하며, 동행 참가자가 모집된 장소라는 의미는 아닙니다.</p></section>';
+    '<p class="n14-place-footnote">장소 사진과 정보는 관광공사 데이터를 기반으로 합니다. 동행 모집 중인 장소라는 뜻은 아닙니다.</p></div></details>';
 
   const results = document.createElement('section');
   results.className = 'n12-results';
   // legacy flow.js는 #rhythm-results를 숨기므로 새 목록에는 별도 ID를 사용합니다.
   results.id = 'n12-results';
-  results.innerHTML = '<div class="n12-results-head"><div><p>함께 가볼 장소</p><h2 id="n12-heading">전체 장소</h2>' +
+  results.innerHTML = '<div class="n12-results-head"><div><p>코스 참고 자료</p><h2 id="n12-heading">전체 장소</h2>' +
     '<small id="n12-subtitle">관광공사에 등록된 실제 장소를 살펴보세요.</small></div>' +
     '<div class="n12-results-aside"><span id="n12-count"></span><button type="button" id="n12-clear" hidden>초기화</button></div></div>' +
     '<p id="n12-status" role="status" class="sr-only"></p>' +
@@ -237,7 +254,7 @@ function setupHome() {
   nav.className = 'n12-nav';
   nav.setAttribute('aria-label','하단 메뉴');
   nav.innerHTML = '<button type="button" data-n12-home class="is-active">' + svg('home') + '<span>홈</span></button>' +
-    '<button type="button" data-n12-recommend>' + svg('compass') + '<span>추천</span></button>' +
+    '<button type="button" data-n12-recommend>' + svg('compass') + '<span>프로그램</span></button>' +
     '<a class="n13-nav-companion" href="/companion.html">' + icon('people') + '<span>동행</span></a>' +
     '<a href="/saved.html">' + icon('heart') + '<span>저장</span></a>';
   document.body.append(nav);
@@ -277,7 +294,7 @@ function setupHome() {
   nav.querySelector('[data-n12-recommend]').addEventListener('click', () => {
     nav.querySelector('[data-n12-home]').classList.remove('is-active');
     nav.querySelector('[data-n12-recommend]').classList.add('is-active');
-    scrollToResults();
+    document.querySelector('#n15-programs')?.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'});
   });
   window.addEventListener('storage', () => {
     $$('.n12-save').forEach(button => {
