@@ -194,35 +194,36 @@ function setupHome() {
   // 동행이 첫 번째 경험입니다. 장소 탐색은 동행 의향을 구체화하는 보조 수단입니다.
   const invitationCards=TOGETHER_INVITES.map(item=>
     '<button type="button" class="n16-invite" data-v16-invite="'+item.id+'" data-tone="'+item.tone+'" aria-pressed="false">' +
-    '<span class="n16-invite-art" aria-hidden="true">'+item.icon+'</span>' +
-    '<strong>'+item.label+'</strong><small>'+item.help+'</small><span class="n16-invite-arrow">갈 곳 찾아보기 →</span></button>'
+    '<span class="n16-invite-art" aria-hidden="true"><img src="/assets/v18-'+item.id+'.svg" alt="" loading="lazy"></span>' +
+    '<strong>'+item.label+'</strong><small>'+item.help+'</small><span class="n16-invite-arrow" aria-hidden="true">→</span></button>'
   ).join('');
   home.innerHTML =
-    '<section class="n16-hero" aria-labelledby="n16-home-title"><span class="n16-kicker">나가치 · 취향 동행</span>' +
+    '<section class="n16-hero n18-hero" aria-labelledby="n16-home-title">' +
+    '<span class="n16-kicker">나가치 · 취향 동행</span>' +
     '<h1 id="n16-home-title">같이 맛있는 거<br><em>먹으러 갈 사람?</em></h1>' +
-    '<p>산책도, 산행도, 작은 나들이도. 마음 맞는 사람과 즐길 하루를 찾는 곳.<br>' +
-    '하고 싶은 일을 고르면 실제 가볼 만한 장소를 추천해 드려요.</p>' +
-    '<a class="n16-hero-cta" href="#n16-invites">어떤 하루가 끌리세요? <span aria-hidden="true">→</span></a>' +
-    '<small>현재는 취향과 동행 의향을 알아보는 단계이며 실제 동행 모집·예약·결제는 없습니다.</small></section>' +
+    '<p>취향이 맞는 사람과 맛집도, 산책도,<br>좋은 하루도 함께해요.</p>' +
+    '<img class="n18-hero-art" src="/assets/v18-hero.svg" alt="" aria-hidden="true" decoding="async" width="780" height="490">' +
+    '<a class="n16-hero-cta" href="#n16-invites">' + icon('people') + ' 같이갈래? <span aria-hidden="true">→</span></a>' +
+    '<small>현재는 원하는 동행을 알아보는 단계예요. 실제 모임 연결·예약·결제는 제공하지 않습니다.</small></section>' +
     '<section class="n16-invites-section" aria-labelledby="n16-invites-title">' +
     '<div class="n16-section-head"><span>TOGETHER, YOUR WAY</span>' +
-    '<h2 id="n16-invites-title">어떤 하루를 같이 보내고 싶으세요?</h2>' +
-    '<p>한 가지만 눌러보세요. 그다음엔 실제 장소를 골라볼 수 있어요.</p></div>' +
+    '<h2 id="n16-invites-title">어떤 하루를 함께할까요?</h2>' +
+    '<p>끌리는 것을 선택해 주세요. 함께 가볼 곳을 추천해 드려요.</p></div>' +
     '<div class="n16-invites" id="n16-invites" role="group" aria-label="하고 싶은 동행 활동 선택">'+invitationCards+'</div></section>' +
-    '<section class="n16-journey" id="n16-journey" aria-labelledby="n16-journey-heading" hidden>' +
-    '<div class="n16-journey-top"><span>같이 가볼 곳 찾기</span><h2 id="n16-journey-heading">어디로 함께 갈까요?</h2>' +
+    '<section class="n16-journey n18-journey" id="n16-journey" aria-labelledby="n16-journey-heading" hidden>' +
+    '<div class="n16-journey-top"><span>WITH YOU · 함께할 곳</span><h2 id="n16-journey-heading">어디로 함께 갈까요?</h2>' +
     '<p id="n16-journey-subtitle">실제 등록된 장소 중 취향에 맞는 곳을 보여드릴게요.</p></div>' +
     '<div class="n16-filter-row"><label for="n16-region">어느 지역이 좋으세요?</label>' +
     '<select id="n16-region" aria-label="희망 지역"><option value="">전체 지역</option>' +
     TOGETHER_REGIONS.map(region=>'<option value="'+region+'">'+region+'</option>').join('') + '</select></div>' +
     '<div class="n16-meal-filters" id="n16-meals" role="group" aria-label="먹고 싶은 음식 종류" hidden>' +
     MEAL_TAGS.map(item=>'<button type="button" data-v16-meal="'+item.id+'" aria-pressed="'+String(!item.id)+'">'+item.label+'</button>').join('') + '</div>' +
-    '<div class="n16-results-bar"><strong>추천 장소</strong><span id="n16-count">장소를 찾는 중</span></div>' +
+    '<div class="n16-results-bar"><strong>취향에 맞는 장소</strong><span id="n16-count">장소를 찾는 중</span></div>' +
     '<p id="n16-journey-status" class="sr-only" role="status"></p>' +
     '<div id="n16-venues" class="n16-venue-grid"></div>' +
     '<button type="button" id="n16-more" class="n16-more" hidden>다른 장소 더 보기</button>' +
-    '<p class="n16-journey-note">마음에 드는 장소를 고르면 함께 가고 싶은 사람의 구성과 서비스비 의향을 남길 수 있어요. ' +
-    '실제 파트너가 정해졌다는 뜻은 아닙니다.</p></section>' +
+    '<p class="n16-journey-note">마음에 드는 곳을 골랐다면 “여기, 같이 가보고 싶어요”를 눌러보세요. ' +
+    '아직 실제 동행이 연결되는 서비스는 아니에요.</p></section>' +
     '<section class="n16-value" aria-labelledby="n16-value-title"><h2 id="n16-value-title">장소만 찾는 앱이 아니에요</h2>' +
     '<div class="n16-value-grid"><div><span aria-hidden="true">📍</span><strong>좋은 곳 고르기</strong><p>실제 장소 정보를 바탕으로 코스를 제안해요.</p></div>' +
     '<div><span aria-hidden="true">🤝</span><strong>취향 맞는 사람</strong><p>비슷한 관심사의 동행 구성을 준비해요.</p></div>' +
@@ -230,8 +231,8 @@ function setupHome() {
     '<p>향후 수익모델은 <strong>코스 제안과 동행 구성·일정 조율 서비스비</strong>입니다. ' +
     '식비·교통비·입장료 등은 각자 현장에서 직접 결제하는 방향을 검토하고 있어요. ' +
     '현재는 무료 수요 검증만 진행하며 유료 모집·차량 연결은 제공하지 않습니다.</p></section>' +
-    '<section class="n16-respect"><div><strong>결혼 여부보다, 서로의 취향이 중요하니까.</strong>' +
-    '<p>나가치는 소개팅이나 결혼 매칭 서비스가 아닙니다. 취미와 활동을 중심으로 만나고 서로의 사생활과 동의를 존중해요.</p></div>' +
+    '<section class="n16-respect"><div><strong>좋은 하루는, 마음 맞는 사람과 함께.</strong>' +
+    '<p>내 취향에 맞는 장소와 함께하고 싶은 방식부터 편안하게 골라보세요.</p></div>' +
     '<a href="/companion.html">동행에 대해 더 알아보기 →</a></section>' +
     '<details class="n15-place-drawer" id="n14-place-browse"><summary>직접 장소 검색하기 <span>맛집·산책·나들이</span></summary>' +
     '<div class="n15-place-content"><form id="n12-search" role="search" class="n12-search">' + svg('search') +
