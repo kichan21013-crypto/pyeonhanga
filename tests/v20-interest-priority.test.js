@@ -16,6 +16,10 @@ test('v20은 실제 HTML/JS에 설문보다 중요한 동행 관심 등록 UI를
  assert.match(app,/가장 중요한 한 가지/);
  assert.match(app,/이 동행에 <em>관심 있어요!/);
  assert.match(app,/n20-interest-summary/);
+ assert.match(app,/n20-interest-people/);
+ assert.match(app,/fetchPublicInterestCounts\(\)/);
+ assert.match(app,/publicInterest\.counts\[item\.id\]>=5/);
+ assert.match(app,/참가 확정 아님/);
  assert.match(app,/class="n20-action-dock"/);
  assert.match(app,/n20-submit-interest/);
  assert.match(app,/♡ 이 동행에 관심 있어요/);
