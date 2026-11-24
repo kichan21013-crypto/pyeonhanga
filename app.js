@@ -241,7 +241,7 @@ if (companionStatus) companionStatus.textContent = analyticsEnabled
   ? '설문 저장 설정이 등록돼 있습니다. 실제 저장 여부는 제출 후 확인할 수 있습니다. 현재 동행 연결·예약·결제는 없습니다.'
   : '현재 분석 서버가 연결되지 않아 설문 응답은 저장되지 않습니다. 실제 동행 연결·예약·결제도 제공하지 않습니다.';
 updateSaved();
-document.addEventListener('click', event => {
+document.addEventListener('click', async event => {
   const save = event.target.closest('[data-save]');
   if (save) {
     const p = places.find(item => item.id === save.dataset.save); if (!p) return;
@@ -263,7 +263,26 @@ document.addEventListener('click', event => {
     if (program) companionDialog(programContext(program),planButton,program);
     return;
   }
-  const interest = event.target.closest('[data-companion-interest]'); if (interest) { const p = places.find(p=>p.id===interest.dataset.companionInterest); if(p) companionDialog(p,interest); }
+  const interest = event.target.closest('[data-companion-interest]');
+  if (interest) {
+    let place = places.find(item=>item.id===interest.dataset.companionInterest);
+    // 홈 추천은 독립된 빠른 장소 로더를 사용합니다.
+    // 연결 속도가 달라 상세 메인 로더가 아직 끝나지 않아도 클릭을 잃지 않습니다.
+    if (!place) {
+      try {
+        const response = await fetch('/data/places.json');
+        if (!response.ok) throw new Error('Venue list unavailable');
+        const latest = await response.json();
+        if (Array.isArray(latest)) {
+          places = latest;
+          place = places.find(item=>item.id===interest.dataset.companionInterest);
+        }
+      } catch {}
+    }
+    if (place) companionDialog(place,interest);
+    else toast('이 장소의 동행 정보를 불러오지 못했습니다. 새로고침 후 다시 시도해 주세요.');
+    return;
+  }
   if (event.target.closest('[data-reset], #reset-filters')) reset();
 });
 window.addEventListener('storage', () => { updateSaved(); if (page === 'saved') render(); });
