@@ -109,7 +109,7 @@ export function setupPublicPrograms({home,loadPlaces}){
    const msg=interest?interest.parentElement.querySelector('[data-n24-message]'):meetups.querySelector('[data-n24-clear-message]');
    if(interest&&(!ready||(!mine.has(id)&&!openIds.has(id))))return;
    const add=interest&&!mine.has(id);
-   if(add&&!confirm('이 모임에 대한 관심 의사와 무작위 기기 비밀값의 해시를 서버에 최대 90일간 보관하는 데 동의하시나요? 참가 신청·확정이나 결제가 아닙니다. 언제든 이 기기에서 취소할 수 있습니다.'))return;
+   if(add&&!confirm('이 모임에 대한 관심 의사와 무작위 기기 비밀값의 해시를 서버에 기록하고 90일간 집계하는 데 동의하시나요? 만료 기록은 운영자가 정리합니다. 참가 신청·확정이나 결제가 아닙니다. 언제든 이 기기에서 취소할 수 있습니다.'))return;
    if(clear&&!confirm('이 기기에 등록한 모든 모임 관심을 취소할까요?'))return;
    const token=add?ensureToken():storedToken();
    if(!token){msg.textContent=add?'이 기기에서 안전한 저장 공간을 사용할 수 없습니다.':'취소할 기기 관심 기록이 없습니다.';return;}
