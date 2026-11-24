@@ -19,7 +19,7 @@ test('홈의 동행은 카테고리보다 먼저 보여주고, 카드에서도 �
   assert.match(source,/동행 수요 조사/);
   assert.match(source,/실제 동행 연결은 아직 제공하지 않아요/);
   assert.match(source,/analyticsEnabled/);
-  assert.doesNotMatch(source,/동행 중|동행 모집 중|확정 동행/);
+  assert.doesNotMatch(source,/모집확정|실시간 파티원|잔여석/);
 });
 
 test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',async()=>{
