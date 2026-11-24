@@ -27,7 +27,7 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
   const home=await read('dist/index.html');
   const saved=await read('dist/saved.html');
   const detailFiles=await read('scripts/build-core.js');
-  assert.match(page,/같은 취향이라면/);
+  assert.match(page,/나의 동행 취향 남기기/);
   assert.match(page,/data-program-interest/);
   assert.match(page,/실제 모임이 아닌 사업 검증용 기획안입니다/);
   assert.match(page,/class="n13-landing n15-program-hub"/);
