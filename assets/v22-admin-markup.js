@@ -36,6 +36,11 @@ export function operatorMarkup(){
       <div class="n22-panel-title"><span>OVERVIEW</span><h2 id="n22-overview-title">오늘의 운영 현황</h2>
         <p>관심 의사를 남긴 분과 실제 확정 참여자를 혼동하지 않습니다.</p></div>
       <div id="n22-operation-metrics" class="n22-metrics" aria-live="polite"></div>
+      <section class="n19-admin-card n22-overview-card n26-business" aria-labelledby="n26-title">
+        <h3 id="n26-title">사업 운영 지표</h3>
+        <div class="n26-controls"><label>조회 기간<select id="n26-days"><option value="1">오늘</option><option value="7" selected>최근 7일</option><option value="30">최근 30일</option></select></label><button type="button" id="n26-refresh">지표 새로고침</button></div>
+        <div id="n26-business-results" aria-live="polite">운영자 로그인 후 확인할 수 있습니다.</div>
+      </section>
       <div class="n19-admin-card n22-overview-card">
         <h3>실제로 저장된 동행 관심</h3>
         <p>최근 90일 동의 응답의 서로 다른 익명 브라우저 수입니다. 실제 파티 참가 확정은 아닙니다.</p>
