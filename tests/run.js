@@ -17,3 +17,4 @@ import './v13-companion.test.js';
 import './v14-companion-first.test.js';
 import './v16-consent-browser-contract.test.js';
 import './v18-premium-redesign.test.js';
+import './v19-companion-groups.test.js';
