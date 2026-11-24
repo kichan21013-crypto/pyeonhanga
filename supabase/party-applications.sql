@@ -32,7 +32,9 @@ begin
   where a.meetup_id=old.id and a.status='approved') then
   raise exception 'Capacity below approvals' using errcode='22023';
  end if;
- if new.stage<>'announced' then new.recruitment_open:=false; end if;
+ if new.stage<>'announced' or new.meet_at is null or new.meet_at<=now()
+  or new.meet_at>now()+interval '90 days' or nullif(pg_catalog.btrim(new.meet_place),'') is null
+ then new.recruitment_open:=false; end if;
  return new;
 end $$;
 revoke all on function public.nagachi_party_guard_meetup() from public,anon,authenticated;
@@ -53,6 +55,10 @@ begin
  and m.recruitment_open and m.stage='announced' and m.meet_at>now()
  and m.meet_at<=now()+interval '90 days' for update;
  if not found then raise exception 'Applications closed' using errcode='22023'; end if;
+ if not exists(select 1 from public.nagachi_party_applications a where a.meetup_id=p_meetup_id
+ and a.token_hash=pg_catalog.encode(pg_catalog.sha256(pg_catalog.convert_to(p_token,'UTF8')),'hex'))
+ and (select count(*) from public.nagachi_party_applications a where a.meetup_id=p_meetup_id)>=200
+ then raise exception 'Application limit reached' using errcode='22023'; end if;
  insert into public.nagachi_party_applications(meetup_id,token_hash)
  values(p_meetup_id,pg_catalog.encode(pg_catalog.sha256(pg_catalog.convert_to(p_token,'UTF8')),'hex'))
  on conflict(meetup_id,token_hash) do nothing;
