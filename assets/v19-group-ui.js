@@ -29,7 +29,7 @@ export function setupGroupExperience(home){
  const foot=document.createElement('p');
  foot.className='n19-group-privacy';
  foot.textContent='관심 인원은 동의 후 저장된 서로 다른 브라우저 기준입니다. 실제 참가 인원이나 모집 확정 수가 아닙니다.';
- home.querySelector('.n16-invites-section')?.append(foot);
+ journey?.append(foot);
  let counts={};
  let countReady=false;
  async function refreshCounts(){
