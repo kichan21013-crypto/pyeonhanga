@@ -206,7 +206,7 @@ function setupHome() {
     '<span class="n16-kicker">NAGACHI</span>' +
     '<h1 id="n16-home-title">가고 싶은 곳,<br><em>함께할 사람.</em></h1>' +
     '<p>취향이 통하는 사람들과<br>더 특별한 하루를 만들어보세요.</p>' +
-    '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"><img src="/assets/v30-hero.webp" alt="" width="256" height="165" fetchpriority="high" decoding="async"></div></div><span class="n30-model-note">연출 이미지</span>' +
+    '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"><img src="/assets/v31-hero.webp" alt="" width="451" height="469" fetchpriority="high" decoding="async"></div></div><span class="n30-model-note">연출 이미지</span>' +
     '<a class="n16-hero-cta" href="#n21-popular">' + icon('people') + ' <b data-n30-hero-label>동행 둘러보기</b> <span aria-hidden="true">→</span></a>' +
     '<small>관심을 남기면 나가치가 모임을 제안해요.</small></section>' +
     '<section class="n16-invites-section n29-discover" aria-labelledby="n16-invites-title">'+
