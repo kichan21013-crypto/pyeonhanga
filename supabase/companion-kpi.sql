@@ -58,3 +58,23 @@ limit 50;
 -- 운영 판단: 90일 보관으로 원천 데이터가 삭제되기 전에 월별 집계 결과를
 -- 관리자 전용 보고서로 따로 보존하세요. 외부 공개 시 소수 응답 그룹을 개별 공개하지 마세요.
 -- 동행 사업의 전환율/지불 가능성은 수요 '의향'이므로, 실제 결제/예약으로 간주하면 안 됩니다.
+
+
+-- 5) 동행 분야별 실제 설문 완료/서비스비 의향 (활동 직접 선택 기록 v14부터 수집)
+-- 과거 상세 페이지에서 선택한 활동 없이 참여한 응답은 기타/미지정으로 표시합니다.
+select
+  case details->'activities'->>0
+    when 'walk' then '산책 동행'
+    when 'food' then '식사 동행'
+    when 'outing' then '나들이 동행'
+    when 'travel' then '여행 동행'
+    else '기타/미지정'
+  end as companion_interest,
+  count(distinct details->>'response_id') as completed_responses,
+  count(distinct session_id) as responding_sessions,
+  count(*) filter(where details->>'willingness' in ('약 1만원','약 2만원','약 3만원 이상')) as paid_interest_responses
+from public.analytics_events
+where event_name='premium_willingness'
+  and is_demo=false
+  and created_at>=now()-interval '30 days'
+group by 1 order by completed_responses desc;
