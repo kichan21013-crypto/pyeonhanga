@@ -1,0 +1,102 @@
+/* NAGACHI v15 | Programme-led 50+ hobby party platform.
+ * No claims of existing parties, participants, seats, operators or real paid transport. */
+:root{--p-green:#287654;--p-ink:#25362f;--p-cream:#f9f5eb;--p-line:#e4ebe5;}
+body[data-page='home'].n12-ready .n12-home{max-width:1120px!important;padding:22px 22px 46px!important;}
+.n15-hero{display:grid;grid-template-columns:1.65fr .75fr;position:relative;isolation:isolate;overflow:hidden;align-items:center;border-radius:27px;min-height:340px;padding:43px 37px;background:linear-gradient(115deg,#f3f8ed,#e5f2e9 60%,#f7eedf);margin:0 0 18px;gap:15px;}
+.n15-hero-copy{position:relative;z-index:2;}
+.n15-hero-kicker{display:block;color:#3a7a59;font-weight:900;letter-spacing:.04em;font-size:12px;margin-bottom:16px;}
+.n15-hero h1{color:#223d2f!important;font-size:clamp(30px,4.2vw,45px)!important;line-height:1.26!important;letter-spacing:-.07em!important;font-weight:950!important;word-break:keep-all;margin:0 0 14px!important;}
+.n15-hero h1 em{color:#de7554;font-style:normal;}
+.n15-hero-copy>p{font-size:15px;line-height:1.6;color:#5b7463;margin:0 0 20px;max-width:620px;word-break:keep-all;}
+.n15-hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+.n15-hero-actions a{display:inline-flex;justify-content:center;align-items:center;text-decoration:none!important;min-height:53px;padding:12px 18px;border-radius:14px;font-size:14px;font-weight:900;}
+.n15-primary-cta{background:#277757;color:#fff!important;box-shadow:0 4px 12px rgba(30,98,66,.12);}
+.n15-secondary-cta{background:#fff;color:#356e53!important;border:1px solid #d5e6da;}
+.n15-hero-copy>small{display:block;font-size:11px;color:#617f6d;line-height:1.45;margin-top:13px;}
+.n15-hero-people{position:relative;align-self:stretch;min-height:210px;overflow:hidden;}
+.n15-sun{position:absolute;right:15%;top:10%;width:87px;height:87px;background:#f6d2a8;border-radius:50%;}
+.n15-hill{position:absolute;bottom:-15%;left:0;width:115%;height:77%;background:#b5d7bc;border-radius:65% 45% 0 0;transform:rotate(-9deg);}
+.n15-person{position:absolute;bottom:15%;width:32px;height:77px;border-radius:14px 14px 8px 8px;background:#315e4c;box-shadow:-7px 11px 0 -4px #315e4c,7px 10px 0 -4px #315e4c;}
+.n15-person:before{content:'';position:absolute;top:-24px;left:2px;height:26px;width:26px;background:#dba883;border-radius:50%;}
+.n15-one{left:19%;background:#e7a57b;box-shadow:-7px 11px 0 -4px #e7a57b,7px 10px 0 -4px #e7a57b;}
+.n15-two{left:43%;bottom:18%;}
+.n15-three{left:65%;background:#9b7fa5;box-shadow:-7px 11px 0 -4px #9b7fa5,7px 10px 0 -4px #9b7fa5;}
+.n15-value{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 2px 32px;border:1px solid #e5eee6;border-radius:19px;background:#fff;padding:18px 0;}
+.n15-value>div{padding:4px 20px;border-right:1px solid #e8eee9;}
+.n15-value>div:last-child{border:0;}
+.n15-value strong{display:block;font-weight:900;color:#2e6249;font-size:14px;margin-bottom:7px;}
+.n15-value small{display:block;font-size:12px;color:#71857a;line-height:1.42;}
+.n15-programs{scroll-margin-top:90px;}
+.n15-section-head{margin:0 0 18px;}
+.n15-section-head span{font-size:12px;font-weight:900;color:#c56b4e;letter-spacing:.07em;}
+.n15-section-head h2{font-size:27px!important;letter-spacing:-.055em;color:#263c2f!important;font-weight:900!important;margin:7px 0!important;}
+.n15-section-head p{font-size:14px;color:#77847b;margin:0;}
+.n15-program-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.n15-program-card{display:flex;flex-direction:column;border:1px solid #e6ebe6;border-radius:22px;padding:22px;background:#fff;min-width:0;box-shadow:0 3px 15px rgba(33,68,48,.035);}
+.n15-program-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:13px;}
+.n15-program-icon{display:grid;place-items:center;width:66px;height:66px;font-size:38px;border-radius:20px;background:#eef6ed;}
+.n15-program-card[data-tone=peach] .n15-program-icon{background:#fff0e7;}
+.n15-program-card[data-tone=lilac] .n15-program-icon{background:#f3f0fc;}
+.n15-program-card[data-tone=blue] .n15-program-icon{background:#eef3fd;}
+.n15-program-status{color:#538169;background:#edf6ef;border-radius:8px;padding:5px 8px;font-size:11px;font-weight:850;text-align:center;}
+.n15-program-kind{font-size:12px;color:#b8684e;margin:0 0 6px;font-weight:800;}
+.n15-program-card h3{font-size:22px!important;font-weight:900!important;letter-spacing:-.055em;color:#293b31;margin:0 0 10px;line-height:1.28;}
+.n15-program-description{color:#68766e;font-size:13px;line-height:1.5;margin:0 0 13px;word-break:keep-all;}
+.n15-program-route{display:grid;gap:7px;list-style:none;padding:13px 14px;margin:0 0 15px;background:#f7faf7;border-radius:13px;}
+.n15-program-route li{display:flex;align-items:flex-start;gap:8px;color:#4d6757;font-size:12px;line-height:1.4;}
+.n15-program-route li:before{content:'✓';font-weight:900;color:#37815b;}
+.n15-program-transport{font-size:11px;color:#7a887e;margin:0 0 14px;line-height:1.4;}
+.n15-program-card>button{display:block;width:100%;min-height:49px;margin-top:auto;border-radius:13px;border:1px solid #31795a;background:#31795a;color:#fff;font-size:14px;font-weight:900;}
+.n15-program-card>button:focus-visible{outline:3px solid #ee9a77;outline-offset:3px;}
+.n15-fee-info{margin:18px 0 24px;border:1px solid #ece3d3;border-radius:18px;padding:17px 19px;background:#fffaf3;}
+.n15-fee-info strong{display:block;color:#8d5c33;font-size:15px;font-weight:900;margin-bottom:7px;}
+.n15-fee-info p{color:#816b52;font-size:13px;line-height:1.6;margin:0;}
+.n15-privacy{margin:10px 0 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:23px 25px;background:#ebf4ef;border:1px solid #dbe9df;border-radius:20px;}
+.n15-privacy strong{display:block;color:#2a674c;font-size:17px;font-weight:900;}
+.n15-privacy p{color:#5e7969;font-size:13px;line-height:1.5;margin:8px 0 0;}
+.n15-privacy a{display:inline-flex;flex:none;justify-content:center;padding:12px 16px;min-height:44px;align-items:center;border-radius:12px;background:#fff;border:1px solid #cfe1d5;color:#296949;font-size:13px;font-weight:850;text-decoration:none;}
+.n15-place-drawer{margin:27px 0 0;border:1px solid #e6ece7;border-radius:19px;background:#fff;overflow:hidden;scroll-margin-top:70px;}
+.n15-place-drawer>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;cursor:pointer;padding:20px 22px;color:#496857;font-size:15px;font-weight:900;}
+.n15-place-drawer>summary::-webkit-details-marker{display:none;}
+.n15-place-drawer>summary:after{content:'⌄';font-size:22px;color:#809c8a;}
+.n15-place-drawer[open]>summary:after{content:'⌃';}
+.n15-place-drawer>summary span{font-size:12px;color:#9aa9a0;font-weight:500;margin-left:auto;}
+.n15-place-content{padding:0 21px 24px;}
+body[data-page='home'].n12-ready .n12-results{display:none!important;}
+body[data-page='home'].n12-ready.n15-browse-open .n12-results{display:block!important;}
+body[data-page='home'].n12-ready .n12-results{scroll-margin-top:69px;}
+@media(max-width:760px){
+ body[data-page='home'].n12-ready .n12-home{padding:13px 15px 35px!important;}
+ .n15-hero{grid-template-columns:1fr;gap:0;min-height:0;padding:25px 20px 24px;border-radius:21px;margin-bottom:13px;}
+ .n15-hero-people{display:none;}
+ .n15-hero-kicker{font-size:11px;margin-bottom:10px;}
+ .n15-hero h1{font-size:28px!important;line-height:1.28!important;}
+ .n15-hero-copy>p{font-size:13px;line-height:1.55;margin-bottom:16px;}
+ .n15-hero-actions{display:flex;flex-direction:column;gap:8px;align-items:stretch;}
+ .n15-hero-actions a{width:100%;font-size:13px;min-height:49px;}
+ .n15-hero-copy>small{font-size:10px;}
+ .n15-value{padding:11px 0;margin-bottom:24px;}
+ .n15-value>div{padding:4px 9px;}
+ .n15-value strong{font-size:11px;}
+ .n15-value small{font-size:10px;}
+ .n15-section-head h2{font-size:21px!important;}
+ .n15-section-head p{font-size:12px;}
+ .n15-program-grid{grid-template-columns:1fr;gap:12px;}
+ .n15-program-card{padding:18px;border-radius:18px;}
+ .n15-program-heading{margin-bottom:11px;}
+ .n15-program-icon{height:61px;width:61px;font-size:37px;border-radius:18px;}
+ .n15-program-card h3{font-size:20px!important;}
+ .n15-program-description{font-size:12px;}
+ .n15-program-route{padding:12px;}
+ .n15-program-route li{font-size:11px;}
+ .n15-fee-info{padding:16px;}
+ .n15-fee-info p{font-size:12px;}
+ .n15-privacy{flex-direction:column;align-items:stretch;padding:18px;border-radius:17px;gap:14px;}
+ .n15-privacy strong{font-size:15px;}
+ .n15-privacy p{font-size:12px;}
+ .n15-place-drawer>summary{padding:16px 14px;font-size:13px;}
+ .n15-place-drawer>summary span{font-size:10px;}
+ .n15-place-content{padding:0 14px 20px;}
+}
+@media(max-width:370px){.n15-hero h1{font-size:25px!important;}.n15-value>div{padding:4px 6px;}.n15-value small{font-size:9px;}}
+@media(prefers-reduced-motion:reduce){.n15-program-card>button{transition:none;}}
