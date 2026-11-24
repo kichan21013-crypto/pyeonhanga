@@ -6,7 +6,7 @@ import { validatePlaces } from './validate-data.js';
 import { publicConfig } from './public-config.js';
 import { recommendRhythms } from '../rhythm.js';
 import { buildPilotPlaces } from './pilot-data.js';
-import { PROGRAMS } from '../assets/v15-programs.js';
+import { TOGETHER_INVITES } from '../assets/v16-together-model.js';
 // 내부 검증 기간. 정식 공개 시 이 값 하나로 생성 페이지 색인을 전환합니다.
 const INDEXING_ENABLED = false;
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -29,7 +29,7 @@ const bottomNavHome = '<svg width="24" height="24" viewBox="0 0 24 24" fill="non
 function mobileNav(active = '') {
   return `<nav class="n-mobile-nav" aria-label="하단 메뉴">
     <a href="/" class="${active === 'home' ? 'is-active' : ''}">${bottomNavHome}<span>홈</span></a>
-    <a href="/#n15-programs" class="${active === 'recommend' ? 'is-active' : ''}">${icon('search')}<span>프로그램</span></a>
+    <a href="/#n16-invites" class="${active === 'recommend' ? 'is-active' : ''}">${icon('search')}<span>같이갈래?</span></a>
     <a href="/companion.html" class="n13-nav-companion ${active === 'companion' ? 'is-active' : ''}">${icon('people')}<span>동행</span></a>
     <a href="/saved.html" class="${active === 'saved' ? 'is-active' : ''}">${icon('heart')}<span>저장</span></a>
   </nav>`;
@@ -64,37 +64,42 @@ for (const p of places) {
   await writeFile(resolve(dir, 'index.html'), page({ title: `${p.name} · ${p.region} ${p.category} 편안함 정보 — 나가치`, description: p.isDemo ? `DEMO SAMPLE · ${p.shortDescription}` : p.shortDescription, path: placeUrl(p), content: detailMarkup(p), page: 'detail', id: p.id, image: p.image, noindex: p.isDemo }));
 }
 // Companion page sells the value proposition of a hosted party programme, not an inventory of venues.
-const programCards = PROGRAMS.map(program =>
-  '<button type="button" class="n15-intent-choice" data-program-interest="'+program.id+
-  '" data-companion-activity="'+program.interest+'">' +
-  '<span aria-hidden="true" class="n15-intent-icon">'+program.icon+'</span>' +
-  '<span><strong>'+program.category+'</strong><small>'+program.title+' · 기획 중</small></span>' +
-  '<span aria-hidden="true" class="n15-intent-arrow">→</span></button>'
+// 동행 메뉴는 '모임 상품'이 아니라 한 문장으로 시작하여 실제 장소를 고르게 합니다.
+// 현재는 모임 인원/운송수단/요금이 확정되지 않아 모집글과 예약을 생성하지 않습니다.
+const invitationLinks = TOGETHER_INVITES.map(invite =>
+  '<a class="n15-intent-choice n16-hub-choice" href="/?together='+invite.id+'">' +
+  '<span class="n15-intent-icon" aria-hidden="true">'+invite.icon+'</span>' +
+  '<span><strong>'+invite.label+'</strong><small>'+invite.help+' · 실제 장소 먼저 고르기</small></span>' +
+  '<span class="n15-intent-arrow" aria-hidden="true">→</span></a>'
 ).join('');
 await writeFile(resolve(out,'companion.html'), page({
- title:'50+ 취향 동행 프로그램 | 나가치',
- description:'50대 이후에도 취향 맞는 파티원들과 함께하는 미식·산행·나들이·당일여행. 나가치가 기획 중인 프로그램을 확인하고 희망을 남겨주세요.',
+ title:'취향 동행 — 같이 갈 사람을 찾는 첫걸음 | 나가치',
+ description:'같이 맛있는 거 먹으러 갈 사람? 산책·산행·나들이를 함께하고 싶은 50대 이상의 취향과 동행 의향을 알아봅니다.',
  path:'/companion.html',page:'info',
- content:'<div class="n13-landing n15-program-hub">' +
+ content:'<div class="n13-landing n15-program-hub n16-companion-hub">' +
   '<section class="n15-hero"><div class="n15-hero-copy">' +
-  '<span class="n15-hero-kicker">NAGACHI · 50+ PARTY PROGRAM</span>' +
-  '<h1>내가 원하는 동행은<br><em>어떤 모임일까요?</em></h1>' +
-  '<p>연애나 결혼을 위한 소개팅이 아닙니다. 음식·산행·나들이·여행을 함께 즐길 파티원을 구성하고, 하루 코스를 제안하는 프로그램을 준비합니다.</p>' +
-  '<small>아직 확정된 날짜·모집 인원·서비스비가 없으며, 아래는 실제 모임이 아닌 사업 검증용 기획안입니다.</small>' +
+  '<span class="n15-hero-kicker">나가치 · 50+ 취향 동행</span>' +
+  '<h1>오늘, 누구랑<br><em>어디 가고 싶으세요?</em></h1>' +
+  '<p>소개팅이 아니어도 좋아요. 나와 취향이 맞는 사람과 맛있는 걸 먹고, 산을 걷고, 새로운 곳을 가보고 싶은 마음부터 시작합니다.</p>' +
+  '<small>실제 동행 모집·매칭·예약·결제를 제공하는 단계는 아니며, 현재는 참여 의향을 확인하는 무료 시범 서비스입니다.</small>' +
   '</div><div class="n15-hero-people" aria-hidden="true"><span class="n15-sun"></span><span class="n15-hill"></span>' +
   '<span class="n15-person n15-one"></span><span class="n15-person n15-two"></span><span class="n15-person n15-three"></span></div></section>' +
-  '<section class="n15-program-signup" id="n15-programs"><div class="n15-section-head"><span>YOUR PARTY</span>' +
-  '<h2>나의 동행 취향 남기기</h2>' +
-  '<p>참여하고 싶은 모임 종류를 고르면 2단계 익명 설문이 열립니다. 결혼 여부·연락처는 묻지 않습니다.</p></div>' +
-  '<div class="n15-intent-grid">'+programCards+'</div></section>' +
-  '<div class="n15-fee-info"><strong>프로그램 비용 구조</strong><p>나가치는 파티 구성·코스 기획·일정 조율에 관한 서비스비를 받는 모델을 검토합니다. ' +
-  '식사·카페·교통·입장료는 이용처에 각자 직접 결제하고, 서비스비는 실제 운영 기준 마련 이후 공개할 예정입니다.</p></div>' +
-  '<section class="n15-privacy"><div><strong>동행은 취미로 연결되고, 사생활은 존중받습니다.</strong>' +
-  '<p>결혼 여부는 참여 기준이 아니며 공개를 요구하지 않습니다. 상대방의 의사와 경계를 존중하고 안전한 모임 운영 원칙을 마련합니다. ' +
-  '차량 이동은 자가용 유상 운송을 주선하지 않으며, 실제 운영 시 적법한 교통수단만 검토합니다.</p></div>' +
-  '<a href="/privacy.html">데이터 처리 안내 →</a></section>' +
-  '<p id="n13-save-status" role="status" class="n13-landing-notice">현재 동행 설문 저장 연결 상태를 확인하는 중입니다. 실제 매칭·예약·결제는 제공하지 않습니다.</p>' +
-  '<a href="/#n14-place-browse" class="n13-landing-more">코스 참고 장소 둘러보기 →</a></div>'
+  '<section class="n15-program-signup" id="n15-programs"><div class="n15-section-head"><span>같이 갈래?</span>' +
+  '<h2>이 중에 끌리는 하루가 있나요?</h2>' +
+  '<p>하나만 누르면 취향에 맞는 실제 장소를 보여드려요. 마음에 드는 장소에서 동행 희망을 남길 수 있습니다.</p></div>' +
+  '<div class="n15-intent-grid">'+invitationLinks+'</div></section>' +
+  '<div class="n15-fee-info"><strong>나가치가 앞으로 하고 싶은 일</strong>' +
+  '<p>실제 장소·코스를 제안하고 관심사가 비슷한 사람들끼리 하루를 즐길 수 있게 돕는 서비스입니다. ' +
+  '현재는 무료 의향 조사만 진행하며 일정·모임·서비스비는 확정되지 않았습니다. ' +
+  '향후 서비스비는 코스·모임 구성과 운영 조율에 한정하는 모델을 검토합니다. ' +
+  '식사·카페·교통·입장료는 각자 직접 결제하는 방향입니다.</p></div>' +
+  '<section class="n15-privacy"><div><strong>취향으로 연결되되, 사생활은 존중합니다.</strong>' +
+  '<p>결혼 여부·연락처·민감한 사생활 정보를 요구하지 않습니다. 참여자의 의사와 안전을 우선합니다. ' +
+  '유료 여행상품·차량 배차·유상 자가용 운송 알선은 제공하지 않습니다. ' +
+  '정식 운영 전에 관련 법령에 따른 등록·안전·운영 의무를 확인하겠습니다.</p></div>' +
+  '<a href="/privacy.html">데이터 안내 →</a></section>' +
+  '<p id="n13-save-status" role="status" class="n13-landing-notice">응답 저장 가능 여부를 확인하는 중입니다. 현재 실제 동행 매칭·예약·결제는 제공하지 않습니다.</p>' +
+  '<a href="/#n14-place-browse" class="n13-landing-more">직접 장소 검색하기 →</a></div>'
 }));
 await writeFile(resolve(out, 'about.html'), page({ title: '편안함 점수 안내 — 나가치', description: '확인한 정보로 계산하는 편안함 점수와 정보 신뢰도를 안내합니다.', path: '/about.html', content: `<p class="eyebrow">나에게 맞는 편안함</p><h1>별점과 다른, 편안함의 기준</h1><p>나가치는 나에게 맞는 하루를 찾는 서비스입니다. ‘내리듬’은 내 상황과 취향에 맞춘 추천을 뜻해요. 누구와 보내고 싶은지, 어떤 하루가 당기는지 고르고 나에게 필요한 편안함을 더해보세요.</p><h2>확인한 정보만 사용합니다</h2><p>주차 15%, 계단 15%, 접근성 10%, 화장실 10%, 좌석 15%, 보행부담 15%, 소음 10%, 대기 10%를 기본 가중치로 사용합니다. 확인된 항목의 ‘좋음’은 100점, ‘보통’은 50점, ‘부담 있음’은 0점으로 계산해 확인된 가중치 안에서 평균을 냅니다.</p><h2>정보가 부족하면 숫자를 숨깁니다</h2><p>확인 가능한 정보가 전체 가중치의 40% 미만이면 숫자 대신 ‘정보 더 필요’로 표시합니다. 정보 신뢰도는 확인 비중 80% 이상 ‘높음’, 60% 이상 ‘보통’, 나머지는 ‘낮음’입니다. 신뢰도는 정보의 충실도이며 편안함 자체나 현장 상태를 보증하지 않습니다.</p><h2>사실 정보와 평가를 구분합니다</h2><p>TourAPI에서 확인한 주차 가능 여부, 운영시간, 화장실, 출입구·경사로 같은 정보는 사실형 이용 정보로 먼저 보여줍니다. 이 사실을 임의로 ‘좋음/불편’ 점수로 바꾸지 않습니다.</p><h2>이용자 평가와 구분합니다</h2><p>편안함 점수는 출처와 확인 날짜가 있는 정보에 기반한 계산입니다. 실제 이용자의 별점이나 리뷰가 아닙니다. 이번 버전에는 이용자 평가 기능이 없습니다.</p><a class="button primary" href="/">장소 살펴보기</a>` }));
 await writeFile(resolve(out, 'privacy.html'), page({ title: '데이터 안내 — 나가치', description: '저장 기능과 익명 행동 분석 안내', path: '/privacy.html', content: `<h1>데이터를 이렇게 사용합니다</h1><h2>로그인과 개인정보 입력이 없습니다</h2><p>이름, 연락처, 주민번호, 건강정보를 받지 않습니다. 장소 저장 목록과 임의로 만든 익명 브라우저 식별값은 브라우저 저장 공간에 보관합니다. 브라우저 데이터를 지우면 초기화됩니다.</p><h2>분석을 연결한 경우</h2><p>방문, 검색 실행, 필터 사용, 상세 조회, 저장, 공유, 동행 관심, 지불의향 응답을 Supabase에 전송합니다. 검색어 원문, 전체 URL, 위치 좌표, 연락처, IP 주소를 이벤트 데이터에 넣지 않습니다. 서비스 제공사의 접속 로그 처리는 해당 제공사의 정책을 따릅니다.</p><h2>동행 설문은 선택입니다</h2><p>연령대, 희망 동행, 목적, 선호 인원, 지불의향만 수요 검증에 사용합니다. 실제 사람 연결이나 결제가 아닙니다. DEMO SAMPLE 응답은 실제 KPI에서 제외합니다.</p><h2>보관 기간</h2><p>분석 이벤트는 운영자가 90일을 기준으로 관리합니다. 브라우저에 저장한 장소와 익명 식별값은 브라우저 데이터 삭제 기능으로 지울 수 있습니다.</p><h2>연결하지 않은 경우</h2><p>분석을 연결하지 않으면 행동과 설문 응답을 서버에 저장하지 않습니다. 탐색, 저장, 공유는 계속 사용할 수 있습니다. 설문 화면에 현재 전송 여부를 표시합니다.</p><a href="/" class="button secondary">홈으로</a>` }));
