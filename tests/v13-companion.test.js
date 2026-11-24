@@ -13,13 +13,13 @@ test('카테고리 아이콘 안의 이미지를 이전보다 크게 표시한�
 
 test('홈의 동행은 카테고리보다 먼저 보여주고, 카드에서도 바로 설문을 연다',async()=>{
   const source=await read('assets/v12-direct-home.js');
-  assert.ok(source.indexOf('<section class="n14-hero"')<source.indexOf('<div class="n12-section-heading"'));
+  assert.ok(source.indexOf('<section class="n16-hero"')<source.indexOf('n15-place-drawer'));
   assert.match(source,/href="\/companion\.html"/);
   assert.match(source,/data-companion-interest/);
   assert.match(source,/동행 수요 조사/);
   assert.match(source,/실제 동행 연결은 아직 제공하지 않아요/);
   assert.match(source,/analyticsEnabled/);
-  assert.doesNotMatch(source,/동행 중|동행 모집 중|확정 동행/);
+  assert.doesNotMatch(source,/모집확정|실시간 파티원|잔여석/);
 });
 
 test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',async()=>{
@@ -27,13 +27,13 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
   const home=await read('dist/index.html');
   const saved=await read('dist/saved.html');
   const detailFiles=await read('scripts/build-core.js');
-  assert.match(page,/어떤 사람과/);
-  assert.match(page,/data-companion-interest/);
-  assert.match(page,/현재 모임이 개설돼 있거나 참가자가 있다는 의미는 아닙니다/);
-  assert.match(page,/class="n13-landing"/);
+  assert.match(page,/오늘, 누구랑/);
+  assert.match(page,/\?together=eat/);
+  assert.match(page,/현재는 참여 의향을 확인하는 무료 시범 서비스입니다/);
+  assert.match(page,/class="n13-landing n15-program-hub n16-companion-hub"/);
   assert.match(page,/data-companion="true"/);
-  assert.match(home,/v12-direct-home\.js\?v=20261124-v14/);
-  assert.match(saved,/app\.js\?v=20261124-v14/);
+  assert.match(home,/v12-direct-home\.js\?v=20261124-v16/);
+  assert.match(saved,/app\.js\?v=20261124-v16/);
   assert.match(detailFiles,/mobileNav\(path === '\/companion\.html' \? 'companion' : 'recommend'\)/);
   assert.match(detailFiles,/class="n13-nav-companion/);
 });
