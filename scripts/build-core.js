@@ -69,7 +69,7 @@ for (const p of places) {
 // 현재는 모임 인원/운송수단/요금이 확정되지 않아 모집글과 예약을 생성하지 않습니다.
 const invitationLinks = TOGETHER_INVITES.map(invite =>
   '<a class="n15-intent-choice n16-hub-choice" href="/?together='+invite.id+'">' +
-  '<span class="n15-intent-icon" aria-hidden="true"><img src="/assets/v18-'+invite.id+'.svg" alt="" loading="lazy"></span>' +
+  '<span class="n15-intent-icon" aria-hidden="true"><img src="/assets/v28-'+invite.id+'.webp" alt="" loading="lazy"></span>' +
   '<span><strong>'+invite.label+'</strong><small>'+invite.help+' · 실제 장소 먼저 고르기</small></span>' +
   '<span class="n15-intent-arrow" aria-hidden="true">→</span></a>'
 ).join('');
