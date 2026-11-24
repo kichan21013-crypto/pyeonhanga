@@ -1,6 +1,6 @@
 /* Owner studio: front-end convenience only. ALL reads/writes are authorized by
  * Supabase Auth + public.nagachi_companion_admins in each SECURITY DEFINER RPC.
- * No private service_role keys, no stored passwords and no real transactions.
+ * No private credentials, no stored passwords and no real transactions.
  */
 import { companionRpc } from './v19-companion-service.js';
 import { escapeHtml } from '../ui.js';
