@@ -7,7 +7,7 @@ const EVENTS = [
   'rhythm_start', 'desire_selected', 'activity_selected', 'companion_selected',
   'condition_selected', 'recommendation_view', 'recommendation_save', 'recommendation_share',
 ];
-const AGE = ['50~54', '55~59', '60~64', '65~69', '70+'];
+const AGE = ['40~44', '45~49', '50~54', '55~59', '60~64', '65~69', '70+'];
 const ARRAY_FIELDS = ['desires', 'activities', 'companions', 'comfort_preferences'];
 const SCALAR_FIELDS = [
   'filter', 'companion', 'walking', 'parking', 'stairs', 'result_count',

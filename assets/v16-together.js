@@ -11,18 +11,19 @@ function venueCard(place,interest){
   const name=escapeHtml(place.name);
   const photo=safeUrl(place.image)||'/assets/garden.svg';
   const link=placeUrl(place);
-  return '<article class="n16-venue-card">' +
+  return '<article class="n16-venue-card n18-venue-card">' +
+    '<div class="n18-venue-visual">' +
     '<a href="'+link+'" class="n16-venue-photo" aria-label="'+name+' 장소 상세 보기">' +
     '<img loading="lazy" src="'+photo+'" alt="'+name+' 장소 사진" width="640" height="450"></a>' +
+    '<span class="n18-photo-label">같이 가볼 곳</span></div>' +
     '<div class="n16-venue-info">' +
     '<span class="n16-venue-category">'+escapeHtml(place.region)+' · '+escapeHtml(place.category)+'</span>' +
     '<h3><a href="'+link+'">'+name+'</a></h3>' +
-    '<p>방문 전 영업·이동 정보를 직접 확인해 주세요.</p>' +
+    '<p>자세한 위치와 방문정보를 확인해 보세요.</p>' +
     '<button type="button" class="n16-venue-together" data-companion-interest="'+escapeHtml(place.id)+
-    '" data-companion-activity="'+interest+'">여기, 같이 가보고 싶어요 →</button>' +
+    '" data-companion-activity="'+interest+'">여기, 같이 가보고 싶어요 <span aria-hidden="true">→</span></button>' +
     '</div></article>';
 }
-
 export function setupTogetherJourney({home,loadPlaces}){
   const invites=$('#n16-invites',home);
   const section=$('#n16-journey',home);

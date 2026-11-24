@@ -76,10 +76,10 @@ test('동행 전용 메뉴는 사람을 먼저 모집하지 않고 동일한 실
   assert.match(page,/\/\?together=outing/);
   assert.match(page,/\/\?together=travel/);
   assert.match(page,/관심사가 비슷한 사람들/);
-  assert.match(page,/현재는 참여 의향을 확인하는 무료 시범 서비스입니다/);
+  assert.match(page,/아직 실제 동행 모집·예약·결제는 제공하지 않아요/);
   assert.doesNotMatch(page,/data-program-interest=|data-companion-interest=|data-n14-interest=/);
   assert.match(build,/TOGETHER_INVITES/);
-  assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v17/);
+  assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v18/);
 });
 
 test('익명 동행 설문은 장소 이름·취향·동행 구성·서비스비 의향을 수집한다',async()=>{
@@ -89,12 +89,12 @@ test('익명 동행 설문은 장소 이름·취향·동행 구성·서비스비
   assert.match(app,/data-companion-interest/);
   assert.match(app,/companionDialog\(p,interest\)/);
   assert.match(app,/const activityMap = \{ walk:'walk', eat:'food', hike:'hike'/);
-  assert.match(app,/어떤 분들과 함께하고 싶으세요\?/);
+  assert.match(app,/어떤 분들과 함께할까요\?/);
   assert.match(app,/name="consent" value="yes" required/);
   assert.match(app,/trackRhythm\('companion_interest'/);
   assert.match(app,/recordConsentedSurvey/);
   assert.match(app,/await recordConsentedSurvey/);
-  assert.match(app,/응답이 저장되지 않았습니다/);
+  assert.match(app,/응답은 저장되지 않았어요/);
   assert.match(analytics,/if \(!analyticsEnabled \|\| !EVENTS\.includes\(event\)\) return false/);
   assert.match(schema,/place_id text check/);
   assert.ok(!/동행 신청 완료|매칭 성공|잔여석 [0-9]+/.test(app));
@@ -103,11 +103,11 @@ test('익명 동행 설문은 장소 이름·취향·동행 구성·서비스비
 test('차량 유상 연결·여행업 운영·개인정보 위험을 소비자에게 오인시키지 않는다',async()=>{
   const homepage=await read('assets/v12-direct-home.js');
   const page=await read('dist/companion.html');
-  assert.match(homepage,/실제 동행 모집·예약·결제는 없습니다/);
+  assert.match(homepage,/실제 모임 연결·예약·결제는 제공하지 않습니다/);
   assert.match(homepage,/현재는 무료 수요 검증만 진행하며 유료 모집·차량 연결은 제공하지 않습니다/);
-  assert.match(homepage,/결혼 여부보다, 서로의 취향이 중요하니까/);
+  assert.match(homepage,/좋은 하루는, 마음 맞는 사람과 함께/);
   assert.match(page,/유료 여행상품·차량 배차·유상 자가용 운송 알선은 제공하지 않습니다/);
-  assert.match(page,/결혼 여부·연락처·민감한 사생활 정보를 요구하지 않습니다/);
+  assert.match(page,/이름·연락처는 받지 않습니다/);
   assert.doesNotMatch(page,/지금 예약|참가비 결제|남은 자리/);
 });
 
@@ -119,9 +119,9 @@ test('코스 제안과 모임 구성의 미래 수익모델은 분리하고 계�
   const css=await read('assets/v16-together.css');
   assert.match(home,/코스 제안과 동행 구성·일정 조율 서비스비/);
   assert.match(home,/식비·교통비·입장료/);
-  assert.match(index,/v16-together\.css\?v=20261124-v17/);
-  assert.match(index,/v12-direct-home\.js\?v=20261124-v17/);
-  assert.match(saved,/mobile-ux\.css\?v=20261124-v17/);
+  assert.match(index,/v16-together\.css\?v=20261124-v18/);
+  assert.match(index,/v12-direct-home\.js\?v=20261124-v18/);
+  assert.match(saved,/mobile-ux\.css\?v=20261124-v18/);
   assert.ok(!('dependencies' in pkg));
   assert.doesNotMatch(css,/@import|https?:\/\//);
   assert.equal(PROGRAMS.length,4);

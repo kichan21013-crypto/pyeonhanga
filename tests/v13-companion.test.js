@@ -13,7 +13,7 @@ test('카테고리 아이콘 안의 이미지를 이전보다 크게 표시한�
 
 test('홈의 동행은 카테고리보다 먼저 보여주고, 카드에서도 바로 설문을 연다',async()=>{
   const source=await read('assets/v12-direct-home.js');
-  assert.ok(source.indexOf('<section class="n16-hero"')<source.indexOf('n15-place-drawer'));
+  assert.ok(source.indexOf('<section class="n16-hero n18-hero"')<source.indexOf('n15-place-drawer'));
   assert.match(source,/href="\/companion\.html"/);
   assert.match(source,/data-companion-interest/);
   assert.match(source,/동행 수요 조사/);
@@ -29,11 +29,11 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
   const detailFiles=await read('scripts/build-core.js');
   assert.match(page,/오늘, 누구랑/);
   assert.match(page,/\?together=eat/);
-  assert.match(page,/현재는 참여 의향을 확인하는 무료 시범 서비스입니다/);
+  assert.match(page,/아직 실제 동행 모집·예약·결제는 제공하지 않아요/);
   assert.match(page,/class="n13-landing n15-program-hub n16-companion-hub"/);
   assert.match(page,/data-companion="true"/);
-  assert.match(home,/v12-direct-home\.js\?v=20261124-v17/);
-  assert.match(saved,/app\.js\?v=20261124-v17/);
+  assert.match(home,/v12-direct-home\.js\?v=20261124-v18/);
+  assert.match(saved,/app\.js\?v=20261124-v18/);
   assert.match(detailFiles,/mobileNav\(path === '\/companion\.html' \? 'companion' : 'recommend'\)/);
   assert.match(detailFiles,/class="n13-nav-companion/);
 });
@@ -41,8 +41,8 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
 test('장소 상세는 동행 콘텐츠가 방문 핵심정보보다 먼저 보인다',async()=>{
   const src=await read('ui.js');
   assert.match(src,/id="companion"/);
-  assert.match(src,/나가치 동행 · 핵심 서비스/);
-  assert.match(src,/약 1분 수요 조사/);
+  assert.match(src,/나가치 · 같이갈래\?/);
+  assert.match(src,/간단한 취향 선택/);
   assert.ok(src.indexOf('<section id="companion"')<src.indexOf('\${verifiedFactsPanel(p)}'));
 });
 
@@ -57,10 +57,10 @@ test('2단계 설문은 익명/동의/저장결과/실패를 명확히 표시한
   assert.match(src,/recordConsentedSurvey/);
   assert.match(src,/response_id:responseId/);
   assert.match(src,/await recordConsentedSurvey/);
-  assert.match(src,/서버에 저장하지 못했습니다/);
-  assert.match(src,/응답이 저장됐습니다/);
-  assert.match(src,/응답이 저장되지 않았습니다/);
-  assert.match(src,/50세 이상/);
+  assert.match(src,/저장되지 않았어요/);
+  assert.match(src,/선택한 내용이 저장됐어요/);
+  assert.match(src,/응답은 저장되지 않았어요/);
+  assert.match(src,/나의 연령대/);
   assert.match(styles,/\.n13-survey-step\[hidden\]/);
   assert.doesNotMatch(src,/예약이 확정됐습니다|동행 신청 완료/);
 });

@@ -117,125 +117,125 @@ function showCopyFallback(url, p) {
 const choices = SURVEY_CHOICES;
 function companionDialog(p, trigger = null, program = null) {
   if (document.querySelector('dialog.n13-survey-dialog')) return;
-  // 선택한 동행 활동은 기존 analytics.details.activities(검증된 enum)로만 기록합니다.
-  // 검색어·자유 텍스트·연락처는 저장하지 않습니다.
+  // 동의 전 클릭·방문은 서버에 전송하지 않습니다.
   const activityMap = { walk:'walk', eat:'food', hike:'hike', outing:'outing', travel:'travel' };
   const desireMap = { walk:'outdoor', eat:'eat', hike:'outdoor', outing:'explore', travel:'explore' };
   const chosen = trigger?.dataset?.companionActivity;
   const context = rhythmContext(p);
-  if (Object.prototype.hasOwnProperty.call(activityMap, chosen)) {
+  if (Object.prototype.hasOwnProperty.call(activityMap,chosen)) {
     context.activities = [activityMap[chosen]];
     context.desires = [desireMap[chosen]];
   }
-  // 관심 클릭과 고유 설문 완료를 서로 다른 지표로 기록합니다.
-  trackRhythm('companion_interest', { ...metadata(p), ...context });
+  trackRhythm('companion_interest',{...metadata(p),...context});
   const dialog = document.createElement('dialog');
-  dialog.className = 'n13-survey-dialog';
-  let responseId; // 명시적 동의·제출 이후에만 생성합니다.
-  const safe = value => escapeHtml(value);
-  const select = (name, label) =>
-    '<label for="survey-' + name + '">' + label +
-    '<select id="survey-' + name + '" name="' + name + '" required>' +
-    '<option value="">선택해 주세요</option>' +
-    choices[name].map(v => '<option value="' + safe(v) + '">' + safe(v) + '</option>').join('') +
-    '</select></label>';
-  const willingness = choices.willingness.map((value,i) =>
-    '<label class="radio-option" for="willingness-' + i + '">' +
-    '<input type="radio" id="willingness-' + i + '" name="willingness" value="' + safe(value) + '" required> ' + safe(value) + '</label>'
-  ).join('');
+  dialog.className = 'n13-survey-dialog n18-preference-dialog';
   dialog.setAttribute('aria-labelledby','survey-title');
-  dialog.innerHTML = '<div class="dialog-content">' +
-    '<div class="dialog-heading"><h2 id="survey-title">나가치 동행 희망 남기기</h2>' +
-    '<button type="button" class="close-dialog" aria-label="설문 닫기">×</button></div>' +
+  let responseId;
+  const safe = value => escapeHtml(value);
+  // 각 항목은 native radio를 감싼 선택 카드: 키보드·스크린리더·터치 모두 지원.
+  const options = (name,title,cls='') =>
+    '<fieldset class="n18-field n18-field-'+name+'"><legend>'+title+'</legend>' +
+    '<div class="n18-options '+cls+'">' +
+    choices[name].map((v,i)=>
+      '<label class="n18-option" for="n18-'+name+'-'+i+'">' +
+      '<input type="radio" id="n18-'+name+'-'+i+'" name="'+name+'" value="'+safe(v)+'" required>' +
+      '<span>'+safe(v)+'</span></label>'
+    ).join('') + '</div></fieldset>';
+  dialog.innerHTML =
+    '<div class="dialog-content n18-dialog-content">' +
+    '<div class="dialog-heading n18-dialog-heading">' +
+    '<div><span class="n18-dialog-eyebrow">NA GACHI · 같이갈래?</span>' +
+    '<h2 id="survey-title">같이 갈 취향을<br><em>가볍게 골라봐요</em></h2></div>' +
+    '<button type="button" class="close-dialog" aria-label="닫기">×</button></div>' +
+    '<p class="n18-selected-place"><span class="n18-selected-icon" aria-hidden="true">✦</span> <strong>'+safe(p.name)+'</strong>에서 함께한다면?</p>' +
     '<div class="n13-survey-progress" aria-label="2단계 중 1단계"><span class="is-active"></span><span></span></div>' +
-    '<p class="n13-survey-step-title">1 / 2 · 함께 가고 싶은 방식</p>' +
-    '<form class="survey" id="companion-survey">' +
-    '<p class="n13-intro"><strong>' + safe(p.name) + '</strong>을(를) 함께할 하루로 생각해 주세요.</p>' +
-    '<div class="n13-disclaimer">지금은 실제 사람 연결이 아닌 수요 조사 단계입니다. 결혼 여부를 묻지 않고, 이름·연락처도 받지 않습니다. 동행 모임이나 이동수단이 확정된 상태가 아니며 예약·결제도 진행하지 않습니다. 초기 응답 대상은 50세 이상입니다.</div>' +
+    '<p class="n13-survey-step-title">1 / 2 · 나와 잘 맞는 동행</p>' +
+    '<form class="survey n18-preference-form" id="companion-survey">' +
     '<div class="n13-survey-step" data-n13-step="1">' +
-    select('age','연령대') + select('preference','어떤 분들과 함께하고 싶으세요?') +
-    select('purpose','동행 목적') +
-    '<button type="button" class="button primary full" data-n13-next>다음 · 참여 조건 고르기 →</button>' +
+    options('age','나의 연령대','n18-age-grid') +
+    options('preference','어떤 분들과 함께할까요?','n18-pref-grid') +
+    options('purpose','하고 싶은 일','n18-purpose-grid') +
+    '<button type="button" class="button primary full n18-next" data-n13-next>함께할 방식 고르기 <span aria-hidden="true">→</span></button>' +
     '</div>' +
     '<div class="n13-survey-step" data-n13-step="2" hidden>' +
-    select('group_size','몇 명이 편하실까요?') +
-    '<fieldset><legend>비슷한 취향의 사람들과 함께할 모임을 나가치가 구성한다면, 서비스비는 어느 정도가 적당할까요? (식사·교통·입장료 별도)</legend>' +
-    willingness + '</fieldset>' +
-    '<label class="n13-consent"><input type="checkbox" name="consent" value="yes" required> 동행 수요 분석을 위해 선택한 답변과 익명 브라우저 식별값을 저장하는 데 동의합니다. <a href="/privacy.html" target="_blank" rel="noopener">데이터 안내</a></label>' +
-    '<button type="submit" class="button primary full">' + (analyticsEnabled ? '동의하고 동행 희망 제출' : '설문 체험 완료 (미저장)') + '</button>' +
-    '<button type="button" class="n13-back" data-n13-back>← 이전 단계</button>' +
+    options('group_size','몇 명이 편하신가요?','n18-group-grid') +
+    options('willingness','나중에 동행 구성을 도와준다면?','n18-fee-grid') +
+    '<p class="n18-fee-note">서비스비에 대한 생각만 알려주세요. 식사·교통·입장료는 별도이며 지금 결제하는 금액은 없어요.</p>' +
+    '<label class="n13-consent n18-consent"><input type="checkbox" name="consent" value="yes" required>' +
+    '<span>선택한 답변과 익명 식별값을 동행 희망 확인에 사용하는 데 동의합니다. ' +
+    '<a href="/privacy.html" target="_blank" rel="noopener">데이터 안내</a></span></label>' +
+    '<button type="submit" class="button primary full n18-submit">' +
+    (analyticsEnabled ? '동의하고 동행 희망 남기기' : '입력 체험 마치기 (미저장)') +
+    ' <span aria-hidden="true">→</span></button>' +
+    '<button type="button" class="n13-back" data-n13-back>← 이전으로</button>' +
     '</div>' +
-    '<p class="survey-status" role="status">' +
-    (analyticsEnabled ? '동의 후 제출한 응답만 저장됩니다.' : '현재 분석 서버가 연결되지 않아 작성한 응답은 저장되지 않습니다.') +
-    '</p></form></div>';
+    '<p class="survey-status" role="status"></p></form>' +
+    '<p class="n18-privacy-note">아직 실제 동행을 연결하지 않아요. ' +
+    (analyticsEnabled ? '동의 후 제출한 응답만 저장됩니다.' : '현재는 저장 서버가 연결되지 않아 선택 내용이 저장되지 않아요.') +
+    '</p></div>';
   document.body.append(dialog);
   dialog.showModal();
-  const form = dialog.querySelector('form');
-  const step1 = dialog.querySelector('[data-n13-step="1"]');
-  const step2 = dialog.querySelector('[data-n13-step="2"]');
-  const progress = dialog.querySelector('.n13-survey-progress');
-  const stepLabel = dialog.querySelector('.n13-survey-step-title');
-  const status = dialog.querySelector('.survey-status');
-  const showStep = number => {
-    step1.hidden = number !== 1;
-    step2.hidden = number !== 2;
+  const form=dialog.querySelector('form');
+  const step1=dialog.querySelector('[data-n13-step="1"]');
+  const step2=dialog.querySelector('[data-n13-step="2"]');
+  const progress=dialog.querySelector('.n13-survey-progress');
+  const stepLabel=dialog.querySelector('.n13-survey-step-title');
+  const status=dialog.querySelector('.survey-status');
+  // 장소 카드에서 들어온 경우 활동을 자동 선택할 수 있지만 언제든 다른 선택이 가능합니다.
+  const defaultPurpose = program?.purpose ||
+    ({eat:'식사동행',hike:'취미친구',outing:'나들이동행',travel:'여행동행'}[chosen]);
+  if (defaultPurpose) {
+    const preset=[...form.querySelectorAll('input[name="purpose"]')].find(x=>x.value===defaultPurpose);
+    if (preset) preset.checked=true;
+  }
+  const moveTo=number=>{
+    step1.hidden=number!==1;
+    step2.hidden=number!==2;
     progress.children[0].classList.add('is-active');
     progress.children[1].classList.toggle('is-active',number===2);
     progress.setAttribute('aria-label','2단계 중 '+number+'단계');
-    stepLabel.textContent = number === 1 ? '1 / 2 · 함께 가고 싶은 방식' : '2 / 2 · 참여 조건과 서비스비';
-    status.textContent = number===2
-      ? (analyticsEnabled ? '동의 후 제출한 응답만 저장됩니다.' : '현재 분석 서버가 미연결 상태로 응답은 저장되지 않습니다.')
-      : '';
-    dialog.scrollTop = 0;
+    stepLabel.textContent=number===1?'1 / 2 · 나와 잘 맞는 동행':'2 / 2 · 함께할 방식';
+    status.textContent='';
+    dialog.scrollTop=0;
+    const heading=number===1 ? step1.querySelector('legend') : step2.querySelector('legend');
+    heading?.setAttribute('tabindex','-1');
+    heading?.focus({preventScroll:true});
   };
-  // 프로그램별 관심사를 익명 수요에 반영하며, 결혼/데이트 여부는 묻지 않습니다.
-  if (program) {
-    form.elements.purpose.value = program.purpose;
-    form.elements.purpose.closest('label')?.setAttribute('data-prefilled-program','true');
-  }
-  dialog.querySelector('[data-n13-next]').onclick = () => {
-    const inputs = [...step1.querySelectorAll('[required]')];
-    const invalid = inputs.find(input => !input.checkValidity());
-    if (invalid) { invalid.reportValidity(); return; }
-    showStep(2);
-    step2.querySelector('select')?.focus({preventScroll:true});
+  dialog.querySelector('[data-n13-next]').onclick=()=>{
+    const invalid=[...step1.querySelectorAll('input[required]')].find(x=>!x.checkValidity());
+    if (invalid) {invalid.reportValidity();return;}
+    moveTo(2);
   };
-  dialog.querySelector('[data-n13-back]').onclick = () => { showStep(1); step1.querySelector('select')?.focus({preventScroll:true}); };
-  dialog.querySelector('.close-dialog').onclick = () => dialog.close();
-  dialog.onclose = () => {
+  dialog.querySelector('[data-n13-back]').onclick=()=>moveTo(1);
+  dialog.querySelector('.close-dialog').onclick=()=>dialog.close();
+  dialog.onclose=()=>{
     dialog.remove();
     if (trigger?.isConnected) trigger.focus();
     else ($('#companion-open') || document.querySelector('[data-companion-interest]'))?.focus();
   };
-  form.onsubmit = async event => {
+  form.onsubmit=async event=>{
     event.preventDefault();
     if (!form.reportValidity() || !form.elements.consent.checked) return;
-    if (!responseId) responseId = anonymousId();
-    const button = form.querySelector('[type=submit]');
+    if (!responseId) responseId=anonymousId();
+    const button=form.querySelector('[type=submit]');
     if (button.disabled) return;
-    button.disabled = true;
-    const values = Object.fromEntries(new FormData(form));
-    delete values.consent; // 동의 체크 원문은 분석 이벤트에 보관하지 않음
-    // form.reportValidity()가 필수 동의 체크 여부를 먼저 확인합니다.
-    // 서버에는 명시적 동의한 설문 완료와 그 응답의 관심 활동만 전송합니다.
-    const success = analyticsEnabled && form.elements.consent.checked &&
-      await recordConsentedSurvey({
-        ...metadata(p), ...context, ...values, response_id:responseId,
-      });
+    button.disabled=true;
+    const values=Object.fromEntries(new FormData(form));
+    delete values.consent;
+    const success=analyticsEnabled && form.elements.consent.checked &&
+      await recordConsentedSurvey({...metadata(p),...context,...values,response_id:responseId});
     if (analyticsEnabled && !success) {
-      button.disabled = false;
-      status.textContent = '서버에 저장하지 못했습니다. 연결을 확인하고 다시 제출해 주세요.';
+      button.disabled=false;
+      status.textContent='저장되지 않았어요. 연결 상태를 확인한 뒤 다시 시도해 주세요.';
       return;
     }
-    dialog.querySelector('.dialog-content').innerHTML =
-      '<div class="dialog-heading"><h2 id="survey-title">' +
-      (success ? '동행 희망을 전달했어요' : '설문 체험을 마쳤어요') +
-      '</h2><button type="button" class="close-dialog" aria-label="닫기">×</button></div>' +
-      '<p>' + (success
-        ? '응답이 저장됐습니다. 아직 실제 동행 연결이나 신청은 아닙니다.'
-        : '분석 서버가 연결되지 않아 응답이 저장되지 않았습니다.') + '</p>' +
-      '<button type="button" class="button primary full" id="survey-done">닫기</button>';
-    dialog.querySelector('.close-dialog').onclick = dialog.querySelector('#survey-done').onclick = () => dialog.close();
+    dialog.querySelector('.dialog-content').innerHTML=
+      '<div class="n18-done"><span aria-hidden="true" class="n18-done-icon">'+(success?'✓':'✦')+'</span>' +
+      '<h2 id="survey-title">'+(success?'동행 희망을 남겼어요':'취향 설정을 살펴봤어요')+'</h2>' +
+      '<p>'+(success ? '선택한 내용이 저장됐어요. 실제 모임 신청이나 예약은 아니에요.' :
+        '현재 저장 서버가 연결되지 않아 응답은 저장되지 않았어요.')+'</p>' +
+      '<button type="button" class="button primary full" id="survey-done">확인</button></div>';
+    dialog.querySelector('#survey-done').onclick=()=>dialog.close();
     dialog.querySelector('#survey-done').focus();
   };
 }
