@@ -6,7 +6,7 @@ import { emptyRhythmFilters, recommendRhythms, DESIRES, ACTIVITIES, DURATION_OPT
 import { toggleSavedPlace, shareOrCopy, SURVEY_CHOICES } from './actions.js';
 import { createProgressiveFlow } from './flow.js';
 import { programById, programContext } from './assets/v15-programs.js';
-import { GROUP_ACTIVITIES, cleanGroupActivities, optInCompanionUpdates } from './assets/v19-companion-service.js';
+import { GROUP_ACTIVITIES, cleanGroupActivities, optInCompanionUpdates, fetchPublicInterestCounts } from './assets/v19-companion-service.js';
 
 const $ = selector => document.querySelector(selector);
 let places = [], filters = emptyRhythmFilters(), toastTimer, flow;
@@ -163,7 +163,8 @@ function companionDialog(p, trigger = null, program = null) {
           '<div class="n20-core-reason"><span class="n20-core-eyebrow">✦ 가장 중요한 한 가지</span>' +
           '<h3>이 동행에 <em>관심 있어요!</em></h3>' +
           '<p>내 관심을 남기면, 저장된 응답만 활동별 관심 인원에 반영돼요. 지금은 실제 모임 신청이나 참가 확정이 아니에요.</p>' +
-          '<span id="n20-interest-summary" class="n20-interest-summary"></span></div>' +
+          '<span id="n20-interest-summary" class="n20-interest-summary"></span>' +
+          '<p id="n20-interest-people" class="n20-interest-people" role="status">관심 인원을 확인하고 있어요.</p></div>' +
           radio('preference','어떤 분들이 편하세요?','n18-pref-grid') +
           radio('group_size','함께한다면 몇 명이 좋으세요?','n18-group-grid') +
           '<details class="n20-optional-fee"><summary>나중에 모임 준비를 돕는다면? <span>선택 사항</span></summary>' +
@@ -199,10 +200,31 @@ function companionDialog(p, trigger = null, program = null) {
   const chosenActivities=()=>cleanGroupActivities(
     [...form.querySelectorAll('[name="activity-interest"]:checked')].map(x=>x.value)
   );
+  let publicInterest=null;
+  function syncInterestPeople(){
+    const node=dialog.querySelector('#n20-interest-people');
+    if(!node)return;
+    if(!publicInterest){node.textContent='관심 인원을 확인하고 있어요.';return;}
+    if(!publicInterest.ok){node.textContent='관심 인원은 서버 연결 후 확인할 수 있어요.';return;}
+    const items=GROUP_ACTIVITIES
+      .filter(item=>chosenActivities().includes(item.id)&&publicInterest.counts[item.id]>=5)
+      .map(item=>item.label+' 관심 '+publicInterest.counts[item.id]+'명');
+    node.textContent=items.length
+      ? items.join(' · ')+' (관심 표현 기준, 참가 확정 아님)'
+      : '아직 공개 가능한 관심 인원 집계가 없어요. 참가 인원은 아니에요.';
+  }
+  fetchPublicInterestCounts().then(result=>{
+    if(!dialog.isConnected)return;
+    publicInterest=result;
+    syncInterestPeople();
+  }).catch(()=>{if(dialog.isConnected){
+    publicInterest={ok:false};syncInterestPeople();
+  }});
   function syncChoiceCount(){
     const selected=chosenActivities().length;
     const count=dialog.querySelector('#n19-choice-total');
     if(count)count.textContent=selected+'개';
+    syncInterestPeople();
   }
   form.addEventListener('change',event=>{
     if(event.target.matches('[name="activity-interest"]'))syncChoiceCount();
@@ -220,6 +242,7 @@ function companionDialog(p, trigger = null, program = null) {
       const interests=chosenActivities();
       const summary=dialog.querySelector('#n20-interest-summary');
       if(summary)summary.textContent='내가 고른 활동 · '+GROUP_ACTIVITIES.filter(x=>interests.includes(x.id)).map(x=>x.label).join(' + ');
+      syncInterestPeople();
     }
     dialog.scrollTop=0;
   };
