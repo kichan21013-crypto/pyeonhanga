@@ -3,7 +3,7 @@
  */
 import { companionRpc } from './v19-companion-service.js';
 import { escapeHtml, safeUrl, placeUrl } from '../ui.js';
-import { ADMIN_ACTIVITY_LABELS } from './v22-operations-model.js';
+import { ADMIN_ACTIVITY_LABELS, sanitizePublicCourses } from './v22-operations-model.js';
 const $=(s,root=document)=>root.querySelector(s);
 const activityToInvite={food:'eat',hike:'hike',outing:'outing',travel:'travel'};
 function dateText(value){
@@ -11,16 +11,6 @@ function dateText(value){
  const d=new Date(value);
  return Number.isNaN(d.getTime())?'일정 조율 중':
    new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium',timeStyle:'short'}).format(d);
-}
-export function sanitizePublicCourses(rows,catalog){
- if(!Array.isArray(rows)||!Array.isArray(catalog))return [];
- const places=new Map(catalog.filter(p=>p&&typeof p.id==='string'&&!p.isDemo).map(p=>[p.id,p]));
- return rows.filter(c=>c&&Number.isSafeInteger(Number(c.id))&&Number(c.id)>0
-   &&typeof c.title==='string'&&typeof c.description==='string'
-   &&['food','hike','outing','travel'].includes(c.activity)
-   &&Array.isArray(c.place_ids)&&c.place_ids.length>0)
-   .map(c=>({...c,places:c.place_ids.map(id=>places.get(id)).filter(Boolean)}))
-   .filter(c=>c.places.length>0).slice(0,12);
 }
 function courseCard(course){
  const photo=safeUrl(course.places[0]?.image)||'/assets/garden.svg';
