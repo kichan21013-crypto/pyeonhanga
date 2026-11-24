@@ -24,8 +24,9 @@ export function togetherPlaceMatches(place,{interest='',region='',mealTag=''}={}
   const tags=Array.isArray(place.intentTags)?place.intentTags:[];
   if(interest==='eat')return place.category==='맛집' && (!mealTag || tags.includes(mealTag));
   if(interest==='hike')return tags.includes('hike') || tags.includes('trail');
-  if(interest==='outing')return (place.category==='나들이'||place.category==='여행') &&
-    tags.some(tag=>['walk','outing','culture','scenery'].includes(tag));
+  if(interest==='outing')return tags.includes('cafe') || ((place.category==='나들이'||place.category==='여행') &&
+    tags.some(tag=>['walk','outing','culture','scenery'].includes(tag)));
+  // '산책+카페'는 확인된 산책 장소와 카페를 함께 보여주되, 동선·이동시간을 가정하지 않습니다.
   if(interest==='travel')return place.category==='여행'||tags.some(tag=>['drive','travel'].includes(tag));
   return false;
 }
