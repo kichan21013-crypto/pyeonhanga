@@ -17,7 +17,7 @@ test('운영자만 로그인하는 별도 모바일 스튜디오에 4개 실제 
   assert.ok(html.includes('id="'+id+'"'),id);
  assert.match(html,/id="n19-admin-panel" hidden/);
  assert.match(html,/name="publish"/);
- assert.match(html,/실제 참여 신청, 예약 확정, 인원 명단, 유상 운송은 아직 제공하지 않습니다/);
+ assert.match(html,/무료 시범 동행의 기기별 참가 신청과 승인을 관리합니다/);
  assert.doesNotMatch(html,/(service_role|sb_secret_|관리자 비밀번호:\s*\S+@)/);
 });
 
@@ -94,10 +94,10 @@ test('빌드한 실제 admin.html은 검색 제외·비로그인 차단·운영�
  assert.match(page,/id="n22-course-form"/);
  assert.match(page,/id="n22-meetup-form"/);
  assert.match(page,/id="n22-revenue-form"/);
- assert.match(page,/v22-admin-studio\.css\?v=20261124-v24/);
- assert.match(page,/v19-admin\.js\?v=20261124-v24/);
- assert.match(home,/v22-public-programs\.css\?v=20261124-v24/);
- assert.match(build,/CLIENT_VERSION = '20261124-v24'/);
+ assert.match(page,/v22-admin-studio\.css\?v=20261124-v25/);
+ assert.match(page,/v19-admin\.js\?v=20261124-v25/);
+ assert.match(home,/v22-public-programs\.css\?v=20261124-v25/);
+ assert.match(build,/CLIENT_VERSION = '20261124-v25'/);
  assert.match(core,/operatorMarkup\(\)/);
  const homeCode=await read('assets/v12-direct-home.js');
  assert.match(homeCode,/setupPublicPrograms\(\{home,loadPlaces:loadCatalog\}\)/);
