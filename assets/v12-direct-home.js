@@ -7,7 +7,7 @@ import { escapeHtml, safeUrl, placeUrl, icon } from '../ui.js';
 import { savedIds } from '../storage.js';
 import { analyticsEnabled } from '../analytics.js';
 import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHeading } from './v12-browse-state.js';
-import { TOGETHER_INVITES, TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-model.js';
+import { TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-model.js';
 import { setupTogetherJourney } from './v16-together.js';
 import { setupGroupExperience } from './v19-group-ui.js';
 import { setupPopularFirst } from './v21-popular-first.js';
@@ -239,13 +239,13 @@ function setupHome() {
     '<button type="button" id="n16-more" class="n16-more" hidden>다른 장소 더 보기</button>' +
     '<p class="n16-journey-note">마음에 드는 곳을 골랐다면 “여기, 같이 가보고 싶어요”를 눌러보세요. ' +
     '운영자가 수요를 확인해 동행 모임을 제안해요.</p></section>' +
-    '<section class="n16-value" aria-labelledby="n16-value-title"><h2 id="n16-value-title">장소만 찾는 앱이 아니에요</h2>' +
+    '<details class="n16-value n29-service-guide"><summary id="n16-value-title">나가치 이용 안내</summary>' +
     '<div class="n16-value-grid"><div><span aria-hidden="true">📍</span><strong>좋은 곳 고르기</strong><p>실제 장소 정보를 바탕으로 코스를 제안해요.</p></div>' +
     '<div><span aria-hidden="true">🤝</span><strong>취향 맞는 사람</strong><p>비슷한 관심사의 동행 구성을 준비해요.</p></div>' +
     '<div><span aria-hidden="true">🗓️</span><strong>함께할 하루</strong><p>만남의 방식과 일정 조율을 도와줄 계획이에요.</p></div></div>' +
     '<p>향후 수익모델은 <strong>코스 제안과 동행 구성·일정 조율 서비스비</strong>입니다. ' +
     '식비·교통비·입장료 등은 각자 현장에서 직접 결제하는 방향을 검토하고 있어요. ' +
-    '현재는 무료 수요 검증만 진행하며 유료 모집·차량 연결은 제공하지 않습니다.</p></section>' +
+    '현재는 무료 수요 검증을 진행하며 유료 모집·차량 연결은 제공하지 않습니다.</p></details>' +
     '<section class="n16-respect"><div><strong>좋은 하루는, 마음 맞는 사람과 함께.</strong>' +
     '<p>내 취향에 맞는 장소와 함께하고 싶은 방식부터 편안하게 골라보세요.</p></div>' +
     '<a href="/companion.html">동행에 대해 더 알아보기 →</a></section>' +
