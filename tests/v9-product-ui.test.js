@@ -7,7 +7,7 @@ const fromRoot = path => readFile(new URL('../'+path, import.meta.url), 'utf8');
 test('새 나가치 홈은 카테고리 단일 영역과 실제 사진 중심 목록으로 구성한다',async()=>{
   const js=await fromRoot('assets/v12-direct-home.js');
   const css=await fromRoot('assets/v12-direct-home.css');
-  assert.match(js,/함께할 사람이 없나요\?/);
+  assert.match(js,/아직, 함께 놀/);
   assert.match(js,/n12-categories/);
   assert.match(js,/n12-grid/);
   assert.match(js,/n12-card/);
@@ -33,10 +33,10 @@ test('홈과 저장·상세 화면은 서로 이동하고 캐시 변경이 적�
   const index=await fromRoot('dist/index.html');
   const saved=await fromRoot('dist/saved.html');
   const build=await fromRoot('scripts/build-core.js');
-  assert.match(index,/v12-direct-home\.js\?v=20261124-v14/);
-  assert.match(index,/v12-direct-home\.css\?v=20261124-v14/);
-  assert.match(index,/mobile-ux\.css\?v=20261124-v14/);
-  assert.match(saved,/mobile-ux\.css\?v=20261124-v14/);
+  assert.match(index,/v12-direct-home\.js\?v=20261124-v15/);
+  assert.match(index,/v12-direct-home\.css\?v=20261124-v15/);
+  assert.match(index,/mobile-ux\.css\?v=20261124-v15/);
+  assert.match(saved,/mobile-ux\.css\?v=20261124-v15/);
   assert.match(saved,/class="n-mobile-nav"/);
   assert.ok(build.includes("mobileNav(path === '/companion.html' ? 'companion' : 'recommend')"));
   assert.match(build,/mobileNav\('saved'\)/);
