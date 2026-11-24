@@ -9,6 +9,7 @@ create table if not exists public.nagachi_notice_subscriptions(
   token_hash text not null check(token_hash ~ '^[0-9a-f]{64}$'),
   activity text not null check(activity in ('food','hike','outing','travel')),
   subscribed_at timestamptz not null default now(),
+  expires_at timestamptz not null default(now()+interval '90 days'),
   primary key(token_hash,activity)
 );
 alter table public.nagachi_notice_subscriptions enable row level security;
@@ -86,7 +87,9 @@ begin
  v_hash := pg_catalog.encode(pg_catalog.sha256(pg_catalog.convert_to(p_token,'UTF8')),'hex');
  foreach v_activity in array p_activities loop
   insert into public.nagachi_notice_subscriptions(token_hash,activity)
-  values(v_hash,v_activity) on conflict do nothing;
+  values(v_hash,v_activity)
+  on conflict(token_hash,activity) do update set
+    subscribed_at=now(),expires_at=now()+interval '90 days';
  end loop;
  return true;
 end $$;
@@ -106,7 +109,7 @@ begin
  from public.nagachi_group_notices n
  where n.status='published' and exists(
    select 1 from public.nagachi_notice_subscriptions s
-   where s.token_hash=v_hash and s.activity=n.activity)
+   where s.token_hash=v_hash and s.activity=n.activity and s.expires_at>now())
  order by n.published_at desc limit 30;
 end $$;
 
@@ -147,7 +150,7 @@ begin
    'subscribers',coalesce((
      select jsonb_agg(jsonb_build_object('activity',s.activity,'devices',s.devices))
      from (select activity,count(distinct token_hash) as devices
-       from public.nagachi_notice_subscriptions group by activity) s),'[]'::jsonb),
+       from public.nagachi_notice_subscriptions where expires_at>now() group by activity) s),'[]'::jsonb),
    'notices',coalesce((
      select jsonb_agg(jsonb_build_object('id',n.id,'activity',n.activity,
        'title',n.title,'body',n.body,'meet_at',n.meet_at,
@@ -212,4 +215,7 @@ commit;
 -- insert into public.nagachi_companion_admins(user_id)
 -- values ('<직접 조회한 실제 auth.users.id UUID>') on conflict do nothing;
 -- 알림은 사용자에게 이메일/푸시로 전달되지 않고, 구독 기기가 앱에 재방문했을 때만 읽습니다.
+-- 구독 보존은 신청 시점부터 최대 90일이며 이후 기간을 연장하려면 새 동의 제출이 필요합니다.
+-- 운영자는 정기적으로 만료 구독을 수동 정리할 수 있습니다:
+-- delete from public.nagachi_notice_subscriptions where expires_at < now();
 -- 실제 모임 운영/예약/유상 운송·여행상품 판매는 이 모듈의 범위가 아닙니다.
