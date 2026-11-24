@@ -13,6 +13,9 @@ import { setupGroupExperience } from './v19-group-ui.js';
 import { setupPopularFirst } from './v21-popular-first.js';
 import { setupPublicPrograms } from './v22-public-programs.js';
 
+// Ordinary home entry starts at the top; preserve explicit detail/companion deep links.
+const deepLink=()=>new URLSearchParams(location.search).has('together')||['#n16-invites-title','#n16-invites','#n21-popular','#n12-results','#rhythm-results','#n14-place-browse'].includes(location.hash);
+if(document.body?.dataset.page==='home'&&!deepLink()&&'scrollRestoration' in history)history.scrollRestoration='manual';
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const svg = name => ({
@@ -195,41 +198,33 @@ function setupHome() {
   const home = document.createElement('section');
   home.className = 'n12-home';
   // 동행이 첫 번째 경험입니다. 장소 탐색은 동행 의향을 구체화하는 보조 수단입니다.
-  const invitationCards=TOGETHER_INVITES.map(item=>
-    '<button type="button" class="n16-invite" data-v16-invite="'+item.id+'" data-tone="'+item.tone+'" aria-pressed="false">' +
-    '<span class="n16-invite-art" aria-hidden="true"><img src="/assets/v28-'+item.id+'.webp" alt="" loading="lazy"></span>' +
-    '<strong>'+item.label+'</strong><small>'+item.help+'</small><span class="n19-interest-count" data-n19-count="'+item.activity+'" hidden></span><span class="n16-invite-arrow" aria-hidden="true">→</span></button>'
-  ).join('');
   const quickCategories=[['eat','맛집'],['outing','나들이'],['travel','여행'],['hike','산행']].map(([id,label])=>
-    '<button type="button" class="n28-quick-category" data-n28-quick="'+id+'"><img src="/assets/v28-'+id+'.webp" width="112" height="112" alt="" decoding="async"><span>'+label+'</span></button>'
+    '<button type="button" class="n28-quick-category" data-v16-invite="'+id+'" aria-pressed="false"><img src="/assets/v28-'+id+'.webp" width="112" height="112" alt="" decoding="async"><span>'+label+'</span></button>'
   ).join('');
   home.innerHTML =
     '<section class="n16-hero n18-hero n19-hero n21-hero" aria-labelledby="n16-home-title">' +
-    '<span class="n16-kicker">나가치 · 취향 동행</span>' +
+    '<span class="n16-kicker">취향으로 만나는 동행</span>' +
     '<h1 id="n16-home-title">가고 싶은 곳,<br><em>함께할 사람.</em></h1>' +
     '<p>취향이 통하는 사람들과 새로운 하루.</p>' +
-    '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"></div><div class="n19-photo-slot n19-photo-side"></div><span class="n19-mosaic-stamp">한국관광공사 장소 사진 · 동행 모집 사진 아님</span></div>' +
+    '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"></div><span class="n19-mosaic-stamp">장소 사진</span></div>' +
     '<a class="n16-hero-cta" href="#n21-popular">' + icon('people') + ' 지금 인기 있는 동행 <span aria-hidden="true">→</span></a>' +
     '<small>관심을 남기면 나가치가 모임을 제안해요.</small></section>' +
-    '<div class="n28-quick-categories" role="group" aria-label="원하는 동행 찾기">'+quickCategories+'</div>' +
+    '<section class="n16-invites-section n29-discover" aria-labelledby="n16-invites-title">'+
+    '<div class="n29-section-head"><h2 id="n16-invites-title">어떤 동행을 찾으세요?</h2><label class="n29-region">지역 <select id="n29-region" aria-label="희망 지역"><option value="">전체 지역</option>'+TOGETHER_REGIONS.map(region=>'<option value="'+region+'">'+region+'</option>').join('')+'</select></label></div>'+
+    '<div class="n28-quick-categories" id="n16-invites" role="group" aria-label="원하는 동행 찾기">'+quickCategories+'</div></section>'+
     '<section class="n21-popular" id="n21-popular" aria-labelledby="n21-popular-heading">' +
-    '<div class="n21-popular-top"><div><span class="n21-section-kicker">TOGETHER NOW · 실제 관심 기반</span>' +
-    '<h2 id="n21-popular-heading">요즘 관심 많은 동행</h2>' +
+    '<div class="n21-popular-top"><div><span class="n21-section-kicker">인기 동행</span>' +
+    '<h2 id="n21-popular-heading">지금 인기 있는 동행</h2>' +
     '<p id="n21-popular-sub">저장된 관심을 확인하고 있어요.</p></div></div>' +
     '<div id="n21-popular-content" role="status" aria-live="polite">' +
     '<div class="n21-popular-loading" aria-label="인기 동행 확인 중"><span></span><span></span></div></div>' +
     '<button type="button" class="n21-find-btn" data-n21-find>다른 동행도 찾아보기 →</button></section>' +
     '<section class="n22-public-programs" id="n22-public-programs" aria-labelledby="n22-public-heading" hidden>' +
-    '<div class="n22-public-heading"><div><span>CURATED BY NAGACHI</span>' +
-    '<h2 id="n22-public-heading">나가치가 제안하는 동행 코스</h2>' +
-    '<p>운영자가 실제 장소를 골라 구성한 하루예요. 아직 실제 참가 예약은 아닙니다.</p>' +
+    '<div class="n22-public-heading"><div><span>나가치 주최</span>' +
+    '<h2 id="n22-public-heading">나가치 추천 모임</h2>' +
+    '<p>나가치가 직접 기획한 코스와 모임을 만나보세요.</p>' +
     '</div></div><div id="n22-public-course-list" class="n22-public-course-list"></div>' +
     '<div id="n22-public-meetups"></div></section>' +
-    '<section class="n16-invites-section" aria-labelledby="n16-invites-title">' +
-    '<div class="n16-section-head"><span>취향대로, 나가치</span>' +
-    '<h2 id="n16-invites-title">어떤 하루를 함께할까요?</h2>' +
-    '<p>끌리는 것을 선택해 주세요. 함께 가볼 곳을 추천해 드려요.</p></div>' +
-    '<div class="n16-invites" id="n16-invites" role="group" aria-label="하고 싶은 동행 활동 선택">'+invitationCards+'</div></section>' +
     '<section class="n16-journey n18-journey" id="n16-journey" aria-labelledby="n16-journey-heading" hidden>' +
     '<div class="n16-journey-top"><span>WITH YOU · 함께할 곳</span><h2 id="n16-journey-heading">어디로 함께 갈까요?</h2>' +
     '<p id="n16-journey-subtitle">실제 등록된 장소 중 취향에 맞는 곳을 보여드릴게요.</p></div>' +
@@ -278,16 +273,15 @@ function setupHome() {
     '<div id="n12-grid" class="n12-grid"></div>' +
     '<button type="button" id="n12-load-more" class="n12-load-more" hidden>장소 더 보기</button>';
 
+  home.querySelector('.n29-discover').after(home.querySelector('#n16-journey'));
   main.prepend(home,results);
-  // 사용자가 보던 636개 실제 장소 사진 중 두 장만 히어로에 사용합니다.
-  // 사진의 인물/모임 현황을 의미하지 않으며 새로운 API나 외부 사진 서비스는 사용하지 않습니다.
+  // A real scenic place photo, not a participant or recruitment photo.
   loadCatalog().then(catalog=>{
-    const food=catalog.find(p=>p.category==='맛집'&&safeUrl(p.image));
-    const walk=catalog.find(p=>p.category==='나들이'&&safeUrl(p.image));
-    for (const [sel,place] of [['.n19-photo-main',food],['.n19-photo-side',walk]]) {
-      const slot=home.querySelector(sel);
-      if(slot&&place){const img=document.createElement('img');img.src=place.image;img.alt='';img.loading='eager';img.decoding='async';slot.append(img);}
-    }
+    const scenic=catalog.find(p=>!p.isDemo&&p.region==='강릉'&&p.category==='여행'&&safeUrl(p.image)&&/해변|해수욕장|바다/.test(p.name))
+      ||catalog.find(p=>!p.isDemo&&p.category==='여행'&&safeUrl(p.image))
+      ||catalog.find(p=>!p.isDemo&&p.category==='나들이'&&safeUrl(p.image));
+    const slot=home.querySelector('.n19-photo-main');
+    if(slot&&scenic){const img=document.createElement('img');img.src=scenic.image;img.alt='';img.loading='eager';img.decoding='async';slot.append(img);}
   }).catch(()=>{});
   // 원래 앵커는 카드 그리드 맨 위를 sticky 헤더 뒤로 보내 제목을 가렸습니다.
   // 제목부터 보이도록 헤더 높이만큼 보정해 네 카드의 시작 지점을 확실하게 보여줍니다.
@@ -314,12 +308,12 @@ function setupHome() {
     requestAnimationFrame(location.hash==='#n21-popular'?scrollToPopular:scrollToInvites);
   }
   setupTogetherJourney({home,loadPlaces:loadCatalog});
-  home.querySelector('.n28-quick-categories')?.addEventListener('click',event=>{
-    const quick=event.target.closest('[data-n28-quick]');
-    if(!quick)return;
-    const target=[...home.querySelectorAll('[data-v16-invite]')].find(b=>b.dataset.v16Invite===quick.dataset.n28Quick);
-    target?.click();
+  const topRegion=home.querySelector('#n29-region'),journeyRegion=home.querySelector('#n16-region');
+  topRegion.addEventListener('change',()=>{
+    journeyRegion.value=topRegion.value;
+    journeyRegion.dispatchEvent(new Event('change',{bubbles:true}));
   });
+  journeyRegion.addEventListener('change',()=>{topRegion.value=journeyRegion.value;});
   setupGroupExperience(home);
   setupPopularFirst({home,loadPlaces:loadCatalog,scrollToInvites});
   setupPublicPrograms({home,loadPlaces:loadCatalog});
@@ -332,8 +326,8 @@ function setupHome() {
   nav.className = 'n12-nav';
   nav.setAttribute('aria-label','하단 메뉴');
   nav.innerHTML = '<button type="button" data-n12-home class="is-active">' + svg('home') + '<span>홈</span></button>' +
-    '<button type="button" data-n12-recommend>' + svg('compass') + '<span>같이갈래?</span></button>' +
-    '<a class="n13-nav-companion" href="/companion.html">' + icon('people') + '<span>동행</span></a>' +
+    '<button type="button" data-n12-recommend>' + svg('compass') + '<span>동행 찾기</span></button>' +
+    '<a class="n13-nav-companion" href="/companion.html">' + icon('people') + '<span>동행 안내</span></a>' +
     '<a href="/saved.html">' + icon('heart') + '<span>저장</span></a>';
   document.body.append(nav);
 
@@ -367,6 +361,7 @@ function setupHome() {
   nav.querySelector('[data-n12-home]').addEventListener('click', () => {
     nav.querySelector('[data-n12-home]').classList.add('is-active');
     nav.querySelector('[data-n12-recommend]').classList.remove('is-active');
+    const url=new URL(location.href);url.hash='';url.searchParams.delete('together');history.replaceState(history.state,'',url);
     window.scrollTo({top:0,behavior:reduceMotion()?'auto':'smooth'});
   });
   nav.querySelector('[data-n12-recommend]').addEventListener('click', () => {
@@ -381,6 +376,12 @@ function setupHome() {
       button.setAttribute('aria-pressed',String(saved));
     });
   });
+  if(!deepLink()){
+    if('scrollRestoration' in history)history.scrollRestoration='manual';
+    window.scrollTo({top:0,behavior:'instant'});
+    requestAnimationFrame(()=>{if(!deepLink())window.scrollTo({top:0,behavior:'instant'});});
+    window.addEventListener('pageshow',event=>{if(event.persisted&&!deepLink())window.scrollTo({top:0,behavior:'instant'});});
+  }
   // 장소 검색은 접힌 보조 기능입니다. 기본 화면에서 데이터 전체를 매번 요청하지 않습니다.
   if (['#n12-results','#rhythm-results','#n14-place-browse'].includes(location.hash)) {
     placeDrawer.open=true;
