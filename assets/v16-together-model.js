@@ -5,7 +5,7 @@ export const TOGETHER_INVITES=Object.freeze([
   {id:'eat',icon:'🍲',label:'같이 맛있는 거 먹으러 갈 사람?',short:'맛있는 거 먹으러',help:'어떤 메뉴가 끌리세요?',tone:'peach',activity:'food',desire:'eat',category:'맛집'},
   {id:'hike',icon:'🥾',label:'주말에 산행 같이할 사람?',short:'산행하러',help:'걸음이 맞는 사람과 함께',tone:'sage',activity:'hike',desire:'outdoor',category:'나들이'},
   {id:'outing',icon:'☕',label:'산책하고 카페 갈 사람?',short:'산책·나들이',help:'가볍게 걷고 이야기 나누기',tone:'lilac',activity:'outing',desire:'explore',category:'나들이'},
-  {id:'travel',icon:'🚙',label:'근교 나들이 함께 갈 사람?',short:'근교 나들이',help:'하루를 천천히 즐기기',tone:'blue',activity:'travel',desire:'explore',category:'여행'},
+  {id:'travel',icon:'🗺️',label:'근교 나들이 함께 갈 사람?',short:'근교 나들이',help:'하루를 천천히 즐기기',tone:'blue',activity:'travel',desire:'explore',category:'여행'},
 ]);
 export const TOGETHER_REGIONS=Object.freeze(['서울','경기','강릉','경주','부산','제주']);
 export const MEAL_TAGS=Object.freeze([
