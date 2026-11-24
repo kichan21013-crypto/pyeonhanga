@@ -74,11 +74,16 @@ export async function recordConsentedSurvey(values = {}) {
   const base = { ...values };
   const survey = await sendConsentedEvent('premium_willingness', base);
   if (!survey) return false;
-  // 실제 설문이 저장된 뒤에만 역으로 퍼널의 단계가 존재함을 기록합니다.
-  // 동의 전 페이지 탐색/클릭은 추적하지 않으므로 이 수치는 설문 작성자 기준입니다.
-  await sendConsentedEvent('companion_interest', base);
+  // 실제 설문이 저장된 뒤에만 역으로 선택 단계를 기록합니다.
+  // 목적/연령대/서비스비 응답은 완료 이벤트에만 넣고 선택 이벤트에는 재전송하지 않습니다.
+  const engagement = {
+    place_id: base.place_id, region: base.region,
+    category: base.category, is_demo: base.is_demo,
+    activities: base.activities, desires: base.desires,
+  };
+  await sendConsentedEvent('companion_interest', engagement);
   if (Array.isArray(base.activities) && base.activities.length) {
-    await sendConsentedEvent('activity_selected', base);
+    await sendConsentedEvent('activity_selected', engagement);
   }
   return true;
 }
