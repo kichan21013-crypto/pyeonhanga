@@ -137,7 +137,7 @@ function companionDialog(p, trigger = null, program = null) {
     '<label for="survey-' + name + '">' + label +
     '<select id="survey-' + name + '" name="' + name + '" required>' +
     '<option value="">선택해 주세요</option>' +
-    choices[name].filter(v => v !== '새로운 이성도 괜찮음' && v !== '데이트도 괜찮음').map(v => '<option value="' + safe(v) + '">' + safe(v) + '</option>').join('') +
+    choices[name].map(v => '<option value="' + safe(v) + '">' + safe(v) + '</option>').join('') +
     '</select></label>';
   const willingness = choices.willingness.map((value,i) =>
     '<label class="radio-option" for="willingness-' + i + '">' +
