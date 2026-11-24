@@ -3,9 +3,9 @@
  * No private credentials, no stored passwords and no real transactions.
  */
 import { companionRpc } from './v19-companion-service.js';
-import { mountBusinessDashboard } from './v26-business-dashboard.js';
+import { mountBusinessDashboard } from './v26-business-dashboard.js?v=20261124-v39';
 import { escapeHtml } from '../ui.js';
-import { estimateRevenue, cleanCoursePlaceIds, ADMIN_ACTIVITY_LABELS, MEETUP_STAGE_LABELS, draftCourseFromPlace } from './v22-operations-model.js';
+import { estimateRevenue, cleanCoursePlaceIds, ADMIN_ACTIVITY_LABELS, MEETUP_STAGE_LABELS, draftCourseFromPlace } from './v22-operations-model.js?v=20261124-v39';
 
 const $=(sel,root=document)=>root.querySelector(sel);
 const $$=(sel,root=document)=>[...root.querySelectorAll(sel)];

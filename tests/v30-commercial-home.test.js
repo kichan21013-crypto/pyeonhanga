@@ -12,7 +12,8 @@ test('v38 가로 배너 사진의 원본 및 빌드 사본 일치',async()=>{
  assert.deepEqual(a,await readFile(new URL('../dist/assets/v38-hero.webp',import.meta.url)));
  const home=await read('assets/v12-direct-home.js');
  assert.match(home,/src="\/assets\/v38-hero\.webp"/);
- assert.match(home,/연출 이미지/);
+ assert.match(home,/AI 제작 이미지/);
+ assert.doesNotMatch(home,/연출 이미지/);
  assert.equal((home.match(/id="n16-invites"/g)||[]).length,1);
  assert.match(home,/href="#n21-popular"/);
  assert.match(home,/data-n30-updates/);
@@ -42,7 +43,7 @@ test('v30 두 카드 표시, 버튼 대비, 전체보기와 기존 기능 연결
  assert.match(ui,/all\.addEventListener|all\?\.addEventListener/);
  assert.match(ui,/aria-expanded/);
  assert.match(ui,/추천 동행 보기/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v38/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v39/);
 });
 
 test('v33 홈은 탐색 중심이며 개인 소식은 별도 대화상자로 표시',async()=>{
@@ -67,8 +68,8 @@ test('v34 배너 전체 사진과 하단 카피, 최신 모듈 캐시 연결',as
  assert.match(latest,/mask-image:none!important/);
  assert.match(latest,/transparent 42%/);
  assert.match(latest,/padding:158px 15px 14px!important/);
- assert.match(home,/v19-group-ui\.js\?v=20261124-v38/);
- assert.match(home,/v21-popular-first\.js\?v=20261124-v38/);
+ assert.match(home,/v19-group-ui\.js\?v=20261124-v39/);
+ assert.match(home,/v21-popular-first\.js\?v=20261124-v39/);
  assert.match(build,/Cache-Control: no-cache, must-revalidate/);
 });
 
@@ -90,7 +91,7 @@ test('v38 가로 원본 사진이 배너 전체에 잘림 없이 표시되고 �
  const home=await read('assets/v12-direct-home.js'),css=await read('assets/v21-popular-first.css');
  const latest=css.slice(css.indexOf('/* v38:'));
  assert.match(home,/width="720" height="480"/);
- assert.match(home,/class="n34-version">v38/);
+ assert.match(home,/class="n34-version">v39/);
  assert.match(home,/class="n16-hero-cta n35-recommend-link" href="#n21-popular"/);
  assert.match(latest,/aspect-ratio:3 \/ 2!important/);
  assert.match(latest,/object-fit:contain!important;object-position:center!important/);

@@ -4,7 +4,7 @@
  */
 import { GROUP_ACTIVITIES,authenticateCompanionAdmin,companionRpc } from './v19-companion-service.js';
 import { escapeHtml } from '../ui.js';
-import { mountOperations } from './v22-operations-admin.js';
+import { mountOperations } from './v22-operations-admin.js?v=20261124-v39';
 const $=s=>document.querySelector(s);
 const labels=Object.fromEntries(GROUP_ACTIVITIES.map(x=>[x.id,x.label]));
 let jwt=null;
