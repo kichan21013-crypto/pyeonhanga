@@ -151,9 +151,9 @@ function companionDialog(p, trigger = null, program = null) {
     '<p class="n13-survey-step-title">1 / 2 · 함께 가고 싶은 방식</p>' +
     '<form class="survey" id="companion-survey">' +
     '<p class="n13-intro"><strong>' + safe(p.name) + '</strong>을(를) 함께할 하루로 생각해 주세요.</p>' +
-    '<div class="n13-disclaimer">지금은 실제 사람 연결이 아닌 수요 조사 단계입니다. 결혼 여부를 묻지 않고, 이름·연락처도 받지 않습니다. 파티나 이동수단이 확정된 상태가 아니며 예약·결제도 진행하지 않습니다. 초기 응답 대상은 50세 이상입니다.</div>' +
+    '<div class="n13-disclaimer">지금은 실제 사람 연결이 아닌 수요 조사 단계입니다. 결혼 여부를 묻지 않고, 이름·연락처도 받지 않습니다. 동행 모임이나 이동수단이 확정된 상태가 아니며 예약·결제도 진행하지 않습니다. 초기 응답 대상은 50세 이상입니다.</div>' +
     '<div class="n13-survey-step" data-n13-step="1">' +
-    select('age','연령대') + select('preference','파티원의 구성은 어떻게 원하는가요?') +
+    select('age','연령대') + select('preference','어떤 분들과 함께하고 싶으세요?') +
     select('purpose','동행 목적') +
     '<button type="button" class="button primary full" data-n13-next>다음 · 참여 조건 고르기 →</button>' +
     '</div>' +
