@@ -8,7 +8,7 @@ test('홈은 실제 앱 화면에 프리미엄 벡터 일러스트를 활용하�
  const src=await read('assets/v12-direct-home.js');
  const css=await read('assets/v18-premium.css');
  const home=await read('dist/index.html');
- for(const name of ['food','hike','cafe','outing','hero']){
+ for(const name of ['food','eat','hike','cafe','outing','travel','hero']){
    const svg=await read('assets/v18-'+name+'.svg');
    assert.match(svg,/^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
    assert.match(svg,/viewBox="0 0 480 340"|viewBox="0 0 780 490"/);
