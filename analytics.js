@@ -44,6 +44,10 @@ export function trackRhythm(name, values = {}) {
 export const analyticsEnabled = /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(config.supabaseUrl || '') && Boolean(config.supabaseAnonKey);
 let sessionId;
 const recent = new Map();
+// 운영 연결 이상을 '저장 실패' 한 문장으로 숨기지 않고, 기기 내 화면에서만 분류합니다.
+// 오류 응답 원문, 응답 데이터 및 연락처를 콘솔이나 분석 서버로 재전송하지 않습니다.
+let lastConsentSaveFailure = null;
+export function consentSaveFailure() { return lastConsentSaveFailure; }
 function session() {
   if (sessionId) return sessionId;
   const stored = readLocal('pyeonhanga.session', null);
@@ -70,7 +74,11 @@ export async function track(event, values = {}) {
 // 동행 수요 조사 동의 체크 후 호출하는 전용 함수입니다.
 // 매번 호출 시 딱 세 가지 수요 지표만 기록하며 일반 탐색 추적 권한을 부여하지 않습니다.
 export async function recordConsentedSurvey(values = {}) {
-  if (!analyticsEnabled) return false;
+  lastConsentSaveFailure = null;
+  if (!analyticsEnabled) {
+    lastConsentSaveFailure = 'not-configured';
+    return false;
+  }
   const base = { ...values };
   const survey = await sendConsentedEvent('premium_willingness', base);
   if (!survey) return false;
@@ -85,6 +93,7 @@ export async function recordConsentedSurvey(values = {}) {
   if (Array.isArray(base.activities) && base.activities.length) {
     await sendConsentedEvent('activity_selected', engagement);
   }
+  lastConsentSaveFailure = null;
   return true;
 }
 
@@ -115,8 +124,16 @@ async function sendConsentedEvent(event, values = {}) {
       keepalive: true,
       signal: AbortSignal.timeout(5000),
     });
-    return res.ok;
+    if (res.ok) return true;
+    const payload = await res.json().catch(() => null);
+    const code = typeof payload?.code === 'string' ? payload.code : '';
+    if (res.status === 404 || code === 'PGRST202') lastConsentSaveFailure = 'rpc-not-installed';
+    else if (res.status === 401 || res.status === 403) lastConsentSaveFailure = 'permission';
+    else if (res.status === 400 || res.status === 409 || res.status === 422) lastConsentSaveFailure = 'schema';
+    else lastConsentSaveFailure = 'server';
+    return false;
   } catch {
+    lastConsentSaveFailure = 'network';
     return false;
   }
 }

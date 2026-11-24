@@ -1,12 +1,12 @@
 import { card, icon, escapeHtml, placeUrl } from './ui.js';
 import { savedIds, anonymousId } from './storage.js';
-import { track, trackRhythm, analyticsEnabled, recordConsentedSurvey } from './analytics.js';
+import { track, trackRhythm, analyticsEnabled, recordConsentedSurvey, consentSaveFailure } from './analytics.js';
 import { inferIntent, requestedComforts, COMPANIONS } from './search.js';
 import { emptyRhythmFilters, recommendRhythms, DESIRES, ACTIVITIES, DURATION_OPTIONS, TRANSPORT_OPTIONS, companionSummary, toggleSelection, activeActivities } from './rhythm.js';
 import { toggleSavedPlace, shareOrCopy, SURVEY_CHOICES } from './actions.js';
 import { createProgressiveFlow } from './flow.js';
 import { programById, programContext } from './assets/v15-programs.js';
-import { GROUP_ACTIVITIES, cleanGroupActivities, optInCompanionUpdates } from './assets/v19-companion-service.js';
+import { GROUP_ACTIVITIES, cleanGroupActivities, optInCompanionUpdates, fetchPublicInterestCounts } from './assets/v19-companion-service.js';
 
 const $ = selector => document.querySelector(selector);
 let places = [], filters = emptyRhythmFilters(), toastTimer, flow;
@@ -122,7 +122,7 @@ function companionDialog(p, trigger = null, program = null) {
   const initialActivity=interestMap[trigger?.dataset?.companionActivity] ||
     interestMap[program?.interest] || (p.category==='맛집'?'food':p.category==='여행'?'travel':'outing');
   const dialog=document.createElement('dialog');
-  dialog.className='n13-survey-dialog n18-preference-dialog n19-preference-dialog';
+  dialog.className='n13-survey-dialog n18-preference-dialog n19-preference-dialog n20-interest-dialog';
   dialog.setAttribute('aria-labelledby','survey-title');
   let responseId;
   const safe=value=>escapeHtml(value);
@@ -136,13 +136,13 @@ function companionDialog(p, trigger = null, program = null) {
   const radio=(name,title,cls='')=>'<fieldset class="n18-field n18-field-'+name+'"><legend>'+title+'</legend>' +
     '<div class="n18-options '+cls+'">'+choices[name].map((v,i)=>
       '<label class="n18-option" for="n19-'+name+'-'+i+'">' +
-      '<input type="radio" id="n19-'+name+'-'+i+'" name="'+name+'" value="'+safe(v)+'" '+(name==='preference'&&i===2?'checked ':'')+'required>' +
+      '<input type="radio" id="n19-'+name+'-'+i+'" name="'+name+'" value="'+safe(v)+'" '+((name==='preference'&&i===2)||(name==='willingness'&&v==='아직 모르겠음')?'checked ':'')+'required>' +
       '<span>'+safe(v)+'</span></label>'
     ).join('')+'</div></fieldset>';
   dialog.innerHTML=
     '<div class="dialog-content n18-dialog-content n19-dialog-content">' +
       '<div class="dialog-heading n18-dialog-heading"><div>' +
-        '<span class="n18-dialog-eyebrow">NAGACHI · 취향으로 모여요</span>' +
+        '<span class="n18-dialog-eyebrow">NAGACHI · 동행 관심 남기기</span>' +
         '<h2 id="survey-title">나랑 맞는 하루,<br><em>같이 만들어볼까요?</em></h2></div>' +
         '<button type="button" class="close-dialog" aria-label="닫기">×</button></div>' +
       '<p class="n18-selected-place"><span class="n18-selected-icon" aria-hidden="true">✦</span>' +
@@ -156,13 +156,20 @@ function companionDialog(p, trigger = null, program = null) {
           '<p>끌리는 건 여러 개 골라도 괜찮아요.</p>' +
           '<div class="n19-activity-options">'+activityCards+'</div>' +
           '<div class="n19-chosen-status" role="status">선택한 취향 <strong id="n19-choice-total">1개</strong></div></fieldset>' +
+          '<p class="n20-first-status" role="status" aria-live="polite"></p>' +
           '<button type="button" class="button primary full n18-next" data-n13-next>' +
             '다음 · 모임 방식 고르기 <span aria-hidden="true">→</span></button></div>' +
-        '<div class="n13-survey-step" data-n13-step="2" hidden>' +
-          radio('preference','어떤 분들과 편할까요?','n18-pref-grid') +
-          radio('group_size','몇 명이 좋으세요?','n18-group-grid') +
-          radio('willingness','나중에 모임 준비를 돕는다면?','n18-fee-grid') +
-          '<p class="n18-fee-note">서비스비에 대한 생각만 골라주세요. 식비·교통·입장료는 별도이며 지금 결제되는 금액은 없어요.</p>' +
+        '<div class="n13-survey-step n20-last-step" data-n13-step="2" hidden>' +
+          '<div class="n20-core-reason"><span class="n20-core-eyebrow">✦ 가장 중요한 한 가지</span>' +
+          '<h3>이 동행에 <em>관심 있어요!</em></h3>' +
+          '<p>내 관심을 남기면, 저장된 응답만 활동별 관심 인원에 반영돼요. 지금은 실제 모임 신청이나 참가 확정이 아니에요.</p>' +
+          '<span id="n20-interest-summary" class="n20-interest-summary"></span>' +
+          '<p id="n20-interest-people" class="n20-interest-people" role="status">관심 인원을 확인하고 있어요.</p></div>' +
+          radio('preference','어떤 분들이 편하세요?','n18-pref-grid') +
+          radio('group_size','함께한다면 몇 명이 좋으세요?','n18-group-grid') +
+          '<details class="n20-optional-fee"><summary>나중에 모임 준비를 돕는다면? <span>선택 사항</span></summary>' +
+          '<div class="n20-fee-content">'+radio('willingness','서비스비에 대한 생각','n18-fee-grid') +
+          '<p class="n18-fee-note">선택하지 않으면 “아직 모르겠음”으로 기록됩니다. 식비·교통·입장료는 별도이며 현재 결제는 없어요.</p></div></details>' +
           '<label class="n19-updates-optin"><input type="checkbox" name="updates" value="yes" '+
             (!analyticsEnabled?'disabled ':'')+'><span><strong>내가 고른 동행 소식도 보고 싶어요</strong>' +
             '<small>선택한 활동의 새 모임 준비·일정 공지를 이 기기에서 앱에 재방문할 때 볼 수 있어요. ' +
@@ -170,11 +177,15 @@ function companionDialog(p, trigger = null, program = null) {
           '<label class="n13-consent n18-consent"><input type="checkbox" name="consent" value="yes" required>' +
             '<span>선택한 취향과 익명 식별값을 관심 인원 확인에 사용하는 데 동의합니다. ' +
             '<a href="/privacy.html" target="_blank" rel="noopener">데이터 안내</a></span></label>' +
-          '<button type="submit" class="button primary full n18-submit">' +
-            (analyticsEnabled?'동의하고 관심 남기기':'입력 체험 마치기 (미저장)') +
+          '<div class="n20-action-dock">' +
+          '<div class="n20-primary-message"><span aria-hidden="true">♡</span><div><strong>마음이 가는 동행, 여기 남겨요</strong>' +
+          '<small>저장된 관심만 집계 · 참가 확정/결제 아님</small></div></div>' +
+          '<button type="submit" class="button primary full n18-submit n20-submit-interest">' +
+            (analyticsEnabled?'♡ 이 동행에 관심 있어요':'등록 준비 중 · 서버 연결 확인 필요') +
             ' <span aria-hidden="true">→</span></button>' +
-          '<button type="button" class="n13-back" data-n13-back>← 이전으로</button></div>' +
-        '<p class="survey-status" role="status"></p></form>' +
+          '<p class="survey-status n20-save-status" role="status" aria-live="polite"></p>' +
+          '</div><button type="button" class="n13-back" data-n13-back>← 관심 활동 다시 고르기</button></div>' +
+          '</form>' +
       '<p class="n18-privacy-note">지금은 관심을 모으는 준비 단계이며 실제 동행 참가·예약·결제가 아닙니다.'+
         (!analyticsEnabled?' 저장 서버가 연결되지 않아 응답은 누적되지 않아요.':'')+'</p></div>';
   document.body.append(dialog);
@@ -185,13 +196,35 @@ function companionDialog(p, trigger = null, program = null) {
   const progress=dialog.querySelector('.n13-survey-progress');
   const stepLabel=dialog.querySelector('.n13-survey-step-title');
   const status=dialog.querySelector('.survey-status');
+  const firstStatus=dialog.querySelector('.n20-first-status');
   const chosenActivities=()=>cleanGroupActivities(
     [...form.querySelectorAll('[name="activity-interest"]:checked')].map(x=>x.value)
   );
+  let publicInterest=null;
+  function syncInterestPeople(){
+    const node=dialog.querySelector('#n20-interest-people');
+    if(!node)return;
+    if(!publicInterest){node.textContent='관심 인원을 확인하고 있어요.';return;}
+    if(!publicInterest.ok){node.textContent='관심 인원은 서버 연결 후 확인할 수 있어요.';return;}
+    const items=GROUP_ACTIVITIES
+      .filter(item=>chosenActivities().includes(item.id)&&publicInterest.counts[item.id]>=5)
+      .map(item=>item.label+' 관심 '+publicInterest.counts[item.id]+'명');
+    node.textContent=items.length
+      ? items.join(' · ')+' (관심 표현 기준, 참가 확정 아님)'
+      : '아직 공개 가능한 관심 인원 집계가 없어요. 참가 인원은 아니에요.';
+  }
+  fetchPublicInterestCounts().then(result=>{
+    if(!dialog.isConnected)return;
+    publicInterest=result;
+    syncInterestPeople();
+  }).catch(()=>{if(dialog.isConnected){
+    publicInterest={ok:false};syncInterestPeople();
+  }});
   function syncChoiceCount(){
     const selected=chosenActivities().length;
     const count=dialog.querySelector('#n19-choice-total');
     if(count)count.textContent=selected+'개';
+    syncInterestPeople();
   }
   form.addEventListener('change',event=>{
     if(event.target.matches('[name="activity-interest"]'))syncChoiceCount();
@@ -201,14 +234,22 @@ function companionDialog(p, trigger = null, program = null) {
     progress.children[0].classList.add('is-active');
     progress.children[1].classList.toggle('is-active',number===2);
     progress.setAttribute('aria-label','2단계 중 '+number+'단계');
-    stepLabel.textContent=number===1?'1 / 2 · 관심 있는 하루':'2 / 2 · 함께할 방식';
+    stepLabel.textContent=number===1?'1 / 2 · 관심 있는 하루':'2 / 2 · 동행 관심 남기기';
     status.textContent='';
+    status.dataset.state='';
+    firstStatus.textContent='';
+    if(number===2){
+      const interests=chosenActivities();
+      const summary=dialog.querySelector('#n20-interest-summary');
+      if(summary)summary.textContent='내가 고른 활동 · '+GROUP_ACTIVITIES.filter(x=>interests.includes(x.id)).map(x=>x.label).join(' + ');
+      syncInterestPeople();
+    }
     dialog.scrollTop=0;
   };
   dialog.querySelector('[data-n13-next]').onclick=()=>{
     const age=form.querySelector('[name="age"]:checked');
     if(!age){form.querySelector('[name="age"]')?.reportValidity();return;}
-    if(!chosenActivities().length){status.textContent='같이 해보고 싶은 일을 하나 이상 골라주세요.';return;}
+    if(!chosenActivities().length){firstStatus.textContent='같이 해보고 싶은 일을 하나 이상 골라주세요.';return;}
     showStep(2);
   };
   dialog.querySelector('[data-n13-back]').onclick=()=>showStep(1);
@@ -238,11 +279,25 @@ function companionDialog(p, trigger = null, program = null) {
     values.activities=activities;
     const desire={food:'eat',hike:'outdoor',outing:'explore',travel:'explore'};
     values.desires=[...new Set(activities.map(x=>desire[x]))];
+    status.dataset.state='pending';
+    status.textContent='선택하신 관심을 안전하게 저장하고 있어요.';
     const success=analyticsEnabled&&form.elements.consent.checked&&
       await recordConsentedSurvey({...metadata(p),...rhythmContext(p),...values,response_id:responseId});
-    if(analyticsEnabled&&!success){
-      button.disabled=false;status.textContent='저장되지 않았어요. 연결 상태를 확인하고 다시 시도해 주세요.';return;
+    if(!success){
+      const reasons={
+        'not-configured':'관심 등록 서버가 연결되지 않았어요. 운영자가 연결 설정을 확인해야 합니다.',
+        'rpc-not-installed':'서버에 관심 저장 기능이 준비되지 않았어요. 운영자가 데이터베이스 설정을 확인해야 합니다.',
+        'schema':'선택한 정보를 서버에서 받지 못했어요. 운영자가 데이터 규칙을 업데이트해야 합니다.',
+        'permission':'서버 저장 권한이 맞지 않아요. 운영자가 접근 설정을 확인해야 합니다.',
+        'network':'연결이 불안정해 저장하지 못했어요. 잠시 후 다시 시도해 주세요.',
+        'server':'서버에서 저장을 완료하지 못했어요. 잠시 후 다시 시도해 주세요.',
+      };
+      button.disabled=false;
+      status.dataset.state='error';
+      status.textContent=(reasons[consentSaveFailure()]||reasons.server)+' 선택한 내용은 아직 저장되지 않았습니다.';
+      return;
     }
+    status.dataset.state='success';
     let subscriptionMessage='';
     if(success&&subscribe){
       const subscribed=await optInCompanionUpdates(responseId,activities);
@@ -253,9 +308,8 @@ function companionDialog(p, trigger = null, program = null) {
     document.dispatchEvent(new CustomEvent('nagachi:interest-saved'));
     dialog.querySelector('.dialog-content').innerHTML=
       '<div class="n18-done"><span aria-hidden="true" class="n18-done-icon">'+(success?'✓':'✦')+'</span>' +
-      '<h2 id="survey-title">'+(success?'함께하고 싶은 마음을 남겼어요':'취향을 골라봤어요')+'</h2>' +
-      '<p>'+(success?'관심이 저장됐어요. 아직 실제 참가나 예약은 아니에요.':
-        '저장 서버가 연결되지 않아 응답은 저장되지 않았어요.')+'</p>' +
+      '<h2 id="survey-title">동행 관심을 남겼어요!</h2>' +
+      '<p>관심이 서버에 저장됐어요. 모임 신청이나 실제 참가 확정은 아니에요.</p>' +
       (subscriptionMessage?'<p>'+escapeHtml(subscriptionMessage)+'</p>':'') +
       '<button type="button" class="button primary full" id="survey-done">확인</button></div>';
     dialog.querySelector('#survey-done').onclick=()=>dialog.close();
