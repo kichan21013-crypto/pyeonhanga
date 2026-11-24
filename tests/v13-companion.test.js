@@ -29,7 +29,7 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
   const detailFiles=await read('scripts/build-core.js');
   assert.match(page,/오늘, 누구랑/);
   assert.match(page,/\?together=eat/);
-  assert.match(page,/현재는 참여 의향을 확인하는 무료 시범 서비스입니다/);
+  assert.match(page,/아직 실제 동행 모집·예약·결제는 제공하지 않아요/);
   assert.match(page,/class="n13-landing n15-program-hub n16-companion-hub"/);
   assert.match(page,/data-companion="true"/);
   assert.match(home,/v12-direct-home\.js\?v=20261124-v18/);
