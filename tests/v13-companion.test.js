@@ -54,7 +54,7 @@ test('2단계 설문은 익명/동의/저장결과/실패를 명확히 표시한
   assert.match(src,/data-n13-back/);
   assert.match(src,/name="consent" value="yes" required/);
   assert.match(src,/delete values\.consent/);
-  assert.match(src,/premium_willingness/);
+  assert.match(src,/recordConsentedSurvey/);
   assert.match(src,/response_id:responseId/);
   assert.match(src,/await recordConsentedSurvey/);
   assert.match(src,/서버에 저장하지 못했습니다/);
