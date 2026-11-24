@@ -58,6 +58,9 @@ test('동행 허브는 활동 → 지역 → 실제 장소 → 2단계 설문으
   assert.match(script,/data-companion-interest/);
   assert.match(app,/trackRhythm\('companion_interest'/);
   assert.match(app,/trackRhythm\('premium_willingness'/);
+  assert.match(app,/const activityMap = \{ walk:'walk', eat:'food', outing:'outing', travel:'travel' \}/);
+  assert.match(app,/\.\.\.metadata\(p\), \.\.\.context, \.\.\.values, response_id:responseId/);
+  assert.match(script,/data-companion-activity/);
 });
 
 test('새 화면은 외부 유료 의존성 없이 4개 주요 페이지에서 최종 디자인을 직접 로드한다',async()=>{
@@ -72,4 +75,17 @@ test('새 화면은 외부 유료 의존성 없이 4개 주요 페이지에서 �
   assert.match(home,/v12-direct-home\.js\?v=20261124-v14/);
   assert.ok(!('dependencies' in pkg));
   assert.doesNotMatch(css,/@import|https?:\/\//);
+});
+
+
+test('기존 Supabase 이벤트 스키마 변경 없이 분야별 수요 및 유료 의향을 측정한다',async()=>{
+  const sql=await read('supabase/companion-kpi.sql');
+  const schema=await read('supabase/schema.sql');
+  assert.match(sql,/companion_interest/);
+  assert.match(sql,/when 'walk' then '산책 동행'/);
+  assert.match(sql,/when 'food' then '식사 동행'/);
+  assert.match(sql,/when 'outing' then '나들이 동행'/);
+  assert.match(sql,/when 'travel' then '여행 동행'/);
+  assert.match(schema,/premium_willingness/);
+  assert.match(schema,/'food','korean_food'.*'travel'/s);
 });
