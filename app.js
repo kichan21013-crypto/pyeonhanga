@@ -116,8 +116,18 @@ function showCopyFallback(url, p) {
 const choices = SURVEY_CHOICES;
 function companionDialog(p, trigger = null) {
   if (document.querySelector('dialog.n13-survey-dialog')) return;
-  // 별개의 퍼널 지표: 관심을 연 사람 vs 설문까지 제출한 사람.
-  trackRhythm('companion_interest', { ...metadata(p), ...rhythmContext(p) });
+  // 선택한 동행 활동은 기존 analytics.details.activities(검증된 enum)로만 기록합니다.
+  // 검색어·자유 텍스트·연락처는 저장하지 않습니다.
+  const activityMap = { walk:'walk', eat:'food', outing:'outing', travel:'travel' };
+  const desireMap = { walk:'outdoor', eat:'eat', outing:'explore', travel:'explore' };
+  const chosen = trigger?.dataset?.companionActivity;
+  const context = rhythmContext(p);
+  if (Object.prototype.hasOwnProperty.call(activityMap, chosen)) {
+    context.activities = [activityMap[chosen]];
+    context.desires = [desireMap[chosen]];
+  }
+  // 관심 클릭과 고유 설문 완료를 서로 다른 지표로 기록합니다.
+  trackRhythm('companion_interest', { ...metadata(p), ...context });
   const dialog = document.createElement('dialog');
   dialog.className = 'n13-survey-dialog';
   const responseId = anonymousId();
@@ -200,7 +210,7 @@ function companionDialog(p, trigger = null) {
     const values = Object.fromEntries(new FormData(form));
     delete values.consent; // 동의 체크 원문은 분석 이벤트에 보관하지 않음
     const success = analyticsEnabled && await trackRhythm('premium_willingness', {
-      ...metadata(p), ...rhythmContext(p), ...values, response_id:responseId,
+      ...metadata(p), ...context, ...values, response_id:responseId,
     });
     if (analyticsEnabled && !success) {
       button.disabled = false;
