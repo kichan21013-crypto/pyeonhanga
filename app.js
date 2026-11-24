@@ -5,6 +5,7 @@ import { inferIntent, requestedComforts, COMPANIONS } from './search.js';
 import { emptyRhythmFilters, recommendRhythms, DESIRES, ACTIVITIES, DURATION_OPTIONS, TRANSPORT_OPTIONS, companionSummary, toggleSelection, activeActivities } from './rhythm.js';
 import { toggleSavedPlace, shareOrCopy, SURVEY_CHOICES } from './actions.js';
 import { createProgressiveFlow } from './flow.js';
+import { programById, programContext } from './assets/v15-programs.js';
 
 const $ = selector => document.querySelector(selector);
 let places = [], filters = emptyRhythmFilters(), toastTimer, flow;
@@ -114,12 +115,12 @@ function showCopyFallback(url, p) {
   dialog.onclose = () => { dialog.remove(); if (trigger?.isConnected) trigger.focus(); };
 }
 const choices = SURVEY_CHOICES;
-function companionDialog(p, trigger = null) {
+function companionDialog(p, trigger = null, program = null) {
   if (document.querySelector('dialog.n13-survey-dialog')) return;
   // 선택한 동행 활동은 기존 analytics.details.activities(검증된 enum)로만 기록합니다.
   // 검색어·자유 텍스트·연락처는 저장하지 않습니다.
-  const activityMap = { walk:'walk', eat:'food', outing:'outing', travel:'travel' };
-  const desireMap = { walk:'outdoor', eat:'eat', outing:'explore', travel:'explore' };
+  const activityMap = { walk:'walk', eat:'food', hike:'hike', outing:'outing', travel:'travel' };
+  const desireMap = { walk:'outdoor', eat:'eat', hike:'outdoor', outing:'explore', travel:'explore' };
   const chosen = trigger?.dataset?.companionActivity;
   const context = rhythmContext(p);
   if (Object.prototype.hasOwnProperty.call(activityMap, chosen)) {
@@ -136,7 +137,7 @@ function companionDialog(p, trigger = null) {
     '<label for="survey-' + name + '">' + label +
     '<select id="survey-' + name + '" name="' + name + '" required>' +
     '<option value="">선택해 주세요</option>' +
-    choices[name].map(v => '<option value="' + safe(v) + '">' + safe(v) + '</option>').join('') +
+    choices[name].filter(v => v !== '새로운 이성도 괜찮음' && v !== '데이트도 괜찮음').map(v => '<option value="' + safe(v) + '">' + safe(v) + '</option>').join('') +
     '</select></label>';
   const willingness = choices.willingness.map((value,i) =>
     '<label class="radio-option" for="willingness-' + i + '">' +
@@ -149,10 +150,10 @@ function companionDialog(p, trigger = null) {
     '<div class="n13-survey-progress" aria-label="2단계 중 1단계"><span class="is-active"></span><span></span></div>' +
     '<p class="n13-survey-step-title">1 / 2 · 함께 가고 싶은 방식</p>' +
     '<form class="survey" id="companion-survey">' +
-    '<p class="n13-intro"><strong>' + safe(p.name) + '</strong>에서의 동행을 생각해 주세요.</p>' +
-    '<div class="n13-disclaimer">지금은 실제 사람 연결이 아닌 수요 조사 단계입니다. 이름·연락처를 받지 않고, 예약이나 결제도 진행하지 않습니다. 초기 응답 대상은 50세 이상입니다.</div>' +
+    '<p class="n13-intro"><strong>' + safe(p.name) + '</strong>을(를) 함께할 하루로 생각해 주세요.</p>' +
+    '<div class="n13-disclaimer">지금은 실제 사람 연결이 아닌 수요 조사 단계입니다. 결혼 여부를 묻지 않고, 이름·연락처도 받지 않습니다. 파티나 이동수단이 확정된 상태가 아니며 예약·결제도 진행하지 않습니다. 초기 응답 대상은 50세 이상입니다.</div>' +
     '<div class="n13-survey-step" data-n13-step="1">' +
-    select('age','연령대') + select('preference','어떤 동행이 좋으세요?') +
+    select('age','연령대') + select('preference','파티원의 구성은 어떻게 원하는가요?') +
     select('purpose','동행 목적') +
     '<button type="button" class="button primary full" data-n13-next>다음 · 참여 조건 고르기 →</button>' +
     '</div>' +
@@ -187,6 +188,11 @@ function companionDialog(p, trigger = null) {
       : '';
     dialog.scrollTop = 0;
   };
+  // 프로그램별 관심사를 익명 수요에 반영하며, 결혼/데이트 여부는 묻지 않습니다.
+  if (program) {
+    form.elements.purpose.value = program.purpose;
+    form.elements.purpose.closest('label')?.setAttribute('data-prefilled-program','true');
+  }
   dialog.querySelector('[data-n13-next]').onclick = () => {
     const inputs = [...step1.querySelectorAll('[required]')];
     const invalid = inputs.find(input => !input.checkValidity());
@@ -251,6 +257,12 @@ document.addEventListener('click', event => {
     toast(removing ? '저장한 곳에서 지웠어요.' : '저장한 곳에 담았어요.');
   }
   const share = event.target.closest('[data-share]'); if (share) { const p = places.find(p=>p.id===share.dataset.share); if(p) sharePlace(p); }
+  const planButton = event.target.closest('[data-program-interest]'); 
+  if (planButton) {
+    const program = programById(planButton.dataset.programInterest);
+    if (program) companionDialog(programContext(program),planButton,program);
+    return;
+  }
   const interest = event.target.closest('[data-companion-interest]'); if (interest) { const p = places.find(p=>p.id===interest.dataset.companionInterest); if(p) companionDialog(p,interest); }
   if (event.target.closest('[data-reset], #reset-filters')) reset();
 });
