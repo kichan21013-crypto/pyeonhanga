@@ -193,3 +193,24 @@ body:has(.n22-admin) .site-header nav{display:none!important;}
  .n22-admin .n22-login{padding:22px!important;}
  .n22-notice-body{padding:13px;}
 }
+
+/* v26 mobile owner demand dashboard */
+.n26-controls{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:12px 0}
+.n26-controls label{display:grid;gap:4px;font-weight:700}
+.n26-controls select,.n26-controls button,.n26-business button[data-n22-go]{min-height:42px;padding:8px 12px;border:1px solid #bacdc0;border-radius:9px;background:white;color:#20583d;font-weight:750}
+.n26-business h3{margin:20px 0 9px}
+.n26-note,.n26-period{font-size:12px;line-height:1.65;color:#4f6657}
+.n26-scroll{overflow-x:auto;margin:10px 0 16px}
+.n26-table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.45}
+.n26-table th,.n26-table td{padding:9px 8px;border-bottom:1px solid #dce7de;text-align:right;white-space:nowrap}
+.n26-table th{background:#f0f5f1;color:#365846}
+.n26-table th:first-child,.n26-table td:first-child{text-align:left;white-space:normal;min-width:84px}
+.n26-chart{max-height:360px;overflow:auto;padding:8px 4px;border:1px solid #dce7de;border-radius:10px}
+.n26-chart-day{display:grid;grid-template-columns:45px 1fr;gap:3px 9px;margin:8px 0}
+.n26-chart-day>span{grid-row:span 3;font-size:12px;align-self:center}
+.n26-bar-row{display:flex;align-items:center;gap:5px;min-height:16px;padding-right:32px}
+.n26-bar{display:block;height:8px;border-radius:6px;background:#347b58}
+.n26-bar-1{background:#bb8240}.n26-bar-2{background:#50739c}
+.n26-bar-row small{font-size:10px;color:#32483b}
+.n26-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;margin:8px 0}
+.n26-legend span:nth-child(1){color:#347b58}.n26-legend span:nth-child(2){color:#946024}.n26-legend span:nth-child(3){color:#50739c}
