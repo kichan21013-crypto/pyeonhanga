@@ -79,7 +79,7 @@ test('동행 전용 메뉴는 사람을 먼저 모집하지 않고 동일한 실
   assert.match(page,/아직 실제 동행 모집·예약·결제는 제공하지 않아요/);
   assert.doesNotMatch(page,/data-program-interest=|data-companion-interest=|data-n14-interest=/);
   assert.match(build,/TOGETHER_INVITES/);
-  assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v37/);
+  assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v38/);
 });
 
 test('익명 동행 설문은 장소 이름·취향·동행 구성·서비스비 의향을 수집한다',async()=>{
@@ -119,9 +119,9 @@ test('코스 제안과 모임 구성의 미래 수익모델은 분리하고 계�
   const css=await read('assets/v16-together.css');
   assert.match(home,/코스 제안과 동행 구성·일정 조율 서비스비/);
   assert.match(home,/식비·교통비·입장료/);
-  assert.match(index,/v16-together\.css\?v=20261124-v37/);
-  assert.match(index,/v12-direct-home\.js\?v=20261124-v37/);
-  assert.match(saved,/mobile-ux\.css\?v=20261124-v37/);
+  assert.match(index,/v16-together\.css\?v=20261124-v38/);
+  assert.match(index,/v12-direct-home\.js\?v=20261124-v38/);
+  assert.match(saved,/mobile-ux\.css\?v=20261124-v38/);
   assert.ok(!('dependencies' in pkg));
   assert.doesNotMatch(css,/@import|https?:\/\//);
   assert.equal(PROGRAMS.length,4);
