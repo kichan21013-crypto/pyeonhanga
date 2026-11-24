@@ -32,8 +32,8 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
   assert.match(page,/현재는 참여 의향을 확인하는 무료 시범 서비스입니다/);
   assert.match(page,/class="n13-landing n15-program-hub n16-companion-hub"/);
   assert.match(page,/data-companion="true"/);
-  assert.match(home,/v12-direct-home\.js\?v=20261124-v16/);
-  assert.match(saved,/app\.js\?v=20261124-v16/);
+  assert.match(home,/v12-direct-home\.js\?v=20261124-v17/);
+  assert.match(saved,/app\.js\?v=20261124-v17/);
   assert.match(detailFiles,/mobileNav\(path === '\/companion\.html' \? 'companion' : 'recommend'\)/);
   assert.match(detailFiles,/class="n13-nav-companion/);
 });
@@ -54,9 +54,9 @@ test('2단계 설문은 익명/동의/저장결과/실패를 명확히 표시한
   assert.match(src,/data-n13-back/);
   assert.match(src,/name="consent" value="yes" required/);
   assert.match(src,/delete values\.consent/);
-  assert.match(src,/premium_willingness/);
+  assert.match(src,/recordConsentedSurvey/);
   assert.match(src,/response_id:responseId/);
-  assert.match(src,/analyticsEnabled && await trackRhythm/);
+  assert.match(src,/await recordConsentedSurvey/);
   assert.match(src,/서버에 저장하지 못했습니다/);
   assert.match(src,/응답이 저장됐습니다/);
   assert.match(src,/응답이 저장되지 않았습니다/);

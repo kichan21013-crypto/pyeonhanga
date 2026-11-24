@@ -1,100 +1,117 @@
-// npm start 후 실행. 기존 설치된 Playwright를 사용하며 배포 의존성이 아닙니다.
+/* 나가치 v16 무료 브라우저 실사 테스트.
+   npm run build && npm start 후, 기존 Playwright/Chromium 설치 환경에서만 실행.
+   GitHub CI의 Node 단위 테스트와 달리 운영 URL 접근을 별도 지정할 수 있습니다.
+   운영 실제 분석 DB에는 테스트 데이터를 넣지 마세요. */
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
-const { chromium } = await import(process.env.PLAYWRIGHT_MODULE ? pathToFileURL(process.env.PLAYWRIGHT_MODULE).href : 'playwright');
-const browser = await chromium.launch({ ...(process.env.CHROMIUM_PATH ? { executablePath:process.env.CHROMIUM_PATH } : {}), headless:true });
-const base=process.env.TEST_URL || 'http://localhost:4173';
-let count=0;
-const check=(value,message)=>{assert.ok(value,message);count++;};
-async function answer(page) {
-  await page.locator('[name=age]').selectOption('60~64');await page.locator('[name=preference]').selectOption('성별 상관없음');
-  await page.locator('[name=purpose]').selectOption('식사동행');await page.locator('[name=group_size]').selectOption('3~4명');
-  await page.locator('[name=willingness][value="약 2만원"]').check();await page.locator('.survey [type=submit]').click();
+const lib=process.env.PLAYWRIGHT_MODULE
+  ? pathToFileURL(process.env.PLAYWRIGHT_MODULE).href : 'playwright';
+const {chromium}=await import(lib);
+const browser=await chromium.launch({
+  headless:true,
+  ...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),
+});
+const base=(process.env.TEST_URL || 'http://localhost:4173').replace(/\/$/,'');
+let passed=0;
+const ok=(value,label)=>{assert.ok(value,label);passed++;};
+async function chooseSurvey(page) {
+  const dialog=page.locator('dialog.n13-survey-dialog');
+  await dialog.locator('[name=age]').selectOption('60~64');
+  await dialog.locator('[name=preference]').selectOption('성별 상관없음');
+  await dialog.locator('[name=purpose]').selectOption('식사동행');
+  await dialog.locator('[data-n13-next]').click();
+  await dialog.locator('[name=group_size]').selectOption('3~4명');
+  await dialog.locator('[name=willingness][value="약 2만원"]').check();
+  await dialog.locator('[name=consent]').check();
+  await dialog.locator('[type=submit]').click();
+  return dialog;
 }
 try {
   await mkdir('test-results',{recursive:true});
-  const context=await browser.newContext({viewport:{width:390,height:844}}), page=await context.newPage(), errors=[],network=[];
-  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});page.on('request',r=>{if(r.url().includes('supabase.co'))network.push(r.url());});
-  await page.goto(base);await page.waitForFunction(()=>document.querySelector('#flow-step-1')?.dataset.available==='true');
-  check(await page.title().then(s=>s.includes('나가치')),'brand');
-  check(await page.locator('#explore').isHidden(),'questions hidden until start');
-  check(await page.locator('#rhythm-results').isHidden(),'results initially hidden');
-  check(await page.locator('[data-transport]').count()===3,'three transport options');
-  check(await page.locator('[data-transport=nearby]').count()===0,'nearby removed');
-  check(await page.locator('header a[href="/saved.html"]').innerText().then(s=>s.includes('저장한 곳')),'place save label');
-  async function layouts(label) {
-    for(const width of [360,390,402,800,1280]){
-      await page.setViewportSize({width,height:900});
-      for(const size of ['18px','36px']){
-        await page.evaluate(size=>document.documentElement.style.fontSize=size,size);
-        check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${label} ${width}px ${size} overflow`);
-      }
-    }
-    await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));await page.setViewportSize({width:390,height:844});
-  }
-  await layouts('hero');check(await page.locator('.rhythm-paths').isVisible(),'hero illustration on mobile');
-  await page.screenshot({path:'test-results/nagachi-hero-mobile.png',fullPage:true});
-  await page.locator('#rhythm-start').click();
-  check(await page.locator('#flow-step-1').isVisible(),'step 1 visible');check(await page.locator('#flow-step-2').isHidden(),'step 2 gated');check(await page.locator('#flow-step-3').isHidden(),'step 3 gated');
-  check(await page.locator('#activity-options').isHidden(),'details initially hidden');
-  const runColor=await page.locator('[data-desire=move] .choice-icon').evaluate(el=>getComputedStyle(el).color);
-  const foodColor=await page.locator('[data-desire=eat] .choice-icon').evaluate(el=>getComputedStyle(el).color);check(runColor!==foodColor,'semantic colors differ');
-  await page.locator('[data-desire=move]').click();check(await page.locator('[data-activity=run]').isVisible(),'running disclosed under movement');
-  check(await page.locator('[data-desire=move] .choice-icon').evaluate(el=>getComputedStyle(el).color)===runColor,'selected semantic color retained');
-  check(await page.locator('#flow-step-2').isVisible(),'step 2 enabled');
-  await page.locator('[data-desire=eat]').click();await page.locator('[data-activity=walk]').click();
-  check(await page.locator('[data-desire][aria-pressed=true]').count()===2,'multi desire');check(await page.locator('#rhythm-results').isHidden(),'no results during desire selection');
-  await page.locator('[data-companion=solo]').click();await page.locator('[data-companion=friend]').click();
-  check(await page.locator('#flow-step-1').evaluate(el=>!el.open),'previous choices compact');check(await page.locator('#flow-step-3').isVisible(),'step 3 enabled');
-  check(await page.locator('[data-companion][aria-pressed=true]').count()===2,'multi companion');
-  check(await page.locator('#flow-companion-summary').innerText().then(s=>s.includes('혼자')&&s.includes('친구')),'compact summary');
-  await page.locator('[data-duration=short]').click();await page.locator('[data-transport=car]').click();
-  check(await page.locator('#rhythm-results').isHidden(),'results gated until final CTA');await layouts('conditions');
-  await page.locator('#recommend-button').click();check(await page.locator('#rhythm-results').isVisible(),'final CTA reveals results');
-  check(await page.locator('.place-card').count()>0,'OR recommendations');await layouts('results');
-  await page.screenshot({path:'test-results/nagachi-results-mobile.png',fullPage:true});
-  await page.locator('#reset-filters').click();check(await page.locator('#rhythm-results').isHidden(),'reset hides results');
-  await page.locator('#search-input').fill('혼자 10km 정도 뛰고 맛있는 거 먹고 싶어');await page.locator('#search-input').press('Enter');
-  check(await page.locator('#rhythm-results').isHidden(),'Enter advances without results');await page.locator('[data-companion=solo]').click();
-  check(await page.locator('#search-input').inputValue().then(s=>s.includes('10km')),'draft kept');
-  await page.locator('#recommend-button').click();check(await page.locator('.place-card').count()>0,'compound natural language');
-  check(!(await page.locator('#places-grid').innerText()).includes('10km'),'no fabricated distance');
-  await page.locator('#reset-filters').click();await page.locator('#search-input').fill('조용한 곳');await page.locator('[data-companion=solo]').click();
-  await page.locator('#comfort-options summary').click();await page.locator('[data-comfort=parking]').click();await page.locator('#recommend-button').click();
-  check(await page.locator('.place-card').count()===6,'unknown comfort retained');
-  await page.locator('.save-icon[data-save="demo-table"]').click();check(await page.locator('#saved-count').innerText()==='1','save counter');
-  await page.goto(base+'/saved.html');await page.waitForSelector('.place-card');check(await page.locator('.place-card').count()===1,'saved persistence');
-  await page.locator('h3 a').click();await page.waitForSelector('#companion-open');check(await page.locator('.score-panel h2').innerText()==='정보 더 필요','unknown score');
-  await page.evaluate(()=>{Object.defineProperty(navigator,'share',{value:undefined,configurable:true});Object.defineProperty(navigator,'clipboard',{value:undefined,configurable:true});});
-  await page.locator('#share-place').click();check(await page.locator('#share-link').inputValue().then(s=>s.endsWith('/places/demo-table/')),'share fallback');await page.locator('#copy-done').click();
-  await page.locator('#companion-open').click();await page.keyboard.press('Escape');check(await page.locator('#companion-open').evaluate(el=>el===document.activeElement),'dialog focus');
-  await page.locator('#companion-open').click();await answer(page);await page.waitForSelector('#survey-done');
-  check(await page.getByText('현재 분석 연결이 없어 응답은 저장되지 않았습니다.',{exact:false}).isVisible(),'unconfigured honest survey');await page.locator('#survey-done').click();
-  check(network.length===0,'no analytics without config');check(errors.length===0,errors.join(';'));
-  await context.close();
-  const connected=await browser.newContext(),rows=[];
-  await connected.route('**/config.js',r=>r.fulfill({contentType:'text/javascript',body:"export default {supabaseUrl:'https://fixture.supabase.co',supabaseAnonKey:'sb_publishable_fixture'}"}));
-  await connected.route('https://fixture.supabase.co/**',async r=>{
-    if(r.request().method()==='OPTIONS')return r.fulfill({status:204,headers:{'access-control-allow-origin':'*','access-control-allow-headers':'*'}});
-    rows.push(r.request().postDataJSON().payload);await r.fulfill({status:204,headers:{'access-control-allow-origin':'*'}});
+  const ctx=await browser.newContext({viewport:{width:390,height:844}});
+  const page=await ctx.newPage();
+  const errors=[],requests=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  page.on('request',request=>{
+    if(request.url().includes('/rpc/record_event'))requests.push(request.url());
   });
-  await connected.addInitScript(()=>{window.logicalEvents=[];document.addEventListener('naerhythm:analytics',e=>window.logicalEvents.push(e.detail.name));Object.defineProperty(navigator,'share',{value:async data=>{window.sharedData=data;},configurable:true});});
-  const c=await connected.newPage();await c.goto(base);await c.waitForFunction(()=>document.querySelector('#flow-step-1')?.dataset.available==='true');
-  await c.locator('#rhythm-start').click();await c.locator('[data-desire=move]').click();await c.locator('[data-activity=walk]').click();await c.locator('[data-companion=solo]').click();await c.locator('[data-duration=short]').click();await c.locator('#recommend-button').click();
-  await c.locator('.save-icon').first().click();await c.locator('[data-share]').first().click();check(await c.evaluate(()=>Boolean(window.sharedData.url)&&window.sharedData.title.endsWith('— 나가치')),'native share');
-  await c.locator('[data-companion-interest]').first().click();await answer(c);await c.waitForSelector('#survey-done');
-  const logical=await c.evaluate(()=>window.logicalEvents);
-  for(const event of ['rhythm_start','companion_selected','desire_selected','activity_selected','condition_selected','recommendation_view','rhythm_save','rhythm_share','companion_interest','premium_willingness'])check(logical.includes(event),event);
-  const premium=rows.find(row=>row.event_name==='premium_willingness');check(premium?.details.willingness==='약 2만원'&&premium.is_demo,'survey recorded as demo');
-  await c.locator('#survey-done').click();
-  await connected.route('https://fixture.supabase.co/**',r=>r.fulfill({status:503,headers:{'access-control-allow-origin':'*'}}));
-  await c.locator('[data-companion-interest]').first().click();await answer(c);await c.waitForFunction(()=>document.querySelector('.survey-status')?.textContent.includes('전송하지 못했어요'));check(await c.locator('.survey [type=submit]').isEnabled(),'survey retry');
+  await page.goto(base,{waitUntil:'domcontentloaded'});
+  await page.locator('#n16-invites').waitFor();
+  ok(await page.getByText('같이 맛있는 거 먹으러 갈 사람?',{exact:false}).count()>0,
+    '사용자 중심 동행 질문 노출');
+  for(const width of [360,390,402,760]){
+    await page.setViewportSize({width,height:850});
+    ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),
+      width+'px 가로 넘침 없음');
+  }
+  await page.setViewportSize({width:390,height:844});
+  await page.locator('[data-v16-invite=eat]').click();
+  await page.locator('#n16-venues .n16-venue-card').first().waitFor();
+  ok(await page.locator('[data-v16-meal=seafood]').isVisible(),'식사 동행의 메뉴 필터 표시');
+  await page.locator('[data-v16-meal=seafood]').click();
+  await page.locator('#n16-venues .n16-venue-card').first().waitFor();
+  ok(await page.locator('#n16-count').innerText().then(t=>!t.includes('불러오기 실패')),
+    '실제 메뉴 선택 결과 조회');
+  ok(await page.locator('.n16-venue-together').count()>0,
+    '실제 장소에서 동행 희망 남기기 버튼');
+  await page.screenshot({path:'test-results/nagachi-v16-invite-venues-390.png',fullPage:true});
+  await page.locator('.n16-venue-together').first().click();
+  await page.locator('dialog.n13-survey-dialog').waitFor();
+  ok(await page.locator('[name=consent]').count()===1,'설문 필수 동의');
+  ok(requests.length===0,'미연결 환경 동의 전 외부 분석 요청 없음');
+  const dialog=await chooseSurvey(page);
+  await dialog.locator('#survey-done').waitFor();
+  ok(await dialog.innerText().then(t=>t.includes('저장되지 않았습니다')),
+    '서버 미연결 시 미저장 표시');
+  ok(requests.length===0,'미연결 환경 동의 후에도 외부 요청 없음');
+  await page.goto(base+'/companion.html',{waitUntil:'domcontentloaded'});
+  await page.locator('a[href="/?together=eat"]').click();
+  await page.locator('#n16-venues .n16-venue-card').first().waitFor();
+  ok(await page.locator('[data-v16-invite=eat]').getAttribute('aria-pressed')==='true',
+    '동행 메뉴에서 홈 활동과 실제 장소 연결');
+  ok(errors.length===0,'브라우저 JavaScript 오류: '+errors.join('; '));
+  await ctx.close();
+
+  // 반드시 가짜 fixture Supabase만 사용: 실제 외부 운영 DB에 테스트 응답 금지.
+  const connected=await browser.newContext({viewport:{width:390,height:844}});
+  const rows=[];
+  await connected.route('**/config.js',route=>route.fulfill({
+    contentType:'text/javascript',
+    body:"export default {supabaseUrl:'https://fixture.supabase.co',supabaseAnonKey:'sb_publishable_fixture_only'}",
+  }));
+  await connected.route('https://fixture.supabase.co/**',route=>{
+    const req=route.request();
+    if(req.method()==='OPTIONS')return route.fulfill({
+      status:204,headers:{
+        'access-control-allow-origin':'*',
+        'access-control-allow-headers':'*',
+        'access-control-allow-methods':'POST,OPTIONS',
+      },
+    });
+    rows.push(JSON.parse(req.postData()).payload);
+    return route.fulfill({
+      status:204,headers:{'access-control-allow-origin':'*'},
+    });
+  });
+  const cp=await connected.newPage();
+  await cp.goto(base+'/?together=eat',{waitUntil:'domcontentloaded'});
+  await cp.locator('#n16-venues .n16-venue-together').first().waitFor();
+  ok(rows.length===0,'Supabase 설정 존재해도 동의 전 서버 전송 0회');
+  await cp.locator('#n16-venues .n16-venue-together').first().click();
+  await cp.locator('dialog.n13-survey-dialog').waitFor();
+  ok(rows.length===0,'설문을 열어도 동의 전 서버 전송 0회');
+  const saved=await chooseSurvey(cp);
+  await saved.locator('#survey-done').waitFor();
+  await cp.waitForFunction(()=>window.__nagachiSmokeDone===true,{},{timeout:300}).catch(()=>{});
+  ok(rows.length===3,'동의 후에만 설문/관심/선택 3개 기록, 실제 '+rows.length);
+  ok(rows[0].event_name==='premium_willingness','설문을 먼저 저장');
+  ok(rows[1].event_name==='companion_interest','설문 작성자의 장소 관심만 기록');
+  ok(rows[2].event_name==='activity_selected','설문 작성자의 활동만 기록');
+  ok(rows.every(row=>!('query' in row.details)&&!('name' in row.details)),
+    '자유입력/이름 원문 미전송');
   await connected.close();
-  const reduced=await browser.newContext({reducedMotion:'reduce'});
-  await reduced.addInitScript(()=>{window.flowAnimations=0;const original=Element.prototype.animate;Element.prototype.animate=function(...args){window.flowAnimations++;return original.apply(this,args);};});
-  const r=await reduced.newPage();await r.goto(base);await r.waitForFunction(()=>document.querySelector('#flow-step-1')?.dataset.available==='true');
-  await r.locator('#rhythm-start').click();await r.locator('[data-desire=eat]').click();await r.locator('[data-companion=solo]').click();await r.locator('#recommend-button').click();
-  check(await r.locator('#rhythm-results').isVisible(),'reduced motion result');check(await r.evaluate(()=>window.flowAnimations===0),'reduced motion no reveal animation');await reduced.close();
-  console.log(`브라우저 smoke test ${count}개 검사 통과`);
-} finally {await browser.close();}
+  console.log('나가치 v16 브라우저 검증 성공: '+passed+' checks');
+}finally{
+  await browser.close();
+}

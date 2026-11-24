@@ -61,7 +61,34 @@ function duplicate(event, row) {
 }
 
 // 검색어, URL query, referrer, IP, 브라우저 정보, 자유입력 자연어 원문은 전송하지 않습니다.
+// 서버로의 이벤트 전송은 동행 설문에 명시적으로 동의한 제출에서만 허용합니다.
+// 일반 방문·활동·저장 클릭은 브라우저 내에서만 처리하며 익명 식별자를 만들지 않습니다.
 export async function track(event, values = {}) {
+  return false;
+}
+
+// 동행 수요 조사 동의 체크 후 호출하는 전용 함수입니다.
+// 매번 호출 시 딱 세 가지 수요 지표만 기록하며 일반 탐색 추적 권한을 부여하지 않습니다.
+export async function recordConsentedSurvey(values = {}) {
+  if (!analyticsEnabled) return false;
+  const base = { ...values };
+  const survey = await sendConsentedEvent('premium_willingness', base);
+  if (!survey) return false;
+  // 실제 설문이 저장된 뒤에만 역으로 선택 단계를 기록합니다.
+  // 목적/연령대/서비스비 응답은 완료 이벤트에만 넣고 선택 이벤트에는 재전송하지 않습니다.
+  const engagement = {
+    place_id: base.place_id, region: base.region,
+    category: base.category, is_demo: base.is_demo,
+    activities: base.activities, desires: base.desires,
+  };
+  await sendConsentedEvent('companion_interest', engagement);
+  if (Array.isArray(base.activities) && base.activities.length) {
+    await sendConsentedEvent('activity_selected', engagement);
+  }
+  return true;
+}
+
+async function sendConsentedEvent(event, values = {}) {
   if (!analyticsEnabled || !EVENTS.includes(event)) return false;
   const row = {
     event_name: event,

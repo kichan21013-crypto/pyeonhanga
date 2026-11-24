@@ -46,7 +46,7 @@ test('라이브 추천은 하나의 카테고리 선택과 지역/검색을 사�
 
 test('배포는 v12 단독 홈을 사용하고 이전 v5·사진 로더는 읽지 않는다',async()=>{
   const build=await readFile(new URL('../scripts/build.js',import.meta.url),'utf8');
-  assert.match(build,/const CLIENT_VERSION = '20261124-v16'/);
+  assert.match(build,/const CLIENT_VERSION = '20261124-v17'/);
   assert.match(build,/v12-direct-home\.js/);
   assert.match(build,/v12-direct-home\.css/);
   assert.doesNotMatch(build,/v5-app-home\.js|v8-photo-icon-loader\.js/);

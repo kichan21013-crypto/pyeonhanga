@@ -15,3 +15,4 @@ import './v6-ui.test.js';
 import './v9-product-ui.test.js';
 import './v13-companion.test.js';
 import './v14-companion-first.test.js';
+import './v16-consent-browser-contract.test.js';

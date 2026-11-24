@@ -1,55 +1,60 @@
--- 나가치 취향 동행 수요 검증 · 2026-11-24
--- Supabase 운영자 전용 SQL Editor에서 조회합니다. 정적 앱/익명 사용자는 원천 데이터 직접 조회 불가.
--- 수집은 분석 설정이 실제로 동작하고 참가자가 명시적 동의를 한 경우에만 발생합니다.
--- 자유입력, 연락처, 혼인상태, 건강/성생활 데이터는 받지 않습니다.
--- 이벤트 범위: 하고 싶은 일 선택(activity_selected) → 실제 장소에서 관심(companion_interest)
--- → 동의 후 설문 완료(premium_willingness). 의향이지 결제/참가확정이 아닙니다.
+-- 나가치 취향 동행 · 동의한 설문 응답만으로 무료 사업성 검증 (2026-11-24)
+-- Supabase SQL Editor 운영자 전용. 공개 API 조회 금지.
+-- 실제 모집/결제/고객 수가 아니라 응답자 브라우저가 제출한 관심 및 지불 의향입니다.
+-- 설문 제출 전 활동 클릭과 방문은 개인정보 최소 수집을 위해 서버에 저장하지 않습니다.
+-- therefore click→survey 전환율은 계산할 수 없으며, '관심 클릭률' 등으로 표현하지 않습니다.
 
-with recent as (
- select event_name,session_id,place_id,details
+with responses as (
+ select created_at,place_id,region,category,session_id,details
  from public.analytics_events
- where not is_demo and created_at >= now() - interval '30 days'
-   and event_name in ('activity_selected','companion_interest','premium_willingness')
+ where not is_demo
+   and event_name='premium_willingness'
+   and created_at >= now() - interval '30 days'
+   and place_id not like 'program-%'
 ), classified as (
- select event_name,session_id,place_id,details,
+ select *,
  case details->'activities'->>0
    when 'food' then '맛있는 음식'
    when 'hike' then '산행'
    when 'outing' then '산책·카페'
    when 'travel' then '근교 나들이'
-   else null
- end as invitation
- from recent
-), grouped as (
- select invitation,
-   count(distinct session_id) filter(where event_name='activity_selected') as invitation_sessions,
-   count(distinct session_id) filter(where event_name='companion_interest') as venue_interest_sessions,
-   count(distinct session_id) filter(where event_name='premium_willingness') as survey_sessions,
-   count(distinct details->>'response_id') filter(where event_name='premium_willingness') as completed_surveys,
-   count(distinct details->>'response_id') filter(where event_name='premium_willingness'
-     and details->>'willingness' in ('약 1만원','약 2만원','약 3만원 이상')) as paid_intent_surveys
- from classified where invitation is not null
- group by invitation
+   else '기타/미지정'
+ end as interest
+ from responses
 )
-select invitation,invitation_sessions,venue_interest_sessions,survey_sessions,completed_surveys,
- paid_intent_surveys,
- round(100.0 * survey_sessions/nullif(invitation_sessions,0),1) as invite_to_survey_pct,
- round(100.0 * paid_intent_surveys/nullif(completed_surveys,0),1) as paid_intent_pct
-from grouped order by completed_surveys desc;
+select interest,
+ count(distinct session_id) as responding_browsers,
+ count(distinct details->>'response_id') as saved_surveys,
+ count(distinct details->>'response_id') filter(
+   where details->>'willingness' in ('약 1만원','약 2만원','약 3만원 이상')
+ ) as positive_service_fee_intent,
+ round(100.0 * count(distinct details->>'response_id') filter(
+   where details->>'willingness' in ('약 1만원','약 2만원','약 3만원 이상')
+ ) / nullif(count(distinct details->>'response_id'),0), 1) as positive_intent_pct
+from classified
+group by interest
+order by saved_surveys desc;
 
--- 장소별 선호: 사용자 직접 선택한 검증된 실제 장소 ID에서만 집계
-select region,place_id,
- count(distinct session_id) filter(where event_name='companion_interest') as interested_sessions,
- count(distinct details->>'response_id') filter(where event_name='premium_willingness') as completed_surveys
+-- 서비스비 의향 분포
+select details->>'willingness' as proposed_service_fee,
+ count(distinct details->>'response_id') as saved_surveys
 from public.analytics_events
 where not is_demo
-  and event_name in ('companion_interest','premium_willingness')
+  and event_name='premium_willingness'
+  and created_at >= now()-interval '30 days'
+group by 1 order by saved_surveys desc;
+
+-- 선호 장소 (확정 참가자/모임이 아니라 동의 후 희망 의사를 표현한 장소)
+select region,place_id,
+ count(distinct details->>'response_id') as saved_surveys
+from public.analytics_events
+where not is_demo
+  and event_name='premium_willingness'
   and place_id not like 'program-%'
-  and created_at >= now() - interval '30 days'
+  and created_at >= now()-interval '30 days'
 group by region,place_id
-order by completed_surveys desc,interested_sessions desc
+order by saved_surveys desc
 limit 50;
 
--- 무료 프로젝트에서는 활동 적음으로 일시정지될 수 있습니다.
--- 데이터 보관/복구는 Supabase Free 기능과 프로젝트 운영 상태에 따릅니다.
--- 원천 이벤트는 운영 기준 90일이지만, 별도 자동 삭제나 자동 백업 실행 여부는 직접 확인해야 합니다.
+-- 실제 데이터 보존 및 Supabase Free 비활성 상태는 운영자가 별도 확인해야 합니다.
+-- 공개 데모 데이터와 실제 응답을 혼합하지 마세요.
