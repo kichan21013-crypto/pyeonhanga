@@ -9,6 +9,7 @@ import { analyticsEnabled } from '../analytics.js';
 import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHeading } from './v12-browse-state.js';
 import { TOGETHER_INVITES, TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-model.js';
 import { setupTogetherJourney } from './v16-together.js';
+import { setupGroupExperience } from './v19-group-ui.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -195,7 +196,7 @@ function setupHome() {
   const invitationCards=TOGETHER_INVITES.map(item=>
     '<button type="button" class="n16-invite" data-v16-invite="'+item.id+'" data-tone="'+item.tone+'" aria-pressed="false">' +
     '<span class="n16-invite-art" aria-hidden="true"><img src="/assets/v18-'+item.id+'.svg" alt="" loading="lazy"></span>' +
-    '<strong>'+item.label+'</strong><small>'+item.help+'</small><span class="n16-invite-arrow" aria-hidden="true">→</span></button>'
+    '<strong>'+item.label+'</strong><small>'+item.help+'</small><span class="n19-interest-count" data-n19-count="'+item.activity+'" hidden></span><span class="n16-invite-arrow" aria-hidden="true">→</span></button>'
   ).join('');
   home.innerHTML =
     '<section class="n16-hero n18-hero n19-hero" aria-labelledby="n16-home-title">' +
@@ -282,6 +283,7 @@ function setupHome() {
     window.scrollTo({top,behavior:reduceMotion()?'auto':'smooth'});
   });
   setupTogetherJourney({home,loadPlaces:loadCatalog});
+  setupGroupExperience(home);
   const placeDrawer = $('#n14-place-browse');
   placeDrawer?.addEventListener('toggle', () => {
     document.body.classList.toggle('n15-browse-open',placeDrawer.open);
