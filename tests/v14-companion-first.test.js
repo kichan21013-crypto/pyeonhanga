@@ -46,9 +46,9 @@ test('별도 동행 페이지에서 실제 모집·참가인원이나 매칭을 
  const page=await read('dist/companion.html');
  const html=await read('dist/index.html');
  const build=await read('scripts/build-core.js');
- assert.match(page,/같은 취향이라면/);
+ assert.match(page,/나의 동행 취향 남기기/);
  assert.match(page,/data-program-interest/);
- assert.equal((page.match(/class="n15-program-card"/g)||[]).length,4);
+ assert.equal((page.match(/class="n15-intent-choice"/g)||[]).length,4);
  assert.match(page,/실제 모임이 아닌 사업 검증용 기획안입니다/);
  assert.match(page,/식사·카페·교통·입장료는 이용처에 각자 직접 결제/);
  assert.match(page,/사생활/);
