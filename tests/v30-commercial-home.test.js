@@ -42,7 +42,7 @@ test('v30 두 카드 표시, 버튼 대비, 전체보기와 기존 기능 연결
  assert.match(ui,/all\.addEventListener|all\?\.addEventListener/);
  assert.match(ui,/aria-expanded/);
  assert.match(ui,/추천 동행 보기/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v36/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v37/);
 });
 
 test('v32 배너 전체 배경과 선명한 사진을 별도 레이어로 구성',async()=>{
@@ -77,8 +77,8 @@ test('v34 배너 전체 사진과 하단 카피, 최신 모듈 캐시 연결',as
  assert.match(latest,/mask-image:none!important/);
  assert.match(latest,/transparent 42%/);
  assert.match(latest,/padding:158px 15px 14px!important/);
- assert.match(home,/v19-group-ui\.js\?v=20261124-v36/);
- assert.match(home,/v21-popular-first\.js\?v=20261124-v36/);
+ assert.match(home,/v19-group-ui\.js\?v=20261124-v37/);
+ assert.match(home,/v21-popular-first\.js\?v=20261124-v37/);
  assert.match(build,/Cache-Control: no-cache, must-revalidate/);
 });
 
@@ -102,5 +102,15 @@ test('v36 기존 배치 유지 및 인물 확대 완화',async()=>{
  assert.match(latest,/aspect-ratio:1\.55!important/);
  assert.match(latest,/filter:none!important/);
  assert.match(latest,/min-height:44px!important/);
- assert.match(home,/class="n34-version">v36/);
+ assert.match(home,/class="n34-version">v37/);
+});
+
+test('v37 원본 사진 전체 표시 및 기존 추천 버튼 유지',async()=>{
+ const home=await read('assets/v12-direct-home.js'),css=await read('assets/v21-popular-first.css');
+ const latest=css.slice(css.indexOf('/* v37:'));
+ assert.match(latest,/aspect-ratio:451 \/ 469!important/);
+ assert.match(latest,/object-fit:contain!important;object-position:center!important/);
+ assert.match(latest,/transparent 78%/);
+ assert.match(home,/class="n34-version">v37/);
+ assert.match(home,/class="n16-hero-cta n35-recommend-link" href="#n21-popular"/);
 });

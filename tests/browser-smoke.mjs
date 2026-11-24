@@ -42,11 +42,11 @@ try {
   await page.locator('#n16-invites').waitFor();
   await page.locator('.n19-photo-main img').evaluate(img=>img.decode());
   ok(await page.locator('.n19-photo-main img').getAttribute('src')==='/assets/v31-hero.webp','승인 이미지 로드');
-  ok(await page.locator('.n19-photo-main img').evaluate(img=>img.naturalWidth===451&&img.naturalHeight===469&&getComputedStyle(img).objectFit==='cover'),'고해상도 사진 및 배경 가득 채우기');
+  ok(await page.locator('.n19-photo-main img').evaluate(img=>img.naturalWidth===451&&img.naturalHeight===469&&getComputedStyle(img).objectFit==='contain'),'원본 이미지 전체 표시');
   ok(await page.locator('.n34-full-photo').evaluate(el=>{const a=el.getBoundingClientRect(),b=el.querySelector('.n19-photo-mosaic').getBoundingClientRect();return Math.abs(a.width-b.width)<1&&Math.abs(a.height-b.height)<1;}),'사진이 배너 전체를 채움');
   ok(await page.locator('.n34-full-photo h1').evaluate(el=>getComputedStyle(el).color==='rgb(255, 255, 255)'),'배경 위 흰색 제목 대비');
   ok(await page.locator('.n35-photo-banner .n16-hero-cta').count()===0,'사진 배너 내부 버튼 제거');
-  ok(await page.locator('.n35-photo-banner .n19-photo-main').evaluate(el=>{const b=el.closest('.n35-photo-banner').getBoundingClientRect();return Math.abs(el.getBoundingClientRect().width/b.width-.88)<.015;}),'모델 과도한 확대 완화');
+  ok(await page.locator('.n35-photo-banner .n19-photo-main').evaluate(el=>{const b=el.closest('.n35-photo-banner').getBoundingClientRect();const a=el.getBoundingClientRect();return Math.abs(a.width/a.height-451/469)<.015&&Math.abs(a.height-b.height)<1;}),'원본 사진 비율 보존 및 상반신 전체 표시');
   ok(await page.locator('.n35-recommend-link').evaluate(el=>{const b=document.querySelector('.n35-photo-banner').getBoundingClientRect();return el.getBoundingClientRect().top>=b.bottom;}),'추천 버튼이 배너 외부 하단에 배치');
   await page.locator('.n21-place-card').first().waitFor();
   ok(await page.locator('.n21-popular-action').first().evaluate(el=>getComputedStyle(el).color==='rgb(255, 255, 255)'),'동행 카드 버튼 흰색 글자');
