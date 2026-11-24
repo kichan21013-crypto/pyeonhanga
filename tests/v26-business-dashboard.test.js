@@ -44,3 +44,15 @@ test('v26 calculation and escaped display',async()=>{
  assert.match(html,/&lt;script&gt;danger/);
  assert.doesNotMatch(html,/<script>/);
 });
+
+test('v39 업무 연결은 실측 양수 기록과 실제 장소만 사용하고 HTML을 이스케이프한다',async()=>{
+ const src=(await read('assets/v26-business-dashboard.js')).replace(/^import .*?;\s*$/gm,'').replace(/^export /gm,'');
+ const escapeHtml=x=>String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+ const {renderActionQueue}=new Function('escapeHtml',src+'\nreturn {renderActionQueue};')(escapeHtml);
+ const html=renderActionQueue({meetups:[{id:3,pending:4,title:'<모임>'},{id:4,pending:0,title:'zero'}],places:[{place_id:'p',n:7},{place_id:'demo',n:99},{place_id:'unknown',n:99}]},[{id:'p',name:'실제 장소',region:'서울'},{id:'demo',name:'가짜',region:'서울',isDemo:true}]);
+ assert.match(html,/data-n39-pending-meetup="3"/);
+ assert.match(html,/&lt;모임&gt;/);
+ assert.match(html,/data-n39-demand-place="p"/);
+ assert.doesNotMatch(html,/data-n39-pending-meetup="4"|data-n39-demand-place="demo"|data-n39-demand-place="unknown"/);
+ assert.doesNotMatch(renderActionQueue({},[]),/data-n39-demand-place|data-n39-pending-meetup/);
+});

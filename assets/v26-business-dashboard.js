@@ -20,13 +20,22 @@ function table(headers,body){
 function kpi(label,value,detail){
  return '<div class="n22-metric"><span>'+escapeHtml(label)+'</span><strong>'+escapeHtml(value)+'</strong><small>'+escapeHtml(detail)+'</small></div>';
 }
+export function renderActionQueue(d,catalog=[]){
+ const allowedRegions=new Set(['서울','경기','강릉','경주','부산','제주']);
+ const map=new Map(rows(catalog).filter(p=>p&&typeof p.id==='string'&&typeof p.name==='string'&&!p.isDemo&&allowedRegions.has(p.region)).map(p=>[p.id,p]));
+ const pending=rows(d.meetups).filter(m=>number(m.id)>0&&number(m.pending)>0).sort((a,b)=>Number(b.pending)-Number(a.pending)).slice(0,5);
+ const demand=rows(d.places).filter(p=>map.has(p.place_id)&&number(p.n)>0).sort((a,b)=>Number(b.n)-Number(a.n)).slice(0,5);
+ return '<section class="n39-workflow" aria-label="바로 처리할 운영 업무"><h3>바로 처리할 운영 업무</h3><p>선택한 조회 기간의 실제 집계에서 시작합니다. 공개 또는 승인 처리는 직접 확인 후 진행합니다.</p>'+
+ '<h4>승인 대기 신청</h4>'+(pending.length?pending.map(m=>'<div class="n39-task"><div><strong>'+escapeHtml(m.title)+'</strong><small>승인 대기 '+fmt(m.pending)+'건 · 기간 내 TOP 10 모임 기준</small></div><button type="button" data-n39-pending-meetup="'+Number(m.id)+'">신청 관리</button></div>').join(''):'<p>조회 기간의 TOP 10 모임에서 승인 대기가 확인되지 않았습니다. 전체 신청은 동행 모임 메뉴에서 확인하세요.</p>')+
+ '<h4>관심 장소 → 새 코스</h4>'+(demand.length?demand.map(p=>{const place=map.get(p.place_id);return '<div class="n39-task"><div><strong>'+escapeHtml(place.name)+'</strong><small>'+escapeHtml(place.region)+' · 동의 설문 '+fmt(p.n)+'개 기기</small></div><button type="button" data-n39-demand-place="'+escapeHtml(place.id)+'">코스 기획</button></div>';}).join(''):'<p>현재 기획할 수 있는 집계 장소가 없습니다. 설문 또는 장소 연결을 확인하세요.</p>')+'</section>';
+}
 export function renderBusiness(d,catalog=[]){
  const map=new Map(rows(catalog).filter(p=>p&&typeof p.id==='string'&&!p.isDemo).map(p=>[p.id,p.name]));
  const daily=rows(d.daily),max=Math.max(1,...daily.flatMap(x=>[number(x.survey_devices)||0,number(x.interest_records)||0,number(x.application_records)||0]));
  const chart=daily.map(x=>'<div class="n26-chart-day"><span>'+escapeHtml(String(x.day).slice(5))+'</span>'+
   ['survey_devices','interest_records','application_records'].map((key,i)=>'<div class="n26-bar-row"><span class="n26-bar n26-bar-'+i+'" style="width:'+100*(number(x[key])||0)/max+'%"></span><small>'+fmt(x[key])+'</small></div>').join('')+'</div>').join('');
  return '<p class="n26-period">'+escapeHtml(String(d.from))+' ~ '+escapeHtml(String(d.through))+' (한국시간 · 오늘 포함)</p>'+
- '<div class="n22-metrics">'+
+ renderActionQueue(d,catalog)+ '<div class="n22-metrics">'+
  kpi('동의 설문 기기',fmt(d.survey_devices),'기간 내 중복 제거 · 전체 방문자 아님')+
  kpi('모임 관심 기록',fmt(d.interest_records),'모임×기기 · 현재 유효 기록')+
  kpi('참가 신청 기록',fmt(d.application_records),'기간 내 생성 · 현재 남아 있는 기록')+

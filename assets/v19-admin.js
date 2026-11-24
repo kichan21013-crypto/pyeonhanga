@@ -4,7 +4,7 @@
  */
 import { GROUP_ACTIVITIES,authenticateCompanionAdmin,companionRpc } from './v19-companion-service.js';
 import { escapeHtml } from '../ui.js';
-import { mountOperations } from './v22-operations-admin.js';
+import { mountOperations } from './v22-operations-admin.js?v=20261124-v39';
 const $=s=>document.querySelector(s);
 const labels=Object.fromEntries(GROUP_ACTIVITIES.map(x=>[x.id,x.label]));
 let jwt=null;
@@ -13,6 +13,12 @@ const panel=$('#n19-admin-panel');
 const status=$('#n19-admin-status');
 const msg=t=>{status.textContent=t;};
 const operations=mountOperations({getToken:()=>jwt,notify:msg});
+function clearSession(){
+ jwt=null;login.hidden=false;panel.hidden=true;operations.reset();
+ $('#n19-admin-counts').replaceChildren();$('#n19-admin-notices').replaceChildren();
+ const form=$('#n19-admin-notice-form');form.reset();form.elements.notice_id.value='';form._notices=[];
+ login.reset();
+}
 const number=(rows,key,id,field)=>Array.isArray(rows)?
   (rows.find(r=>r[key]===id)?.[field]??0):0;
 function dateText(iso){
@@ -24,10 +30,12 @@ function dateText(iso){
 async function dashboard(){
  if(!jwt)return;
  msg('운영 데이터를 확인하는 중입니다.');
- const result=await companionRpc('nagachi_admin_dashboard',{},jwt);
+ const token=jwt;
+ const result=await companionRpc('nagachi_admin_dashboard',{},token);
+ if(jwt!==token)return;
  if(!result.ok){
    if(result.reason==='forbidden'){
-     jwt=null;login.hidden=false;panel.hidden=true;
+     clearSession();
      msg('관리 권한이 없습니다. Supabase Auth 사용자 ID를 관리자 허용 목록에 추가했는지 확인해 주세요.');
    } else msg('운영 데이터 조회 실패: 연결 상태와 SQL 설치 여부를 확인해 주세요.');
    return;
@@ -38,7 +46,7 @@ async function dashboard(){
    const interest=number(data.interest_counts,'activity',item.id,'people');
    const recipients=number(data.subscribers,'activity',item.id,'devices');
    return '<article class="n19-admin-metric"><span>'+escapeHtml(item.label)+'</span>' +
-    '<strong>'+interest+'명</strong><small>동의한 설문 기준, 참가 확정 아님</small>' +
+    '<strong>'+interest+'명</strong><small>동의한 익명 기기 기준, 참가 확정 아님</small>' +
     '<p>앱 내 공지 수신 기기 <b>'+recipients+'개</b></p></article>';
  }).join('');
  const list=$('#n19-admin-notices');
@@ -64,7 +72,7 @@ login.addEventListener('submit',async event=>{
  login.elements.password.value='';
  const auth=await authenticateCompanionAdmin(email,password);
  button.disabled=false;
- if(!auth.ok){msg('로그인하지 못했습니다. 관리자 계정과 연결 상태를 확인해 주세요.');return;}
+ if(!auth.ok){msg(auth.reason==='unconfigured'?'서버 연결이 설정되지 않았습니다. 아래 운영 연결 안내를 확인하세요.':'로그인하지 못했습니다. 관리자 계정과 연결 상태를 확인해 주세요.');return;}
  jwt=auth.token;
  const check=await companionRpc('nagachi_admin_dashboard',{},jwt);
  if(!check.ok){jwt=null;msg('로그인은 되었지만 관리자 권한이 확인되지 않았습니다. 허용 목록을 확인해 주세요.');return;}
@@ -88,8 +96,10 @@ $('#n19-admin-notice-form').addEventListener('submit',async event=>{
  };
  if(args.p_publish&&!confirm('선택한 활동의 소식 수신 신청 기기에만 공지를 게시합니다. 이 앱에 다시 방문해야 보입니다. 게시할까요?'))return;
  button.disabled=true;
- const r=await companionRpc('nagachi_admin_save_notice',args,jwt);
+ const token=jwt;
+ const r=await companionRpc('nagachi_admin_save_notice',args,token);
  button.disabled=false;
+ if(jwt!==token)return;
  if(!r.ok){msg('공지 저장에 실패했습니다. 서버 권한/필수값을 확인해 주세요.');return;}
  form.reset();
  form.elements.notice_id.value='';
@@ -117,7 +127,5 @@ $('#n19-admin-notices').addEventListener('click',event=>{
 });
 $('#n19-admin-refresh').addEventListener('click',dashboard);
 $('#n19-admin-logout').addEventListener('click',()=>{
- jwt=null;login.hidden=false;panel.hidden=true;
- operations.reset();
- login.reset();msg('로그아웃했습니다. 로그인 정보는 이 화면을 닫으면 남지 않습니다.');
+ clearSession();msg('로그아웃했습니다. 로그인 정보는 이 화면을 닫으면 남지 않습니다.');
 });

@@ -363,3 +363,6 @@ body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero.n34-full-pho
 .n21-hero.n35-photo-banner:before{content:""!important;position:absolute!important;inset:0!important;z-index:1!important;pointer-events:none;background:linear-gradient(180deg,transparent 0%,transparent 70%,rgba(16,28,21,.16) 82%,rgba(16,28,21,.78) 100%)!important;filter:none!important;transform:none!important}
 .n21-hero.n35-photo-banner>h1{position:absolute!important;left:15px!important;right:15px!important;bottom:12px!important;z-index:3!important;color:#fff!important;font-size:clamp(16px,4.8vw,24px)!important;font-weight:800!important;line-height:1.35!important;letter-spacing:-.04em!important;white-space:nowrap!important;text-shadow:0 1px 4px #0009!important}
 @media(min-width:761px){body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero.n34-full-photo.n35-photo-banner{max-width:640px!important;aspect-ratio:3 / 2!important}body[data-page=home].n12-ready .n35-recommend-link{max-width:640px!important}.n21-hero.n35-photo-banner>h1{left:24px!important;bottom:20px!important}}
+
+/* v39: concise disclosure outside the photograph. */
+.n39-photo-credit{font-size:10px;line-height:1.4;color:#65736b;text-align:right;padding:3px 2px 0;max-width:640px;margin:0 auto}

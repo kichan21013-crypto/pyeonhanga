@@ -216,3 +216,13 @@ body:has(.n22-admin) .site-header nav{display:none!important;}
 .n26-legend span:nth-child(1){color:#347b58}.n26-legend span:nth-child(2){color:#946024}.n26-legend span:nth-child(3){color:#50739c}
 
 .n26-controls input{width:140px;max-width:100%;min-height:42px;padding:8px;border:1px solid #bacdc0;border-radius:9px;background:white;color:#20583d}
+
+/* v39 owner action queue */
+.n39-workflow{margin:12px 0 20px;padding:15px;background:#f2f6f2;border:1px solid #dbe6dc;border-radius:12px}
+.n39-workflow h3{margin:0 0 4px!important;color:#224d38}
+.n39-workflow h4{margin:16px 0 6px;font-size:14px}
+.n39-workflow p{font-size:12px;line-height:1.55;color:#4f6657}
+.n39-task{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #dbe6dc}
+.n39-task:last-child{border-bottom:0}.n39-task>div{min-width:0;overflow-wrap:anywhere}.n39-task strong,.n39-task small{display:block}.n39-task small{font-size:11px;color:#4f6657;margin-top:3px}
+.n39-task button{min-height:44px;flex-shrink:0;border:1px solid #285d45;border-radius:8px;background:#fff;color:#285d45;font-size:12px;font-weight:750;padding:7px 9px;cursor:pointer}
+.n39-setup-link{font-size:13px;text-decoration:underline;color:#285d45}

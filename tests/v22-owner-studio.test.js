@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {operatorMarkup} from '../assets/v22-admin-markup.js';
-import {estimateRevenue,cleanCoursePlaceIds,sanitizePublicCourses} from '../assets/v22-operations-model.js';
+import {estimateRevenue,cleanCoursePlaceIds,sanitizePublicCourses,draftCourseFromPlace} from '../assets/v22-operations-model.js';
 const read=p=>readFile(new URL('../'+p,import.meta.url),'utf8');
 
 test('운영자만 로그인하는 별도 모바일 스튜디오에 4개 실제 관리 메뉴와 폼이 있다',()=>{
@@ -94,10 +94,10 @@ test('빌드한 실제 admin.html은 검색 제외·비로그인 차단·운영�
  assert.match(page,/id="n22-course-form"/);
  assert.match(page,/id="n22-meetup-form"/);
  assert.match(page,/id="n22-revenue-form"/);
- assert.match(page,/v22-admin-studio\.css\?v=20261124-v38/);
- assert.match(page,/v19-admin\.js\?v=20261124-v38/);
- assert.match(home,/v22-public-programs\.css\?v=20261124-v38/);
- assert.match(build,/CLIENT_VERSION = '20261124-v38'/);
+ assert.match(page,/v22-admin-studio\.css\?v=20261124-v39/);
+ assert.match(page,/v19-admin\.js\?v=20261124-v39/);
+ assert.match(home,/v22-public-programs\.css\?v=20261124-v39/);
+ assert.match(build,/CLIENT_VERSION = '20261124-v39'/);
  assert.match(core,/operatorMarkup\(\)/);
  const homeCode=await read('assets/v12-direct-home.js');
  assert.match(homeCode,/setupPublicPrograms\(\{home,loadPlaces:loadCatalog\}\)/);
@@ -114,4 +114,20 @@ test('새로운 관리실 JS는 node --check 통과하고 신규 유료 패키�
  const pkg=JSON.parse(await read('package.json'));
  assert.ok(!('dependencies' in pkg));
  assert.ok(!('devDependencies' in pkg));
+});
+
+test('v39 장소에서 새 비공개 코스 초안을 준비한다',()=>{
+ assert.deepEqual(draftCourseFromPlace({id:'a',name:'강릉 카페',category:'맛집',region:'강릉'}),{placeId:'a',title:'강릉 카페 함께 가요',activity:'food',region:'강릉'});
+ assert.equal(draftCourseFromPlace({id:'d',name:'가짜',region:'서울',isDemo:true}),null);
+ assert.equal(draftCourseFromPlace({id:'d',name:'장소',region:'미지원 지역'}),null);
+ assert.equal(draftCourseFromPlace({id:'h',name:'산',region:'서울',intentTags:['hike']}).activity,'hike');
+});
+test('v39 업무 연결은 자동 게시하지 않으며 로그인 세션을 보호한다',async()=>{
+ const admin=await read('assets/v22-operations-admin.js'),login=await read('assets/v19-admin.js');
+ assert.match(admin,/f\.publish\.checked=false/);
+ assert.match(admin,/f\.stage\.value='draft'/);
+ assert.match(admin,/data-n39-pending-meetup/);
+ assert.match(admin,/getToken\(\)!==token/);
+ assert.match(login,/if\(jwt!==token\)return/);
+ assert.match(login,/form\._notices=\[\]/);
 });
