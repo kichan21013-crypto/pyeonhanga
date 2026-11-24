@@ -213,7 +213,7 @@ function setupHome() {
     '<div class="n29-section-head"><h2 id="n16-invites-title">어떤 동행을 찾으세요?</h2><label class="n29-region">지역 <select id="n29-region" aria-label="희망 지역"><option value="">전체 지역</option>'+TOGETHER_REGIONS.map(region=>'<option value="'+region+'">'+region+'</option>').join('')+'</select></label></div>'+
     '<div class="n28-quick-categories" id="n16-invites" role="group" aria-label="원하는 동행 찾기">'+quickCategories+'</div></section>'+
     '<section class="n21-popular" id="n21-popular" aria-labelledby="n21-popular-heading">' +
-    '<div class="n21-popular-top"><div><span class="n21-section-kicker">인기 동행</span>' +
+    '<div class="n21-popular-top"><div>' +
     '<h2 id="n21-popular-heading">지금 인기 있는 동행</h2>' +
     '<p id="n21-popular-sub">저장된 관심을 확인하고 있어요.</p></div></div>' +
     '<div id="n21-popular-content" role="status" aria-live="polite">' +
@@ -367,7 +367,7 @@ function setupHome() {
   nav.querySelector('[data-n12-recommend]').addEventListener('click', () => {
     nav.querySelector('[data-n12-home]').classList.remove('is-active');
     nav.querySelector('[data-n12-recommend]').classList.add('is-active');
-    scrollToPopular();
+    scrollToInvites();
   });
   window.addEventListener('storage', () => {
     $$('.n12-save').forEach(button => {

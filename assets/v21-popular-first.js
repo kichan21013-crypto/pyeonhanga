@@ -51,6 +51,7 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
  const sub=$('#n21-popular-sub',target);
  const content=$('#n21-popular-content',target);
  const find=$('[data-n21-find]',target);
+ const regionSelect=$('#n29-region',home);
  let serial=0;
  async function refresh(){
   const request=++serial;
@@ -62,12 +63,14 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
   const pop=popularResult.status==='fulfilled'?popularResult.value:{ok:false};
   const acts=activityResult.status==='fulfilled'?activityResult.value:{ok:false};
   const catalog=catalogResult.status==='fulfilled'?catalogResult.value:[];
-  const places=pop.ok?normalizePopularPlaces(pop.items,catalog):[];
-  const activities=acts.ok?rankPopularActivities(acts.counts):[];
+  const region=regionSelect?.value||'';
+  const regionalCatalog=Array.isArray(catalog)?catalog.filter(p=>!region||p.region===region):[];
+  const places=pop.ok?normalizePopularPlaces(pop.items,regionalCatalog):[];
+  const activities=acts.ok&&!region?rankPopularActivities(acts.counts):[];
   const view=choosePopularView({places,activities});
   target.dataset.view=view;
   if(view==='places'){
-    heading.textContent='지금 관심 많은 동행 장소';
+    heading.textContent=(region?region+' · ':'')+'지금 관심 많은 동행 장소';
     sub.textContent='직접 “가고 싶어요”를 남긴 분들이 많은 장소부터 보여드려요.';
     content.innerHTML='<div class="n21-popular-rail">'+places.map(placeCard).join('')+'</div>'+bottomLine;
   }else if(view==='activities'){
@@ -75,10 +78,10 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
     sub.textContent='많은 분이 함께하고 싶다고 고른 활동부터 만나보세요.';
     content.innerHTML='<div class="n21-popular-rail">'+activities.map(activityCard).join('')+'</div>'+bottomLine;
   }else{
-    heading.textContent='함께 가보고 싶은 곳';
+    heading.textContent=(region?region+' · ':'')+'함께 가보고 싶은 곳';
     sub.textContent='실제 장소 중 동행 후보를 골라보세요. 인기 순위나 모집 중인 모임은 아니에요.';
     const state=(!pop.ok&&!acts.ok)?'unconfigured':'empty';
-    content.innerHTML=discovery(state,Array.isArray(catalog)?catalog:[]);
+    content.innerHTML=discovery(state,regionalCatalog);
   }
   find.textContent=view==='discovery'?'직접 동행 찾아보기 →':'다른 동행도 찾아보기 →';
  }
@@ -96,6 +99,7 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
   }
   if(event.target.closest('[data-n21-find]'))scrollToInvites();
  });
+ regionSelect?.addEventListener('change',refresh);
  document.addEventListener('nagachi:interest-saved',refresh);
  refresh();
 }

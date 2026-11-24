@@ -40,8 +40,15 @@ try {
   });
   await page.goto(base,{waitUntil:'domcontentloaded'});
   await page.locator('#n16-invites').waitFor();
-  ok(await page.getByText('같이 맛있는 거 먹으러 갈 사람?',{exact:false}).count()>0,
-    '사용자 중심 동행 질문 노출');
+  ok(await page.locator('#n16-invites [data-v16-invite]').count()===4,'홈 카테고리 정확히 4개');
+  ok(await page.locator('.n16-invites-section').count()===1,'중복 카테고리 영역 없음');
+  await page.waitForFunction(()=>window.scrollY<10);
+  await page.evaluate(()=>window.scrollTo(0,500));
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.locator('#n16-invites').waitFor();
+  await page.waitForFunction(()=>window.scrollY<10);
+  ok(await page.locator('#n29-region').isVisible(),'홈 일반 진입 및 새로고침 시 상단, 지역 선택 노출');
+  await page.locator('#n29-region').selectOption('경기');
   for(const width of [360,390,402,760]){
     await page.setViewportSize({width,height:850});
     ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),
@@ -51,6 +58,7 @@ try {
   await page.locator('[data-v16-invite=eat]').click();
   await page.locator('#n16-venues .n16-venue-card').first().waitFor();
   ok(await page.locator('[data-v16-meal=seafood]').isVisible(),'식사 동행의 메뉴 필터 표시');
+  ok(await page.locator('#n16-region').inputValue()==='경기','홈 희망 지역이 추천 결과에 전달됨');
   await page.locator('[data-v16-meal=seafood]').click();
   await page.locator('#n16-venues .n16-venue-card').first().waitFor();
   ok(await page.locator('#n16-count').innerText().then(t=>!t.includes('불러오기 실패')),
