@@ -263,8 +263,8 @@ function setupHome() {
   // 사용자가 보던 636개 실제 장소 사진 중 두 장만 히어로에 사용합니다.
   // 사진의 인물/모임 현황을 의미하지 않으며 새로운 API나 외부 사진 서비스는 사용하지 않습니다.
   loadCatalog().then(catalog=>{
-    const food=catalog.find(p=>p.category==='맛집'&&/^https:\\/\\//.test(p.image||''));
-    const walk=catalog.find(p=>p.category==='나들이'&&/^https:\\/\\//.test(p.image||''));
+    const food=catalog.find(p=>p.category==='맛집'&&String(p.image||'').startsWith('https://'));
+    const walk=catalog.find(p=>p.category==='나들이'&&String(p.image||'').startsWith('https://'));
     for (const [sel,place] of [['.n19-photo-main',food],['.n19-photo-side',walk]]) {
       const slot=home.querySelector(sel);
       if(slot&&place){const img=document.createElement('img');img.src=place.image;img.alt='';img.loading='eager';img.decoding='async';slot.append(img);}
