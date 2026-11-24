@@ -7,6 +7,11 @@ export function percent(n,d){
  const a=number(n),b=number(d);
  return a===null||b===null||b===0||a>b?'—':(100*a/b).toFixed(1)+'%';
 }
+export function demandScenario(approved,fee,conversion){
+ const n=number(approved),f=number(fee),c=number(conversion);
+ if(n===null||f===null||c===null||f>100000||c>100)return null;
+ return Math.round(n*f*c/100);
+}
 const rows=v=>Array.isArray(v)?v:[];
 function table(headers,body){
  return '<div class="n26-scroll"><table class="n26-table"><thead><tr>'+headers.map(x=>'<th scope="col">'+escapeHtml(x)+'</th>').join('')+'</tr></thead><tbody>'+
@@ -40,7 +45,11 @@ export function renderBusiness(d,catalog=[]){
  table(['장소','설문 기기'],rows(d.places).map(x=>[map.get(x.place_id)||x.place_id,fmt(x.n)]))+
  '<h3>서비스비 지불의향</h3>'+table(['응답','기기','비중'],rows(d.willingness).map(x=>[x.label,fmt(x.n),percent(x.n,d.valid_willingness)]))+
  '<p class="n26-note">전체 동의 설문 '+fmt(d.survey_responses)+'건, 유효 지불의향 최신 응답 '+fmt(d.valid_willingness)+'개 기기. 설문 의향은 실제 유료 전환율이 아니므로 자동으로 수익 가정에 대입하지 않습니다.</p>'+
- '<button type="button" data-n22-go="revenue">수익 계획에서 가정별 비교하기 →</button>';
+ '<h3>승인 수요 기반 서비스비 가정</h3>'+
+ '<div class="n26-controls" data-n26-scenario data-approved="'+(number(d.approved)??'')+'"><label>1인 서비스비(원)<input type="number" data-n26-fee min="0" max="100000" step="1000" value="10000"></label><label>가정 유료전환율(%)<input type="number" data-n26-conversion min="0" max="100" step="1" value="25"></label></div>'+
+ '<p>기간 내 현재 승인 기록 기준 예상 서비스비 총액: <strong data-n26-estimate>'+fmt(demandScenario(d.approved,10000,25))+'원</strong></p>'+
+ '<p class="n26-note">무료 시범 승인 기록을 기준으로 한 가상 서비스비입니다. 실제 매출·순이익·월 환산이 아니며 식비·교통비 등은 포함하지 않습니다.</p>'+
+ '<button type="button" data-n22-go="revenue">수익 계획에서 비용 포함 가정별 비교하기 →</button>';
 }
 export function mountBusinessDashboard(root,getToken){
  const panel=root.querySelector('#n26-business-results'),select=root.querySelector('#n26-days');
@@ -61,6 +70,13 @@ export function mountBusinessDashboard(root,getToken){
   if(id!==request||getToken()!==token)return;
   panel.innerHTML=renderBusiness(result.data,catalog||[]);
  }
+ panel.addEventListener('input',event=>{
+  if(!event.target.matches('[data-n26-fee],[data-n26-conversion]'))return;
+  const form=panel.querySelector('[data-n26-scenario]'),out=panel.querySelector('[data-n26-estimate]');
+  if(!form||!out)return;
+  const value=demandScenario(form.dataset.approved,form.querySelector('[data-n26-fee]').value,form.querySelector('[data-n26-conversion]').value);
+  out.textContent=value===null?'입력 범위 확인':fmt(value)+'원';
+ });
  select.addEventListener('change',load);
  root.querySelector('#n26-refresh')?.addEventListener('click',load);
  return {load,reset:()=>{request++;panel.replaceChildren();select.value='7';}};
