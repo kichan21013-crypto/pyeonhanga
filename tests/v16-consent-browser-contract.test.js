@@ -29,7 +29,7 @@ test('서버 분석 전송은 설문 동의를 받은 내부 API에서만 허용
   assert.match(a,/export async function recordConsentedSurvey/);
   assert.match(a,/await sendConsentedEvent\('premium_willingness'/);
   assert.match(app,/form\.elements\.consent\.checked/);
-  assert.match(app,/if \(!responseId\) responseId=anonymousId\(\)/);
+  assert.match(app,/if\(!responseId\)responseId=anonymousId\(\)/);
   assert.match(app,/await recordConsentedSurvey/);
   assert.match(privacy,/동의 전 서버로 전송하지 않습니다/);
 });
