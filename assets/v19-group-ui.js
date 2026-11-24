@@ -78,9 +78,17 @@ export function setupGroupExperience(home){
    '<div class="n19-inbox-actions"><button type="button" data-n19-refresh>새 소식 확인</button>' +
    '<button type="button" data-n19-stop hidden>소식 받기 해지</button></div>' +
    '<p class="n19-inbox-note">이메일·문자·푸시는 보내지 않습니다. 공지는 수신 신청한 기기에서만 확인되며, 모임 참가 확정이 아닙니다.</p>';
- const anchor=home.querySelector('.n16-respect');
- if(anchor)anchor.insertAdjacentElement('afterend',inbox);
- else home.append(inbox);
+ const dialog=document.createElement('dialog');
+ dialog.id='n33-updates-dialog';
+ dialog.className='n33-updates-dialog';
+ dialog.setAttribute('aria-labelledby','n19-updates-title');
+ const close=document.createElement('button');
+ close.type='button';close.className='n33-updates-close';
+ close.setAttribute('aria-label','동행 소식 닫기');close.textContent='×';
+ close.addEventListener('click',()=>dialog.close());
+ dialog.append(close,inbox);
+ home.append(dialog);
+ dialog.addEventListener('close',()=>document.querySelector('[data-n30-updates]')?.focus({preventScroll:true}));
  const results=$('#n19-update-list',inbox);
  const stop=$('[data-n19-stop]',inbox);
  async function refreshInbox(){
@@ -115,6 +123,7 @@ export function setupGroupExperience(home){
     if(!result.ok)results.textContent='해지가 완료되지 않았어요. 연결을 확인한 후 다시 시도해 주세요.';
   }
  });
- document.addEventListener('nagachi:updates-subscribed',refreshInbox);
- refreshInbox();
+ document.addEventListener('nagachi:updates-subscribed',()=>{if(dialog.open)refreshInbox();});
+ document.addEventListener('click',event=>{if(event.target.closest('[data-n30-updates]')&&dialog.open)refreshInbox();});
+ results.textContent='동행 소식을 열면 확인할 수 있어요.';
 }

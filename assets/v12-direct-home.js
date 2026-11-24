@@ -239,16 +239,14 @@ function setupHome() {
     '<button type="button" id="n16-more" class="n16-more" hidden>다른 장소 더 보기</button>' +
     '<p class="n16-journey-note">마음에 드는 곳을 골랐다면 “여기, 같이 가보고 싶어요”를 눌러보세요. ' +
     '운영자가 수요를 확인해 동행 모임을 제안해요.</p></section>' +
-    '<details class="n16-value n29-service-guide"><summary id="n16-value-title">나가치 이용 안내</summary>' +
+    '<details class="n16-value n29-service-guide"><summary id="n16-value-title">나가치 이용 안내 <span aria-hidden="true">+</span></summary>' +
     '<div class="n16-value-grid"><div><span aria-hidden="true">📍</span><strong>좋은 곳 고르기</strong><p>실제 장소 정보를 바탕으로 코스를 제안해요.</p></div>' +
     '<div><span aria-hidden="true">🤝</span><strong>취향 맞는 사람</strong><p>비슷한 관심사의 동행 구성을 준비해요.</p></div>' +
     '<div><span aria-hidden="true">🗓️</span><strong>함께할 하루</strong><p>만남의 방식과 일정 조율을 도와줄 계획이에요.</p></div></div>' +
     '<p>향후 수익모델은 <strong>코스 제안과 동행 구성·일정 조율 서비스비</strong>입니다. ' +
     '식비·교통비·입장료 등은 각자 현장에서 직접 결제하는 방향을 검토하고 있어요. ' +
     '현재는 무료 수요 검증을 진행하며 유료 모집·차량 연결은 제공하지 않습니다.</p></details>' +
-    '<section class="n16-respect"><div><strong>좋은 하루는, 마음 맞는 사람과 함께.</strong>' +
-    '<p>내 취향에 맞는 장소와 함께하고 싶은 방식부터 편안하게 골라보세요.</p></div>' +
-    '<a href="/companion.html">동행에 대해 더 알아보기 →</a></section>' +
+    '<div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a></div>' +
     '<details class="n15-place-drawer" id="n14-place-browse"><summary>직접 장소 검색하기 <span>맛집·산책·나들이</span></summary>' +
     '<div class="n15-place-content"><form id="n12-search" role="search" class="n12-search">' + svg('search') +
     '<label for="n12-query" class="sr-only">장소 이름이나 원하는 활동 검색</label>' +
@@ -310,12 +308,11 @@ function setupHome() {
   const headerInner=document.querySelector('.site-header .header-inner');
   if(headerInner&&!headerInner.querySelector('.n30-header-actions')){
     const actions=document.createElement('div');actions.className='n30-header-actions';
-    actions.innerHTML='<button type="button" data-n30-updates aria-label="내 동행 소식"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a href="/companion.html" aria-label="동행 안내">'+icon('solo')+'</a>';
+    actions.innerHTML='<button type="button" data-n30-updates aria-label="내 동행 소식" aria-haspopup="dialog" aria-controls="n33-updates-dialog"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><a href="/companion.html" aria-label="동행 안내">'+icon('solo')+'</a>';
     headerInner.append(actions);
     actions.querySelector('[data-n30-updates]').addEventListener('click',()=>{
-      const inbox=home.querySelector('#n19-my-updates');if(!inbox)return;
-      const offset=(document.querySelector('.site-header')?.getBoundingClientRect().height||0)+12;
-      window.scrollTo({top:Math.max(0,window.scrollY+inbox.getBoundingClientRect().top-offset),behavior:reduceMotion()?'auto':'smooth'});
+      const dialog=home.querySelector('#n33-updates-dialog');
+      if(dialog&&!dialog.open)dialog.showModal();
     });
   }
   setupPopularFirst({home,loadPlaces:loadCatalog,scrollToInvites});

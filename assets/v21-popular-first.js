@@ -82,8 +82,8 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
     content.innerHTML='<div class="n21-popular-rail">'+activities.map(activityCard).join('')+'</div>'+bottomLine;
   }else{
     heading.textContent=(region?region+' · ':'')+'나가치 추천 동행';
-    sub.textContent='마음에 드는 동행 후보를 골라보세요. 아직 공개된 인기 순위는 없어요.';
-    content.innerHTML=discovery(regionalCatalog);
+    sub.textContent='마음에 드는 곳에 함께 가고 싶은 마음을 남겨보세요.';
+    content.innerHTML=discovery(regionalCatalog)+'<p class="n21-real-note">추천 후보 · 실제 모집 중인 모임은 아닙니다.</p>';
   }
   if(all)all.hidden=content.querySelectorAll('.n21-popular-card').length<3;
   find.textContent='직접 동행 찾아보기 →';
