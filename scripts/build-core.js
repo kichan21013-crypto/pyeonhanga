@@ -65,14 +65,11 @@ for (const p of places) {
 }
 // Companion page sells the value proposition of a hosted party programme, not an inventory of venues.
 const programCards = PROGRAMS.map(program =>
-  '<article class="n15-program-card" data-tone="'+program.tone+'">' +
-  '<div class="n15-program-heading"><span class="n15-program-icon" aria-hidden="true">'+program.icon+'</span>' +
-  '<span class="n15-program-status">기획안 · 참여 희망 조사</span></div>' +
-  '<p class="n15-program-kind">'+program.category+'</p><h3>'+program.title+'</h3>' +
-  '<p class="n15-program-description">'+program.summary+'</p>' +
-  '<ol class="n15-program-route">'+program.outline.map(item=>'<li>'+item+'</li>').join('')+'</ol>' +
-  '<p class="n15-program-transport">이동 안내: '+program.transport+'</p>' +
-  '<button type="button" data-program-interest="'+program.id+'" data-companion-activity="'+program.interest+'">이 프로그램 관심 남기기 →</button></article>'
+  '<button type="button" class="n15-intent-choice" data-program-interest="'+program.id+
+  '" data-companion-activity="'+program.interest+'">' +
+  '<span aria-hidden="true" class="n15-intent-icon">'+program.icon+'</span>' +
+  '<span><strong>'+program.category+'</strong><small>'+program.title+' · 기획 중</small></span>' +
+  '<span aria-hidden="true" class="n15-intent-arrow">→</span></button>'
 ).join('');
 await writeFile(resolve(out,'companion.html'), page({
  title:'50+ 취향 동행 프로그램 | 나가치',
@@ -81,15 +78,15 @@ await writeFile(resolve(out,'companion.html'), page({
  content:'<div class="n13-landing n15-program-hub">' +
   '<section class="n15-hero"><div class="n15-hero-copy">' +
   '<span class="n15-hero-kicker">NAGACHI · 50+ PARTY PROGRAM</span>' +
-  '<h1>같은 취향이라면,<br><em>하루가 더 즐거워집니다.</em></h1>' +
+  '<h1>내가 원하는 동행은<br><em>어떤 모임일까요?</em></h1>' +
   '<p>연애나 결혼을 위한 소개팅이 아닙니다. 음식·산행·나들이·여행을 함께 즐길 파티원을 구성하고, 하루 코스를 제안하는 프로그램을 준비합니다.</p>' +
   '<small>아직 확정된 날짜·모집 인원·서비스비가 없으며, 아래는 실제 모임이 아닌 사업 검증용 기획안입니다.</small>' +
   '</div><div class="n15-hero-people" aria-hidden="true"><span class="n15-sun"></span><span class="n15-hill"></span>' +
   '<span class="n15-person n15-one"></span><span class="n15-person n15-two"></span><span class="n15-person n15-three"></span></div></section>' +
-  '<section class="n15-programs" id="n15-programs"><div class="n15-section-head"><span>PLANNED PROGRAMS</span>' +
-  '<h2>어떤 파티에 참여하고 싶으세요?</h2>' +
-  '<p>하나를 골라 2단계 익명 설문을 남겨주세요. 프로그램은 아직 기획 중입니다.</p></div>' +
-  '<div class="n15-program-grid">'+programCards+'</div></section>' +
+  '<section class="n15-program-signup" id="n15-programs"><div class="n15-section-head"><span>YOUR PARTY</span>' +
+  '<h2>나의 동행 취향 남기기</h2>' +
+  '<p>참여하고 싶은 모임 종류를 고르면 2단계 익명 설문이 열립니다. 결혼 여부·연락처는 묻지 않습니다.</p></div>' +
+  '<div class="n15-intent-grid">'+programCards+'</div></section>' +
   '<div class="n15-fee-info"><strong>프로그램 비용 구조</strong><p>나가치는 파티 구성·코스 기획·일정 조율에 관한 서비스비를 받는 모델을 검토합니다. ' +
   '식사·카페·교통·입장료는 이용처에 각자 직접 결제하고, 서비스비는 실제 운영 기준 마련 이후 공개할 예정입니다.</p></div>' +
   '<section class="n15-privacy"><div><strong>동행은 취미로 연결되고, 사생활은 존중받습니다.</strong>' +
