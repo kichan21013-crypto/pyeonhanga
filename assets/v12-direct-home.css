@@ -170,3 +170,40 @@ body[data-page='home'].n12-ready .n12-home,body[data-page='home'].n12-ready .n12
   .n12-results-head small{max-width:200px;}
 }
 @media(prefers-reduced-motion:reduce){.n12-emoji,.n12-photo img{transition:none!important;}.n12-skeleton{animation:none!important;}}
+
+/* v13: category art fills its tile, with clear tap/selected feedback. */
+.n12-emoji{font-size:48px!important;overflow:hidden;line-height:1.05;display:grid;place-items:center;}
+.n12-category{cursor:pointer;}
+.n12-category[aria-pressed=true] .n12-emoji{background:#fff1eb!important;}
+.n12-category[aria-pressed=true] .n12-emoji::after{content:'✓';position:absolute;top:0;right:1px;width:19px;height:19px;background:#e97758;border-radius:50%;color:#fff;font-size:12px;line-height:19px;font-weight:900;}
+/* The companion program is a top-level product offering, not a hidden footnote. */
+.n13-companion-hero{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#eef6f1;border:1px solid #d9e9de;border-radius:23px;padding:24px 26px;margin:12px 0 28px;}
+.n13-companion-hero .n13-kicker{margin:0 0 9px;color:#33745a;font-size:12px;font-weight:900;}
+.n13-companion-hero h2{font-size:24px!important;line-height:1.28!important;color:#253e32;font-weight:900!important;letter-spacing:-.055em!important;}
+.n13-companion-hero p{font-size:13px;color:#557166;margin:9px 0 0;line-height:1.45;}
+.n13-companion-hero .n13-companion-link{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:14px;padding:12px 17px;background:#30765a;color:#fff;font-weight:900;font-size:14px;white-space:nowrap;text-decoration:none;}
+.n13-companion-hero .n13-hero-graphic{flex:0 0 auto;font-size:60px;line-height:1;opacity:.9;}
+.n13-card-companion{display:flex;align-items:center;justify-content:center;gap:5px;min-height:39px;padding:9px 10px;border-radius:12px;border:1px solid #badacf;background:#eaf5ef;color:#286d52;font-size:12px;font-weight:900;width:100%;margin:7px 0 0;}
+.n13-card-companion:focus-visible,.n13-companion-link:focus-visible{outline:3px solid #f2987a;outline-offset:2px;}
+.n12-card .n13-survey-note{color:#658076;font-size:10px;margin:5px 0 0;}
+.n12-photo .n13-interest-tag{position:absolute;bottom:8px;left:8px;padding:5px 7px;font-size:10px;font-weight:850;color:#255f46;background:rgba(243,252,247,.95);border-radius:8px;}
+.n12-nav .n13-nav-companion{color:#37785d!important;}
+.n12-nav .n13-nav-companion.is-active{color:#db694b!important;}
+@media(max-width:760px){
+  .n12-emoji{width:66px!important;height:66px!important;font-size:43px!important;border-radius:20px!important;}
+  .n12-category{min-height:103px;gap:8px;}
+  .n12-category-name{font-size:12px;font-weight:850;}
+  .n13-companion-hero{margin:0 0 25px;padding:19px 17px;gap:8px;border-radius:18px;align-items:flex-start;}
+  .n13-companion-hero .n13-kicker{font-size:11px;}
+  .n13-companion-hero h2{font-size:18px!important;line-height:1.28!important;}
+  .n13-companion-hero p{font-size:11px;line-height:1.45;}
+  .n13-companion-hero .n13-companion-link{min-height:41px;font-size:12px;padding:10px 12px;margin-top:12px;}
+  .n13-companion-hero .n13-hero-graphic{font-size:45px;margin-top:9px;}
+  .n12-grid .n13-card-companion{margin-top:7px;min-height:39px;font-size:11px;}
+  .n12-grid .n13-survey-note{font-size:10px;}
+  .n12-nav{grid-template-columns:repeat(4,minmax(0,1fr));}
+}
+@media(max-width:370px){
+  .n12-emoji{width:59px!important;height:59px!important;font-size:39px!important;}
+  .n13-companion-hero .n13-hero-graphic{font-size:35px;}
+}
