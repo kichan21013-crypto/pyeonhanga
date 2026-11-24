@@ -42,13 +42,15 @@ test('v30 두 카드 표시, 버튼 대비, 전체보기와 기존 기능 연결
  assert.match(ui,/all\.addEventListener|all\?\.addEventListener/);
  assert.match(ui,/aria-expanded/);
  assert.match(ui,/추천 동행 보기/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v31/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261124-v32/);
 });
 
-test('v31 원본 사진 비율 및 얼굴 그라데이션 제거',async()=>{
+test('v32 배너 전체 배경과 선명한 사진을 별도 레이어로 구성',async()=>{
  const home=await read('assets/v12-direct-home.js'),css=await read('assets/v21-popular-first.css');
  assert.match(home,/width="451" height="469"/);
- assert.match(css,/\.n21-hero:before\{background:none!important\}/);
- assert.match(css,/object-fit:contain!important;object-position:right center!important;filter:none!important/);
- assert.match(css,/mask-image:linear-gradient\(90deg,transparent 0%,#000 4%,#000 100%\)/);
+ const latest=css.slice(css.indexOf('/* v32:'));
+ assert.match(latest,/url\('\/assets\/v31-hero\.webp'\) center 12% \/ cover/);
+ assert.match(latest,/inset:0 0 0 auto!important/);
+ assert.match(latest,/object-fit:cover!important;object-position:50% 36%!important;filter:none!important/);
+ assert.match(latest,/mask-image:linear-gradient\(90deg,transparent 0%,rgba\(0,0,0,.4\) 5%,#000 12%,#000 100%\)/);
 });

@@ -42,7 +42,7 @@ try {
   await page.locator('#n16-invites').waitFor();
   await page.locator('.n19-photo-main img').evaluate(img=>img.decode());
   ok(await page.locator('.n19-photo-main img').getAttribute('src')==='/assets/v31-hero.webp','승인 이미지 로드');
-  ok(await page.locator('.n19-photo-main img').evaluate(img=>img.naturalWidth===451&&img.naturalHeight===469&&getComputedStyle(img).objectFit==='contain'),'고해상도 사진 및 비율 보존');
+  ok(await page.locator('.n19-photo-main img').evaluate(img=>img.naturalWidth===451&&img.naturalHeight===469&&getComputedStyle(img).objectFit==='cover'),'고해상도 사진 및 배경 가득 채우기');
   await page.locator('.n21-place-card').first().waitFor();
   ok(await page.locator('.n21-popular-action').first().evaluate(el=>getComputedStyle(el).color==='rgb(255, 255, 255)'),'동행 카드 버튼 흰색 글자');
   ok(await page.locator('.n21-place-card .n30-save').first().isVisible(),'동행 카드 저장 버튼');
