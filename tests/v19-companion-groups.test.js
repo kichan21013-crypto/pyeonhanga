@@ -29,6 +29,7 @@ test('연령 선택 다음 활동은 복수 체크 가능하며 명시적 동의
  assert.match(app,/radio\('age','어느 연령대이세요\?'/);
  assert.match(app,/name="activity-interest"/);
  assert.match(app,/chosenActivities\(\)/);
+ assert.match(app,/interestMap\[program\?\.interest\]/);
  assert.match(app,/values\.activities=activities/);
  assert.match(app,/values\.purpose=mainPurpose/);
  assert.match(app,/!form\.reportValidity\(\)\|\|!form\.elements\.consent\.checked/);
