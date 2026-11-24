@@ -282,3 +282,35 @@ body[data-page=home].n12-ready .n29-service-guide{margin:6px 0 0!important;paddi
 .n33-updates-dialog .n19-inbox-empty{background:#f5f7f4;border:0!important}
 .n33-updates-close:focus-visible,.n29-service-guide>summary:focus-visible{outline:3px solid #e87553;outline-offset:2px}
 @media(min-width:761px){body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero{min-height:280px!important;padding:28px 32px!important}.n21-hero .n19-photo-main img{object-fit:cover!important;object-position:center 40%!important}}
+
+/* v34: full-bleed single photograph; copy below the faces, no side-by-side portrait. */
+body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero.n34-full-photo{
+ position:relative!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-end!important;
+ width:100%!important;box-sizing:border-box!important;min-height:284px!important;height:auto!important;
+ padding:158px 15px 14px!important;margin:0 auto!important;border:0!important;border-radius:18px!important;overflow:hidden!important;isolation:isolate;
+ background:#263b2f!important;box-shadow:none!important;
+}
+.n21-hero.n34-full-photo .n19-photo-mosaic{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;opacity:1!important;z-index:0!important;
+ mask-image:none!important;-webkit-mask-image:none!important;overflow:hidden!important;
+}
+.n21-hero.n34-full-photo .n19-photo-main{inset:0!important;width:100%!important;height:100%!important;border:0!important;border-radius:0!important;transform:none!important;}
+.n21-hero.n34-full-photo .n19-photo-main img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 0%!important;filter:none!important;opacity:1!important;}
+.n21-hero.n34-full-photo:before{
+ content:""!important;position:absolute!important;inset:0!important;z-index:1!important;pointer-events:none;
+ background:linear-gradient(180deg,transparent 0%,transparent 42%,rgba(20,36,27,.12) 49%,rgba(20,36,27,.72) 65%,rgba(20,36,27,.94) 100%)!important;
+ filter:none!important;transform:none!important;
+}
+.n21-hero.n34-full-photo>.n16-kicker{display:none!important}
+.n21-hero.n34-full-photo>h1,.n21-hero.n34-full-photo>p,.n21-hero.n34-full-photo>.n16-hero-cta{position:relative!important;z-index:3!important;max-width:100%!important;}
+.n21-hero.n34-full-photo>h1{color:white!important;font-size:clamp(20px,5.6vw,29px)!important;line-height:1.28!important;letter-spacing:-.055em!important;font-weight:800!important;margin:0 0 4px!important;text-shadow:0 1px 4px #0006!important;}
+.n21-hero.n34-full-photo>h1 br{display:none}
+.n21-hero.n34-full-photo>h1 em{color:#fff!important;margin-left:.22em}
+.n21-hero.n34-full-photo>p{font-size:12px!important;color:#fff!important;margin:0 0 10px!important;line-height:1.5!important;font-weight:500!important;word-break:keep-all}
+.n21-hero.n34-full-photo>.n16-hero-cta{background:#fff!important;color:#234b37!important;min-height:44px!important;width:auto!important;max-width:100%!important;gap:7px!important;padding:8px 12px!important;margin:0!important;border-radius:10px!important;box-shadow:none!important;font-size:12px!important;justify-content:center!important}
+.n21-hero.n34-full-photo>.n16-hero-cta svg{stroke:currentColor!important}
+.n21-hero.n34-full-photo>.n16-hero-cta span{margin-left:2px!important}
+.n21-hero.n34-full-photo>.n30-model-note{bottom:auto!important;top:8px!important;right:8px!important;background:#26372999!important}
+.n34-version{margin-left:auto;align-self:center;color:#68716b;font-size:10px}
+@media(max-width:360px){body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero.n34-full-photo{padding-top:148px!important;min-height:274px!important}.n21-hero.n34-full-photo>h1{font-size:20px!important}}
+@media(min-width:761px){body[data-page=home].n12-ready .n16-hero.n18-hero.n19-hero.n21-hero.n34-full-photo{max-width:660px!important;min-height:395px!important;padding:250px 24px 22px!important}.n21-hero.n34-full-photo>p{font-size:14px!important}.n21-hero.n34-full-photo>.n16-hero-cta{font-size:14px!important}}

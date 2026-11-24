@@ -9,8 +9,8 @@ import { analyticsEnabled } from '../analytics.js';
 import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHeading } from './v12-browse-state.js';
 import { TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-model.js';
 import { setupTogetherJourney } from './v16-together.js';
-import { setupGroupExperience } from './v19-group-ui.js';
-import { setupPopularFirst } from './v21-popular-first.js';
+import { setupGroupExperience } from './v19-group-ui.js?v=20261124-v34';
+import { setupPopularFirst } from './v21-popular-first.js?v=20261124-v34';
 import { setupPublicPrograms } from './v22-public-programs.js';
 
 // Ordinary home entry starts at the top; preserve explicit detail/companion deep links.
@@ -202,10 +202,10 @@ function setupHome() {
     '<button type="button" class="n28-quick-category" data-v16-invite="'+id+'" aria-pressed="false"><img src="/assets/v28-'+id+'.webp" width="112" height="112" alt="" decoding="async"><span>'+label+'</span></button>'
   ).join('');
   home.innerHTML =
-    '<section class="n16-hero n18-hero n19-hero n21-hero" aria-labelledby="n16-home-title">' +
+    '<section class="n16-hero n18-hero n19-hero n21-hero n34-full-photo" aria-labelledby="n16-home-title">' +
     '<span class="n16-kicker">NAGACHI</span>' +
     '<h1 id="n16-home-title">가고 싶은 곳,<br><em>함께할 사람.</em></h1>' +
-    '<p>취향이 통하는 사람들과<br>더 특별한 하루를 만들어보세요.</p>' +
+    '<p>취향이 통하는 사람들과 특별한 하루.</p>' +
     '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"><img src="/assets/v31-hero.webp" alt="" width="451" height="469" fetchpriority="high" decoding="async"></div></div><span class="n30-model-note">연출 이미지</span>' +
     '<a class="n16-hero-cta" href="#n21-popular">' + icon('people') + ' <b data-n30-hero-label>동행 둘러보기</b> <span aria-hidden="true">→</span></a>' +
     '<small>관심을 남기면 나가치가 모임을 제안해요.</small></section>' +
@@ -246,7 +246,7 @@ function setupHome() {
     '<p>향후 수익모델은 <strong>코스 제안과 동행 구성·일정 조율 서비스비</strong>입니다. ' +
     '식비·교통비·입장료 등은 각자 현장에서 직접 결제하는 방향을 검토하고 있어요. ' +
     '현재는 무료 수요 검증을 진행하며 유료 모집·차량 연결은 제공하지 않습니다.</p></details>' +
-    '<div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a></div>' +
+    '<div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a><span class="n34-version">v34</span></div>' +
     '<details class="n15-place-drawer" id="n14-place-browse"><summary>직접 장소 검색하기 <span>맛집·산책·나들이</span></summary>' +
     '<div class="n15-place-content"><form id="n12-search" role="search" class="n12-search">' + svg('search') +
     '<label for="n12-query" class="sr-only">장소 이름이나 원하는 활동 검색</label>' +
