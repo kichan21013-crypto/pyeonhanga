@@ -57,9 +57,9 @@ test('2단계 설문은 익명/동의/저장결과/실패를 명확히 표시한
   assert.match(src,/recordConsentedSurvey/);
   assert.match(src,/response_id:responseId/);
   assert.match(src,/await recordConsentedSurvey/);
-  assert.match(src,/서버에 저장하지 못했습니다/);
-  assert.match(src,/응답이 저장됐습니다/);
-  assert.match(src,/응답이 저장되지 않았습니다/);
+  assert.match(src,/저장되지 않았어요/);
+  assert.match(src,/선택한 내용이 저장됐어요/);
+  assert.match(src,/응답은 저장되지 않았어요/);
   assert.match(src,/나의 연령대/);
   assert.match(styles,/\.n13-survey-step\[hidden\]/);
   assert.doesNotMatch(src,/예약이 확정됐습니다|동행 신청 완료/);
