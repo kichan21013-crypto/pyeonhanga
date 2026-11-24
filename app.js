@@ -131,7 +131,7 @@ function companionDialog(p, trigger = null, program = null) {
   trackRhythm('companion_interest', { ...metadata(p), ...context });
   const dialog = document.createElement('dialog');
   dialog.className = 'n13-survey-dialog';
-  const responseId = anonymousId();
+  let responseId; // 명시적 동의·제출 이후에만 생성합니다.
   const safe = value => escapeHtml(value);
   const select = (name, label) =>
     '<label for="survey-' + name + '">' + label +
@@ -209,7 +209,8 @@ function companionDialog(p, trigger = null, program = null) {
   };
   form.onsubmit = async event => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
+    if (!form.reportValidity() || !form.elements.consent.checked) return;
+    if (!responseId) responseId = anonymousId();
     const button = form.querySelector('[type=submit]');
     if (button.disabled) return;
     button.disabled = true;
