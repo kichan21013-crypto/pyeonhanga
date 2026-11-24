@@ -118,8 +118,9 @@ function showCopyFallback(url, p) {
 const choices = SURVEY_CHOICES;
 function companionDialog(p, trigger = null, program = null) {
   if(document.querySelector('dialog.n13-survey-dialog'))return;
-  const initialActivity={walk:'outing',eat:'food',hike:'hike',outing:'outing',travel:'travel'}[trigger?.dataset?.companionActivity] ||
-    program?.activity || (p.category==='맛집'?'food':p.category==='여행'?'travel':'outing');
+  const interestMap={walk:'outing',eat:'food',hike:'hike',outing:'outing',travel:'travel'};
+  const initialActivity=interestMap[trigger?.dataset?.companionActivity] ||
+    interestMap[program?.interest] || (p.category==='맛집'?'food':p.category==='여행'?'travel':'outing');
   const dialog=document.createElement('dialog');
   dialog.className='n13-survey-dialog n18-preference-dialog n19-preference-dialog';
   dialog.setAttribute('aria-labelledby','survey-title');
