@@ -7,10 +7,11 @@ import { pathToFileURL } from 'node:url';
 import { publicConfig } from '../scripts/public-config.js';
 import { anonymousId, savedIds } from '../storage.js';
 
-async function analyticsHarness(config, run) {
+async function analyticsHarness(config, run, { optIn = true } = {}) {
   const directory = await mkdtemp(join(tmpdir(), 'pyeonhanga-test-'));
   const previous = Object.fromEntries(['document','localStorage','fetch'].map(key => [key, globalThis[key]]));
   const entries = new Map(), requests = [];
+  if (config.supabaseUrl && optIn) entries.set('pyeonhanga.analyticsConsent',JSON.stringify(true));
   try {
     await writeFile(join(directory, 'package.json'), '{"type":"module"}');
     for (const file of ['analytics.js', 'storage.js']) await cp(new URL(`../${file}`, import.meta.url), join(directory, file));
@@ -63,7 +64,7 @@ test('설정 후 신규 이벤트와 검증 context를 전송하고 자유입력
       assert.equal(row.details.duration, 'half_day'); assert.equal(row.details.transport, 'car');
       assert.ok(!JSON.stringify(row).includes('NEVER-SEND'));
     }
-    assert.equal(entries.size, 1);
+    assert.equal(entries.size, 2, '동의 상태와 익명 세션만 브라우저에 보관');
   });
 });
 
@@ -110,4 +111,46 @@ test('공개 설정 검증이 비공개 키와 부분 설정을 거부한다', (
   assert.throws(() => publicConfig({ ...connected, supabaseAnonKey: 'sb_secret_TEST' }), /비공개/);
   const service = `header.${Buffer.from(JSON.stringify({ role: 'service_role' })).toString('base64url')}.signature`;
   assert.throws(() => publicConfig({ ...connected, supabaseAnonKey: service }), /anon 역할/);
+});
+
+test('분석 서버가 연결돼도 명시적인 선택 전에는 방문·검색·동행 관심을 전송하지 않는다',async()=>{
+  await analyticsHarness(connected,async({track,trackRhythm,usageAnalyticsConsent,setUsageAnalyticsConsent,requests,entries})=>{
+    assert.equal(usageAnalyticsConsent(),null);
+    assert.equal(await track('page_view'),false);
+    assert.equal(await track('search',{filter:'food'}),false);
+    assert.equal(await trackRhythm('activity_selected',{activities:['food'],desires:['eat']}),false);
+    assert.equal(await trackRhythm('companion_interest',{place_id:'public-place',activities:['food']}),false);
+    assert.equal(requests.length,0);
+    assert.equal(entries.size,0,'동의 전에는 익명 브라우저 ID도 만들지 않음');
+    assert.equal(setUsageAnalyticsConsent(false),true);
+    assert.equal(usageAnalyticsConsent(),false);
+    assert.equal(await track('page_view'),false);
+    assert.equal(requests.length,0);
+    assert.equal(setUsageAnalyticsConsent(true),true);
+    assert.equal(usageAnalyticsConsent(),true);
+    assert.equal(await track('page_view'),true);
+    assert.equal(requests.length,1);
+    assert.equal(setUsageAnalyticsConsent(false),true);
+    assert.equal(await track('search'),false,'거부로 다시 변경하면 추적 중단');
+    assert.equal(requests.length,1);
+  },{optIn:false});
+});
+
+test('일반 이용통계를 거부해도 설문 체크 동의를 받은 응답 한 건만 기록한다',async()=>{
+  await analyticsHarness(connected,async({track,trackRhythm,requests,entries})=>{
+    const answers={age:'60~64',preference:'성별 상관없음',purpose:'식사동행',
+      group_size:'3~4명',willingness:'약 2만원',response_id:anonymousId(),
+      place_id:'verified-place'};
+    assert.equal(await trackRhythm('premium_willingness',answers),false);
+    assert.equal(requests.length,0);
+    assert.equal(await trackRhythm('premium_willingness',{...answers,surveyConsent:true}),true);
+    assert.equal(requests.length,1);
+    const sent=JSON.parse(requests[0].options.body).payload;
+    assert.equal(sent.event_name,'premium_willingness');
+    assert.equal(sent.details.willingness,'약 2만원');
+    assert.equal(sent.details.surveyConsent,undefined,'동의 제어용 플래그는 데이터베이스로 전송하지 않음');
+    assert.equal(entries.has('pyeonhanga.analyticsConsent'),false,'설문 동의를 일반 이용통계 동의로 간주하지 않음');
+    assert.equal(await track('page_view'),false);
+    assert.equal(requests.length,1);
+  },{optIn:false});
 });
