@@ -20,6 +20,9 @@ test('실제 데이터에서 활동·지역에 맞는 장소만 동행 설문 �
   assert.ok(eat.length>0,'경기 식사 후보');
   assert.ok(walk.every(p=>p.region==='서울'&&!p.isDemo&&p.image.startsWith('https://')));
   assert.ok(eat.every(p=>p.category==='맛집'&&!p.isDemo&&p.region==='경기'));
+  for(const interest of Object.keys(COMPANION_INTERESTS)) {
+    assert.ok(published.some(p=>companionPlaceMatches(p,{interest})), interest+' 관심 유형에 실제 장소 후보가 필요함');
+  }
   assert.equal(companionPlaceMatches({...walk[0],isDemo:true},{interest:'walk'}),false);
   assert.equal(companionPlaceMatches({...walk[0],image:'data:image/svg;base64,abc'},{interest:'walk'}),false);
   assert.equal(companionPlaceMatches(walk[0],{interest:'unknown'}),false);
@@ -33,7 +36,8 @@ test('홈은 동행 희망을 첫 화면에 두고, 장소는 두 번째 경험�
   assert.match(src,/가고 싶은 곳은 있는데/);
   assert.match(src,/나의 동행 희망 남기기/);
   for(const type of Object.keys(COMPANION_INTERESTS)) assert.ok(src.includes('/companion.html?interest='+type));
-  assert.match(src,/실제 연결·예약·결제는 아직 제공하지 않습니다/);
+  assert.match(src,/실제 연결·예약·결제는 없습니다/);
+  assert.match(src,/현재 설문 저장 미연결 상태로 응답은 저장되지 않습니다/);
   assert.match(css,/\.n14-hero h1/);
   assert.match(css,/\.n14-moments-grid/);
   assert.match(css,/\.n14-places/);
