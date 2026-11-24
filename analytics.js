@@ -42,6 +42,20 @@ export function trackRhythm(name, values = {}) {
 }
 
 export const analyticsEnabled = /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(config.supabaseUrl || '') && Boolean(config.supabaseAnonKey);
+const USAGE_CONSENT_KEY = 'pyeonhanga.analyticsConsent';
+/**
+ * null = not decided; true = opted in; false = opted out.
+ * Survey responses have their own explicit, one-time form consent.
+ * Avoid allocating a persistent session ID before a lawful choice.
+ */
+export function usageAnalyticsConsent() {
+  const value = readLocal(USAGE_CONSENT_KEY, null);
+  return value === true ? true : value === false ? false : null;
+}
+export function setUsageAnalyticsConsent(approved) {
+  return writeLocal(USAGE_CONSENT_KEY, Boolean(approved));
+}
+
 let sessionId;
 const recent = new Map();
 function session() {
@@ -63,6 +77,10 @@ function duplicate(event, row) {
 // 검색어, URL query, referrer, IP, 브라우저 정보, 자유입력 자연어 원문은 전송하지 않습니다.
 export async function track(event, values = {}) {
   if (!analyticsEnabled || !EVENTS.includes(event)) return false;
+  // 방문/검색/선택 분석은 선택 동의 전 전송하지 않습니다.
+  // 명시적 동의를 받은 동행 설문 제출 1건은 별도 동의로 저장합니다.
+  const surveySubmission = event === 'premium_willingness' && values.surveyConsent === true;
+  if (!surveySubmission && usageAnalyticsConsent() !== true) return false;
   const row = {
     event_name: event,
     session_id: session(),
