@@ -76,7 +76,7 @@ test('동행 전용 메뉴는 사람을 먼저 모집하지 않고 동일한 실
   assert.match(page,/\/\?together=outing/);
   assert.match(page,/\/\?together=travel/);
   assert.match(page,/관심사가 비슷한 사람들/);
-  assert.match(page,/현재는 참여 의향을 확인하는 무료 시범 서비스입니다/);
+  assert.match(page,/아직 실제 동행 모집·예약·결제는 제공하지 않아요/);
   assert.doesNotMatch(page,/data-program-interest=|data-companion-interest=|data-n14-interest=/);
   assert.match(build,/TOGETHER_INVITES/);
   assert.doesNotMatch(build,/v14-companion-hub\.js\?v=20261124-v18/);
