@@ -48,6 +48,13 @@ try {
   ok(await page.locator('.n21-place-card .n30-save').first().isVisible(),'동행 카드 저장 버튼');
   ok(await page.locator('#n16-invites [data-v16-invite]').count()===4,'홈 카테고리 정확히 4개');
   ok(await page.locator('.n16-invites-section').count()===1,'중복 카테고리 영역 없음');
+  ok(await page.locator('.n16-respect').count()===0,'중복 안내 카드 제거');
+  ok(!(await page.locator('#n19-my-updates').isVisible()),'개인 소식은 홈에서 숨김');
+  await page.locator('[data-n30-updates]').click();
+  ok(await page.locator('#n33-updates-dialog[open] #n19-my-updates').isVisible(),'알림 아이콘으로 소식 열기');
+  await page.locator('.n33-updates-close').click();
+  ok(!(await page.locator('#n33-updates-dialog').isVisible()),'소식 닫기');
+  await page.waitForFunction(()=>document.activeElement===document.querySelector('[data-n30-updates]'));
   await page.waitForFunction(()=>window.scrollY<10);
   await page.evaluate(()=>window.scrollTo(0,500));
   await page.reload({waitUntil:'domcontentloaded'});
