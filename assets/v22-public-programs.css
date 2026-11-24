@@ -50,3 +50,14 @@
  .n22-meetup-preview{padding:13px;}
  .n22-meetup-preview h3{font-size:15px!important;}
 }
+
+/* v24 meetup-specific consent and withdrawal */
+.n24-interest{margin-top:12px;border-top:1px solid #e2ebe4;padding-top:12px}
+.n24-interest button{width:100%;min-height:44px;border:1px solid #176647;border-radius:10px;background:#176647;color:white;font-weight:800;cursor:pointer}
+.n24-interest button[aria-pressed=true]{background:#fff;color:#176647}
+.n24-interest button:disabled,.n24-interest-privacy button:disabled{opacity:.55;cursor:default}
+.n24-interest p,.n24-interest-privacy p{font-size:12px;line-height:1.5;margin:6px 0 0;color:#365344}
+.n24-interest-privacy{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.n24-interest-privacy small{font-size:12px;color:#365344}
+.n24-interest-privacy button{border:1px solid #b8ccc0;background:white;color:#365344;border-radius:8px;padding:10px;cursor:pointer}
+.n24-interest button:focus-visible,.n24-interest-privacy button:focus-visible{outline:3px solid #dd865b;outline-offset:3px}

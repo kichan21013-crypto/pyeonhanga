@@ -21,3 +21,5 @@ import './v19-companion-groups.test.js';
 import './v20-interest-priority.test.js';
 import './v21-popular-first.test.js';
 import './v22-owner-studio.test.js';
+
+import './v24-meetup-interest.test.js';
