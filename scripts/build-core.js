@@ -55,7 +55,30 @@ if (process.env.SUPABASE_URL || process.env.SUPABASE_ANON_KEY) {
   try { await access(resolve(root, 'config.js')); configPath = resolve(root, 'config.js'); } catch {}
   configInput = (await import(pathToFileURL(configPath).href)).default;
 }
-await writeFile(resolve(out, 'config.js'), `export default ${JSON.stringify(publicConfig(configInput))};\n`);
+const publicSettings = publicConfig(configInput);
+await writeFile(resolve(out, 'config.js'), `export default ${JSON.stringify(publicSettings)};\n`);
+const releaseVersion = '20261124-v17';
+const generatedAt = new Date().toISOString();
+const analyticsSetupPresent = Boolean(publicSettings.supabaseUrl && publicSettings.supabaseAnonKey);
+// Build status is informative only: it never pretends the remote database is reachable.
+await writeFile(resolve(out,'release-status.json'),JSON.stringify({
+  version:releaseVersion, built_at:generatedAt,
+  public_venue_count:places.filter(p=>!p.isDemo).length,
+  analytics_setup_present:analyticsSetupPresent, storage_verified:false
+},null,2)+'\n');
+await writeFile(resolve(out,'status.html'),page({
+  title:'나가치 앱 상태 확인',description:'앱 빌드와 분석 설정 안내',path:'/status.html',noindex:true,
+  content:'<h1>나가치 앱 상태 확인</h1>' +
+    '<p>현재 제공되는 앱의 빌드 정보입니다. 실제 설문 저장 성공 여부는 이 화면만으로 확인할 수 없습니다.</p>' +
+    '<table><tbody><tr><th scope="row">앱 버전</th><td>'+releaseVersion+'</td></tr>' +
+    '<tr><th scope="row">빌드 시각 (UTC)</th><td><time datetime="'+generatedAt+'">'+generatedAt+'</time></td></tr>' +
+    '<tr><th scope="row">공개 장소</th><td>'+places.filter(p=>!p.isDemo).length+'곳</td></tr>' +
+    '<tr><th scope="row">Supabase 설정</th><td>' +
+    (analyticsSetupPresent ? '설정값 있음 (실제 저장 여부 미확인)' : '미설정 (응답 서버 저장 불가)') +
+    '</td></tr></tbody></table>' +
+    '<p>실제 저장 여부는 동행 설문 제출 결과 및 Supabase 관리자 조회로 확인해야 합니다. 비공개 키와 응답 데이터는 표시하지 않습니다.</p>' +
+    '<p><a href="/privacy.html">개인정보·통계 설정 확인</a></p><a href="/" class="button secondary">홈으로 돌아가기</a>'
+}));
 await writeFile(resolve(out, 'index.html'), index.replace('<!-- SEO -->', seo('/', '나가치 — 오늘, 내 리듬대로.', '막연히 뭔가 하고 싶은 날, 내 상황과 취향에 맞는 하루를 찾아보세요.', '/assets/garden.svg', places.every(p => p.isDemo))).replace('<!-- CARDS -->', recommendRhythms(places).map(r => card(r.place,false,undefined,r)).join('')).replace('<!-- FOOTER -->', footer).replace(/<p class="demo-notice">[\s\S]*?<\/p>/, places.some(p => p.isDemo) ? '<p class="demo-notice">DEMO SAMPLE 배지가 붙은 장소는 기능 체험용 가상 데이터입니다. 실제 방문 정보가 아닙니다.</p>' : '<p class="demo-notice">확인한 정보만 표시합니다. 방문 전 출처와 최근 확인 날짜를 살펴보세요.</p>'));
 const saved = (await readFile(resolve(root, 'saved.html'), 'utf8')).replace(/<meta name="robots" content="noindex,nofollow">/g,'');
 await writeFile(resolve(out, 'saved.html'), saved.replace('<!-- SEO -->', seo('/saved.html', '저장한 곳 — 나가치', '마음에 담은 장소를 다시 살펴보세요.', undefined, true)).replace('<!-- HEADER -->', header).replace('<link rel="stylesheet" href="/styles.css">','<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/mobile-ux.css?v=20261124-v16"><link rel="stylesheet" href="/assets/v13-companion.css?v=20261124-v16"><link rel="stylesheet" href="/assets/v14-companion-first.css?v=20261124-v16"><link rel="stylesheet" href="/assets/v15-party-program.css?v=20261124-v16"><link rel="stylesheet" href="/assets/v16-together.css?v=20261124-v16">').replace('src="/app.js"', 'src="/app.js?v=20261124-v16"').replace('<!-- FOOTER -->', footer + mobileNav('saved')));
