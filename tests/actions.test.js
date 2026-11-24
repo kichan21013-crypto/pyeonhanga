@@ -22,6 +22,6 @@ test('공유는 native→클립보드→수동 복사를 지원하고 취소는 
 });
 test('동행 설문의 연령·동행 형태·목적·인원·서비스비 응답을 유지한다', () => {
   assert.deepEqual(SURVEY_CHOICES.willingness,['무료면 참여','약 1만원','약 2만원','약 3만원 이상','아직 모르겠음']);
-  assert.equal(SURVEY_CHOICES.age.length,5);assert.equal(SURVEY_CHOICES.preference.length,4);assert.equal(SURVEY_CHOICES.purpose.length,5);assert.equal(SURVEY_CHOICES.group_size.length,4);
+  assert.equal(SURVEY_CHOICES.age.length,5);assert.equal(SURVEY_CHOICES.preference.length,3);assert.equal(SURVEY_CHOICES.purpose.length,4);assert.equal(SURVEY_CHOICES.group_size.length,4);
   assert.deepEqual(Object.keys(SURVEY_CHOICES),['age','preference','purpose','group_size','willingness']);
 });
