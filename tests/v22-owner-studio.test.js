@@ -95,7 +95,7 @@ test('빌드한 실제 admin.html은 검색 제외·비로그인 차단·운영�
  assert.match(page,/id="n22-meetup-form"/);
  assert.match(page,/id="n22-revenue-form"/);
  assert.match(page,/v22-admin-studio\.css\?v=20261124-v41/);
- assert.match(page,/v19-admin\.js\?v=20261124-v41/);
+ assert.match(page,/v19-admin\.js\?v=20261125-v42/);
  assert.match(home,/v22-public-programs\.css\?v=20261124-v41/);
  assert.match(build,/CLIENT_VERSION = '20261124-v41'/);
  assert.match(core,/operatorMarkup\(\)/);
@@ -130,4 +130,25 @@ test('v39 업무 연결은 자동 게시하지 않으며 로그인 세션을 보
  assert.match(admin,/getToken\(\)!==token/);
  assert.match(login,/if\(jwt!==token\)return/);
  assert.match(login,/form\._notices=\[\]/);
+});
+
+test('v42 owner summary exposes only aggregate data, actionable pending groups and safe rendering',async()=>{
+ const sql=await read('supabase/owner-summary-v42.sql'),src=await read('assets/v42-owner-summary.js'),admin=await read('assets/v22-operations-admin.js'),markup=operatorMarkup();
+ assert.match(sql,/a\.user_id=auth\.uid\(\)/);
+ assert.match(sql,/revoke all on function public\.nagachi_admin_owner_summary\(\) from public,anon,authenticated/);
+ assert.match(sql,/count\(distinct s\.user_id\)/);
+ assert.match(sql,/where status='pending'/);
+ assert.match(markup,/id="n42-owner-summary"/);
+ assert.match(markup,/data-n42-notice/);
+ assert.match(admin,/form\.elements\.id\.value=String\(savedId\)/);
+ assert.match(admin,/ownerSummary\.reset\(\)/);
+ assert.match(admin,/data-n42-move-place/);
+ const pure=src.replace(/^import .*?;\s*$/gm,'').replace(/^export /gm,'');
+ const render=new Function('escapeHtml',pure+'\nreturn renderOwnerSummary;')(x=>String(x).replace(/</g,'&lt;').replace(/>/g,'&gt;'));
+ const html=render({members:0,owners:1,pending:2,pending_groups:[{id:7,title:'<script>',pending:2}]});
+ assert.match(html,/일반 가입 회원/);
+ assert.match(html,/data-n39-pending-meetup="7"/);
+ assert.match(html,/&lt;script&gt;/);
+ assert.doesNotMatch(html,/<script>/);
+ assert.match(render({}),/—/);
 });

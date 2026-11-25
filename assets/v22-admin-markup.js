@@ -5,9 +5,9 @@ export function operatorMarkup(){
  return `
 <section class="n19-admin n22-admin" aria-labelledby="n19-admin-title">
   <header class="n22-admin-heading">
-    <span class="n22-owner-badge">NAGACHI OWNER STUDIO · 비공개 운영</span>
+    <span class="n22-owner-badge">관리자 전용 · v42</span>
     <h1 id="n19-admin-title">나가치 운영실</h1>
-    <p>새 코스를 제안하고, 동행 모임을 준비하고, 앞으로의 사업 수익을 계획하는 나만의 작업 공간입니다.</p>
+    <p>회원 · 코스 · 모임 · 공지 관리</p>
   </header>
   <p id="n19-admin-status" class="n22-admin-status" role="status">운영자 로그인 후 관리 기능을 사용할 수 있습니다.</p>
   <form class="n19-admin-form n19-admin-card n22-login" id="n19-admin-login" autocomplete="off">
@@ -35,22 +35,18 @@ export function operatorMarkup(){
     <section data-n22-panel="overview" aria-labelledby="n22-overview-title">
       <div class="n22-panel-title"><span>OVERVIEW</span><h2 id="n22-overview-title">나의 운영 현황</h2>
         <p>관심 의사를 남긴 분과 실제 확정 참여자를 혼동하지 않습니다.</p></div>
-      <div id="n22-operation-metrics" class="n22-metrics" aria-live="polite"></div>
+      <section class="n42-summary" aria-label="회원 및 운영 현황"><div id="n42-owner-summary" aria-live="polite">회원 현황 확인 중</div><div class="n42-actions"><button type="button" data-n22-go="courses">+ 코스 등록</button><button type="button" data-n22-go="meetups">+ 모임 등록</button><button type="button" data-n42-notice>+ 일정 공지</button><button type="button" data-n22-go="revenue">수익 계획</button></div></section><div id="n22-operation-metrics" class="n22-metrics" aria-live="polite"></div>
       <section class="n19-admin-card n22-overview-card n26-business" aria-labelledby="n26-title">
         <h3 id="n26-title">사업 운영 지표</h3>
         <div class="n26-controls"><label>조회 기간<select id="n26-days"><option value="1">오늘</option><option value="7" selected>최근 7일</option><option value="30">최근 30일</option></select></label><button type="button" id="n26-refresh">지표 새로고침</button></div>
         <div id="n26-business-results" aria-live="polite">운영자 로그인 후 확인할 수 있습니다.</div>
       </section>
       <div class="n19-admin-card n22-overview-card">
-        <h3>실제로 저장된 동행 관심</h3>
+        <h3>활동별 관심 및 수신자</h3>
         <p>최근 90일 동의 응답의 서로 다른 익명 브라우저 수입니다. 실제 파티 참가 확정은 아닙니다.</p>
         <div id="n19-admin-counts" class="n19-admin-counts"></div>
       </div>
-      <div class="n22-quick-actions">
-        <button type="button" data-n22-go="courses">+ 새 코스 기획하기</button>
-        <button type="button" data-n22-go="meetups">+ 새로운 동행 모임 준비하기</button>
-        <button type="button" data-n22-go="revenue">수익 시나리오 계산하기</button>
-      </div>
+      
       <p class="n22-operating-note">이 화면에는 실제 응답·작성한 코스·모임·시나리오만 표시합니다. 예약, 결제, 차량 알선은 아직 제공하지 않습니다.</p>
     </section>
     <section data-n22-panel="courses" aria-labelledby="n22-course-title" hidden>
@@ -120,9 +116,9 @@ export function operatorMarkup(){
       </form>
       <div class="n22-list-card"><h3>내 동행 모임</h3><div id="n22-meetup-list"></div></div><div id="n25-party-panel" class="n22-list-card" hidden></div>
       <details class="n22-notice-drawer" id="n22-notice-drawer">
-        <summary>활동별 관심자에게 앱 안 공지 작성하기 <span>기존 기능</span></summary>
+        <summary>활동별 일정 공지 작성</summary>
         <div class="n22-notice-body">
-          <p>별도로 소식 수신에 동의한 기기에서만 앱 재방문 시 확인할 수 있습니다. 문자·이메일·푸시는 보내지 않습니다.</p>
+          <p>수신 동의 회원과 기존 기기 구독자가 앱에서 확인합니다. 카카오톡·문자·푸시는 발송하지 않습니다.</p>
           <form class="n19-admin-form n19-admin-card" id="n19-admin-notice-form">
             <input type="hidden" name="notice_id">
             <label>관련 동행<select name="activity">
@@ -132,7 +128,7 @@ export function operatorMarkup(){
             <label>내용<textarea name="body" minlength="5" maxlength="800" required placeholder="일정과 필요한 안내를 적어주세요."></textarea></label>
             <label>모일 일시<input name="meet_at" type="datetime-local"></label>
             <label>일반 공지 장소(정확한 집결지 제외)<input name="meet_place" maxlength="120"></label>
-            <label class="n22-publish"><input type="checkbox" name="publish"><span>공지 게시하기(선택한 활동의 수신 신청 기기)</span></label>
+            <label class="n22-publish"><input type="checkbox" name="publish"><span>공지 게시하기(선택 활동의 수신 동의 회원 및 기존 기기)</span></label>
             <button type="submit">동행 소식 저장</button>
           </form>
           <div id="n19-admin-notices"></div>
