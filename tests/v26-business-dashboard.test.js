@@ -56,3 +56,12 @@ test('v39 업무 연결은 실측 양수 기록과 실제 장소만 사용하고
  assert.doesNotMatch(html,/data-n39-pending-meetup="4"|data-n39-demand-place="demo"|data-n39-demand-place="unknown"/);
  assert.doesNotMatch(renderActionQueue({},[]),/data-n39-demand-place|data-n39-pending-meetup/);
 });
+
+test('v42 willingness KPI hides unstable percentage and shows sample size',async()=>{
+ const src=(await read('assets/v26-business-dashboard.js')).replace(/^import .*?;\s*$/gm,'').replace(/^export /gm,'');
+ const render=new Function('escapeHtml',src+'\nreturn renderBusiness;')(String);
+ const low=render({paid_intent:1,valid_willingness:1});
+ assert.match(low,/표본 부족/);assert.match(low,/1 \/ 1개 기기/);
+ assert.match(render({paid_intent:8,valid_willingness:10}),/80\.0%/);
+ assert.match(low,/상세 수요 분석 열기/);
+});

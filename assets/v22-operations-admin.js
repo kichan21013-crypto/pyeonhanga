@@ -300,8 +300,9 @@ export function mountOperations({getToken,notify}){
   if((courseForm.elements.title.value||selectedPlaceIds.length)&&!confirm('작성 중인 코스 내용을 새 초안으로 바꿀까요? 저장한 코스는 변경하지 않습니다.'))return;
   tab('courses');clearCourse();const f=courseForm.elements;
   f.title.value=draft.title;f.activity.value=draft.activity;f.region.value=draft.region;f.publish.checked=false;
+  f.description.value=p.name+'을(를) 중심으로 함께 시간을 보내는 동행 코스입니다. 세부 일정과 이용 조건은 운영자가 확인 후 안내합니다.';
   selectedPlaceIds=[draft.placeId];renderPicked();renderSearch();
-  info(courseStatus,'관심 장소를 코스 초안에 넣었습니다. 소개와 코스를 확인하고 직접 저장해 주세요.');
+  info(courseStatus,'관심 장소와 소개 초안을 넣었습니다. 운영시간·세부 일정 등을 확인하고 수정한 뒤 저장해 주세요.');
   courseForm.scrollIntoView({block:'start'});f.description.focus({preventScroll:true});
  }
  function prepareCourseMeetup(id){

@@ -1,6 +1,6 @@
 import {companionRpc} from './v19-companion-service.js';
 import {escapeHtml} from '../ui.js';
-const fmt=n=>n!==null&&n!==''&&Number.isSafeInteger(Number(n))&&Number(n)>=0?Number(n).toLocaleString('ko-KR'):'—';
+const fmt=n=>n!=null&&n!==''&&Number.isSafeInteger(Number(n))&&Number(n)>=0?Number(n).toLocaleString('ko-KR'):'—';
 export function renderOwnerSummary(d){
  const card=(label,n,unit)=>'<div><span>'+escapeHtml(label)+'</span><strong>'+fmt(n)+escapeHtml(unit)+'</strong></div>';
  const pending=Array.isArray(d.pending_groups)?d.pending_groups.filter(x=>Number.isSafeInteger(Number(x.id))&&Number(x.id)>0&&Number(x.pending)>0):[];
