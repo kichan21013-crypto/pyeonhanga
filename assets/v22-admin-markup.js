@@ -5,7 +5,7 @@ export function operatorMarkup(){
  return `
 <section class="n19-admin n22-admin" aria-labelledby="n19-admin-title">
   <header class="n22-admin-heading">
-    <span class="n22-owner-badge">관리자 전용 · v42</span>
+    <span class="n22-owner-badge">관리자 전용 · v43</span>
     <h1 id="n19-admin-title">나가치 운영실</h1>
     <p>회원 · 코스 · 모임 · 공지 관리</p>
   </header>
@@ -51,7 +51,7 @@ export function operatorMarkup(){
     </section>
     <section data-n22-panel="courses" aria-labelledby="n22-course-title" hidden>
       <div class="n22-panel-title"><span>COURSE CURATION</span><h2 id="n22-course-title">새 동행 코스 만들기</h2>
-        <p>기존 관광공사 등록 장소를 골라 나만의 하루 코스를 구성하세요. 기본은 비공개 초안입니다.</p></div>
+        <p>기존 장소 또는 직접 등록한 네이버·구글 지도 장소를 조합하세요. 기본은 비공개 초안입니다.</p></div>
       <form id="n22-course-form" class="n19-admin-form n22-editor">
         <input type="hidden" name="id">
         <label>코스 이름<input name="title" minlength="4" maxlength="90" required placeholder="예: 북한산 산책 후 커피 한 잔"></label>
@@ -62,7 +62,7 @@ export function operatorMarkup(){
           <label>지역<select name="region" required>
             <option value="서울">서울</option><option value="경기">경기</option>
             <option value="강릉">강릉</option><option value="경주">경주</option>
-            <option value="부산">부산</option><option value="제주">제주</option></select></label>
+            <option value="부산">부산</option><option value="제주">제주</option><option value="인천">인천</option><option value="강원">강원</option><option value="충북">충북</option><option value="충남">충남</option><option value="대전">대전</option><option value="세종">세종</option><option value="전북">전북</option><option value="전남">전남</option><option value="광주">광주</option><option value="경북">경북</option><option value="경남">경남</option><option value="대구">대구</option><option value="울산">울산</option></select></label>
         </div>
         <label>일정 길이<select name="duration"><option value="반나절">반나절</option><option value="하루">하루</option></select></label>
         <label>코스 소개<textarea name="description" minlength="12" maxlength="600" required
@@ -72,7 +72,7 @@ export function operatorMarkup(){
           <label for="n22-place-query" class="n22-search-label">장소 이름 검색</label>
           <input type="search" id="n22-place-query" placeholder="예: 서대문독립공원 / 도일처" autocomplete="off">
           <div id="n22-place-suggestions" class="n22-place-suggestions" role="status">검색하면 등록된 장소가 나옵니다.</div>
-          <div id="n22-course-picked" class="n22-place-picked"></div>
+          <details class="n43-external" id="n43-external"><summary>+ 검색에 없는 장소 직접 추가</summary><p>네이버 지도 또는 구글 지도에서 장소를 검색하고 공유 링크를 복사하세요. 확인한 장소명과 주소를 직접 입력합니다.</p><div class="n43-map-search"><button type="button" data-n43-search="naver">네이버 지도 검색 ↗</button><button type="button" data-n43-search="google">구글 지도 검색 ↗</button></div><label>장소명<input id="n43-name" maxlength="100" placeholder="예: 북한산 백운대"></label><label>실제 주소<input id="n43-address" maxlength="240" placeholder="도로명 또는 지번 주소"></label><label>장소 유형<select id="n43-category"><option>맛집</option><option>카페</option><option>산행</option><option>나들이</option><option>여행</option><option>기타</option></select></label><label>지도 공유 링크<input id="n43-url" type="url" maxlength="1000" placeholder="https://..."></label><label class="n43-verified"><input id="n43-verified" type="checkbox"> 장소명·주소와 링크가 일치함을 확인했습니다.</label><button type="button" id="n43-add">장소 등록 후 코스에 추가</button><p id="n43-status" role="status"></p></details><div id="n22-course-picked" class="n22-place-picked"></div>
         </div>
         <label class="n22-publish"><input name="publish" type="checkbox">
           <span><strong>이 코스를 일반 앱에 공개하기</strong><small>기본은 비공개. 공개 체크 후 저장한 코스만 이용자에게 보입니다.</small></span>

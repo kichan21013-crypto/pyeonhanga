@@ -61,3 +61,6 @@
 .n24-interest-privacy small{font-size:12px;color:#365344}
 .n24-interest-privacy button{border:1px solid #b8ccc0;background:white;color:#365344;border-radius:8px;padding:10px;cursor:pointer}
 .n24-interest button:focus-visible,.n24-interest-privacy button:focus-visible{outline:3px solid #dd865b;outline-offset:3px}
+
+/* External map links, no unlicensed images. */
+.n43-map-cover{height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#e8f1e7;color:#275a40;text-align:center;padding:12px}.n43-map-cover>span{font-size:30px}.n43-map-cover small{font-size:11px}.n43-map-link{display:block;padding:9px 0;border-top:1px solid #e2e9e0;color:#286344;text-decoration:none}.n43-map-link strong,.n43-map-link small,.n43-map-link span{display:block;font-size:12px;overflow-wrap:anywhere}.n43-map-link small{color:#6e8172;font-size:11px;margin:3px 0}.n43-map-link span{font-weight:800}.n22-public-course-list:has(>article:only-child) .n22-public-card{flex-basis:min(100%,430px)}

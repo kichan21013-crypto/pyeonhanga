@@ -9,7 +9,7 @@ const headers = await readFile(headersPath, 'utf8');
 await writeFile(headersPath, headers.replace("img-src 'self' https:;", "img-src 'self' https: data:;").replace('  Referrer-Policy:', '  Cache-Control: no-cache, must-revalidate\n  Referrer-Policy:'));
 
 // 모바일 클라이언트 캐시 버전. 기능 수정 배포 시 URL 자체를 바꿔 이전 JS 캐시와 섞이지 않게 합니다.
-const CLIENT_VERSION = '20261124-v41';
+const CLIENT_VERSION = '20261125-v43';
 
 // 홈 전용 앱형 UI 레이어. 기존 추천 엔진은 유지하고 홈 DOM만 재배치합니다.
 const indexPath = resolve(root, 'dist', 'index.html');
