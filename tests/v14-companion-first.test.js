@@ -105,7 +105,7 @@ test('차량 유상 연결·여행업 운영·개인정보 위험을 소비자�
   const page=await read('dist/companion.html');
   assert.match(homepage,/추천 동행 보기/);
   assert.match(homepage,/현재는 무료 수요 검증을 진행하며 유료 모집·차량 연결은 제공하지 않습니다/);
-  assert.match(homepage,/좋은 하루는, 마음 맞는 사람과 함께/);
+  assert.match(homepage,/가고 싶은 곳, 함께할 사람/);
   assert.match(page,/유료 여행상품·차량 배차·유상 자가용 운송 알선은 제공하지 않습니다/);
   assert.match(page,/이름·연락처는 받지 않습니다/);
   assert.doesNotMatch(page,/지금 예약|참가비 결제|남은 자리/);
@@ -120,7 +120,7 @@ test('코스 제안과 모임 구성의 미래 수익모델은 분리하고 계�
   assert.match(home,/코스 제안과 동행 구성·일정 조율 서비스비/);
   assert.match(home,/식비·교통비·입장료/);
   assert.match(index,/v16-together\.css\?v=20261125-v44/);
-  assert.match(index,/v12-direct-home\.js\?v=20261125-v45/);
+  assert.match(index,/v12-direct-home\.js\?v=20261125-v46/);
   assert.match(saved,/mobile-ux\.css\?v=20261125-v44/);
   assert.ok(!('dependencies' in pkg));
   assert.doesNotMatch(css,/@import|https?:\/\//);
