@@ -34,7 +34,7 @@ test('동행이 전용 콘텐츠와 네 번째 하단 메뉴로 노출된다',as
   assert.match(page,/data-companion="true"/);
   assert.match(home,/v12-direct-home\.js\?v=20261125-v46/);
   assert.match(saved,/app\.js\?v=20261125-v44/);
-  assert.match(detailFiles,/mobileNav\(path === '\/companion\.html' \? 'companion' : 'recommend'\)/);
+  assert.match(detailFiles,/mobileNav\(path === '\/community\.html' \? 'community' : path === '\/companion\.html' \? 'companion' : 'recommend'\)/);
   assert.match(detailFiles,/class="n13-nav-companion/);
 });
 
