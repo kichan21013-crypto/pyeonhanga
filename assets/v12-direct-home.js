@@ -9,8 +9,8 @@ import { analyticsEnabled } from '../analytics.js';
 import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHeading } from './v12-browse-state.js';
 import { TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-model.js';
 import { setupTogetherJourney } from './v16-together.js';
-import { setupGroupExperience } from './v19-group-ui.js?v=20261124-v41';
-import { setupPopularFirst } from './v21-popular-first.js?v=20261124-v41';
+import { setupGroupExperience } from './v19-group-ui.js?v=20261125-v43';
+import { setupPopularFirst } from './v21-popular-first.js?v=20261125-v43';
 import { setupPublicPrograms } from './v22-public-programs.js?v=20261125-v43';
 
 // Ordinary home entry starts at the top; preserve explicit detail/companion deep links.
