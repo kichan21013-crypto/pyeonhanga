@@ -69,3 +69,15 @@
 
 .n45-community-entry{margin:18px 0;padding:16px 18px;border:1px solid #dce7db;border-radius:14px;background:#f2f7f1}.n45-community-entry a{display:flex;flex-direction:column;gap:4px;color:#285d45;text-decoration:none}.n45-community-entry span{font-size:13px}.n45-community-entry strong{font-size:17px}
 @media(max-width:760px){body .n12-nav,body .n-mobile-nav,body[data-companion="true"] .n-mobile-nav,body[data-page="saved"] .n-mobile-nav,body[data-page="detail"] .n-mobile-nav{grid-template-columns:repeat(5,minmax(0,1fr))!important}.n12-nav a,.n12-nav button,.n-mobile-nav a{min-width:0!important}.n12-nav span,.n-mobile-nav span{font-size:11px!important}}
+
+/* v46: distinguish browsing, interest, alerts and joining. */
+.n22-meetup-bottom button{background:#fff;color:#3d4b43;border-color:#cfd6d1}
+.n24-interest button[data-n24-interest]{background:#fff!important;color:#286747!important;border-color:#286747!important}
+.n24-interest button[data-n24-interest][aria-pressed=true]{background:#e5f2e8!important;color:#225a3d!important}
+button[data-n45-subscribe]{background:#eef4fc!important;color:#264f83!important;border:1px solid #b7cae3!important;border-radius:9px;min-height:44px;padding:9px 12px;font-weight:750}
+button[data-n25-apply]{background:#ac492d!important;color:#fff!important;border:1px solid #ac492d!important;border-radius:9px;min-height:44px;padding:9px 12px;font-weight:750}
+button[data-n25-withdraw]{background:#fff!important;color:#a43c33!important;border:1px solid #ead0cc!important;border-radius:9px;min-height:44px;padding:9px 12px}
+.n45-community-entry{background:#fff7ed;border-color:#ecd6c6;margin:20px 0;padding:0;border-radius:13px}
+.n45-community-entry a{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;padding:16px;color:#6c3925;min-height:66px}
+.n45-community-entry a>div{display:grid;gap:4px}.n45-community-entry span{font-size:13px}.n45-community-entry .n46-entry-arrow{font-size:24px;font-weight:700}
+.n-mobile-nav a[href="/community.html"].is-active{color:#8e4028!important;background:#fff1e7!important;font-weight:800}
