@@ -244,7 +244,7 @@ function setupHome() {
     '<p>향후 수익모델은 <strong>코스 제안과 동행 구성·일정 조율 서비스비</strong>입니다. ' +
     '식비·교통비·입장료 등은 각자 현장에서 직접 결제하는 방향을 검토하고 있어요. ' +
     '현재는 무료 수요 검증을 진행하며 유료 모집·차량 연결은 제공하지 않습니다.</p></details>' +
-    '<section class="n45-community-entry"><a href="/community.html"><strong>나가치 이야기</strong><span>우리의 일상·나들이·맛집 후기 나누기 →</span></a></section><div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a><span class="n34-version">v44</span></div>' +
+    '<section class="n45-community-entry"><a href="/community.html"><strong>나가치 이야기</strong><span>우리의 일상·나들이·맛집 후기 나누기 →</span></a></section><div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a><span class="n34-version">v45</span></div>' +
     '<details class="n15-place-drawer" id="n14-place-browse"><summary>직접 장소 검색하기 <span>맛집·산책·나들이</span></summary>' +
     '<div class="n15-place-content"><form id="n12-search" role="search" class="n12-search">' + svg('search') +
     '<label for="n12-query" class="sr-only">장소 이름이나 원하는 활동 검색</label>' +
@@ -326,6 +326,7 @@ function setupHome() {
   nav.innerHTML = '<button type="button" data-n12-home class="is-active">' + svg('home') + '<span>홈</span></button>' +
     '<button type="button" data-n12-recommend>' + svg('compass') + '<span>동행 찾기</span></button>' +
     '<a class="n13-nav-companion" href="/companion.html">' + icon('people') + '<span>동행 안내</span></a>' +
+    '<a href="/community.html"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 5h16v12H9l-5 4z"/><path d="M8 9h8M8 13h6"/></svg><span>이야기</span></a>' +
     '<a href="/saved.html">' + icon('heart') + '<span>저장</span></a>';
   document.body.append(nav);
 
