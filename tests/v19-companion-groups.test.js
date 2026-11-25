@@ -68,7 +68,7 @@ test('홈/저장/동행·개인정보 안내에서 v19 버전을 사용하고 �
   read('dist/index.html'),read('dist/saved.html'),read('dist/companion.html'),read('scripts/build-core.js')
  ]);
  for(const p of [home,saved,companion])assert.match(p,/v19-cohorts\.css\?v=20261125-v44/);
- assert.match(home,/v12-direct-home\.js\?v=20261125-v45/);
+ assert.match(home,/v12-direct-home\.js\?v=20261125-v46/);
  assert.match(core,/소식 조회 권한은 90일간 유효/);
  assert.match(core,/해지하면 서버 구독이 삭제/);
  assert.ok(!('dependencies' in JSON.parse(await read('package.json'))));
