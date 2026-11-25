@@ -91,7 +91,7 @@ test('v38 가로 원본 사진이 배너 전체에 잘림 없이 표시되고 �
  const home=await read('assets/v12-direct-home.js'),css=await read('assets/v21-popular-first.css');
  const latest=css.slice(css.indexOf('/* v38:'));
  assert.match(home,/width="720" height="480"/);
- assert.match(home,/class="n34-version">v45/);
+ assert.match(home,/class="n34-version">v46/);
  assert.match(home,/class="n16-hero-cta n35-recommend-link" href="#n21-popular"/);
  assert.match(latest,/aspect-ratio:3 \/ 2!important/);
  assert.match(latest,/object-fit:contain!important;object-position:center!important/);
