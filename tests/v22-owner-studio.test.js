@@ -94,10 +94,10 @@ test('빌드한 실제 admin.html은 검색 제외·비로그인 차단·운영�
  assert.match(page,/id="n22-course-form"/);
  assert.match(page,/id="n22-meetup-form"/);
  assert.match(page,/id="n22-revenue-form"/);
- assert.match(page,/v22-admin-studio\.css\?v=20261125-v43/);
- assert.match(page,/v19-admin\.js\?v=20261125-v43/);
- assert.match(home,/v22-public-programs\.css\?v=20261125-v43/);
- assert.match(build,/CLIENT_VERSION = '20261125-v43'/);
+ assert.match(page,/v22-admin-studio\.css\?v=20261125-v44/);
+ assert.match(page,/v19-admin\.js\?v=20261125-v44/);
+ assert.match(home,/v22-public-programs\.css\?v=20261125-v44/);
+ assert.match(build,/CLIENT_VERSION = '20261125-v44'/);
  assert.match(core,/operatorMarkup\(\)/);
  const homeCode=await read('assets/v12-direct-home.js');
  assert.match(homeCode,/setupPublicPrograms\(\{home,loadPlaces:loadCatalog\}\)/);
@@ -176,4 +176,27 @@ test('v43 external place link allowlist, course rendering and draft handling',as
  assert.match(sql,/where c\.status='published' and e\.id=any\(c\.place_ids\)/);
  assert.match(sql,/alter table public\.nagachi_external_places enable row level security/);
  assert.match(sql,/a\.user_id=auth\.uid\(\)/);
+});
+
+test('v44 place search has server-only key, operator quota and safe manual link fallback',async()=>{
+ const sql=await read('supabase/place-search-v44.sql'),edge=await read('supabase/functions/nagachi-place-search/index.ts'),src=await read('assets/v44-place-search.js'),admin=await read('assets/v22-operations-admin.js'),pub=await read('assets/v22-public-programs.js');
+ assert.match(sql,/a\.user_id=auth\.uid\(\)/);
+ assert.match(sql,/used<50/);assert.match(sql,/interval '2 seconds'/);
+ assert.match(sql,/alter table public\.nagachi_place_search_quota enable row level security/);
+ assert.match(sql,/where c\.status='published' and e\.id=any\(c\.place_ids\)/);
+ assert.match(edge,/Deno\.env\.get\('GEOAPIFY_API_KEY'\)/);
+ assert.match(edge,/nagachi_account_is_admin/);
+ assert.match(edge,/nagachi_admin_claim_place_search/);
+ assert.match(edge,/countrycode:kr/);
+ assert.doesNotMatch(src,/GEOAPIFY_API_KEY/);
+ const pure=src.replace(/^import .*?;\s*$/gm,'').replace(/^export /gm,'');
+ const {generatedMapLink,searchCandidates}=new Function(pure+'\nreturn {generatedMapLink,searchCandidates};')();
+ assert.equal(generatedMapLink('',''),'');
+ assert.match(generatedMapLink('카페','서울'),/^https:\/\/www\.google\.com\/maps\/search\//);
+ assert.match(generatedMapLink('카페','서울','naver'),/^https:\/\/map\.naver\.com\/p\/search\//);
+ assert.equal(searchCandidates({items:[{name:'장소',address:'서울',lat:37.5,lon:127},{name:'잘못된 위치',address:'서울',lat:0,lon:0}]}).length,1);
+ assert.match(admin,/p_source:externalSource/);
+ assert.match(admin,/seq!==lookupRevision\|\|getToken\(\)!==token/);
+ assert.match(pub,/Powered by <a href="https:\/\/www\.geoapify\.com\//);
+ assert.match(pub,/openstreetmap\.org\/copyright/);
 });
