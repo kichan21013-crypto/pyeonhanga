@@ -95,7 +95,7 @@ test('빌드한 실제 admin.html은 검색 제외·비로그인 차단·운영�
  assert.match(page,/id="n22-meetup-form"/);
  assert.match(page,/id="n22-revenue-form"/);
  assert.match(page,/v22-admin-studio\.css\?v=20261124-v41/);
- assert.match(page,/v19-admin\.js\?v=20261124-v41/);
+ assert.match(page,/v19-admin\.js\?v=20261125-v42/);
  assert.match(home,/v22-public-programs\.css\?v=20261124-v41/);
  assert.match(build,/CLIENT_VERSION = '20261124-v41'/);
  assert.match(core,/operatorMarkup\(\)/);

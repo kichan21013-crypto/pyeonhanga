@@ -3,8 +3,9 @@
  * No private credentials, no stored passwords and no real transactions.
  */
 import { companionRpc } from './v19-companion-service.js';
-import { mountBusinessDashboard } from './v26-business-dashboard.js?v=20261124-v39';
+import { mountBusinessDashboard } from './v26-business-dashboard.js?v=20261125-v42';
 import { escapeHtml } from '../ui.js';
+import { mountOwnerSummary } from './v42-owner-summary.js?v=20261125-v42';
 import { estimateRevenue, cleanCoursePlaceIds, ADMIN_ACTIVITY_LABELS, MEETUP_STAGE_LABELS, draftCourseFromPlace } from './v22-operations-model.js?v=20261124-v39';
 
 const $=(sel,root=document)=>root.querySelector(sel);
@@ -41,6 +42,7 @@ export function mountOperations({getToken,notify}){
  if(!root)return {load:async()=>{},reset:()=>{}};
  document.body.classList.add('n22-admin-page');
  const business=mountBusinessDashboard(root,getToken);
+ const ownerSummary=mountOwnerSummary(root,getToken);
  const courseForm=$('#n22-course-form');
  const meetupForm=$('#n22-meetup-form');
  const revenueForm=$('#n22-revenue-form');
@@ -85,7 +87,7 @@ export function mountOperations({getToken,notify}){
     const place=map.get(id);
     return '<div class="n22-place-chip"><span><b>'+(index+1)+'</b> '+
       escapeHtml(place?.name||id)+' <small>'+escapeHtml(place?.region||'')+'</small></span>'+
-      '<button type="button" data-n22-remove-place="'+escapeHtml(id)+'" aria-label="'+escapeHtml(place?.name||id)+' 제외">×</button></div>';
+      '<div class="n42-place-actions"><button type="button" data-n42-move-place="'+index+'" data-step="-1" aria-label="위로 이동" '+(index===0?'disabled':'')+'>↑</button><button type="button" data-n42-move-place="'+index+'" data-step="1" aria-label="아래로 이동" '+(index===selectedPlaceIds.length-1?'disabled':'')+'>↓</button><button type="button" data-n22-remove-place="'+escapeHtml(id)+'" aria-label="'+escapeHtml(place?.name||id)+' 제외">×</button></div></div>';
   }).join(''):'<p class="n22-list-empty">아직 고른 장소가 없어요. 검색해서 추가해 주세요.</p>';
  }
  function renderSearch(){
@@ -188,7 +190,7 @@ export function mountOperations({getToken,notify}){
   const jwt=getToken();
   if(!jwt)return;
   const request=++requestId;
-  void business.load();
+  void business.load();void ownerSummary.load();
   const status=$('#n22-load-status');
   status.textContent='운영 자료를 불러오고 있어요.';
   const [result,interestResult]=await Promise.all([
@@ -330,11 +332,12 @@ export function mountOperations({getToken,notify}){
    const r=await companionRpc(toggle?'nagachi_admin_party_open':'nagachi_admin_party_decide',
     toggle?{p_meetup_id:id,p_open:action==='open'}:{p_meetup_id:id,p_application_id:Number(decide.dataset.n25Id),p_status:action},token);
    partyBusy=false;if(getToken()!==token)return;
-   await showParty(id);
+   await showParty(id);void ownerSummary.load();void business.load();
    const msg=panel.querySelector('[data-n25-admin-message]');
    if(msg)msg.textContent=r.ok&&r.data===true?'서버에 반영했습니다.':'처리 여부를 확인하지 못했습니다. 모집 조건·정원·서버 상태를 확인해 주세요.';
    return;
   }
+  if(event.target.closest('[data-n42-notice]')){tab('meetups');const drawer=$('#n22-notice-drawer');drawer.open=true;drawer.scrollIntoView({block:'start'});return;}
   const go=event.target.closest('[data-n22-tab],[data-n22-go]');
   if(go){tab(go.dataset.n22Tab||go.dataset.n22Go);return;}
   const add=event.target.closest('[data-n22-add-place]');
@@ -346,6 +349,8 @@ export function mountOperations({getToken,notify}){
    selectedPlaceIds.push(id);renderPicked();search.value='';renderSearch();
    info(courseStatus,'장소를 추가했어요. 위에서부터 코스 순서가 됩니다.');return;
   }
+  const move=event.target.closest('[data-n42-move-place]');
+  if(move){const i=Number(move.dataset.n42MovePlace),j=i+Number(move.dataset.step);if(Number.isInteger(i)&&Number.isInteger(j)&&i>=0&&j>=0&&i<selectedPlaceIds.length&&j<selectedPlaceIds.length){[selectedPlaceIds[i],selectedPlaceIds[j]]=[selectedPlaceIds[j],selectedPlaceIds[i]];renderPicked();}return;}
   const remove=event.target.closest('[data-n22-remove-place]');
   if(remove){
    selectedPlaceIds=selectedPlaceIds.filter(id=>id!==remove.dataset.n22RemovePlace);
@@ -380,7 +385,10 @@ export function mountOperations({getToken,notify}){
    info(status,friendlyError(result.reason)+' 작성한 내용은 아직 저장되지 않았습니다.',true);
    return;
   }
-  info(status,successMessage);
+  const savedId=Number(result.data);
+  if(!Number.isSafeInteger(savedId)||savedId<=0){info(status,'저장 결과 ID를 확인할 수 없습니다. 목록을 새로고침해 중복 저장을 피하세요.',true);return;}
+  form.elements.id.value=String(savedId);
+  info(status,successMessage+' 다시 저장하면 같은 항목을 수정합니다.');
   await load();
  }
  courseForm.addEventListener('submit',async event=>{
@@ -423,7 +431,7 @@ export function mountOperations({getToken,notify}){
  });
  renderPicked();renderRevenuePreview();
  return {load,reset:()=>{
-   business.reset();requestId++;partyRequest++;partyId=null;partyBusy=false;const partyPanel=$('#n25-party-panel');if(partyPanel){partyPanel.hidden=true;partyPanel.replaceChildren();}data={courses:[],meetups:[],pricing:[]};interestCounts=null;
+   business.reset();ownerSummary.reset();requestId++;partyRequest++;partyId=null;partyBusy=false;const partyPanel=$('#n25-party-panel');if(partyPanel){partyPanel.hidden=true;partyPanel.replaceChildren();}data={courses:[],meetups:[],pricing:[]};interestCounts=null;
    $('#n22-operation-metrics').replaceChildren();
    $('#n22-course-list').replaceChildren();
    $('#n22-meetup-list').replaceChildren();

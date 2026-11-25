@@ -41,9 +41,9 @@ export function renderBusiness(d,catalog=[]){
  kpi('참가 신청 기록',fmt(d.application_records),'기간 내 생성 · 현재 남아 있는 기록')+
  kpi('참가 승인',fmt(d.approved),'현재 승인 상태 · 실제 참석 아님')+
  kpi('신청 대비 승인율',percent(d.approved,d.application_records),'현재 남은 신청 기록 기준')+
- kpi('유료 지불의향',percent(d.paid_intent,d.valid_willingness),'기기별 최신 설문 · 실제 결제율 아님')+'</div>'+
+ kpi('유료 지불의향',number(d.valid_willingness)<10?'표본 부족':percent(d.paid_intent,d.valid_willingness),fmt(d.paid_intent)+' / '+fmt(d.valid_willingness)+'개 기기 · 실제 결제율 아님')+'</div>'+
  '<p class="n26-note">관심·신청·설문은 서로 다른 식별 체계입니다. 같은 고객을 연결할 수 없어 관심→신청 전환율은 산출하지 않습니다. 전체 방문자 수와 코스 조회수도 수집하지 않습니다. 취소로 삭제된 기록은 집계에서 빠지므로 과거 수치가 바뀔 수 있습니다.</p>'+
- '<h3>일별 수요 추이</h3><p class="n26-note">설문 기기 / 모임 관심 기록 / 참가 신청 기록 (각각 다른 단위)</p>'+
+ '<details class="n42-analysis-details"><summary>상세 수요 분석 열기</summary><h3>일별 수요 추이</h3><p class="n26-note">설문 기기 / 모임 관심 기록 / 참가 신청 기록 (각각 다른 단위)</p>'+
  '<div class="n26-legend"><span>● 설문</span><span>● 관심</span><span>● 신청</span></div><div class="n26-chart">'+chart+'</div>'+
  table(['일자','설문 기기','관심 기록','신청 기록'],daily.map(x=>[x.day,fmt(x.survey_devices),fmt(x.interest_records),fmt(x.application_records)]))+
  '<h3>모임별 수요 TOP 10</h3>'+table(['모임','관심','신청','승인','대기','승인율'],rows(d.meetups).map(x=>[x.title,fmt(x.interests),fmt(x.applications),fmt(x.approved),fmt(x.waitlisted),percent(x.approved,x.applications)]))+
@@ -58,7 +58,7 @@ export function renderBusiness(d,catalog=[]){
  '<div class="n26-controls" data-n26-scenario data-approved="'+(number(d.approved)??'')+'"><label>1인 서비스비(원)<input type="number" data-n26-fee min="0" max="100000" step="1000" value="10000"></label><label>가정 유료전환율(%)<input type="number" data-n26-conversion min="0" max="100" step="1" value="25"></label></div>'+
  '<p>기간 내 현재 승인 기록 기준 예상 서비스비 총액: <strong data-n26-estimate>'+fmt(demandScenario(d.approved,10000,25))+'원</strong></p>'+
  '<p class="n26-note">무료 시범 승인 기록을 기준으로 한 가상 서비스비입니다. 실제 매출·순이익·월 환산이 아니며 식비·교통비 등은 포함하지 않습니다.</p>'+
- '<button type="button" data-n22-go="revenue">수익 계획에서 비용 포함 가정별 비교하기 →</button>';
+ '<button type="button" data-n22-go="revenue">수익 계획에서 비용 포함 가정별 비교하기 →</button></details>';
 }
 export function mountBusinessDashboard(root,getToken){
  const panel=root.querySelector('#n26-business-results'),select=root.querySelector('#n26-days');
