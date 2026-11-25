@@ -3,7 +3,7 @@ test('v45 회원 참가와 모임 소식, 커뮤니티 권한 분리',async()=>{
 
 test('v46 게시판 목록·상세·글쓰기 분리 및 상태 표현',async()=>{
  const js=await read('assets/v45-community.js'),css=await read('assets/v45-community.css'),build=await read('scripts/build-core.js'),home=await read('assets/v12-direct-home.js'),actions=await read('assets/v22-public-programs.css');
- const row=js.slice(js.indexOf('function rowMarkup'),js.indexOf('function draw'));
+ const row=js.slice(js.indexOf('function rowMarkup'),js.indexOf('function draw()',js.indexOf('function rowMarkup')));
  assert.match(row,/data-open/);assert.match(row,/e\(x.title\)/);assert.doesNotMatch(row,/x.body/);
  assert.match(js,/view==='detail'/);assert.match(js,/e\(x.body\)/);assert.match(js,/view==='compose'&&accountToken\(\)/);
  assert.match(js,/게시판에 연결하지 못했어요/);assert.match(js,/아직 등록된 게시글이 없어요/);assert.match(js,/data-retry/);
@@ -19,3 +19,5 @@ test('v47 댓글 공감 사진의 보안 및 무료 한도 계약',async()=>{
  assert.match(photo,/octet_length\(jpeg\) between 4 and 120000/);assert.match(photo,/count\(\*\) from nagachi_photo.images\)>=300/);assert.match(photo,/on delete cascade/);assert.match(photo,/security invoker/);
  assert.match(js,/canvas.toDataURL\('image\/jpeg'/);assert.match(js,/nagachi_community_post_photo/);assert.match(js,/nagachi_community_photo/);
 });
+
+test('v47 community module is valid JavaScript',async()=>{const {execFileSync}=await import('node:child_process');const {fileURLToPath}=await import('node:url');execFileSync(process.execPath,['--check',fileURLToPath(new URL('../assets/v45-community.js',import.meta.url))]);});
