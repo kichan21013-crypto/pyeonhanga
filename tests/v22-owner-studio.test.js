@@ -96,7 +96,7 @@ test('빌드한 실제 admin.html은 검색 제외·비로그인 차단·운영�
  assert.match(page,/id="n22-revenue-form"/);
  assert.match(page,/v22-admin-studio\.css\?v=20261125-v44/);
  assert.match(page,/v19-admin\.js\?v=20261125-v44/);
- assert.match(home,/v22-public-programs\.css\?v=20261125-v44/);
+ assert.match(home,/v22-public-programs\.css\?v=20261125-v45/);
  assert.match(build,/CLIENT_VERSION = '20261125-v44'/);
  assert.match(core,/operatorMarkup\(\)/);
  const homeCode=await read('assets/v12-direct-home.js');

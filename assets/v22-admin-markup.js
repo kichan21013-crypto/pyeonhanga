@@ -35,7 +35,7 @@ export function operatorMarkup(){
     <section data-n22-panel="overview" aria-labelledby="n22-overview-title">
       <div class="n22-panel-title"><span>OVERVIEW</span><h2 id="n22-overview-title">나의 운영 현황</h2>
         <p>관심 의사를 남긴 분과 실제 확정 참여자를 혼동하지 않습니다.</p></div>
-      <section class="n42-summary" aria-label="회원 및 운영 현황"><div id="n42-owner-summary" aria-live="polite">회원 현황 확인 중</div><div class="n42-actions"><button type="button" data-n22-go="courses">+ 코스 등록</button><button type="button" data-n22-go="meetups">+ 모임 등록</button><button type="button" data-n42-notice>+ 일정 공지</button><button type="button" data-n22-go="revenue">수익 계획</button></div></section><div id="n22-operation-metrics" class="n22-metrics" aria-live="polite"></div>
+      <section class="n42-summary" aria-label="회원 및 운영 현황"><div id="n42-owner-summary" aria-live="polite">회원 현황 확인 중</div><div class="n42-actions"><button type="button" data-n22-go="courses">+ 코스 등록</button><button type="button" data-n22-go="meetups">+ 모임 등록</button><button type="button" data-n42-notice>+ 일정 공지</button><button type="button" data-n22-go="revenue">수익 계획</button><a class="button secondary" href="/community.html">커뮤니티 관리</a></div></section><div id="n22-operation-metrics" class="n22-metrics" aria-live="polite"></div>
       <section class="n19-admin-card n22-overview-card n26-business" aria-labelledby="n26-title">
         <h3 id="n26-title">사업 운영 지표</h3>
         <div class="n26-controls"><label>조회 기간<select id="n26-days"><option value="1">오늘</option><option value="7" selected>최근 7일</option><option value="30">최근 30일</option></select></label><button type="button" id="n26-refresh">지표 새로고침</button></div>

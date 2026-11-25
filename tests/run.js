@@ -31,3 +31,5 @@ import './v26-business-dashboard.test.js';
 import './v28-category-icons.test.js';
 
 import './v30-commercial-home.test.js';
+
+import './v45-community.test.js';

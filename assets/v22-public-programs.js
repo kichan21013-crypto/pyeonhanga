@@ -6,7 +6,7 @@ import { readLocal, writeLocal } from '../storage.js';
 import { escapeHtml, safeUrl, placeUrl } from '../ui.js';
 import { ADMIN_ACTIVITY_LABELS, sanitizePublicCourses } from './v22-operations-model.js?v=20261125-v44';
 import {externalPlace} from './v43-external-places.js?v=20261125-v44';
-import {rememberActivities} from './v40-account-auth.js?v=20261124-v41';
+import {rememberActivities,accountToken,rememberReturn} from './v40-account-auth.js?v=20261125-v45';
 const $=(s,root=document)=>root.querySelector(s);
 const activityToInvite={food:'eat',hike:'hike',outing:'outing',travel:'travel'};
 function dateText(value){
@@ -41,13 +41,6 @@ function ensureToken(){
  const t=[...globalThis.crypto.getRandomValues(new Uint8Array(32))].map(b=>b.toString(16).padStart(2,'0')).join('');
  return writeLocal(interestKey,t)&&storedToken()===t?t:'';
 }
-const partyKey='nagachi.party-token';
-function partyToken(create=false){
- const t=readLocal(partyKey,'');if(validToken(t))return t;
- if(!create||!globalThis.crypto?.getRandomValues)return '';
- const fresh=[...globalThis.crypto.getRandomValues(new Uint8Array(32))].map(b=>b.toString(16).padStart(2,'0')).join('');
- return writeLocal(partyKey,fresh)&&readLocal(partyKey,'')===fresh?fresh:'';
-}
 const partyLabels={pending:'승인 대기',approved:'참가 승인',waitlisted:'대기자',cancelled:'운영자 취소'};
 function meetupCard(meetup){
  return '<article class="n22-meetup-preview">'+
@@ -66,10 +59,11 @@ export function setupPublicPrograms({home,loadPlaces}){
  const list=$('#n22-public-course-list',home);
  const meetups=$('#n22-public-meetups',home);
  let mine=new Set(),openIds=new Set(),ready=false,busy=false;
- let partyOpen=new Set(),partyRows=[],partyReady=false,partyBusy=false;
+ let partyOpen=new Set(),partyRows=[],partyReady=false,partyBusy=false,subscribed=new Set(),subReady=false;
  async function refreshParty(){
-  const token=partyToken();
-  const [open,own]=await Promise.all([companionRpc('nagachi_public_party_open'),token?companionRpc('nagachi_my_party_applications',{p_token:token}):Promise.resolve({ok:true,data:[]})]);
+  const token=accountToken();
+  const [open,own,subs]=await Promise.all([companionRpc('nagachi_public_party_open'),token?companionRpc('nagachi_account_party_list',{},token):Promise.resolve({ok:true,data:[]}),token?companionRpc('nagachi_account_meetup_news',{},token):Promise.resolve({ok:true,data:[]})]);
+  subReady=subs.ok&&Array.isArray(subs.data);subscribed=new Set(subReady?subs.data.map(x=>Number(x.meetup_id)):[]);
   partyReady=open.ok&&Array.isArray(open.data)&&own.ok&&Array.isArray(own.data);
   partyOpen=open.ok&&Array.isArray(open.data)?new Set(open.data.map(x=>Number(x.meetup_id))):new Set();
   if(own.ok&&Array.isArray(own.data))partyRows=own.data.filter(x=>Number.isSafeInteger(Number(x.meetup_id))&&Object.hasOwn(partyLabels,x.status));
@@ -79,13 +73,12 @@ export function setupPublicPrograms({home,loadPlaces}){
  function renderParty(){
   for(const slot of meetups.querySelectorAll('[data-n25-slot]')){
    const id=Number(slot.dataset.n25Slot),own=partyRows.find(x=>Number(x.meetup_id)===id);
-   slot.hidden=!partyReady||(!partyOpen.has(id)&&!own);
-   slot.innerHTML=own?'<strong>'+escapeHtml(partyLabels[own.status])+'</strong>':
-    '<button type="button" data-n25-apply="'+id+'" '+(partyBusy?'disabled':'')+'>무료 동행 참가 신청</button>';
+   slot.hidden=false;
+   slot.innerHTML=(openIds.has(id)||subscribed.has(id)?'<button type="button" data-n45-subscribe="'+id+'" '+(partyBusy||!subReady?'disabled':'')+'>'+(subscribed.has(id)?'모임 알림 해지':'이 모임 일정 알림 받기')+'</button> ':'')+(own?'<strong>'+escapeHtml(partyLabels[own.status])+'</strong>':partyReady&&partyOpen.has(id)?'<button type="button" data-n25-apply="'+id+'" '+(partyBusy?'disabled':'')+'>무료 동행 참가 신청</button>':'');
   }
   const panel=meetups.querySelector('[data-n25-own]');
   if(!panel)return;
-  panel.hidden=!partyToken()&&!partyOpen.size;
+  panel.hidden=!accountToken();
   panel.innerHTML='<h3>내 동행 신청</h3>'+
    (!partyReady?'<p>신청 상태를 확인하지 못했습니다. 새로고침 후 다시 확인해 주세요.</p>':
     partyRows.length?partyRows.map(x=>'<article class="n22-meetup-preview"><strong>'+escapeHtml(x.title)+'</strong><p>'+escapeHtml(dateText(x.meet_at))+' · '+escapeHtml(partyLabels[x.status])+'</p>'+
@@ -125,7 +118,7 @@ export function setupPublicPrograms({home,loadPlaces}){
      ['food','hike','outing','travel'].includes(m.activity)&&
      m.stage==='announced'&&typeof m.title==='string'&&typeof m.intro==='string');
   openIds=new Set(shownEvents.filter(m=>!m.meet_at||new Date(m.meet_at).getTime()>Date.now()).map(m=>Number(m.id)));
-  if(!shownCourses.length&&!shownEvents.length&&!storedToken()&&!partyToken()){
+  if(!shownCourses.length&&!shownEvents.length&&!storedToken()&&!accountToken()){
    section.hidden=true;return;
   }
   list.innerHTML=shownCourses.length?shownCourses.map(courseCard).join(''):'';
@@ -139,6 +132,7 @@ export function setupPublicPrograms({home,loadPlaces}){
   await Promise.all([loadMine(),refreshParty()]);renderInterest();
  }
  home.addEventListener('click',async e=>{
+  const sub=e.target.closest('[data-n45-subscribe]');if(sub&&meetups.contains(sub)){const id=Number(sub.dataset.n45Subscribe),token=accountToken();if(!token){rememberReturn('/#n22-public-programs');location.href='/account.html';return;}if(partyBusy||!subReady)return;const enabled=!subscribed.has(id);if(!confirm(enabled?'이 모임의 일정·모집 소식을 계정에 90일간 저장하고 앱에서 확인하시겠습니까?':'이 모임 알림을 해지할까요?'))return;partyBusy=true;renderParty();const r=await companionRpc('nagachi_account_meetup_subscribe',{p_meetup_id:id,p_enabled:enabled},token);partyBusy=false;await refreshParty();meetups.querySelector('[data-n25-message]').textContent=r.ok&&r.data===true?(enabled?'이 모임 알림을 신청했습니다. 내 계정에서 확인하세요.':'알림을 해지했습니다.'):'알림 설정을 저장하지 못했습니다.';return;}
   const news=e.target.closest('[data-n43-course-news]');if(news){rememberActivities([news.dataset.n43CourseNews]);location.href='/account.html';return;}
   const apply=e.target.closest('[data-n25-apply]'),withdraw=e.target.closest('[data-n25-withdraw]');
   if(apply||withdraw){
@@ -146,13 +140,12 @@ export function setupPublicPrograms({home,loadPlaces}){
    const id=Number(apply?apply.dataset.n25Apply:withdraw.dataset.n25Withdraw);
    if(apply&&(!partyOpen.has(id)||partyRows.some(x=>Number(x.meetup_id)===id)))return;
    if(withdraw&&!partyRows.some(x=>Number(x.meetup_id)===id))return;
-   if(apply&&!confirm('만 19세 이상이며 무료 시범 동행에 참가 신청하시겠습니까? 모임 ID, 무작위 기기 비밀값의 해시, 신청·변경 시각과 상태를 저장합니다. 승인 전에는 참가가 확정되지 않습니다. 일정 30일 이후 운영자가 기록을 정리하며, 이 기기에서 신청 취소·삭제할 수 있습니다. 식비 등 현장 비용은 각자 부담합니다. 개인정보·안전 안내를 확인하고 동의할 때만 신청해 주세요.'))return;
+   const token=accountToken();if(!token){rememberReturn('/#n22-public-programs');location.href='/account.html';return;}
+   if(apply&&!confirm('만 19세 이상이며 무료 시범 동행에 참가 신청하시겠습니까? 계정 ID, 모임 ID, 신청·변경 시각과 상태를 저장합니다. 승인 전에는 참가가 확정되지 않습니다. 일정 30일 이후 운영자가 기록을 정리하며, 로그인한 계정에서 신청 취소·삭제할 수 있습니다. 식비 등 현장 비용은 각자 부담합니다. 개인정보·안전 안내를 확인하고 동의할 때만 신청해 주세요.'))return;
    if(withdraw&&!confirm('신청을 취소하고 서버의 해당 신청 기록을 삭제할까요?'))return;
    const msg=meetups.querySelector('[data-n25-message]');
-   const token=partyToken(!!apply);
-   if(!token){msg.textContent='이 기기의 안전한 저장 공간을 확인해 주세요.';return;}
    partyBusy=true;renderParty();msg.textContent='서버 확인 중…';
-   const result=await companionRpc(apply?'nagachi_party_apply':'nagachi_party_withdraw',{p_meetup_id:id,p_token:token});
+   const result=await companionRpc(apply?'nagachi_account_party_apply':'nagachi_account_party_withdraw',{p_meetup_id:id},token);
    partyBusy=false;await refreshParty();
    msg.textContent=result.ok&&result.data===true?(apply?'신청을 접수했습니다. 운영자 승인 여부는 내 동행 신청에서 확인하세요.':'신청을 취소하고 기록을 삭제했습니다.'):'처리 여부를 확인하지 못했습니다. 내 동행 신청을 확인하고 다시 시도해 주세요.';
    return;

@@ -10,7 +10,10 @@ export function accountToken(){const s=get(KEY);if(!s||typeof s.token!=='string'
 export function pendingActivities(){return cleanGroupActivities(get(PENDING))}
 export function rememberActivities(a){return put(PENDING,cleanGroupActivities(a))}
 export function clearPending(){del(PENDING)}
-export function forgetAccount(){del(KEY);del(VERIFIER);del(PENDING)}
+const RETURN='nagachi.v45.return';
+export function rememberReturn(path){return ['/community.html','/#n22-public-programs'].includes(path)&&put(RETURN,path)}
+export function takeReturn(){const p=get(RETURN);del(RETURN);return ['/community.html','/#n22-public-programs'].includes(p)?p:null}
+export function forgetAccount(){del(KEY);del(VERIFIER);del(PENDING);del(RETURN)}
 const b64=b=>btoa(String.fromCharCode(...b)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 export async function startKakaoLogin(){
  if(!configured||!globalThis.crypto?.subtle)throw Error('로그인 서버 연결이 필요합니다.');

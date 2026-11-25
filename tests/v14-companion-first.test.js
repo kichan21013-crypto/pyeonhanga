@@ -120,7 +120,7 @@ test('코스 제안과 모임 구성의 미래 수익모델은 분리하고 계�
   assert.match(home,/코스 제안과 동행 구성·일정 조율 서비스비/);
   assert.match(home,/식비·교통비·입장료/);
   assert.match(index,/v16-together\.css\?v=20261125-v44/);
-  assert.match(index,/v12-direct-home\.js\?v=20261125-v44/);
+  assert.match(index,/v12-direct-home\.js\?v=20261125-v45/);
   assert.match(saved,/mobile-ux\.css\?v=20261125-v44/);
   assert.ok(!('dependencies' in pkg));
   assert.doesNotMatch(css,/@import|https?:\/\//);
