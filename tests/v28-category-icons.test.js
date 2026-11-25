@@ -30,5 +30,5 @@ test('v28 상단 버튼과 기존 동행 탐색을 연결하고 전 화면에 �
  for(const item of POPULAR_ACTIVITIES)assert.equal(item.image,'v28-'+item.invite+'.webp');
  assert.match(css,/\.n28-quick-category:focus-visible/);
  assert.match(css,/grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261125-v44/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261125-v45/);
 });
