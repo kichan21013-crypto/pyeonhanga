@@ -43,7 +43,7 @@ test('v30 두 카드 표시, 버튼 대비, 전체보기와 기존 기능 연결
  assert.match(ui,/all\.addEventListener|all\?\.addEventListener/);
  assert.match(ui,/aria-expanded/);
  assert.match(ui,/추천 동행 보기/);
- assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261125-v45/);
+ assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261125-v46/);
 });
 
 test('v33 홈은 탐색 중심이며 개인 소식은 별도 대화상자로 표시',async()=>{
