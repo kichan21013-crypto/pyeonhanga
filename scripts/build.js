@@ -17,5 +17,5 @@ const index = await readFile(indexPath, 'utf8');
 const versionedIndex = index
   .replace('src="/app.js"', `src="/app.js?v=${CLIENT_VERSION}"`)
   .replace('</head>', `<link rel="stylesheet" href="/assets/v12-direct-home.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v13-companion.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v14-companion-first.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v15-party-program.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v16-together.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v18-premium.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v19-cohorts.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v20-interest-priority.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v21-popular-first.css?v=${CLIENT_VERSION}"><link rel="stylesheet" href="/assets/v22-public-programs.css?v=20261125-v46"></head>`)
-  .replace('</body>', `<script type="module" src="/assets/v12-direct-home.js?v=20261125-v46"></script></body>`);
+  .replace('</body>', `<script type="module" src="/assets/v12-direct-home.js?v=20261125-v47"></script></body>`);
 await writeFile(indexPath, versionedIndex);
