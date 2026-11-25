@@ -9,6 +9,6 @@ export function mapLink(raw){
 export function externalPlace(row){
  if(!row||!externalId.test(row.id||'')||typeof row.name!=='string'||!row.name.trim()||typeof row.address!=='string'||!row.address.trim())return null;
  const link=mapLink(row.map_url);if(!link)return null;
- return {id:row.id,name:row.name,address:row.address,region:row.region,category:row.category,external:true,map_url:link.url,provider:link.provider};
+ return {id:row.id,name:row.name,address:row.address,region:row.region,category:row.category,external:true,map_url:link.url,provider:link.provider,source:row.source==='geoapify'?'geoapify':'manual'};
 }
 export const isExternalId=id=>externalId.test(id||'');

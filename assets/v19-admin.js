@@ -5,7 +5,7 @@ import {accountToken,signOutAccount} from './v40-account-auth.js?v=20261124-v41'
  */
 import { GROUP_ACTIVITIES,authenticateCompanionAdmin,companionRpc } from './v19-companion-service.js';
 import { escapeHtml } from '../ui.js';
-import { mountOperations } from './v22-operations-admin.js?v=20261125-v43';
+import { mountOperations } from './v22-operations-admin.js?v=20261125-v44';
 const $=s=>document.querySelector(s);
 const labels=Object.fromEntries(GROUP_ACTIVITIES.map(x=>[x.id,x.label]));
 let jwt=null;
