@@ -34,7 +34,7 @@ function draw(){
  view='list';selected=null;
  const items=rows.filter(x=>filter==='all'||x.category===filter);
  const state=loading?'게시글 불러오는 중':!loaded?'연결 확인 필요':rows.length?'게시판 이용 가능':'게시판 이용 가능 · 첫 글을 기다려요';
- screen.innerHTML='<div class="n46-toolbar"><div><span class="n46-state" data-ready="'+(loaded&&!loading)+'">'+e(state)+'</span><h2 tabindex="-1" data-screen-heading>'+(manage?'게시글 관리':'자유게시판')+'</h2></div><button type="button" class="n46-write" data-write>＋ 글쓰기</button></div>'+
+ screen.innerHTML='<div class="n46-toolbar"><div><span class="n46-state" data-ready="'+(loaded&&!loading)+'">'+e(state)+'</span><h2 tabindex="-1" data-screen-heading>'+(manage?'게시글 관리':'자유게시판')+'</h2></div><button type="button" class="n46-write" data-write\x27+(loading?\x27 disabled\x27:\x27\x27)+\x27>＋ 글쓰기</button></div>'+
  '<div class="n45-filter" role="group" aria-label="게시글 분류">'+Object.entries(cats).map(([k,v])=>'<button type="button" data-filter="'+k+'" aria-pressed="'+(k===filter)+'">'+e(v)+'</button>').join('')+'</div>'+
  '<div class="n46-list-head"><strong>'+e(cats[filter])+' 게시글</strong><span>'+(loaded?'최근 게시글 '+items.length+'개':'')+'</span></div>'+
  (loading?'<p class="n46-empty">게시글을 불러오고 있습니다.</p>':!loaded?'<div class="n46-empty"><strong>게시판에 연결하지 못했어요.</strong><p>잠시 후 다시 시도해 주세요.</p><button type="button" class="n46-outline" data-retry>다시 불러오기</button></div>':items.length?'<ul class="n46-list">'+items.map(rowMarkup).join('')+'</ul>':'<div class="n46-empty"><strong>아직 등록된 게시글이 없어요.</strong><p>소소한 일상부터 맛집과 나들이 후기까지 자유롭게 남겨보세요.</p></div>')+
