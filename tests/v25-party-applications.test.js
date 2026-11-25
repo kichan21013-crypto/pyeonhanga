@@ -32,8 +32,8 @@ test('v25 신청 동의, 내 상태, 운영실 관리 및 데이터 안내',asyn
  const [pub,admin,markup,privacy]=await Promise.all([read('assets/v22-public-programs.js'),read('assets/v22-operations-admin.js'),read('assets/v22-admin-markup.js'),read('dist/privacy.html')]);
  assert.match(pub,/if\(apply&&!confirm\(/);
  assert.match(pub,/만 19세 이상/);
- assert.match(pub,/nagachi_my_party_applications/);
- assert.match(pub,/nagachi_party_withdraw/);
+ assert.match(pub,/nagachi_account_party_list/);
+ assert.match(pub,/nagachi_account_party_withdraw/);
  assert.match(pub,/result\.ok&&result\.data===true/);
  assert.match(admin,/nagachi_admin_party_decide/);
  assert.match(admin,/form\.elements\.meet_place\.value='';/);
