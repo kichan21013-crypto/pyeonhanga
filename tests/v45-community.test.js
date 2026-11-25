@@ -8,6 +8,14 @@ test('v46 게시판 목록·상세·글쓰기 분리 및 상태 표현',async()=
  assert.match(js,/view==='detail'/);assert.match(js,/e\(x.body\)/);assert.match(js,/view==='compose'&&accountToken\(\)/);
  assert.match(js,/게시판에 연결하지 못했어요/);assert.match(js,/아직 등록된 게시글이 없어요/);assert.match(js,/data-retry/);
  assert.match(css,/\.n46-list li/);assert.match(css,/\.n46-write\{background:#ac492d/);
- assert.match(build,/v45-community\.js\?v=20261125-v46/);assert.match(build,/aria-current="page"/);
+ assert.match(build,/v45-community\.js\?v=20261125-v47/);assert.match(build,/aria-current="page"/);
  assert.match(home,/<span>게시판<\/span>/);assert.match(actions,/data-n45-subscribe\]/);assert.match(actions,/data-n25-apply\]/);
+});
+
+test('v47 댓글 공감 사진의 보안 및 무료 한도 계약',async()=>{
+ const js=await read('assets/v45-community.js'),sql=await read('supabase/v47-community-engagement.sql'),photo=await read('supabase/v47-community-photo.sql');
+ assert.match(sql,/primary key\(post_id,user_id\)/);assert.match(sql,/enable row level security/);assert.match(sql,/not p.hidden and not c.hidden/);assert.match(sql,/c.user_id=auth.uid\(\)/);
+ assert.match(js,/nagachi_community_set_like/);assert.match(js,/nagachi_community_comment_add/);assert.match(js,/e\(c.body\)/);
+ assert.match(photo,/octet_length\(jpeg\) between 4 and 120000/);assert.match(photo,/count\(\*\) from nagachi_photo.images\)>=300/);assert.match(photo,/on delete cascade/);assert.match(photo,/security invoker/);
+ assert.match(js,/canvas.toDataURL\('image\/jpeg'/);assert.match(js,/nagachi_community_post_photo/);assert.match(js,/nagachi_community_photo/);
 });
