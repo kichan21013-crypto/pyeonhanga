@@ -5,6 +5,7 @@
 import { companionRpc } from './v19-companion-service.js';
 import { mountBusinessDashboard } from './v26-business-dashboard.js?v=20261125-v42';
 import { escapeHtml } from '../ui.js';
+import {mapLink,externalPlace,isExternalId} from './v43-external-places.js';
 import { mountOwnerSummary } from './v42-owner-summary.js?v=20261125-v42';
 import { estimateRevenue, cleanCoursePlaceIds, ADMIN_ACTIVITY_LABELS, MEETUP_STAGE_LABELS, draftCourseFromPlace } from './v22-operations-model.js?v=20261124-v39';
 
@@ -55,11 +56,13 @@ export function mountOperations({getToken,notify}){
  let data={courses:[],meetups:[],pricing:[]};
  let interestCounts=null;
  let partyId=null,partyRequest=0,partyBusy=false;
- let places=[];
+ let places=[],catalogPlaces=[],externalPlaces=[];
+ let externalReady=false,externalBusy=false,externalRevision=0;
  let selectedPlaceIds=[];
  let requestId=0;
  let placesLoaded=false;
  const placeMap=()=>new Map(places.map(p=>[p.id,p]));
+ const mergePlaces=()=>{places=[...catalogPlaces,...externalPlaces];};
  const info=(element,text,error=false)=>{
   element.textContent=text;element.dataset.error=error?'true':'false';
  };
@@ -86,7 +89,7 @@ export function mountOperations({getToken,notify}){
   picked.innerHTML=selectedPlaceIds.length?selectedPlaceIds.map((id,index)=>{
     const place=map.get(id);
     return '<div class="n22-place-chip"><span><b>'+(index+1)+'</b> '+
-      escapeHtml(place?.name||id)+' <small>'+escapeHtml(place?.region||'')+'</small></span>'+
+      escapeHtml(place?.name||id)+' <small>'+escapeHtml(place?.region||'')+(place?.external?' · 외부 지도':'')+'</small></span>'+
       '<div class="n42-place-actions"><button type="button" data-n42-move-place="'+index+'" data-step="-1" aria-label="위로 이동" '+(index===0?'disabled':'')+'>↑</button><button type="button" data-n42-move-place="'+index+'" data-step="1" aria-label="아래로 이동" '+(index===selectedPlaceIds.length-1?'disabled':'')+'>↓</button><button type="button" data-n22-remove-place="'+escapeHtml(id)+'" aria-label="'+escapeHtml(place?.name||id)+' 제외">×</button></div></div>';
   }).join(''):'<p class="n22-list-empty">아직 고른 장소가 없어요. 검색해서 추가해 주세요.</p>';
  }
@@ -99,7 +102,7 @@ export function mountOperations({getToken,notify}){
   ).slice(0,8);
   results.innerHTML=filtered.length?filtered.map(p=>
     '<button type="button" data-n22-add-place="'+escapeHtml(p.id)+'"><b>'+escapeHtml(p.name)+
-    '</b><small>'+escapeHtml(p.region)+' · '+escapeHtml(p.category)+'</small><span>추가 +</span></button>'
+    '</b><small>'+escapeHtml(p.region)+' · '+escapeHtml(p.category)+(p.external?' · 외부 지도':'')+'</small><span>추가 +</span></button>'
   ).join(''):listEmpty('찾는 장소가 없어요. 다른 이름이나 지역을 입력해 보세요.');
  }
  function renderCourses(){
@@ -193,9 +196,9 @@ export function mountOperations({getToken,notify}){
   void business.load();void ownerSummary.load();
   const status=$('#n22-load-status');
   status.textContent='운영 자료를 불러오고 있어요.';
-  const [result,interestResult]=await Promise.all([
+  const [result,interestResult,externalResult]=await Promise.all([
    companionRpc('nagachi_admin_operations',{},jwt),
-   companionRpc('nagachi_admin_meetup_interest_counts',{},jwt)
+   companionRpc('nagachi_admin_meetup_interest_counts',{},jwt),companionRpc('nagachi_admin_external_places',{},jwt)
   ]);
   if(request!==requestId||getToken()!==jwt)return;
   if(!result.ok){
@@ -204,6 +207,10 @@ export function mountOperations({getToken,notify}){
    return;
   }
   interestCounts=interestResult.ok&&Array.isArray(interestResult.data)?new Map(interestResult.data.filter(x=>Number.isSafeInteger(Number(x.meetup_id))&&Number.isSafeInteger(Number(x.interest_count))&&Number(x.interest_count)>=0).map(x=>[Number(x.meetup_id),Number(x.interest_count)])):null;
+  externalReady=externalResult.ok&&Array.isArray(externalResult.data);
+  if(externalReady)externalPlaces=externalResult.data.map(externalPlace).filter(Boolean);
+  mergePlaces();$('#n43-add').disabled=!externalReady;
+  $('#n43-status').textContent=externalReady?'':'외부 장소 서버 연결을 확인해 주세요.';
   const body=result.data||{};
   data={
    courses:Array.isArray(body.courses)?body.courses:[],
@@ -213,6 +220,7 @@ export function mountOperations({getToken,notify}){
   status.textContent='운영 자료를 불러왔습니다. 각 메뉴에서 새 코스나 모임을 만들 수 있습니다.';
   status.dataset.error='false';
   renderMetrics();renderCourses();renderMeetups();renderPricing();
+  renderPicked();renderSearch();
   if(partyId!==null&&!partyBusy)await showParty(partyId);
   if(!placesLoaded){
    try{
@@ -221,7 +229,7 @@ export function mountOperations({getToken,notify}){
     const list=await response.json();
     if(request!==requestId||getToken()!==jwt)return;
     if(!Array.isArray(list))throw new Error('invalid places');
-    places=list.filter(p=>typeof p.id==='string'&&typeof p.name==='string'&&!p.isDemo);
+    catalogPlaces=list.filter(p=>typeof p.id==='string'&&typeof p.name==='string'&&!p.isDemo);mergePlaces();
     placesLoaded=true;
     renderPicked();renderSearch();renderCourses();
    }catch{
@@ -230,7 +238,7 @@ export function mountOperations({getToken,notify}){
   }
  }
  function clearCourse(){
-  courseForm.reset();courseForm.elements.id.value='';selectedPlaceIds=[];search.value='';
+  courseForm.reset();courseForm.elements.id.value='';selectedPlaceIds=[];search.value='';externalRevision++;$('#n43-external').open=false;$('#n43-status').textContent=externalReady?'':'외부 장소 서버 연결을 확인해 주세요.';
   renderPicked();renderSearch();info(courseStatus,'새 코스를 작성할 수 있어요.');
  }
  function clearMeetup(){
@@ -248,7 +256,7 @@ export function mountOperations({getToken,notify}){
   const f=courseForm.elements;
   for(const key of ['id','title','activity','region','description','duration'])f[key].value=c[key];
   f.publish.checked=c.status==='published';
-  selectedPlaceIds=cleanCoursePlaceIds(c.place_ids,new Set(places.map(p=>p.id)));
+  selectedPlaceIds=cleanCoursePlaceIds(c.place_ids,new Set(Array.isArray(c.place_ids)?c.place_ids:[]));
   renderPicked();info(courseStatus,'수정할 내용을 확인한 뒤 저장해 주세요.');
   courseForm.scrollIntoView({block:'start'});
  }
@@ -341,6 +349,20 @@ export function mountOperations({getToken,notify}){
   if(event.target.closest('[data-n42-notice]')){tab('meetups');const drawer=$('#n22-notice-drawer');drawer.open=true;drawer.scrollIntoView({block:'start'});return;}
   const go=event.target.closest('[data-n22-tab],[data-n22-go]');
   if(go){tab(go.dataset.n22Tab||go.dataset.n22Go);return;}
+  const mapSearch=event.target.closest('[data-n43-search]');if(mapSearch){const q=($('#n43-name').value||search.value||'').trim();const url=mapSearch.dataset.n43Search==='naver'?'https://map.naver.com/p/search/'+encodeURIComponent(q):'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);window.open(url,'_blank','noopener,noreferrer');return;}
+  if(event.target.closest('#n43-add')){
+   const token=getToken(),revision=externalRevision;if(!token||!externalReady||externalBusy)return;
+   const status=$('#n43-status'),name=$('#n43-name').value.trim(),address=$('#n43-address').value.trim(),link=mapLink($('#n43-url').value.trim());
+   if(name.length<2||address.length<2||!link||!$('#n43-verified').checked){status.textContent='장소명, 주소, 올바른 HTTPS 지도 링크 및 확인 체크가 필요합니다.';return;}
+   if(selectedPlaceIds.length>=5){status.textContent='코스에는 최대 5곳까지 추가할 수 있습니다.';return;}
+   const button=$('#n43-add');externalBusy=true;button.disabled=true;status.textContent='장소를 저장하고 있습니다.';
+   const r=await companionRpc('nagachi_admin_save_external_place',{p_name:name,p_address:address,p_region:courseForm.elements.region.value,p_category:$('#n43-category').value,p_map_url:link.url},token);
+   externalBusy=false;button.disabled=!externalReady;if(getToken()!==token||externalRevision!==revision)return;
+   const place=r.ok?externalPlace(r.data):null;if(!place){status.textContent='등록 결과를 확인하지 못했습니다. 새로고침한 후 확인해 주세요.';return;}
+   externalPlaces=[...externalPlaces.filter(p=>p.id!==place.id),place];mergePlaces();
+   if(!selectedPlaceIds.includes(place.id)&&selectedPlaceIds.length<5)selectedPlaceIds.push(place.id);
+   renderPicked();renderSearch();$('#n43-name').value='';$('#n43-address').value='';$('#n43-url').value='';$('#n43-verified').checked=false;status.textContent='장소 등록 완료. 코스 저장 시 함께 반영됩니다.';info(courseStatus,'외부 장소를 추가했습니다. 코스를 확인하고 저장해 주세요.');return;
+  }
   const add=event.target.closest('[data-n22-add-place]');
   if(add){
    const id=add.dataset.n22AddPlace;
@@ -396,6 +418,7 @@ export function mountOperations({getToken,notify}){
   event.preventDefault();
   if(!courseForm.reportValidity())return;
   if(!selectedPlaceIds.length){info(courseStatus,'먼저 코스에 포함할 실제 장소를 하나 이상 추가해 주세요.',true);return;}
+  if(selectedPlaceIds.some(id=>isExternalId(id)&&(!externalReady||!placeMap().has(id)))){info(courseStatus,'외부 장소 정보를 다시 불러온 후 저장하세요.',true);return;}
   const f=courseForm.elements;
   if(f.publish.checked&&!confirm('이 코스를 일반 이용자의 앱에 공개할까요?'))return;
   const args={p_title:f.title.value.trim(),p_activity:f.activity.value,p_region:f.region.value,
@@ -432,7 +455,7 @@ export function mountOperations({getToken,notify}){
  });
  renderPicked();renderRevenuePreview();
  return {load,reset:()=>{
-   business.reset();ownerSummary.reset();requestId++;partyRequest++;partyId=null;partyBusy=false;const partyPanel=$('#n25-party-panel');if(partyPanel){partyPanel.hidden=true;partyPanel.replaceChildren();}data={courses:[],meetups:[],pricing:[]};interestCounts=null;
+   business.reset();ownerSummary.reset();externalRevision++;externalReady=false;externalPlaces=[];mergePlaces();requestId++;partyRequest++;partyId=null;partyBusy=false;const partyPanel=$('#n25-party-panel');if(partyPanel){partyPanel.hidden=true;partyPanel.replaceChildren();}data={courses:[],meetups:[],pricing:[]};interestCounts=null;
    $('#n22-operation-metrics').replaceChildren();
    $('#n22-course-list').replaceChildren();
    $('#n22-meetup-list').replaceChildren();

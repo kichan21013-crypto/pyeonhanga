@@ -4,7 +4,9 @@
 import { companionRpc } from './v19-companion-service.js';
 import { readLocal, writeLocal } from '../storage.js';
 import { escapeHtml, safeUrl, placeUrl } from '../ui.js';
-import { ADMIN_ACTIVITY_LABELS, sanitizePublicCourses } from './v22-operations-model.js';
+import { ADMIN_ACTIVITY_LABELS, sanitizePublicCourses } from './v22-operations-model.js?v=20261125-v43';
+import {externalPlace} from './v43-external-places.js';
+import {rememberActivities} from './v40-account-auth.js?v=20261124-v41';
 const $=(s,root=document)=>root.querySelector(s);
 const activityToInvite={food:'eat',hike:'hike',outing:'outing',travel:'travel'};
 function dateText(value){
@@ -13,23 +15,22 @@ function dateText(value){
  return Number.isNaN(d.getTime())?'일정 조율 중':
    new Intl.DateTimeFormat('ko-KR',{dateStyle:'medium',timeStyle:'short'}).format(d);
 }
-function courseCard(course){
+export function courseCard(course){
  const photo=safeUrl(course.places[0]?.image)||'/assets/garden.svg';
  const first=course.places[0];
  const title=escapeHtml(course.title);
  const stops=course.places.map(p=>p.name).join(' → ');
+ const photoMarkup=first.external?'<div class="n43-map-cover"><span aria-hidden="true">⌖</span><strong>'+escapeHtml(first.name)+'</strong><small>운영자 등록 · 지도에서 장소 확인</small></div>':'<a href="'+placeUrl(first)+'" class="n22-public-photo" aria-label="'+escapeHtml(first.name)+' 장소 정보"><img src="'+photo+'" alt="'+escapeHtml(first.name)+' 장소 사진" loading="lazy"></a>';
+ const links=course.places.filter(p=>p.external).map(p=>'<a class="n43-map-link" href="'+safeUrl(p.map_url)+'" target="_blank" rel="noopener noreferrer"><strong>'+escapeHtml(p.name)+'</strong><small>'+escapeHtml(p.address)+'</small><span>'+escapeHtml(p.provider)+'에서 확인 ↗</span></a>').join('');
  return '<article class="n22-public-card">'+
-  '<a href="'+placeUrl(first)+'" class="n22-public-photo" aria-label="'+escapeHtml(first.name)+' 장소 정보">'+
-  '<img src="'+photo+'" alt="'+escapeHtml(first.name)+' 실제 장소 사진" loading="lazy"></a>'+
+  photoMarkup+
   '<div class="n22-public-card-copy"><span class="n22-public-tag">나가치 제안 · '+
     escapeHtml(ADMIN_ACTIVITY_LABELS[course.activity]||'동행')+'</span>'+
   '<h3>'+title+'</h3><p class="n22-public-desc">'+escapeHtml(course.description)+'</p>'+
-  '<p class="n22-public-route">'+escapeHtml(stops)+'</p>'+
+  '<p class="n22-public-route">'+escapeHtml(stops)+'</p>'+links+
   '<div class="n22-public-bottom"><span>'+escapeHtml(course.region||'')+' · '+
     escapeHtml(course.duration||'하루')+'</span>'+
-  '<button type="button" data-companion-interest="'+escapeHtml(first.id)+
-  '" data-companion-activity="'+escapeHtml(course.activity)+'">'+
-   '이 코스 함께 가고 싶어요 →</button></div></div></article>';
+  (first.external?'<button type="button" data-n43-course-news="'+escapeHtml(course.activity)+'">이 활동 일정 소식 받기 →</button>':'<button type="button" data-companion-interest="'+escapeHtml(first.id)+'" data-companion-activity="'+escapeHtml(course.activity)+'">이 코스 함께 가고 싶어요 →</button>')+'</div></div></article>';
 }
 const interestKey='nagachi.meetup-interest-token';
 const validToken=t=>typeof t==='string'&&/^[0-9a-f]{64}$/.test(t);
@@ -109,15 +110,16 @@ export function setupPublicPrograms({home,loadPlaces}){
   if(ready)mine=new Set(r.data.map(x=>Number(x.meetup_id)).filter(x=>Number.isSafeInteger(x)&&x>0));
  }
  async function load(){
-  const [courseRes,meetRes]=await Promise.all([
-   companionRpc('nagachi_public_courses'),companionRpc('nagachi_public_meetups')
+  const [courseRes,meetRes,externalRes]=await Promise.all([
+   companionRpc('nagachi_public_courses'),companionRpc('nagachi_public_meetups'),companionRpc('nagachi_public_external_places')
   ]);
   const courses=courseRes.ok&&Array.isArray(courseRes.data)?courseRes.data:[];
   const events=meetRes.ok&&Array.isArray(meetRes.data)?meetRes.data:[];
   let shownCourses=[];
   if(courses.length){
-   try{shownCourses=sanitizePublicCourses(courses,await loadPlaces());}
-   catch{shownCourses=[];}
+   let catalog=[];try{catalog=await loadPlaces();}catch{}
+   const external=externalRes.ok&&Array.isArray(externalRes.data)?externalRes.data.map(externalPlace).filter(Boolean):[];
+   shownCourses=sanitizePublicCourses(courses,[...(Array.isArray(catalog)?catalog:[]),...external]);
   }
   const shownEvents=events.filter(m=>m&&Number.isSafeInteger(Number(m.id))&&
      ['food','hike','outing','travel'].includes(m.activity)&&
@@ -137,6 +139,7 @@ export function setupPublicPrograms({home,loadPlaces}){
   await Promise.all([loadMine(),refreshParty()]);renderInterest();
  }
  home.addEventListener('click',async e=>{
+  const news=e.target.closest('[data-n43-course-news]');if(news){rememberActivities([news.dataset.n43CourseNews]);location.href='/account.html';return;}
   const apply=e.target.closest('[data-n25-apply]'),withdraw=e.target.closest('[data-n25-withdraw]');
   if(apply||withdraw){
    if(partyBusy||!partyReady||!meetups.contains(apply||withdraw))return;
