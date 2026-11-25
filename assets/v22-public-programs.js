@@ -4,8 +4,8 @@
 import { companionRpc } from './v19-companion-service.js';
 import { readLocal, writeLocal } from '../storage.js';
 import { escapeHtml, safeUrl, placeUrl } from '../ui.js';
-import { ADMIN_ACTIVITY_LABELS, sanitizePublicCourses } from './v22-operations-model.js?v=20261125-v43';
-import {externalPlace} from './v43-external-places.js';
+import { ADMIN_ACTIVITY_LABELS, sanitizePublicCourses } from './v22-operations-model.js?v=20261125-v44';
+import {externalPlace} from './v43-external-places.js?v=20261125-v44';
 import {rememberActivities} from './v40-account-auth.js?v=20261124-v41';
 const $=(s,root=document)=>root.querySelector(s);
 const activityToInvite={food:'eat',hike:'hike',outing:'outing',travel:'travel'};
@@ -27,7 +27,7 @@ export function courseCard(course){
   '<div class="n22-public-card-copy"><span class="n22-public-tag">나가치 제안 · '+
     escapeHtml(ADMIN_ACTIVITY_LABELS[course.activity]||'동행')+'</span>'+
   '<h3>'+title+'</h3><p class="n22-public-desc">'+escapeHtml(course.description)+'</p>'+
-  '<p class="n22-public-route">'+escapeHtml(stops)+'</p>'+links+
+  '<p class="n22-public-route">'+escapeHtml(stops)+'</p>'+links+(course.places.some(p=>p.source==='geoapify')?'<small class="n44-attribution">Powered by <a href="https://www.geoapify.com/" target="_blank" rel="noopener">Geoapify</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></small>':'')+
   '<div class="n22-public-bottom"><span>'+escapeHtml(course.region||'')+' · '+
     escapeHtml(course.duration||'하루')+'</span>'+
   (first.external?'<button type="button" data-n43-course-news="'+escapeHtml(course.activity)+'">이 활동 일정 소식 받기 →</button>':'<button type="button" data-companion-interest="'+escapeHtml(first.id)+'" data-companion-activity="'+escapeHtml(course.activity)+'">이 코스 함께 가고 싶어요 →</button>')+'</div></div></article>';
@@ -111,7 +111,7 @@ export function setupPublicPrograms({home,loadPlaces}){
  }
  async function load(){
   const [courseRes,meetRes,externalRes]=await Promise.all([
-   companionRpc('nagachi_public_courses'),companionRpc('nagachi_public_meetups'),companionRpc('nagachi_public_external_places')
+   companionRpc('nagachi_public_courses'),companionRpc('nagachi_public_meetups'),companionRpc('nagachi_public_external_places_v44')
   ]);
   const courses=courseRes.ok&&Array.isArray(courseRes.data)?courseRes.data:[];
   const events=meetRes.ok&&Array.isArray(meetRes.data)?meetRes.data:[];
