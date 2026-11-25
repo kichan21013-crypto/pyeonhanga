@@ -152,3 +152,28 @@ test('v42 owner summary exposes only aggregate data, actionable pending groups a
  assert.doesNotMatch(html,/<script>/);
  assert.match(render({}),/—/);
 });
+
+test('v43 external place link allowlist, course rendering and draft handling',async()=>{
+ const {mapLink,externalPlace}=await import('../assets/v43-external-places.js');
+ const {sanitizePublicCourses}=await import('../assets/v22-operations-model.js');
+ const id='ext-12345678-1234-1234-1234-123456789abc';
+ assert.equal(mapLink('https://naver.me/test').provider,'네이버 지도');
+ assert.equal(mapLink('https://maps.app.goo.gl/test').provider,'구글 지도');
+ assert.ok(mapLink('https://www.google.com/maps/search/?api=1&query=a'));
+ for(const u of ['http://map.naver.com/a','https://map.naver.com.evil.example/a','https://map.naver.com@evil.example/a','javascript:alert(1)','https://www.google.com/search?q=x'])assert.equal(mapLink(u),null);
+ const p=externalPlace({id,name:'테스트 장소',address:'테스트 주소',region:'인천',category:'맛집',map_url:'https://naver.me/test'});
+ const course={id:1,title:'코스',description:'외부 장소 코스',activity:'food',place_ids:[id],region:'인천',duration:'반나절'};
+ assert.equal(sanitizePublicCourses([course],[p]).length,1);
+ assert.equal(sanitizePublicCourses([course],[]).length,0);
+ const src=await read('assets/v22-public-programs.js');
+ const pure=src.replace(/^import .*?;\s*$/gm,'').replace(/^export /gm,'');
+ const render=new Function('escapeHtml','safeUrl','placeUrl','ADMIN_ACTIVITY_LABELS',pure+'\nreturn courseCard;')(String,String,p=>'/places/'+p.slug+'/',{food:'맛집'});
+ const html=render({...course,places:[p]});
+ assert.match(html,/https:\/\/naver\.me\/test/);
+ assert.match(html,/data-n43-course-news/);
+ assert.doesNotMatch(html,/<img|\/places\//);
+ const sql=await read('supabase/external-places-v43.sql');
+ assert.match(sql,/where c\.status='published' and e\.id=any\(c\.place_ids\)/);
+ assert.match(sql,/alter table public\.nagachi_external_places enable row level security/);
+ assert.match(sql,/a\.user_id=auth\.uid\(\)/);
+});
