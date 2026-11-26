@@ -10,7 +10,7 @@ import { BROWSE_CATEGORIES, toggleBrowseCategory, createBrowseFilters, browseHea
 import { TOGETHER_REGIONS, MEAL_TAGS } from './v16-together-model.js';
 import { setupTogetherJourney } from './v16-together.js';
 import { setupGroupExperience } from './v19-group-ui.js?v=20261125-v44';
-import { setupPopularFirst } from './v21-popular-first.js?v=20261125-v44';
+import { setupPopularFirst } from './v21-popular-first.js?v=20261126-v48';
 import { setupPublicPrograms } from './v22-public-programs.js?v=20261125-v45';
 
 // Ordinary home entry starts at the top; preserve explicit detail/companion deep links.
@@ -206,6 +206,7 @@ function setupHome() {
     '<div class="n19-photo-mosaic" aria-hidden="true"><div class="n19-photo-slot n19-photo-main"><img src="/assets/v38-hero.webp" alt="" width="720" height="480" fetchpriority="high" decoding="async"></div></div>' +
     '<h1 id="n16-home-title">가고 싶은 곳, 함께할 사람.</h1></section>' +
     '<div class="n39-photo-credit">AI 제작 이미지</div>' +
+    '<p class="n48-intro">맛집·나들이·여행·산행, 가고 싶은 곳에 관심을 남기면 <strong>나가치가 함께할 모임을 기획해요.</strong></p>' +
     '<a class="n16-hero-cta n35-recommend-link" href="#n21-popular">' + icon('people') + ' <b data-n30-hero-label>추천 동행 보기</b> <span aria-hidden="true">→</span></a>' +
     '<section class="n16-invites-section n29-discover" aria-labelledby="n16-invites-title">'+
     '<div class="n29-section-head"><h2 id="n16-invites-title">어떤 동행을 찾으세요?</h2><label class="n29-region">지역 <select id="n29-region" aria-label="희망 지역"><option value="">전체 지역</option>'+TOGETHER_REGIONS.map(region=>'<option value="'+region+'">'+region+'</option>').join('')+'</select></label></div>'+
@@ -244,8 +245,8 @@ function setupHome() {
     '<p>향후 수익모델은 <strong>코스 제안과 동행 구성·일정 조율 서비스비</strong>입니다. ' +
     '식비·교통비·입장료 등은 각자 현장에서 직접 결제하는 방향을 검토하고 있어요. ' +
     '현재는 무료 수요 검증을 진행하며 유료 모집·차량 연결은 제공하지 않습니다.</p></details>' +
-    '<section class="n45-community-entry"><a href="/community.html"><div><strong>나가치 이야기 · 자유게시판</strong><span>일상 자랑, 나들이, 맛집 후기를 나눠요.</span></div><span class="n46-entry-arrow" aria-hidden="true">›</span></a></section><div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a><span class="n34-version">v47</span></div>' +
-    '<details class="n15-place-drawer" id="n14-place-browse"><summary>직접 장소 검색하기 <span>맛집·산책·나들이</span></summary>' +
+    '<section class="n45-community-entry"><a href="/community.html"><div><strong>나가치 이야기 · 자유게시판</strong><span>일상 자랑, 나들이, 맛집 후기를 나눠요.</span></div><span class="n46-entry-arrow" aria-hidden="true">›</span></a></section><div class="n33-utility-links"><a href="/companion.html">동행 이용 방법</a><a href="/privacy.html">개인정보 안내</a><span class="n34-version">v48</span></div>' +
+    '<details class="n15-place-drawer" id="n14-place-browse"><summary>가고 싶은 곳 검색 <span>장소명·활동</span></summary>' +
     '<div class="n15-place-content"><form id="n12-search" role="search" class="n12-search">' + svg('search') +
     '<label for="n12-query" class="sr-only">장소 이름이나 원하는 활동 검색</label>' +
     '<input id="n12-query" type="search" maxlength="160" placeholder="장소 이름이나 하고 싶은 일 검색" autocomplete="off">' +
@@ -270,7 +271,10 @@ function setupHome() {
     '<button type="button" id="n12-load-more" class="n12-load-more" hidden>장소 더 보기</button>';
 
   home.querySelector('.n29-discover').after(home.querySelector('#n16-journey'));
-  main.prepend(home,results);
+  // 활동을 선택하지 않아도 원하는 장소 검색에 곧바로 접근할 수 있게 배치합니다.
+  home.querySelector('#n16-journey').after(home.querySelector('#n14-place-browse'));
+  main.prepend(home);
+  home.querySelector('#n14-place-browse').after(results);
   // 원래 앵커는 카드 그리드 맨 위를 sticky 헤더 뒤로 보내 제목을 가렸습니다.
   // 제목부터 보이도록 헤더 높이만큼 보정해 네 카드의 시작 지점을 확실하게 보여줍니다.
   const scrollToInvites=()=>{
@@ -341,7 +345,7 @@ function setupHome() {
       render({scroll:true});
       return;
     }
-    if (event.target.closest('[data-n12-reset]')) reset();
+    if (event.target.closest('[data-n12-reset]') && !results.contains(event.target)) reset();
   });
   $('#n12-region').addEventListener('change',event => {
     state.region = event.target.value;

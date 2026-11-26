@@ -27,7 +27,7 @@ test('v20은 실제 HTML/JS에 설문보다 중요한 동행 관심 등록 UI를
  assert.match(css,/\.n20-interest-dialog \.n20-submit-interest/);
  assert.match(css,/\.n20-save-status\[data-state='error'\]/);
  for(const page of [home,saved,detail])assert.match(page,/v20-interest-priority\.css\?v=20261125-v44/);
- assert.match(home,/v12-direct-home\.js\?v=20261125-v47/);
+ assert.match(home,/v12-direct-home\.js\?v=20261126-v48/);
 });
 
 test('비용 옵션은 접히고 기본 미응답으로 유지하며 서버에 선택한 값만 보낸다',async()=>{

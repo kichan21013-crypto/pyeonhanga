@@ -90,7 +90,7 @@ test('모든 페이지의 실제 빌드 자산 URL이 v19로 버전 갱신된다
  const core=await read('scripts/build-core.js');
  const build=await read('scripts/build.js');
  for(const page of [home,companion,saved]) assert.match(page,/v18-premium\.css\?v=20261125-v44/);
- assert.match(home,/v12-direct-home\.js\?v=20261125-v47/);
+ assert.match(home,/v12-direct-home\.js\?v=20261126-v48/);
  assert.match(companion,/app\.js\?v=20261125-v44/);
  assert.match(build,/const CLIENT_VERSION = '20261125-v44'/);
  assert.match(core,/20261125-v44/);

@@ -22,7 +22,7 @@ function placeCard(entry,index=0){
   '<div class="n21-popular-content"><h3>'+title+escapeHtml(headlineSuffix[entry.activity.id]||' 함께 가요')+'</h3>'+
   '<div class="n30-meta"><span class="n21-popular-type">'+icon('pin')+escapeHtml(p.region||'')+' · '+escapeHtml(p.category||categoryLabel[entry.activity.id])+'</span>'+
   (ranked?'<span class="n30-count">'+icon('people')+entry.interestedCount+'건 관심</span>':'')+'</div>'+
-  '<button type="button" data-companion-interest="'+escapeHtml(p.id)+'" data-companion-activity="'+entry.activity.id+'" class="n21-popular-action">동행 살펴보기 <span aria-hidden="true">→</span></button></div></article>';
+  '<button type="button" data-companion-interest="'+escapeHtml(p.id)+'" data-companion-activity="'+entry.activity.id+'" class="n21-popular-action">관심 남기기 <span aria-hidden="true">→</span></button></div></article>';
 }
 function activityCard(item){
  return '<article class="n21-popular-card n21-activity-card">'+
@@ -82,7 +82,7 @@ export function setupPopularFirst({home,loadPlaces,scrollToInvites}){
     content.innerHTML='<div class="n21-popular-rail">'+activities.map(activityCard).join('')+'</div>'+bottomLine;
   }else{
     heading.textContent=(region?region+' · ':'')+'나가치 추천 동행';
-    sub.textContent='마음에 드는 곳에 함께 가고 싶은 마음을 남겨보세요.';
+    sub.textContent='가고 싶은 곳에 관심을 남겨주세요. 참가 신청은 아니에요.';
     content.innerHTML=discovery(regionalCatalog)+'<p class="n21-real-note">추천 후보 · 실제 모집 중인 모임은 아닙니다.</p>';
   }
   if(all)all.hidden=content.querySelectorAll('.n21-popular-card').length<3;
