@@ -51,6 +51,13 @@ try {
   await page.locator('.n21-place-card').first().waitFor();
   ok(await page.locator('.n21-popular-action').first().evaluate(el=>getComputedStyle(el).color==='rgb(255, 255, 255)'),'동행 카드 버튼 흰색 글자');
   ok(await page.locator('.n21-place-card .n30-save').first().isVisible(),'동행 카드 저장 버튼');
+  ok(await page.locator('.n48-intro').innerText().then(t=>t.includes('나가치가 함께할 모임을 기획해요')),'서비스 목적 명시');
+  ok(await page.locator('.n21-place-card .n21-popular-action').first().evaluate(el=>getComputedStyle(el).backgroundColor==='rgb(174, 73, 47)'&&el.getBoundingClientRect().height>=44),'관심 버튼 코랄 및 최소 터치 높이');
+  ok(await page.locator('#n16-invites button').evaluateAll(els=>new Set(els.map(el=>getComputedStyle(el).backgroundColor)).size===4),'활동별 4개 배경색');
+  await page.locator('#n14-place-browse summary').click();
+  await page.locator('#n12-grid .n12-card').first().waitFor();
+  ok(await page.locator('#n12-results').evaluate(el=>el.previousElementSibling.id==='n14-place-browse'),'검색 결과가 검색 아래에 배치');
+  await page.locator('#n14-place-browse summary').click();
   ok(await page.locator('#n16-invites [data-v16-invite]').count()===4,'홈 카테고리 정확히 4개');
   ok(await page.locator('.n16-invites-section').count()===1,'중복 카테고리 영역 없음');
   ok(await page.locator('.n16-respect').count()===0,'중복 안내 카드 제거');

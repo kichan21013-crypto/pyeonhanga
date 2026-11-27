@@ -33,3 +33,4 @@ import './v28-category-icons.test.js';
 import './v30-commercial-home.test.js';
 
 import './v45-community.test.js';
+import './v48-test-ready.test.js';
