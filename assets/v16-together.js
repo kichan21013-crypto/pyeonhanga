@@ -19,7 +19,7 @@ function venueCard(place,interest){
     '<div class="n16-venue-info">' +
     '<span class="n16-venue-category">'+escapeHtml(place.region)+' · '+escapeHtml(place.category)+'</span>' +
     '<h3><a href="'+link+'">'+name+'</a></h3>' +
-    '<p>자세한 위치와 방문정보를 확인해 보세요.</p>' +
+    '<a class="n49-place-detail" href="'+link+'">장소 정보 보기 →</a>' +
     '<button type="button" class="n16-venue-together" data-companion-interest="'+escapeHtml(place.id)+
     '" data-companion-activity="'+interest+'">여기, 같이 가보고 싶어요 <span aria-hidden="true">→</span></button>' +
     '</div></article>';

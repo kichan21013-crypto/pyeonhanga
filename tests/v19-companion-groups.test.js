@@ -32,7 +32,8 @@ test('연령 선택 다음 활동은 복수 체크 가능하며 명시적 동의
  assert.match(app,/interestMap\[program\?\.interest\]/);
  assert.match(app,/values\.activities=activities/);
  assert.match(app,/values\.purpose=mainPurpose/);
- assert.match(app,/!form\.reportValidity\(\)\|\|!form\.elements\.consent\.checked/);
+ assert.match(app,/if\(!form\.elements\.consent\.checked\)/);
+ assert.match(app,/if\(!form\.reportValidity\(\)\)return/);
  assert.match(app,/await recordConsentedSurvey/);
  assert.match(app,/name="updates" value="yes"/);
  assert.match(app,/rememberActivities\(activities\)/);
@@ -68,7 +69,7 @@ test('홈/저장/동행·개인정보 안내에서 v19 버전을 사용하고 �
   read('dist/index.html'),read('dist/saved.html'),read('dist/companion.html'),read('scripts/build-core.js')
  ]);
  for(const p of [home,saved,companion])assert.match(p,/v19-cohorts\.css\?v=20261125-v44/);
- assert.match(home,/v12-direct-home\.js\?v=20261126-v48/);
+ assert.match(home,/v12-direct-home\.js\?v=20261127-v49/);
  assert.match(core,/소식 조회 권한은 90일간 유효/);
  assert.match(core,/해지하면 서버 구독이 삭제/);
  assert.ok(!('dependencies' in JSON.parse(await read('package.json'))));

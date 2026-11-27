@@ -33,12 +33,12 @@ test('홈과 저장·상세 화면은 서로 이동하고 캐시 변경이 적�
   const index=await fromRoot('dist/index.html');
   const saved=await fromRoot('dist/saved.html');
   const build=await fromRoot('scripts/build-core.js');
-  assert.match(index,/v12-direct-home\.js\?v=20261126-v48/);
+  assert.match(index,/v12-direct-home\.js\?v=20261127-v49/);
   assert.match(index,/v12-direct-home\.css\?v=20261125-v44/);
   assert.match(index,/mobile-ux\.css\?v=20261125-v44/);
   assert.match(saved,/mobile-ux\.css\?v=20261125-v44/);
   assert.match(saved,/class="n-mobile-nav"/);
-  assert.ok(build.includes("mobileNav(path === '/community.html' ? 'community' : path === '/companion.html' ? 'companion' : 'recommend')"));
+  assert.ok(build.includes("mobileNav(path === '/community.html' ? 'community' : path === '/companion.html' ? 'companion' : page === 'detail' ? 'recommend' : '')"));
   assert.match(build,/mobileNav\('saved'\)/);
   assert.doesNotMatch(index,/v5-app-home\.js\?v=/);
 });

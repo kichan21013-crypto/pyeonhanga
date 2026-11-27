@@ -34,3 +34,4 @@ import './v30-commercial-home.test.js';
 
 import './v45-community.test.js';
 import './v48-test-ready.test.js';
+import './v49-final.test.js';

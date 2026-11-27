@@ -94,6 +94,21 @@ try {
   await page.locator('.n16-venue-together').first().click();
   await page.locator('dialog.n13-survey-dialog').waitFor();
   ok(await page.locator('[name=consent]').count()===1,'설문 필수 동의');
+  for(const [width,height] of [[320,568],[375,667],[390,700],[430,932]]){
+    await page.setViewportSize({width,height});
+    const next=page.locator('[data-n13-next]');
+    ok(await next.evaluate(el=>{const r=el.getBoundingClientRect(),d=el.closest('dialog').getBoundingClientRect();return r.top>=d.top&&r.bottom<=d.bottom&&r.bottom<=innerHeight&&r.height>=44;}),width+'x'+height+' 관심 다음 버튼 전체 노출');
+    ok(await next.evaluate(el=>getComputedStyle(el).backgroundColor==='rgb(174, 73, 47)'),'관심 다음 버튼 코랄');
+  }
+  await page.setViewportSize({width:390,height:700});
+  await page.locator('[data-n13-next]').click();
+  ok(await page.locator('.n20-first-status').innerText().then(t=>t.includes('연령대')),'연령 미선택 안내');
+  await page.locator('[name=age][value="45~49"]').check();
+  await page.locator('[data-n13-next]').click();
+  ok(await page.locator('[type=submit].n20-submit-interest').evaluate(el=>{const r=el.getBoundingClientRect(),d=el.closest('dialog').getBoundingClientRect();return r.bottom<=d.bottom&&r.bottom<=innerHeight;}),'두번째 단계 등록 버튼 전체 노출');
+  await page.locator('[data-n13-back]').click();
+  await page.setViewportSize({width:390,height:844});
+
   ok(requests.length===0,'미연결 환경 동의 전 외부 분석 요청 없음');
   const dialog=await chooseSurvey(page);
   await dialog.locator('.n20-save-status[data-state=error]').waitFor();

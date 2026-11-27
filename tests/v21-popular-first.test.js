@@ -84,8 +84,8 @@ test('실제 빌드 버전 v21을 모든 페이지에 적용하고 기존 장소
   read('scripts/build-core.js'),read('scripts/build.js')
  ]);
  for(const page of [index,companion,saved])assert.match(page,/v21-popular-first\.css\?v=20261125-v44/);
- assert.match(index,/v12-direct-home\.js\?v=20261126-v48/);
- assert.match(core,/href="\/#n21-popular"/);
+ assert.match(index,/v12-direct-home\.js\?v=20261127-v49/);
+ assert.match(core,/href="\/#n16-invites"/);
  assert.match(build,/const CLIENT_VERSION = '20261125-v44'/);
  assert.match(index,/id="main"/);
  const home=await read('assets/v12-direct-home.js');
