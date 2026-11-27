@@ -27,7 +27,7 @@
 2. 이 폴더가 저장소 전체이면 Root directory를 비워 둡니다. 저장소 안의 `pyeonhanga` 폴더라면 Root directory를 `pyeonhanga`로 지정합니다.
 3. Framework preset: **None**, Build command: **`npm run build`**, Build output directory: **`dist`**.
 4. 환경변수 `NODE_VERSION`은 `22` 이상으로 설정합니다. 배포합니다.
-5. 발급된 무료 `https://이름.pages.dev` 주소를 복사하고 환경변수 **`SITE_URL`**에 입력한 다음 다시 배포합니다. 마지막 `/`는 없어도 됩니다. 사용자 정의 유료 도메인은 필요 없습니다. SITE_URL이 없으면 Cloudflare의 CF_PAGES_URL을 사용하고 로컬은 localhost를 사용합니다.
+5. 발급된 무료 `https://이름.pages.dev` 주소를 복사하고 환경변수 **`SITE_URL`**에 입력한 다음 다시 배포합니다. 마지막 `/`는 없어도 됩니다. 사용자 정의 유료 도메인은 필요 없습니다. SITE_URL이 없으면 Cloudflare의 CF_PAGES_URL 또는 현재 나가치 운영 주소를 사용합니다. 카카오톡 등 공유 미리보기의 URL과 JPEG 이미지가 운영 주소를 가리키도록 합니다.
 6. 홈, 상세 URL, 저장, 공유, 360px 화면을 확인합니다. 실제 데이터 추가 후 `/robots.txt`, `/sitemap.xml`, 상세 페이지의 canonical 주소도 확인합니다.
 
 Git 연결 없이 배포하려면 로컬에서 SITE_URL을 설정하여 빌드한 **dist 폴더**를 Pages의 직접 업로드 기능에 올릴 수 있습니다. 프로젝트의 키·계정은 제공되지 않아 현재 실제 Cloudflare 배포는 수행하지 않았습니다.
