@@ -28,11 +28,11 @@ test('v48 홈 및 고객 상세/저장/게시판/계정 공통 디자인 로드�
     assert.match(html,/noindex,nofollow/,page);
   }
   assert.equal(await read('dist/assets/v48-test-ready.css'),await read('assets/v48-test-ready.css'));
-  assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261126-v48/);
+  assert.match(await read('dist/index.html'),/v12-direct-home\.js\?v=20261127-v49/);
 });
 test('v48 처음 방문 목적 안내, 직접 검색과 인접 결과, 관심 표현 라벨',async()=>{
   const home=await read('assets/v12-direct-home.js'),popular=await read('assets/v21-popular-first.js');
-  assert.match(home,/나가치가 함께할 모임을 기획해요/);
+  assert.match(home,/나가치가 함께할 소모임을 직접 기획해요/);
   assert.match(home,/가고 싶은 곳 검색/);
   assert.match(home,/home\.querySelector\('#n16-journey'\)\.after\(home\.querySelector\('#n14-place-browse'\)\)/);
   assert.match(home,/home\.querySelector\('#n14-place-browse'\)\.after\(results\)/);

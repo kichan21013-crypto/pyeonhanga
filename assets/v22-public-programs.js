@@ -56,6 +56,7 @@ function meetupCard(meetup){
 export function setupPublicPrograms({home,loadPlaces}){
  const section=$('#n22-public-programs',home);
  if(!section)return;
+ const programLink=$('.n49-program-link',home);
  const list=$('#n22-public-course-list',home);
  const meetups=$('#n22-public-meetups',home);
  let mine=new Set(),openIds=new Set(),ready=false,busy=false;
@@ -118,6 +119,7 @@ export function setupPublicPrograms({home,loadPlaces}){
      ['food','hike','outing','travel'].includes(m.activity)&&
      m.stage==='announced'&&typeof m.title==='string'&&typeof m.intro==='string');
   openIds=new Set(shownEvents.filter(m=>!m.meet_at||new Date(m.meet_at).getTime()>Date.now()).map(m=>Number(m.id)));
+  if(programLink)programLink.hidden=!shownCourses.length&&!shownEvents.length;
   if(!shownCourses.length&&!shownEvents.length&&!storedToken()&&!accountToken()){
    section.hidden=true;return;
   }
@@ -176,5 +178,5 @@ export function setupPublicPrograms({home,loadPlaces}){
   home.querySelector('[data-v16-invite="'+button.dataset.n22OpenActivity+'"]')?.click();
  });
  document.addEventListener('nagachi:interest-saved',()=>{ /* public listing does not expose individual responses */ });
- load().catch(()=>{section.hidden=true;});
+ load().catch(()=>{section.hidden=true;if(programLink)programLink.hidden=true;});
 }
